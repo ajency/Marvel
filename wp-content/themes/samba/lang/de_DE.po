@@ -1,0 +1,448 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-13 16:17-0300\n"
+"PO-Revision-Date: 2013-10-07 11:23+0100\n"
+"Last-Translator: Pirenko <pirenko@munto.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.7\n"
+
+#: 404.php:7
+msgid "File Not Found"
+msgstr "Datei nicht gefunden"
+
+#: 404.php:11
+msgid ""
+"The page you are looking for might have been removed, had its name changed, "
+"or is temporarily unavailable."
+msgstr ""
+"Diese Seite wurde verschoben, der Name geändert, oder ist vorrübergehend "
+"nicht erreichbar!"
+
+#: 404.php:13
+msgid "Please try the following:"
+msgstr "Versuchen Sie das Folgende:"
+
+#: 404.php:15
+msgid "Check your spelling"
+msgstr "Überprüfen Sie die Schreibweise"
+
+#: 404.php:16
+#, php-format
+msgid "Return to the <a href=\"%s\">home page</a>"
+msgstr "Zurück zur <a href=\"%s\">Homepage</a>"
+
+#: 404.php:17
+msgid "Click the <a href=\"javascript:history.back()\">Back</a> button"
+msgstr ""
+"Drücken Sie den <a href=\"javascript:history.back()\">Zurück</a> Button"
+
+#: archive.php:13
+#, php-format
+msgid "Daily Archives: %s"
+msgstr "Tägliche Archive: %s"
+
+#: archive.php:15
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr "Monatliche Archive: %s"
+
+#: archive.php:17
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr "Jährliche Archive: %s"
+
+#: archive.php:21
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Autoren Archive: %s"
+
+#: comments.php:7
+#, php-format
+msgid "<cite class=\"fn\">%s</cite>"
+msgstr "<cite class=\"fn\">%s</cite>"
+
+#: comments.php:8
+#, php-format
+msgid "%1$s"
+msgstr "%1$s"
+
+#: comments.php:9
+msgid "(Edit)"
+msgstr "(Bearbeiten)"
+
+#: comments.php:15
+msgid "Your comment is awaiting moderation."
+msgstr "Ihr Kommentar muss noch moderiert werden."
+
+#: comments.php:32
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+"Dieser Beitrag ist passwortgeschützt. Bitte gebe das Passwort ein um "
+"Kommentare zu lesen."
+
+#: comments.php:49
+msgid "&larr; Older comments"
+msgstr "&larr; Ältere Kommentare"
+
+#: comments.php:50
+msgid "Newer comments &rarr;"
+msgstr "Neuere Kommentare &rarr;"
+
+#: comments.php:58 comments.php:68
+msgid "Comments are closed."
+msgstr "Kommentare sind geschlossen."
+
+#: comments.php:75
+msgid "Leave a Reply"
+msgstr "Eine Antwort hinterlassen."
+
+#: comments.php:75
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "Eine Antwort hinterlassen zu %s"
+
+#: comments.php:78
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+"Sie müssen <a href=\"%s\">eingeloggt sein</a> um Kommentare zu schreiben."
+
+#: comments.php:82
+#, php-format
+msgid "Logged in as <a href=\"%s/wp-admin/profile.php\">%s</a>."
+msgstr "Eingeloggt als <a href=\"%s/wp-admin/profile.php\">%s</a>."
+
+#: comments.php:82
+msgid "Log out of this account"
+msgstr "Aus dem Account ausloggen"
+
+#: comments.php:82
+msgid "Log out &raquo;"
+msgstr "Logout &raquo;"
+
+#: comments.php:84
+msgid "Name"
+msgstr ""
+
+#: comments.php:84 comments.php:86
+msgid " (required)"
+msgstr "(benötigt)"
+
+#: comments.php:86
+msgid "Email (will not be published)"
+msgstr "Email (wird nicht veröffentlicht)"
+
+#: comments.php:88
+msgid "Website"
+msgstr ""
+
+#: comments.php:91
+msgid "Comment"
+msgstr "Kommentar"
+
+#: comments.php:93
+msgid "Submit Comment"
+msgstr "Kommentar absenden"
+
+#: functions.php:45
+msgid "Primary Navigation"
+msgstr "Vorherige Navigation"
+
+#: functions.php:74
+#, php-format
+msgid "Posted on %s at %s."
+msgstr "Geschrieben am %s um %s."
+
+#: functions.php:75
+msgid "Written by"
+msgstr "Geschreiben von"
+
+#: index.php:7
+msgid "Latest Posts"
+msgstr "Letzte Beiträge"
+
+#: loop-single.php:14
+msgid "Pages:"
+msgstr "Seiten:"
+
+#: loop.php:5
+msgid "Sorry, no results were found."
+msgstr "Entschuldigung, keine Ergebnisse gefunden."
+
+#: loop.php:37
+msgid "&larr; Older posts"
+msgstr "&larr; Ältere Beiträge"
+
+#: loop.php:38
+msgid "Newer posts &rarr;"
+msgstr "Neuere Beiträge &rarr;"
+
+#: search.php:7
+msgid "Search Results for"
+msgstr "Suchergebnisse für"
+
+#: searchform.php:2
+msgid "Search for:"
+msgstr "Suche für:"
+
+#: searchform.php:3 searchform.php:4
+msgid "Search"
+msgstr "Suche"
+
+#: inc/queed-activation.php:32 inc/queed-activation.php:33
+msgid "Theme Activation"
+msgstr "Theme Aktivierung"
+
+#: inc/queed-activation.php:70
+#, php-format
+msgid "%s Theme Activation"
+msgstr "%s Theme Aktivierung"
+
+#: inc/queed-activation.php:85 inc/queed-activation.php:87
+msgid "Create static front page?"
+msgstr "Erstelle eine statische Startseite"
+
+#: inc/queed-activation.php:89 inc/queed-activation.php:102
+#: inc/queed-activation.php:115 inc/queed-activation.php:128
+#: inc/queed-activation.php:141
+msgid "Yes"
+msgstr "Ja"
+
+#: inc/queed-activation.php:90 inc/queed-activation.php:103
+#: inc/queed-activation.php:116 inc/queed-activation.php:129
+#: inc/queed-activation.php:142
+msgid "No"
+msgstr "Nein"
+
+#: inc/queed-activation.php:93
+msgid "Create a page called Home and set it to be the static front page"
+msgstr ""
+"Erstellte eine Seite mit dem Titel Home und setzte sie als statische "
+"Startseite"
+
+#: inc/queed-activation.php:124 inc/queed-activation.php:126
+msgid "Create navigation menu?"
+msgstr "Erstelle Seitennavigation"
+
+#: inc/queed-activation.php:132
+msgid "Create the Primary Navigation menu and set the location"
+msgstr "Erstelle das Hauptmenu und setze die Lokalisierung"
+
+#: inc/queed-activation.php:137 inc/queed-activation.php:139
+msgid "Add pages to menu?"
+msgstr "Seiten zum Menu hinzufügen"
+
+#: inc/queed-activation.php:145
+msgid "Add all current published pages to the Primary Navigation"
+msgstr "Füge alle aktuell erstellten Seiten in die Navigation sein"
+
+#: inc/queed-cleanup.php:370
+msgid "Continued"
+msgstr "Fortgesetzt"
+
+#: inc/queed-cleanup.php:538
+#, php-format
+msgid ""
+"Please update your <a href=\"%s\">site tagline</a> <a href=\"%s\">Hide "
+"Notice</a>"
+msgstr ""
+"Bitte update Deine <a href=\"%s\">site tagline</a> <a href=\"%s\">Meldung "
+"verbergen</a>"
+
+#: inc/queed-htaccess.php:11
+#, php-format
+msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
+msgstr ""
+"Stelle sicher das Deine <a href=\"%s\">.htaccess</a> Datei beschreibbar ist"
+
+#: inc/queed-widgets.php:99
+msgid "Title (optional):"
+msgstr "Titel: (optional):"
+
+#: inc/queed-widgets.php:103
+msgid "Street Address:"
+msgstr "Straße:"
+
+#: inc/queed-widgets.php:107
+msgid "City/Locality:"
+msgstr "Stadt:"
+
+#: inc/queed-widgets.php:111
+msgid "State/Region:"
+msgstr "Bundesland:"
+
+#: inc/queed-widgets.php:115
+msgid "Zipcode/Postal Code:"
+msgstr "Postleitzahl:"
+
+#: inc/queed-widgets.php:119
+msgid "Telephone:"
+msgstr "Telefon:"
+
+#: inc/queed-widgets.php:123
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Read More"
+msgstr "Mehr lesen"
+
+msgid "Posted By"
+msgstr "Erstellt von"
+
+msgid "Categories"
+msgstr "Kategorien"
+
+msgid "Comments"
+msgstr "Kommentare"
+
+msgid "comments"
+msgstr "Kommentare"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "No Comments Yet"
+msgstr "Keine Kommentar bis jetzt"
+
+msgid "One Comment"
+msgstr "Ein Kommentar"
+
+msgid "Previous entries"
+msgstr "Vorherige Einträge"
+
+msgid "Type and hit ENTER"
+msgstr "Texteingabe und Enter"
+
+msgid "on"
+msgstr "am"
+
+msgid "Leave a reply"
+msgstr "Eine Antwort hinterlassen"
+
+msgid "Error! Please fill all the required fields."
+msgstr "Fehler! Bitte die benötigten Felder ausfüllen."
+
+msgid "Error! Invalid email."
+msgstr "Fehler! Ungültige Emailadresse."
+
+msgid "Thank you for your feedback!"
+msgstr "Danke für Ihre Nachricht!"
+
+msgid "Please wait"
+msgstr "Bitte warten"
+
+msgid "Reply"
+msgstr "Antwort"
+
+msgid "Click here to cancel reply"
+msgstr "Hier klickem um Antwort abzubrechen"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Skills"
+msgstr "Skills"
+
+msgid "Launch Project"
+msgstr "Seite besuchen"
+
+msgid "Related Projects"
+msgstr "Ähnliche Seiten"
+
+msgid "Send Message"
+msgstr "Nachricht senden"
+
+msgid "Error! This field is required."
+msgstr "Fehler! Dieses Feld wird benötigt."
+
+msgid "Error! This email is not valid."
+msgstr "Fehler! Diese Emailadresse ist ungültig."
+
+msgid "Thank you for contacting us. We will reply soon!"
+msgstr "Danke für Ihre Nachricht. Wir werden uns bald bei Ihnen melden!"
+
+msgid "Your message here"
+msgstr "Ihre Nachricht hier"
+
+msgid "Your comment here"
+msgstr "Ihr Kommentar hier"
+
+msgid ""
+"We do not know how you ended up here, but please could you try again by "
+"selecting an option on the menu?"
+msgstr ""
+"Wir wissen nicht wie Sie hier hin gekommen sind, aber bitte versuchen Sie es "
+"erneut, in dem Sie eine Option aus dem Menu auswählen."
+
+msgid "No Results Found"
+msgstr "Keine Suchergebnisse"
+
+msgid "Search Results For"
+msgstr "Suchergebnisse für"
+
+msgid "LOAD MORE POSTS"
+msgstr "Lade mehr Beiträge"
+
+msgid "NO MORE POSTS TO SHOW"
+msgstr "Keine weiteren Beiträge vorhanden"
+
+msgid "I like this!"
+msgstr "Mag ich!"
+
+msgid "You already liked this."
+msgstr "Sie mögen das bereits."
+
+msgid "Share"
+msgstr "Teilen"
+
+msgid "Get In Touch"
+msgstr "In Verbindung treten"
+
+msgid "Project URL"
+msgstr "Link Adresse"
+
+msgid "Client"
+msgstr "Hersteller"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "READ MORE"
+msgstr "Mehr lesen"
+
+msgid "By"
+msgstr "Von"
+
+msgid "About"
+msgstr "Über"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Subject"
+msgstr "Betreff"
+
+msgid "Message"
+msgstr "Nachricht"
+
+msgid "Your Message"
+msgstr "Ihre Nachricht"
+
+msgid "Please Wait..."
+msgstr "Bitte warten..."
+
+msgid "Sticky Post"
+msgstr "Hervorgehobener Beitrag"
+
+msgid "To Blog"
+msgstr "Zum Blog"
+
+msgid "To Portfolio"
+msgstr "Zum Portfolio"

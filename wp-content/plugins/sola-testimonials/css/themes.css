@@ -1,0 +1,96 @@
+/* theme 1 */
+
+
+
+.theme-1 {
+
+}
+.sola_t_layout_1_container.theme-1 {
+    margin:0 auto;
+    margin-bottom:20px;
+}
+.theme-1 .sola_t_image {
+    text-align: center;
+}
+
+.theme-1  .sola_t_image {
+    float: left;
+    margin-right:15px;
+    margin-bottom:5px;
+}
+.theme-1  .sola_t_title{
+    font-weight: bold;
+    padding: 5px;
+    font-size: 1.4em;
+}
+.theme-1  .sola_t_body{
+    color:#666;
+    line-height: 1.4em;
+    font-style: italic;
+    padding:5px;
+}
+.theme-1  .sola_t_meta_data{
+    clear: both;
+    font-size: 0.8em;
+    float:right;
+
+}
+.theme-1  .sola_t_name{
+    font-weight:bold;
+}
+.theme-1  .sola_t_website{
+    font-style: italic;
+    display:inline-block;
+}
+.theme-1 .sola_t_display_rating{
+    display: inline-block;
+}
+
+
+
+
+.sola_t_layout_1_container.theme-2 {
+    margin:0 auto;
+    margin-bottom:20px;
+}
+.theme-2 .sola_t_image {
+    float: none;
+    margin: 0 auto;
+}
+
+.theme-2  .sola_t_image {
+    margin-bottom:5px;
+}
+.theme-2  .sola_t_title{
+    font-weight: bold;
+    padding: 5px;
+    text-align:center;
+    font-size: 1.4em;
+}
+.theme-2  .sola_t_body{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 5px;
+}
+.theme-2  .sola_t_meta_data{
+    font-size: 0.8em;
+    text-align: center;
+    padding-bottom: 5px;
+    clear:both;
+
+}
+.theme-2  .sola_t_name{
+    font-weight:bold;
+}
+.theme-2  .sola_t_website{
+    font-style: italic;
+    display: inline-block;
+}
+
+.theme-2 .sola_t_display_rating, .theme-2 .sola_t_display_rating_slider{
+    text-align: center;
+}
+
+
+

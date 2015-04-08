@@ -1,0 +1,233 @@
+/* Submission Form */
+.sola_t_desc{
+    padding-top: 5px;
+    font-style: italic;
+}
+.sola_t_required_symbol{
+    color: red;
+}
+
+.sola_t_container{
+    display: inline-block;
+    width: 100%;
+    
+}
+
+/* Layout 1 */
+
+.sola_t_layout_1_container {
+    width:70%;
+    clear: both;
+}
+.sola_t_image {
+
+}
+/*.sola_t_image img {
+    width: 100%;
+}*/
+.sola_t_layout_1_container .sola_t_container{
+    width: 100%;
+    
+}
+.sola_t_layout_1_container .sola_t_image{
+
+}
+.sola_t_layout_1_container .sola_t_title{
+    width: 100%;
+}
+.sola_t_layout_1_container .sola_t_body{
+    width: 100%;
+}
+.sola_t_layout_1_container .sola_t_meta_data{
+
+}
+.sola_t_layout_1_container .sola_t_name{
+
+}
+.sola_t_layout_1_container .sola_t_website{
+
+}
+
+
+/* Layout 2 */
+
+.sola_t_layout_2_container{
+    margin: 5px 3% 10px 1%;
+    width: 45%;
+    display: inline-block;    
+}
+.sola_t_layout_2_container .sola_t_container{
+    width: 100%;
+    display: block;
+
+}
+.sola_t_layout_2_container .sola_t_image{
+
+}
+.sola_t_layout_2_container .sola_t_title{
+
+}
+.sola_t_layout_2_container .sola_t_body{
+
+}
+.sola_t_layout_2_container .sola_t_meta_data{
+
+}
+.sola_t_layout_2_container .sola_t_name{
+    
+}
+.sola_t_layout_2_container .sola_t_website{
+
+    
+}
+.sola_t_layout_2_container + .sola_t_cnt_3,
+.sola_t_layout_2_container + .sola_t_cnt_6, 
+.sola_t_layout_2_container + .sola_t_cnt_9, 
+.sola_t_layout_2_container + .sola_t_cnt_12, 
+.sola_t_layout_2_container + .sola_t_cnt_15, 
+.sola_t_layout_2_container + .sola_t_cnt_18, 
+.sola_t_layout_2_container + .sola_t_cnt_21, 
+.sola_t_layout_2_container + .sola_t_cnt_24, 
+.sola_t_layout_2_container + .sola_t_cnt_27, 
+.sola_t_layout_2_container + .sola_t_cnt_30 {
+    clear: left;
+}
+
+
+/* Layout 3 */
+
+.sola_t_layout_3_container{
+    margin: 5px 1% 10px 1%;
+    width: 30%;
+    display: inline-block;
+}
+.sola_t_layout_3_container .sola_t_container{
+    width: 100%;
+    display: block;
+}
+.sola_t_layout_3_container .sola_t_image{
+
+}
+.sola_t_layout_3_container .sola_t_title{
+
+}
+.sola_t_layout_3_container .sola_t_body{
+
+}
+.sola_t_layout_3_container .sola_t_meta_data{
+
+}
+.sola_t_layout_3_container .sola_t_name{
+
+    
+}
+.sola_t_layout_3_container .sola_t_website{
+
+    
+}
+
+.sola_t_layout_3_container + .sola_t_cnt_4,
+.sola_t_layout_3_container + .sola_t_cnt_8, 
+.sola_t_layout_3_container + .sola_t_cnt_12, 
+.sola_t_layout_3_container + .sola_t_cnt_16, 
+.sola_t_layout_3_container + .sola_t_cnt_20, 
+.sola_t_layout_3_container + .sola_t_cnt_24, 
+.sola_t_layout_3_container + .sola_t_cnt_28, 
+.sola_t_layout_3_container + .sola_t_cnt_32, 
+.sola_t_layout_3_container + .sola_t_cnt_36, 
+.sola_t_layout_3_container + .sola_t_cnt_40 {
+    clear: left;
+}
+
+/* Layout 4 */
+
+.sola_t_layout_4_container{
+    /*padding: 10px;*/
+    margin: 5px 1% 10px 1%;
+    width: 23%;
+    display: inline-block;
+}
+.sola_t_layout_4_container .sola_t_container{
+    width: 100%;
+    display: block;
+}
+.sola_t_layout_4_container .sola_t_image{
+
+}
+.sola_t_layout_4_container .sola_t_title{
+    width: 100%;
+}
+.sola_t_layout_4_container .sola_t_body{
+
+}
+.sola_t_layout_4_container .sola_t_meta_data{
+
+}
+.sola_t_layout_4_container .sola_t_name{
+
+    
+}
+.sola_t_layout_4_container .sola_t_website{
+
+    
+}
+.sola_t_layout_4_container + .sola_t_cnt_5,
+.sola_t_layout_4_container + .sola_t_cnt_10, 
+.sola_t_layout_4_container + .sola_t_cnt_15, 
+.sola_t_layout_4_container + .sola_t_cnt_20, 
+.sola_t_layout_4_container + .sola_t_cnt_25, 
+.sola_t_layout_4_container + .sola_t_cnt_30, 
+.sola_t_layout_4_container + .sola_t_cnt_35, 
+.sola_t_layout_4_container + .sola_t_cnt_40, 
+.sola_t_layout_4_container + .sola_t_cnt_45, 
+.sola_t_layout_4_container + .sola_t_cnt_50 {
+    clear: left;
+}
+
+
+/* Slider */
+
+.sola_t_slider_container{
+    text-align: center;
+    padding:20px;
+}
+.sola_t_slider_image .sola_t_image {
+    margin:0 auto;
+    width:60px;
+    height:60px;
+}
+.sola_t_slider_title{
+    font-size: 0.9em;
+    padding: 10px 0;
+}
+.sola_t_slider_title h4{
+    width: 100%;
+    font-weight: bold;
+
+    font-size: 1.2em;
+}
+.sola_t_slider_contents{
+    font-weight: normal;
+    font-size: 1.1em;
+    line-height: 1.4em;
+    font-style: italic;
+}
+.sola_t_slider_meta_contents{
+    width: 60%;
+    margin: 0 auto;
+    font-size:0.8em;
+}
+.sola_t_slider_name{
+    font-weight:bold;
+}
+.sola_t_slider_address{
+    font-style:italic;
+}
+
+.sola-t-round-image{
+    border-radius: 100px;
+}
+
+.sola_t_same_height{
+    vertical-align: top;
+}

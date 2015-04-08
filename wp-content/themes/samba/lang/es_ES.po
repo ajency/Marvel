@@ -1,0 +1,2035 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Samba v2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-13 16:17-0300\n"
+"PO-Revision-Date: 2013-12-03 19:04:59+0000\n"
+"Last-Translator: Pirenko <pirenko@munto.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: comments.php:40
+#@ samba_lang
+msgid "Your comment is awaiting moderation."
+msgstr "Su comentario está pendiente de moderación."
+
+#: comments.php:55
+#@ samba_lang
+msgid "This post is password protected. Enter the password to view comments."
+msgstr "Esta entrada está protegida. Introduzca la contraseña para ver los comentarios."
+
+#: comments.php:77
+#@ samba_lang
+msgid "&larr; Older comments"
+msgstr "&larr; Comentarios más antiguos"
+
+#: comments.php:78
+#@ samba_lang
+msgid "Newer comments &rarr;"
+msgstr "Comentarios más nuevos &rarr;"
+
+#: inc/helper.php:1580
+#@ samba_lang
+msgid "Leave a Reply"
+msgstr "Deje un Comentario"
+
+#: comments.php:118
+#@ samba_lang
+msgid "Log out &raquo;"
+msgstr "Salir &raquo;"
+
+#: inc/helper.php:1581
+#@ samba_lang
+msgid "Name"
+msgstr "Nombre"
+
+#: inc/helper.php:1557
+#@ samba_lang
+msgid " (required)"
+msgstr " (obligatorio)"
+
+#: inc/helper.php:1583
+#@ samba_lang
+msgid "Website"
+msgstr "Sitio Web"
+
+#: inc/helper.php:1585
+#@ samba_lang
+msgid "Submit Comment"
+msgstr "Enviar Comentario"
+
+#: inc/helper.php:1748
+#@ samba_lang
+msgid "Search"
+msgstr "Buscar"
+
+#: inc/activation.php:102
+#: inc/theme_options.php:47
+#: inc/theme_options.php:55
+#: inc/theme_options.php:406
+#@ samba_lang
+msgid "Yes"
+msgstr "Sí"
+
+#: inc/activation.php:103
+#: inc/theme_options.php:43
+#: inc/theme_options.php:59
+#: inc/theme_options.php:75
+#: inc/theme_options.php:410
+#@ samba_lang
+msgid "No"
+msgstr "No"
+
+#: inc/helper.php:1575
+#: inc/helper.php:1578
+#@ samba_lang
+msgid "Comments"
+msgstr "Comentarios"
+
+#: inc/helper.php:1565
+#@ samba_lang
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: inc/helper.php:1576
+#@ samba_lang
+msgid "No Comments Yet"
+msgstr "Aún Sin Comentarios"
+
+#: inc/helper.php:1577
+#@ samba_lang
+msgid "One Comment"
+msgstr "Un Comentario"
+
+#: inc/helper.php:1552
+#@ samba_lang
+msgid "Type and hit ENTER"
+msgstr "Escriba y pulse ENTER"
+
+#: inc/helper.php:1586
+#@ samba_lang
+msgid "Error! Please fill all the required fields."
+msgstr "¡Error! Por favor rellene todos los campos obligatorios."
+
+#: inc/helper.php:1587
+#@ samba_lang
+msgid "Error! Invalid email."
+msgstr "¡Error! EMail incorrecto."
+
+#: inc/helper.php:1588
+#@ samba_lang
+msgid "Thank you for your feedback!"
+msgstr "¡Gracias por su colaboración!"
+
+#: inc/helper.php:1579
+#@ samba_lang
+msgid "Reply"
+msgstr "Responder"
+
+#: inc/ajax-handler.php:36
+#: inc/helper.php:1567
+#@ samba_lang
+msgid "Date"
+msgstr "Fecha"
+
+#: inc/ajax-handler.php:34
+#: inc/helper.php:1564
+#@ samba_lang
+msgid "Skills"
+msgstr "Competencias"
+
+#: inc/helper.php:1568
+#@ samba_lang
+msgid "Related Projects"
+msgstr "Proyectos Relacionados"
+
+#: inc/helper.php:1591
+#@ samba_lang
+msgid "Send Message"
+msgstr "Enviar Mensaje"
+
+#: inc/helper.php:1593
+#@ samba_lang
+msgid "Thank you for contacting us. We will reply soon!"
+msgstr "Gracias por contactarnos. ¡Le responderemos en breve!"
+
+#: inc/helper.php:1584
+#@ samba_lang
+msgid "Your comment here"
+msgstr "Su comentario aquí"
+
+#: inc/helper.php:1551
+#@ samba_lang
+msgid "We do not know how you ended up here, but please could you try again by selecting an option on the menu?"
+msgstr "No sabemos exactamente cómo vino a parar aquí, pero por favor, inténtelo de nuevo seleccionando una opción del menú."
+
+#: inc/helper.php:1554
+#@ samba_lang
+msgid "No Results Found"
+msgstr "Sin Resultados"
+
+#: inc/helper.php:1553
+#@ samba_lang
+msgid "Search Results For"
+msgstr "Resultados de la Búsqueda Para"
+
+#: inc/helper.php:1555
+#@ samba_lang
+msgid "LOAD MORE POSTS"
+msgstr "CARGAR MÁS ENTRADAS"
+
+#: inc/helper.php:1556
+#@ samba_lang
+msgid "NO MORE POSTS TO SHOW"
+msgstr "NO HAY MÁS ENTRADAS"
+
+#: inc/ajax-handler.php:30
+#: inc/helper.php:1558
+#@ samba_lang
+msgid "I like this!"
+msgstr "¡Me gusta esto!"
+
+#: inc/ajax-handler.php:31
+#: inc/helper.php:1559
+#@ samba_lang
+msgid "You already liked this."
+msgstr "Ya te gustó esto."
+
+#: inc/ajax-handler.php:32
+#@ samba_lang
+msgid "Share"
+msgstr "Compartir"
+
+#: inc/helper.php:1561
+#@ samba_lang
+msgid "Get In Touch"
+msgstr "Póngase en Contacto"
+
+#: inc/ajax-handler.php:33
+#: inc/helper.php:1563
+#@ samba_lang
+msgid "Project URL"
+msgstr "URL del Proyecto"
+
+#: inc/ajax-handler.php:35
+#: inc/helper.php:1566
+#@ samba_lang
+msgid "Client"
+msgstr "Cliente"
+
+#: inc/helper.php:1569
+#@ samba_lang
+msgid "All"
+msgstr "Todo"
+
+#: inc/helper.php:1572
+#@ samba_lang
+msgid "READ MORE"
+msgstr "LEER MÁS"
+
+#: inc/helper.php:1573
+#@ samba_lang
+msgid "By"
+msgstr "Por"
+
+#: inc/helper.php:1574
+#@ samba_lang
+msgid "About"
+msgstr "Acerca de"
+
+#: inc/helper.php:1582
+#@ samba_lang
+msgid "Email"
+msgstr "Email"
+
+#: inc/helper.php:1589
+#@ samba_lang
+msgid "Subject"
+msgstr "Asunto"
+
+#: inc/helper.php:1592
+#@ samba_lang
+msgid "Please Wait..."
+msgstr "Por Favor Espere..."
+
+#: inc/helper.php:1570
+#@ samba_lang
+msgid "Sticky Post"
+msgstr "Artículo Destacado"
+
+#: inc/helper.php:1571
+#@ samba_lang
+msgid "To Blog"
+msgstr "Volver a Noticias"
+
+#: inc/helper.php:1562
+#@ samba_lang
+msgid "To Portfolio"
+msgstr "Volver al Portfolio"
+
+#: inc/helper.php:1550
+#, fuzzy
+#@ samba_lang
+msgid "Page Not Found"
+msgstr "Página No Encontrada"
+
+#: inc/helper.php:1560
+#, fuzzy
+#@ samba_lang
+msgid "Share on"
+msgstr "Compartir"
+
+#: comments.php:22
+#, php-format
+#@ samba_lang
+msgid "<div class=\"fn author_name left_floated zero_color\">%s</div>"
+msgstr ""
+
+#: comments.php:67
+#, php-format
+#@ default
+msgid "comments_one_response"
+msgid_plural "%1$s comments_oneplus_response"
+msgstr[0] ""
+msgstr[1] ""
+
+#: functions.php:73
+#, php-format
+#@ samba_lang
+msgid "%d ITEM"
+msgid_plural "%d ITEMS"
+msgstr[0] "%d ELEMENTO"
+msgstr[1] "%d ELEMENTOS"
+
+#: functions.php:139
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:164
+#@ samba_lang
+msgid "Install Required Plugins"
+msgstr "Instalar los Plugins Necesarios"
+
+#: functions.php:140
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:165
+#@ samba_lang
+msgid "Install Plugins"
+msgstr "Instalar los Plugins"
+
+#: functions.php:141
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:166
+#, php-format
+#@ samba_lang
+msgid "Installing Plugin: %s"
+msgstr "Instalando Plugin: %s"
+
+#: functions.php:142
+#@ samba_lang
+msgid "Something went wrong with the plugin API."
+msgstr "Algo ha ido mal con el API del Plugin"
+
+#: functions.php:143
+#, php-format
+#@ samba_lang
+msgid "This theme requires the following plugin (self-hosted): %1$s."
+msgid_plural "This theme requires the following plugins (self-hosted): %1$s."
+msgstr[0] "Este tema necesita el siguiente plugin (auto-alojado): %1$s."
+msgstr[1] "Este tema necesita los siguientes plugins (auto-alojados): %1$s."
+
+#: functions.php:144
+#, php-format
+#@ samba_lang
+msgid "This theme recommends the following plugin (self-hosted): %1$s."
+msgid_plural "This theme recommends the following plugins (self-hosted): %1$s."
+msgstr[0] "Este tema recomienda el siguiente plugin (auto-alojado): %1$s."
+msgstr[1] "Este tema recomienda los siguientes plugins (auto-alojados): %1$s."
+
+#: functions.php:145
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:170
+#, php-format
+#@ samba_lang
+msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
+msgid_plural "Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed."
+msgstr[0] "Lo sentimos, pero no dispone de los permisos necesarios para instalar el plugin %s. Póngase en contacto con el administrador de la web para que le ayude a instalar dicho plugin."
+msgstr[1] "Lo sentimos, pero no dispone de los permisos necesarios para instalar los plugins %s. Póngase en contacto con el administrador de la web para que le ayude a instalar dichos plugins."
+
+#: functions.php:146
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:171
+#, php-format
+#@ samba_lang
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] "El plugin necesario siguiente está desactivado actualmente: %1$s."
+msgstr[1] "Los plugins necesarios siguientes están desactivados actualmente: %1$s."
+
+#: functions.php:147
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:172
+#, php-format
+#@ samba_lang
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] "El plugin recomendado siguiente está desactivado actualmente: %1$s."
+msgstr[1] "Los plugins recomendados siguientes están desactivados actualmente: %1$s."
+
+#: functions.php:148
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:173
+#, php-format
+#@ samba_lang
+msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
+msgid_plural "Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated."
+msgstr[0] "Lo sentimos, pero no dispone de los permisos necesarios para activar el plugin %s. Póngase en contacto con el administrador de la web para que le ayude a activar dicho plugin."
+msgstr[1] "Lo sentimos, pero no dispone de los permisos necesarios para activar los plugins %s. Póngase en contacto con el administrador de la web para que le ayude a activar dichos plugins."
+
+#: functions.php:149
+#, php-format
+#@ samba_lang
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.<br>The update is located on the theme root folder inside the external_plugins folder."
+msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.<br>The updates are located on the theme root folder inside the external_plugins folder."
+msgstr[0] "El siguiente plugin necesita ser actualizado a su última versión para asegurar la máxima compatibilidad con este tema: %1$s.<br>La actualización está localizada en la carpeta raiz del tema, dentro de la carpeta external_plugins."
+msgstr[1] "Los siguientes plugins necesitan ser actualizados a su última versión para asegurar la máxima compatibilidad con este tema: %1$s.<br>Las actualizaciones están localizadas en la carpeta raiz del tema, dentro de la carpeta external_plugins."
+
+#: functions.php:150
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:175
+#, php-format
+#@ samba_lang
+msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
+msgid_plural "Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated."
+msgstr[0] "Lo sentimos, pero no dispone de los permisos necesarios para actualizar el plugin %s. Póngase en contacto con el administrador de la web para que le ayude a actualizar dicho plugin."
+msgstr[1] "Lo sentimos, pero no dispone de los permisos necesarios para actualizar los plugins %s. Póngase en contacto con el administrador de la web para que le ayude a actualizar dichos plugins."
+
+#: functions.php:151
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:176
+#@ samba_lang
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] "Comenzar la instalación del plugin"
+msgstr[1] "Comenzar la instalación de los plugins"
+
+#: functions.php:152
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:177
+#@ samba_lang
+msgid "Activate installed plugin"
+msgid_plural "Activate installed plugins"
+msgstr[0] "Activar el plugin instalado"
+msgstr[1] "Activar los plugins instalados"
+
+#: functions.php:153
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:178
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:490
+#@ samba_lang
+msgid "Return to Required Plugins Installer"
+msgstr "Volver al Instalador de Plugins Necesarios"
+
+#: functions.php:154
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:179
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1846
+#@ samba_lang
+msgid "Plugin activated successfully."
+msgstr "Plugin activado con éxito."
+
+#: functions.php:155
+#, php-format
+#@ samba_lang
+msgid "All plugins installed and activated successfully. %s"
+msgstr "Todos los plugins instalados y activados con éxito. %s"
+
+#: inc/activation.php:31
+#: inc/activation.php:32
+#@ samba_lang
+msgid "One-click install"
+msgstr "Instalación en un sólo clic"
+
+#: inc/activation.php:67
+#, php-format
+#@ samba_lang
+msgid "%s Theme Activation Options"
+msgstr "%s Opciones de Activación del Tema"
+
+#: inc/activation.php:84
+#: inc/activation.php:100
+#@ samba_lang
+msgid "One-click install sample content?"
+msgstr "¿Instalar el contenido de ejemplo en un solo clic?"
+
+#: inc/helper.php:8
+#@ samba_lang
+msgid "Acme"
+msgstr ""
+
+#: inc/helper.php:14
+#@ samba_lang
+msgid "Alegreya"
+msgstr ""
+
+#: inc/helper.php:20
+#@ samba_lang
+msgid "Anton"
+msgstr ""
+
+#: inc/helper.php:26
+#@ samba_lang
+msgid "Arial"
+msgstr ""
+
+#: inc/helper.php:32
+#@ samba_lang
+msgid "Arvo"
+msgstr ""
+
+#: inc/helper.php:38
+#@ samba_lang
+msgid "Asap"
+msgstr ""
+
+#: inc/helper.php:44
+#@ samba_lang
+msgid "Asul"
+msgstr ""
+
+#: inc/helper.php:50
+#@ samba_lang
+msgid "Average Sans"
+msgstr ""
+
+#: inc/helper.php:56
+#@ samba_lang
+msgid "Bitter"
+msgstr ""
+
+#: inc/helper.php:62
+#@ samba_lang
+msgid "Bree Serif"
+msgstr ""
+
+#: inc/helper.php:68
+#@ samba_lang
+msgid "Cabin"
+msgstr ""
+
+#: inc/helper.php:74
+#@ samba_lang
+msgid "Changa One"
+msgstr ""
+
+#: inc/helper.php:80
+#@ samba_lang
+msgid "Cinzel"
+msgstr ""
+
+#: inc/helper.php:86
+#@ samba_lang
+msgid "Courier New"
+msgstr ""
+
+#: inc/helper.php:92
+#@ samba_lang
+msgid "Cousine"
+msgstr ""
+
+#: inc/helper.php:98
+#@ samba_lang
+msgid "Coustard"
+msgstr ""
+
+#: inc/helper.php:104
+#@ samba_lang
+msgid "Crimson Text"
+msgstr ""
+
+#: inc/helper.php:110
+#@ samba_lang
+msgid "Dosis"
+msgstr ""
+
+#: inc/helper.php:116
+#@ samba_lang
+msgid "Droid Sans"
+msgstr ""
+
+#: inc/helper.php:122
+#@ samba_lang
+msgid "Droid Serif"
+msgstr ""
+
+#: inc/helper.php:128
+#@ samba_lang
+msgid "Economica"
+msgstr ""
+
+#: inc/helper.php:134
+#@ samba_lang
+msgid "Exo Sans"
+msgstr ""
+
+#: inc/helper.php:140
+#@ samba_lang
+msgid "Francois One"
+msgstr ""
+
+#: inc/helper.php:146
+#@ samba_lang
+msgid "Helvetica"
+msgstr ""
+
+#: inc/helper.php:152
+#@ samba_lang
+msgid "Josefin Sans"
+msgstr ""
+
+#: inc/helper.php:158
+#@ samba_lang
+msgid "Lato"
+msgstr ""
+
+#: inc/helper.php:164
+#@ samba_lang
+msgid "Lekton"
+msgstr ""
+
+#: inc/helper.php:170
+#@ samba_lang
+msgid "Lora"
+msgstr ""
+
+#: inc/helper.php:176
+#@ samba_lang
+msgid "Maven Pro"
+msgstr ""
+
+#: inc/helper.php:182
+#@ samba_lang
+msgid "Merriweather"
+msgstr ""
+
+#: inc/helper.php:188
+#@ samba_lang
+msgid "Montserrat"
+msgstr ""
+
+#: inc/helper.php:194
+#@ samba_lang
+msgid "Muli"
+msgstr ""
+
+#: inc/helper.php:200
+#@ samba_lang
+msgid "News Cycle"
+msgstr ""
+
+#: inc/helper.php:206
+#@ samba_lang
+msgid "Nobile"
+msgstr ""
+
+#: inc/helper.php:212
+#@ samba_lang
+msgid "Open Sans"
+msgstr ""
+
+#: inc/helper.php:218
+#@ samba_lang
+msgid "Open Sans Condensed"
+msgstr ""
+
+#: inc/helper.php:224
+#@ samba_lang
+msgid "Orienta"
+msgstr ""
+
+#: inc/helper.php:230
+#@ samba_lang
+msgid "Oswald"
+msgstr ""
+
+#: inc/helper.php:236
+#@ samba_lang
+msgid "Overlock SC"
+msgstr ""
+
+#: inc/helper.php:242
+#@ samba_lang
+msgid "Oxygen Mono"
+msgstr ""
+
+#: inc/helper.php:248
+#@ samba_lang
+msgid "Patua One"
+msgstr ""
+
+#: inc/helper.php:254
+#@ samba_lang
+msgid "Pompiere"
+msgstr ""
+
+#: inc/helper.php:260
+#@ samba_lang
+msgid "PT Sans"
+msgstr ""
+
+#: inc/helper.php:266
+#@ samba_lang
+msgid "PT Sans Narrow"
+msgstr ""
+
+#: inc/helper.php:272
+#@ samba_lang
+msgid "Questrial"
+msgstr ""
+
+#: inc/helper.php:278
+#@ samba_lang
+msgid "Quicksand"
+msgstr ""
+
+#: inc/helper.php:284
+#@ samba_lang
+msgid "Raleway"
+msgstr ""
+
+#: inc/helper.php:290
+#@ samba_lang
+msgid "Rambla"
+msgstr ""
+
+#: inc/helper.php:296
+#@ samba_lang
+msgid "Roboto Condensed"
+msgstr ""
+
+#: inc/helper.php:302
+#@ samba_lang
+msgid "Rokkit"
+msgstr ""
+
+#: inc/helper.php:308
+#@ samba_lang
+msgid "Ruda"
+msgstr ""
+
+#: inc/helper.php:314
+#@ samba_lang
+msgid "Rye"
+msgstr ""
+
+#: inc/helper.php:320
+#@ samba_lang
+msgid "Sanchez"
+msgstr ""
+
+#: inc/helper.php:326
+#@ samba_lang
+msgid "Share Tech"
+msgstr ""
+
+#: inc/helper.php:332
+#@ samba_lang
+msgid "Source Sans Pro"
+msgstr ""
+
+#: inc/helper.php:338
+#@ samba_lang
+msgid "Titillium Web"
+msgstr ""
+
+#: inc/helper.php:344
+#@ samba_lang
+msgid "Ubuntu"
+msgstr ""
+
+#: inc/helper.php:350
+#@ samba_lang
+msgid "Vollkorn"
+msgstr ""
+
+#: inc/helper.php:356
+#@ samba_lang
+msgid "Yanone Kaffeesatz"
+msgstr ""
+
+#: inc/helper.php:362
+#@ samba_lang
+msgid "Bebas Neue"
+msgstr ""
+
+#: inc/helper.php:368
+#@ samba_lang
+msgid "League Gothic"
+msgstr ""
+
+#: inc/helper.php:374
+#@ samba_lang
+msgid "Novecento"
+msgstr ""
+
+#: inc/helper.php:380
+#@ samba_lang
+msgid "OSP Din"
+msgstr ""
+
+#: inc/helper.php:386
+#@ samba_lang
+msgid "TeX Gyre Heros"
+msgstr ""
+
+#: inc/helper.php:1503
+#@ samba_lang
+msgid "Top Right Navigation"
+msgstr "Navegación Superior Derecha"
+
+#: inc/helper.php:1590
+#@ samba_lang
+msgid "Your Message here"
+msgstr "Su mensaje aquí"
+
+#. translators: %s: title of menu item which is invalid
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:78
+#, php-format
+#@ samba_lang
+msgid "%s (Invalid)"
+msgstr "%s (No válido)"
+
+#. translators: %s: title of menu item in draft status
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:82
+#, php-format
+#@ samba_lang
+msgid "%s (Pending)"
+msgstr "%s (Pendiente)"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:106
+#@ samba_lang
+msgid "Move up"
+msgstr "Mover arriba"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:119
+#@ samba_lang
+msgid "Move down"
+msgstr "Mover abajo"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:121
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:123
+#@ samba_lang
+msgid "Edit Menu Item"
+msgstr "Modificar el Elemento del Menú"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:132
+#@ samba_lang
+msgid "URL"
+msgstr "URL"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:139
+#@ samba_lang
+msgid "Navigation Label"
+msgstr "Etiqueta de Navegación"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:145
+#@ samba_lang
+msgid "Title Attribute"
+msgstr "Atributo de Título"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:152
+#@ samba_lang
+msgid "Open link in a new window/tab"
+msgstr "Abrir el enlace en una nueva ventana / pestaña"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:157
+#@ samba_lang
+msgid "CSS Classes (optional)"
+msgstr "Clases CSS (opcional)"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:163
+#@ samba_lang
+msgid "Link Relationship (XFN)"
+msgstr "Relación del Enlace (XFN)"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:169
+#@ samba_lang
+msgid "Description"
+msgstr "Descripción"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:171
+#@ samba_lang
+msgid "The description will be displayed in the menu if the current theme supports it."
+msgstr "La descripción se mostrará en el menú si el tema actual lo soporta."
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:179
+#@ samba_lang
+msgid "Color (ex:#FFCCFF)"
+msgstr "Color (ej: #FFCCFF)"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:189
+#, php-format
+#@ samba_lang
+msgid "Original: %s"
+msgstr "Original: %s"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:202
+#@ samba_lang
+msgid "Remove"
+msgstr "Eliminar"
+
+#: inc/modules/sweet-custom-menu/edit_custom_walker.php:203
+#@ samba_lang
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:167
+#@ samba_lang
+msgid "Something went wrong."
+msgstr "Algo ha ido mal."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:168
+#, php-format
+#@ samba_lang
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] "Este tema necesita el siguiente plugin: %1$s."
+msgstr[1] "Este tema necesita los siguientes plugins: %1$s."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:169
+#, php-format
+#@ samba_lang
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] "Este tema recomienda el siguiente plugin: %1$s."
+msgstr[1] "Este tema recomienda los siguientes plugins: %1$s."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:174
+#, php-format
+#@ samba_lang
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
+msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s."
+msgstr[0] "El siguiente plugin necesita ser actualizado a su última versión para asegurar la máxima compatibilidad con este tema: %1$s."
+msgstr[1] "Los siguientes plugins necesitan ser actualizados a su última versión para asegurar la máxima compatibilidad con este tema: %1$s."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:180
+#, php-format
+#@ samba_lang
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr "Todos los plugins instalados y activados con éxito. %1$s"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:517
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:2058
+#@ samba_lang
+msgid "Return to the Dashboard"
+msgstr "Volver al Escritorio"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:545
+#, php-format
+#@ samba_lang
+msgid "The following plugin was activated successfully: %s."
+msgstr "El siguiente plugin fue activado con éxito: %s."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:704
+#@ samba_lang
+msgid "Dismiss this notice"
+msgstr "Descartar el aviso"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1091
+#@ samba_lang
+msgid "External Link"
+msgstr "Enlace Externo"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1096
+#@ samba_lang
+msgid "Private Repository"
+msgstr "Repositorio Privado"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1099
+#@ samba_lang
+msgid "Pre-Packaged"
+msgstr "Pre-Empaquetado"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1103
+#@ samba_lang
+msgid "WordPress Repository"
+msgstr "Repositorio de WordPress"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1106
+#@ samba_lang
+msgid "Required"
+msgstr "Obligatorio"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1106
+#@ samba_lang
+msgid "Recommended"
+msgstr "Recomendado"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1109
+#@ samba_lang
+msgid "Not Installed"
+msgstr "No Instalado"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1111
+#@ samba_lang
+msgid "Installed But Not Activated"
+msgstr "Instalado pero No Activado"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1281
+#, php-format
+#@ samba_lang
+msgid "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the Dashboard\">Return to the Dashboard</a>"
+msgstr "No hay plugins que instalar o activar. <a href=\"%1$s\" title=\"Volver al Escritorio\">Volver al Escritorio</a>"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1297
+#@ samba_lang
+msgid "Plugin"
+msgstr "Plugin"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1298
+#@ samba_lang
+msgid "Source"
+msgstr "Fuente"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1299
+#@ samba_lang
+msgid "Type"
+msgstr "Tipo"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1300
+#@ samba_lang
+msgid "Status"
+msgstr "Estado"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1318
+#@ samba_lang
+msgid "Install"
+msgstr "Instalar"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1319
+#@ samba_lang
+msgid "Activate"
+msgstr "Activar"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1544
+#@ samba_lang
+msgid "The following plugin was activated successfully:"
+msgid_plural "The following plugins were activated successfully:"
+msgstr[0] "El siguiente plugin ha sido activado con éxito:"
+msgstr[1] "Los siguientes plugins han sido activados con éxito:"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1829
+#@ samba_lang
+msgid "Install package not available."
+msgstr "Paquete de instalación no disponible."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1830
+#, php-format
+#@ samba_lang
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr "Descargando el paquete de instalación desde <span class=\"code\">%s</span>&#8230;"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1831
+#@ samba_lang
+msgid "Unpacking the package&#8230;"
+msgstr "Descomprimiendo el paquete&#8230;"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1832
+#@ samba_lang
+msgid "Installing the plugin&#8230;"
+msgstr "Instalando el plugin&#8230;"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1833
+#@ samba_lang
+msgid "Plugin install failed."
+msgstr "Fallo al instalar el plugin."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1834
+#@ samba_lang
+msgid "Plugin installed successfully."
+msgstr "Plugin instalado con éxito."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1845
+#@ samba_lang
+msgid "Plugin activation failed."
+msgstr "Fallo al activar el plugin."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1955
+#@ samba_lang
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "El proceso de instalación y activación está comenzando. Este proceso podría llevar un tiempo en según qué alojamientos, así que sea paciente."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1956
+#, php-format
+#@ samba_lang
+msgid "%1$s installed and activated successfully."
+msgstr "%1$s instalado y activado con éxito."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1956
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1965
+#@ samba_lang
+msgid "Show Details"
+msgstr "Mostrar Detalles"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1956
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1965
+#@ samba_lang
+msgid "Hide Details"
+msgstr "Ocultar Detalles"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1957
+#@ samba_lang
+msgid "All installations and activations have been completed."
+msgstr "Todas las instalaciones y activaciones han sido completadas."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1958
+#, php-format
+#@ samba_lang
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr "Instalando y Activando el Plugin %1$s (%2$d/%3$d)"
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1962
+#@ samba_lang
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "El proceso de instalación está comenzando. Este proceso podría llevar un tiempo en según qué alojamientos, así que sea paciente."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1963
+#, php-format
+#@ samba_lang
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr "Ha ocurrido un error mientras se instalaba %1$s: <strong>%2$s</strong>."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1964
+#, php-format
+#@ samba_lang
+msgid "The installation of %1$s failed."
+msgstr "La instalación de %1$s falló."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1965
+#, php-format
+#@ samba_lang
+msgid "%1$s installed successfully."
+msgstr "%1$s se instaló con éxito."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1966
+#@ samba_lang
+msgid "All installations have been completed."
+msgstr "Todas las instalaciones se han completado."
+
+#: inc/modules/tgm-plugin-activation/class-tgm-plugin-activation.php:1967
+#, php-format
+#@ samba_lang
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr "Instalando el Plugin %1$s (%2$d/%3$d)"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:18
+#@ samba_lang
+msgid "Medium"
+msgstr "Medio"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:22
+#@ samba_lang
+msgid "Big"
+msgstr "Grande"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:45
+#@ samba_lang
+msgid "Left"
+msgstr "Izquierda"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:49
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:80
+#@ samba_lang
+msgid "Center"
+msgstr "Centro"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:53
+#@ samba_lang
+msgid "Right"
+msgstr "Derecha"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:76
+#@ samba_lang
+msgid "Top"
+msgstr "Arriba"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:84
+#@ samba_lang
+msgid "Bottom"
+msgstr "Abajo"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:168
+#@ samba_lang
+msgid "Same window"
+msgstr "Misma ventana"
+
+#: inc/modules/wpalchemy/metaboxes/slides-meta.php:172
+#@ samba_lang
+msgid "New Window"
+msgstr "Nueva Ventana"
+
+#: inc/theme_options.php:23
+#@ samba_lang
+msgid "---"
+msgstr "---"
+
+#: inc/theme_options.php:27
+#@ samba_lang
+msgid "Clear"
+msgstr "Limpiar"
+
+#: inc/theme_options.php:31
+#@ samba_lang
+msgid "Dark"
+msgstr "Oscuro"
+
+#: inc/theme_options.php:35
+#@ samba_lang
+msgid "Gold"
+msgstr "Oro"
+
+#: inc/theme_options.php:67
+#@ samba_lang
+msgid "Yes - add to the Shop Button"
+msgstr "Sí - añadir al Botón de Compra"
+
+#: inc/theme_options.php:71
+#@ samba_lang
+msgid "Yes - add to the Cart Button"
+msgstr "Sí - añadir al Botón del Carrito"
+
+#: inc/theme_options.php:83
+#@ samba_lang
+msgid "Items only"
+msgstr "Solo Elementos"
+
+#: inc/theme_options.php:87
+#@ samba_lang
+msgid "Price only"
+msgstr "Solo Precio"
+
+#: inc/theme_options.php:91
+#@ samba_lang
+msgid "Items and Price"
+msgstr "Elementos y Precios"
+
+#: inc/theme_options.php:98
+#@ samba_lang
+msgid "Full Width"
+msgstr "Ancho Total"
+
+#: inc/theme_options.php:102
+#@ samba_lang
+msgid "Boxed"
+msgstr "Encajonado"
+
+#: inc/theme_options.php:109
+#@ samba_lang
+msgid "Classic"
+msgstr "Clásico"
+
+#: inc/theme_options.php:113
+#: inc/theme_options.php:127
+#@ samba_lang
+msgid "Masonry"
+msgstr "Enladrillado"
+
+#: inc/theme_options.php:119
+#@ samba_lang
+msgid "Grid"
+msgstr "Rejilla"
+
+#: inc/theme_options.php:123
+#@ samba_lang
+msgid "With Titles"
+msgstr "Con Títulos"
+
+#: inc/theme_options.php:134
+#@ samba_lang
+msgid "Centered logo"
+msgstr "Logo centrado"
+
+#: inc/theme_options.php:138
+#@ samba_lang
+msgid "Logo on left"
+msgstr "Logo a la izquierda"
+
+#: inc/theme_options.php:142
+#@ samba_lang
+msgid "Logo on left and sticky menu"
+msgstr "Logo a la izquierda y menú fijo"
+
+#: inc/theme_options.php:150
+#@ samba_lang
+msgid "None"
+msgstr "Ninguno"
+
+#: inc/theme_options.php:154
+#@ samba_lang
+msgid "Bedge Grunge"
+msgstr ""
+
+#: inc/theme_options.php:158
+#@ samba_lang
+msgid "Bullseyes"
+msgstr ""
+
+#: inc/theme_options.php:162
+#@ samba_lang
+msgid "Cream Pixels"
+msgstr ""
+
+#: inc/theme_options.php:166
+#@ samba_lang
+msgid "Concrete"
+msgstr ""
+
+#: inc/theme_options.php:170
+#@ samba_lang
+msgid "Cross Scratches"
+msgstr ""
+
+#: inc/theme_options.php:174
+#@ samba_lang
+msgid "Diagonal Noise"
+msgstr ""
+
+#: inc/theme_options.php:178
+#@ samba_lang
+msgid "Dotted Grey"
+msgstr ""
+
+#: inc/theme_options.php:182
+#@ samba_lang
+msgid "Grey Squares"
+msgstr ""
+
+#: inc/theme_options.php:186
+#@ samba_lang
+msgid "Grid Noise"
+msgstr ""
+
+#: inc/theme_options.php:190
+#@ samba_lang
+msgid "Light Honeycomb"
+msgstr ""
+
+#: inc/theme_options.php:194
+#@ samba_lang
+msgid "Light Mesh"
+msgstr ""
+
+#: inc/theme_options.php:198
+#@ samba_lang
+msgid "Noise Lines"
+msgstr ""
+
+#: inc/theme_options.php:202
+#@ samba_lang
+msgid "Paper Fibers"
+msgstr ""
+
+#: inc/theme_options.php:206
+#@ samba_lang
+msgid "Rough Diagonal"
+msgstr ""
+
+#: inc/theme_options.php:210
+#@ samba_lang
+msgid "Seamless Grid"
+msgstr ""
+
+#: inc/theme_options.php:214
+#@ samba_lang
+msgid "Seamless White"
+msgstr ""
+
+#: inc/theme_options.php:218
+#@ samba_lang
+msgid "Simple White"
+msgstr ""
+
+#: inc/theme_options.php:222
+#@ samba_lang
+msgid "Squared Seamless"
+msgstr ""
+
+#: inc/theme_options.php:226
+#@ samba_lang
+msgid "Subtle Dots"
+msgstr ""
+
+#: inc/theme_options.php:230
+#@ samba_lang
+msgid "Stacked Circles"
+msgstr ""
+
+#: inc/theme_options.php:234
+#@ samba_lang
+msgid "Textured Grey"
+msgstr ""
+
+#: inc/theme_options.php:238
+#@ samba_lang
+msgid "Tiny Grid"
+msgstr ""
+
+#: inc/theme_options.php:242
+#@ samba_lang
+msgid "Vintage"
+msgstr ""
+
+#: inc/theme_options.php:246
+#@ samba_lang
+msgid "White Leather"
+msgstr ""
+
+#: inc/theme_options.php:250
+#@ samba_lang
+msgid "White Texture"
+msgstr ""
+
+#: inc/theme_options.php:254
+#@ samba_lang
+msgid "Black Leather"
+msgstr ""
+
+#: inc/theme_options.php:258
+#@ samba_lang
+msgid "Black Linen"
+msgstr ""
+
+#: inc/theme_options.php:262
+#@ samba_lang
+msgid "Black Paper"
+msgstr ""
+
+#: inc/theme_options.php:266
+#@ samba_lang
+msgid "Broken Noise"
+msgstr ""
+
+#: inc/theme_options.php:270
+#@ samba_lang
+msgid "Cartographer"
+msgstr ""
+
+#: inc/theme_options.php:274
+#@ samba_lang
+msgid "Classy Fabric"
+msgstr ""
+
+#: inc/theme_options.php:278
+#@ samba_lang
+msgid "Criss Cross"
+msgstr ""
+
+#: inc/theme_options.php:282
+#@ samba_lang
+msgid "Dark Denim"
+msgstr ""
+
+#: inc/theme_options.php:286
+#@ samba_lang
+msgid "Dark Metal"
+msgstr ""
+
+#: inc/theme_options.php:290
+#@ samba_lang
+msgid "Dark Mosaic"
+msgstr ""
+
+#: inc/theme_options.php:294
+#@ samba_lang
+msgid "Dark Noisy Net"
+msgstr ""
+
+#: inc/theme_options.php:298
+#@ samba_lang
+msgid "Dark Pin Stripes"
+msgstr ""
+
+#: inc/theme_options.php:302
+#@ samba_lang
+msgid "Dark Stripes"
+msgstr ""
+
+#: inc/theme_options.php:306
+#@ samba_lang
+msgid "Dark Tyre"
+msgstr ""
+
+#: inc/theme_options.php:310
+#@ samba_lang
+msgid "Debut Dark"
+msgstr ""
+
+#: inc/theme_options.php:314
+#@ samba_lang
+msgid "Fake Fabric"
+msgstr ""
+
+#: inc/theme_options.php:318
+#@ samba_lang
+msgid "Iron Grip"
+msgstr ""
+
+#: inc/theme_options.php:322
+#@ samba_lang
+msgid "Navy Blue"
+msgstr ""
+
+#: inc/theme_options.php:326
+#@ samba_lang
+msgid "Outlets"
+msgstr ""
+
+#: inc/theme_options.php:330
+#@ samba_lang
+msgid "Padded"
+msgstr ""
+
+#: inc/theme_options.php:334
+#@ samba_lang
+msgid "Moulin"
+msgstr ""
+
+#: inc/theme_options.php:338
+#@ samba_lang
+msgid "Seamless Dark"
+msgstr ""
+
+#: inc/theme_options.php:342
+#@ samba_lang
+msgid "Simple Dashed"
+msgstr ""
+
+#: inc/theme_options.php:346
+#@ samba_lang
+msgid "Stressed Linen"
+msgstr ""
+
+#: inc/theme_options.php:350
+#@ samba_lang
+msgid "Tiny Squares"
+msgstr ""
+
+#: inc/theme_options.php:354
+#@ samba_lang
+msgid "Typographic"
+msgstr ""
+
+#: inc/theme_options.php:358
+#@ samba_lang
+msgid "Vertical Cloth"
+msgstr ""
+
+#: inc/theme_options.php:362
+#@ samba_lang
+msgid "Wood - Dark"
+msgstr ""
+
+#: inc/theme_options.php:366
+#@ samba_lang
+msgid "Wood - Yellowish"
+msgstr ""
+
+#: inc/theme_options.php:370
+#@ samba_lang
+msgid "Wood - Yellow"
+msgstr ""
+
+#: inc/theme_options.php:374
+#@ samba_lang
+msgid "Wood - Textured"
+msgstr ""
+
+#: inc/theme_options.php:378
+#@ samba_lang
+msgid "Blue"
+msgstr ""
+
+#: inc/theme_options.php:382
+#@ samba_lang
+msgid "Blue Variations"
+msgstr ""
+
+#: inc/theme_options.php:386
+#@ samba_lang
+msgid "Green - Vintage"
+msgstr ""
+
+#: inc/theme_options.php:390
+#@ samba_lang
+msgid "Shattered"
+msgstr ""
+
+#: inc/theme_options.php:394
+#@ samba_lang
+msgid "Shattered Dark"
+msgstr ""
+
+#: inc/theme_options.php:398
+#@ samba_lang
+msgid "Play Pattern"
+msgstr ""
+
+#: inc/theme_options.php:417
+#@ samba_lang
+msgid "Wide"
+msgstr "Ancho"
+
+#: inc/theme_options.php:421
+#@ samba_lang
+msgid "Half"
+msgstr "Mitad"
+
+#: inc/theme_options.php:428
+#@ samba_lang
+msgid "One"
+msgstr "Uno"
+
+#: inc/theme_options.php:432
+#@ samba_lang
+msgid "Two"
+msgstr "Dos"
+
+#: inc/theme_options.php:436
+#@ samba_lang
+msgid "Three"
+msgstr "Tres"
+
+#: inc/theme_options.php:441
+#@ samba_lang
+msgid "Four"
+msgstr "Cuatro"
+
+#: inc/theme_options.php:449
+#@ samba_lang
+msgid "Show lightbox and link button"
+msgstr "Mostrar los botones de lightbox y enlace"
+
+#: inc/theme_options.php:453
+#@ samba_lang
+msgid "Show only lightbox button"
+msgstr "Mostrar sólo el botón de lightbox"
+
+#: inc/theme_options.php:457
+#@ samba_lang
+msgid "Show only link button"
+msgstr "Mostrar sólo el botón del enlace"
+
+#: inc/theme_options.php:465
+#@ samba_lang
+msgid "Use Dark Icons"
+msgstr "Usar Iconos Oscuros"
+
+#: inc/theme_options.php:469
+#@ samba_lang
+msgid "Use Clear Icons"
+msgstr "Usar Iconos Claros"
+
+#: inc/theme_options.php:477
+#@ samba_lang
+msgid "Black Icons"
+msgstr "Iconos Negros"
+
+#: inc/theme_options.php:481
+#@ samba_lang
+msgid "White Icons"
+msgstr "Iconos Blancos"
+
+#: inc/theme_options.php:485
+#@ samba_lang
+msgid "Custom Icons (grey)"
+msgstr "Iconos Personalizados (gris)"
+
+#: inc/theme_options.php:493
+#@ samba_lang
+msgid "Link"
+msgstr "Enlace"
+
+#: inc/theme_options.php:497
+#@ samba_lang
+msgid "Pen"
+msgstr "Lápiz"
+
+#: inc/theme_options.php:501
+#@ samba_lang
+msgid "Image"
+msgstr "Imagen"
+
+#: inc/theme_options.php:505
+#@ samba_lang
+msgid "Video"
+msgstr "Vídeo"
+
+#: inc/theme_options.php:509
+#@ samba_lang
+msgid "Lab"
+msgstr "Lab"
+
+#: inc/theme_options.php:513
+#@ samba_lang
+msgid "Camera"
+msgstr "Cámara"
+
+#: inc/theme_options.php:517
+#@ samba_lang
+msgid "Pushpin"
+msgstr "Chincheta"
+
+#: inc/theme_options.php:521
+#@ samba_lang
+msgid "Stats"
+msgstr "Estadísticas"
+
+#: inc/theme_options.php:525
+#@ samba_lang
+msgid "Technology"
+msgstr "Tecnología"
+
+#: inc/theme_options.php:529
+#@ samba_lang
+msgid "Rocket"
+msgstr "Cohete"
+
+#: inc/theme_options.php:533
+#@ samba_lang
+msgid "Music"
+msgstr "Música"
+
+#: inc/theme_options.php:684
+#@ samba_lang
+msgid "Options saved"
+msgstr "Opciones guardadas"
+
+#: inc/theme_options.php:690
+#: inc/theme_options.php:1088
+#: inc/theme_options.php:1226
+#: inc/theme_options.php:1274
+#: inc/theme_options.php:1299
+#: inc/theme_options.php:1617
+#: inc/theme_options.php:1903
+#: inc/theme_options.php:1977
+#: inc/theme_options.php:2132
+#: inc/theme_options.php:2242
+#@ samba_lang
+msgid "Save Options"
+msgstr "Guardar Opciones"
+
+#: inc/theme_options.php:707
+#@ samba_lang
+msgid "Make the theme layout responsive?"
+msgstr "¿Hacer el diseño del tema adaptativo?"
+
+#: inc/theme_options.php:737
+#@ samba_lang
+msgid "Use Ajax calls to load content?"
+msgstr "¿Usar Ajax para cargar el contenido?"
+
+#: inc/theme_options.php:762
+#@ samba_lang
+msgid "Background"
+msgstr "Fondo"
+
+#: inc/theme_options.php:768
+#@ samba_lang
+msgid "Background Image"
+msgstr "Imagen de Fondo"
+
+#: inc/theme_options.php:785
+#@ samba_lang
+msgid "Background Pattern"
+msgstr "Patrón de Fondo"
+
+#: inc/theme_options.php:816
+#@ samba_lang
+msgid "Fonts"
+msgstr "Fuentes"
+
+#: inc/theme_options.php:820
+#@ samba_lang
+msgid "Headings Font"
+msgstr "Fuente para los Titulares"
+
+#: inc/theme_options.php:910
+#@ samba_lang
+msgid "Body Font"
+msgstr "Fuente para el Cuerpo"
+
+#: inc/theme_options.php:948
+#@ samba_lang
+msgid "Uppercase titles?"
+msgstr "¿Títulos en Mayúsculas?"
+
+#: inc/theme_options.php:973
+#@ samba_lang
+msgid "Color Scheme"
+msgstr "Perfil de Color"
+
+#: inc/theme_options.php:977
+#@ samba_lang
+msgid "Use special colors for posts and pages?"
+msgstr "¿Usar colores especiales para las entradas y las páginas?"
+
+#: inc/theme_options.php:1017
+#@ samba_lang
+msgid "Borders and lines"
+msgstr "Bordes y líneas"
+
+#: inc/theme_options.php:1026
+#@ samba_lang
+msgid "Buttons"
+msgstr "Botones"
+
+#: inc/theme_options.php:1036
+#@ samba_lang
+msgid "Sidebars"
+msgstr "Barras Laterales"
+
+#: inc/theme_options.php:1040
+#@ samba_lang
+msgid "Display right sidebar?"
+msgstr "¿Mostrar la barra lateral derecha?"
+
+#: inc/theme_options.php:1065
+#@ samba_lang
+msgid "Display left menu footer sidebar?"
+msgstr "¿Mostrar la barra lateral del pie de página del menú izquierdo?"
+
+#: inc/theme_options.php:1094
+#@ samba_lang
+msgid "Logo image"
+msgstr "Imagen del Logo"
+
+#: inc/theme_options.php:1112
+#@ samba_lang
+msgid "Logo image - collapsed left bar (optional)"
+msgstr "Imagen del Logo - barra izquierda contraida (opcional)"
+
+#: inc/theme_options.php:1131
+#@ samba_lang
+msgid "Logo image - collapsed top bar (optional)"
+msgstr "Imagen del Logo - barra superior contraida (opcional)"
+
+#: inc/theme_options.php:1151
+#@ samba_lang
+msgid "Logo image - Retina displays (optional)"
+msgstr "Imagen del Logo - pantallas retina (opcional)"
+
+#: inc/theme_options.php:1170
+#@ samba_lang
+msgid "Logo image - Collapsed left bar on retina displays (optional)"
+msgstr "Imagen del Logo - barra izquierda contraida en pantallas retina (opcional)"
+
+#: inc/theme_options.php:1189
+#@ samba_lang
+msgid "Logo image - Collapsed top bar on retina displays (optional)"
+msgstr "Imagen del Logo - barra superior contraida en pantallas retina (opcional)"
+
+#: inc/theme_options.php:1208
+#@ samba_lang
+msgid "Favicon Image"
+msgstr "Imagen del Favicon"
+
+#: inc/theme_options.php:1231
+#@ samba_lang
+msgid "Menu"
+msgstr "Menú"
+
+#: inc/theme_options.php:1232
+#@ samba_lang
+msgid "Create 3D effect when the collapsed menu opens and closes?"
+msgstr "¿Crear el efecto 3D cuando el menú extensible abre y cierra?"
+
+#: inc/theme_options.php:1278
+#@ samba_lang
+msgid "Left footer"
+msgstr "Pie de página izquierdo"
+
+#: inc/theme_options.php:1288
+#@ samba_lang
+msgid "Footer text"
+msgstr "Texto del pie de página"
+
+#: inc/theme_options.php:1308
+#@ samba_lang
+msgid "Portfolio skills page template"
+msgstr "Plantilla de página para las Competencias del Portfolio"
+
+#: inc/theme_options.php:1334
+#@ samba_lang
+msgid "Default single posts layout"
+msgstr "Diseño predeterminado para las entradas individuales"
+
+#: inc/theme_options.php:1359
+#@ samba_lang
+msgid "Autoplay slideshow?"
+msgstr "¿Auto reproducir los visores de diapositivas?"
+
+#: inc/theme_options.php:1388
+#@ samba_lang
+msgid "Enable lightbox on single post pages?"
+msgstr "¿Habilitar lightbox en las páginas de tipo entrada individuales?"
+
+#: inc/theme_options.php:1413
+#@ samba_lang
+msgid "Show date?"
+msgstr "¿Mostrar la fecha?"
+
+#: inc/theme_options.php:1438
+#: inc/theme_options.php:1725
+#@ samba_lang
+msgid "Show heart/like button on single pages?"
+msgstr "¿Mostrar el corazón/me-gusta en páginas individuales?"
+
+#: inc/theme_options.php:1463
+#@ samba_lang
+msgid "Show portfolio skills?"
+msgstr "¿Mostrar las competencias en el portfolio?"
+
+#: inc/theme_options.php:1490
+#@ samba_lang
+msgid "Show related posts?"
+msgstr "¿Mostrar las entradas relacionadas?"
+
+#: inc/theme_options.php:1515
+#@ samba_lang
+msgid "Social sharing"
+msgstr "Compartir en Redes Sociales"
+
+#: inc/theme_options.php:1516
+#: inc/theme_options.php:1802
+#@ samba_lang
+msgid "Show sharing buttons?"
+msgstr "¿Mostrar los botones para compartir?"
+
+#: inc/theme_options.php:1626
+#@ samba_lang
+msgid "Blog categories page template?"
+msgstr "¿Plantilla de página para las categorías del blog?"
+
+#: inc/theme_options.php:1650
+#@ samba_lang
+msgid "Force images to have the same height?"
+msgstr "¿Forzar las imágenes para tener la misma altura?"
+
+#: inc/theme_options.php:1675
+#@ samba_lang
+msgid "Show \"Posted by\" text on blog?"
+msgstr "¿Mostrar el texto \"Publicado por\" en el blog?"
+
+#: inc/theme_options.php:1700
+#@ samba_lang
+msgid "Show post categories text on blog?"
+msgstr "¿Mostrar las categorías de la entrada en el blog?"
+
+#: inc/theme_options.php:1750
+#@ samba_lang
+msgid "Show previous and next posts link?"
+msgstr "¿Mostrar los enlaces de anterior y siguiente entrada?"
+
+#: inc/theme_options.php:1775
+#@ samba_lang
+msgid "Show author info under post?"
+msgstr "¿Mostrar la información del autor bajo la entrada?"
+
+#: inc/theme_options.php:1801
+#@ samba_lang
+msgid "Social Sharing"
+msgstr "Compartir en Redes Sociales"
+
+#: inc/theme_options.php:1916
+#@ samba_lang
+msgid "Right body text block"
+msgstr "Bloque de texto de la parte derecha del cuerpo"
+
+#: inc/theme_options.php:1939
+#@ samba_lang
+msgid "Address"
+msgstr "Dirección"
+
+#: inc/theme_options.php:1966
+#@ samba_lang
+msgid "Google maps HTML code"
+msgstr "Código HTML de Google Maps"
+
+#: inc/theme_options.php:1986
+#@ samba_lang
+msgid "Translate using .mo files or WPML Plugin?"
+msgstr "¿Traducir usando ficheros .mo o el Plugin WPML?"
+
+#: inc/theme_options.php:2016
+#@ samba_lang
+msgid "Page body text"
+msgstr "Texto del cuerpo de la página"
+
+#: inc/theme_options.php:2095
+#@ samba_lang
+msgid "Google Analytics code"
+msgstr "Código de Google Analytics"
+
+#: inc/theme_options.php:2108
+#@ samba_lang
+msgid "Custom CSS"
+msgstr "CSS Personalizado"
+
+#: inc/theme_options.php:2121
+#@ samba_lang
+msgid "Custom Javascript"
+msgstr "Javascript Personalizado"
+
+#: inc/theme_options.php:2144
+#@ samba_lang
+msgid "Display right sidebar by default?"
+msgstr "¿Mostrar la barra lateral derecha por defecto?"
+
+#: inc/theme_options.php:2169
+#@ samba_lang
+msgid "Add Shopping Cart info to the main menu?"
+msgstr "¿Añadir la información del Carrito de la Compra al menú principal?"
+
+#: inc/theme_options.php:2194
+#@ samba_lang
+msgid "Show Shopping Cart info even when it is empty?"
+msgstr "¿Mostrar la información del Carrito de la Compra incluso cuando esté vacío?"
+
+#: inc/theme_options.php:2219
+#@ samba_lang
+msgid "Cart button information"
+msgstr "Información del botón del carrito"
+
+#: inc/widgets.php:7
+#@ samba_lang
+msgid "Right Sidebar"
+msgstr "Barra lateral Derecha"
+
+#: inc/widgets.php:15
+#@ samba_lang
+msgid "Left Sidebar"
+msgstr "Barra lateral Izquierda"
+
+#: inc/widgets.php:26
+#@ samba_lang
+msgid "WooCommerce Sidebar"
+msgstr "Barra lateral de WooCommerce"
+
+#: woocommerce/cart/cart-empty.php:14
+#@ samba_lang
+msgid "Your cart is currently empty."
+msgstr "Su carrito está vacío."
+
+#: woocommerce/cart/cart-empty.php:20
+#@ samba_lang
+msgid "&larr; Return To Shop"
+msgstr "&larr; Volver a la Tienda"
+
+#: woocommerce/cart/cart-empty.php:26
+#@ samba_lang
+msgid "Recent Products"
+msgstr "Productos Recientes"
+
+#: woocommerce/single-product/related.php:37
+#@ samba_lang
+msgid "Related Products"
+msgstr "Productos Relacionados"
+
