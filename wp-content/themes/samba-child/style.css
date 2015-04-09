@@ -418,6 +418,16 @@ h1, h2, h3, h4, h5, h6 {
 .testimonial_slider_set.testimonial_slider {
 	margin-top: -80px;
 }
+.testimonial_slider__default .testimonial_nav {
+	display: none !important;
+}
+.testimonial_slider__default .testimonial_nav_arrow_wrap {
+	/*display: block !important;*/
+	width: 100%;
+	position: absolute;
+  	top: 122px;
+  	z-index: 5;
+}
 .testimonial_slider__default * {
 	font-family: 'Open Sans', sans-serif !important;
 }
@@ -430,7 +440,8 @@ h1, h2, h3, h4, h5, h6 {
 	clear: both;
 }
 .testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap .testimonial_avatar img {
-	width: 100% !important;
+	width: auto !important;
+	max-height: 163px !important;
 }
 .testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap span {
 	display: block;
