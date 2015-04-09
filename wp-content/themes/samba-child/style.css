@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li {
 	display: table-cell;
-	width: 33.3%;
+	width: 100%;
 	float: none;
 	text-align: center;
 	background: #f3f3f3 !important;
@@ -413,3 +413,42 @@ h1, h2, h3, h4, h5, h6 {
 #frm_form_4_container, .frm_forms.with_frm_style {
 	max-width: 100% !important;
 }
+
+/*about us testimonials*/
+.testimonial_slider_set.testimonial_slider {
+	margin-top: -80px;
+}
+.testimonial_slider__default * {
+	font-family: 'Open Sans', sans-serif !important;
+}
+.testimonial_slider__default {
+	text-align: center;
+}
+.testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap {
+	width: 100%;
+	float: none;
+	clear: both;
+}
+.testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap .testimonial_avatar img {
+	width: 100% !important;
+}
+.testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap span {
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	padding: 10px;
+}
+.testimonial_slider__default .testimonial_slider_instance .testimonial_quote {
+	width: 100%;
+	float: none;
+	clear: both;
+	padding-left: 0;
+	padding: 12px 20px;
+  	text-align: center;
+  	line-height: 24px;
+	background-image: none !important;
+}
+.testimonial_slider__default .testimonial_slider_instance .testimonial_quote:before {content: '"'}
+.testimonial_slider__default .testimonial_slider_instance .testimonial_quote:after {content: '"'}
+
+.testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap span.testimonial_site {display: none;}
