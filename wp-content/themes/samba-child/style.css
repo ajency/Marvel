@@ -463,3 +463,41 @@ h1, h2, h3, h4, h5, h6 {
 .testimonial_slider__default .testimonial_slider_instance .testimonial_quote:after {content: '"'}
 
 .testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap span.testimonial_site {display: none;}
+
+
+/*NRI COrner*/
+.vc_custom_heading h5 {text-transform: none;   line-height: 27px;}
+.samba_bquote_wrapper {
+	border-left: 1px solid #CCC;
+	padding: 0 20px;
+	margin: 25px 0;
+}
+.samba_bquote_wrapper .prk_blockquote {
+	background-color: transparent;
+}
+.samba_bquote_wrapper .prk_blockquote .in_quote {
+	padding: 0;
+	color: #8c8c8c;
+}
+.samba_bquote_wrapper .prk_blockquote .prk_inner_tip, .samba_bquote_wrapper .prk_blockquote .tip_top_hide {display: none;}
+.samba_bquote_wrapper .pirenko_author.body_text_shadow {
+	text-shadow: 0 0 0 #000;
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'Open Sans';
+	color: #868686;
+	font-size: 14px;
+}
+.nri_sec h5 {
+	text-transform: none;
+	margin-top: 15px;
+	font-weight: 600;
+}
+.nri_pullup {
+	margin-bottom: -22px;
+	margin-top: 10px;
+}
+.nri_listy {
+	font-weight: 600;
+	color: #808080;
+}
