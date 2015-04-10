@@ -52,6 +52,10 @@
               jQuery('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
                   jQuery(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
               });
+              //gallery popup class adder
+              if (jQuery('div').hasClass('gallery')) {
+                  jQuery('.gallery a.thumbnail').addClass('image-popup-no-margins');
+              }
           });
           jQuery(window).load(function() {
             jQuery('.child-footer').fadeIn('slow');

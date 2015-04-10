@@ -340,6 +340,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .wpb_tour_tabs_wrapper {
 	border: 1px solid #d8d8d8;
+    border-radius: 0;
 }
 
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav {
@@ -347,6 +348,7 @@ h1, h2, h3, h4, h5, h6 {
 	display: table;
 	table-layout: fixed;
 	width: 100%;
+    border-radius: 0;
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li {
 	display: table-cell;
@@ -357,6 +359,7 @@ h1, h2, h3, h4, h5, h6 {
 	border-right: 1px solid #d8d8d8;
 	font-weight: normal;
 	/*white-space: normal;*/
+    border-radius: 0;
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li:hover {
 	background-color: rgb(10,194,210) !important;
@@ -571,7 +574,9 @@ h1, h2, h3, h4, h5, h6 {
 /*Recent Posts*/
 .recentposts_ul_shortcode li.columns {
     width: 100% !important;
+    margin-bottom: 15px;
 }
+.recentposts_ul_shortcode li.clearfix.bt_40 {display: none;}
 .recentposts_ul_shortcode li.columns div.single_blog_meta_div {
     width: 15%;
     min-width: 190px;
@@ -596,6 +601,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
     font-size: 16px;
     color: rgb(10,194,210);
+    text-shadow: 0 0 0 #fff;
 }
 .recentposts_ul_shortcode li.columns div.single_blog_meta_div .navicon-clock-2 {display: none;}
 .recentposts_ul_shortcode li.columns div .entry_title,
@@ -635,7 +641,7 @@ h1, h2, h3, h4, h5, h6 {
 /*    padding-left: 0;*/
 }
 .faq_head h4 {
-    background: url(img/faq1.jpg) no-repeat left center;
+    background: url(img/faq1.jpg) no-repeat left top 5px;
     line-height: 45px;
     padding-left: 45px;
     color: #666666;
@@ -666,4 +672,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 .faq_search .widget_search {
     width: 75%;
+}
+@media only screen and (max-width: 676px) {
+    .faq_faq {padding-left: 0;}
+    .faq_search .widget_search {width: 100%;}
 }
