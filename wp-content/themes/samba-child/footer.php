@@ -48,7 +48,11 @@
         <?php echo $prk_samba_frontend_options['ganalytics_text']; ?>
         <?php wp_footer(); ?>
         <script type="text/javascript">
-        
+          jQuery(document).ready(function() {
+              jQuery('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
+                  jQuery(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
+              });
+          });
           jQuery(window).load(function() {
             jQuery('.child-footer').fadeIn('slow');
           });

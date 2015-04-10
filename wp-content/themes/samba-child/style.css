@@ -616,3 +616,54 @@ h1, h2, h3, h4, h5, h6 {
         height: auto;
     }
 }
+
+/*FAQ*/
+.arconix-faq-wrap {
+    background: #fff;
+    border: 0;
+}
+.arconix-faq-wrap .arconix-faq-title.faq-open, .arconix-faq-wrap .arconix-faq-title {
+    display: inline-block;
+    background-image: none;
+    background-color: #eee;
+    padding: 4px 10px;
+/*    padding-left: 30px;*/
+    font-size: 15px;
+    position: relative;
+}
+.arconix-faq-content {
+/*    padding-left: 0;*/
+}
+.faq_head h4 {
+    background: url(img/faq1.jpg) no-repeat left center;
+    line-height: 45px;
+    padding-left: 45px;
+    color: #666666;
+    margin-top: 25px;
+}
+.faq_faq {
+    padding-left: 45px;
+}
+.arconix-faq-wrap .arconix-faq-title .faq_head_count {
+    font-style: normal;
+}
+
+.faq_search {
+    padding: 15px;
+    background: #F3F3F3;
+    margin-top: 35px;
+}
+.faq_search input {
+    background: #fff;
+}
+.faq_search .sform_wrapper .icon-search {
+    top: 0;
+    right: 0;
+    padding: 10px 15px;
+    background: #444;
+    color: #fff;
+    opacity: 0.7;
+}
+.faq_search .widget_search {
+    width: 75%;
+}
