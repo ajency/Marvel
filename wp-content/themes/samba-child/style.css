@@ -564,6 +564,11 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     padding: 4px;
 }
+.metaslider {
+    min-height: 219px;
+    margin-top: 20px;
+}
+
 .fontnorm {text-transform: none;}
 .wpb_tab .wpb_content_element {
     margin-bottom: 0;
@@ -677,3 +682,29 @@ h1, h2, h3, h4, h5, h6 {
     .faq_faq {padding-left: 0;}
     .faq_search .widget_search {width: 100%;}
 }
+
+/*gallery popup class style edit*/
+.owl-carousel .image-popup-no-margins {
+    display: block;
+    padding: 5px;
+}
+.owl-carousel .owl-carousel-item-imgoverlay {
+    display: none;
+}
+.owl-carousel.owl-theme .owl-controls, .owl-carousel .owl-controls .owl-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+}
+.owl-carousel .owl-controls .owl-buttons .owl-prev,
+.owl-carousel .owl-controls .owl-buttons .owl-next
+{
+    border-radius: 0;
+    height: 232px;
+    line-height: 232px;
+    background: rgba(0,0,0,0.7);
+}
+.owl-carousel .owl-controls .owl-buttons .owl-prev {position: absolute; left: 0;}
+.owl-carousel .owl-controls .owl-buttons .owl-next {position: absolute; right: 0;}

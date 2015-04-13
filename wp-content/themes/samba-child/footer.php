@@ -47,20 +47,29 @@
         <!--googleon: all-->
         <?php echo $prk_samba_frontend_options['ganalytics_text']; ?>
         <?php wp_footer(); ?>
+<!--        <script type="text/javascript" src="slider.js"></script>-->
         <script type="text/javascript">
-          jQuery(document).ready(function() {
-              jQuery('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
-                  jQuery(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
+            (function($) {
+                $(document).ready(function() {
+                  $('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
+                      $(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
+                  });
+                  //gallery popup class adder
+                  if ($('div').hasClass('gallery')) {
+                      $('.gallery a.thumbnail').addClass('image-popup-no-margins');
+                  }
+                    if ($('div').hasClass('owl-carousel')) {
+                        $('.owl-carousel .owl-item .item a').each(function() {
+                            $(this).attr('href', $(this).find('img').attr('src'));
+                        });
+                        $('.owl-carousel .owl-item .item a').addClass('image-popup-no-margins');
+                    }
               });
-              //gallery popup class adder
-              if (jQuery('div').hasClass('gallery')) {
-                  jQuery('.gallery a.thumbnail').addClass('image-popup-no-margins');
-              }
-          });
-          jQuery(window).load(function() {
-            jQuery('.child-footer').fadeIn('slow');
-          });
-        
+              $(window).load(function() {
+                $('.child-footer').fadeIn('slow');
+              });
+              
+            })( jQuery );
         </script>
     </body>
 </html>
