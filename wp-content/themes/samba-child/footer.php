@@ -47,29 +47,6 @@
         <!--googleon: all-->
         <?php echo $prk_samba_frontend_options['ganalytics_text']; ?>
         <?php wp_footer(); ?>
-<!--        <script type="text/javascript" src="slider.js"></script>-->
-        <script type="text/javascript">
-            (function($) {
-                $(document).ready(function() {
-                  $('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
-                      $(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
-                  });
-                  //gallery popup class adder
-                  if ($('div').hasClass('gallery')) {
-                      $('.gallery a.thumbnail').addClass('image-popup-no-margins');
-                  }
-                    if ($('div').hasClass('owl-carousel')) {
-                        $('.owl-carousel .owl-item .item a').each(function() {
-                            $(this).attr('href', $(this).find('img').attr('src'));
-                        });
-                        $('.owl-carousel .owl-item .item a').addClass('image-popup-no-margins');
-                    }
-              });
-              $(window).load(function() {
-                $('.child-footer').fadeIn('slow');
-              });
-              
-            })( jQuery );
-        </script>
+        <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/slider.js"></script>
     </body>
 </html>

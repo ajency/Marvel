@@ -1,28 +1,31 @@
 (function($) {
-    $.fn.galleryfy = function() {
-        return this.each(function() {
-            // Do something to each element here.
-            if ($(this).find('dl.gallery-item').length > 4) {
-                console.log('more');
-                $(this).append(
-                    '<div class="gal-ctrl">' +
-                    '<a href="#" class="goLeft"><i class="fa fa-chevron-left"></i></a>' +
-                    '<a href="#" class="goRight"><i class="fa fa-chevron-right"></i></a>' +
-                    '</div>'
-                );
-                $(this).css('height', $(this).find('dl.galleryItem').outerHeight());
-                $(window).resize(function() {
-                    $(this).css('height', $(this).find('dl.galleryItem').outerHeight());
-                });
-            } else {
-                console.log('4 images');
-            }
-//            $(this).on('click', '.goLeft', function(e) {
-//                $(this).parents('.media_congal')
-//            });
-        });
-    };
+    //all child js
     $(document).ready(function() {
-        $('.gallery').galleryfy();
+        $('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
+            $(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
+        });
+        //gallery popup class adder
+        if ($('div').hasClass('gallery')) {
+            $('.gallery a.thumbnail').addClass('image-popup-no-margins');
+        }
+        if ($('div').hasClass('owl-carousel')) {
+            $('.owl-carousel .owl-item .item a').each(function() {
+                $(this).attr('href', $(this).find('img').attr('src'));
+            });
+            $('.owl-carousel .owl-item .item a').addClass('image-popup-no-margins');
+            $('.owl-carousel .owl-controls .owl-buttons .owl-prev').html('<i class="fa fa-chevron-left"></i>');
+            $('.owl-carousel .owl-controls .owl-buttons .owl-next').html('<i class="fa fa-chevron-right"></i>');
+        }
+    });
+    $(window).load(function() {
+        $('.child-footer').fadeIn('slow');
+//        if ($('div').hasClass('owl-carousel')) {
+//            $('.owl-carousel').each(function() {
+//                console.log($(this).find('.owl-item').outerHeight());
+//                $(this).find('.owl-controls')
+//                .find('.owl-buttons').find('.owl-prev')
+//                .height($(this).height());
+//            });
+//        }
     });
 })( jQuery );

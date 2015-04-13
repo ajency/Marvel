@@ -1468,12 +1468,12 @@ if (typeof Object.create !== "function") {
         autoPlay : false,
         stopOnHover : false,
 
-        navigation : true,
-        navigationText : ["<", ">"],
+        navigation : false,
+        navigationText : ["prev", "next"],
         rewindNav : true,
         scrollPerPage : false,
 
-        pagination : false,
+        pagination : true,
         paginationNumbers : false,
 
         responsive : true,
