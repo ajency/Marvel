@@ -4,6 +4,21 @@
 .pull-right {
   float: right;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+.vc_separator h4 {
+  font-weight: 400;
+}
+.with_frm_style .limit-width .form-field .placeholder {
+  font-style: normal;
+}
 .btn_norm {
   border: 0;
   background: #666666;
