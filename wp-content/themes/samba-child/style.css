@@ -559,7 +559,8 @@ pre {
 	font-weight: 600;
 }
 .nri_pullup {
-	margin-bottom: -22px;
+    margin-bottom: -10px;
+/*	margin-bottom: -22px;*/
 	margin-top: 10px;
 }
 .nri_listy {
