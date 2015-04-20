@@ -16,6 +16,17 @@
             $('.owl-carousel .owl-controls .owl-buttons .owl-prev').html('<i class="fa fa-chevron-left"></i>');
             $('.owl-carousel .owl-controls .owl-buttons .owl-next').html('<i class="fa fa-chevron-right"></i>');
         }
+        if ($('div').hasClass('cont_sp')) {
+            $(document).on('click', '#ui-id-3', function(e) {
+                console.log('clicked');
+                e.preventDefault();
+                window.location = 'http://' + window.location.host + '/careers/';
+                e.stopPropagation();
+            });
+        }
+        $('.frm_forms input').click(function() {
+            
+        });
     });
     $(window).load(function() {
         $('.child-footer').fadeIn('slow');

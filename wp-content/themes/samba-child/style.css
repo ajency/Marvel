@@ -17,21 +17,7 @@ body {
 	font-size: 14px;
 }
 
-.limit-width .placeholder::-webkit-input-placeholder {
-   color: #999999 !important;
-}
 
-.limit-width .placeholder:-moz-placeholder { /* Firefox 18- */
-   color: #999999 !important;  
-}
-
-.limit-width .placeholder::-moz-placeholder {  /* Firefox 19+ */
-   color: #999999 !important;  
-}
-
-.limit-width .placeholder:-ms-input-placeholder {  
-   color: #999999 !important;  
-}
 pre {
     margin-top: -1px;
 }
@@ -443,6 +429,7 @@ pre {
 	background-color: #EBEBEB;
 	margin-bottom: 15px;
 }
+.contact-cover.contact-inline .frm_form_field select {color: #111 !important;}
 .contact-cover.contact-inline .limit-width, .contact-cover .limit-width {
 	max-width: 700px;
 }
@@ -455,6 +442,9 @@ pre {
 }
 #frm_form_4_container, .frm_forms.with_frm_style {
 	max-width: 100% !important;
+}
+.frm_forms.with_frm_style input[type=text] {
+    color: #999999 !important;
 }
 
 /*about us testimonials*/
