@@ -186,3 +186,9 @@ h6 {
 .proj_list .project-list .single_p_w:hover a .single_p_location {
   color: #000;
 }
+.cont_sp.vc_row-fluid [class*="vc_col-sm-"].left {
+  padding-right: 5px;
+}
+.cont_sp.vc_row-fluid [class*="vc_col-sm-"].right {
+  padding-left: 5px;
+}

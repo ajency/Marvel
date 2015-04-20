@@ -1,0 +1,6 @@
+.cont_sp.vc_row-fluid [class*="vc_col-sm-"].left {
+  padding-right: 5px;
+}
+.cont_sp.vc_row-fluid [class*="vc_col-sm-"].right {
+  padding-left: 5px;
+}
