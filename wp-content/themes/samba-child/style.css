@@ -158,7 +158,8 @@ pre {
 	background: #d1d1d1;
 	height: 1px;
 }
-.vc_separator.smallline .vc_sep_holder {height: 1px; background: #d1d1d1;}
+.vc_separator.smallline .vc_sep_holder {height: 1px;}
+.vc_separator.smallline .vc_sep_holder .vc_sep_line {border-color: #D1D1D1;}
 .vc_separator.smallline {
     width: 100px;
     margin: 15px auto;
