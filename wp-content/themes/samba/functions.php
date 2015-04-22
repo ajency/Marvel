@@ -529,13 +529,32 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 						break;
 		 
 		case 'text' :
- 
+  
+$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
+//var_dump($current_property_meta_value_arr);
+
 						if($element_values!=false) { 
 
 							if($multiple_values==true){
-								foreach($element_values as $type){ ?>
+								foreach($element_values as $type){ 
+									
+									 $new_current_val = '';
+									 if(is_array($current_property_meta_value_arr)){
+
+
+										 foreach($current_property_meta_value_arr as $cur_field_value_k=>$cur_field_value_v){
+											
+											//echo "<br/>type : ".$type." cur_field_value_k:".$cur_field_value_k;
+											if($type==$cur_field_value_k){
+												$new_current_val = $cur_field_value_v;
+
+											}
+										}
+									 }
+//var_dump(array_search($type, $current_property_meta_value_arr)); 
+									?>
 								 
-									<br/> &nbsp; <?php echo $type; ?>  <input type="text" value="" name="<?php echo $element_id; ?>[]"   class="postbox custom_input_field"  /> 
+									<span attr-field-val ="<?php echo $type; ?>" >  <br/> &nbsp; <?php echo $type; ?>  <input type="text" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field"  /> </span>
 						<?php	}
 							
 							}	
@@ -764,7 +783,7 @@ exit();*/
 	$sel_property_city = $_REQUEST["custom_property-city"];
 	$sel_property_status = $_REQUEST["custom_property-status"];
 	$sel_property_locality = $_REQUEST["custom_property-locality"];
-	$sel_property_neighbourhood = $_REQUEST["custom_property-neighbourhood"];
+	$sel_property_neighbourhood = maybe_serialize($_REQUEST["custom_property-neighbourhood"]);
 
 
 	if($post->post_type=="residential-property")

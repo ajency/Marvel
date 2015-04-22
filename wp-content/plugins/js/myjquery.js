@@ -21,7 +21,9 @@ jQuery(document).ready(function($) {
         var self = this;
         var custom_element = $(self).closest('.row').find('.custom_input_field');
 
-console.log(custom_element);
+        var attr_name = custom_element.attr('attr-name');
+
+ 
 
         if(custom_element.length>0)
             var Html_input_type =  custom_element[0].type.toLowerCase() || custom_element[0].nodeName.toLowerCase();
@@ -35,8 +37,7 @@ console.log(custom_element);
                       }
 
 
-console.log('saving custom field data');
-console.log(my_data);
+
 
         $.post(ajax_object.ajax_url, {        //the server_url
             action: "save_custom_field_option",                 //the submit_data array
@@ -51,7 +52,14 @@ console.log(my_data);
                         case 'select-one'   :
                                                 custom_element.append("<option value='"+new_field_value+"'>"+new_field_value+"</option>")
                                                 $(self).closest('.row').find('.additional_option').val('');
-                                             break; 
+                                                break; 
+                        case 'text'         :   
+                                             
+
+                                            var new_element_html = '<span attr-field-val ="'+new_field_value+'" > <br/> &nbsp; '+new_field_value+'  <input type="text" value="" attr-name="'+attr_name+'" attr-value="'+new_field_value+'"     name="'+attr_name+'['+new_field_value+']"   class="postbox custom_input_field"  /> </span>';
+
+                                            $(new_element_html).insertAfter(custom_element.last().closest('span'));
+                                            $(self).closest('.row').find('.additional_option').val('');
 
                     }
 
@@ -77,8 +85,10 @@ console.log(my_data);
 
      $('.cancel_edit_custom_postmeta_options').live('click',function(){
 
+        var self = this;
          $(self).html('Edit');
          $(self).removeClass('cancel_edit_custom_postmeta_options');
+         $(self).addClass('edit_custom_postmeta_options'); 
          $(self).closest('.row').find('.edit_options_area').hide();
          
 
@@ -87,8 +97,12 @@ console.log(my_data);
 
     $('.edit_custom_postmeta_options').live('click',function(){
 
-        $(self).html('Cancel Edit');
-        $(self).addClass('cancel_edit_custom_postmeta_options');        
+        
+        $(this).closest('.row').find('.edit_options_area').show(); 
+
+        $(this).html('Cancel Edit');
+        $(this).addClass('cancel_edit_custom_postmeta_options');        
+        $(this).removeClass('edit_custom_postmeta_options');    
 
         var field_type        = $(this).attr('field-type');
         var current_post_type = $('#current_post_type').val();
@@ -153,10 +167,18 @@ console.log(my_data);
 
                         switch(Html_input_type){
                             case 'select-one':
-                            case 'select'    :                           
-                                                $(self).closest(".row").find(".custom_input_field option[value='"+$(self).attr('field-value')+"']").remove();
+                            case 'select'    :  
+                                                custom_element.find("[value='"+$(self).attr('field-value')+"']").remove();
                                                 break;
+
+                            case 'text'      :                            
+                                                $('[attr-field-val="'+$(self).attr('field-value')+'"]').remove();
+                                                break;
+
                         }
+
+
+
                         
                     }
                     
