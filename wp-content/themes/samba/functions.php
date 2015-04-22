@@ -746,25 +746,7 @@ add_action( 'wp_ajax_delete_custom_field_option', 'delete_custom_field_option' )
 
 function save_custom_meta_box($post_id, $post, $update)
 {
-	/*var_dump($post_id);
-	echo "<br/>------------------------<br/>";
-	var_dump($post);
-	echo "<br/>------------------------<br/>";
-	var_dump($update);
-	echo "<br/>------------------------<br/>";
-
-	var_dump($_POST);
-
-	 ["current_post_type"]=> string(20) "residential-property" 
-	 ["custom_property-type"]=> string(4) "3BHK" 
-	 ["vc_post_custom_css"]=> string(0) "" 
-	 ["custom_property-city"]=> string(4) "Pune" 
-	 ["post_name"]=> string(10) "property-1" 
-	 ["custom_property-status"]=> string(7) "Ongoing" 
-	 ["custom_property-locality"]=> string(0) "" 
-	 ["custom_property-neighbourhood"]=> array(3) { [0]=> string(1) "1" [1]=> string(1) "2" [2]=> string(1) "1" } 
-
-exit();*/
+	
 
     if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
         return $post_id;
@@ -779,22 +761,26 @@ exit();*/
     if($slug != $post->post_type)
         return $post_id;
 	*/
-	$sel_property_type = $_REQUEST["custom_property-type"];
-	$sel_property_city = $_REQUEST["custom_property-city"];
-	$sel_property_status = $_REQUEST["custom_property-status"];
-	$sel_property_locality = $_REQUEST["custom_property-locality"];
-	$sel_property_neighbourhood = maybe_serialize($_REQUEST["custom_property-neighbourhood"]);
+	
+	if( ($post->post_type=="residential-property") || ($post->post_type=="commercial-property") ){
+	 
+		$sel_property_type = $_REQUEST["custom_property-type"];
+		$sel_property_city = $_REQUEST["custom_property-city"];
+		$sel_property_status = $_REQUEST["custom_property-status"];
+		$sel_property_locality = $_REQUEST["custom_property-locality"];
+		$sel_property_neighbourhood = maybe_serialize($_REQUEST["custom_property-neighbourhood"]);
 
 
-	if($post->post_type=="residential-property")
-		update_post_meta($post_id, "residential-property-type", $sel_property_type);
-	if($post->post_type=="commercial-property")
-		update_post_meta($post_id, "commercial-property-type", $sel_property_type);
+		if($post->post_type=="residential-property")
+			update_post_meta($post_id, "residential-property-type", $sel_property_type);
+		if($post->post_type=="commercial-property")
+			update_post_meta($post_id, "commercial-property-type", $sel_property_type);
 
-	update_post_meta($post_id, "property-city", $sel_property_city);
-	update_post_meta($post_id, "property-status", $sel_property_status);
-	update_post_meta($post_id, "property-locality", $sel_property_locality);
-	update_post_meta($post_id, "property-neighbourhood", $sel_property_neighbourhood );
+		update_post_meta($post_id, "property-city", $sel_property_city);
+		update_post_meta($post_id, "property-status", $sel_property_status);
+		update_post_meta($post_id, "property-locality", $sel_property_locality);
+		update_post_meta($post_id, "property-neighbourhood", $sel_property_neighbourhood );
+	}
 
 /*
  
