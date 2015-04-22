@@ -58,4 +58,29 @@
         var maxdn = Math.max.apply(null, dnhe);
         $('.do_3 .wpb_wrapper').height(maxdn);
     });
+    $(window).resize(function() {
+        //equal height services column
+        $('.le_p_m .wpb_wrapper .prk_service').height('auto');
+        var serhe = $('.le_p_m .wpb_wrapper .prk_service').map(function() {
+            return $(this).height();
+        }).get();
+        var maxse = Math.max.apply(null, serhe);
+        $('.le_p_m .wpb_wrapper .prk_service').height(maxse);
+        
+        //same height specifications
+        $('.se_o_6 .wpb_wrapper .prk_service').height('auto');
+        var sphe = $('.se_o_6 .wpb_wrapper .prk_service').map(function() {
+            return $(this).height();
+        }).get();
+        var maxsp = Math.max.apply(null, sphe);
+        $('.se_o_6 .wpb_wrapper .prk_service').height(maxsp);
+        
+        //same height downloads
+        $('.do_3 .wpb_wrapper').height('auto');
+        var dnhe = $('.do_3 .wpb_wrapper').map(function() {
+            return $(this).height();
+        }).get();
+        var maxdn = Math.max.apply(null, dnhe);
+        $('.do_3 .wpb_wrapper').height(maxdn);
+    });
 })( jQuery );
