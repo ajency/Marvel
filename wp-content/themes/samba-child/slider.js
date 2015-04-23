@@ -57,6 +57,14 @@
         }).get();
         var maxdn = Math.max.apply(null, dnhe);
         $('.do_3 .wpb_wrapper').height(maxdn);
+        
+        //same height careers
+        var carhe = $('.lisofwork .wpb_wrapper').map(function() {
+            return $(this).height();
+        }).get();
+        var maxcar = Math.max.apply(null, carhe);
+        $('.lisofwork .wpb_wrapper').height(maxcar);
+        
     });
     $(window).resize(function() {
         //equal height services column
@@ -82,5 +90,12 @@
         }).get();
         var maxdn = Math.max.apply(null, dnhe);
         $('.do_3 .wpb_wrapper').height(maxdn);
+        
+        //same height careers
+        var carhe = $('.lisofwork .wpb_wrapper').map(function() {
+            return $(this).height();
+        }).get();
+        var maxcar = Math.max.apply(null, carhe);
+        $('.lisofwork .wpb_wrapper').height(maxcar);
     });
 })( jQuery );

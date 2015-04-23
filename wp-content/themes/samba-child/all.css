@@ -19,6 +19,69 @@ h6 {
 .with_frm_style .limit-width .form-field .placeholder {
   font-style: normal;
 }
+.lisofwork {
+  padding-bottom: 15px;
+}
+.lisofwork .row {
+  margin: 0;
+}
+.lisofwork .vc_col-sm-4.wpb_column.vc_column_container {
+  padding: 0;
+  margin-bottom: 0;
+}
+.lisofwork .wpb_wrapper {
+  margin: 1px;
+  padding: 15px;
+  background: #F3F3F3;
+  text-align: center;
+  box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0.5), inset 0 0 0 0 #ffffff;
+  transition: all 0.5s linear;
+  transition-delay: 0;
+}
+.lisofwork .wpb_wrapper h3.header_font {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  color: #333;
+}
+.lisofwork .wpb_wrapper p {
+  margin-bottom: 10px;
+  color: #666;
+}
+.lisofwork .wpb_wrapper a.openings_link {
+  font-weight: bold;
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  color: #145994;
+}
+.lisofwork .wpb_wrapper:hover {
+  box-shadow: inset 0 0 100px 800px rgba(255, 255, 255, 0.5), inset 0 0 16px 0px #ffffff;
+  transition: all 0.5s linear;
+  transition-delay: 0;
+}
+.tablejob {
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 20px;
+}
+.tablejob .job_title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+.tablejob a.wpb_button_a span.wpb_button {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+@media screen and (max-width: 767px) {
+  #main {
+    padding: 25px;
+  }
+  #main .tablejob .prk_inner_block .row {
+    text-align: center;
+  }
+}
 .btn_norm {
   border: 0;
   background: #666666;
