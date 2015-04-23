@@ -610,6 +610,15 @@ h6 {
 .compare_c .info_bar a.back_btn i {
   margin-right: 8px;
 }
+@media screen and (max-width: 767px) {
+  .compare_c .info_bar {
+    text-align: center;
+  }
+  .compare_c .info_bar p {
+    display: block;
+    margin-top: 10px;
+  }
+}
 .compare_c .compare_i_c {
   padding: 25px 50px;
 }
@@ -692,4 +701,12 @@ h6 {
   margin-bottom: 0;
   margin-top: 15px;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width: 680px) {
+  .compare_c .info_bar {
+    padding: 25px 20px 14px;
+  }
+  .compare_c .compare_i_c {
+    padding: 25px 20px;
+  }
 }
