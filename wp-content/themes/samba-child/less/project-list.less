@@ -3,10 +3,17 @@
     .btn_norm();
 }
 
+.mapView .bd_headings_text_shadow {
+    display: none;
+}
+.mapView .main_with_sections {
+    margin-top: 0;
+}
+
 .proj_list {
     .top-dd-c {
         background: @grey-bg;
-        padding: 25px 25px 15px;
+        padding: 25px 50px 15px;
     }
     .top-dd {
         display: inline-block;
@@ -46,7 +53,7 @@
     }
     //comparision
     .top-compar {
-        padding: 25px;
+        padding: 25px 50px;
         .drag_area {
             .fontmont;
             width: 210px;
@@ -68,7 +75,7 @@
     }
     //projects list
     .project-list {
-        padding: 5px 25px 25px;
+        padding: 5px 50px 25px;
         .fontmont;
         h5 {
             .fontmont;
@@ -138,5 +145,10 @@
                 .single_p_location {color: #000;}
             }
         }
+    }
+    
+    .projects_map iframe {
+        width: 100%;
+        height: 500px;
     }
 }
