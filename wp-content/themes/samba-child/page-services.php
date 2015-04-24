@@ -136,7 +136,7 @@ Template Name: Page - Services
                 </div>
                 <div class="prk_inner_block vc_row-fluid centered columns">
                     <div class="row">
-                        <div class="vc_col-sm-6 wpb_column vc_column_container">
+                        <div class="vc_col-sm-12 wpb_column vc_column_container">
                             <h5>Residential Projects on Rent in Pune (3)</h5>
                         </div>
                     </div>
@@ -207,6 +207,7 @@ Template Name: Page - Services
                                         <div class="pull-right">
                                             <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>
@@ -250,6 +251,7 @@ Template Name: Page - Services
                                         <div class="pull-right">
                                             <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </div>

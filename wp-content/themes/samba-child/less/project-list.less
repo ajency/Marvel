@@ -124,6 +124,15 @@
                     left: 0;
                     width: 100%;
                     padding: 10px;
+                    a.single_enq {
+                        i {visibility: hidden;} //display none causes a shift in objects because
+                                                //inline-block uses baseline to keep the objects inline
+                        width: 38px;
+                        height: 33px;
+                        background-image: url(img/enquiry.png);
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                    }
                     a.btn_norm {
                         .btn_norm(5px; 12px);
                         display: inline-block;

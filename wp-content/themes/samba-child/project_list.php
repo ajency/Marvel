@@ -116,7 +116,7 @@ Template Name: Page - Resi Projects List
                     <!--single project listing-->
                     <div class="single_p_w six columns">
                         <div class="single_p_img">
-                            <img src="http://lorempixel.com/output/city-q-c-1000-1000-10.jpg">
+                            <img src="http://loremflickr.com/1000/1000/building">
                             <div class="single_p_hov_c">
                                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                                 <div class="clearfix"></div>
