@@ -26,6 +26,7 @@
             left: 0;
             width: 100%;
             background: rgba(0,0,0,0.5);
+            z-index: 5;
             div {
                 color: #fff;
                 font-size: 13px;
@@ -309,5 +310,21 @@
     h5 {font-size: 18x; text-transform: uppercase;}
     .wpb_button_a span {
         background: #666;
+    }
+}
+
+.sec_int {
+    font-size: 15px;
+    width: 89%;
+    margin: 0 auto;
+    p {font-size: 15px;}
+}
+.add_padd .wpb_wrapper {
+    &:nth-child(1) {
+        padding-left: 12px;
+//        padding-right: 6px;
+    } &:nth-child(2) {
+//        padding-left: 6px;
+        padding-right: 12px;
     }
 }

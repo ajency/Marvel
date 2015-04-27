@@ -507,6 +507,7 @@ h6 {
   left: 0;
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_single_image .wpb_wrapper .prk_shortcode-title div {
   color: #fff;
@@ -805,6 +806,20 @@ h6 {
 }
 .indi_pr.nri_fullrow .wpb_button_a span {
   background: #666;
+}
+.sec_int {
+  font-size: 15px;
+  width: 89%;
+  margin: 0 auto;
+}
+.sec_int p {
+  font-size: 15px;
+}
+.add_padd .wpb_wrapper:nth-child(1) {
+  padding-left: 12px;
+}
+.add_padd .wpb_wrapper:nth-child(2) {
+  padding-right: 12px;
 }
 .compare .bd_headings_text_shadow {
   display: none;

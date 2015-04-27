@@ -38,7 +38,11 @@ pre {
 	padding-bottom: 15px;
   	position: relative;
   	max-width: 600px;
+    height: 275px;
   	margin: 0 auto;
+}
+.wpb_video_widget .wpb_wrapper .wpb_video_wrapper iframe {
+    height: 262px;
 }
 
 #logo_holder {
