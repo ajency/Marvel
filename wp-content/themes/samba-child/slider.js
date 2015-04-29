@@ -25,6 +25,13 @@
             });
         }
         
+        if ($('div').hasClass('gallery_indi')) {
+            $('.gallery_indi').attr('id', 'gall');
+            $('.andmore a[href=#gall]').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: $('.gallery_indi').offset().top - 70}, '65500', 'linear');
+            });
+        }
         
         //top move down for individual projects page
         $hevp = window.innerHeight ? window.innerHeight : $(window).height();
@@ -33,7 +40,6 @@
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
             $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
         });
-        
     });
     $(window).load(function() {
         $('.child-footer').fadeIn('slow');

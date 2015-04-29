@@ -47,6 +47,7 @@
         <!--googleon: all-->
         <?php echo $prk_samba_frontend_options['ganalytics_text']; ?>
         <?php wp_footer(); ?>
+        <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/slider.js"></script>
         <script type="text/javascript">
         
           jQuery(window).load(function() {

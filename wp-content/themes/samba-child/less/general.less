@@ -153,9 +153,91 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+.flexslider li img {
+    width: auto !important;
+}
+.flexslider li img, #full-screen-background-image {
+    max-width: 200% !important;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    margin-left: 0 !important;
+}
+@media (max-width: 767px) {
+    #full-screen-background-image {
+        width: auto !important;
+    }
+}
+
 #main {
     @media screen and (max-width: 767px) {
-        padding: 25px;
+//        padding: 25px;
         .tablejob .prk_inner_block .row {text-align: center;}
+        & > .twelve {padding: 25px;}
+    }
+}
+
+
+//menu bar respo
+//@media (max-width: 1100px) and (min-width: 768px) {
+//    #prk_responsive_menu {
+//        display: none;
+//    }
+//}
+
+
+@media (max-width: 767px) {
+    .samba_responsive.page-template-page-sections-php #centered_block {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+@media (max-width: 480px) {
+    body.samba_responsive {font-size: 14px;}
+}
+
+
+@media only screen and (max-width: 769px) {
+    #prk_responsive_menu {
+        display: block;
+        height: 50px;
+        width: 100%;
+        left: 0px !important;
+        z-index: 99999;
+        border-left: 0px;
+        margin-left: 0px !important;
+    }
+    .samba_responsive #nav-collapsed-icon {
+        padding-left: 19px;
+        padding-top: 16px;
+    }
+    .samba_responsive #nav-collapsed-icon .prk_menu_block {
+        width: 28px;
+        height: 4px;
+        margin-bottom: 4px;
+    }
+    .samba_responsive #responsive_logo_holder {
+        display: block;
+    }
+    .samba_responsive .prk_small_logo_image {
+        display: inline-block;
+    }
+    #alt_logo_holder {
+        display: none !important;
+    }
+    .samba_responsive #back_to_top-collapsed {
+        width: 70px;
+        margin-top: 0px;
+        line-height: 50px;
+        vertical-align: middle;
+        text-align: center;
+        top: 0px;
+        right: -5px;
+    }
+    .samba_responsive #main_block {
+        margin-top: 0; //was 50
+        .sld_top {
+            top: 85px;
+        }
     }
 }
