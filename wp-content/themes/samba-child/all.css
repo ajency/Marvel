@@ -273,6 +273,58 @@ h6 {
     top: 85px;
   }
 }
+.head_enq_ico {
+  width: 26px;
+  height: 26px;
+  background: url(img/enq_ico_23.png) no-repeat center center;
+  display: block;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  text-indent: 9999999px;
+  overflow: hidden;
+}
+.hidein769 {
+  display: none;
+  background: #474747;
+  padding: 15px 25px;
+}
+.hidein769 h5:before {
+  display: none;
+}
+.hidein769 p {
+  font-size: 12px;
+}
+.showab769 {
+  display: block;
+}
+@media screen and (max-width: 769px) {
+  #after_widgets.hidein769 {
+    display: block;
+    padding: 10px 25px;
+    padding-bottom: 3px;
+  }
+  #after_widgets.hidein769 h5 {
+    color: #c7c7c7;
+    font-size: 18px;
+  }
+  #after_widgets.hidein769 h5:before {
+    display: none;
+  }
+  #after_widgets.hidein769 p {
+    color: #b2b2b2;
+    font-size: 13px;
+  }
+  .showab769 {
+    display: none;
+  }
+  #headings_wrap .single_page_title {
+    padding-top: 70px;
+  }
+  .samba_responsive #back_to_top-collapsed {
+    right: 30px;
+  }
+}
 .btn_norm {
   border: 0;
   background: #666666;

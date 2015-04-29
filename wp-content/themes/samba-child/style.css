@@ -213,6 +213,7 @@ pre {
 
 #footer_in .widget {
 	margin-bottom: 0;
+    display: block;
 }
 .prk_with_back.zocial.icon {
 	/*margin-top: 3px;*/
@@ -290,7 +291,15 @@ pre {
 
 }
 
-@media only screen and (max-width: 836px) {
+@media screen and (max-width: 896px) {
+    .child-footer .widget-6 .WP_Editor_Widget a {
+        padding-left: 15px;
+    }
+    .child-footer .widget-6 .WP_Editor_Widget a:before {display: none;}
+    .child-footer > div > .widget-6 {width: auto;}
+    .widget_nav_menu {padding-left: 0; padding-right: 0;}
+}
+@media only screen and (max-width: 769px) {
 	.child-footer .prk-widget-body {
 		float: none;
 		display: block;
@@ -316,8 +325,45 @@ pre {
 		border: 0;
 		padding-bottom: 10px;
 	}
-    #copy {
+    .showab769 {
         padding-bottom: 113px;
+    }
+    .child-footer {padding-top: 0;}
+    .child-footer .widget-6 .WP_Editor_Widget a {display: none;}
+    .child-footer .menu {
+        width: 100%;
+        padding-bottom: 5px;
+        display: table;
+        table-layout: fixed;
+    }
+    .child-footer .menu li  {
+        display: table-cell;
+        width: 25%;
+    }
+    #footer_in .widget {
+        margin-bottom: 5px;
+        display: table;
+    }
+    .child-footer {
+        display: table;
+    }
+    .child-footer .widget-4 {display: table-footer-group;}
+    .child-footer .widget-5 {display: table-header-group;}
+    #footer_in .widget.pirenko-social-widget {
+        margin-bottom: 10px;
+    }
+    .widget_nav_menu:after {
+        content: '';
+        width: 300px;
+        height: 1px;
+        margin: 15px auto 0 auto;
+        background: #868686;
+    }
+    .prk_with_back.zocial.icon:before {
+        padding-left: 6px;
+    }
+    .colored .social_img_wrp {
+        margin-right: 15px;
     }
 }
 

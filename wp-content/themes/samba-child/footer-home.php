@@ -13,6 +13,26 @@
             <div class="prk_body_classes"><?php body_class('samba_theme'.$resp_class); ?></div>
         </div>
         <div class="child-footer">
+                <?php
+                    
+                    if ($prk_samba_frontend_options['footer_text']!="" && is_front_page())
+                    {
+                      ?>
+                      <div id="after_widgets" class="hidein769">
+                        <div id="copy" class="twelve columns">
+                            <?php echo $prk_samba_frontend_options['footer_text']; ?>
+                        </div>
+<!--
+                        <div id="back_to_top">
+                            <div class="navicon-arrow-up-2">
+                            </div>
+                        </div>
+-->
+                          <div class="clearfix"></div>
+                      </div>
+                      <?php
+                    }
+                ?>
             <!--widget area-->
             <?php 
                     if ($prk_samba_frontend_options['bottom_sidebar']=="yes")

@@ -54,12 +54,15 @@
             echo prk_output_alt_logo($retina_device);
           ?>
         </div>
+        
+        <a href="#" class="head_enq_ico" id="">Enquiry</a>
+        
         <div id="back_to_top-collapsed">
           <div class="navicon-arrow-up-2"></div>
         </div>
       </div>
       <div id="body_hider"></div>
-<div id="st-container" class="st-container<?php if ($prk_samba_frontend_options['3d_menu']=="false"){echo ' no-csstransforms3d'; }?>">
+    <div id="st-container" class="st-container<?php if ($prk_samba_frontend_options['3d_menu']=="false"){echo ' no-csstransforms3d'; }?>">
  
     <!-- content push wrapper -->
 
@@ -110,7 +113,7 @@
                     {
                       ?>
                       <div id="after_widgets">
-                        <div id="copy" class="twelve columns">
+                        <div id="copy" class="showab769 twelve columns">
                             <?php echo $prk_samba_frontend_options['footer_text']; ?>
                         </div>
                         <div id="back_to_top">
