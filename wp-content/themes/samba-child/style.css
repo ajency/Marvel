@@ -380,11 +380,17 @@ pre {
 .wpb_call_to_action .wpb_button_a span {
 	margin-top: 20px;
 	background-color: #909090;
+    border-color: #848484;
 	font-weight: normal;
 	text-transform: uppercase;
 }
 .wpb_call_to_action .wpb_button_a span:hover {
-	background-color: #0ac2d2;
+	background-color: #7c7c7c;
+    border-color: #6f6f6f;
+}
+.wpb_call_to_action .wpb_button_a span:focus,
+.wpb_call_to_action .wpb_button_a span:active {
+    border-color: #686868;
 }
 
 /*Home page text*/
