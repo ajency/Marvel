@@ -25,6 +25,13 @@
             });
         }
         
+        if ($('div').hasClass('gallery_indi')) {
+            $('.gallery_indi').attr('id', 'gall');
+            $('.andmore a[href=#gall]').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: $('.gallery_indi').offset().top - 70}, '65500', 'linear');
+            });
+        }
         
         //top move down for individual projects page
         $hevp = window.innerHeight ? window.innerHeight : $(window).height();
@@ -33,7 +40,6 @@
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
             $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
         });
-        
     });
     $(window).load(function() {
         $('.child-footer').fadeIn('slow');
@@ -57,5 +63,45 @@
         }).get();
         var maxdn = Math.max.apply(null, dnhe);
         $('.do_3 .wpb_wrapper').height(maxdn);
+        
+        //same height careers
+        var carhe = $('.lisofwork .wpb_wrapper').map(function() {
+            return $(this).height();
+        }).get();
+        var maxcar = Math.max.apply(null, carhe);
+        $('.lisofwork .wpb_wrapper').height(maxcar);
+        
+    });
+    $(window).resize(function() {
+        //equal height services column
+        $('.le_p_m .wpb_wrapper .prk_service').height('auto');
+        var serhe = $('.le_p_m .wpb_wrapper .prk_service').map(function() {
+            return $(this).height();
+        }).get();
+        var maxse = Math.max.apply(null, serhe);
+        $('.le_p_m .wpb_wrapper .prk_service').height(maxse);
+        
+        //same height specifications
+        $('.se_o_6 .wpb_wrapper .prk_service').height('auto');
+        var sphe = $('.se_o_6 .wpb_wrapper .prk_service').map(function() {
+            return $(this).height();
+        }).get();
+        var maxsp = Math.max.apply(null, sphe);
+        $('.se_o_6 .wpb_wrapper .prk_service').height(maxsp);
+        
+        //same height downloads
+        $('.do_3 .wpb_wrapper').height('auto');
+        var dnhe = $('.do_3 .wpb_wrapper').map(function() {
+            return $(this).height();
+        }).get();
+        var maxdn = Math.max.apply(null, dnhe);
+        $('.do_3 .wpb_wrapper').height(maxdn);
+        
+        //same height careers
+        var carhe = $('.lisofwork .wpb_wrapper').map(function() {
+            return $(this).height();
+        }).get();
+        var maxcar = Math.max.apply(null, carhe);
+        $('.lisofwork .wpb_wrapper').height(maxcar);
     });
 })( jQuery );

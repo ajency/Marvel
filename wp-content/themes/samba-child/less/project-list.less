@@ -3,10 +3,17 @@
     .btn_norm();
 }
 
-.proj_list {
+.mapView .bd_headings_text_shadow {
+    display: none;
+}
+.mapView .main_with_sections {
+    margin-top: 0;
+}
+
+.proj_list, .service {
     .top-dd-c {
         background: @grey-bg;
-        padding: 25px 25px 15px;
+        padding: 25px 50px 15px;
     }
     .top-dd {
         display: inline-block;
@@ -46,7 +53,7 @@
     }
     //comparision
     .top-compar {
-        padding: 25px;
+        padding: 25px 50px;
         .drag_area {
             .fontmont;
             width: 210px;
@@ -68,7 +75,7 @@
     }
     //projects list
     .project-list {
-        padding: 5px 25px 25px;
+        padding: 5px 50px 25px;
         .fontmont;
         h5 {
             .fontmont;
@@ -117,6 +124,15 @@
                     left: 0;
                     width: 100%;
                     padding: 10px;
+                    a.single_enq {
+                        i {visibility: hidden;} //display none causes a shift in objects because
+                                                //inline-block uses baseline to keep the objects inline
+                        width: 38px;
+                        height: 33px;
+                        background-image: url(img/enquiry.png);
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                    }
                     a.btn_norm {
                         .btn_norm(5px; 12px);
                         display: inline-block;
@@ -138,5 +154,10 @@
                 .single_p_location {color: #000;}
             }
         }
+    }
+    
+    .projects_map iframe {
+        width: 100%;
+        height: 500px;
     }
 }

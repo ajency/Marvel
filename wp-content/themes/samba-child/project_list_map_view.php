@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Page - Resi Projects List
+Template Name: Page - Resi Projects Map
 */
 ?>
 <?php 
@@ -98,8 +98,8 @@ Template Name: Page - Resi Projects List
                         <button type="submit" class="btn_norm sea"><i class="fa fa-search"></i></button>
                     </div>
                     <div class="pull-right top-view">
-                        <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
-                        <a href="#" class="top_map"><i class="fa fa-map-marker"></i></a>
+                        <a href="#" class="top_list"><i class="fa fa-th-large"></i></a>
+                        <a href="#" class="top_map current"><i class="fa fa-map-marker"></i></a>
                     </div>
                 </div>
 
@@ -108,46 +108,12 @@ Template Name: Page - Resi Projects List
                     <div class="drag_area two">Drag for Comparision</div>
                     <a href="#" class="btn_norm top_btn_co disabled">Compare</a>
                 </div>
-
-                <div id="proj_list" class="project-list row">
-                    <div class="twelve columns">
-                        <h5>Commercial Projects in Pune</h5>
-                    </div>
-                    <!--single project listing-->
-                    <div class="single_p_w six columns">
-                        <div class="single_p_img">
-                            <img src="http://loremflickr.com/1000/1000/building">
-                            <div class="single_p_hov_c">
-                                <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
-                                <div class="clearfix"></div>
-                                <div class="single_p_info">
-                                    <h6>Office Spaces: 1200 - 50,000 sq. ft.</h6>
-                                    <h6>Retail Spaces: 500 - 1,400 sq. ft.</h6>
-                                </div>
-                                <div class="single_btm">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
-                                        <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn_norm single_know">Know More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single_p_cap">
-                            <p class="single_p_inf">
-                                <a href="#">
-                                    <span class="single_p_title">Marvel Edge</span>
-                                    <span class="single_p_light">|</span>
-                                    <span class="single_p_location">Viman Nagar</span>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!--END single project listing-->
+                
+                <div class="projects_map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15379.708332655162!2d73.83601365!3d15.48835385!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1429767564078" frameborder="0" style="border:0"></iframe>
                 </div>
+
+                
             </div>
             <!--END project list styles-->
             <!--END project list styles-->
@@ -158,29 +124,4 @@ Template Name: Page - Resi Projects List
     </div><!-- /#content -->
 </div><!-- #main_block -->
 </div>
-
-    <script>
-        var THEMEURL = '<?php echo get_parent_template_directory_uri(); ?>';
-        var SITEURL = '<?php echo site_url(); ?>';
-        var AJAXURL = '<?php echo admin_url('admin-ajax.php'); ?>';
-        <?php /* var SITEDATA 	= <?php  $impruwSiteModel = new SiteModel(get_current_blog_id()); echo json_encode($impruwSiteModel->get_site_profile());  ?>;
-        var USERDATA = <?php $impruwUserModel = new ImpruwUser(get_current_user_id());
-                            echo json_encode($impruwUserModel->get_user_basic_info()); */ ?>;
-        var SITEID = {'id':<?php echo get_current_blog_id(); ?>}
-        var UPLOADURL = '<?php echo admin_url('async-upload.php'); ?>';
-        var _WPNONCE = '<?php echo wp_create_nonce('media-form'); ?>';
-        var JSVERSION = '<?php echo JSVERSION; ?>';
-
-    </script>
-
-    <script
-        data-main="<?php echo get_parent_template_directory_uri(); ?>/dev/js/init"
-        src="<?php echo get_parent_template_directory_uri(); ?>/dev/js/require.js">
-
-    </script>
-
-
-
-
-
 <?php get_footer(); ?>
