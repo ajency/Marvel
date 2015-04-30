@@ -384,45 +384,61 @@ function myplugin_add_custom_box() {
     $screens = array( 'residential-property', 'commercial-property' );
     foreach ( $screens as $screen ) {
 
-    	$custom_fields[] = array('field'=>'property-type',
-    							  'metabox_title'=> 'Property Type',
-    							  'multiple_values' => false,
-    							   'element_type'	=> 'select'
-    							);
-    	$custom_fields[] = array('field'=>'property-status',
-    							  'metabox_title'=>'Status',
-    							  'multiple_values' => false,
-    							  'element_type'	=> 'select'
-    							);
-    	$custom_fields[] = array('field'=>'property-locality',
-    							  'metabox_title'=>'Locality',
-    							  'multiple_values' => false,
-    							  'element_type'	=> 'select'
-    							);
-    	$custom_fields[] = array('field'=>'property-city',
-    							  'metabox_title'=>'City',
-    							  'multiple_values' => false,
-    							  'element_type'	=> 'select'
-    							);
-    	$custom_fields[] = array('field'=>'property-neighbourhood',
-    							  'metabox_title'=>'Neighbourhood',
-    							  'multiple_values' => true,
-    							  'element_type'	=> 'text'
-    							);
-    	 
-    	foreach($custom_fields as $custom_field){
+	    	$custom_fields[] = array('field'=>'property-type',
+	    							  'metabox_title'=> 'Property Type',
+	    							  'multiple_values' => false,
+	    							   'element_type'	=> 'select'
+	    							);
+	    	$custom_fields[] = array('field'=>'property-status',
+	    							  'metabox_title'=>'Status',
+	    							  'multiple_values' => false,
+	    							  'element_type'	=> 'select'
+	    							);
+	    	$custom_fields[] = array('field'=>'property-locality',
+	    							  'metabox_title'=>'Locality',
+	    							  'multiple_values' => false,
+	    							  'element_type'	=> 'select'
+	    							);
+	    	$custom_fields[] = array('field'=>'property-city',
+	    							  'metabox_title'=>'City',
+	    							  'multiple_values' => false,
+	    							  'element_type'	=> 'select'
+	    							);
+	    	$custom_fields[] = array('field'=>'property-neighbourhood',
+	    							  'metabox_title'=>'Neighbourhood',
+	    							  'multiple_values' => true,
+	    							  'element_type'	=> 'text'
+	    							);
 
-				add_meta_box (
-				            	$custom_field['field'].'_box_id',             // Unique ID
-				            	$custom_field['metabox_title'],               // Box title
-				            	'myplugin_inner_custom_box',   // Content callback
-				            	$screen ,                       // post type
-				            	'normal',
-				            	'default',
-				            	array( 'custom_field_type'=>$custom_field['field'], 
-				            	   		'multiple_values'=>$custom_field['multiple_values'] )
-				        );
-    	}
+	    	if($screen=="residential-property") {
+
+	    		$custom_fields[] = array ( 'field'=>'property-no_of_bedrooms',
+	    							  	   'metabox_title'=>'No Of Bedrooms',
+	    							  	   'multiple_values' => true,
+	    							  	   'element_type'	=> 'text'
+	    								 );
+
+	    		$custom_fields[] = array ( 'field'=>'property-sellable_area',
+	    							  	   'metabox_title'=>'Sellable Area',
+	    							  	   'multiple_values' => true,
+	    							  	   'element_type'	=> 'text'
+	    								 );
+	    	}
+	    	 
+	    	foreach($custom_fields as $custom_field){
+
+					add_meta_box (
+					            	$custom_field['field'].'_box_id',             // Unique ID
+					            	$custom_field['metabox_title'],               // Box title
+					            	'myplugin_inner_custom_box',   // Content callback
+					            	$screen ,                       // post type
+					            	'normal',
+					            	'default',
+					            	array( 'custom_field_type'=>$custom_field['field'], 
+					            	   		'multiple_values'=>$custom_field['multiple_values'] )
+					        );
+	    	}
+    	 
         
     }
 }
@@ -808,3 +824,97 @@ function save_custom_meta_box($post_id, $post, $update)
 }
  
 add_action("save_post", "save_custom_meta_box", 10, 3);
+
+
+
+
+
+
+
+
+function get_search_options(){
+
+	$property_cities = get_option('property-city',true);
+	$property_status = get_option('property-status',true);
+	$property_locality = get_option('property-locality',true);
+	$property_neighbourhood = get_option('property-neighbourhood',true);
+
+	$search_option_data = array( 'cities'		 => $property_cities,
+								 'status'		 => $property_status,
+								 'locality'		 => $property_locality,
+								 'neighbourhood' => $property_neighbourhood
+								);
+
+	return $search_option_data;
+
+
+}
+
+
+function get_res_property_meta_values($property_id){
+
+    $property_cities = get_post_meta($property_id, 'property-city',true);
+    $property_status = get_post_meta($property_id, 'property-status',true);
+    $property_locality = get_post_meta($property_id, 'property-locality',true);
+    $property_neighbourhood = maybe_unserialize(get_post_meta($property_id, 'property-neighbourhood',true));
+
+    $residential_property_meta_data = array('property_city'          => $property_cities,
+                                             'property_status'       => $property_status,
+                                             'property_locaity'      => $property_locality,
+                                             'poperty_neighbourhood' => $property_neighbourhood
+                                            );
+
+    return $residential_property_meta_data;
+
+}
+
+
+
+
+
+function get_residential_properties_list_ajx() {
+
+    global $wpdb;
+    $sel_properties = array();
+    $residential_properties = get_posts( array(
+        'post_type' => 'residential-property',
+        'post_status' => 'publish',
+        'posts_per_page' => -1
+    ) );
+
+    foreach (  $residential_properties as $res_property ) {
+
+        $property_meta_value =  get_res_property_meta_values($res_property->ID);
+        $sel_properties[] =  array_merge($res_property,$property_meta_value) ;
+
+    }
+
+
+
+   /*  foreach ( $rooms_list as $room ) {
+
+        $room = new RoomModel( $room );
+
+        $room_data [ ] = $room->get_all_roomdata();
+    }*/
+    wp_send_json( array(
+        'code' => 'OK',
+        'data' => $sel_properties
+    ) );
+}
+
+add_action( 'wp_ajax_get_residential_properties_list_ajx', 'get_residential_properties_list_ajx' );
+add_action( 'wp_ajax_nopriv_get_residential_properties_list_ajx', 'get_residential_properties_list_ajx' );
+
+
+
+
+
+/**
+ * [get_parent_template_directory_uri description]
+ * @return [type]
+ */
+function get_parent_template_directory_uri()
+{
+    return site_url('wp-content/themes/samba');
+}

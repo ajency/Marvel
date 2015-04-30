@@ -158,4 +158,29 @@ Template Name: Page - Resi Projects List
     </div><!-- /#content -->
 </div><!-- #main_block -->
 </div>
+
+    <script>
+        var THEMEURL = '<?php echo get_parent_template_directory_uri(); ?>';
+        var SITEURL = '<?php echo site_url(); ?>';
+        var AJAXURL = '<?php echo admin_url('admin-ajax.php'); ?>';
+        <?php /* var SITEDATA 	= <?php  $impruwSiteModel = new SiteModel(get_current_blog_id()); echo json_encode($impruwSiteModel->get_site_profile());  ?>;
+        var USERDATA = <?php $impruwUserModel = new ImpruwUser(get_current_user_id());
+                            echo json_encode($impruwUserModel->get_user_basic_info()); */ ?>;
+        var SITEID = {'id':<?php echo get_current_blog_id(); ?>}
+        var UPLOADURL = '<?php echo admin_url('async-upload.php'); ?>';
+        var _WPNONCE = '<?php echo wp_create_nonce('media-form'); ?>';
+        var JSVERSION = '<?php echo JSVERSION; ?>';
+
+    </script>
+
+    <script
+        data-main="<?php echo get_parent_template_directory_uri(); ?>/dev/js/init"
+        src="<?php echo get_parent_template_directory_uri(); ?>/dev/js/require.js">
+
+    </script>
+
+
+
+
+
 <?php get_footer(); ?>
