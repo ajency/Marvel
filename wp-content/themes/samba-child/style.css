@@ -443,16 +443,19 @@ pre {
     border-radius: 0;
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li:hover {
-	background-color: rgb(10,194,210) !important;
+	background-color: #f0f0f0 !important;
+}
+.wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li:active {
+    
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li:last-child {
 	border-right: 0;
 }
 .ui-tabs .ui-tabs-nav li a {
-	color: #666;
+	color: #666 !important;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-	color: #000;
+	color: #000 !important;
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li.ui-state-active {
 	background: #fff !important;
