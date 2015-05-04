@@ -1,12 +1,12 @@
 /* The ResidentialPropertiesCollection
  */
-define(['underscore', 'backbone',  'residentialPropertymodel'],
+/*define(['underscore', 'backbone',  'residentialPropertymodel'],
     function(_, Backbone,  residentialPropertymodel) {
-
+*/
         var ResidentialPropertiesCollection = Backbone.Collection.extend({
 
             //model property
-            model: residentialPropertymodel,
+            model: ResidentialModel,
 
             fetched : false,
 
@@ -30,6 +30,8 @@ define(['underscore', 'backbone',  'residentialPropertymodel'],
 
         }) ;
 
-        return ResidentialPropertiesCollection;
+/*        return ResidentialPropertiesCollection;
 
     });
+
+    */

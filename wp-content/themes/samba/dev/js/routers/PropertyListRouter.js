@@ -1,7 +1,7 @@
 
  
-define(['underscore', 'jquery', 'backbone', 'ProjectListMainView','jqueryui'],
-		function( _ , $, Backbone, ProjectListView){
+/*define(['underscore', 'jquery', 'backbone', 'ProjectListMainView','jqueryui'],
+		function( _ , $, Backbone, ProjectListView){*/
 
 
 			//attach underscore string
@@ -14,7 +14,9 @@ define(['underscore', 'jquery', 'backbone', 'ProjectListMainView','jqueryui'],
 
 				initialize : function(){
 					
-					this.mainView = new ProjectListView();	
+					this.mainView = new ProjectListMainView();
+
+                    console.log('reached project list router initializer');
 
 				},
 
@@ -25,7 +27,8 @@ define(['underscore', 'jquery', 'backbone', 'ProjectListMainView','jqueryui'],
 
 				index : function(){
 					console.log('Property list router index')
-				},
+
+				}
 				
 				
 				
@@ -33,6 +36,8 @@ define(['underscore', 'jquery', 'backbone', 'ProjectListMainView','jqueryui'],
 			});	
 
 
-			return PropertyListRouter;
-
+			//return PropertyListRouter;
+/*
 		});
+
+    */
