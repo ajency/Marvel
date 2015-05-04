@@ -180,6 +180,13 @@
                     margin-bottom: 10px;
                     text-transform: uppercase;
                     font-weight: normal;
+                    &:hover {
+                        background: #f5f5f5;
+                        border-color: #666;
+                    }
+                    &:focus, &:active {
+                        border-color: #606060;
+                    }
                     &.half {
                         width: 49%;
 //                        margin-right: 2px;
@@ -192,6 +199,14 @@
                     }
                     &.wpb_btn-inverse {
                         background: #909090;
+                        border-color: #848484;
+                        &:hover {
+                            background: #7c7c7c;
+                            border-color: #6f6f6f;
+                        }
+                        &:active, &:focus {
+                            border-color: #686868;
+                        }
                     }
                     &.wpb_regularsize {
                         border-color: #848484;
