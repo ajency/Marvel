@@ -1075,7 +1075,7 @@ function get_parent_template_directory_uri()
 
 function marvel_scripts_styles(){
 
-    if(is_page_template()== 'project_list.php'){
+   /* if(is_page_template()== 'project_list_new.php'){
 
         wp_enqueue_script('backbone', get_template_directory_uri() . '/dev/js/lib/backbone.js', array('jquery'), false, true);
         wp_enqueue_script('backbonebabysitter', get_template_directory_uri() . '/dev/js/lib/backbone.babysitter.js', array('jquery'), false, true);
@@ -1096,7 +1096,7 @@ function marvel_scripts_styles(){
 
 
 
-    }
+    }*/
 
 }
 add_action('wp_enqueue_scripts', 'marvel_scripts_styles', 100);

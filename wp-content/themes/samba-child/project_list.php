@@ -173,11 +173,11 @@ Template Name: Page - Resi Projects List
 
     </script>
 
-    <script
+  <?php /*  <script
         data-main="<?php echo get_parent_template_directory_uri(); ?>/dev/js/init"
         src="<?php echo get_parent_template_directory_uri(); ?>/dev/js/require.js">
 
-    </script>
+    </script> */ ?>
 
 
 

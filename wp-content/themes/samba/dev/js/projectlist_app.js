@@ -57,7 +57,7 @@ var __ = function(string){
 
 
             Backbone.emulateHTTP = true;
-            alert('TEST');
+            console.log('TEST');
 
             ProjectListApp = new Backbone.Marionette.Application();
 
