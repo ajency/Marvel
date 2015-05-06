@@ -66,7 +66,10 @@ var __ = function(string){
                 comparePropertyRegion: ".top-compar",
                 projectListingsRegion: '#proj_list'
             });
-              getAppInstance().addInitializer(function(){
+
+
+
+            getAppInstance().addInitializer(function(){
 
                 getAppInstance().ViewManager = new Backbone.ChildViewContainer();
 

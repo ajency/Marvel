@@ -29,6 +29,8 @@
 	include_once 'inc/modules/wpalchemy/metaboxes/reg-page-spec.php';
 	include_once 'inc/modules/wpalchemy/metaboxes/post-spec.php';
 	include_once 'inc/modules/wpalchemy/metaboxes/contact-page-spec.php';
+
+	include_once 'inc/custom_tables.php';
 	
 	add_action('wp_enqueue_scripts', 'samba_scripts', 100);
 	add_action('admin_print_scripts', 'samba_admin_scripts');
@@ -698,14 +700,16 @@ function my_enqueue($hook) {
     wp_enqueue_script( 'undescore','https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js',
         array('jquery') );
     wp_enqueue_script( 'geolocation','https://maps.googleapis.com/maps/api/js?sensor=false' );
-    wp_enqueue_script( 'ajax-script','http://localhost/Marvel/wp-content/plugins/js/myjquery.js?ver=4.1.1',
-        array('jquery'));
+    
 
     wp_enqueue_script('mygeolocation_js',get_template_directory_uri().'/js/mygeolocation.js', array('jquery')  );
 
     wp_localize_script( 'ajax-script', 'ajax_object', array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
     ));
+
+    wp_enqueue_script( 'custom-script',site_url().'/wp-content/themes/samba/js/myjquery.js?ver=4.1.1',
+        array('jquery'));
 }
 add_action('admin_enqueue_scripts', 'my_enqueue');
 

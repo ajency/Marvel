@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
     $("#myplugin_field").change(function() {  //the selector and event
 
         var my_data =[$("#myplugin_field").val()];
-        $.post(ajax_object.ajax_url, {        //the server_url
+        $.post(ajaxurl, {        //the server_url
             action: "change",                 //the submit_data array
             data:my_data
         }, function(data) {                   //the callback_handler
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
 
 
 
-        $.post(ajax_object.ajax_url, {        //the server_url
+        $.post(ajaxurl, {        //the server_url
             action: "save_custom_field_option",                 //the submit_data array
             data:my_data
         }, function(data) {                   //the callback_handler
@@ -114,7 +114,7 @@ jQuery(document).ready(function($) {
 
         $(self).closest('.row').find('.edit_options_area').html('');
 
-        $.post(ajax_object.ajax_url,{   //the server_url
+        $.post(ajaxurl,{   //the server_url
                                         action: "get_custom_field_options",                 //the submit_data array
                                         data:my_data
                                     },
@@ -153,7 +153,7 @@ jQuery(document).ready(function($) {
                             'post_type'    : $('#current_post_type').val()
                           }
 
-            $.post(ajax_object.ajax_url,{   //the server_url
+            $.post(ajaxurl,{   //the server_url
                     action: "delete_custom_field_option",                 //the submit_data array
                     data:my_data
                 },

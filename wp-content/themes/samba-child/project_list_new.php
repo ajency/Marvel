@@ -71,20 +71,8 @@ Template Name: Page - Resi Projects List New
             <!--these are the project list styles-->
             <!--these are the project list styles-->
             <!--these are the project list styles-->
-            <div class="proj_list" id="proj_list_main">
-                <div class="top-dd-c">
-                </div>
-
-                <div class="top-compar">
-
-                </div>
-
-                <div id="proj_list" class="project-list row">
-
-                    
-                    <!--END single project listing-->
-                </div>
-            </div>
+            <div class="right_container"></div>
+            
             <!--END project list styles-->
             <!--END project list styles-->
             <!--END project list styles-->
@@ -115,6 +103,7 @@ Template Name: Page - Resi Projects List New
 
     </script>
 */ ?>
+<script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/projectlist_app.js"></script>
 
 
 
