@@ -1,3 +1,5 @@
+<script type="" id="spn_propertieslistings">
+
 <div class="twelve columns">
     <h5>Commercial Projects in Pune</h5>
 </div>
@@ -33,3 +35,4 @@
             </p>
         </div>
     </div>
+</script>

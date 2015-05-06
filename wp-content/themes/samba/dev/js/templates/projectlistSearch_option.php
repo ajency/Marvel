@@ -1,29 +1,46 @@
-<div class="top-dd-c">
+
+<?php /* <div class="top-dd-c"> */ ?>
+<script type="text/template" id="projectlistSearchOptionsTemplate" >
     <div class="top-dd one">
         <select id="dd_status">
-            <option>Ongoing</option>
-            <option>Upcoming</option>
+        <% console.log('test template');
+            
+            _.each(data.status,function(vl,ky){
+            %><option value="<%=vl%>"><%=vl%></option>
+
+            <% }) %>
+             
         </select>
     </div>
     <div class="top-dd two">
         <select id="dd_city">
             <% console.log('test template');
-            console.log(d);
+            
             _.each(data.cities,function(vl,ky){
             %><option value="<%=vl%>"><%=vl%></option>
 
             <% }) %>
-            <option>Pune</option>
+            
         </select>
     </div>
     <div class="top-dd thr">
-        <select id="dd_locality" disabled>
-            <option>Locality</option>
+        <select id="dd_locality" >
+            <% console.log('test template');
+            
+            _.each(data.locality,function(vl,ky){
+            %><option value="<%=vl%>"><%=vl%></option>
+
+            <% }) %>
         </select>
     </div>
     <div class="top-dd fou">
-        <select id="dd_type" disabled>
-            <option>Type</option>
+        <select id="dd_type" >
+            <% console.log('test template');
+            
+            _.each(data.type,function(vl,ky){
+            %><option value="<%=vl%>"><%=vl%></option>
+
+            <% }) %>
         </select>
     </div>
     <div class="top-sea">
@@ -33,4 +50,7 @@
         <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
         <a href="#" class="top_map"><i class="fa fa-map-marker"></i></a>
     </div>
-</div>
+
+<?php /* 
+</div>  */ ?>
+</script>

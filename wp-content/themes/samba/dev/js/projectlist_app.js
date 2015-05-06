@@ -100,7 +100,7 @@ var __ = function(string){
 
                 return template;
             },
-
+ 
             getAppInstance().start();
 
          });

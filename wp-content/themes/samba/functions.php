@@ -984,6 +984,7 @@ add_action("save_post", "save_custom_meta_box", 10, 3);
 
 function get_search_options(){
 
+	$property_type = maybe_unserialize(get_option('residential-property-type',true));
 	$property_cities = maybe_unserialize(get_option('property-city',true));
 	$property_status = maybe_unserialize(get_option('property-status',true));
 	$property_locality = maybe_unserialize(get_option('property-locality',true));
@@ -994,7 +995,8 @@ function get_search_options(){
 								 'status'		 => $property_status,
 								 'locality'		 => $property_locality,
 								 'neighbourhood' => $property_neighbourhood,
-                                 'no_of_bedrooms'=> $property_bedrooms
+                                 'no_of_bedrooms'=> $property_bedrooms,
+                                 'type'			 => $property_type
 								);
 
 	wp_send_json( $search_option_data);
@@ -1026,6 +1028,9 @@ function get_res_property_meta_values($property_id){
 
 
 
+
+
+
 function get_residential_properties_list_ajx() {
 
     global $wpdb;
@@ -1038,8 +1043,10 @@ function get_residential_properties_list_ajx() {
 
     foreach (  $residential_properties as $res_property ) {
 
+		$res_property->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
         $property_meta_value =  get_res_property_meta_values($res_property->ID);
-        $sel_properties[] =  array_merge($res_property,$property_meta_value) ;
+        $sel_properties[] =  (object)array_merge((array)$res_property,$property_meta_value) ;
+         
 
     }
 

@@ -103,7 +103,11 @@ Template Name: Page - Resi Projects List New
 
     </script>
 */ ?>
+<?php 
+require_once(ABSPATH."/wp-content/themes/samba/modules/commonJs.php") ;
+require_once(ABSPATH."/wp-content/themes/samba/modules/projectList/projectlistJs.php") ?>
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/projectlist_app.js"></script>
+
 
 
 

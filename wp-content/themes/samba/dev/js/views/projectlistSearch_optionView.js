@@ -9,7 +9,8 @@ define([ 'underscore', 'jquery', 'backbone',
 
         var searchOptionsView = Backbone.View.extend({
 
-            id : 'site-profile',
+            el : '.child-footer',
+            template :'#projectlistSearchOptionsTemplate',
 
            /* events : {
                 'click #btn_savesitedetails'	: 'saveProfile',
@@ -57,7 +58,7 @@ this.render();
                     success : this.renderForm
                 });
 */
-
+                var self = this;
 
                 jQuery.ajax(AJAXURL,{
                     type: 'GET',
@@ -69,12 +70,18 @@ this.render();
                     success: function(response) {
                         console.log('got search options........');
                         console.log(response);
-                        var searchOptionTemplate = Backbone.Marionette.TemplateCache.prototype.loadTemplate('projectlistSearch_option.html');
+                       // var searchOptionTemplate = Backbone.Marionette.TemplateCache.prototype.loadTemplate('projectlistSearch_option.html');
                         //console.log(searchOptionTemplate)
-var  data = {'d':response};
+                       // var  data = {'d':response};
 
                         //console.log(_.template(searchOptionTemplate(data)))
-                        jQuery('.top-dd-c').html(_.template(searchOptionTemplate,data));
+                       // jQuery('.top-dd-c').html(_.template(searchOptionTemplate,data));
+
+                      /* var html = _.template(jQuery(self.template), response);
+                        self.$el.html(html);*/
+
+                        var template = _.template(jQuery(self.template).html());
+                                jQuery('.child-footer').html(template({data : response}));
 
                     },
                     error: function(){
