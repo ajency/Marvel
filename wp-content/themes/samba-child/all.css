@@ -10,7 +10,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   text-transform: uppercase;
 }
 .vc_separator h4 {
@@ -75,7 +75,7 @@ h6 {
   margin-bottom: 20px;
 }
 .tablejob .job_title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   font-size: 16px;
 }
 .tablejob a.wpb_button_a span.wpb_button {
@@ -140,7 +140,7 @@ h6 {
   padding: 25px 35px;
 }
 .service .forent .partintro .introtext.wpb_wrapper a.proj_title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   color: #666;
   margin-bottom: 15px;
   display: block;
@@ -227,7 +227,7 @@ h6 {
 }
 .service .list_forent .top-tab small.clr_lt {
   display: block;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   color: #666;
 }
 .service .list_forent .top-tab small {
@@ -529,7 +529,7 @@ h6 {
 .service .top-dd select {
   padding: 5px 8px;
   border: 1px solid #cccccc;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .proj_list .top-dd select:disabled,
 .service .top-dd select:disabled {
@@ -572,7 +572,7 @@ h6 {
 }
 .proj_list .top-compar .drag_area,
 .service .top-compar .drag_area {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   width: 210px;
   display: inline-block;
   text-align: center;
@@ -590,7 +590,7 @@ h6 {
   padding: 7px 20px;
   text-transform: uppercase;
   margin-left: 8px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
 }
 .proj_list .top-compar .top_btn_co.disabled,
 .service .top-compar .top_btn_co.disabled {
@@ -599,11 +599,11 @@ h6 {
 .proj_list .project-list,
 .service .project-list {
   padding: 5px 50px 25px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
 }
 .proj_list .project-list h5,
 .service .project-list h5 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   color: #333;
   font-size: 16px;
   margin-bottom: 30px;
@@ -821,6 +821,7 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_call_to_action .wpb_button_a .wpb_arrow i {
   background: none;
+  font-style: normal;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_call_to_action .wpb_button_a .wpb_arrow i:after {
   content: '\f105';
@@ -1258,7 +1259,7 @@ h6 {
 .compare_c .info_bar {
   background: #EBEBEB;
   padding: 25px 50px 14px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
 }
 .compare_c .info_bar p {
   display: inline-block;
@@ -1308,7 +1309,7 @@ h6 {
   padding: 7px;
 }
 .compare_c .compare_i_c th .single_p_inf a {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   display: block;
   color: #666;
   padding: 10px 5px 0;
@@ -1319,7 +1320,7 @@ h6 {
 .compare_c .compare_i_c th:first-child,
 .compare_c .compare_i_c td:first-child {
   background: #fbfbfb;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   text-align: left;
   color: #666;
 }
@@ -1359,7 +1360,7 @@ h6 {
   text-align: center;
 }
 .compare_c .compare_f .foot_head {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cantarell', sans-serif;
   font-size: 16px;
   color: #757575;
   margin-bottom: 10px;
