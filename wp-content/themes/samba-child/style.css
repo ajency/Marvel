@@ -8,6 +8,7 @@ Template:       samba
 */
 
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+@import url(http://fonts.googleapis.com/css?family=Cantarell:400,700,400italic,700italic);
 @import url("../samba/style.css");
 /*imports the less compiled*/
 @import url("all.css");
@@ -15,6 +16,9 @@ Template:       samba
 /*Styles*/
 body {
 	font-size: 14px;
+}
+.woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce #respond input#submit:hover, .woocommerce #content input.button:hover, .woocommerce-page a.button:hover, .woocommerce-page button.button:hover, .woocommerce-page input.button:hover, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce #respond input#submit, .woocommerce #content input.button, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce-page #respond input#submit, .woocommerce-page #content input.button, .comments_slider .comment-link, .comments_slider .comment-author, .wpb_accordion .wpb_accordion_wrapper .wpb_accordion_header, .wpb_tabs_nav a, .theme_button, .theme_button_inverted, .theme_button input, .theme_button_inverted input, .prk_composer_title, .wpb_button, .wpb_heading, .wpb_wrapper h2, .header_font, .nav, #nav_footer, .sf-menu, .day, .month, .theme_tags, .homepage-header, .sidebar_bubble, .related_single_title, .widget-title, .masonr_title, .masonr_date, .entry_title_single, .search_rs_ttl, .headings_top, .post_meta_single .after_icon, .post_meta_single .bf_icon, .prevnext_single .after_icon, .prevnext_single .bf_icon, header_font, .pir_divider_cats, .shortcode-title, #single_post_teaser, #nav-main.resp_mode li > a, #single_portfolio_meta .single_heading, .type-post .prevnext_single, #pir_categories, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cantarell' !important;
 }
 
 
@@ -93,6 +97,7 @@ pre {
   	z-index: 5;
   	display: none;
     padding-top: 3px;
+    font-family: 'Cantarell', 'Open Sans';
 }
 .child-footer .footer_in {
     padding-top: 3px;
@@ -101,6 +106,7 @@ pre {
 	width: 100%;
 	position: fixed;
 	bottom: 0;
+    font-family: 'Cantarell';
 }
 .child-footer .pirenko-social-widget {
 	width: 254px;
@@ -140,11 +146,12 @@ pre {
 .intro, #single_page_teaser {
 	font-family: 'Open Sans';
 	font-size: 15px;
-	font-weight: 300;
+	font-weight: 400;
 	line-height: 1.7em;
 	text-align: center;
 	color: #666;
 	margin-top: 25px;
+    text-shadow: 0 0 0 #fff;
 }
 /*.intro {display: none;}*/
 
@@ -274,7 +281,7 @@ pre {
 	text-align: center;
 }
 #after_widgets h5 {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Cantarell', sans-serif;
 	font-size: 16px;
 	font-weight: normal;
 	margin-bottom: 15px;
@@ -528,7 +535,7 @@ pre {
     padding-bottom: 0;
 }
 .testimonial_slider__default .testimonial_slider_instance .testimonial_by_wrap span.testimonial_by {
-	font-family: 'Montserrat', sans-serif !important;
+	font-family: 'Cantarell', sans-serif !important;
     padding: 5px 10px;
 }
 .testimonial_slider__default {
@@ -559,6 +566,7 @@ pre {
     font-size: 14px !important;
   	line-height: 24px;
 	background-image: none !important;
+    font-family: 'Open Sans' !important;
 }
 .testimonial_slider__default .testimonial_slider_instance .testimonial_quote:before {content: '"'}
 .testimonial_slider__default .testimonial_slider_instance .testimonial_quote:after {content: '"'}
