@@ -16,7 +16,7 @@ console.log('==================');
 <% _.each(propertiesdata.models,function(propertyvl,propertyky){%>
 <div class="single_p_w six columns">
     <div class="single_p_img">
-        <img src="http://loremflickr.com/1000/1000/building">
+        <img src=" <% if(propertyvl.get('featured_image')!=false) { %><%=propertyvl.get('featured_image')%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">
             <div class="single_p_hov_c">
                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                 <div class="clearfix"></div>
@@ -38,9 +38,9 @@ console.log('==================');
         <div class="single_p_cap">
             <p class="single_p_inf">
                 <a href="#">
-                    <span class="single_p_title">Marvel Edge</span>
+                    <span class="single_p_title"><%=propertyvl.get('post_title')%></span>
                     <span class="single_p_light">|</span>
-                    <span class="single_p_location">Viman Nagar</span>
+                    <span class="single_p_location"><%=propertyvl.get('property_locaity')%> <%=propertyvl.get('property_city')%></span>
                 </a>
             </p>
         </div>

@@ -1052,6 +1052,7 @@ function get_residential_properties_list_ajx() {
 $res_property->id = $res_property->ID;
 		$res_property->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
         $property_meta_value =  get_res_property_meta_values($res_property->ID);
+        unset($res_property->ID);
         $sel_properties[] =  (object)array_merge((array)$res_property,$property_meta_value) ;
          
 

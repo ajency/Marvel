@@ -41,7 +41,7 @@ this.render();
                 var self = this;
 
  
-
+/*
 
                 getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
                 getAppInstance().residentialPropertyCollection.fetch({remove:false, add:true});
@@ -52,14 +52,42 @@ this.render();
                
                 setTimeout( function(){
                 var projectListingsTemplate = _.template(jQuery(self.template).html());
-                                        alert(jQuery('#projects_listings').length + " --- proj_list:" + jQuery('#proj_list').length)
+                                        
                                                 jQuery('#proj_list').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection}));
 
 
                                                 console.log('resi coll');
                                 console.log(getAppInstance().residentialPropertyCollection.models);
 
-                },1000);
+                },1000);*/
+
+
+
+
+
+
+
+ getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+                getAppInstance().residentialPropertyCollection.fetch({
+    success: function(collection) { // the fetched collection!
+
+        console.log(collection.length)
+
+        var projectListingsTemplate = _.template(jQuery(self.template).html());
+                                        
+                                                jQuery('#proj_list').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection}));
+
+
+        if (collection.length) {
+            // not empty
+        } else {
+            // empty
+        }
+    }
+} );
+                console.log('resi coll');
+                console.log(getAppInstance().residentialPropertyCollection.length);
+                console.log(getAppInstance().residentialPropertyCollection);
                                 
 
                

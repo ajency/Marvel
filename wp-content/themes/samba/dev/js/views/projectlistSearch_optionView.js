@@ -5,13 +5,14 @@
            
             template :'#projectlistSearchOptionsTemplate',
 
-           /* events : {
-                'click #btn_save'	: 'save',
+            events : {
+                'click .btn_norm'	: 'searchProperties',
+                'click .tstcheck'   : 'searchProperties'
            
-            },*/
+            }, 
 
             initialize : function(args) {
-                _.bindAll(this ,'render');
+                _.bindAll(this ,'render','searchProperties');
                /*  _.bindAll(this ,'renderForm','renderError', 'saveProfileSuccess', 'saveProfileFailure','parsleyInitialize');
 
                
@@ -61,7 +62,7 @@ this.render();
                         self.$el.html(html);*/
 
                         var template = _.template(jQuery(self.template).html());
-                        alert(jQuery('.top-dd-c').length)
+                        
                                 jQuery('.top-dd-c').html(template({data : response}));
 
                                 var projectlistView = new projectsListingsView();
@@ -78,6 +79,10 @@ this.render();
 
                 return this;
             },
+
+            searchProperties: function(){
+                alert('search properties');
+            }
 
             
 
