@@ -16,18 +16,7 @@
 
                            
                 
-                //set left column view
-           //     this.leftColumn = new LeftColumnView();
-            /*    console.log('projectlist main view')
-
-                getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
-                getAppInstance().residentialPropertyCollection.fetch();
-                console.log('resi coll');
-                console.log(getAppInstance().residentialPropertyCollection);*/
-
- 
-                
-                //$('#top-dd-c').html(searchOptionView)
+              
                 this.render();
             },
 
