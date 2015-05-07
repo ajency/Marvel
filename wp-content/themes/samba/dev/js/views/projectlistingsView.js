@@ -75,7 +75,7 @@ this.render();
 
         var projectListingsTemplate = _.template(jQuery(self.template).html());
                                         
-                                                jQuery('#proj_list').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection}));
+                                                jQuery('#proj_list').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection.models}));
 
 
         if (collection.length) {
