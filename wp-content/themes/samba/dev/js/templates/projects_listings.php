@@ -1,9 +1,19 @@
-<script type="" id="spn_propertieslistings">
+<script type="text/templte" id="spn_propertieslistings">
 
 <div class="twelve columns">
     <h5>Commercial Projects in Pune</h5>
 </div>
 <!--single project listing-->
+<% console.log('project listings template');
+
+console.log(propertiesdata);
+console.log(propertiesdata.length);
+
+
+
+console.log('==================');
+%>
+<% _.each(propertiesdata.models,function(propertyvl,propertyky){%>
 <div class="single_p_w six columns">
     <div class="single_p_img">
         <img src="http://loremflickr.com/1000/1000/building">
@@ -35,4 +45,7 @@
             </p>
         </div>
     </div>
+<%
+})
+%>  
 </script>

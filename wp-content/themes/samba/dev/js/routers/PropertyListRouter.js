@@ -26,7 +26,9 @@
 				},
 
 				index : function(){
-					console.log('Property list router index')
+
+					var searchOptionView = new searchOptionsView()
+					
 
 				}
 				

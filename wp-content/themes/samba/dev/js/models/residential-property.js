@@ -6,7 +6,7 @@
 */
     var ResidentialModel = Backbone.Model.extend({
 
-        addRoomUrl : AJAXURL + '?action=add_new_room_ajx',
+        addRoomUrl : AJAXURL + '?action=get_property_ajx',
 
     })
 /*

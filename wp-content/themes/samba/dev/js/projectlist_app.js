@@ -48,10 +48,7 @@ var __ = function(string){
 }
 
 
-/*require(['backbone','marionette',
-         'dev/js/routers/PropertyListRouter'],
-         function( Backbone, Marionette, Router) {
-*/
+ 
         jQuery(document).ready(function(){
 
 
@@ -105,7 +102,7 @@ var __ = function(string){
 
          });
 
-//});
+
 
 
 

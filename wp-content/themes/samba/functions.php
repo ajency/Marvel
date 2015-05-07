@@ -699,10 +699,16 @@ function my_enqueue($hook) {
 
     wp_enqueue_script( 'undescore','https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js',
         array('jquery') );
-    wp_enqueue_script( 'geolocation','https://maps.googleapis.com/maps/api/js?sensor=false' );
+
+    if ( 'Residential-Property' === $post->post_type ) {       
+
+    	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
+
+    	wp_enqueue_script('mygeolocation_js',get_template_directory_uri().'/js/mygeolocation.js', array('jquery')  );
+    }
     
 
-    wp_enqueue_script('mygeolocation_js',get_template_directory_uri().'/js/mygeolocation.js', array('jquery')  );
+    
 
     wp_localize_script( 'ajax-script', 'ajax_object', array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -1043,6 +1049,7 @@ function get_residential_properties_list_ajx() {
 
     foreach (  $residential_properties as $res_property ) {
 
+$res_property->id = $res_property->ID;
 		$res_property->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
         $property_meta_value =  get_res_property_meta_values($res_property->ID);
         $sel_properties[] =  (object)array_merge((array)$res_property,$property_meta_value) ;
