@@ -1,8 +1,4 @@
-<?php
-/*
-Template Name: Page - With Sections
-*/
-?>
+
 <?php 
   get_header(); 
   $show_sidebar=$prk_samba_frontend_options['right_sidebar'];

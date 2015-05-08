@@ -74,18 +74,21 @@
                 </a>  
             </div>
             <div class="clearfix"></div>
-        <div class="opened_menu twelve"> 
+        <?php if( get_post_type(get_the_ID())!= 'residential-property'){  ?>
+          <div class="opened_menu twelve">
             <nav id="nav-main" class="nav-collapse collapse" role="navigation">
                 <div class="nav-wrap">
-                      <?php 
-                          if ( has_nav_menu( 'top_right_navigation' ) ) 
+                      <?php
+                          if ( has_nav_menu( 'top_right_navigation' ) )
                           {
-                            wp_nav_menu(array('theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker)); 
+                            wp_nav_menu(array('theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker));
                           }
                       ?>
                </div>
             </nav>
         </div>
+       <?php } ?>
+
         <div class="clearfix"></div>
         <div id="samba_collapse_menu" class="close_flagger">
             <div class="navicon-arrow-left-2"></div>
