@@ -52,7 +52,14 @@ Template Name: Page - With Sections
   $show_sidebar=false;
 ?>
 <div id="centered_block" class="row">
-<div id="main_block" class="block_with_sections page-<?php echo get_the_ID(); ?>">
+<div id="main_block" class="block_with_sections hideTitle page-<?php echo get_the_ID(); ?>">
+    <div id="full_fi_c">
+        <div class="full_fi_title">
+            <p class="f_f_t">
+                Sample Flat
+            </p>
+        </div>
+        <a href="#" class="go_d_see"></a>
     <?php
       echo prk_output_featured_image(get_the_ID());
       if ($show_title==true)
@@ -65,6 +72,7 @@ Template Name: Page - With Sections
         $extra_class="";
       }
     ?>
+    </div>
     <div id="content">
         <div id="main" role="main" class="main_with_sections<?php echo $extra_class; ?>">
             <?php

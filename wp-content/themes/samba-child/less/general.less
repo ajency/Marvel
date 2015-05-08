@@ -288,12 +288,27 @@ h1, h2, h3, h4, h5, h6 {
 .flexslider li img {
     width: auto !important;
 }
-.flexslider li img, #full-screen-background-image {
+.flexslider li img {
     max-width: 200% !important;
     min-width: 100%;
     min-height: 100%;
     height: auto !important;
     margin-left: 0 !important;
+}
+#full-screen-background-image {
+    max-width: 200% !important;
+    min-width: 100%;
+    min-height: 100%;
+    height: auto !important;
+    margin-left: 0 !important;
+    position: absolute;
+}
+#full_fi_c {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
 }
 @media (max-width: 767px) {
     #full-screen-background-image {

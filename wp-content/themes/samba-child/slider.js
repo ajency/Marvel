@@ -36,9 +36,17 @@
         //top move down for individual projects page
         $hevp = window.innerHeight ? window.innerHeight : $(window).height();
         $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+        $('#full_fi_c').css('height', $hevp);
         $(window).resize(function() {
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
             $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+            $('#full_fi_c').css('height', $hevp);
+        });
+        
+        //scroll down indi prj page
+        $('.go_d_see').click(function(e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: $hevp}, '65500', 'linear');
         });
     });
     $(window).load(function() {
