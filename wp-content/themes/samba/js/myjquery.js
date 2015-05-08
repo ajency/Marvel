@@ -204,6 +204,69 @@ jQuery(document).ready(function($) {
 
 
 
+ /**
+         * Restricts input box to enter only integers/floating point numbers
+         * add class allownumericwithdecimal to input box for which only floating point numbers/integers should be allowed
+         */
+        function allow_float_input_values(){
+ 
+            jQuery(".allownumericwithdecimal").on("keypress keyup blur",function (event) {
+                //this.value = this.value.replace(/[^0-9\.]/g,'');
+              /*  if (event.keyCode == 9 || event.keyCode == 8 ||   event.keyCode == 46 || (event.keyCode>=35 && event.keyCode <=40 ) ) {
+                    return true;
+                }
+
+              //  $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+                if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }*/
+
+                if(event.which < 46  || event.which > 59) {
+                         event.preventDefault();
+                 } // prevent if not number/dot
+
+                if(event.which == 46  && $(this).val().indexOf('.') != -1) {
+                        event.preventDefault();
+                } // prevent if already dot
+
+
+
+
+                
+
+            });
+            
+        }
+
+
+
+
+
+
+
+
+          /**
+         * Restricts input box to enter only integers  numbers
+         * add class allownumericwithdecimal to input box for which only  integers should be allowed
+         */
+         function allow_integer_input_values(){
+
+            jQuery(".allownumericwithoutdecimal").on("keypress keyup blur",function (evt) {
+
+             
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+
+
+            });
+        }
+
+
+        allow_float_input_values();
+        allow_integer_input_values();
 
 
 });

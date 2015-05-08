@@ -386,52 +386,80 @@ function myplugin_add_custom_box() {
     $screens = array( 'residential-property', 'commercial-property' );
     foreach ( $screens as $screen ) {
 
-	    	$custom_fields[] = array('field'=>'property-type',
-	    							  'metabox_title'=> 'Property Type',
-	    							  'multiple_values' => false,
-	    							   'element_type'	=> 'select'
+	    	$custom_fields[] = array('field'				=> 'property-type',
+	    							  'metabox_title'		=> 'Property Type',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>''
 	    							);
-	    	$custom_fields[] = array('field'=>'property-status',
-	    							  'metabox_title'=>'Status',
-	    							  'multiple_values' => false,
-	    							  'element_type'	=> 'select'
+	    	$custom_fields[] = array('field'				=> 'property-status',
+	    							  'metabox_title'		=> 'Status',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>''
 	    							);
-	    	$custom_fields[] = array('field'=>'property-locality',
-	    							  'metabox_title'=>'Locality',
-	    							  'multiple_values' => false,
-	    							  'element_type'	=> 'select'
-	    							);
-	    	$custom_fields[] = array('field'=>'property-city',
-	    							  'metabox_title'=>'City',
-	    							  'multiple_values' => false,
-	    							  'element_type'	=> 'select'
-	    							);
-	    	$custom_fields[] = array('field'=>'property-neighbourhood',
-	    							  'metabox_title'=>'Neighbourhood',
-	    							  'multiple_values' => true,
-	    							  'element_type'	=> 'text'
-	     							);
 
-            $custom_fields[] = array('field'            => 'property-address-details',
-                                    'metabox_title'     => 'Property Address',
-                                    'multiple_values'   => true,
-                                    'element_type'	    => 'custom_address_details_text'
-                                    );
+	    	$custom_fields[] = array('field'				=> 'property-city',
+	    							  'metabox_title'		=> 'City',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>''
+	    							);
+
+	    	$custom_fields[] = array('field'				=> 'property-locality',
+	    							  'metabox_title'		=> 'Locality',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>''
+	    							);
+	    	
+	    	$custom_fields[] = array('field'				=> 'property-neighbourhood',
+	    							  'metabox_title'		=> 'Neighbourhood',
+	    							  'multiple_values' 	=> true,
+	    							  'element_type'		=> 'text',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> ' Kms',
+	    							  'class'				=> 'allownumericwithdecimal'
+	     							);          
 
         if($screen=="residential-property") {
 
-	    		$custom_fields[] = array ( 'field'=>'property-no_of_bedrooms',
-	    							  	   'metabox_title'=>'No Of Bedrooms',
-	    							  	   'multiple_values' => false,
-	    							  	   'element_type'	=> 'select'
+	    	$custom_fields[] = array ( 'field'				 => 'property-no_of_bedrooms',
+	    							   'metabox_title'		 => 'No Of Bedrooms',
+	    							   'multiple_values' 	 => false,
+	    							   'element_type'		 => 'select',
+	    							   'option_value_prefix' => '',
+	    							   'option_value_postfix'=> '',
+	    							   'class'				 => '' 
 	    								 );
 
-	    		 $custom_fields[] = array ( 'field'=>'property-sellable_area',
-	    							  	   'metabox_title'=>'Sellable Area',
-	    							  	   'multiple_values' => false,
-	    							  	   'element_type'	=> 'text'
-	    								 );
+    		$custom_fields[] = array ( 'field'				 => 'property-sellable_area',
+    							  	   'metabox_title'		 => 'Sellable Area',
+    							  	   'multiple_values' 	 => false,
+    							  	   'element_type'		 => 'text',
+    							  	   'option_value_prefix' => '',
+    							  	   'option_value_postfix'=> 'Sq ft',
+    							  	   'class'				 => 'allownumericwithdecimal'
+    								 );
 	    	}
+
+
+	    	$custom_fields[] = array('field'            	=> 'property-address-details',
+                                    'metabox_title'     	=> 'Property Address',
+                                    'multiple_values'   	=> true,
+                                    'element_type'	    	=> 'custom_address_details_text',
+                                    'option_value_prefix' 	=> '',
+	    							'option_value_postfix' 	=> '',
+	    							'class'					=>''	
+                                    );
 	    	 
 	    	foreach($custom_fields as $custom_field){
 
@@ -445,6 +473,7 @@ function myplugin_add_custom_box() {
 					            	array( 'custom_field_type'=>$custom_field['field'], 
 					            	   		'multiple_values'=>$custom_field['multiple_values'],
                                             'element_type'=>$custom_field['element_type'],
+                                            'custom_field_args'=>$custom_field
                                             )
 					        );
 	    	}
@@ -467,6 +496,8 @@ function myplugin_inner_custom_box( $post , $metabox) {
 
     $element_type = $metabox['args']['element_type'];
 
+    $element_custom_field_args = $metabox['args']['custom_field_args'];
+
     wp_nonce_field(basename(__FILE__), "meta-box-nonce"); 
 ?>
 
@@ -487,28 +518,28 @@ function myplugin_inner_custom_box( $post , $metabox) {
 							    }							     						
 								
 
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value);
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args);
 							    
     						    break;
     	case 'property-city'			:
     							$property_city = maybe_unserialize(get_option('property-city'));
     							$current_property_meta_value =    get_post_meta($post->ID, "property-city", true);
 							        
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value);
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value, $element_custom_field_args);
 							    
     						    break;	
     	case 'property-status'			:
     							$property_status = maybe_unserialize(get_option('property-status'));
     							$current_property_meta_value =    get_post_meta($post->ID, "property-status", true);
 							        
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_status, $current_property_meta_value);
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_status, $current_property_meta_value, $element_custom_field_args);
 							    
     						    break;	
     	case 'property-locality'			:
     							$property_locality = maybe_unserialize(get_option('property-locality'));
     							$current_property_meta_value =    get_post_meta($post->ID, "property-locality", true);
 							        
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value);
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value, $element_custom_field_args);
 							    
     						    break;
     	case 'property-neighbourhood'			:
@@ -517,7 +548,7 @@ function myplugin_inner_custom_box( $post , $metabox) {
     							$property_neighbourhood = maybe_unserialize(get_option('property-neighbourhood'));
 							    $current_property_meta_value =    get_post_meta($post->ID, "property-neighbourhood", true) ;  
 								
-								generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_neighbourhood, $current_property_meta_value);
+								generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_neighbourhood, $current_property_meta_value, $element_custom_field_args);
 							    
 
 							    $property_field_options = maybe_unserialize(get_option($metabox['field']));
@@ -528,7 +559,7 @@ function myplugin_inner_custom_box( $post , $metabox) {
                                 $property_no_of_bedrooms = maybe_unserialize(get_option('property-no_of_bedrooms'));
                                 $current_property_meta_value =    get_post_meta($post->ID, "property-no_of_bedrooms", true);
 
-                                generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_no_of_bedrooms, $current_property_meta_value);
+                                generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_no_of_bedrooms, $current_property_meta_value, $element_custom_field_args);
 
                                 break;
 
@@ -536,7 +567,7 @@ function myplugin_inner_custom_box( $post , $metabox) {
                                 $property_sellable_area = array();
                                 $current_property_meta_value =    get_post_meta($post->ID, "property-sellable_area", true);
 
-                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value);
+                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value, $element_custom_field_args);
 
                                 break;
 
@@ -597,7 +628,7 @@ function get_custom_address_elements_html($address_field_data){
         <input id="address" name="address" type="textbox" value="<?php if(isset($address_field_data[0]['address'])){ echo $address_field_data[0]['address']; } else { echo 'pune, India' ; } ?>">
         <input type="button" value="Geocode" onclick="codeAddress()"><br/>
 
-       <br/>City :  <input id="custom-address_city" name="custom-address_city" type="textbox" value="<?php if(isset($address_field_data[0]['city'])){ echo $address_field_data[0]['city']; } ?>">
+       <br/> City :  <input id="custom-address_city" name="custom-address_city" type="textbox" value="<?php if(isset($address_field_data[0]['city'])){ echo $address_field_data[0]['city']; } ?>">
        <br/> Region : <input id="custom-address_region" name="custom-address_region" type="textbox" value="<?php if(isset($address_field_data[0]['region'])){ echo $address_field_data[0]['region']; } ?>">
        <br/> Country : <input id="custom-address_country" name="custom-address_country" type="textbox" value="<?php if(isset($address_field_data[0]['country'])){ echo $address_field_data[0]['country']; } ?>">
        <br/> Postcode :  <input id="custom-address_postcode" name="custom-address_postcode" type="textbox" value="<?php if(isset($address_field_data[0]['postcode'])){ echo $address_field_data[0]['postcode']; } ?>">
@@ -609,13 +640,16 @@ function get_custom_address_elements_html($address_field_data){
 
 }
 
-function generate_custom_field_element($post, $element_type, $multiple_values, $element_id,  $element_values, $current_property_meta_value){
+function generate_custom_field_element($post, $element_type, $multiple_values, $element_id,  $element_values, $current_property_meta_value, $element_custom_field_args){
 
 
+	$element_prefix_label   = $element_custom_field_args['option_value_prefix'];
+	$element_postfix_label  = $element_custom_field_args['option_value_postfix'];
+	$element_class 			= $element_custom_field_args['class'];
 
 	switch($element_type){
-		case 'select' : ?>
-						<select name="<?php echo $element_id; ?>" id="<?php echo $element_id; ?>" class="postbox custom_input_field"  <?php if($multiple_values==true) { echo ' multiple="multiple" ';  } ?> >
+		case 'select' : echo $element_prefix_label; ?> 
+						<select name="<?php echo $element_id; ?>" id="<?php echo $element_id; ?>" class="postbox custom_input_field <?php echo $element_class ; ?>"  <?php if($multiple_values==true) { echo ' multiple="multiple" ';  } ?> >
 							<option value="">Select</option>
 							<?php if($element_values!=false) {
 						
@@ -628,6 +662,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 							?>
 						</select>
 						<?php
+						echo $element_postfix_label;
 						break;
 		 
 		case 'text' :
@@ -654,10 +689,12 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 										}
 									 }
 //var_dump(array_search($type, $current_property_meta_value_arr)); 
+									 echo $element_prefix_label; 
 									?>
 								 
-									<span attr-field-val ="<?php echo $type; ?>" >  <br/> &nbsp; <?php echo $type; ?>  <input type="text" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field"  /> </span>
-						<?php	}
+									<span attr-field-val ="<?php echo $type; ?>" >  <br/> &nbsp; <?php echo $type; ?>  <input type="text" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  /> </span>
+						<?php	echo $element_postfix_label;
+								}
 							
 							}
                             else {
@@ -669,9 +706,12 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
                         }
                         else{
 
+                        	echo $element_prefix_label;
+
                             ?>
-                            <span attr-field-val ="<?php echo $element_id; ?>" >  <br/><input type="text" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field"  /> </span>
+                            <span attr-field-val ="<?php echo $element_id; ?>" >  <br/><input type="text" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  /> </span>
                         <?php
+                        	echo $element_postfix_label;
 
 
                         }
