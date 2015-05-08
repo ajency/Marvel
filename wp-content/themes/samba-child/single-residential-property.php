@@ -52,7 +52,21 @@
     <div id="full_fi_c">
         <div class="full_fi_title">
             <p class="f_f_t">
-                Sample Flat
+                <?php 
+                $project_locality = get_post_meta(get_the_ID(),'property-locality',true);
+                $project_city = get_post_meta(get_the_ID(),'property-city',true);
+                $project_type = get_post_meta(get_the_ID(),'residential-property-type',true);
+  
+                $location_seperator = '';
+                $project_type_seperator='';
+                if( ($project_city!=false || $project_locality!=false ) && ($project_city!='' || $project_locality!='') )
+                  $location_seperator = ", ";
+
+                if( ($project_type!=false   ) && ($project_type!=''  ) )
+                  $project_type_seperator = ", ";
+
+                echo ucfirst($project_type).$project_type_seperator.ucfirst(get_the_title()).$location_seperator.ucfirst($project_locality)." ".ucfirst($project_city);
+                ?>
             </p>
         </div>
         <a href="#" class="go_d_see"></a>
