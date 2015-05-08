@@ -828,6 +828,8 @@ pre {
 .owl-carousel .owl-controls .owl-buttons .owl-prev {position: absolute; left: 0;}
 .owl-carousel .owl-controls .owl-buttons .owl-next {position: absolute; right: 0;}
 
-
+.hideTitle .single_page_title {
+    display: none;
+}
 
 .hidden {display: none !important;}

@@ -1,3 +1,33 @@
+#prk_ajax_container {
+    .full_fi_title {
+        position: absolute;
+        top: 25px;
+        right: 0;
+        p {
+            background: rgba(72, 72, 72, 0.4);
+            padding: 4px 10px;
+            color: #fff;
+            .fontmont;
+        }
+        @media screen and (max-width: 767px) {
+            top: 75px;
+        }
+    }
+    .go_d_see {
+        position: absolute;
+        bottom: 20px;
+        left: 59%;
+        background-image: url(img/go_down.png);
+        background-color: rgba(67, 64, 60, 0.6);
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 35px;
+        height: 24px;
+        @media screen and (max-width: 767px) {
+            left: 50%;
+        }
+    }
+}
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block {
     background: #fff;
     margin-top: 677px;
@@ -14,6 +44,7 @@
 //        font-size: 20px;
     }
     h5 {font-size: 18x; text-transform: uppercase;}
+    
     .wpb_text_column p {
         margin-bottom: 25px !important;
     }
@@ -47,6 +78,28 @@
                 content: '\f105';
                 font-family: 'FontAwesome';
             }
+        }
+    }
+    .indi_map_cta {
+        background: #666;
+        border-color: #555;
+        font-weight: normal;
+        text-transform: uppercase;
+        i {
+            background: none;
+            font-style: normal;
+            &:after {
+                content: '\f105';
+                font-family: 'FontAwesome';
+            }
+        }
+        &:hover {
+            background: #505050;
+            border-color: #3f3f3f;
+        }
+        &:active, &:focus {
+            background: #505050;
+            border-color: #3b3b3b;
         }
     }
     .archi_si {
@@ -465,4 +518,8 @@
     .samba_responsive .prk_section.prk_full_width.redsp {
         width: 106.5%;
     }
+}
+
+button.indi_map_cta {
+    
 }
