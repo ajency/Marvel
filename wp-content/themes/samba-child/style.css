@@ -828,3 +828,6 @@ pre {
 .owl-carousel .owl-controls .owl-buttons .owl-prev {position: absolute; left: 0;}
 .owl-carousel .owl-controls .owl-buttons .owl-next {position: absolute; right: 0;}
 
+
+
+.hidden {display: none !important;}
