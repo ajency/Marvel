@@ -874,6 +874,7 @@ h6 {
   font-family: 'FontAwesome';
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .indi_map_cta {
+  margin-top: 20px;
   background: #666;
   border-color: #555;
   font-weight: normal;
