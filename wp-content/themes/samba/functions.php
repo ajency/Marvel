@@ -521,27 +521,57 @@ function myplugin_inner_custom_box( $post , $metabox) {
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args);
 							    
     						    break;
-    	case 'property-city'			:
-    							$property_city = maybe_unserialize(get_option('property-city'));
-    							$current_property_meta_value =    get_post_meta($post->ID, "property-city", true);
-							        
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value, $element_custom_field_args);
-							    
-    						    break;	
+
     	case 'property-status'			:
     							$property_status = maybe_unserialize(get_option('property-status'));
     							$current_property_meta_value =    get_post_meta($post->ID, "property-status", true);
 							        
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_status, $current_property_meta_value, $element_custom_field_args);
 							    
+    						    break;
+
+    	case 'property-city'	:
+    							$property_city_locality = maybe_unserialize(get_option('property-citylocality'));
+    							$current_property_meta_value =    get_post_meta($post->ID, "property-city", true);
+
+								$property_city= array();
+    							if($property_city_locality!=false){
+    								$property_city = array_keys($property_city_locality);	
+    							}
+    							
+    							 
+    								
+							        
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value, $element_custom_field_args);
+							    
     						    break;	
+    		
     	case 'property-locality'			:
-    							$property_locality = maybe_unserialize(get_option('property-locality'));
+    							$property_city_locality = maybe_unserialize(get_option('property-citylocality'));    							
+
     							$current_property_meta_value =    get_post_meta($post->ID, "property-locality", true);
+
+    							$current_property_meta_city =    get_post_meta($post->ID, "property-city", true);
+
+    							$property_locality = array();
+    							 
+    							if($property_city_locality!==false){
+
+    								foreach($property_city_locality as $property_city_locality_k => $property_city_locality_v ){
+	    								if($property_city_locality_k == $current_property_meta_city ){
+
+	    									$property_locality = $property_city_locality_v;
+	    								}    							 
+	
+    								}
+    							}
+    							
+    							 
 							        
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value, $element_custom_field_args);
 							    
     						    break;
+
     	case 'property-neighbourhood'			:
 
 
@@ -794,9 +824,24 @@ function add_new_custom_field_option() {
     $custom_field_option_val    = $_REQUEST['data']['field_val'];
     $custom_field_option_name   = $_REQUEST['data']['field_type'];
     $post_type                  = $_REQUEST['data']['post_type'];
+    if(isset($_REQUEST['data']['property_city'])) 
+    	$post_city              = $_REQUEST['data']['property_city'];
 
-    $property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>$custom_field_option_name, 'post_type'=>$post_type   )) ;
 
+    //var_dump($_REQUEST);
+
+    if($custom_field_option_name == "property-city" || $custom_field_option_name == "property-locality"){
+
+		$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-citylocality', 'post_type'=>$post_type   )) ;
+ 
+    }
+    else{
+
+    	$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>$custom_field_option_name, 'post_type'=>$post_type   )) ;	
+    }
+
+
+ 
     $property_types                = $property_types_data['property_types'];
     $real_custom_field_option_name = $property_types_data['real_property_type_option_name'];
 
@@ -805,7 +850,25 @@ function add_new_custom_field_option() {
     if($property_types==false)
         $add_new_value = true;
     else{
-        if(array_search($custom_field_option_val,$property_types)===false){
+
+		if($custom_field_option_name == "property-city"){
+			$property_types_data = array_keys($property_types );
+
+			if(array_search($custom_field_option_val,$property_types_data)===false){
+            	$add_new_value = true;
+			}
+        //property_city
+
+		}
+		else if($custom_field_option_name == "property-locality"){
+
+			$property_types_data = isset($property_types[$post_city])? $property_types[$post_city]:array();
+
+			if(array_search($custom_field_option_val,$property_types_data)===false){
+            	$add_new_value = true;
+			}
+		}
+		else if(array_search($custom_field_option_val,$property_types)===false){
             $add_new_value = true;
         }
     }
@@ -813,8 +876,37 @@ function add_new_custom_field_option() {
     $return_result = false ;
 
     if($add_new_value == true){
-        $property_types[] = $custom_field_option_val;
-        $return_result = update_option($real_custom_field_option_name,maybe_serialize($property_types));
+       
+        if($custom_field_option_name == "property-city"){
+
+        	$property_types[$custom_field_option_val] = array();
+
+        	$return_result = update_option('property-citylocality',maybe_serialize($property_types));
+
+        }
+        if($custom_field_option_name == "property-locality"){
+
+        	$property_types_data[] = $custom_field_option_val;
+
+        	foreach ($property_types as $k_property_type => $v_property_type) {
+        		 if($k_property_type==$post_city){
+        		 	$v_property_type[] = $custom_field_option_val;
+        		 }
+
+        		 $new_property_types[$k_property_type] = $v_property_type;
+
+        	}
+
+        	$return_result = update_option('property-citylocality',maybe_serialize($new_property_types));
+        }
+        else{
+
+        	 $property_types[] = $custom_field_option_val;
+
+        	 $return_result = update_option($real_custom_field_option_name,maybe_serialize($property_types));
+        }
+
+        
     }
 
 
@@ -822,6 +914,8 @@ function add_new_custom_field_option() {
 
 }
 add_action( 'wp_ajax_save_custom_field_option', 'add_new_custom_field_option' );
+
+
 
 function get_properties_type_option_by_post_type($custom_field_option){
 
@@ -858,7 +952,7 @@ function get_custom_field_options() {
     $post_type                  = $_REQUEST['data']['post_type'];
 
     $custom_field_data = array('post_type'  => $post_type,
-                               'field_name' => $custom_field_option_name
+                               'field_name' => ($custom_field_option_name=='property-city'||$custom_field_option_name=='property-locality')?'property-citylocality':$custom_field_option_name
                                );
 
     $property_types_data = get_properties_type_option_by_post_type($custom_field_data);
@@ -880,14 +974,26 @@ function delete_custom_field_option() {
     $custom_field_option_value  = $_REQUEST['data']['field_value'];
     $post_type                  = $_REQUEST['data']['post_type'];
 
+    if(isset($_REQUEST['data']['property_city']))	
+    	$property_city = $_REQUEST['data']['property_city'];
+
+
     $custom_field_data = array('post_type'  => $post_type,
                                'field_name' => $custom_field_option_name
                                );
 
 
-    $custom_fields = get_properties_type_option_by_post_type($custom_field_data);
+    if($custom_field_option_name=="property-city" || $custom_field_option_name == "property-locality"){
 
-    
+		 $custom_fields = get_properties_type_option_by_post_type(array('post_type'  => $post_type,
+                               'field_name' => 'property-citylocality'
+                               ));    	
+    }
+    else{
+    	$custom_fields = get_properties_type_option_by_post_type($custom_field_data);
+    }
+
+      
 
     $existing_fields_values =   $custom_fields['property_types'];
     $real_property_type_option_name =  $custom_fields['real_property_type_option_name'];
@@ -896,11 +1002,45 @@ function delete_custom_field_option() {
 
     $delete_success = false;
 
-    foreach($existing_fields_values as $f_v){
-        if($custom_field_option_value!=$f_v){
-            $new_field_data[] = $f_v ;
-            $delete_success = true;
-        }
+    foreach($existing_fields_values as $f_k => $f_v){
+
+    	if($custom_field_option_name=="property-city"){
+
+    		 if($custom_field_option_value!=$f_k){
+	            $new_field_data[$f_k] = $f_v ;
+	            $delete_success = true;
+	        }
+
+    	}
+    	else if($custom_field_option_name=="property-locality"){
+
+    		if($property_city==$f_k){
+
+    			if($key = array_search($custom_field_option_value, $f_v) !== false){
+	        		unset($f_v[$key])	;
+	        	}
+
+	            $new_field_data[$f_k] = $f_v ;
+	            $delete_success = true;
+	        }
+	        else{
+
+	        	$new_field_data[$f_k] = $f_v ;
+	            $delete_success = true;
+
+	        }
+
+    	}
+    	else {    	 
+
+
+	        if($custom_field_option_value!=$f_v){
+	            $new_field_data[] = $f_v ;
+	            $delete_success = true;
+	        }
+
+    	}
+
     }
 
     update_option($real_property_type_option_name,$new_field_data);
@@ -1042,7 +1182,16 @@ add_action("save_post", "save_custom_meta_box", 10, 3);
 
 
 
+function get_map_address_details($property_id){
 
+	global $wpdb; 
+	$qry_map_address_details = "SELECT address, city, region, postcode, country, lat, lng  FROM {$wpdb->prefix}addresses WHERE addressable_id = ".$property_id;
+	//echo $qry_map_address_details;
+	$res_map_address_details = $wpdb->get_results($qry_map_address_details,ARRAY_A);
+
+	return $res_map_address_details;
+
+}
 
 
 function get_search_options(){
@@ -1053,13 +1202,15 @@ function get_search_options(){
 	$property_locality = maybe_unserialize(get_option('property-locality',true));
 	$property_neighbourhood = maybe_unserialize(get_option('property-neighbourhood',true));
     $property_bedrooms = maybe_unserialize(get_option('property-no_of_bedrooms',true));
+    $property_citylocality = maybe_unserialize(get_option('property-citylocality',true));
 
 	$search_option_data = array( 'cities'		 => $property_cities,
 								 'status'		 => $property_status,
 								 'locality'		 => $property_locality,
 								 'neighbourhood' => $property_neighbourhood,
                                  'no_of_bedrooms'=> $property_bedrooms,
-                                 'type'			 => $property_type
+                                 'type'			 => $property_type,
+                                 'citylocality'	 => $property_citylocality,
 								);
 
 	wp_send_json( $search_option_data);
@@ -1083,7 +1234,8 @@ function get_res_property_meta_values($property_id){
                                              'property_locaity'      => $property_locality,
                                              'poperty_neighbourhood' => $property_neighbourhood,
                                              'property_type'		 => $property_type,
-                                             'property_sellablearea' => $property_sellablearea 
+                                             'property_sellablearea' => $property_sellablearea, 
+                                             'map_address'	 		=> get_map_address_details($property_id) 
                                             );
 
     return $residential_property_meta_data;
@@ -1117,7 +1269,9 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->post_title = 	$res_property->post_title ;
 	$new_res_prop->guid = 	$res_property->guid ;
 	$new_res_prop->post_author = 	$res_property->post_author ;
+	$new_res_prop->post_url = 	site_url().'/Residential-Property/'.$res_property->post_name;
 	$new_res_prop->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+
 
 	$property_meta_value =  get_res_property_meta_values($res_property->ID);
  	$sel_properties[] =  (object)array_merge((array)$new_res_prop,$property_meta_value) ;
@@ -1167,8 +1321,10 @@ function get_parent_template_directory_uri()
 
 function marvel_scripts_styles(){
 
-   /* if(is_page_template()== 'project_list_new.php'){
+    // if(is_page_template()== 'project_list_new.php'){
 
+     	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
+/*
         wp_enqueue_script('backbone', get_template_directory_uri() . '/dev/js/lib/backbone.js', array('jquery'), false, true);
         wp_enqueue_script('backbonebabysitter', get_template_directory_uri() . '/dev/js/lib/backbone.babysitter.js', array('jquery'), false, true);
         wp_enqueue_script('backbonewreqr', get_template_directory_uri() . '/dev/js/lib/backbone.wreqr.js', array('jquery'), false, true);
@@ -1185,10 +1341,10 @@ function marvel_scripts_styles(){
         wp_enqueue_script('projectlistmainview', get_template_directory_uri() . '/dev/js/views/ProjectListMainView.js',array('marionette'),false,true);
         wp_enqueue_script('search_option_view', get_template_directory_uri() . '/dev/js/views/projectlistSearch_optionView.js',array('marionette'),false,true);
 
+*/
 
 
-
-    }*/
+   // }
 
 }
-add_action('wp_enqueue_scripts', 'marvel_scripts_styles', 100);
+add_action('wp_enqueue_scripts', 'marvel_scripts_styles');

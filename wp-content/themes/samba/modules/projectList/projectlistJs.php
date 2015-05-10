@@ -1,8 +1,10 @@
+
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/models/residential-property.js"></script>
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/collections/residential-properties.js"></script>
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/views/ProjectListMainView.js"></script>
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/views/projectlistSearch_optionView.js"></script>
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/views/projectlistingsView.js"></script>
+
 
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/routers/PropertyListRouter.js"></script>
 <?php 

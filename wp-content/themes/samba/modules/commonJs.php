@@ -3,6 +3,7 @@
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/lib/backbone.babysitter.js"></script>
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/lib/backbone.wreqr.js"></script>
 <script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/lib/backbone.marionette.js"></script>
+<script type="text/javascript" src = "<?php echo get_template_directory_uri(); ?>/dev/js/lib/jquery.ui.min.js"></script>
 
 
        

@@ -21,7 +21,8 @@
 				},
 
 				routes : {
-					''	 			: 'index'
+					''	 			: 'index',
+					'mapview'		: 'map_view'
 				
 				},
 
@@ -30,6 +31,11 @@
 					var searchOptionView = new searchOptionsView()
 					
 
+				},
+
+				map_view : function(){
+
+					
 				}
 				
 				

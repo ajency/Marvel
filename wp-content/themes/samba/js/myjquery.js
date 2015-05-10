@@ -30,14 +30,30 @@ jQuery(document).ready(function($) {
         else
             var Html_input_type =  'checkbox';
         
-        var new_field_value = $(self).closest('.row').find('.additional_option').val()
-        var my_data = { 'field_val'  : new_field_value ,
-                        'field_type' : $(this).closest('.row').find('.field_type').val(),
-                        'post_type'  : $('#current_post_type').val()
-                      }
+        var new_field_value = $(self).closest('.row').find('.additional_option').val();
 
+        var field_type = $(this).closest('.row').find('.field_type').val();
+        
 
+        if(field_type == 'property-locality'){
 
+            var my_data = { 'field_val'     : new_field_value ,
+                            'field_type'    : field_type,
+                            'post_type'     : $('#current_post_type').val(),
+                            'property_city' : $('#custom_property-city').val()
+                          }
+
+        }
+        else{
+
+            var my_data = { 'field_val'  : new_field_value ,
+                            'field_type' : field_type,
+                            'post_type'  : $('#current_post_type').val(),
+                          }
+
+        }
+
+ 
 
         $.post(ajaxurl, {        //the server_url
             action: "save_custom_field_option",                 //the submit_data array
@@ -118,11 +134,42 @@ jQuery(document).ready(function($) {
                                         action: "get_custom_field_options",                 //the submit_data array
                                         data:my_data
                                     },
-                                    function(data) {                   //the callback_handler
-                                        if (data) {
+                                    function(response_data) { 
+
+                                    var data=[];                  //the callback_handler
+                                        if (response_data) {
                                             console.log('RESPONSE DATA ');
                                             console.log(data)
                                             var html_field_options = '';
+
+                                            if(field_type=='property-city'){
+
+                                                var i=0;
+                                                _.each(response_data,function(vl_res,ky_res){
+
+                                                        data[i] = ky_res ;
+                                                        i = i+1;
+                                                })
+
+                                            }
+                                            else if(field_type == 'property-locality'){
+
+                                                
+                                                _.each(response_data,function(vl_res,ky_res){
+
+                                                    if(ky_res==$('#custom_property-city').val()){
+                                                        data  = vl_res ;
+                                                    }
+
+                                                        
+                                                        
+                                                })
+
+                                            }
+                                            else{
+                                                var data = response_data;
+                                            }
+
 
                                             for(var i=0;i<data.length;i++){
 
@@ -148,10 +195,23 @@ jQuery(document).ready(function($) {
             var Html_input_type =  custom_element[0].type.toLowerCase() || custom_element[0].nodeName.toLowerCase();
       
             
-            var my_data = { 'field_name'   : $(this).attr('field-name'),
-                            'field_value'  : $(this).attr('field-value'),
-                            'post_type'    : $('#current_post_type').val()
-                          }
+            if($(this).attr('field-name')=='property-city' || $(this).attr('field-name') == 'property-locality'){
+                var my_data = { 'field_name'   : $(this).attr('field-name'),
+                                'field_value'  : $(this).attr('field-value'),
+                                'post_type'    : $('#current_post_type').val(),
+                                'property_city': $('#custom_property-city').val()
+                             }
+                             
+
+            }
+            else{
+
+                var my_data = { 'field_name'   : $(this).attr('field-name'),
+                                'field_value'  : $(this).attr('field-value'),
+                                'post_type'    : $('#current_post_type').val()
+                              }
+            }
+            
 
             $.post(ajaxurl,{   //the server_url
                     action: "delete_custom_field_option",                 //the submit_data array
@@ -201,6 +261,52 @@ jQuery(document).ready(function($) {
             return addtional_option_box;
 
         }
+
+
+
+
+
+
+
+
+
+        $('#custom_property-city').live('change',function(){
+
+            var selected_city = $('#custom_property-city').val();
+
+
+            $.post(ajaxurl, {        //the server_url
+                action: "get_search_options",                 //the submit_data array
+                
+            }, function(data) {                   //the callback_handler
+                if (data) {
+
+                    var property_city_locality = data['citylocality'];
+
+                    //_.where(property_city_locality,{});
+                    console.log(property_city_locality[selected_city]);
+
+
+                    var localities_list = property_city_locality[selected_city];
+
+                    $('#custom_property-locality').empty();
+
+                    $('#custom_property-locality').append('<option value=""  >Select</option>');
+
+                    _.each(localities_list,function(locality_vl, locality_k ){
+
+                       //$('#custom_property-locality').append(new Option(locality_vl, locality_vl, true, true))
+                       $('#custom_property-locality').append('<option value="'+locality_vl+'"  >'+locality_vl+'</option>');
+                    })
+
+
+                    
+                }
+            });
+
+        })
+
+
 
 
 
@@ -267,6 +373,113 @@ jQuery(document).ready(function($) {
 
         allow_float_input_values();
         allow_integer_input_values();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+ 
+          
+         
+        setTimeout(function(){
+            /* After creating a new group call make_div_dropable()  and pass id of the new div group
+            ex: make_div_dropable("child_group_1")
+            */
+            make_div_dropable(".drag_area")
+             
+            
+            if(jQuery(".draggable").length>0){
+                console.log('draggable')
+                jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone"});
+            }
+            else{
+                console.log('no dragables')
+            }
+    
+        },200)
+          
+         
+        
+     
+    
+    
+    function make_div_dropable(dropable_el){     
+    
+    jQuery(dropable_el).droppable({ accept: ".draggable", 
+           drop: function(event, ui) {
+                    // $(ui.draggable).clone().appendTo($(this));
+                    console.log("drop");
+                    jQuery(this).removeClass("border").removeClass("over");
+                    var dropped = ui.draggable;
+                    var droppedOn = jQuery(this);
+                    jQuery(this).html('');
+                    jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn);     
+                    
+            }, 
+            over: function(event, elem) {
+                    jQuery(this).addClass("over");
+                    console.log("over");
+            },
+            out: function(event, elem) {
+                    jQuery(this).removeClass("over");
+            }
+      });
+    
+    }
+
+
+
+
+
+     
+     
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 });

@@ -16,6 +16,8 @@
 			<div id="proj_list" class="project-list row">                    
 	        	<!--END single project listing-->
 	        </div>
-	    </div>                
+	         
+	    </div>    
+	    <div id="map" style="display:block; width:500px; height:400px;"></div>     
 	</div>
 </script>
