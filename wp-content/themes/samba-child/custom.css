@@ -62,3 +62,10 @@
     -webkit-transition: .05s border-color ease-in-out;
     transition: .05s border-color ease-in-out;
 }
+.row .set_admin_input .admin_field input:focus,
+.set_admin_input .admin_input input:focus,
+.postbox input.custom_input_field:focus {
+    border-color: #5b9dd9;
+    -webkit-box-shadow: 0 0 2px rgba(30,140,190,.8);
+    box-shadow: 0 0 2px rgba(30,140,190,.8);
+}
