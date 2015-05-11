@@ -1,5 +1,5 @@
 <script type="text/templte" id="spn_propertieslistings">
-
+<div id="proj_list" class="project-list row">    
 <div class="twelve columns">
     <h5>Residential Projects </h5>
 </div>
@@ -63,4 +63,5 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
 <%
 })
 %>  
+</div>
 </script>

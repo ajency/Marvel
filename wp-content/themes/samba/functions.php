@@ -654,18 +654,77 @@ function get_custom_address_fields_by_id($id){
 function get_custom_address_elements_html($address_field_data){
 
     ?>
-    <div style="display:block; width:100%; margin-bottom: 20px; position:relative">
-        <input id="address" name="address" type="textbox" value="<?php if(isset($address_field_data[0]['address'])){ echo $address_field_data[0]['address']; } else { echo 'pune, India' ; } ?>">
-        <input type="button" value="Geocode" onclick="codeAddress()"><br/>
-
-       <br/> City :  <input id="custom-address_city" name="custom-address_city" type="textbox" value="<?php if(isset($address_field_data[0]['city'])){ echo $address_field_data[0]['city']; } ?>">
-       <br/> Region : <input id="custom-address_region" name="custom-address_region" type="textbox" value="<?php if(isset($address_field_data[0]['region'])){ echo $address_field_data[0]['region']; } ?>">
-       <br/> Country : <input id="custom-address_country" name="custom-address_country" type="textbox" value="<?php if(isset($address_field_data[0]['country'])){ echo $address_field_data[0]['country']; } ?>">
-       <br/> Postcode :  <input id="custom-address_postcode" name="custom-address_postcode" type="textbox" value="<?php if(isset($address_field_data[0]['postcode'])){ echo $address_field_data[0]['postcode']; } ?>">
-       <br/> Lat : <input id="custom-address_lat" name="custom-address_lat" type="textbox" value="<?php if(isset($address_field_data[0]['lat'])){ echo $address_field_data[0]['lat']; } ?>">
-       &nbsp; Long : <input id="custom-address_lng" name="custom-address_lng" type="textbox" value="<?php if(isset($address_field_data[0]['lng'])){ echo $address_field_data[0]['lng']; } ?>">
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="col-md-4">
+        		<input id="address" name="address" type="textbox" value="<?php if(isset($address_field_data[0]['address'])){ echo $address_field_data[0]['address']; } else { echo 'pune, India' ; } ?>">
+        	</div>
+        	<div class="col-md-8">        		
+        		<input type="button" value="Geocode" onclick="codeAddress()">
+        	</div>	
+        </div>
     </div>
-    <div id="map_canvas" style="height:400px;: width:600px; top:30px; position:relative; display:block; margin-bottom: 10px;"></div>
+
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="col-md-4"> City :  
+    		</div>
+    		<div class="col-md-8">
+    		<input id="custom-address_city" name="custom-address_city" type="textbox" value="<?php if(isset($address_field_data[0]['city'])){ echo $address_field_data[0]['city']; } ?>">
+    		</div>
+    	</div>
+	</div>  
+
+	 <div class="row">
+    	<div class="col-md-12">
+    		<div class="col-md-4"> Region :
+    		</div>
+    		<div class="col-md-8">
+          <input id="custom-address_region" name="custom-address_region" type="textbox" value="<?php if(isset($address_field_data[0]['region'])){ echo $address_field_data[0]['region']; } ?>">
+          </div>
+    	</div>
+	</div>  
+
+
+
+       <div class="row">
+    	<div class="col-md-12">
+    		<div class="col-md-4">  Country : 
+    		</div>
+    		<div class="col-md-8">
+    		<input id="custom-address_country" name="custom-address_country" type="textbox" value="<?php if(isset($address_field_data[0]['country'])){ echo $address_field_data[0]['country']; } ?>">
+    	</div>
+    	</div>
+	</div> 
+	
+
+    <div class="row">
+    	<div class="col-md-12">
+    		<div class="col-md-4"> Postcode : 
+    		</div>
+    		<div class="col-md-8"> <input id="custom-address_postcode" name="custom-address_postcode" type="textbox" value="<?php if(isset($address_field_data[0]['postcode'])){ echo $address_field_data[0]['postcode']; } ?>">
+
+    		</div>
+    	</div>
+	</div> 
+
+
+    <div class="row">
+    	<div class="col-md-12">
+    		   Lat :  <input id="custom-address_lat" name="custom-address_lat" type="textbox" value="<?php if(isset($address_field_data[0]['lat'])){ echo $address_field_data[0]['lat']; } ?>">
+    		   &nbsp; Long : <input id="custom-address_lng" name="custom-address_lng" type="textbox" value="<?php if(isset($address_field_data[0]['lng'])){ echo $address_field_data[0]['lng']; } ?>">
+    		 
+    	</div>
+	</div> 		
+
+
+       
+      
+     	 
+     		<div id="map_canvas" style="height:400px;: width:550px; top:30px; position:relative; display:block; margin-bottom: 10px;"></div>
+     	 
+     
+    
     <?php
 
 }
@@ -722,8 +781,8 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 									 echo $element_prefix_label; 
 									?>
 								 
-									<span attr-field-val ="<?php echo $type; ?>" >  <br/> &nbsp; <?php echo $type; ?>  <input type="text" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  /> </span>
-						<?php	echo $element_postfix_label;
+									<span attr-field-val ="<?php echo $type; ?>" class="row" >  <br/> &nbsp; <?php echo $type; ?>  <input type="text" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo $element_postfix_label;?></span>
+						<?php	
 								}
 							
 							}
@@ -787,7 +846,9 @@ function my_enqueue($hook) {
       
     
 
-    if ( $load_map_script == true ) {       
+    if ( $load_map_script == true ) {  
+
+    	wp_enqueue_style('bootstrap-min', site_url() . '/wp-content/themes/samba/css/bootstrap.min.css', array(), null);     
 
     	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
 
@@ -1324,6 +1385,7 @@ function marvel_scripts_styles(){
     // if(is_page_template()== 'project_list_new.php'){
 
      	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
+     	
 /*
         wp_enqueue_script('backbone', get_template_directory_uri() . '/dev/js/lib/backbone.js', array('jquery'), false, true);
         wp_enqueue_script('backbonebabysitter', get_template_directory_uri() . '/dev/js/lib/backbone.babysitter.js', array('jquery'), false, true);

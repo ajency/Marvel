@@ -80,7 +80,8 @@
    display_map : function(){ 
     console.log('display map');;
     console.log(properties)
-
+jQuery('.top_map').addClass('current');
+jQuery('.top_list').removeClass('current')
 
               //  var properties = getAppInstance().residentialPropertyCollection.toJSON();
 
@@ -162,14 +163,17 @@ var prop_status = jQuery('#dd_status').val();
 
 
 console.log('FEATURED IMAGE')
-//console.log(properties[i].get('featured_image'))
-                    //var popup_content = "<table cellpadding='0' cellspacing='0' border='0' ><tr><td></td><td></td></tr>";
+console.log(properties[i].get('featured_image'))
 
-                    locations = properties[i].get('map_address')[0];
+locations = properties[i].get('map_address')[0];
 console.log('location');
 console.log(locations)
 
 
+                  
+                    
+
+ 
 jQuery('#projects_listings').css({'display':'block',
                                    'width' :'100%',
                                    'height' : 'auto',
@@ -197,7 +201,12 @@ jQuery('#projects_listings').css({'display':'block',
 
                   google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
-                      infowindow.setContent(locations.address);
+
+                         var popup_content = "<table cellpadding='0' cellspacing='0' border='0' ><tr><td>"+
+                   "<img src='"+properties[i].get('featured_image')+"' width='60' /></td><td><b>"+properties[i].get('post_title')
+                   +" </b> |  "+properties[i].get('property_locaity')+" "+properties[i].get('property_city')+" <br/>"+properties[i].get('property_type')+"</td></tr>";
+
+                      infowindow.setContent(popup_content);
                       infowindow.open(map, marker);
                     }
                   })(marker, i)); 
@@ -227,7 +236,11 @@ jQuery('#projects_listings').css({'display':'block',
                 return this;
             },
 
-            searchProperties: function(){
+            searchProperties: function(evt){
+
+             
+
+
                console.log('searchProperties') ;
 
 
@@ -275,11 +288,57 @@ jQuery('#projects_listings').css({'display':'block',
                 /*var template2 = _.template(jQuery('#spn_propertieslistings').html(), {propertiesdata : search_collections});
                 console.log(template2);
                 jQuery("#proj_list").html(template2);*/
+            jQuery('#projects_listings').attr('style','')
 
-             var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
+
+
+            
+
+                 if(  (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
+                    jQuery('.top_map').addClass('current');
+                    jQuery('.top_map').removeClass('current')
+                    this.display_map();
+                }
+                if(jQuery(evt.target).hasClass('top_list') || (jQuery(evt.target).hasClass('top_map') ==false && jQuery('.top_map').hasClass('current') == false)){
+                    jQuery('.top_list').addClass('current');
+                    jQuery('.top_map').removeClass('current')
+
+                     var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
                                                     
-             jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
+                 jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
 
+        /*this.mainView.make_div_dropable2(".drag_area")
+
+
+   
+        
+
+        if(jQuery(".draggable").length>0){
+            console.log('draggable')
+            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+
+
+         start: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            },
+            stop: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            }
+
+
+        });
+        } */
+
+
+
+
+
+
+
+                }
+
+
+            
 
 
             },

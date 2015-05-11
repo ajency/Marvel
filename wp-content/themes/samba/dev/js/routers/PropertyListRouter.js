@@ -14,28 +14,34 @@
 
 				initialize : function(){
 					
-					this.mainView = new ProjectListMainView();
-
-                    console.log('reached project list router initializer');
+					
 
 				},
 
 				routes : {
-					''	 			: 'index',
-					'mapview'		: 'map_view'
+					''	 					: 'index',
+					  'compare/:id/:sid'	    : 'compare_properties',  
+					 
+
+
 				
 				},
 
 				index : function(){
+					this.mainView = new ProjectListMainView();
+
+                    console.log('reached project list router initializer');
 
 					var searchOptionView = new searchOptionsView()
 					
 
 				},
 
-				map_view : function(){
+				compare_properties : function(id,sid){
 
-					
+					console.log('compare_properties:------------')
+
+					var propCompareView = new ProjectsCompareView({pid:id, psid:sid})
 				}
 				
 				

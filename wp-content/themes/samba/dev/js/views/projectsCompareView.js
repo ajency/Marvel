@@ -5,26 +5,81 @@
 
  
 
-        var ProjectListMainView = Backbone.View.extend({
+        var ProjectsCompareView = Backbone.View.extend({
 
-            id 			: 'proj_list_main',
+            id 			: 'proj_compare',
 
-            template :' #projectlistMainTemplate',
+            template :' #projectsCompareTemplate',
 
-            initialize : function(){
+            initialize : function(options){
 
-
+            this.pid = options.pid;
+            this.psid = options.psid;
                            
-                
+               console.log(options) ;
               
                 this.render();
             },
 
             render:function(){
-                var mainViewtemplate = _.template(jQuery(this.template).html());
+               
+
+
+                var self = this;
+                if(_.isUndefined(getAppInstance().residentialPropertyCollection)){
+
+ 
+                    getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+
+                    getAppInstance().residentialPropertyCollection.fetch({
+                        success: function(collection) { // the fetched collection!
+
+                            console.log('success fetched:-----');
+
+                            console.log(getAppInstance().residentialPropertyCollection)
+
+                            //var projectListingsTemplate = _.template(jQuery(self.template).html());
+                                                            
+                            //jQuery('#projects_listings').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection.models}));
+
+
+                            if (collection.length) {
+                                // not empty
+                            } 
+                            else {
+                                // empty
+                            }
+
+                      self.show_comparison()
+                            
+
+                        }
+                    } );
+
+
+ 
+
+                }
+
+                else{
+                    self.show_comparison();
+                }
                 //jQuery('.right_container').html(mainViewtemplate()); 
-                            jQuery('#main').html(mainViewtemplate()); 
+                            
             },
+
+            show_comparison : function(){
+
+                var self = this;
+                 /*var compareViewtemplate = _.template(jQuery(this.template).html());
+                jQuery('#main').html(compareViewtemplate()); */
+
+
+                 var projectListingsTemplate = _.template(jQuery(self.template).html());
+                                                            
+                 jQuery('#main').html(projectListingsTemplate({pid:self.pid,psid:self.psid,propertiesdata : getAppInstance().residentialPropertyCollection.models}));
+
+            }
 
             /* make_div_dropable2 : function(dropable_el){
 

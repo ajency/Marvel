@@ -25,11 +25,7 @@
                 */
             this.render();
             },
-
-
-
-
-
+ 
 
 
 
@@ -48,12 +44,10 @@
                                 var dropped = ui.draggable;
                                 var droppedOn = jQuery(this);
                                 jQuery(this).html('');
-                                console.log('droppable.........................')
+                                console.log('droppable.........................') 
 
-
-
-console.log(dropped)
-console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
+                                console.log(dropped)
+                                console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
                                 var draggable_property_title = dropped.attr('property-title');
                                 var draggable_property_address = dropped.attr('property-address');
 
@@ -144,7 +138,7 @@ console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
 
         var projectListingsTemplate = _.template(jQuery(self.template).html());
                                         
-        jQuery('#proj_list').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection.models}));
+        jQuery('#projects_listings').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection.models}));
 
 
         if (collection.length) {
@@ -153,23 +147,7 @@ console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
             // empty
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
         self.make_div_dropable(".drag_area")       
         
 
@@ -178,7 +156,7 @@ console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
             jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
 
 
- start: function(event, ui) {
+    start: function(event, ui) {
         ui.helper.css({ height: 'auto', width: '300px' });
     },
     stop: function(event, ui) {
