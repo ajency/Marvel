@@ -48,7 +48,9 @@
 }
 
 .row .set_admin_input .admin_field input,
-.set_admin_input .admin_input input {
+.set_admin_input .admin_input input,
+.postbox input.custom_input_field {
+    padding: 3px 5px;
     background: #fff;
     line-height: 23px;
     border: 1px solid #ddd;
