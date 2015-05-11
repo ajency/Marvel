@@ -48,6 +48,9 @@
             e.preventDefault();
             $('html, body').animate({scrollTop: $hevp}, '65500', 'linear');
         });
+        
+        //set the height
+        $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
     });
     $(window).load(function() {
         $('.child-footer').fadeIn('slow');
@@ -111,5 +114,9 @@
         }).get();
         var maxcar = Math.max.apply(null, carhe);
         $('.lisofwork .wpb_wrapper').height(maxcar);
+        
+        
+        //map height set
+        $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
     });
 })( jQuery );

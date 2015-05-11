@@ -67,6 +67,13 @@
             }
         }
     }
+    .indi_map_area .wpb_wrapper {
+        .wpb_text_column p {
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
     .wpb_call_to_action .wpb_button_a {
         span {
             background: #666;
@@ -81,7 +88,7 @@
         }
     }
     .indi_map_cta {
-        margin-top: 20px;
+        margin-top: 30px;
         background: #666;
         border-color: #555;
         font-weight: normal;
@@ -158,6 +165,19 @@
                 img {
                     padding-bottom: 20px;
                 }
+            }
+        }
+    }
+    .le_p_m {
+        .wpb_wrapper .show_h {
+            h3 {
+                display: block !important;
+                .fontmont;
+                font-size: 16px;
+                font-weight: normal;
+                margin-top: 0;
+                margin-bottom: 18px;
+                text-shadow: 0 0 0 #fff;
             }
         }
     }
@@ -521,6 +541,9 @@
     }
 }
 
-button.indi_map_cta {
-    
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+    .vc_row-fluid [class*="vc_col-sm-"], [class*="vc_col-sm-"] {
+        float: none;
+        width: 100%;
+    }
 }
