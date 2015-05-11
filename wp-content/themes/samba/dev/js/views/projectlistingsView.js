@@ -22,8 +22,8 @@
                 getAppInstance().siteModel.set(SITEID);
 
                 this.listenTo(getAppInstance().siteModel, 'model-fetch-failed', this.renderError);
-*/
-this.render();
+                */
+            this.render();
             },
 
 
@@ -191,34 +191,6 @@ console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
         else{
             console.log('no dragables')
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
- 
-          
-        
-
-
-
-
 
 
 
