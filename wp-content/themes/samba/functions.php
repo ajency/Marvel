@@ -654,68 +654,81 @@ function get_custom_address_fields_by_id($id){
 function get_custom_address_elements_html($address_field_data){
 
     ?>
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="col-md-4">
+    <div class="set_admin_input">
+    		<div class="admin_field">
         		<input id="address" name="address" type="textbox" value="<?php if(isset($address_field_data[0]['address'])){ echo $address_field_data[0]['address']; } else { echo 'pune, India' ; } ?>">
         	</div>
-        	<div class="col-md-8">        		
-        		<input type="button" value="Geocode" onclick="codeAddress()">
+        	<div class="admin_button">        		
+        		<input type="button" value="Geocode" class="button button-primary button-large" onclick="codeAddress()">
         	</div>	
         </div>
     </div>
 
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="col-md-4"> City :  
-    		</div>
-    		<div class="col-md-8">
+    <div class="set_admin_input">
+    	<div class="admin_label">
+    		<label for="custom-address_city">City</label>
+        </div>
+        <div class="admin_input">
     		<input id="custom-address_city" name="custom-address_city" type="textbox" value="<?php if(isset($address_field_data[0]['city'])){ echo $address_field_data[0]['city']; } ?>">
-    		</div>
-    	</div>
-	</div>  
+        </div>
+	</div> 
 
-	 <div class="row">
-    	<div class="col-md-12">
-    		<div class="col-md-4"> Region :
-    		</div>
-    		<div class="col-md-8">
+	 <div class="set_admin_input">
+    	<div class="admin_label">
+    		<label for="custom-address_region">Region</label>
+        </div>
+        <div class="admin_input">
           <input id="custom-address_region" name="custom-address_region" type="textbox" value="<?php if(isset($address_field_data[0]['region'])){ echo $address_field_data[0]['region']; } ?>">
-          </div>
-    	</div>
-	</div>  
+        </div>
+	</div> 
 
 
 
-       <div class="row">
-    	<div class="col-md-12">
-    		<div class="col-md-4">  Country : 
-    		</div>
-    		<div class="col-md-8">
+    <div class="set_admin_input">
+    	<div class="admin_label">
+    		<label for="custom-address_country">Country</label>
+        </div>
+        <div class="admin_input">
     		<input id="custom-address_country" name="custom-address_country" type="textbox" value="<?php if(isset($address_field_data[0]['country'])){ echo $address_field_data[0]['country']; } ?>">
-    	</div>
     	</div>
 	</div> 
 	
 
-    <div class="row">
-    	<div class="col-md-12">
-    		<div class="col-md-4"> Postcode : 
-    		</div>
-    		<div class="col-md-8"> <input id="custom-address_postcode" name="custom-address_postcode" type="textbox" value="<?php if(isset($address_field_data[0]['postcode'])){ echo $address_field_data[0]['postcode']; } ?>">
-
-    		</div>
-    	</div>
+    <div class="set_admin_input marg_b_15">
+    	<div class="admin_label">
+    		<label for="custom-address_postcode">Pincode</label>
+        </div>
+        <div class="admin_input">
+            <input id="custom-address_postcode" name="custom-address_postcode" type="textbox" value="<?php if(isset($address_field_data[0]['postcode'])){ echo $address_field_data[0]['postcode']; } ?>">
+        </div>
 	</div> 
 
+    <div class="set_admin_input">
+    	<div class="admin_label">
+    		<label for="custom-address_lat">Lattitude</label>
+        </div>
+        <div class="admin_input">
+            <input id="custom-address_lat" name="custom-address_lat" type="textbox" value="<?php if(isset($address_field_data[0]['lat'])){ echo $address_field_data[0]['lat']; } ?>">
+        </div>
+    </div>
+    <div class="set_admin_input">
+    	<div class="admin_label">
+    		<label for="custom-address_lng">Longitude</label>
+        </div>
+        <div class="admin_input">
+            <input id="custom-address_lng" name="custom-address_lng" type="textbox" value="<?php if(isset($address_field_data[0]['lng'])){ echo $address_field_data[0]['lng']; } ?>">
+        </div>
+    </div>
+<!--
 
     <div class="row">
     	<div class="col-md-12">
-    		   Lat :  <input id="custom-address_lat" name="custom-address_lat" type="textbox" value="<?php if(isset($address_field_data[0]['lat'])){ echo $address_field_data[0]['lat']; } ?>">
-    		   &nbsp; Long : <input id="custom-address_lng" name="custom-address_lng" type="textbox" value="<?php if(isset($address_field_data[0]['lng'])){ echo $address_field_data[0]['lng']; } ?>">
+    		   Lat :  
+    		   &nbsp; Long : 
     		 
     	</div>
 	</div> 		
+-->
 
 
        
