@@ -6,7 +6,16 @@
 .pull-right {float: right;}
 .btn_norm(@ptb: 8px; @plr: 10px) {
     border: 0;
-    background: darken(@grey-bg, 52%);
+    background-color: darken(@grey-bg, 52%);
     color: @grey-t-o-b;
     padding: @ptb @plr;
+    border-color: #555;
+    &:hover {
+        background-color: #505050;
+        border-color: #3f3f3f;
+    }
+    &:active, &:focus {
+        background-color: #505050;
+        border-color: #3b3b3b;
+    }
 }
