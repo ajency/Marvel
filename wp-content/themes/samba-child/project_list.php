@@ -149,6 +149,41 @@ Template Name: Page - Resi Projects List
                     <!--END single project listing-->
                 </div>
             </div>
+            
+<!--            <div id="projects_listings">-->
+                <div class="map_info_c">
+                   <div class="img_cont">
+                        <a href="#" class="img_link">
+                            <img src="http://loremflickr.com/1000/1000/building" alt="" class="pull-left map_fi">
+                        </a>
+                    </div>
+                    <div class="map_info">
+                        <a href="#" class="map_p_title">
+                            <span class="single_p_title">Marvel Edge</span>
+                            <span class="single_p_light">|</span>
+                            <span class="single_p_location">Viman Nagar</span>
+                        </a>
+                        <p class="map_excerpt">
+                            3.5, 4BHK Apartments, Duplexes and Penthouses
+                        </p>
+                        <p class="map_p_cost">
+                            INR 2.2 CR +
+                        </p>
+                        <div class="map_btm">
+                            <div class="pull-left">
+                                <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
+                                <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>
+                                <a href="#" class="btn_norm single_compare"></a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn_norm single_know">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--            </div>-->
             <!--END project list styles-->
             <!--END project list styles-->
             <!--END project list styles-->

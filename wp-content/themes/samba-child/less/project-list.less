@@ -11,6 +11,9 @@
 }
 
 .proj_list, .service {
+    [class*="column"]+[class*="column"]:last-child {
+        float: left;
+    }
     .top-dd-c {
         background: @grey-bg;
         padding: 25px 50px 15px;
@@ -86,9 +89,10 @@
         }
         .single_p_w {
             margin: 0;
-            &:hover .single_p_img .single_p_hov_c {
+            &:hover { .single_p_img .single_p_hov_c {
                 opacity: 1;
                 visibility: visible;
+            }
             }
             .single_p_img {
                 height: 192px;
@@ -125,6 +129,10 @@
                     left: 0;
                     width: 100%;
                     padding: 10px;
+                    a.btn_norm {
+                        .btn_norm(5px; 12px);
+                        display: inline-block;
+                    }
                     a.single_enq {
                         i {visibility: hidden;} //display none causes a shift in objects because
                                                 //inline-block uses baseline to keep the objects inline
@@ -134,9 +142,9 @@
                         background-repeat: no-repeat;
                         background-position: center center;
                     }
-                    a.btn_norm {
-                        .btn_norm(5px; 12px);
-                        display: inline-block;
+                    a.single_know {
+                        .fontmont;
+                        text-transform: uppercase;
                     }
                 }
             }
@@ -160,5 +168,91 @@
     .projects_map iframe {
         width: 100%;
         height: 500px;
+    }
+}
+
+//gMap styles
+#projects_listings {
+    .map_info_c {
+//        margin: 25px;
+        
+        position: relative;
+        width: 352px;
+        height: 145px;
+        background: #fff;
+        padding: 6px;
+//        box-shadow: 0 0 3px rgba(0,0,0,0.5);
+        .btn_norm {
+            .btn_norm(5px; 12px);
+//            display: inline-block;
+            float: left;
+            font-size: 14px;
+            border: 1px solid #555;
+            border-right-width: 0;
+        }
+        .img_cont {
+            width: 100%;
+            max-width: 132px;
+            height: 132px;
+            margin-right: 6px;
+            overflow: hidden;
+            position: absolute;
+            img {
+                position: absolute;
+                min-height: 100%;
+                min-width: 100%;
+            }
+        }
+        .map_info {
+            margin-left: 140px;
+            font-size: 12px;
+            text-align: left;
+            a.map_p_title {color: darken(@grey-bg, 52%); text-decoration: none;}
+            span {transition: all 0.5s;}
+            .single_p_title {font-weight: bold; margin-right: 5px;}
+            .single_p_light {color: #c5c5c5;}
+            .single_p_location { margin-left: 5px;}
+            .map_excerpt {
+                margin-bottom: -1px;
+                line-height: 17px;
+                margin-top: 2px;
+            }
+            p {
+                color: #333;
+            }
+        }
+        .map_btm {
+            position: absolute;
+            left: 145px;
+            bottom: 6px;
+            width: 201px;
+        }
+        a.single_enq {
+            i {visibility: hidden;} //display none causes a shift in objects because
+                                    //inline-block uses baseline to keep the objects inline
+            width: 38px;
+            height: 33px;
+            background-image: url(img/enquiry.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        a.single_compare {
+            width: 38px;
+            height: 33px;
+            background-image: url(img/compare_ico.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            border-right-width: 1px;
+            border-left-color: #afafaf;
+        }
+        a.single_share {
+            border-left-color: #afafaf;
+            height: 33px;
+        }
+        a.single_know {
+            width: 38px;
+            text-align: center;
+            font-size: 16px;
+        }
     }
 }
