@@ -516,6 +516,28 @@ h6 {
     margin-top: 10px;
   }
 }
+#np {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+#np .spinner {
+  display: block;
+  z-index: 100;
+  top: 15px;
+  right: 15px;
+}
+#np .spinner .spinner-icon {
+  width: 14px;
+  height: 14px;
+  border: solid 2px transparent;
+  border-radius: 10px;
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+  -moz-animation: nprogress-spinner 400ms linear infinite;
+  -ms-animation: nprogress-spinner 400ms linear infinite;
+  -o-animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
+}
 .btn_norm {
   border: 0;
   background-color: #666666;
