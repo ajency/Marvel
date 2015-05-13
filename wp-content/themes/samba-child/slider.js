@@ -37,6 +37,7 @@
         $hevp = window.innerHeight ? window.innerHeight : $(window).height();
         $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
         $('#full_fi_c').css('height', $hevp);
+        $('#centered_block').css('minHeight', $hevp);
         $(window).resize(function() {
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
             $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
@@ -52,68 +53,43 @@
         //set the height
         $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
     });
-    $(window).load(function() {
-        $('.child-footer').fadeIn('slow');
-        //equal height services column
-        var serhe = $('.le_p_m .wpb_wrapper .prk_service').map(function() {
+    
+    function setEqualHeight(obj) {
+        var serhe = obj.map(function() {
             return $(this).height();
         }).get();
         var maxse = Math.max.apply(null, serhe);
-        $('.le_p_m .wpb_wrapper .prk_service').height(maxse);
+        obj.height(maxse);
+    }
+    
+    $(window).load(function() {
+        $('.child-footer').fadeIn('slow');
         
-        //same height specifications
-        var sphe = $('.se_o_6 .wpb_wrapper .prk_service').map(function() {
-            return $(this).height();
-        }).get();
-        var maxsp = Math.max.apply(null, sphe);
-        $('.se_o_6 .wpb_wrapper .prk_service').height(maxsp);
+        //equal height services column
+        setEqualHeight($('.le_p_m .wpb_wrapper .prk_service'));
+        
+        //equal height specifications
+        setEqualHeight($('.se_o_6 .wpb_wrapper .prk_service'));
         
         //same height downloads
-        var dnhe = $('.do_3 .wpb_wrapper').map(function() {
-            return $(this).height();
-        }).get();
-        var maxdn = Math.max.apply(null, dnhe);
-        $('.do_3 .wpb_wrapper').height(maxdn);
+        setEqualHeight($('.do_3 .wpb_wrapper'));
         
         //same height careers
-        var carhe = $('.lisofwork .wpb_wrapper').map(function() {
-            return $(this).height();
-        }).get();
-        var maxcar = Math.max.apply(null, carhe);
-        $('.lisofwork .wpb_wrapper').height(maxcar);
+        setEqualHeight($('.lisofwork .wpb_wrapper'));
         
     });
     $(window).resize(function() {
         //equal height services column
-        $('.le_p_m .wpb_wrapper .prk_service').height('auto');
-        var serhe = $('.le_p_m .wpb_wrapper .prk_service').map(function() {
-            return $(this).height();
-        }).get();
-        var maxse = Math.max.apply(null, serhe);
-        $('.le_p_m .wpb_wrapper .prk_service').height(maxse);
+        setEqualHeight($('.le_p_m .wpb_wrapper .prk_service'));
         
-        //same height specifications
-        $('.se_o_6 .wpb_wrapper .prk_service').height('auto');
-        var sphe = $('.se_o_6 .wpb_wrapper .prk_service').map(function() {
-            return $(this).height();
-        }).get();
-        var maxsp = Math.max.apply(null, sphe);
-        $('.se_o_6 .wpb_wrapper .prk_service').height(maxsp);
+        //equal height specifications
+        setEqualHeight($('.se_o_6 .wpb_wrapper .prk_service'));
         
         //same height downloads
-        $('.do_3 .wpb_wrapper').height('auto');
-        var dnhe = $('.do_3 .wpb_wrapper').map(function() {
-            return $(this).height();
-        }).get();
-        var maxdn = Math.max.apply(null, dnhe);
-        $('.do_3 .wpb_wrapper').height(maxdn);
+        setEqualHeight($('.do_3 .wpb_wrapper'));
         
         //same height careers
-        var carhe = $('.lisofwork .wpb_wrapper').map(function() {
-            return $(this).height();
-        }).get();
-        var maxcar = Math.max.apply(null, carhe);
-        $('.lisofwork .wpb_wrapper').height(maxcar);
+        setEqualHeight($('.lisofwork .wpb_wrapper'));
         
         
         //map height set
