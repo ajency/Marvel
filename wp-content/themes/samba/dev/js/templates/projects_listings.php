@@ -36,11 +36,11 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
             <div class="single_p_hov_c">
                 <!--  <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>  -->
                 <div class="clearfix"></div>
-                <!-- <div class="single_p_info">
-                    <h6>Office Spaces: 1500 - 1,400 sq. ft. </h6>
-                    <h6>Retail Spaces: 500 - 1,400 sq. ft.</h6>
+                <div class="single_p_info">
+                    <h6>3.5, 4BHK Apartments, Duplexes and Penthouses </h6>
+                    <h6>INR 2.2 CR +</h6>
                 </div> 
-                -->
+                
                 <div class="single_btm">
                     <div class="pull-left">
                         <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>

@@ -10,7 +10,7 @@
     margin-top: 0;
 }
 
-.proj_list, .service {
+.proj_list {
     [class*="column"]+[class*="column"]:last-child {
         float: left;
     }
@@ -89,6 +89,7 @@
         }
         .single_p_w {
             margin: 0;
+            margin-bottom: 20px;
             &:hover { .single_p_img .single_p_hov_c {
                 opacity: 1;
                 visibility: visible;
@@ -98,6 +99,11 @@
                 height: 192px;
                 overflow: hidden;
                 position: relative;
+                img {
+                    width: 100%;
+                    height: auto;
+                    max-width: none;
+                }
                 .single_p_hov_c {
                     opacity: 0;
                     visibility: hidden;
