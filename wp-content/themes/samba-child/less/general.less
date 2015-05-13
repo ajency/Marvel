@@ -480,3 +480,27 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 }
+
+
+#np {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    .spinner {
+        display: block;
+        z-index: 100;
+        top: 15px;
+        right: 15px;
+        .spinner-icon {
+            width: 14px;
+            height: 14px;
+            border: solid 2px transparent;
+            border-radius: 10px;
+            -webkit-animation: nprogress-spinner 400ms linear infinite;
+            -moz-animation: nprogress-spinner 400ms linear infinite;
+            -ms-animation: nprogress-spinner 400ms linear infinite;
+            -o-animation: nprogress-spinner 400ms linear infinite;
+            animation: nprogress-spinner 400ms linear infinite;
+        }
+    }
+}

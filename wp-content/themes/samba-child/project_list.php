@@ -150,7 +150,7 @@ Template Name: Page - Resi Projects List
                 </div>
             </div>
             
-<!--            <div id="projects_listings">-->
+            <div id="projects_listings">
                 <div class="map_info_c">
                    <div class="img_cont">
                         <a href="#" class="img_link">
@@ -183,7 +183,7 @@ Template Name: Page - Resi Projects List
                         </div>
                     </div>
                 </div>
-<!--            </div>-->
+            </div>
             <!--END project list styles-->
             <!--END project list styles-->
             <!--END project list styles-->
@@ -193,6 +193,12 @@ Template Name: Page - Resi Projects List
     </div><!-- /#content -->
 </div><!-- #main_block -->
 </div>
+    
+    <div id="np">
+        <div class="spinner">
+            <div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>
+        </div>
+    </div>
 
     <script>
         var THEMEURL = '<?php echo get_parent_template_directory_uri(); ?>';
