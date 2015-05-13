@@ -5,9 +5,9 @@
 	    </div>
 
 	    <div class="top-compar">
-	     <div class="drag_area one" property-id="368" >Drag for Comparision</div>
-		    <div class="drag_area two"  property-id="369" >Drag for Comparision</div>
-		    <a href="javascript:void(0);" class="btn_norm top_btn_co disabled btn_compare">Compare</a>
+	     <div class="drag_area one"   >Drag for Comparision</div>
+		    <div class="drag_area two"    >Drag for Comparision</div>
+		    <a href="#compare/0/0" class="btn_norm top_btn_co disabled btn_compare">Compare</a>
 
 
 	    </div>

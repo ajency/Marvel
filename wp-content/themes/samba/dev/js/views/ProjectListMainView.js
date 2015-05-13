@@ -10,16 +10,16 @@
             el			: '#main',
 
             template :' #projectlistMainTemplate',
-            events : {
+            /*events : {
                 'click .btn_compare'    : 'show_compare2',
                  
-            }, 
+            },*/ 
 
             initialize : function(){
 
 
                            
-                 _.bindAll(this ,'render','show_compare2');
+                 _.bindAll(this ,'render');
               
                 this.render();
             },
@@ -33,9 +33,9 @@
                             jQuery('#main').html(mainViewtemplate()); 
             },
 
-            show_compare2:function(){
+            /*show_compare2:function(){
                 /* var  url = location.protocol + '//' + location.host + location.pathname; 
-                alert(url); */
+                alert(url); * /
 
                 var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
                 var prop2_id = jQuery('.top-compar').find('.two').attr('property-id');
@@ -46,9 +46,13 @@
                 location.assign( location.protocol + '//' + location.host + location.pathname+'/#compare/'+prop1_id+'/'+prop2_id)
 
 
-            },
+            },*/
             show_loader : function(){
-               return '<div id="nprogress"> <div class="spinner" style="position:relative!important;"><div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div></div></div>' ;
+               return '<div id="np">'+
+                           '<div class="spinner">'+
+                               '<div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>'+
+                           '</div>'+
+                       '</div>' ;
             }
 
 

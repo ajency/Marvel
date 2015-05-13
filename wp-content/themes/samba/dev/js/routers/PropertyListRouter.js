@@ -39,9 +39,14 @@
 
 				compare_properties : function(id,sid){
 
-					console.log('compare_properties:------------')
+					console.log('compare_properties:------------'+id)
+					console.log('compare_properties2:------------'+sid)
 
-					var propCompareView = new ProjectsCompareView({pid:id, psid:sid})
+					if(id==0  || sid ==0 ){
+						alert('Please select Two Properties for comparison')
+					}
+					else
+						var propCompareView = new ProjectsCompareView({pid:id, psid:sid})
 				}
 				
 				

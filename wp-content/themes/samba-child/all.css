@@ -784,6 +784,9 @@ h6 {
   width: 100%;
   height: 500px;
 }
+#projects_listings{
+  min-height: 200px;
+}
 #projects_listings .map_info_c {
   position: relative;
   width: 352px;

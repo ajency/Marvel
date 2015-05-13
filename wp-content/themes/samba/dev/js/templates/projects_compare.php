@@ -104,7 +104,7 @@ console.log('vl');
                             <tr>
                                 <td>Sellable Area</td>
                                 <td><%= f_prop.get('property_sellablearea')!=''?f_prop.get('property_sellablearea')+'SQ. FT.': ' - ' %> </td>
-                                <td><%= f_prop.get('property_sellablearea')!=''?f_prop.get('property_sellablearea')+'SQ. FT.': ' - ' %></td>
+                                <td><%= s_prop.get('property_sellablearea')!=''?s_prop.get('property_sellablearea')+'SQ. FT.': ' - ' %></td>
                             </tr>
                             
                             <tr class="head-row">
