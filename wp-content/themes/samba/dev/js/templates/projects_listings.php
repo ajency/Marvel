@@ -12,7 +12,7 @@ console.log(propertiesdata);
 %>
 <% 
 if(propertiesdata.length<=0){
-%> No Properties to display!!
+%> <p class="no_props">No Properties to display!</p>
 <%
 
 }

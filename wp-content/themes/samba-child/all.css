@@ -538,6 +538,12 @@ h6 {
   -o-animation: nprogress-spinner 400ms linear infinite;
   animation: nprogress-spinner 400ms linear infinite;
 }
+.no_props {
+  text-align: center;
+  margin: 90px;
+  color: #DDD;
+  text-transform: uppercase;
+}
 .btn_norm {
   border: 0;
   background-color: #666666;
