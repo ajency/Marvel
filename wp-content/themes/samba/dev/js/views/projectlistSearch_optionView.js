@@ -150,7 +150,7 @@ var prop_status = jQuery('#dd_status').val();
                 console.log('properties:----------map')
                 console.log(properties)
 
-                var marker_image = 'http://marvel.ajency.in/wp-content/uploads/sites/8/2015/04/marvelLogo.png';
+                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
                 
 
                 
@@ -158,6 +158,10 @@ var prop_status = jQuery('#dd_status').val();
                 var infowindow = new google.maps.InfoWindow();
 
                 var marker, i; 
+ 
+
+if(properties.length>0){
+
 
                 for (i = 0; i < properties.length; i++) {  
 
@@ -196,21 +200,105 @@ jQuery('#projects_listings').css({'display':'block',
                   marker = new google.maps.Marker({
                     position: new google.maps.LatLng(locations.lat, locations.lng),
                     map: map,
-                     /*  icon :  marker_image  */
+                        icon :  marker_image   
                   });
 
                   google.maps.event.addListener(marker, 'click', (function(marker, i) {
                     return function() {
 
-                         var popup_content = "<table cellpadding='0' cellspacing='0' border='0' ><tr><td>"+
+                  /*       var popup_content = "<table cellpadding='0' cellspacing='0' border='0' ><tr><td>"+
                    "<img src='"+properties[i].get('featured_image')+"' width='60' /></td><td><b>"+properties[i].get('post_title')
                    +" </b> |  "+properties[i].get('property_locaity')+" "+properties[i].get('property_city')+" <br/>"+properties[i].get('property_type')+"</td></tr>";
 
+                */
+
+
+
+
+                    var popup_content ='<div class="map_info_c  draggable"    property-id="'+properties[i].get('id')+'" property-title = "'+properties[i].get('post_title')+'" property-address="'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'">'+
+                                       '                  <div class="img_cont">'+
+                                            '<a href="#" class="img_link">'+
+                                                '<img src="'+properties[i].get('featured_image')+'" alt="" class="pull-left map_fi">'+
+                                           ' </a>'+
+                                        '</div>'+
+                                        '<div class="map_info "       >'+
+                                            '<a href="#" class="map_p_title">'+
+                                                '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
+                                                '<span class="single_p_light">|</span>'+
+                                                '<span class="single_p_location">'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'</span>'+
+                                            '</a>'+
+                                            '<p class="map_excerpt">'+
+                                            properties[i].get('property_type')+ 
+                                            '</p>'+
+                                            '<p class="map_p_cost">'+
+                                            '    INR 2.2 CR +'+
+                                            '</p>'+
+                                            '<div class="map_btm">'+
+                                            '    <div class="pull-left">'+
+                                            '       <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>'+
+                                            '      <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>'+
+                                            '        <a href="#" class="btn_norm single_compare"></a>'+
+                                            '    </div>'+
+                                            '    <div class="pull-right">'+
+                                            '        <a href="#" class="btn_norm single_know">'+
+                                            '            <i class="fa fa-angle-right"></i>'+
+                                            '        </a>'+
+                                            '    </div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                       infowindow.setContent(popup_content);
                       infowindow.open(map, marker);
+
+
+
+
+                        if(jQuery(".draggable").length>0){
+                                console.log('draggable')
+                                jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+
+
+                                start: function(event, ui) {
+                                    ui.helper.css({ height: 'auto', width: '300px' });
+                                },
+                                stop: function(event, ui) {
+                                    ui.helper.css({ height: 'auto', width: '300px' });
+                                }
+
+
+                        });
+                        }
+                        else{
+                            console.log('no dragables')
+                        }
+
+
+
+
                     }
                   })(marker, i)); 
                 }
+}
+else{
+
+    jQuery('#projects_listings').html('<br/><b>No properties to display</b>');
+}
+
             },
 
 
@@ -306,6 +394,35 @@ jQuery('#projects_listings').css({'display':'block',
                      var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
                                                     
                  jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
+
+
+
+
+
+
+
+
+
+
+
+        if(jQuery(".draggable").length>0){
+            console.log('draggable')
+            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+
+
+    start: function(event, ui) {
+        ui.helper.css({ height: 'auto', width: '300px' });
+    },
+    stop: function(event, ui) {
+        ui.helper.css({ height: 'auto', width: '300px' });
+    }
+
+
+        });
+        }
+        else{
+            console.log('no dragables')
+        }
 
         /*this.mainView.make_div_dropable2(".drag_area")
 

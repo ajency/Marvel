@@ -19,6 +19,8 @@ if(propertiesdata.length<=0){
 
 _.each(propertiesdata,function(propertyvl,propertyky){
 
+
+var property_id = _.isUndefined(propertyvl.id)? propertyvl.get('id'): propertyvl.id;
  var property_title = _.isUndefined(propertyvl.post_title)? propertyvl.get('post_title'): propertyvl.post_title;
 
 var property_city = _.isUndefined(propertyvl.property_city)? propertyvl.get('property_city'): propertyvl.property_city;
@@ -50,7 +52,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                 </div>
             </div>
         </div>
-        <div class="single_p_cap draggable" property-title = '<%=property_title%>' property-address="<%=property_locaity%>, <%=property_city%>" >
+        <div class="single_p_cap draggable" property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locaity%>, <%=property_city%>" >
             <p class="single_p_inf">
                 <a href="#">
                     <span class="single_p_title"><%=property_title%></span>

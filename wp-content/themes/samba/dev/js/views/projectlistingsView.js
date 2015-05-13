@@ -50,8 +50,11 @@
                                 console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
                                 var draggable_property_title = dropped.attr('property-title');
                                 var draggable_property_address = dropped.attr('property-address');
+                                var draggable_property_id = dropped.attr('property-id');
+
 
                                 var draggable_property_image = dropped.find('.single_p_img').find('img').attr('src');
+                                droppedOn.attr('property-id',draggable_property_id)
 
                                 var cmp_html = "<div ><b>"+draggable_property_title+"</b><br/>"+draggable_property_address+"</div>";
                                 console.log(cmp_html);
@@ -101,7 +104,8 @@
                
                 var self = this;
 
- 
+                jQuery('#projects_listings').html(self.show_loader());
+                 
 /*
 
                 getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
@@ -187,7 +191,9 @@
             },
 
                      
-              
+              show_loader : function(){
+                return '<div id="nprogress"> <div class="spinner" style="position:none!important;" ><div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div></div></div>' ;
+            }
 
             
 

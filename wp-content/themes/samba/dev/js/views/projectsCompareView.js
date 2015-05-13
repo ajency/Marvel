@@ -50,7 +50,7 @@
                                 // empty
                             }
 
-                      self.show_comparison()
+                            self.show_comparison()
                             
 
                         }
@@ -75,9 +75,67 @@
                 jQuery('#main').html(compareViewtemplate()); */
 
 
-                 var projectListingsTemplate = _.template(jQuery(self.template).html());
+
+
+
+                if(_.isUndefined(getAppInstance().searchOptions)){
+
+
+                        var self = this;
+
+                        jQuery.ajax(AJAXURL,{
+                            type: 'GET',
+                            action:'get_search_options',
+                            data :{action:'get_search_options'},
+                            complete: function() {
+
+                            },
+                            success: function(response) {
+                                console.log('got search options........');
+                                console.log(response);
+
+                                getAppInstance().searchOptions = response ;                               
+                               
+                                var projectListingsTemplate = _.template(jQuery(self.template).html());
                                                             
-                 jQuery('#main').html(projectListingsTemplate({pid:self.pid,psid:self.psid,propertiesdata : getAppInstance().residentialPropertyCollection.models}));
+                                jQuery('#main').html(projectListingsTemplate({pid:self.pid,psid:self.psid,propertiesdata : getAppInstance().residentialPropertyCollection.models, searchOptions:getAppInstance().searchOptions}));
+                                 
+
+
+
+
+                            },
+                            error: function(){
+
+                            },
+
+                            dataType: 'json'
+                        });
+
+                }
+                else{
+
+
+                    var projectListingsTemplate = _.template(jQuery(self.template).html());
+                                                            
+                 jQuery('#main').html(projectListingsTemplate({pid:self.pid,psid:self.psid,propertiesdata : getAppInstance().residentialPropertyCollection.models,searchOptions:getAppInstance().searchOptions}));
+                }
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+                 
 
             }
 

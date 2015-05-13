@@ -863,6 +863,7 @@ function my_enqueue($hook) {
 
     	//wp_enqueue_style('bootstrap-min', site_url() . '/wp-content/themes/samba/css/bootstrap.min.css', array(), null);     
 
+    	wp_enqueue_style('custom', site_url() . '/wp-content/themes/samba-child/custom.css', array(), null);
     	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
 
     	wp_enqueue_script('mygeolocation_js',get_template_directory_uri().'/js/mygeolocation.js', array('jquery')  );
@@ -1278,6 +1279,11 @@ function get_search_options(){
     $property_bedrooms = maybe_unserialize(get_option('property-no_of_bedrooms',true));
     $property_citylocality = maybe_unserialize(get_option('property-citylocality',true));
 
+    $property_amenities = get_terms( 'property_amenity', array(
+ 	'orderby'    => 'count',
+ 	'hide_empty' => 0,
+ ) );  
+
 	$search_option_data = array( 'cities'		 => $property_cities,
 								 'status'		 => $property_status,
 								 'locality'		 => $property_locality,
@@ -1285,6 +1291,7 @@ function get_search_options(){
                                  'no_of_bedrooms'=> $property_bedrooms,
                                  'type'			 => $property_type,
                                  'citylocality'	 => $property_citylocality,
+                                 'amenities'	 => $property_amenities
 								);
 
 	wp_send_json( $search_option_data);
@@ -1336,6 +1343,9 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop = new stdClass();
     foreach (  $residential_properties as $res_property ) {
 
+
+    $property_amenities = wp_get_post_terms($res_property->ID , 'property_amenity', array("fields" => "all"));
+
 	$new_res_prop->id = 	$res_property->ID ;
 	$new_res_prop->post_date = 	$res_property->post_date ;
 	$new_res_prop->post_excerpt = 	$res_property->post_excerpt ;
@@ -1345,7 +1355,7 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->post_author = 	$res_property->post_author ;
 	$new_res_prop->post_url = 	site_url().'/Residential-Property/'.$res_property->post_name;
 	$new_res_prop->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
-
+	$new_res_prop->amenities = 	$property_amenities;
 
 	$property_meta_value =  get_res_property_meta_values($res_property->ID);
  	$sel_properties[] =  (object)array_merge((array)$new_res_prop,$property_meta_value) ;
