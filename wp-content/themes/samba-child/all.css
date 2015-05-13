@@ -540,9 +540,9 @@ h6 {
 }
 .no_props {
   text-align: center;
+  text-transform: uppercase;
   margin: 90px;
   color: #DDD;
-  text-transform: uppercase;
 }
 .btn_norm {
   border: 0;
