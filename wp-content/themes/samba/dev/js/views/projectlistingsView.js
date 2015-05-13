@@ -50,8 +50,10 @@
                                 console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
                                 var draggable_property_title = dropped.attr('property-title');
                                 var draggable_property_address = dropped.attr('property-address');
+                                var draggable_property_id = dropped.attr('property-id');
 
                                 var draggable_property_image = dropped.find('.single_p_img').find('img').attr('src');
+                                droppedOn.attr('property-id',draggable_property_image)
 
                                 var cmp_html = "<div ><b>"+draggable_property_title+"</b><br/>"+draggable_property_address+"</div>";
                                 console.log(cmp_html);

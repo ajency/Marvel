@@ -863,7 +863,7 @@ function my_enqueue($hook) {
 
     	//wp_enqueue_style('bootstrap-min', site_url() . '/wp-content/themes/samba/css/bootstrap.min.css', array(), null);     
 
-    	wp_enqueue_style('custom', site_url() . '/wp-content/themes/samba-child/scss/custom.scss', array(), null);
+    	wp_enqueue_style('custom', site_url() . '/wp-content/themes/samba-child/custom.css', array(), null);
     	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
 
     	wp_enqueue_script('mygeolocation_js',get_template_directory_uri().'/js/mygeolocation.js', array('jquery')  );

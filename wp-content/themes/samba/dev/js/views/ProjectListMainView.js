@@ -10,12 +10,16 @@
             id 			: 'proj_list_main',
 
             template :' #projectlistMainTemplate',
+            events : {
+                'click #bbtn_compare'    : 'show_compare2',
+                 
+            }, 
 
             initialize : function(){
 
 
                            
-                
+                 _.bindAll(this ,'render','show_compare2');
               
                 this.render();
             },
@@ -25,6 +29,19 @@
                 //jQuery('.right_container').html(mainViewtemplate()); 
                             jQuery('#main').html(mainViewtemplate()); 
             },
+
+            show_compare2:function(){
+                /* var  url = location.protocol + '//' + location.host + location.pathname; 
+                alert(url); */
+
+              //  var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
+              //  var prop2_id = jQuery('.top-compar').find('.one').attr('property-id');
+
+                alert('test')
+                window.location = SITEURL+'/residential-projects/#compare/'+prop1_id+'/'+prop2_id;
+
+
+            }
 
             /* make_div_dropable2 : function(dropable_el){
 
