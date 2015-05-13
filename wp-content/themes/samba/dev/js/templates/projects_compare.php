@@ -20,25 +20,36 @@ var f_prop_neighbourhood, s_prop_neighbourhood;
 
 
 //var neighbourhood_options = searchOptions.
-
+console.log('propertiesdata length');
+console.log(propertiesdata.length);
 
 _.each(propertiesdata,function(vl,ky){
+
+console.log('vl');
+    console.log(vl.get('id'));
  
     if(parseInt(vl.get('id'))==parseInt(pid)){
       
         
         f_prop = vl;
+         console.log('f_prop');
+ console.log(f_prop);
 
  
     }
     if(parseInt(vl.get('id'))==parseInt(psid)){
         
         s_prop = vl;
+          console.log('s_prop');
+ console.log(s_prop);
     }
 
 });
 
- 
+ console.log('f_prop');
+ console.log(f_prop);
+  console.log('s_prop');
+ console.log(s_prop);
 
 %>
 

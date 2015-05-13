@@ -7,8 +7,8 @@
 	    <div class="top-compar">
 	     <div class="drag_area one" property-id="368" >Drag for Comparision</div>
 		    <div class="drag_area two"  property-id="369" >Drag for Comparision</div>
-		    <a href="javascript:void(0);" class="btn_norm top_btn_co disabled btn_compare1">Compare</a>
-		    <input type='button' id="bbtn_compare" value="compare" />
+		    <a href="javascript:void(0);" class="btn_norm top_btn_co disabled btn_compare">Compare</a>
+
 
 	    </div>
 	    

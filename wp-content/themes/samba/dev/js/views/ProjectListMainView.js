@@ -7,11 +7,11 @@
 
         var ProjectListMainView = Backbone.View.extend({
 
-            id 			: 'proj_list_main',
+            el			: '#main',
 
             template :' #projectlistMainTemplate',
             events : {
-                'click #bbtn_compare'    : 'show_compare2',
+                'click .btn_compare'    : 'show_compare2',
                  
             }, 
 
@@ -25,6 +25,9 @@
             },
 
             render:function(){
+
+                jQuery('#main').html(this.show_loader());
+
                 var mainViewtemplate = _.template(jQuery(this.template).html());
                 //jQuery('.right_container').html(mainViewtemplate()); 
                             jQuery('#main').html(mainViewtemplate()); 
@@ -34,14 +37,20 @@
                 /* var  url = location.protocol + '//' + location.host + location.pathname; 
                 alert(url); */
 
-              //  var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
-              //  var prop2_id = jQuery('.top-compar').find('.one').attr('property-id');
+                var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
+                var prop2_id = jQuery('.top-compar').find('.two').attr('property-id');
 
-                alert('test')
-                window.location = SITEURL+'/residential-projects/#compare/'+prop1_id+'/'+prop2_id;
+                console.log('test'+window.location)
+                //window.location = SITEURL+'/residential-projects/#compare/'+prop1_id+'/'+prop2_id;
+
+                location.assign( location.protocol + '//' + location.host + location.pathname+'/#compare/'+prop1_id+'/'+prop2_id)
 
 
+            },
+            show_loader : function(){
+               return '<div id="nprogress"> <div class="spinner" style="position:relative!important;"><div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div></div></div>' ;
             }
+
 
             /* make_div_dropable2 : function(dropable_el){
 
