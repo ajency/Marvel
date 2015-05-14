@@ -51,7 +51,7 @@
 				mapview : function(){
 
 					 
-					if(_.isUndefined(getAppInstance().mainView)  || jQuery('.proj_list_main').length<=0){
+					if(_.isUndefined(getAppInstance().mainView)  || jQuery('#proj_list_main').length<=0){
 							getAppInstance().mainView = new ProjectListMainView({mapview:true});							 
 					}
 					else
