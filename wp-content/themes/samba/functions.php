@@ -856,7 +856,9 @@ function my_enqueue($hook) {
     }
 
 
-      
+       wp_localize_script( 'ajax-script', 'ajax_object', array(
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+    ));
     
 
     if ( $load_map_script == true ) {  
@@ -867,17 +869,17 @@ function my_enqueue($hook) {
     	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
 
     	wp_enqueue_script('mygeolocation_js',get_template_directory_uri().'/js/mygeolocation.js', array('jquery')  );
+		wp_enqueue_script( 'custom-script',site_url().'/wp-content/themes/samba/js/myjquery.js?ver=4.1.1',
+        array('jquery'));
+
     }
     
 
     
 
-    wp_localize_script( 'ajax-script', 'ajax_object', array(
-        'ajax_url' => admin_url( 'admin-ajax.php' ),
-    ));
+   
 
-    wp_enqueue_script( 'custom-script',site_url().'/wp-content/themes/samba/js/myjquery.js?ver=4.1.1',
-        array('jquery'));
+    
 }
 add_action('admin_enqueue_scripts', 'my_enqueue');
 
@@ -1355,6 +1357,7 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->post_author = 	$res_property->post_author ;
 	$new_res_prop->post_url = 	site_url().'/Residential-Property/'.$res_property->post_name;
 	$new_res_prop->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+	$new_res_prop->featured_image_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
 	$new_res_prop->amenities = 	$property_amenities;
 
 	$property_meta_value =  get_res_property_meta_values($res_property->ID);

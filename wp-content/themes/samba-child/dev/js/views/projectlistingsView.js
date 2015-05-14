@@ -29,7 +29,7 @@
 
 
 
-            make_div_dropable : function(dropable_el){
+            /* make_div_dropable : function(dropable_el){
 
  
                      jQuery(dropable_el).droppable({ accept: ".draggable", 
@@ -62,6 +62,25 @@
                                 jQuery(cmp_html).appendTo(droppedOn); 
 
 
+                                 var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
+                                 var prop2_id = jQuery('.top-compar').find('.two').attr('property-id');
+                                 if(!_.isUndefined(prop1_id) || !_.isUndefined(prop1_id)){
+
+                                    var ur = "#compare";
+                                    if(!_.isUndefined(prop1_id))
+                                        ur = ur+'/'+prop1_id;
+                                    else
+                                        ur = ur+'/'+0;
+                                    if(!_.isUndefined(prop2_id))
+                                        ur = ur+'/'+prop2_id;
+                                    else
+                                        ur = ur+'/'+0;
+
+                                    jQuery('.btn_compare').attr('href',ur);
+
+                                 }
+
+
                                 
                         }, 
                         over: function(event, elem) {
@@ -84,7 +103,7 @@
                   });
 
 
-            },
+            },*/
 
 
 
@@ -105,6 +124,7 @@
                 var self = this;
 
                 jQuery('#projects_listings').html(self.show_loader());
+
                  
 /*
 
@@ -152,7 +172,7 @@
         }
 
   
-        self.make_div_dropable(".drag_area")       
+      //  self.make_div_dropable(".drag_area")       
         
 
         if(jQuery(".draggable").length>0){
@@ -160,12 +180,12 @@
             jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
 
 
-    start: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    },
-    stop: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    }
+            start: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            },
+            stop: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            }
 
 
         });
@@ -192,7 +212,11 @@
 
                      
               show_loader : function(){
-                return '<div id="nprogress"> <div class="spinner" style="position:none!important;" ><div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div></div></div>' ;
+                 return '<div id="np">'+
+                           '<div class="spinner">'+
+                               '<div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>'+
+                           '</div>'+
+                       '</div>' ;
             }
 
             
