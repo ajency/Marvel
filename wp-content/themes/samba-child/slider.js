@@ -37,7 +37,7 @@
         $hevp = window.innerHeight ? window.innerHeight : $(window).height();
         $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
         $('#full_fi_c').css('height', $hevp);
-        $('#centered_block').css('minHeight', $hevp);
+        //$('#centered_block').css('minHeight', $hevp);
         $(window).resize(function() {
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
             $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
@@ -76,6 +76,7 @@
         });
 
     });
+
 
     function setEqualHeight(obj) {
         var serhe = obj.map(function() {
@@ -117,5 +118,10 @@
 
         //map height set
         $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
+
+        //map view - set height to fill the remaining space
+        if ($('div').hasClass('gm-style')) {
+            $('#projects_listings').height($(window).height() - $('#projects_listings').position().top - 40);
+        }
     });
 })( jQuery );
