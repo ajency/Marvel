@@ -636,6 +636,34 @@ h6 {
   margin-right: 8px;
   color: #A9A9A9;
 }
+.proj_list .top-compar .drag_area .before_drag {
+  display: block;
+}
+.proj_list .top-compar .drag_area .after_drag_content {
+  display: none;
+  text-align: center;
+}
+.proj_list .top-compar .drag_area .after_drag_content .dragged_title {
+  margin-bottom: 0;
+  color: #999;
+}
+.proj_list .top-compar .drag_area .after_drag_content .single_p_title {
+  font-weight: bold;
+  color: #000;
+}
+.proj_list .top-compar .drag_area.after_drag {
+  background: #f8f8f8;
+  border: 1px solid #c2c2c2;
+  padding: 6px 0;
+  line-height: 18px;
+  vertical-align: top;
+}
+.proj_list .top-compar .drag_area.after_drag .before_drag {
+  display: none;
+}
+.proj_list .top-compar .drag_area.after_drag .after_drag_content {
+  display: block;
+}
 .proj_list .top-compar .top_btn_co {
   border: 0;
   background-color: #666666;
@@ -686,6 +714,23 @@ h6 {
   height: auto;
   max-width: none;
 }
+.proj_list .project-list .single_p_w .single_p_img .compare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 1;
+}
+.proj_list .project-list .single_p_w .single_p_img .compare .comp_ico {
+  float: right;
+  width: 25px;
+  height: 21px;
+  background: url(img/compare_list_ico.png) no-repeat center center;
+}
+.proj_list .project-list .single_p_w .single_p_img .compare .comp_ico:hover {
+  background: url(img/compare_list_ico_hov.png) no-repeat center center;
+}
 .proj_list .project-list .single_p_w .single_p_img .single_p_hov_c {
   opacity: 0;
   visibility: hidden;
@@ -700,6 +745,7 @@ h6 {
   transition: all 0.5s;
 }
 .proj_list .project-list .single_p_w .single_p_img .single_p_likes {
+  display: none;
   float: left;
   background: #fff;
   border: 1px solid #C0C0C0;

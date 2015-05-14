@@ -104,8 +104,28 @@ Template Name: Page - Resi Projects List
                 </div>
 
                 <div class="top-compar">
-                    <div class="drag_area one">Drag for Comparision</div>
-                    <div class="drag_area two">Drag for Comparision</div>
+                    <div class="drag_area one after_drag">
+                        <div class="before_drag">
+                            Drag for Comparision
+                        </div>
+                        <div class="after_drag_content">
+                            <p class="dragged_title">
+                                <span class="single_p_title">Marvel Edge</span><br>
+                                <span class="single_p_location">Viman Nagar</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="drag_area two">
+                        <div class="before_drag">
+                            Drag for Comparision
+                        </div>
+                        <div class="after_drag_content">
+                            <p class="dragged_title">
+                                <span class="single_p_title">Marvel Edge</span><br>
+                                <span class="single_p_location">Viman Nagar</span>
+                            </p>
+                        </div>
+                    </div>
                     <a href="#" class="btn_norm top_btn_co disabled">Compare</a>
                 </div>
 
@@ -117,6 +137,9 @@ Template Name: Page - Resi Projects List
                     <div class="single_p_w six columns">
                         <div class="single_p_img">
                             <img src="http://loremflickr.com/1000/1000/building">
+                            <div class="compare">
+                                <a href="#" class="comp_ico"></a>
+                            </div>
                             <div class="single_p_hov_c">
                                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                                 <div class="clearfix"></div>
@@ -194,11 +217,13 @@ Template Name: Page - Resi Projects List
 </div><!-- #main_block -->
 </div>
     
+<!--
     <div id="np">
         <div class="spinner">
             <div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>
         </div>
     </div>
+-->
 
     <script>
         var THEMEURL = '<?php echo get_parent_template_directory_uri(); ?>';

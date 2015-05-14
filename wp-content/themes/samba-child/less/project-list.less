@@ -68,6 +68,29 @@
             padding: 12px;
             margin-right: 8px;
             color: #A9A9A9;
+            .before_drag {
+                display: block;
+            }
+            .after_drag_content {
+                display: none;
+                text-align: center;
+                .dragged_title {margin-bottom: 0; color: #999;}
+                .single_p_title {font-weight: bold; color: #000;}
+                .single_p_location {}
+            }
+            &.after_drag {
+                background: #f8f8f8;
+                border: 1px solid #c2c2c2;
+                padding: 6px 0;
+                line-height: 18px;
+                vertical-align: top;
+                .before_drag {
+                    display: none;
+                }
+                .after_drag_content {
+                    display: block;
+                }
+            }
         }
         .top_btn_co {
             .btn_norm(7px; 20px);
@@ -90,10 +113,11 @@
         .single_p_w {
             margin: 0;
             margin-bottom: 20px;
-            &:hover { .single_p_img .single_p_hov_c {
-                opacity: 1;
-                visibility: visible;
-            }
+            &:hover {
+                .single_p_img .single_p_hov_c {
+                    opacity: 1;
+                    visibility: visible;
+                }
             }
             .single_p_img {
                 height: 192px;
@@ -103,6 +127,23 @@
                     width: 100%;
                     height: auto;
                     max-width: none;
+                }
+                .compare {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    padding: 10px;
+                    z-index: 1;
+                    .comp_ico {
+                        float: right;
+                        width: 25px;
+                        height: 21px;
+                        background: url(img/compare_list_ico.png) no-repeat center center;
+                        &:hover {
+                            background: url(img/compare_list_ico_hov.png) no-repeat center center;
+                        }
+                    }
                 }
                 .single_p_hov_c {
                     opacity: 0;
@@ -118,6 +159,7 @@
                     transition: all 0.5s;
                 }
                 .single_p_likes {
+                    display: none; //remove this when the likes are needed
                     float: left;
                     background: #fff;
                     border: 1px solid #C0C0C0;
