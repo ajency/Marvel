@@ -15,9 +15,13 @@
                  
             },*/ 
 
-            initialize : function(){
+            initialize : function(options){
+console.log(options);
 
 
+            if(!_.isUndefined(options))
+                if(!_.isUndefined('options.mapview'))
+                    this.mapview = options.mapview;
                            
                  _.bindAll(this ,'render');
               
@@ -31,6 +35,7 @@
                 var mainViewtemplate = _.template(jQuery(this.template).html());
                 //jQuery('.right_container').html(mainViewtemplate()); 
                             jQuery('#main').html(mainViewtemplate()); 
+                            this.make_div_dropable(".drag_area")
             },
 
             /*show_compare2:function(){
@@ -53,7 +58,7 @@
                                '<div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>'+
                            '</div>'+
                        '</div>' ;
-            }
+            },
 
 
             /* make_div_dropable2 : function(dropable_el){
@@ -110,7 +115,81 @@
 
             }, */
 
-             
+             make_div_dropable : function(dropable_el){
+
+ 
+                     jQuery(dropable_el).droppable({ accept: ".draggable", 
+                       drop: function(event, ui) {
+                                // $(ui.draggable).clone().appendTo($(this));
+                                console.log("drop");
+
+                        //        console.log(jQuery(self).html())
+ 
+                          //      alert(jQuery(self).attr('property-title'))
+                                jQuery(this).removeClass("border").removeClass("over");
+                                var dropped = ui.draggable;
+                                var droppedOn = jQuery(this);
+                                jQuery(this).html('');
+                                console.log('droppable.........................') 
+
+                                console.log(dropped)
+                                console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
+                                var draggable_property_title = dropped.attr('property-title');
+                                var draggable_property_address = dropped.attr('property-address');
+                                var draggable_property_id = dropped.attr('property-id');
+
+
+                                var draggable_property_image = dropped.find('.single_p_img').find('img').attr('src');
+                                droppedOn.attr('property-id',draggable_property_id)
+
+                                var cmp_html = "<div ><b>"+draggable_property_title+"</b><br/>"+draggable_property_address+"</div>";
+                                console.log(cmp_html);
+                                //jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn); 
+                                jQuery(cmp_html).appendTo(droppedOn); 
+
+
+                                 var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
+                                 var prop2_id = jQuery('.top-compar').find('.two').attr('property-id');
+                                 if(!_.isUndefined(prop1_id) || !_.isUndefined(prop1_id)){
+
+                                    var ur = "#compare";
+                                    if(!_.isUndefined(prop1_id))
+                                        ur = ur+'/'+prop1_id;
+                                    else
+                                        ur = ur+'/'+0;
+                                    if(!_.isUndefined(prop2_id))
+                                        ur = ur+'/'+prop2_id;
+                                    else
+                                        ur = ur+'/'+0;
+
+                                    jQuery('.btn_compare').attr('href',ur);
+
+                                 }
+
+
+                                
+                        }, 
+                        over: function(event, elem) {
+
+                                jQuery(this).addClass("over");
+                                console.log("over");
+
+                                console.log('-------------------');
+                                console.log(this)
+                                //console.log(jQuery(elem.draggable.target));
+
+
+                               // console.log(jQuery(elem.target))
+                               // jQuery(this.target).css({width:'50%; height:auto;'});
+                                
+                        },
+                        out: function(event, elem) {
+                                jQuery(self).removeClass("over");
+                        }
+                  });
+
+
+            },
              
 
 

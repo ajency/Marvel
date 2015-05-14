@@ -58,7 +58,9 @@ console.log('vl');
             <!--these are the Compare styles-->
             <div class="compare_c">
                 <div class="top-dd-c info_bar">                    
-                    <a href="#" class="wpb_button back_btn"><i class="fa fa-angle-left"></i> Back to Residential</a>
+                     <a href="javascript:void(0)" onclick="history.go(-1);"class="wpb_button back_btn"><i class="fa fa-angle-left"></i> Back to Residential</a> 
+
+
                     <p>
                         You are comparing between
                         <a href="#" class="comp_n"><%=f_prop.get('post_title')%></a>

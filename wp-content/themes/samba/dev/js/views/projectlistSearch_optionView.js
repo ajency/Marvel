@@ -8,7 +8,7 @@
 
             events : {
                 'click .btn_norm'	: 'searchProperties',
-                'click .top_map'    : 'display_map',
+                //'click .top_map'    : 'display_map',
                 'click .top_list'    : 'searchProperties',
                 'change .srchopt'   :  'searchProperties',
                 'change #dd_city'   :  'load_locality_options'
@@ -26,44 +26,33 @@
 
                 var self = this;
 
-                jQuery.ajax(AJAXURL,{
-                    type: 'GET',
-                    action:'get_search_options',
-                    data :{action:'get_search_options'},
-                    complete: function() {
+                if(_.isUndefined(getAppInstance().searchOptions)){
+                    jQuery.ajax(AJAXURL,{
+                        type: 'GET',
+                        action:'get_search_options',
+                        data :{action:'get_search_options'},
+                        complete: function() {
 
-                    },
-                    success: function(response) {
-                        console.log('got search options........');
-                        console.log(response);
+                        },
+                        success: function(response) {
 
-                        getAppInstance().searchOptions = response ;
-                       // var searchOptionTemplate = Backbone.Marionette.TemplateCache.prototype.loadTemplate('projectlistSearch_option.html');
-                       
-                       // var  data = {'d':response};
+                            getAppInstance().searchOptions = response ;    
 
-                      
-                       // jQuery('.top-dd-c').html(_.template(searchOptionTemplate,data));
+                            self.load_display_properties();
+                        },
+                        error: function(){
 
-                      /* var html = _.template(jQuery(self.template), response);
-                        self.$el.html(html);*/
+                        },
 
-                        var template = _.template(jQuery(self.template).html());
-                        
-                                jQuery('.top-dd-c').html(template({data : response}));
-
-                                var projectlistView = new projectsListingsView();
+                        dataType: 'json'
+                    });
+                }
+                else{
+                    self.load_display_properties();
+                }
 
 
-
-
-                    },
-                    error: function(){
-
-                    },
-
-                    dataType: 'json'
-                });
+                
 
 
 
@@ -74,6 +63,75 @@
 
                 
             },
+                 
+
+
+    load_display_properties :function function_name (argument) { 
+    
+                    var self = this;
+                    
+                        if(jQuery('#dd_status').length<=0){
+                            var template = _.template(jQuery(self.template).html());
+                            jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions}));
+                        }
+
+                        
+                        if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
+                        getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+                        getAppInstance().residentialPropertyCollection.fetch({
+                            success: function(collection) { // the fetched collection!
+
+                            
+                                 if(!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
+                                     jQuery('.top_map').addClass('current');
+                                 
+                                    jQuery('.top_list').removeClass('current')
+                                  
+                                    self.display_map();
+                                }
+                                else{
+
+                                     jQuery('.top_list').addClass('current');
+                                 
+                                    jQuery('.top_map').removeClass('current')
+ 
+                                    if(_.isUndefined(getAppInstance().projectlistView ))
+                                        getAppInstance().projectlistView = new projectsListingsView();
+                                    else
+                                        self.searchProperties()
+                                }
+
+
+                            },
+                            error: function(){
+
+                            },
+
+                            dataType: 'json'
+                        });
+                    }
+                    else{
+
+                         if (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
+                                     jQuery('.top_map').addClass('current');
+                                 
+                                    jQuery('.top_map').removeClass('current')
+                                    self.display_map();
+                                }
+                                 
+                                else{
+
+                                    if(_.isUndefined(getAppInstance().projectlistView ))
+                                        getAppInstance().projectlistView = new projectsListingsView();
+                                    else
+                                        self.searchProperties()
+                                }
+
+                    }
+
+
+    },
+
 
 
 
@@ -332,12 +390,14 @@
 
             
 
-                 if(  (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
+                 //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
+                    if( !_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true) {
                     jQuery('.top_map').addClass('current');
                     jQuery('.top_map').removeClass('current')
                     this.display_map();
                 }
-                if(jQuery(evt.target).hasClass('top_list') || (jQuery(evt.target).hasClass('top_map') ==false && jQuery('.top_map').hasClass('current') == false)){
+               // if(jQuery(evt.target).hasClass('top_list') || (jQuery(evt.target).hasClass('top_map') ==false && jQuery('.top_map').hasClass('current') == false)){
+                if( _.isUndefined(getAppInstance().mainView.mapview) || getAppInstance().mainView.mapview==false) {
                     jQuery('.top_list').addClass('current');
                     jQuery('.top_map').removeClass('current')
 

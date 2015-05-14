@@ -29,7 +29,7 @@
 
 
 
-            make_div_dropable : function(dropable_el){
+            /* make_div_dropable : function(dropable_el){
 
  
                      jQuery(dropable_el).droppable({ accept: ".draggable", 
@@ -103,7 +103,7 @@
                   });
 
 
-            },
+            },*/
 
 
 
@@ -172,7 +172,7 @@
         }
 
   
-        self.make_div_dropable(".drag_area")       
+      //  self.make_div_dropable(".drag_area")       
         
 
         if(jQuery(".draggable").length>0){
@@ -180,12 +180,12 @@
             jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
 
 
-    start: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    },
-    stop: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    }
+            start: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            },
+            stop: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            }
 
 
         });

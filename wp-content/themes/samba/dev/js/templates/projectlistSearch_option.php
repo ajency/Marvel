@@ -52,7 +52,7 @@
     </div>
     <div class="pull-right top-view">
         <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
-        <a href="#" class="top_map"><i class="fa fa-map-marker"></i></a>
+        <a href="#map" class="top_map"><i class="fa fa-map-marker"></i></a>
     </div>
 
 <?php /* 

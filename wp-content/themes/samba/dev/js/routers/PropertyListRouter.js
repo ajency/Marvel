@@ -12,25 +12,27 @@
 			 */
 			var PropertyListRouter = Backbone.Router.extend({
 
-				initialize : function(){
-					
-					
+				initialize : function(){ 
 
 				},
 
 				routes : {
 					''	 					: 'index',
-					  'compare/:id/:sid'	    : 'compare_properties',  
-					 
-
-
+					'compare/:id/:sid'	    : 'compare_properties', 
+					'map' 					:'mapview' 
 				
 				},
 
-				index : function(){
-					this.mainView = new ProjectListMainView();
+				index : function(){ 
+ 
 
-                    console.log('reached project list router initializer');
+					if(_.isUndefined(getAppInstance().mainView)  || jQuery('#proj_list_main').length<=0 ){ 
+						getAppInstance().mainView = new ProjectListMainView({mapview:false});
+					 
+					}
+					else
+						getAppInstance().mainView.mapview =false; 
+                    
 
 					var searchOptionView = new searchOptionsView()
 					
@@ -38,16 +40,27 @@
 				},
 
 				compare_properties : function(id,sid){
-
-					console.log('compare_properties:------------'+id)
-					console.log('compare_properties2:------------'+sid)
-
+					 
 					if(id==0  || sid ==0 ){
 						alert('Please select Two Properties for comparison')
 					}
 					else
 						var propCompareView = new ProjectsCompareView({pid:id, psid:sid})
-				}
+				},
+
+				mapview : function(){
+
+					 
+					if(_.isUndefined(getAppInstance().mainView)  || jQuery('.proj_list_main').length<=0){
+							getAppInstance().mainView = new ProjectListMainView({mapview:true});							 
+					}
+					else
+						getAppInstance().mainView.mapview =true;
+
+					var searchOptionView = new searchOptionsView()
+					
+
+				},
 				
 				
 				
