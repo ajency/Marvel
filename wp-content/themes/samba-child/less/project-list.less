@@ -11,17 +11,41 @@
 }
 
 .proj_list {
+    @media screen and (max-width: 769px) {
+        padding-top: 50px;
+        .project-list.row .single_p_w {
+            width: 50% !important;
+            float: left;
+            padding: 0 20px;
+            &:nth-child(n) {padding-right: 0;}
+            &:nth-child(2n) {padding-left: 0;}
+        }
+    }
+    @media screen and (max-width: 680px) {
+        .project-list.row .single_p_w {
+            width: auto !important;
+            float: none;
+            padding: 0;
+        }
+    }
     [class*="column"]+[class*="column"]:last-child {
         float: left;
     }
     .top-dd-c {
         background: @grey-bg;
         padding: 25px 50px 15px;
+        @media screen and (max-width: 769px) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     }
     .top-dd {
         display: inline-block;
         width: 150px;
         margin-right: 3px;
+        @media screen and (max-width: 1199px) {
+            width: 125px;
+        }
         select {
             padding: 5px 8px;
             border: 1px solid darken(@grey-bg, 12%);
@@ -34,6 +58,7 @@
     }
     .top-sea {
         display: inline-block;
+        display: none;
         .btn_norm {
             .btn_norm(4px; 20px);
             font-size: 20px;
@@ -99,11 +124,19 @@
             .fontmont;
             &.disabled {opacity: 0.2;}
         }
+        @media screen and (max-width: 769px) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     }
     //projects list
     .project-list {
         padding: 5px 50px 25px;
         .fontmont;
+        @media screen and (max-width: 769px) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
         h5 {
             .fontmont;
             color: #333;

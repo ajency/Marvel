@@ -3,8 +3,8 @@
 Template Name: Page - Resi Projects Map
 */
 ?>
-<?php 
-  get_header(); 
+<?php
+  get_header();
   $show_sidebar=$prk_samba_frontend_options['right_sidebar'];
   if ($show_sidebar=="yes")
     $show_sidebar=true;
@@ -41,7 +41,7 @@ Template Name: Page - Resi Projects Map
     {
       //ADD THE CATEGORIES TO THE FILTER
       if ($in_flag==true)
-      { 
+      {
         $inside_filter.=$childs.", ";
       }
       if ($childs=='weirdostf')
@@ -67,7 +67,7 @@ Template Name: Page - Resi Projects Map
     ?>
     <div id="content">
         <div id="main" role="main" class="main_with_sections<?php echo $extra_class; ?>">
-            
+
             <!--these are the project list styles-->
             <!--these are the project list styles-->
             <!--these are the project list styles-->
@@ -108,17 +108,17 @@ Template Name: Page - Resi Projects Map
                     <div class="drag_area two">Drag for Comparision</div>
                     <a href="#" class="btn_norm top_btn_co disabled">Compare</a>
                 </div>
-                
+
                 <div class="projects_map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15379.708332655162!2d73.83601365!3d15.48835385!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1429767564078" frameborder="0" style="border:0"></iframe>
                 </div>
 
-                
+
             </div>
             <!--END project list styles-->
             <!--END project list styles-->
             <!--END project list styles-->
-            
+
             <div class="clearfix"></div>
         </div><!-- /#main -->
     </div><!-- /#content -->
