@@ -1,9 +1,9 @@
-  
+
 
         var searchOptionsView = Backbone.View.extend({
 
             el : ".top-dd-c"    ,
-           
+
             template :'#projectlistSearchOptionsTemplate',
 
             events : {
@@ -13,8 +13,8 @@
                 'change .srchopt'   :  'searchProperties',
                 'change #dd_city'   :  'load_locality_options'
 
-           
-            }, 
+
+            },
 
             initialize : function(args) {
                 _.bindAll(this ,'render','searchProperties','display_map');
@@ -36,7 +36,7 @@
                         },
                         success: function(response) {
 
-                            getAppInstance().searchOptions = response ;    
+                            getAppInstance().searchOptions = response ;
 
                             self.load_display_properties();
                         },
@@ -52,7 +52,6 @@
                 }
 
 
-                
 
 
 
@@ -61,40 +60,41 @@
 
 
 
-                
+
+
             },
-                 
 
 
-    load_display_properties :function function_name (argument) { 
-    
+
+    load_display_properties :function function_name (argument) {
+
                     var self = this;
-                    
+
                         if(jQuery('#dd_status').length<=0){
                             var template = _.template(jQuery(self.template).html());
                             jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions}));
                         }
 
-                        
+
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
                         getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
                         getAppInstance().residentialPropertyCollection.fetch({
                             success: function(collection) { // the fetched collection!
 
-                            
+
                                  if(!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
                                      jQuery('.top_map').addClass('current');
-                                 
+
                                     jQuery('.top_list').removeClass('current')
-                                  
+
                                     self.display_map();
                                 }
                                 else{
 
                                      jQuery('.top_list').addClass('current');
-                                 
+
                                     jQuery('.top_map').removeClass('current')
- 
+
                                     if(_.isUndefined(getAppInstance().projectlistView ))
                                         getAppInstance().projectlistView = new projectsListingsView();
                                     else
@@ -114,11 +114,11 @@
 
                          if (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
                                      jQuery('.top_map').addClass('current');
-                                 
+
                                     jQuery('.top_map').removeClass('current')
                                     self.display_map();
                                 }
-                                 
+
                                 else{
 
                                     if(_.isUndefined(getAppInstance().projectlistView ))
@@ -135,15 +135,15 @@
 
 
 
-   display_map : function(){ 
+   display_map : function(){
                 console.log('display map');;
-               
+
                 jQuery('.top_map').addClass('current');
                 jQuery('.top_list').removeClass('current')
 
               //  var properties = getAppInstance().residentialPropertyCollection.toJSON();
 
-  
+
                 var prop_status = jQuery('#dd_status').val();
                 var prop_city = jQuery('#dd_city').val();
                 var prop_locality = jQuery('#dd_locality').val();
@@ -162,49 +162,49 @@
                  if(prop_type!='')
                                    search_options['property_type'] =  prop_type;
 
-                
+
 
                 var res_collection = getAppInstance().residentialPropertyCollection  ;
-                
+
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
- 
-                /*var search_collections = res_collection.where({'property_status':prop_status, 
-                                        'property_city':prop_city, 
-                                        'property_locaity': prop_locality, 
+
+                /*var search_collections = res_collection.where({'property_status':prop_status,
+                                        'property_city':prop_city,
+                                        'property_locaity': prop_locality,
                                         'property_type':prop_type
                                           }) */
 
                 var search_collections = res_collection.models;
-                
-                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
-                    var search_collections = res_collection.where(search_options ) 
 
- 
+                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
+                    var search_collections = res_collection.where(search_options )
+
+
                 var properties = search_collections;
                 console.log('properties:----------map')
                 console.log(properties)
 
-                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';                
+                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
 
                 var infowindow = new google.maps.InfoWindow();
 
-                var marker, i; 
- 
+                var marker, i;
+
 
                 if(properties.length>0){
 
 
-                    for (i = 0; i < properties.length; i++) {  
+                    for (i = 0; i < properties.length; i++) {
 
 
                         locations = properties[i].get('map_address')[0];
- 
+
                         jQuery('#projects_listings').css({'display':'block',
                                    'width' :'100%',
                                    'height' : 'auto',
                                    'min-height':'400px'
-                                   
+
                                 })
 
                         if(i==0){
@@ -212,17 +212,17 @@
                             var map = new google.maps.Map(document.getElementById('projects_listings'), {
                                 zoom:8,
                                 center: new google.maps.LatLng(locations.lat, locations.lng),
-                                mapTypeId: google.maps.MapTypeId.ROADMAP 
-                            
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+
                             });
 
                         }
 
- 
+
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(locations.lat, locations.lng),
                             map: map,
-                            icon :  marker_image   
+                            icon :  marker_image
                         });
 
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -268,7 +268,53 @@
               });
             }
 
+            google.maps.event.addListener(infowindow, 'domready', function() {
+              jQuery('.gm-style-iw').each(function() {
+                var iwOuter = jQuery(this);
+                var iwBackground = iwOuter.prev();
+                // Remove the background shadow DIV
+                iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+                // Remove the white background DIV
+                iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+                // Moves the infowindow 115px to the right. because after
+                //applying styles and all, the arrow and close btn do not position properly
+                iwOuter.parent().parent().css({left: '115px'});
+                // Moves the shadow of the arrow 76px to the left margin
+                iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+                // Moves the arrow 76px to the left margin
+                iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+                // Changes the desired color for the tail outline.
+                // The outline of the tail is composed of two descendants of div which contains the tail.
+                // The .find('div').children() method refers to all the div which are direct descendants of the previous div.
+                iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(0, 0, 0, 0.2) 0px 1px 6px', 'z-index' : '1'});
+                // Taking advantage of the already established reference to
+                // div .gm-style-iw with iwOuter variable.
+                // You must set a new variable iwCloseBtn.
+                // Using the .next() method of JQuery you reference the following div to .gm-style-iw.
+                // Is this div that groups the close button elements.
+                var iwCloseBtn = iwOuter.next();
 
+                // Apply the desired effect to the close button
+                iwCloseBtn.css({
+                  width: '27px',
+                  height: '27px',
+                  opacity: '0.5', // by default the close button has an opacity of 0.7
+                  right: '38px', top: '3px', // button repositioning
+                  border: '7px solid rgb(255, 255, 255)', // increasing button border and new color
+                  'border-radius': '13px', // circular effect
+                  'box-shadow': 'rgba(0, 0, 0, 0.298039) 0px 0px 5px' // 3D effect to highlight the button
+                  });
+
+                // The API automatically applies 0.7 opacity to the button after the mouseout event.
+                // This function reverses this event to the desired value.
+                jQuery(this).mouseover(function(){
+                  iwCloseBtn.css({opacity: '1'});
+                });
+                jQuery(this).mouseout(function(){
+                  iwCloseBtn.css({opacity: '0.5'});
+                });
+              });
+            });
 
                     var featured_img_thumbnail = properties[i].get('featured_image_thumbnail');
 
@@ -286,7 +332,7 @@
                                                 '<span class="single_p_location">'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'</span>'+
                                             '</a>'+
                                             '<p class="map_excerpt">'+
-                                            properties[i].get('property_type')+ 
+                                            properties[i].get('property_type')+
                                             '</p>'+
                                             ' <!-- <p class="map_p_cost">'+
                                             '    INR 2.2 CR +'+
@@ -307,11 +353,11 @@
                                     '</div>'
 
 
-   
+
 
 
                       infowindow.setContent(popup_content);
-                      infowindow.open(map, marker); 
+                      infowindow.open(map, marker);
 
                         if(jQuery(".draggable").length>0){
                                 console.log('draggable')
@@ -330,10 +376,10 @@
                         else{
                             console.log('no dragables')
                         }
- 
+
 
                     }
-                  })(marker, i)); 
+                  })(marker, i));
                 }
         }
         else{
@@ -355,9 +401,9 @@
                 console.log(getAppInstance().searchOptions)
 
                  var self =this;
-               
+
                                 var template = _.template(jQuery(self.template).html());
-                        
+
                                 jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions}));
 
                                 var projectlistView = new projectsListingsView();
@@ -368,7 +414,7 @@
 
             searchProperties: function(evt){
 
-             
+
 
 
                console.log('searchProperties') ;
@@ -392,26 +438,26 @@
                  if(prop_type!='')
                                    search_options['property_type'] =  prop_type;
 
-                
+
 
                 var res_collection = getAppInstance().residentialPropertyCollection  ;
-                
+
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
- 
-                /*var search_collections = res_collection.where({'property_status':prop_status, 
-                                        'property_city':prop_city, 
-                                        'property_locaity': prop_locality, 
+
+                /*var search_collections = res_collection.where({'property_status':prop_status,
+                                        'property_city':prop_city,
+                                        'property_locaity': prop_locality,
                                         'property_type':prop_type
                                           }) */
 
                 var search_collections = res_collection.models;
-                
+
                 if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
-                    var search_collections = res_collection.where(search_options ) 
+                    var search_collections = res_collection.where(search_options )
 
                 /* var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
-                                        
+
                                                 jQuery('#proj_list').html(projectListingsTemplate2({propertiesdata : search_collections}));
                 */
 
@@ -422,7 +468,7 @@
 
 
 
-            
+
 
                  //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
                     if( !_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true) {
@@ -436,7 +482,7 @@
                     jQuery('.top_map').removeClass('current')
 
                      var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
-                                                    
+
                  jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
 
 
@@ -471,8 +517,8 @@
         /*this.mainView.make_div_dropable2(".drag_area")
 
 
-   
-        
+
+
 
         if(jQuery(".draggable").length>0){
             console.log('draggable')
@@ -499,7 +545,7 @@
                 }
 
 
-            
+
 
 
             },
@@ -530,19 +576,19 @@ console.log('jQuery(evt.target).val()'+event_val)
             }
 
 
-            
 
 
 
 
-           
 
 
-            
- 
 
 
-            
+
+
+
+
+
 
 
         });
