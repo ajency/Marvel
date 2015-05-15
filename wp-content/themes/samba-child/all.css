@@ -544,6 +544,22 @@ h6 {
   margin: 90px;
   color: #DDD;
 }
+.mfp-bottom-bar {
+  display: none;
+}
+.poppup {
+  display: block;
+  height: 170px;
+  overflow: hidden;
+  padding: 0;
+  margin: 10px;
+  position: relative;
+  top: 0;
+  transition: all 0.5s;
+}
+/*.single-residential-property p {
+    text-align: justify;;
+}*/
 .btn_norm {
   border: 0;
   background-color: #666666;
@@ -1461,7 +1477,6 @@ h6 {
 }
 .sec_int {
   font-size: 15px;
-  width: 89%;
   margin: 0 auto;
 }
 .sec_int p {
