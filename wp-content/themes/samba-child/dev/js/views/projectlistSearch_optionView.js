@@ -234,6 +234,42 @@
 
                         */
 
+
+            circle = new google.maps.Circle({
+              map: map,
+              fillColor : '#BBD8E9',
+              fillOpacity : 0.3,
+              radius : 60000,
+              strokeColor : '#BBD8E9',
+              strokeOpacity : 0.9,
+              strokeWeight : 2,
+            });
+
+            // console.log(circle);
+
+            circle.bindTo('center', marker, 'position');
+
+
+            showHideCircle(map, circle);
+
+
+            function showHideCircle(map, circle) {
+              google.maps.event.addListener(circle, 'mouseout', function() {
+                circle.setOptions({
+                  fillOpacity: 0,
+                  strokeOpacity: 0
+                });
+              });
+              google.maps.event.addListener(circle, 'mouseover', function() {
+                circle.setOptions({
+                  fillOpacity: 0.35,
+                  strokeOpacity: 0.3
+                });
+              });
+            }
+
+
+
                     var featured_img_thumbnail = properties[i].get('featured_image_thumbnail');
 
 
@@ -258,7 +294,7 @@
                                             '<div class="map_btm">'+
                                             '    <div class="pull-left">'+
                                             '       <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>'+
-                                            '      <!-- <span class="st_sharethis"  ></span> --> <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>'+
+                                            '      <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>'+
                                             '        <a href="#" class="btn_norm single_compare"></a>'+
                                             '    </div>'+
                                             '    <div class="pull-right">'+
@@ -271,9 +307,7 @@
                                     '</div>'
 
 
-
- 
-
+   
 
 
                       infowindow.setContent(popup_content);

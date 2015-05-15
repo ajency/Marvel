@@ -27,18 +27,20 @@ var property_city = _.isUndefined(propertyvl.property_city)? propertyvl.get('pro
 var property_locaity = _.isUndefined(propertyvl.property_locaity)? propertyvl.get('property_locaity'): propertyvl.property_locaity;
 var featured_image = _.isUndefined(propertyvl.featured_image)? propertyvl.get('featured_image'): propertyvl.featured_image;
 var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'): propertyvl.post_url;
+var property_type = _.isUndefined(propertyvl.property_type)? propertyvl.get('property_type'): propertyvl.property_type;
+
  
 var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
     %>
-<div class="single_p_w six columns" >
+<div class="single_p_w six columns property_span_<%=property_id%>" >
     <div class="single_p_img">
         <img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">
             <div class="single_p_hov_c">
-                <!--  <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>  -->
+                <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>  
                 <div class="clearfix"></div>
                 <div class="single_p_info">
-                    <h6>3.5, 4BHK Apartments, Duplexes and Penthouses </h6>
-                    <h6>INR 2.2 CR +</h6>
+                    <h6><%=property_type%> </h6>
+                    <h6><% /* INR 2.2 CR + */ %></h6>
                 </div> 
                 
                 <div class="single_btm">

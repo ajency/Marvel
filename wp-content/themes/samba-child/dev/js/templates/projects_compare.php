@@ -58,7 +58,7 @@ console.log('vl');
             <!--these are the Compare styles-->
             <div class="compare_c">
                 <div class="top-dd-c info_bar">                    
-                     <a href="javascript:void(0)" onclick="history.go(-1);"class="wpb_button back_btn"><i class="fa fa-angle-left"></i> Back to Residential</a> 
+                     <a href="javascript:void(0)" onclick="if(history.length<=1){ location.href='<%=SITEURL%>/residential-properties'} else {history.go(-1);}"class="wpb_button back_btn"><i class="fa fa-angle-left"></i> Back to Residential</a> 
 
 
                     <p>
