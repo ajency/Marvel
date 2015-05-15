@@ -75,6 +75,14 @@
           mainClass: 'my-mfp-zoom-in'
         });
 
+        //set min-height for project listings
+        if($('div').hasClass('proj_list')) {
+            $('#projects_listings').css({
+                'min-height': $(window).height() - $('#projects_listings').position().top - 70,
+                'position': 'relative'
+            });
+        }
+
     });
 
 
