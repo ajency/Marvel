@@ -7,24 +7,37 @@
             template :'#projectlistSearchOptionsTemplate',
 
             events : {
-                'click .btn_norm'	: 'searchProperties',
-                //'click .top_map'    : 'display_map',
-                'click .top_list'    : 'searchProperties',
-                'change .srchopt'   :  'searchProperties',
-                'change #dd_city'   :  'load_locality_options'
+                'click .btn_norm'   : 'searchProperties',
+                //'click .top_map'  : 'display_map',
+                'click .top_list'   : 'searchProperties',
+                'change .srchopt'   : 'searchPropertiesRoute',
+                'change #dd_city'   : 'load_locality_options',
+                'click .top_map'    : 'searchPropertiesRoute',
+                'click .top_list'   : 'searchPropertiesRoute'
 
 
             },
 
             initialize : function(args) {
+
+               var self = this;
+
                 _.bindAll(this ,'render','searchProperties','display_map');
                /*  _.bindAll(this ,'renderForm'); */
 
+               console.log('SEARCH OPTIONS:-----')
+               console.log(args);  
 
 
+                if(!_.isUndefined(args)){
 
+                  this.selectedStatus   = args.pstatus;
+                  this.selectedCity     = args.city;
+                  this.selectedLocality = args.locality;
+                  this.selectedType     = args.propertytype;
 
-                var self = this;
+                }
+ 
 
                 if(_.isUndefined(getAppInstance().searchOptions)){
                     jQuery.ajax(AJAXURL,{
@@ -53,26 +66,32 @@
 
 
 
-
-
-
-
-
-
-
-
-
             },
 
 
 
-    load_display_properties :function function_name (argument) {
 
-                    var self = this;
+
+
+
+            load_display_properties :function function_name (argument) {
+
+                        var self = this; 
+
+                         var seldata = { 'selectedCity'  : this.selectedCity,
+                                      'selectedLocality' : this.selectedLocality,
+                                      'selectedType'     : this.selectedType,
+                                      'selectedStatus'   : this.selectedStatus
+                                    }
+
 
                         if(jQuery('#dd_status').length<=0){
                             var template = _.template(jQuery(self.template).html());
-                            jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions}));
+                            jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions, selected:seldata }));
+                        }
+                        else{
+
+
                         }
 
 
@@ -235,15 +254,15 @@
                         */
 
 
-            circle = new google.maps.Circle({
-              map: map,
-              fillColor : '#BBD8E9',
-              fillOpacity : 0.3,
-              radius : 60000,
-              strokeColor : '#BBD8E9',
-              strokeOpacity : 0.9,
-              strokeWeight : 2,
-            });
+              circle = new google.maps.Circle({
+                map: map,
+                fillColor : '#BBD8E9',
+                fillOpacity : 0.3,
+                radius : 60000,
+                strokeColor : '#BBD8E9',
+                strokeOpacity : 0.9,
+                strokeWeight : 2,
+              });
 
             // console.log(circle);
 
@@ -414,18 +433,21 @@
 
             searchProperties: function(evt){
 
+                var self = this ;
 
+              
+                var prop_city       = self.selectedCity;
+                var prop_locality   = self.selectedLocality;
+                var prop_type       = self.selectedType;
+                var prop_status     = self.selectedStatus;
 
+                var prop_status     = jQuery('#dd_status').val();
+                var prop_city       = jQuery('#dd_city').val();
+                var prop_locality   = jQuery('#dd_locality').val();
+                var prop_type       = jQuery('#dd_type').val();
 
-               console.log('searchProperties') ;
+                var search_options  = {};
 
-
-                var prop_status = jQuery('#dd_status').val();
-                var prop_city = jQuery('#dd_city').val();
-                var prop_locality = jQuery('#dd_locality').val();
-                var prop_type = jQuery('#dd_type').val();
-
-                var search_options = {};
                 if(prop_status!='')
                    search_options['property_status'] =  prop_status;
 
@@ -464,7 +486,7 @@
                 /*var template2 = _.template(jQuery('#spn_propertieslistings').html(), {propertiesdata : search_collections});
                 console.log(template2);
                 jQuery("#proj_list").html(template2);*/
-            jQuery('#projects_listings').attr('style','')
+                jQuery('#projects_listings').attr('style','')
 
 
 
@@ -572,6 +594,55 @@ console.log('jQuery(evt.target).val()'+event_val)
 
                                 }
                             })
+
+            },
+
+
+            searchPropertiesRoute:function(evt){
+
+              var self = this;
+
+              var search_opt = '';
+
+              var prop_status     = jQuery('#dd_status').val();
+                var prop_city       = jQuery('#dd_city').val();
+                var prop_locality   = jQuery('#dd_locality').val();
+                var prop_type       = jQuery('#dd_type').val();
+
+
+              if(!_.isUndefined(prop_status) && prop_status !='' )
+                search_opt = '/st/'+prop_status;
+
+              if(!_.isUndefined(prop_city) && prop_city !='' )
+                search_opt = '/ct/'+prop_city;
+
+              
+              if(!_.isUndefined(prop_locality) && prop_locality!='')
+                search_opt = search_opt+'/loc/'+prop_locality;
+              
+              if(!_.isUndefined(prop_type) && prop_type!='')
+                search_opt = search_opt+'/type/'+prop_type;
+
+              var evt_type =   typeof jQuery(evt.target).attr('href');
+
+              if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
+                
+                var RedirectUrl = SITEURL+'/residential-properties/#' ;
+
+              }
+              else if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){ 
+
+                var RedirectUrl = SITEURL+'/residential-properties/#map' ;
+
+              }
+
+
+
+              console.log('REDIRECT URL :  '+RedirectUrl+search_opt)
+              
+
+              location.assign(RedirectUrl+search_opt) ;
+
 
             }
 

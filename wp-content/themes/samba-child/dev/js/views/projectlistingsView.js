@@ -12,6 +12,9 @@
 
             initialize : function(args) {
                 _.bindAll(this ,'render');
+
+               console.log('PROJECTS LISTINGS  OPTIONS:-----')
+               console.log(args);  
                /*  _.bindAll(this ,'renderForm','renderError', 'saveProfileSuccess', 'saveProfileFailure','parsleyInitialize');
 
                 //ensure site model property is set

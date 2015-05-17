@@ -17,24 +17,49 @@
 				},
 
 				routes : {
-					''	 					: 'index',
-					'compare/:id/:sid'	    : 'compare_properties', 
-					'map' 					:'mapview' 
+					''	 													: 'index',
+
+					'compare/:id/:sid'	    								: 'compare_properties', 
+
+					'map(/)(st/:pstatus)(/)(ct/:city)(/)(loc/:locality)(/)(type/:proptype)' :'mapview' ,					 
+
+					'(/)(st/:pstatus)(/)(ct/:city)(/)(loc/:locality)(/)(type/:proptype)'	: "index" /* /#/ct/blore/loc/udmi/type/1BHK */
+
 				
 				},
 
-				index : function(){ 
+				index : function(pstatus,city,locality,proptype){ 
+
+				 
+					var options = [];
+
+					if(!_.isUndefined(pstatus))
+						options['pstatus'] = pstatus;
+
+					if(!_.isUndefined(city))
+						options['city'] = city;
+
+					if(!_.isUndefined(locality))
+						options['locality'] = locality;
+
+					if(!_.isUndefined(proptype))
+						options['type'] = proptype;
+
  
 
 					if(_.isUndefined(getAppInstance().mainView)  || jQuery('#proj_list_main').length<=0 ){ 
-						getAppInstance().mainView = new ProjectListMainView({mapview:false});
+
+						options['mapview'] =  false;
+						getAppInstance().mainView = new ProjectListMainView(options);
 					 
 					}
-					else
+					else{
+
 						getAppInstance().mainView.mapview =false; 
+					}
                     
 
-					var searchOptionView = new searchOptionsView()
+					var searchOptionView = new searchOptionsView(options)
 					
 
 				},
@@ -48,16 +73,37 @@
 						var propCompareView = new ProjectsCompareView({pid:id, psid:sid})
 				},
 
-				mapview : function(){
+				mapview : function(pstatus,city,locality,proptype){
 
+					var options = [];
+
+					if(!_.isUndefined(pstatus))
+						options['pstatus'] = pstatus;
+
+					if(!_.isUndefined(city))
+						options['city'] = city;
+
+					if(!_.isUndefined(locality))
+						options['locality'] = locality;
+
+					if(!_.isUndefined(proptype))
+						options['type'] = proptype;
+
+  
 					 
 					if(_.isUndefined(getAppInstance().mainView)  || jQuery('#proj_list_main').length<=0){
-							getAppInstance().mainView = new ProjectListMainView({mapview:true});							 
+
+							options['mapview'] =  true;
+							getAppInstance().mainView = new ProjectListMainView(options);							 
 					}
 					else
 						getAppInstance().mainView.mapview =true;
 
-					var searchOptionView = new searchOptionsView()
+
+					console.log('mapview ROUTER OPtioNS :- ')
+					console.log(options); 
+
+					var searchOptionView = new searchOptionsView(options)
 					
 
 				},
