@@ -428,15 +428,7 @@ function myplugin_add_custom_box() {
 	    							  'priority'			=> 'default'
 	    							);
 
-	    	 $custom_fields[] = array('field'				=> 'property-neighbourhood',
-	    							  'metabox_title'		=> 'Neighbourhood',
-	    							  'multiple_values' 	=> true,
-	    							  'element_type'		=> 'text',
-	    							  'option_value_prefix' => '',
-	    							  'option_value_postfix'=> ' Kms',
-	    							  'class'				=> 'allownumericwithdecimal',
-	    							  'priority'			=> 'default'
-	     							);
+	    	 
 
 	    	$custom_fields[] = array ( 'field'				 => 'property-price',
     							  	   'metabox_title'		 => 'Price',
@@ -475,6 +467,16 @@ function myplugin_add_custom_box() {
     								 );
 
 	    	}
+
+	    	$custom_fields[] = array('field'				=> 'property-neighbourhood',
+	    							  'metabox_title'		=> 'Neighbourhood',
+	    							  'multiple_values' 	=> true,
+	    							  'element_type'		=> 'text',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> ' Kms',
+	    							  'class'				=> 'allownumericwithdecimal',
+	    							  'priority'			=> 'default'
+	     							);
 
 
 
