@@ -961,10 +961,10 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 								    </div>
 							    	<div class="admin_input adm_small">
 		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >
-		    								<input type="checkbox" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span class="kms_handle">'.$element_postfix_label.'</span>';?>
+		    								<input type="checkbox" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span  >'.$element_postfix_label.'</span>';?>
 		    							</span>
 		    						</div> 
-						<?php
+						<?php		echo "</div>";	
 
 
 								}
@@ -977,7 +977,7 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 
 	}
 ?>
-</div>
+ 
 <?php
 
 	if( ($multiple_values==true && $element_type=='text') || ($element_type!='checkbox')  ||(($element_type!='text') && ($element_type!='custom_address_details_text') )) {
