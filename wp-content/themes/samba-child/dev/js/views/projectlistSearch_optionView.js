@@ -344,7 +344,7 @@
 
 
                       jQuery('#projects_listings').height(jQuery(window).height() - jQuery('#projects_listings').position().top - 40);
-                      jQuery('#projects_listings').first(div).css({'padding':'5px 50px 25px'});
+                     // jQuery('#projects_listings').first(div).css({'padding':'5px 50px 25px'});
 
                         if(jQuery(".draggable").length>0){
                                 console.log('draggable')

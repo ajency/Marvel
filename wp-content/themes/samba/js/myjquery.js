@@ -114,7 +114,8 @@ jQuery(document).ready(function($) {
     $('.edit_custom_postmeta_options').live('click',function(){
 
         
-        $(this).closest('.row').find('.edit_options_area').show(); 
+       //commented on 18may2015 6am $(this).closest('.row').find('.edit_options_area').show(); 
+        $(this).closest('.admin_input').find('.edit_options_area').show(); 
 
         $(this).html('Cancel Edit');
         $(this).addClass('cancel_edit_custom_postmeta_options');        
@@ -177,9 +178,13 @@ jQuery(document).ready(function($) {
 
                                             }
 
+                                            /* commented on 18may2015
+                                            $(self).closest('.row').find('.edit_options_area').html(html_field_options);
+                                            $(self).closest('.row').find('.edit_options_area').html(html_field_options);
+                                            */
 
-                                            $(self).closest('.row').find('.edit_options_area').html(html_field_options);
-                                            $(self).closest('.row').find('.edit_options_area').html(html_field_options);
+                                             $(self).closest('.admin_input').find('.edit_options_area').html(html_field_options);
+                                            $(self).closest('.admin_input').find('.edit_options_area').html(html_field_options);
 
                                            // $("#myother_field").html(data);
                                         }

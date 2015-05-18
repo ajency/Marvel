@@ -341,7 +341,7 @@ function add_custom_tax_property_amenities(){
 
 
         $labels = array(
-            'name'              => _x( 'Amenity', 'taxonomy general name' ),
+            'name'              => _x( 'Amenities', 'taxonomy general name' ),
             'singular_name'     => _x( 'Amenity', 'taxonomy singular name' ),
             'search_items'      => __( 'Search Amenity'  ),
             'all_items'         => __( 'All Amenities'  ),
@@ -351,7 +351,7 @@ function add_custom_tax_property_amenities(){
             'update_item'       => __( 'Update Amenity' ),
             'add_new_item'      => __( 'Add New Amenity' ),
             'new_item_name'     => __( 'New Amenity' ),
-            'menu_name'         => __( 'Amenity' ),
+            'menu_name'         => __( 'Amenities' ),
         );
 
         $args = array(
@@ -395,6 +395,9 @@ function myplugin_add_custom_box() {
 	    							  'class'				=>'',
 	    							  'priority'			=> 'default'
 	    							);
+
+
+
 	    	$custom_fields[] = array('field'				=> 'property-status',
 	    							  'metabox_title'		=> 'Status',
 	    							  'multiple_values' 	=> false,
@@ -425,7 +428,7 @@ function myplugin_add_custom_box() {
 	    							  'priority'			=> 'default'
 	    							);
 	    	
-	    	$custom_fields[] = array('field'				=> 'property-neighbourhood',
+	    	 $custom_fields[] = array('field'				=> 'property-neighbourhood',
 	    							  'metabox_title'		=> 'Neighbourhood',
 	    							  'multiple_values' 	=> true,
 	    							  'element_type'		=> 'text',
@@ -433,7 +436,7 @@ function myplugin_add_custom_box() {
 	    							  'option_value_postfix'=> ' Kms',
 	    							  'class'				=> 'allownumericwithdecimal',
 	    							  'priority'			=> 'default'
-	     							); 
+	     							);  
 	    	
 	    	$custom_fields[] = array ( 'field'				 => 'property-price',
     							  	   'metabox_title'		 => 'Price',
@@ -495,7 +498,7 @@ function myplugin_add_custom_box() {
 
 
 
-	    	$custom_field_address[] = array('field'            	=> 'property-address-details',
+	    	 $custom_field_address[] = array('field'            	=> 'property-address-details',
                                     'metabox_title'     	=> 'Property Address',
                                     'multiple_values'   	=> true,
                                     'element_type'	    	=> 'custom_address_details_text',
@@ -503,7 +506,10 @@ function myplugin_add_custom_box() {
 	    							'option_value_postfix' 	=> '',
 	    							'class'					=>'',
 	    							'priority'			=> 'default'	
-                                    );
+                                    ); 
+
+
+	    	
 
 
 	    	add_meta_box (
@@ -518,22 +524,24 @@ function myplugin_add_custom_box() {
                                             )
 					        );
 
-
-
-
 	    	add_meta_box (
 					            	$custom_field_address[0]['field'].'_box_id',             // Unique ID
 					            	$custom_field_address[0]['metabox_title'],               // Box title
 					            	'myplugin_inner_custom_box',   // Content callback
 					            	$screen ,                       // post type
 					            	'normal',
-					            	'low',
+					            	'default',
 					            	array( 'custom_field_type'=>$custom_field_address[0]['field'], 
 					            	   		'multiple_values'=>$custom_field_address[0]['multiple_values'],
                                             'element_type'=>$custom_field_address[0]['element_type'],
                                             'custom_field_args'=>$custom_field_address
                                             )
 					        );
+
+
+
+
+	    	
     	 
         
     }
@@ -712,17 +720,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     }
 
 
-    if( ($multiple_values==true && $element_type=='text') || (($element_type!='text') && ($element_type!='custom_address_details_text') )) {
-
-
-    ?>
     
-        <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="add_custom_postmeta_options">Add New Value</a> &nbsp;
-        <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="edit_custom_postmeta_options">Edit</a>
-        <div class="edit_options_area"></div>
-        <!-- <input type="button" field-type="property-type" name="add_type" class="add_custom_postmeta_options" value="Add Types" /> -->
-    <?php
-    }
     ?>
     </div>
 <?php
@@ -844,6 +842,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 	$element_postfix_label  = $element_custom_field_args['option_value_postfix'];
 	$element_class 			= $element_custom_field_args['class'];
 	$element_title 			= $element_custom_field_args['metabox_title'];
+	$custom_field_type		= $element_custom_field_args['field'];
 
 	echo '<div class="set_admin_input row"> ';
 	if($multiple_values==false)
@@ -937,6 +936,20 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 						 break;					
 			 				
 	}
+
+
+
+	if( ($multiple_values==true && $element_type=='text') || (($element_type!='text') && ($element_type!='custom_address_details_text') )) {
+
+
+    ?>
+    
+        <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="add_custom_postmeta_options">Add New Value</a> &nbsp;
+        <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="edit_custom_postmeta_options">Edit</a>
+        <div class="edit_options_area"></div>
+        <!-- <input type="button" field-type="property-type" name="add_type" class="add_custom_postmeta_options" value="Add Types" /> -->
+    <?php
+    }
 
 	echo '</div>
 		</div>';
