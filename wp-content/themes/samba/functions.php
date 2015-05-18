@@ -387,9 +387,9 @@ function myplugin_add_custom_box() {
     foreach ( $screens as $screen ) {
 
 	    	$custom_fields[] = array('field'				=> 'property-type',
-	    							  'metabox_title'		=> 'Property Type',
-	    							  'multiple_values' 	=> false,
-	    							  'element_type'		=> 'select',
+	    							  'metabox_title'		=> 'Property Typtruee',
+	    							  'multiple_values' 	=> true,
+	    							  'element_type'		=> 'checkbox',
 	    							  'option_value_prefix' => '',
 	    							  'option_value_postfix'=> '',
 	    							  'class'				=>'',
@@ -612,7 +612,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 							    }
 
 
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args);
+								 generate_custom_field_element($post, 'checkbox', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args);
 
     						    break;
 
@@ -944,12 +944,43 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 
 						 break;
 
+		case 'checkbox': $current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
+
+						 if($multiple_values==true) {
+
+						 	if($element_values!=false){
+								foreach($element_values as $type){
+
+									echo '<div class="admin_new_add">';
+									echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
+									?><div class="clearfix"></div>
+
+								<!-- <div class="admin_new_add"> -->
+									<div class="admin_label adm_small">
+							    		<label for=""><?php echo $type; ?></label>
+								    </div>
+							    	<div class="admin_input adm_small">
+		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >
+		    								<input type="checkbox" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span class="kms_handle">'.$element_postfix_label.'</span>';?>
+		    							</span>
+		    						</div> 
+						<?php
+
+
+								}
+							}		
+
+
+
+						 }
+						 						break;
+
 	}
 ?>
 </div>
 <?php
 
-	if( ($multiple_values==true && $element_type=='text') || (($element_type!='text') && ($element_type!='custom_address_details_text') )) {
+	if( ($multiple_values==true && $element_type=='text') || ($element_type!='checkbox')  ||(($element_type!='text') && ($element_type!='custom_address_details_text') )) {
 
 
     ?>
