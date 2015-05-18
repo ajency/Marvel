@@ -28,6 +28,7 @@ var property_locaity = _.isUndefined(propertyvl.property_locaity)? propertyvl.ge
 var featured_image = _.isUndefined(propertyvl.featured_image)? propertyvl.get('featured_image'): propertyvl.featured_image;
 var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'): propertyvl.post_url;
 var property_type = _.isUndefined(propertyvl.property_type)? propertyvl.get('property_type'): propertyvl.property_type;
+var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
 
  
 var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
@@ -40,13 +41,16 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                 <div class="clearfix"></div>
                 <div class="single_p_info">
                     <h6><%=property_type%> </h6>
-                    <h6><% /* INR 2.2 CR + */ %></h6>
+                    <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
                 </div> 
                 
                 <div class="single_btm">
                     <div class="pull-left">
                         <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
                         <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>
+                        
+                      <span class='st_email'  ></span>
+                        <span class='st_sharethis'  ></span>  
                     </div>
                     <div class="pull-right">
                         <a href="<%=property_url%>" class="btn_norm single_know" target="_blank" >Know More</a>
