@@ -74,6 +74,9 @@
     padding-right: 25px;
     position: relative;
 }
+.set_admin_input .admin_new_add_c .admin_new_add {
+    position: relative;
+}
 .set_admin_input .admin_new_add_c .adm_small {
     width: 100%;
     padding: 0;
@@ -105,9 +108,11 @@
 .set_admin_input .admin_input .admin_new_add_c span[attr-field-val=custom_property-price] input.custom_input_field {
     padding-left: 40px;
     width: 100%;
+    margin-bottom: 0;
 }
 .set_admin_input .admin_input .admin_new_add_c span[attr-field-val=custom_property-sellable_area] input.custom_input_field {
     width: 100%;
+    margin-bottom: 0;
 }
 .set_admin_input .admin_input {
     width: auto;

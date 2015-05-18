@@ -428,7 +428,7 @@ function myplugin_add_custom_box() {
 	    							  'priority'			=> 'default'
 	    							);
 
-	    	 
+
 
 	    	$custom_fields[] = array ( 'field'				 => 'property-price',
     							  	   'metabox_title'		 => 'Price',
@@ -903,10 +903,11 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 										}
 									 }
 //var_dump(array_search($type, $current_property_meta_value_arr));
+									 echo '<div class="admin_new_add">';
 									 echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 									?>
 
-								<div class="admin_new_add">
+								<!-- <div class="admin_new_add"> -->
 									<div class="admin_label adm_small">
 							    		<label for=""><?php echo $type; ?></label>
 								    </div>
@@ -928,7 +929,7 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 
                         }
                         else{
-
+                        	echo '<div class="admin_new_add">';
                         	echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 
                             ?>
@@ -936,7 +937,7 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
                             <span attr-field-val ="<?php echo $element_id; ?>" >  <input type="text" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  /> </span>
                         <?php
                         	echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
-
+                        	echo '</div>';
 
                         }
 
