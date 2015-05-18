@@ -12,31 +12,149 @@
     padding: 0; 0;
     clear: both;
 }
+.set_admin_input .span_additional_option {
+    float: none;
+    clear: both;
+    margin-left: 200px;
+    padding-top: 20px;
+}
+.set_admin_input .span_additional_option input {
+    padding: 5px;
+    margin: 0;
+}
+.set_admin_input .edit_options_area {
+    padding: 7px;
+}
+.set_admin_input .edit_options_area .delete_field_option {
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 26px;
+    height: 28px;
+    margin: 0;
+    padding: 4px 12px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    border-color: #880101;
+    background: #CB1616;
+    -webkit-box-shadow: inset 0 1px 0 #E71C1C,0 1px 0 rgba(0,0,0,.08);
+    box-shadow: inset 0 1px 0 #E71C1C,0 1px 0 rgba(0,0,0,.08);
+    vertical-align: baseline;
+}
+.set_admin_input .edit_options_area .delete_field_option:hover {
+    background: #BA0808;
+    border-color: #670000;
+    color: #fff;
+}
+.set_admin_input .edit_options_area .delete_field_option:focus {
+    background: #660202;
+    border-color: #BE1919;
+    -webkit-box-shadow: inset 0 1px 0 #240000,0 1px 0 rgba(0,0,0,.08);
+    box-shadow: inset 0 1px 0 #240000,0 1px 0 rgba(0,0,0,.08);
+}
+.set_admin_input .span_additional_option input.preview {
+    float: none;
+}
 .set_admin_input .admin_label {
     float: left;
     width: 200px;
     line-height: 22px;
 }
+.set_admin_input .admin_new_add_c {
+    float: left;
+    width: 320px;
+    padding-right: 25px;
+    position: relative;
+}
+.set_admin_input .admin_new_add_c .adm_small {
+    width: 100%;
+    padding: 0;
+    float: none;
+    position: relative;
+}
+.set_admin_input .admin_new_add_c .adm_small label {
+    vertical-align: top;
+    padding: 5px 10px;
+    display: block;
+    background: #FAFAFA;
+}
+.set_admin_input .admin_new_add_c .admin_input.adm_small input {
+    float: none;
+    width: 100%;
+    padding-right: 50px;
+}
+.set_admin_input .admin_new_add_c .kms_handle {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+}
+.set_admin_input .admin_input .admin_new_add_c .prefix_te {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+}
+.set_admin_input .admin_input .admin_new_add_c span[attr-field-val=custom_property-price] input.custom_input_field,
+.set_admin_input .admin_input .admin_new_add_c span[attr-field-val=custom_property-sellable_area] input.custom_input_field {
+    padding-left: 40px;
+    width: 100%;
+}
 .set_admin_input .admin_input {
     width: auto;
     float: left;
+    margin-right: 20px;
+}
+.set_admin_input .admin_input select {
+    width: 100%;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+.set_admin_input .add_custom_postmeta_options,
+.set_admin_input .edit_custom_postmeta_options,
+.set_admin_input .cancel_edit_custom_postmeta_options {
+    float: left;
+    padding: 5px 10px;
+}
+.set_admin_input .edit_custom_postmeta_options,
+.set_admin_input .cancel_edit_custom_postmeta_options {
+    background: #ECECEC;
+    margin-left: 15px;
 }
 .set_admin_input .admin_input input {
     width: 300px;
+    margin-top: 0;
+    margin-left: 0;
+    height: 32px;
+}
+.set_admin_input .admin_input.adm_small input {
+    width: 200px;
 }
 .marg_b_15 {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 }
 
 .row .set_admin_input {
     margin-top: 18px;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 
 }
+/*.row .set_admin_input.m-b-0 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}*/
 .row .set_admin_input .admin_field {
     float: left;
     width: 85%;
@@ -68,4 +186,9 @@
     border-color: #5b9dd9;
     -webkit-box-shadow: 0 0 2px rgba(30,140,190,.8);
     box-shadow: 0 0 2px rgba(30,140,190,.8);
+}
+
+
+.clearfix {
+    clear: both;
 }

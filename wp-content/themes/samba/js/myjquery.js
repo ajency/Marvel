@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {    
+jQuery(document).ready(function($) {
 
 
       //the wrapper
@@ -23,17 +23,17 @@ jQuery(document).ready(function($) {
 
         var attr_name = custom_element.attr('attr-name');
 
- 
+
 
         if(custom_element.length>0)
             var Html_input_type =  custom_element[0].type.toLowerCase() || custom_element[0].nodeName.toLowerCase();
         else
             var Html_input_type =  'checkbox';
-        
+
         var new_field_value = $(self).closest('.row').find('.additional_option').val();
 
         var field_type = $(this).closest('.row').find('.field_type').val();
-        
+
 
         if(field_type == 'property-locality'){
 
@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
 
         }
 
- 
+
 
         $.post(ajaxurl, {        //the server_url
             action: "save_custom_field_option",                 //the submit_data array
@@ -68,9 +68,9 @@ jQuery(document).ready(function($) {
                         case 'select-one'   :
                                                 custom_element.append("<option value='"+new_field_value+"'>"+new_field_value+"</option>")
                                                 $(self).closest('.row').find('.additional_option').val('');
-                                                break; 
-                        case 'text'         :   
-                                             
+                                                break;
+                        case 'text'         :
+
 
                                             var new_element_html = '<span attr-field-val ="'+new_field_value+'" > <br/> &nbsp; '+new_field_value+'  <input type="text" value="" attr-name="'+attr_name+'" attr-value="'+new_field_value+'"     name="'+attr_name+'['+new_field_value+']"   class="postbox custom_input_field"  /> </span>';
 
@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
             $(this).closest('.row').append(span_additional_input_option_box);
         }
 
-    })
+    }).addClass('preview button button-large');
 
 
     $('.cancel_additional_option').live("click",function(){
@@ -104,22 +104,22 @@ jQuery(document).ready(function($) {
         var self = this;
          $(self).html('Edit');
          $(self).removeClass('cancel_edit_custom_postmeta_options');
-         $(self).addClass('edit_custom_postmeta_options'); 
+         $(self).addClass('edit_custom_postmeta_options');
          $(self).closest('.row').find('.edit_options_area').hide();
-         
+
 
      })
 
 
     $('.edit_custom_postmeta_options').live('click',function(){
 
-        
-       //commented on 18may2015 6am $(this).closest('.row').find('.edit_options_area').show(); 
-        $(this).closest('.admin_input').find('.edit_options_area').show(); 
+
+       //commented on 18may2015 6am $(this).closest('.row').find('.edit_options_area').show();
+        $(this).closest('.admin_input').find('.edit_options_area').show();
 
         $(this).html('Cancel Edit');
-        $(this).addClass('cancel_edit_custom_postmeta_options');        
-        $(this).removeClass('edit_custom_postmeta_options');    
+        $(this).addClass('cancel_edit_custom_postmeta_options');
+        $(this).removeClass('edit_custom_postmeta_options');
 
         var field_type        = $(this).attr('field-type');
         var current_post_type = $('#current_post_type').val();
@@ -135,7 +135,7 @@ jQuery(document).ready(function($) {
                                         action: "get_custom_field_options",                 //the submit_data array
                                         data:my_data
                                     },
-                                    function(response_data) { 
+                                    function(response_data) {
 
                                     var data=[];                  //the callback_handler
                                         if (response_data) {
@@ -155,15 +155,15 @@ jQuery(document).ready(function($) {
                                             }
                                             else if(field_type == 'property-locality'){
 
-                                                
+
                                                 _.each(response_data,function(vl_res,ky_res){
 
                                                     if(ky_res==$('#custom_property-city').val()){
                                                         data  = vl_res ;
                                                     }
 
-                                                        
-                                                        
+
+
                                                 })
 
                                             }
@@ -189,7 +189,7 @@ jQuery(document).ready(function($) {
                                            // $("#myother_field").html(data);
                                         }
                                     });
-        })
+        }).addClass('preview button button-large');
 
         $('.delete_field_option').live("click",function(){
             /* Delete option value for field type */
@@ -198,15 +198,15 @@ jQuery(document).ready(function($) {
             var custom_element = $(self).closest('.row').find('.custom_input_field');
 
             var Html_input_type =  custom_element[0].type.toLowerCase() || custom_element[0].nodeName.toLowerCase();
-      
-            
+
+
             if($(this).attr('field-name')=='property-city' || $(this).attr('field-name') == 'property-locality'){
                 var my_data = { 'field_name'   : $(this).attr('field-name'),
                                 'field_value'  : $(this).attr('field-value'),
                                 'post_type'    : $('#current_post_type').val(),
                                 'property_city': $('#custom_property-city').val()
                              }
-                             
+
 
             }
             else{
@@ -216,7 +216,7 @@ jQuery(document).ready(function($) {
                                 'post_type'    : $('#current_post_type').val()
                               }
             }
-            
+
 
             $.post(ajaxurl,{   //the server_url
                     action: "delete_custom_field_option",                 //the submit_data array
@@ -232,11 +232,11 @@ jQuery(document).ready(function($) {
 
                         switch(Html_input_type){
                             case 'select-one':
-                            case 'select'    :  
+                            case 'select'    :
                                                 custom_element.find("[value='"+$(self).attr('field-value')+"']").remove();
                                                 break;
 
-                            case 'text'      :                            
+                            case 'text'      :
                                                 $('[attr-field-val="'+$(self).attr('field-value')+'"]').remove();
                                                 break;
 
@@ -244,9 +244,9 @@ jQuery(document).ready(function($) {
 
 
 
-                        
+
                     }
-                    
+
                 });
 
 
@@ -258,8 +258,8 @@ jQuery(document).ready(function($) {
             var addtional_option_box = '<div class="span_additional_option" > '+
             '<input type="text" name="additional_option" class="additional_option"  value=""/>'+
             '<input type="hidden"  class="field_type"  value="'+field_type+'"/>'+
-            ' &nbsp; <input type="button"  class="save_additional_option" value="Save Option" /> '+
-            ' &nbsp; <input type="button"  class="cancel_additional_option" value="Cancel Option" /> '+
+            ' &nbsp; <input type="button"  class="button button-primary button-large save_additional_option save_additional_option" value="Save Option" /> '+
+            ' &nbsp; <input type="button"  class="preview button button-large cancel_additional_option cancel_additional_option" value="Cancel Option" /> '+
             '<div class="edit_area"></div>'
             '</div>';
 
@@ -282,7 +282,7 @@ jQuery(document).ready(function($) {
 
             $.post(ajaxurl, {        //the server_url
                 action: "get_search_options",                 //the submit_data array
-                
+
             }, function(data) {                   //the callback_handler
                 if (data) {
 
@@ -305,7 +305,7 @@ jQuery(document).ready(function($) {
                     })
 
 
-                    
+
                 }
             });
 
@@ -320,7 +320,7 @@ jQuery(document).ready(function($) {
          * add class allownumericwithdecimal to input box for which only floating point numbers/integers should be allowed
          */
         function allow_float_input_values(){
- 
+
             jQuery(".allownumericwithdecimal").on("keypress keyup blur",function (event) {
                 //this.value = this.value.replace(/[^0-9\.]/g,'');
               /*  if (event.keyCode == 9 || event.keyCode == 8 ||   event.keyCode == 46 || (event.keyCode>=35 && event.keyCode <=40 ) ) {
@@ -343,10 +343,10 @@ jQuery(document).ready(function($) {
 
 
 
-                
+
 
             });
-            
+
         }
 
 
@@ -364,7 +364,7 @@ jQuery(document).ready(function($) {
 
             jQuery(".allownumericwithoutdecimal").on("keypress keyup blur",function (evt) {
 
-             
+
                 var charCode = (evt.which) ? evt.which : event.keyCode
                 if (charCode > 31 && (charCode < 48 || charCode > 57))
                     return false;
@@ -406,17 +406,17 @@ jQuery(document).ready(function($) {
 
 
 
-     
- 
-          
-         
+
+
+
+
         setTimeout(function(){
             /* After creating a new group call make_div_dropable()  and pass id of the new div group
             ex: make_div_dropable("child_group_1")
             */
             make_div_dropable(".drag_area")
-             
-            
+
+
             if(jQuery(".draggable").length>0){
                 console.log('draggable')
                 jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone"});
@@ -424,17 +424,17 @@ jQuery(document).ready(function($) {
             else{
                 console.log('no dragables')
             }
-    
+
         },200)
-          
-         
-        
-     
-    
-    
-    function make_div_dropable(dropable_el){     
-    
-    jQuery(dropable_el).droppable({ accept: ".draggable", 
+
+
+
+
+
+
+    function make_div_dropable(dropable_el){
+
+    jQuery(dropable_el).droppable({ accept: ".draggable",
            drop: function(event, ui) {
                     // $(ui.draggable).clone().appendTo($(this));
                     console.log("drop");
@@ -442,9 +442,9 @@ jQuery(document).ready(function($) {
                     var dropped = ui.draggable;
                     var droppedOn = jQuery(this);
                     jQuery(this).html('');
-                    jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn);     
-                    
-            }, 
+                    jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn);
+
+            },
             over: function(event, elem) {
                     jQuery(this).addClass("over");
                     console.log("over");
@@ -453,16 +453,16 @@ jQuery(document).ready(function($) {
                     jQuery(this).removeClass("over");
             }
       });
-    
+
     }
 
 
 
 
 
-     
-     
-    
+
+
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
 
 	if (!defined('__DIR__')) { define('__DIR__', dirname(__FILE__)); }
-	
+
 	include_once locate_template('/inc/activation.php');            // Activations functions
 	include_once locate_template('/inc/config.php');          // Configuration and constants
 	include_once locate_template('/inc/cleanup.php');         // Cleanup
@@ -11,7 +11,7 @@
 	include_once locate_template('/inc/custom.php');          // Custom functions
 	include_once locate_template('/inc/theme_options.php');  	// Admin functions
 	include_once locate_template('/inc/modules/sweet-custom-menu/sweet-custom-menu.php');  	// Shortcodes
-	  
+
 	//ADD METABOXES SUPPORT
 	include_once 'inc/modules/wpalchemy/metaboxes/setup.php';
 	//ADD METABOXES FOR SPECIAL ELEMENTS
@@ -31,7 +31,7 @@
 	include_once 'inc/modules/wpalchemy/metaboxes/contact-page-spec.php';
 
 	include_once 'inc/custom_tables.php';
-	
+
 	add_action('wp_enqueue_scripts', 'samba_scripts', 100);
 	add_action('admin_print_scripts', 'samba_admin_scripts');
 	add_action('after_setup_theme', 'samba_setup');
@@ -53,21 +53,21 @@
 	   $output = 'object'; // or objects
 	   $operator = 'and'; // 'and' or 'or'
 
-	   $taxonomies = get_taxonomies($args,$output,$operator); 
+	   $taxonomies = get_taxonomies($args,$output,$operator);
 
 	   if  ($taxonomies) {
 	     foreach ($taxonomies  as $taxonomy ) {
 	         add_action( $taxonomy->name.'_add_form', 'qtrans_modifyTermFormFor');
-	         add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');        
+	         add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');
 
 	     }
 	   }
 
 	}
 	add_action('admin_init', 'qtranslate_edit_taxonomies');
-	
+
 	//WOOCOMMERCE STUFF
-    if (PRK_WOO=="true") 
+    if (PRK_WOO=="true")
     {
     	add_theme_support( 'woocommerce' );
 		// Change number or products per row to 3
@@ -126,7 +126,7 @@
 			array(
 				'name'     				=> 'Samba Framework',
 				'slug'     				=> 'samba_framework',
-				'source'   				=> get_template_directory_uri() . '/external_plugins/samba_framework.zip', 
+				'source'   				=> get_template_directory_uri() . '/external_plugins/samba_framework.zip',
 				'required' 				=> true, // If false, the plugin is only 'recommended' instead of required
 				'version' 				=> '4.5', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 				'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
@@ -136,7 +136,7 @@
 			array(
 			    'name'                  => 'WPBakery Visual Composer',
 			    'slug'                  => 'js_composer',
-			    'source'                => get_template_directory_uri() . '/external_plugins/js_composer.zip', 
+			    'source'                => get_template_directory_uri() . '/external_plugins/js_composer.zip',
 			    'required'              => true, // If false, the plugin is only 'recommended' instead of required
 			    'version'               => '4.3.5', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			    'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
@@ -146,7 +146,7 @@
 			array(
 				'name'     				=> 'Envato toolkit - Useful to keep the theme updated',
 				'slug'     				=> 'envato-wordpress-toolkit',
-				'source'   				=> get_template_directory_uri() . '/external_plugins/envato-wordpress-toolkit.zip', 
+				'source'   				=> get_template_directory_uri() . '/external_plugins/envato-wordpress-toolkit.zip',
 				'required' 				=> false, // If false, the plugin is only 'recommended' instead of required
 				'version' 				=> '1.7.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 				'force_activation' 		=> false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
@@ -221,21 +221,21 @@
 
 
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Register a residential-property post type.
  *
@@ -427,7 +427,7 @@ function myplugin_add_custom_box() {
 	    							  'class'				=>'',
 	    							  'priority'			=> 'default'
 	    							);
-	    	
+
 	    	 $custom_fields[] = array('field'				=> 'property-neighbourhood',
 	    							  'metabox_title'		=> 'Neighbourhood',
 	    							  'multiple_values' 	=> true,
@@ -436,8 +436,8 @@ function myplugin_add_custom_box() {
 	    							  'option_value_postfix'=> ' Kms',
 	    							  'class'				=> 'allownumericwithdecimal',
 	    							  'priority'			=> 'default'
-	     							);  
-	    	
+	     							);
+
 	    	$custom_fields[] = array ( 'field'				 => 'property-price',
     							  	   'metabox_title'		 => 'Price',
     							  	   'multiple_values' 	 => false,
@@ -446,7 +446,7 @@ function myplugin_add_custom_box() {
     							  	   'option_value_postfix'=> '',
     							  	   'class'				 => '',
     							  	   'priority'			=> 'default'
-    								 );         
+    								 );
 
         if($screen=="residential-property") {
 
@@ -457,12 +457,12 @@ function myplugin_add_custom_box() {
 	    							   'option_value_prefix' => '',
 	    							   'option_value_postfix'=> '',
 	    							   'class'				 => '',
-	    							   'priority'			=> 'default' 
+	    							   'priority'			=> 'default'
 	    								 );
 
 
 
-    		
+
 
     		$custom_fields[] = array ( 'field'				 => 'property-sellable_area',
     							  	   'metabox_title'		 => 'Sellable Area',
@@ -477,8 +477,8 @@ function myplugin_add_custom_box() {
 	    	}
 
 
-	    	 
-	    	 
+
+
 	    	/*foreach($custom_fields as $custom_field){
 
 					add_meta_box (
@@ -488,7 +488,7 @@ function myplugin_add_custom_box() {
 					            	$screen ,                       // post type
 					            	'normal',
 					            	$custom_field['priority'],
-					            	array( 'custom_field_type'=>$custom_field['field'], 
+					            	array( 'custom_field_type'=>$custom_field['field'],
 					            	   		'multiple_values'=>$custom_field['multiple_values'],
                                             'element_type'=>$custom_field['element_type'],
                                             'custom_field_args'=>$custom_field
@@ -505,11 +505,11 @@ function myplugin_add_custom_box() {
                                     'option_value_prefix' 	=> '',
 	    							'option_value_postfix' 	=> '',
 	    							'class'					=>'',
-	    							'priority'			=> 'default'	
-                                    ); 
+	    							'priority'			=> 'default'
+                                    );
 
 
-	    	
+
 
 
 	    	add_meta_box (
@@ -519,7 +519,7 @@ function myplugin_add_custom_box() {
 					            	$screen ,                       // post type
 					            	'normal',
 					            	'default',
-					            	array(  
+					            	array(
                                             'custom_field_args'=>$custom_fields
                                             )
 					        );
@@ -531,7 +531,7 @@ function myplugin_add_custom_box() {
 					            	$screen ,                       // post type
 					            	'normal',
 					            	'default',
-					            	array( 'custom_field_type'=>$custom_field_address[0]['field'], 
+					            	array( 'custom_field_type'=>$custom_field_address[0]['field'],
 					            	   		'multiple_values'=>$custom_field_address[0]['multiple_values'],
                                             'element_type'=>$custom_field_address[0]['element_type'],
                                             'custom_field_args'=>$custom_field_address
@@ -541,9 +541,9 @@ function myplugin_add_custom_box() {
 
 
 
-	    	
-    	 
-        
+
+
+
     }
 }
 
@@ -563,7 +563,7 @@ function myplugin_inner_custom_box( $post , $metabox) {
 
     $element_custom_field_args = $metabox['args']['custom_field_args'];*/
 
-    wp_nonce_field(basename(__FILE__), "meta-box-nonce"); 
+    wp_nonce_field(basename(__FILE__), "meta-box-nonce");
 
 
 
@@ -574,7 +574,7 @@ $custom_fields = $metabox['args']['custom_field_args'];
 
 foreach($custom_fields as $custom_field_key => $custom_field_val)
 {
- 
+
 
     $custom_field_type = $custom_field_val['field'];
 
@@ -584,9 +584,9 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
     $element_custom_field_args = $custom_field_val;
 
-    
 
- 
+
+
 
 
 
@@ -607,19 +607,19 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 							    else{
 							        $property_types = maybe_unserialize(get_option('commercial-property-type'));
 							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-type", true);
-							    }							     						
-								
+							    }
+
 
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args);
-							    
+
     						    break;
 
     	case 'property-status'			:
     							$property_status = maybe_unserialize(get_option('property-status'));
     							$current_property_meta_value =    get_post_meta($post->ID, "property-status", true);
-							        
+
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_status, $current_property_meta_value, $element_custom_field_args);
-							    
+
     						    break;
 
     	case 'property-city'	:
@@ -628,50 +628,50 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
 								$property_city= array();
     							if($property_city_locality!=false){
-    								$property_city = array_keys($property_city_locality);	
+    								$property_city = array_keys($property_city_locality);
     							}
-    							
-    							 
-    								
-							        
+
+
+
+
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value, $element_custom_field_args);
-							    
-    						    break;	
-    		
+
+    						    break;
+
     	case 'property-locality'			:
-    							$property_city_locality = maybe_unserialize(get_option('property-citylocality'));    							
+    							$property_city_locality = maybe_unserialize(get_option('property-citylocality'));
 
     							$current_property_meta_value =    get_post_meta($post->ID, "property-locality", true);
 
     							$current_property_meta_city =    get_post_meta($post->ID, "property-city", true);
 
     							$property_locality = array();
-    							 
+
     							if($property_city_locality!==false){
 
     								foreach($property_city_locality as $property_city_locality_k => $property_city_locality_v ){
 	    								if($property_city_locality_k == $current_property_meta_city ){
 
 	    									$property_locality = $property_city_locality_v;
-	    								}    							 
-	
+	    								}
+
     								}
     							}
-    							
-    							 
-							        
+
+
+
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value, $element_custom_field_args);
-							    
+
     						    break;
 
     	case 'property-neighbourhood'			:
 
 
     							$property_neighbourhood = maybe_unserialize(get_option('property-neighbourhood'));
-							    $current_property_meta_value =    get_post_meta($post->ID, "property-neighbourhood", true) ;  
-								
+							    $current_property_meta_value =    get_post_meta($post->ID, "property-neighbourhood", true) ;
+
 								generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_neighbourhood, $current_property_meta_value, $element_custom_field_args);
-							    
+
 
 							    $property_field_options = maybe_unserialize(get_option($metabox['field']));
 
@@ -691,7 +691,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
                                 generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_price, $current_property_meta_value, $element_custom_field_args);
 
-                                break;                                
+                                break;
 
         case 'property-sellable_area':
                                 $property_sellable_area = array();
@@ -700,7 +700,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
                                 generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value, $element_custom_field_args);
 
                                 break;
-       
+
 
         case 'property-address-details':
 
@@ -720,7 +720,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     }
 
 
-    
+
     ?>
     </div>
 <?php
@@ -747,13 +747,13 @@ function get_custom_address_fields_by_id($id){
 function get_custom_address_elements_html($address_field_data){
 
     ?>
-    <div class="set_admin_input">
+    <div class="set_admin_input marg_b_15">
     		<div class="admin_field">
         		<input id="address" name="address" type="textbox" value="<?php if(isset($address_field_data[0]['address'])){ echo $address_field_data[0]['address']; } else { echo 'pune, India' ; } ?>">
         	</div>
-        	<div class="admin_button">        		
+        	<div class="admin_button">
         		<input type="button" value="Geocode" class="button button-primary button-large" onclick="codeAddress()">
-        	</div>	
+        	</div>
         </div>
     </div>
 
@@ -764,7 +764,7 @@ function get_custom_address_elements_html($address_field_data){
         <div class="admin_input">
     		<input id="custom-address_city" name="custom-address_city" type="textbox" value="<?php if(isset($address_field_data[0]['city'])){ echo $address_field_data[0]['city']; } ?>">
         </div>
-	</div> 
+	</div>
 
 	 <div class="set_admin_input">
     	<div class="admin_label">
@@ -773,7 +773,7 @@ function get_custom_address_elements_html($address_field_data){
         <div class="admin_input">
           <input id="custom-address_region" name="custom-address_region" type="textbox" value="<?php if(isset($address_field_data[0]['region'])){ echo $address_field_data[0]['region']; } ?>">
         </div>
-	</div> 
+	</div>
 
 
 
@@ -784,8 +784,8 @@ function get_custom_address_elements_html($address_field_data){
         <div class="admin_input">
     		<input id="custom-address_country" name="custom-address_country" type="textbox" value="<?php if(isset($address_field_data[0]['country'])){ echo $address_field_data[0]['country']; } ?>">
     	</div>
-	</div> 
-	
+	</div>
+
 
     <div class="set_admin_input marg_b_15">
     	<div class="admin_label">
@@ -794,7 +794,7 @@ function get_custom_address_elements_html($address_field_data){
         <div class="admin_input">
             <input id="custom-address_postcode" name="custom-address_postcode" type="textbox" value="<?php if(isset($address_field_data[0]['postcode'])){ echo $address_field_data[0]['postcode']; } ?>">
         </div>
-	</div> 
+	</div>
 
     <div class="set_admin_input">
     	<div class="admin_label">
@@ -816,21 +816,21 @@ function get_custom_address_elements_html($address_field_data){
 
     <div class="row">
     	<div class="col-md-12">
-    		   Lat :  
-    		   &nbsp; Long : 
-    		 
+    		   Lat :
+    		   &nbsp; Long :
+
     	</div>
-	</div> 		
+	</div>
 -->
 
 
-       
-      
-     	 
+
+
+
      		<div id="map_canvas" style="height:400px;: width:550px; top:30px; position:relative; display:block; margin-bottom: 10px;"></div>
-     	 
-     
-    
+
+
+
     <?php
 
 }
@@ -847,51 +847,52 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 	echo '<div class="set_admin_input row"> ';
 	if($multiple_values==false)
 		echo '	<div class="admin_label">
-		    		<label for="custom-address_city">'.$element_title.'</label>
+		    		<label for="">'.$element_title.'</label>
 			    </div>
 		    	<div class="admin_input">';
-	else	
+	else
 		echo '	<div class="admin_label">
-		    		<label for="custom-address_city">'.$element_title.'</label>
+		    		<label for="">'.$element_title.'</label>
 			    </div>
 		      ';
 
-
-
+?>
+<div class="admin_new_add_c">
+<?php
 	switch($element_type){
-		case 'select' : echo $element_prefix_label; ?> 
+		case 'select' : echo '<span class="prefix_te">'.$element_prefix_label.'</span>'; ?>
 						<select name="<?php echo $element_id; ?>" id="<?php echo $element_id; ?>" class="postbox custom_input_field <?php echo $element_class ; ?>"  <?php if($multiple_values==true) { echo ' multiple="multiple" ';  } ?> >
 							<option value="">Select</option>
 							<?php if($element_values!=false) {
-						
+
 										foreach($element_values as $type){ ?>
 											<option value="<?php echo $type; ?>" <?php if($current_property_meta_value==$type) echo " selected ";?>><?php echo ucfirst($type); ?></option>
-						
+
 							<?php 		}
-						
+
 									}
 							?>
 						</select>
 						<?php
-						echo $element_postfix_label;
+						echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
 						break;
-		 
+
 		case 'text' :
-  
+
 $current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
 //var_dump($current_property_meta_value_arr);
 
 						if($multiple_values==true) {
 
 							if($element_values!=false){
-								foreach($element_values as $type){ 
-									
+								foreach($element_values as $type){
+
 									 $new_current_val = '';
 									 if(is_array($current_property_meta_value_arr)){
 
 
 										 foreach($current_property_meta_value_arr as $cur_field_value_k=>$cur_field_value_v){
-											
+
 											//echo "<br/>type : ".$type." cur_field_value_k:".$cur_field_value_k;
 											if($type==$cur_field_value_k){
 												$new_current_val = $cur_field_value_v;
@@ -899,19 +900,23 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 											}
 										}
 									 }
-//var_dump(array_search($type, $current_property_meta_value_arr)); 
-									 echo $element_prefix_label; 
+//var_dump(array_search($type, $current_property_meta_value_arr));
+									 echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 									?>
-								 
-									<br/><div class="admin_label">
-							    		<label for="custom-address_city"><?php echo $type; ?></label>
+
+								<div class="admin_new_add">
+									<div class="admin_label adm_small">
+							    		<label for=""><?php echo $type; ?></label>
 								    </div>
-							    	<div class="admin_input">
-		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >  <br/> &nbsp;   <input type="text" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo $element_postfix_label;?></span>
-		    						</div>							
-						<?php	
+							    	<div class="admin_input adm_small">
+		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >
+		    								<input type="text" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span class="kms_handle">'.$element_postfix_label.'</span>';?>
+		    							</span>
+		    						</div>
+		    					</div>
+						<?php
 								}
-							
+
 							}
                             else {
                                 echo "No options values added yet";
@@ -922,28 +927,30 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
                         }
                         else{
 
-                        	echo $element_prefix_label;
+                        	echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 
                             ?>
-                            <span attr-field-val ="<?php echo $element_id; ?>" >  <br/><input type="text" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  /> </span>
+                            <div class="clearfix"></div>
+                            <span attr-field-val ="<?php echo $element_id; ?>" >  <input type="text" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  /> </span>
                         <?php
-                        	echo $element_postfix_label;
+                        	echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
 
 
                         }
 
 
-						 break;					
-			 				
+						 break;
+
 	}
-
-
+?>
+</div>
+<?php
 
 	if( ($multiple_values==true && $element_type=='text') || (($element_type!='text') && ($element_type!='custom_address_details_text') )) {
 
 
     ?>
-    
+
         <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="add_custom_postmeta_options">Add New Value</a> &nbsp;
         <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="edit_custom_postmeta_options">Edit</a>
         <div class="edit_options_area"></div>
@@ -982,7 +989,7 @@ function my_enqueue($hook) {
     	if($_REQUEST['action']=='edit'){
     		if(get_post_type( $_REQUEST['post']) == 'residential-property')
     			$load_map_script = true;
-    
+
     	}
     }
 
@@ -990,11 +997,11 @@ function my_enqueue($hook) {
        wp_localize_script( 'ajax-script', 'ajax_object', array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
     ));
-    
 
-    if ( $load_map_script == true ) {  
 
-    	//wp_enqueue_style('bootstrap-min', site_url() . '/wp-content/themes/samba/css/bootstrap.min.css', array(), null);     
+    if ( $load_map_script == true ) {
+
+    	//wp_enqueue_style('bootstrap-min', site_url() . '/wp-content/themes/samba/css/bootstrap.min.css', array(), null);
 
     	wp_enqueue_style('custom', site_url() . '/wp-content/themes/samba-child/custom.css', array(), null);
     	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
@@ -1004,13 +1011,13 @@ function my_enqueue($hook) {
         array('jquery'));
 
     }
-    
 
-    
 
-   
 
-    
+
+
+
+
 }
 add_action('admin_enqueue_scripts', 'my_enqueue');
 
@@ -1032,7 +1039,7 @@ function add_new_custom_field_option() {
     $custom_field_option_val    = $_REQUEST['data']['field_val'];
     $custom_field_option_name   = $_REQUEST['data']['field_type'];
     $post_type                  = $_REQUEST['data']['post_type'];
-    if(isset($_REQUEST['data']['property_city'])) 
+    if(isset($_REQUEST['data']['property_city']))
     	$post_city              = $_REQUEST['data']['property_city'];
 
 
@@ -1041,15 +1048,15 @@ function add_new_custom_field_option() {
     if($custom_field_option_name == "property-city" || $custom_field_option_name == "property-locality"){
 
 		$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-citylocality', 'post_type'=>$post_type   )) ;
- 
+
     }
     else{
 
-    	$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>$custom_field_option_name, 'post_type'=>$post_type   )) ;	
+    	$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>$custom_field_option_name, 'post_type'=>$post_type   )) ;
     }
 
 
- 
+
     $property_types                = $property_types_data['property_types'];
     $real_custom_field_option_name = $property_types_data['real_property_type_option_name'];
 
@@ -1084,7 +1091,7 @@ function add_new_custom_field_option() {
     $return_result = false ;
 
     if($add_new_value == true){
-       
+
         if($custom_field_option_name == "property-city"){
 
         	$property_types[$custom_field_option_val] = array();
@@ -1114,7 +1121,7 @@ function add_new_custom_field_option() {
         	 $return_result = update_option($real_custom_field_option_name,maybe_serialize($property_types));
         }
 
-        
+
     }
 
 
@@ -1147,9 +1154,9 @@ function get_properties_type_option_by_post_type($custom_field_option){
 
     $property_types_arr = $property_types===false? array(): $property_types;
 
-    $custom_fields_details = array( 'real_property_type_option_name' => $real_custom_field_option_name, 		
+    $custom_fields_details = array( 'real_property_type_option_name' => $real_custom_field_option_name,
     							    'property_types' 			     => $property_types_arr  )  ;
-    
+
     return  $custom_fields_details;
 
 }
@@ -1176,13 +1183,13 @@ add_action( 'wp_ajax_get_custom_field_options', 'get_custom_field_options' );
 
 function delete_custom_field_option() {
 
-     
+
 
     $custom_field_option_name   = $_REQUEST['data']['field_name'];
     $custom_field_option_value  = $_REQUEST['data']['field_value'];
     $post_type                  = $_REQUEST['data']['post_type'];
 
-    if(isset($_REQUEST['data']['property_city']))	
+    if(isset($_REQUEST['data']['property_city']))
     	$property_city = $_REQUEST['data']['property_city'];
 
 
@@ -1195,13 +1202,13 @@ function delete_custom_field_option() {
 
 		 $custom_fields = get_properties_type_option_by_post_type(array('post_type'  => $post_type,
                                'field_name' => 'property-citylocality'
-                               ));    	
+                               ));
     }
     else{
     	$custom_fields = get_properties_type_option_by_post_type($custom_field_data);
     }
 
-      
+
 
     $existing_fields_values =   $custom_fields['property_types'];
     $real_property_type_option_name =  $custom_fields['real_property_type_option_name'];
@@ -1239,7 +1246,7 @@ function delete_custom_field_option() {
 	        }
 
     	}
-    	else {    	 
+    	else {
 
 
 	        if($custom_field_option_value!=$f_v){
@@ -1282,20 +1289,20 @@ function save_custom_meta_box($post_id, $post, $update)
 
     if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
         return $post_id;
- 
+
     if(!current_user_can("edit_post", $post_id))
         return $post_id;
- 
+
     if(defined("DOING_AUTOSAVE") && DOING_AUTOSAVE)
         return $post_id;
- 
+
     /* $slug = "post";
     if($slug != $post->post_type)
         return $post_id;
 	*/
-	
+
 	if( ($post->post_type=="residential-property") || ($post->post_type=="commercial-property") ){
-	 
+
 		$sel_property_type = $_REQUEST["custom_property-type"];
 		$sel_property_city = $_REQUEST["custom_property-city"];
 		$sel_property_status = $_REQUEST["custom_property-status"];
@@ -1363,29 +1370,29 @@ function save_custom_meta_box($post_id, $post, $update)
 	}
 
 /*
- 
+
     $meta_box_text_value = "";
     $meta_box_dropdown_value = "";
     $meta_box_checkbox_value = "";
- 
+
     if(isset($_POST["meta-box-text"]))
     {
         $meta_box_text_value = $_POST["meta-box-text"];
-    }   
+    }
     update_post_meta($post_id, "meta-box-text", $meta_box_text_value);
- 
+
     if(isset($_POST["meta-box-dropdown"]))
     {
         $meta_box_dropdown_value = $_POST["meta-box-dropdown"];
-    }   
+    }
     update_post_meta($post_id, "meta-box-dropdown", $meta_box_dropdown_value);
- 
+
     if(isset($_POST["meta-box-checkbox"]))
     {
         $meta_box_checkbox_value = $_POST["meta-box-checkbox"];
-    }   
+    }
     update_post_meta($post_id, "meta-box-checkbox", $meta_box_checkbox_value); */
 }
- 
+
 add_action("save_post", "save_custom_meta_box", 10, 3);
 
