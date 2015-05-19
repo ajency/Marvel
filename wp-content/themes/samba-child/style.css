@@ -17,6 +17,12 @@ Template:       samba
 body {
 	font-size: 14px;
 }
+*{
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-shadow:none;
+	text-rendering: optimizeLegibility;
+}
 .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce #respond input#submit:hover, .woocommerce #content input.button:hover, .woocommerce-page a.button:hover, .woocommerce-page button.button:hover, .woocommerce-page input.button:hover, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce #respond input#submit, .woocommerce #content input.button, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button, .woocommerce-page #respond input#submit, .woocommerce-page #content input.button, .comments_slider .comment-link, .comments_slider .comment-author, .wpb_accordion .wpb_accordion_wrapper .wpb_accordion_header, .wpb_tabs_nav a, .theme_button, .theme_button_inverted, .theme_button input, .theme_button_inverted input, .prk_composer_title, .wpb_button, .wpb_heading, .wpb_wrapper h2, .header_font, .nav, #nav_footer, .sf-menu, .day, .month, .theme_tags, .homepage-header, .sidebar_bubble, .related_single_title, .widget-title, .masonr_title, .masonr_date, .entry_title_single, .search_rs_ttl, .headings_top, .post_meta_single .after_icon, .post_meta_single .bf_icon, .prevnext_single .after_icon, .prevnext_single .bf_icon, header_font, .pir_divider_cats, .shortcode-title, #single_post_teaser, #nav-main.resp_mode li > a, #single_portfolio_meta .single_heading, .type-post .prevnext_single, #pir_categories, h1, h2, h3, h4, h5, h6 {
     font-family: 'Cantarell' !important;
 }
@@ -135,6 +141,12 @@ pre {
   	font-size: 11px;
 	padding: 0px 14px;
 	border-right: 1px solid rgba(255,255,255,0.5);
+	opacity: 0.8;
+	transition: all 0.5s;
+}
+.child-footer .widget ul.menu li a:hover {
+	color: #fff !important;
+	opacity: 1;
 }
 .child-footer .widget ul.menu li:last-child a {
 	border-right: 0;
@@ -230,8 +242,11 @@ pre {
 	  box-shadow: 0 0 0 #000;
 	  border: 0;
   	  background-color: transparent;
-	  color: #ddd;
+	  color: #d1d1d1;
 	  text-shadow: 0 0 0 #000;
+}
+.social_img_wrp a:hover .prk_with_back.zocial.icon {
+	color: #fff;
 }
 .colored .social_img_wrp {
 	margin-bottom: 0;
@@ -262,17 +277,25 @@ pre {
   	border-left: 1px solid #999;
   	text-transform: uppercase;
   	text-align: center;
+  	opacity: 0.8;
+  	transition: all 0.5s;
+}
+.child-footer .widget-6 .WP_Editor_Widget a:hover {
+	opacity: 1;
+	color: #fff !important;
 }
 .child-footer .widget-6 .WP_Editor_Widget a:before {
 	content: '';
 	display: inline-block;
-	background: url(img/enqico.png) no-repeat;
+	background: url(img/enqico_h.png) no-repeat;
 	width: 19px;
 	height: 17px;
   	position: relative;
 	top: 2px;
   	margin-right: 15px;
+  	transition: all 0.5s;
 }
+.child-footer .widget-6 .WP_Editor_Widget a:hover {}
 
 #content-info {
 	margin-bottom: 40px;
@@ -450,10 +473,10 @@ pre {
     border-radius: 0;
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li:hover {
-	background-color: #f0f0f0 !important;
+	background-color: #ebebeb !important;
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li:active {
-    
+
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li:last-child {
 	border-right: 0;

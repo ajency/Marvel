@@ -47,7 +47,7 @@
         //scroll down indi prj page
         $('.go_d_see').click(function(e) {
             e.preventDefault();
-            $('html, body').animate({scrollTop: $hevp}, '65500', 'linear');
+            $('html, body').animate({scrollTop: $hevp}, '2000ms', 'easeInQuad');
         });
 
         //set the height

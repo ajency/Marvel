@@ -1,4 +1,4 @@
-                    <?php 
+                    <?php
                         global $prk_samba_frontend_options;
                         global $resp_class
                     ?>
@@ -14,13 +14,13 @@
         </div>
         <div class="child-footer">
             <!--widget area-->
-            <?php 
+            <?php
                     if ($prk_samba_frontend_options['bottom_sidebar']=="yes")
                     {
                         ?>
                           <div id="footer_in">
                               <?php
-                                  if (function_exists('dynamic_sidebar') && dynamic_sidebar('sidebar-footer')) : 
+                                  if (function_exists('dynamic_sidebar') && dynamic_sidebar('sidebar-footer')) :
                                   endif;
                               ?>
                               <div class="clearfix"></div>
@@ -47,6 +47,7 @@
         <!--googleon: all-->
         <?php echo $prk_samba_frontend_options['ganalytics_text']; ?>
         <?php wp_footer(); ?>
+        <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/slider.js"></script>
     </body>
 </html>

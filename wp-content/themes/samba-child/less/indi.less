@@ -194,15 +194,15 @@
                     transform: scale(1, 1);
                     opacity: 1;
                     visibility: visible;
-                    padding-bottom: 12px;
+                    padding-bottom: 10px;
                     transition: all 0.5s;
                 }
                 h3 {
                     display: block;
                     font-size: 16px;
                     font-weight: normal;
-                    margin-top: 0;
-                    margin-bottom: 2px;
+                    margin-top: 5px;
+                    margin-bottom: 10px;
                     text-shadow: 0 0 0 #fff;
                     transition: all 0.5s;
                 }
@@ -329,18 +329,22 @@
             }
             .icon {
                 background: none;
+                background-image: url(img/pdf_icon.png);
+                background-repeat: no-repeat;
+                background-position: center;
                 float: left;
                 margin-left: 0;
                 margin-right: 10px;
                 font-style: normal;
                 padding-top: 3px;
                 position: absolute;
-                top: 2px;
-                left: 5px;
+                top: -2px;
+                left: -1px;
                 text-indent: 0;
+                width: 28px;
+                height: 28px;
                 &:after {
-                    content: '\f1c1';
-                    font-family: 'FontAwesome';
+
                 }
             }
         }
@@ -466,9 +470,31 @@
             .frm_submit {
                 text-align: center;
                 padding-bottom: 15px;
-                input {text-transform: uppercase; font-family: 'Montserrat';}
+                input {text-transform: uppercase; .fontmont; font-weight: normal;}
+                input:disabled, input:disabled::hover {
+                    background: #ddd !important;
+                    border-color: #ccc !important;
+                    cursor: nodrop;
+                }
+                .frm_ajax_loading {
+                    margin-right: -20px;
+                    margin-left: 0;
+                    padding-left: 0;
+                }
+            }
+            .frm_style_formidable-style.with_frm_style .frm_message {
+                text-align: center;
+                p {
+                    margin-bottom: 0 !important;
+                }
             }
         }
+    }
+    .sec_int {
+        font-size: 14px;
+        //width: 89%;
+        margin: 0 auto;
+        .wpb_wrapper p {font-size: 14px;}
     }
 }
 .indi_pr.nri_fullrow {
@@ -480,14 +506,8 @@
     }
 }
 
-.sec_int {
-    font-size: 15px;
-    //width: 89%;
-    margin: 0 auto;
-    p {font-size: 15px;}
-}
 .add_padd {
-    p {text-align: justify;}
+    .wpb_wrapper p {text-align: justify; font-size: 13px;}
     .vc_col-sm-6:nth-child(1) > .wpb_wrapper {
         padding-left: 35px;
         padding-right: 25px;
