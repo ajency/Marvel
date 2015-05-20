@@ -53,26 +53,73 @@
         //set the height
         $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
 
-        $('.owl-wrapper').magnificPopup({
-          delegate: 'a',
-          type: 'image',
-          tLoading: 'Loading image #%curr%...',
-          mainClass: 'mfp-img-mobile',
-          gallery: {
-            enabled: true,
-            navigateByImgClick: true,
-            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-          },
-          image: {
-            tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-            titleSrc: function(item) {
-              return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
-            }
-          },
+        $('.gallery').each(function() {
+            $(this).owlCarousel({
+                loop:true,
+                items: 3,
+                autoHeight: 160,
+                autoPlay: false,
+                pagination: false,
+                navigation: true,
+                itemsCustom : false,
+                itemsDesktop : [1199, 3],
+                itemsDesktopSmall : [979, 2],
+                itemsTablet : [767, 2],
+                itemsTabletSmall : [680, 2],
+                itemsMobile : [479, 1],
+                singleItem : false,
+                scrollPerPage: true,
 
-          midClick: true,
-          removalDelay: 300,
-          mainClass: 'my-mfp-zoom-in'
+                responsiveClass:true/*,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1217:{
+                        items:3
+                    }
+                }*/
+            });
+            //$(this).find('.owl-item').find('br').parent().removeClass('owl-item').remove();
+            $(this).find('.owl-item').each(function() {
+                $title = $(this).find('img').attr('alt');
+                $(this).find('.gallery-icon').append(
+                    '<p class="img-title">' + $title + '</p>'
+                    );
+            });
+        });
+        if ($('div').hasClass('gallery')) {
+            $('.gallery .owl-item .item a').addClass('poppup'); //was image-popup-no-margins
+            $('.gallery .owl-controls .owl-buttons .owl-prev').html('<i class="fa fa-chevron-left"></i>');
+            $('.gallery .owl-controls .owl-buttons .owl-next').html('<i class="fa fa-chevron-right"></i>');
+        }
+
+
+        $('.owl-wrapper').each(function() {
+            $(this).magnificPopup({
+              delegate: 'a',
+              type: 'image',
+              tLoading: 'Loading image #%curr%...',
+              mainClass: 'mfp-img-mobile',
+              gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+              },
+              image: {
+                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                titleSrc: function(item) {
+                  return item.el.attr('title') + '<small>Marvel</small>';
+                }
+              },
+
+              midClick: true,
+              removalDelay: 300,
+              mainClass: 'my-mfp-zoom-in'
+            });
         });
 
         //set min-height for project listings

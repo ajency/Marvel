@@ -83,6 +83,9 @@ h6 {
   text-transform: uppercase;
   font-weight: normal;
 }
+#gallery-1 .gallery-item {
+  width: 100% !important;
+}
 .service .wpb_column.vc_column_container {
   margin-bottom: 0;
 }
@@ -572,6 +575,31 @@ h6 {
 }
 .poppup:hover {
   opacity: 0.8;
+}
+.gallery.owl-carousel .poppup {
+  margin: 3px;
+}
+.gallery.owl-carousel p.img-title {
+  margin-bottom: 5px;
+  margin-top: 15px;
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+  color: #666;
+}
+.gallery.owl-carousel .owl-controls .owl-buttons {
+  top: 5px;
+}
+.gallery.owl-carousel .owl-controls .owl-buttons .owl-prev,
+.gallery.owl-carousel .owl-controls .owl-buttons .owl-next {
+  top: 7px;
+  height: 166px;
+  line-height: 158px;
+}
+.gallery.owl-carousel .owl-controls .owl-buttons .owl-prev {
+  left: 2px;
+}
+.gallery.owl-carousel .owl-controls .owl-buttons .owl-next {
+  right: 2px;
 }
 #projects_listings {
   min-height: 500px;
@@ -1463,7 +1491,7 @@ h6 {
   margin-top: 20px;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .owl-carousel .owl-controls {
-  top: 35%;
+  top: 0;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .owl-carousel a.image-popup-no-margins {
   display: block;
@@ -1562,8 +1590,19 @@ h6 {
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .formid_row .le_form_t .frm_style_formidable-style.with_frm_style .frm_message p {
   margin-bottom: 0 !important;
 }
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .formid_row .le_form_t .frm_style_formidable-style.with_frm_style .frm_form_field select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url(img/dd_arr.png) !important;
+  background-position-x: 99%;
+  background-position-y: center;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+}
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .sec_int {
   font-size: 14px;
+  width: 89%;
   margin: 0 auto;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .sec_int .wpb_wrapper p {

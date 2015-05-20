@@ -3,13 +3,13 @@
 Template Name: Page - Fullscreen Slider
 */
 ?>
-<?php 
+<?php
   if (is_front_page()) {
-    get_header('home'); 
+    get_header('home');
   } else {
-    get_header(); 
+    get_header();
   }
-  
+
   $data = get_post_meta( $post->ID, '_custom_meta_theme_page', true );
   $show_slider=true;
     if (isset($data['alchemy_autoplay']) && $data['alchemy_autoplay']!="")
@@ -32,7 +32,7 @@ Template Name: Page - Fullscreen Slider
     {
       //ADD THE CATEGORIES TO THE FILTER
       if ($in_flag==true)
-      { 
+      {
         $inside_filter.=$childs.", ";
       }
       if ($childs=='weirdostf')
@@ -54,18 +54,45 @@ Template Name: Page - Fullscreen Slider
             <div id="full_slider_page_content" class="prk_no_composer show_later">
               <?php
                 while (have_posts()) : the_post();
-                  the_content();   
-                endwhile; 
+                  the_content();
+                endwhile;
               ?>
            <div class="clearfix"></div>
             </div>
+
+            <div class="home_search">
+              <div class="hme_dd wc">
+                <select id="home_city">
+                  <option value="Pune">Pune</option>
+                  <option value="Bangalore">Bangalore</option>
+                </select>
+              </div>
+              <div class="hme_dd lo">
+                <select id="home_location">
+                  <option value="Locality">Locality</option>
+                  <option value="Locality">Locality</option>
+                </select>
+              </div>
+              <div class="hme_dd ty">
+                <select id="home_type">
+                  <option value="Type">Type</option>
+                  <option value="3_BHK">3 BHK</option>
+                </select>
+              </div>
+              <div class="hme_dd lo">
+                <button class="home_btn_sea" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+
         </div>
     </div>
 </div>
 </div>
 <?php
   if (is_front_page()) {
-    get_footer('home'); 
+    get_footer('home');
   } else {
     get_footer();
   }

@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
         font-weight: normal;
     }
 }
-
+#gallery-1 .gallery-item {width: 100% !important;}
 //services page
 .service {
     .wpb_column.vc_column_container {margin-bottom: 0;}
@@ -538,6 +538,31 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.5s;
     &:hover {
         opacity: 0.8;
+    }
+}
+
+.gallery.owl-carousel {
+    .poppup {
+        margin: 3px;
+    }
+    p.img-title {
+        margin-bottom: 5px;
+        margin-top: 15px;
+        font-weight: normal;
+        .fontopen;
+        color: #666;
+    }
+    .owl-controls {
+        .owl-buttons {
+            top: 5px;
+            .owl-prev, .owl-next {
+                top: 7px;
+                height: 166px;
+                line-height: 158px;
+            }
+            .owl-prev {left: 2px;}
+            .owl-next {right: 2px;}
+        }
     }
 }
 
