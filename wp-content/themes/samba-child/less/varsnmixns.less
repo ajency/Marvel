@@ -1,6 +1,13 @@
 @grey-bg: #EBEBEB;
 @grey-t-o-b: #d1d1d1;
-.fontmont() {font-family: 'Cantarell', sans-serif;}
+.fontmont() {
+    font-family: 'Cantarell', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow:none;
+    text-rendering: optimizeLegibility;
+}
 .fontopen() {font-family: 'Open Sans', sans-serif;}
 .pull-left {float: left;}
 .pull-right {float: right;}
