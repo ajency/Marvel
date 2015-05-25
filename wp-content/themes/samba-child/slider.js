@@ -1,6 +1,14 @@
 (function($) {
     //all child js
     $(document).ready(function() {
+        //remove this line later
+        $('#prk_ajax_container .tabular.inner .tab_col').click(function() {
+            if (!($(this).hasClass('blue_bg'))) {
+                $(this).toggleClass('opened');
+            }
+        });
+
+
         $('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
             $(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
         });

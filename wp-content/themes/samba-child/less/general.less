@@ -574,3 +574,47 @@ h1, h2, h3, h4, h5, h6 {
 /*.single-residential-property p {
     text-align: justify;;
 }*/
+
+.mfp-container {
+    &:before {
+        content: '×' !important; //was \f00d
+        font-family: Arial, 'FontAwesome';
+        font-size: 30px;
+        color: #fff;
+        opacity: 0.6;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+    }
+    &:hover:before {
+        opacity: 1;
+    }
+}
+.mfp-wrap .mfp-close {display: none;}
+.mfp-container button.mfp-arrow {
+    border: 0;
+    opacity: 1;
+    // width: 19px;
+    // height: 36px;
+    &:before, &:after {display: none;}
+    &.mfp-arrow-left {
+        background-image: url(img/NavArrowLeft_1.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        &:hover {
+            background-image: url(img/NavArrowLeft_2.png);
+        }
+    }
+    &.mfp-arrow-right {
+        background-image: url(img/NavArrowRight_1.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        &:hover {
+            background-image: url(img/NavArrowRight_2.png);
+        }
+    }
+}
