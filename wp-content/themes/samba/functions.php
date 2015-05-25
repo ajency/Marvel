@@ -956,19 +956,19 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 									?><div class="clearfix"></div>
 
 								<!-- <div class="admin_new_add"> -->
-									<div class="admin_label adm_small">
-							    		<label for=""><?php echo $type; ?></label>
-								    </div>
-							    	<div class="admin_input adm_small">
+							    	<div class="admin_input adm_small" style="margin-bottom: 5px;">
 		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >
 		    								<input type="checkbox" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span  >'.$element_postfix_label.'</span>';?>
 		    							</span>
-		    						</div> 
-						<?php		echo "</div>";	
+		    						<!-- </div>
+									<div class="admin_label adm_small"> -->
+							    		<label class="inline" for=""><?php echo $type; ?></label>
+								    </div>
+						<?php		echo "</div>";
 
 
 								}
-							}		
+							}
 
 
 
@@ -977,7 +977,7 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 
 	}
 ?>
- 
+
 <?php
 
 	if( ($multiple_values==true && $element_type=='text') || ($element_type!='checkbox')  ||(($element_type!='text') && ($element_type!='custom_address_details_text') )) {

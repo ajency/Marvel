@@ -43,12 +43,17 @@
 
         //top move down for individual projects page
         $hevp = window.innerHeight ? window.innerHeight : $(window).height();
-        $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+        if (!($('.indi_prj_page').hasClass('floorplans'))) {
+            $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+        }
+
         $('#full_fi_c').css('height', $hevp);
         //$('#centered_block').css('minHeight', $hevp);
         $(window).resize(function() {
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
-            $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+            if (!($('.indi_prj_page').hasClass('floorplans'))) {
+                $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+            }
             $('#full_fi_c').css('height', $hevp);
         });
 

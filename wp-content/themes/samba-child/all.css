@@ -1232,7 +1232,6 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block {
   background: #fff;
-  margin-top: 677px;
   padding-top: 25px;
 }
 @media screen and (max-width: 767px) {
@@ -1320,6 +1319,9 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .archi_si {
   margin-top: 45px;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .archi_si h5 {
+  margin-top: 0;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .la_g .wpb_wrapper {
   width: 85%;
@@ -1995,6 +1997,9 @@ h6 {
 .blue_bg {
   background: #daeaec;
   color: #666666;
+}
+.avatab {
+  display: none;
 }
 .compare .bd_headings_text_shadow {
   display: none;

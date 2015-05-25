@@ -18,7 +18,7 @@
     margin-left: 200px;
     padding-top: 20px;
 }
-.set_admin_input .span_additional_option input {
+.set_admin_input .span_additional_option input[type=text] {
     padding: 5px;
     margin: 0;
 }
@@ -89,7 +89,12 @@
     display: block;
     background: #FAFAFA;
 }
-.set_admin_input .admin_new_add_c .admin_input.adm_small input {
+.set_admin_input .admin_new_add_c .adm_small label.inline {
+    display: inline-block;
+    background-color: #fff;
+    padding: 0;
+}
+.set_admin_input .admin_new_add_c .admin_input.adm_small input[type=text] {
     float: none;
     width: 100%;
     padding-right: 50px;
@@ -136,13 +141,13 @@
     background: #ECECEC;
     margin-left: 15px;
 }
-.set_admin_input .admin_input input {
+.set_admin_input .admin_input input[type=text] {
     width: 300px;
     margin-top: 0;
     margin-left: 0;
     height: 32px;
 }
-.set_admin_input .admin_input.adm_small input {
+.set_admin_input .admin_input.adm_small input[type=text] {
     width: 200px;
 }
 .marg_b_15 {
@@ -166,14 +171,14 @@
     float: left;
     width: 85%;
 }
-.row .set_admin_input .admin_field input {
+.row .set_admin_input .admin_field input[type=text] {
     width: 100%;
     line-height: 20px;
     margin-top: 0px;
 }
 
-.row .set_admin_input .admin_field input,
-.set_admin_input .admin_input input,
+.row .set_admin_input .admin_field input[type=text],
+.set_admin_input .admin_input input[type=text],
 .postbox input.custom_input_field {
     padding: 3px 5px;
     background: #fff;
@@ -187,8 +192,8 @@
     -webkit-transition: .05s border-color ease-in-out;
     transition: .05s border-color ease-in-out;
 }
-.row .set_admin_input .admin_field input:focus,
-.set_admin_input .admin_input input:focus,
+.row .set_admin_input .admin_field input[type=text]:focus,
+.set_admin_input .admin_input input[type=text]:focus,
 .postbox input.custom_input_field:focus {
     border-color: #5b9dd9;
     -webkit-box-shadow: 0 0 2px rgba(30,140,190,.8);
