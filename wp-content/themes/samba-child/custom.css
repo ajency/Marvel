@@ -171,7 +171,7 @@
     float: left;
     width: 85%;
 }
-.row .set_admin_input .admin_field input[type=text] {
+.row .set_admin_input .admin_field input[type=text], .row .set_admin_input .admin_field input[type=textbox] {
     width: 100%;
     line-height: 20px;
     margin-top: 0px;

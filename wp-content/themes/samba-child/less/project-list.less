@@ -230,6 +230,7 @@
                         }
                     }
                     .compare_mob {
+                        display: none;
                         position: absolute;
                         right: 10px;
                         top: 10px;
@@ -242,6 +243,9 @@
                         padding: 7px 12px;
                         padding-left: 30px;
                         text-transform: uppercase;
+                        @media screen and (max-width: 767px) {
+                            display: block;
+                        }
                     }
                 }
                 .single_p_hov_c {

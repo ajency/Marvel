@@ -433,6 +433,7 @@ pre {
     .child-footer .widget-5 {display: table-header-group;}
     #footer_in .widget.pirenko-social-widget {
         margin-bottom: 10px;
+        width: 100%;
     }
     .widget_nav_menu:after {
         content: '';

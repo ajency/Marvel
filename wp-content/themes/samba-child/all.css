@@ -998,6 +998,7 @@ h6 {
   }
 }
 .proj_list .project-list .single_p_w .single_p_img .compare .compare_mob {
+  display: none;
   position: absolute;
   right: 10px;
   top: 10px;
@@ -1010,6 +1011,11 @@ h6 {
   padding: 7px 12px;
   padding-left: 30px;
   text-transform: uppercase;
+}
+@media screen and (max-width: 767px) {
+  .proj_list .project-list .single_p_w .single_p_img .compare .compare_mob {
+    display: block;
+  }
 }
 .proj_list .project-list .single_p_w .single_p_img .single_p_hov_c {
   opacity: 0;
