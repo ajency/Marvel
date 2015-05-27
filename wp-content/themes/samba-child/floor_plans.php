@@ -76,16 +76,16 @@ $show_sidebar=false;
                         <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix">
                             <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix">
                                 <li><a href="#tab-siteplan" class="standout">Siteplan</a></li>
-                                <li><a href="#tab-3bhk">3 BHK</a></li>
-                                <li><a href="#tab-3_5bhk">3.5 BHK</a></li>
+                                <li><a href="#tab-3bhk">4.5 BHK</a></li>
+                                <!-- <li><a href="#tab-3_5bhk">3.5 BHK</a></li> -->
                             </ul>
 
                             <div id="tab-siteplan" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Siteplan of Project Name
-                                            <a class="wpb_button_a download_prj" title="Download" href="#">
+                                            Siteplan of Aeries
+                                            <a class="wpb_button_a download_prj" title="Download" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Site-Plan.jpg" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
                                         </p>
@@ -94,8 +94,8 @@ $show_sidebar=false;
                                 <div class="clearfix"></div>
                                 <div class="wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
                                     <div class="wpb_wrapper">
-                                        <a href="http://marvel.ajency.in/wp-content/uploads/2015/04/layout.png" target="_self">
-                                            <img width="700" height="561" src="http://marvel.ajency.in/wp-content/uploads/2015/04/layout.png" class=" vc_box_border_grey attachment-full" alt="layout" />
+                                        <a class="image-popup-no-margins boxed_shadow" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Site-Plan.jpg" target="_self">
+                                            <img width="700" height="561" src="http://marvel.ajency.in/wp-content/uploads/2015/05/Site-Plan.jpg" class=" vc_box_border_grey attachment-full" alt="layout" />
                                         </a>
                                     </div>
                                 </div>
@@ -107,25 +107,25 @@ $show_sidebar=false;
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
                                             Typical floor plan of a 3 BHK &#8211; 3700 sq. ft to 5000 sq. ft.
-                                            <a class="wpb_button_a download_prj" title="Download" href="#">
+                                            <a class="wpb_button_a download_prj" title="Download" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
                                         </p>
                                         <p class="btncol">
-                                            <a class="wpb_button_a" title="2D Layout" href="#"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog white">2D Layout</span></a>
-                                            <a class="wpb_button_a" title="Availability" href="#"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog">Availability</span></a>
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_1"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_1"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog">Availability</span></a>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div id="layout_tab1" class="wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
+                                <div id="lay_1" class="inner-panels wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center current">
                                     <div class="wpb_wrapper">
-                                        <a href="http://marvel.ajency.in/wp-content/uploads/2015/04/layout.png" target="_self">
-                                            <img width="700" height="561" src="http://marvel.ajency.in/wp-content/uploads/2015/04/layout.png" class=" vc_box_border_grey attachment-full" alt="layout" />
+                                        <a class="image-popup-no-margins boxed_shadow" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg" target="_self">
+                                            <img width="700" height="561" src="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg" alt="layout" />
                                         </a>
                                     </div>
                                 </div>
-                                <div id="availability_tab1" class="avatab wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
+                                <div id="ava_1" class="inner-panels avatab wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
                                     <div class="wpb_wrapper">
                                         <!-- <p>Availability content goes here</p> -->
                                         <div class="top_head">
@@ -352,20 +352,20 @@ $show_sidebar=false;
                                             </a>
                                         </p>
                                         <p class="btncol">
-                                            <a class="wpb_button_a" title="2D Layout" href="#"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog white">2D Layout</span></a>
-                                            <a class="wpb_button_a" title="Availability" href="#"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog">Availability</span></a>
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_2"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_2"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog">Availability</span></a>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div id="layout_tab1" class="wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
+                                <div id="lay_2" class="inner-panels wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center current">
                                     <div class="wpb_wrapper">
-                                        <a href="http://marvel.ajency.in/wp-content/uploads/2015/04/layout.png" target="_self">
+                                        <a class="image-popup-no-margins boxed_shadow" href="http://marvel.ajency.in/wp-content/uploads/2015/04/layout.png" target="_self">
                                             <img width="700" height="561" src="http://marvel.ajency.in/wp-content/uploads/2015/04/layout.png" class=" vc_box_border_grey attachment-full" alt="layout" />
                                         </a>
                                     </div>
                                 </div>
-                                <div id="availability_tab1" class="avatab wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
+                                <div id="ava_2" class="inner-panels avatab wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
                                     <div class="wpb_wrapper">
                                         <!-- <p>Availability content goes here</p> -->
                                         <div class="top_head">

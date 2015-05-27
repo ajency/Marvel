@@ -143,6 +143,24 @@
             });
         }
 
+        //availability and layout
+        $(document).on('click', '.ava_tog', function(e) {
+            e.preventDefault();
+            if (!($($(this).attr('href')).hasClass('current'))) {
+                $loc = $(this).attr('href');
+                $par = $(this).parents('.wpb_tab');
+
+                $par.find('.inner-panels').removeClass('current');
+                $($loc).addClass('current');
+
+                $par.find('.ava_tog').removeClass('curr')
+                $par.find('.ava_tog').find('span').removeClass('white')
+
+                $(this).addClass('curr');
+                $(this).find('span').addClass('white')
+            }
+        });
+
     });
 
 

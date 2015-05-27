@@ -801,6 +801,7 @@ h6 {
   border: 1px dashed #c2c2c2;
   padding: 12px;
   margin-right: 8px;
+  vertical-align: middle;
   color: #A9A9A9;
 }
 .proj_list .top-compar .drag_area .before_drag {
@@ -823,7 +824,7 @@ h6 {
   border: 1px solid #c2c2c2;
   padding: 6px 0;
   line-height: 18px;
-  vertical-align: top;
+  vertical-align: middle;
 }
 .proj_list .top-compar .drag_area.after_drag .before_drag {
   display: none;
@@ -1998,8 +1999,11 @@ h6 {
   background: #daeaec;
   color: #666666;
 }
-.avatab {
+.inner-panels {
   display: none;
+}
+.inner-panels.current {
+  display: block;
 }
 .compare .bd_headings_text_shadow {
   display: none;
@@ -2077,6 +2081,16 @@ h6 {
 }
 .compare_c .compare_i_c th .single_p_inf a .single_p_location {
   font-weight: normal;
+}
+.compare_c .compare_i_c th .co_img_c {
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+}
+@media screen and (max-width: 991px) {
+  .compare_c .compare_i_c th .co_img_c {
+    height: 100px;
+  }
 }
 .compare_c .compare_i_c th:first-child,
 .compare_c .compare_i_c td:first-child {
