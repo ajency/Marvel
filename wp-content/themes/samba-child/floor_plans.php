@@ -51,6 +51,12 @@ if ($childs=='weirdostf')
   //NEVER SHOW SIDEBAR
 $show_sidebar=false;
 ?>
+
+<style type="text/css">
+    #headings_wrap {display: none;}
+    #main {margin-top: 0;}
+</style>
+
 <div id="centered_block" class="row">
     <div id="main_block" class="block_with_sections indi_prj_page floorplans columns centered prk_inner_block page-<?php echo get_the_ID(); ?>">
         <?php
@@ -72,10 +78,15 @@ $show_sidebar=false;
             <div class="vc_row">
                 <div class="vc_column">
 
+
+                    <div class="vc_custom_heading wpb_content_element m_t_b_m">
+                        <h4 style="text-align: center;font-family:Montserrat;font-weight:400;font-style:normal">Residences</h4>
+                    </div>
+
                     <div class="wpb_tabs wpb_content_element" data-interval="0">
                         <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix">
                             <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix">
-                                <li><a href="#tab-siteplan" class="standout">Siteplan</a></li>
+                                <li><a href="#tab-siteplan" class="standout">SITE PLAN</a></li>
                                 <li><a href="#tab-3bhk">4.5 BHK</a></li>
                                 <!-- <li><a href="#tab-3_5bhk">3.5 BHK</a></li> -->
                             </ul>
@@ -84,7 +95,7 @@ $show_sidebar=false;
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Siteplan of Aeries
+                                            Site Plan of Aeries
                                             <a class="wpb_button_a download_prj" title="Download" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Site-Plan.jpg" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>

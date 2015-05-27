@@ -97,6 +97,9 @@ $show_sidebar=false;
                     <div class="top-sea">
                         <button type="submit" class="btn_norm sea"><i class="fa fa-search"></i></button>
                     </div>
+                    <div class="pull-left comp_top">
+                        <a href="#" class="comp_top_a"></a>
+                    </div>
                     <div class="pull-right top-view">
                         <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
                         <a href="#" class="top_map"><i class="fa fa-map-marker"></i></a>
@@ -138,9 +141,12 @@ $show_sidebar=false;
                         <div class="single_p_img">
                             <img src="http://loremflickr.com/1000/1000/building">
                             <div class="compare">
-                                <a href="#" class="comp_ico"></a>
+                                <a href="#" class="comp_ico showinlarge"></a>
                             </div>
                             <div class="single_p_hov_c">
+                                <div class="compare">
+                                    <a href="#" class="compare_mob showinsmall">Compare</a>
+                                </div>
                                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                                 <div class="clearfix"></div>
                                 <div class="single_p_info">
@@ -166,6 +172,16 @@ $show_sidebar=false;
                                     <span class="single_p_location">Viman Nagar</span>
                                 </a>
                             </p>
+                        </div>
+                    </div>
+
+                    <div class="single_p_w last_one six columns">
+                        <div class="last_one_t">
+                            <h4>Looking for more options?</h4>
+                            <p>Tell us your requirement and <br>we will let you know when there is a match.</p>
+                            <a href="#" class="btn_norm single_know">
+                                Give Details
+                            </a>
                         </div>
                     </div>
 
