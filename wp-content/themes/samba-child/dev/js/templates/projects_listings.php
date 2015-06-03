@@ -1,16 +1,16 @@
 <script type="text/templte" id="spn_propertieslistings">
-<div id="proj_list" class="project-list row">    
+<div id="proj_list" class="project-list row">
 <div class="twelve columns">
     <h5>Residential Projects </h5>
 </div>
 <!--single project listing-->
-<%  
+<%
 console.log('-=-=-=-=-=--=-');
 console.log(propertiesdata);
- 
+
 
 %>
-<% 
+<%
 if(propertiesdata.length<=0){
 %> <p class="no_props">No Properties to display!</p>
 <%
@@ -30,14 +30,14 @@ var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'
 var property_type = _.isUndefined(propertyvl.property_type)? propertyvl.get('property_type'): propertyvl.property_type;
 var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
 
- 
+
 var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
     %>
 <div class="single_p_w six columns property_span_<%=property_id%>" >
     <div class="single_p_img">
         <img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">
             <div class="single_p_hov_c">
-                <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>  
+                <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                 <div class="clearfix"></div>
                 <div class="single_p_info">
                     <h6>
@@ -48,23 +48,25 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                         if(!_.isUndefined(proptype_val['type'])){
                              if(proptype_cnt>0)
                             current_property_types = current_property_types + ', ';
-                        current_property_types = current_property_types + proptype_val['type'];                    
+                        current_property_types = current_property_types + proptype_val['type'];
 
                         }
                         proptype_cnt++;
-                    })                    
+                    })
                     %>
                     <%=current_property_types%> </h6>
                     <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
-                </div> 
-                
+                </div>
+
                 <div class="single_btm">
                     <div class="pull-left">
                         <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
-                        <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>
-                        
-                      <span class='st_email'  ></span>
-                        <span class='st_sharethis'    st_url="<%=property_url %>" st_title="<%=property_title%>"  ></span>  
+                        <!--<a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>-->
+                        <a class="btn_norm single_share">
+                            <span class='st_sharethis'    st_url="<%=property_url %>" st_title="<%=property_title%>"  ></span>
+                        </a>
+                        <span class='st_email'  ></span>
+
                     </div>
                     <div class="pull-right">
                         <a href="<%=property_url%>" class="btn_norm single_know" target="_blank" >Know More</a>
@@ -84,6 +86,6 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
     </div>
 <%
 })
-%>  
+%>
 </div>
 </script>

@@ -1121,6 +1121,19 @@ h6 {
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
 }
+.proj_list .project-list .single_p_w .single_p_img .single_btm a.single_share {
+  padding: 0;
+  vertical-align: bottom;
+  width: 36px;
+  height: 33px;
+  display: inline-block;
+  background-image: url(img/share_ico.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.proj_list .project-list .single_p_w .single_p_img .single_btm a.single_share .stButton .sharethis {
+  background-image: none !important;
+}
 .proj_list .project-list .single_p_w .single_p_cap {
   text-align: center;
   margin-top: 20px;
