@@ -49,12 +49,12 @@ add_action( 'wp_ajax_nopriv_get_search_options', 'get_search_options' );
 
 
 function get_res_property_meta_values($property_id){
-	$property_sellablearea = get_post_meta($property_id, 'property-sellable_area',true);
+	$property_sellablearea = maybe_unserialize(get_post_meta($property_id, 'property-sellable_area',true));
     $property_cities = get_post_meta($property_id, 'property-city',true);
     $property_status = get_post_meta($property_id, 'property-status',true);
     $property_locality = get_post_meta($property_id, 'property-locality',true);
     $property_neighbourhood = maybe_unserialize(get_post_meta($property_id, 'property-neighbourhood',true));
-    $property_type = get_post_meta($property_id, 'residential-property-type',true);
+    $property_type = maybe_unserialize(get_post_meta($property_id, 'residential-property-type',true));
     $property_price = get_post_meta($property_id, 'property-price',true);
 
     $residential_property_meta_data = array('property_city'          => $property_cities,
@@ -199,6 +199,20 @@ $site_plan_img_id = maybe_unserialize(get_post_meta($cur_property_id,'custom_pro
 
 $property_types = maybe_unserialize(get_post_meta($cur_property_id,'residential-property-type',true));
 
+$property_sellable_area = maybe_unserialize(get_post_meta($cur_property_id,'property-sellable_area',true));
+
+if(isset($property_sellable_area['min-area'])) {
+    if(!empty($property_sellable_area['min-area'])){
+        $display_area = "  &#8211;  ".$property_sellable_area['min-area']." sq. ft" ;    
+    } 
+}
+
+if(isset($property_sellable_area['max-area'])) {
+    if(!empty($property_sellable_area['max-area'])){
+        $display_area.= " to ".$property_sellable_area['max-area']." sq. ft" ;    
+    } 
+}
+
 
 
 if($property_types==false)
@@ -268,7 +282,7 @@ $cur_prop_type_img_url = $cur_prop_type_img[0];
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Typical floor plan of a '.$value_proptype['type'].' &#8211; 3700 sq. ft to 5000 sq. ft.
+                                            Typical floor plan of a '.$value_proptype['type'].$display_area.' 
                                             <a class="wpb_button_a download_prj" title="Download" href="'.$cur_prop_type_img_url.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>

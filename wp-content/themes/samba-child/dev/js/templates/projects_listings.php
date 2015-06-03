@@ -40,7 +40,21 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>  
                 <div class="clearfix"></div>
                 <div class="single_p_info">
-                    <h6><%=property_type%> </h6>
+                    <h6>
+                    <% var current_property_types = '';
+                    var proptype_cnt = 0;
+                    _.each(property_type,function(proptype_val,proptype_key){
+
+                        if(!_.isUndefined(proptype_val['type'])){
+                             if(proptype_cnt>0)
+                            current_property_types = current_property_types + ', ';
+                        current_property_types = current_property_types + proptype_val['type'];                    
+
+                        }
+                        proptype_cnt++;
+                    })                    
+                    %>
+                    <%=current_property_types%> </h6>
                     <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
                 </div> 
                 
@@ -50,7 +64,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                         <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>
                         
                       <span class='st_email'  ></span>
-                        <span class='st_sharethis'  ></span>  
+                        <span class='st_sharethis'    st_url="<%=property_url %>" st_title="<%=property_title%>"  ></span>  
                     </div>
                     <div class="pull-right">
                         <a href="<%=property_url%>" class="btn_norm single_know" target="_blank" >Know More</a>
