@@ -2,11 +2,75 @@
     //all child js
     $(document).ready(function() {
         //remove this line later
-        $('#prk_ajax_container .tabular.inner .tab_col').click(function() {
-            if (!($(this).hasClass('blue_bg'))) {
-                $(this).toggleClass('opened');
+        // $('#prk_ajax_container .tabular.inner .tab_col .text_in').click(function() {
+        //     $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
+        //     console.log(!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened')));
+        //     console.log($(this).parent('.tab_col').attr('class'));
+
+        //     if (!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened'))) {
+        //         $(this).parent().addClass('opened');
+        //     } else {
+        //         $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
+        //     }
+        // });
+
+
+        //tabular left and right
+        $(document).on('click', '.tabular_c .right', function() {
+            $par = $(this).parent('.tabular_c');
+            $objiq = $par.find('.tabul_main');
+            $contw = $par/*.find('.tabul_hold')*/.innerWidth();
+            $mainw = $objiq.width();
+            $r = Math.floor($mainw / $contw);
+            // console.log('$contw: ' + $contw);
+            // console.log('$mainw: ' + $mainw);
+            // console.log('$r: ' + $r);
+            // console.log(parseInt($objiq.css('left')) + (2 * $contw) < $mainw);
+            // console.log(parseInt($objiq.css('left')));
+            // console.log((parseInt($objiq.css('left')) + $contw));
+            // console.log((parseInt($objiq.css('left')) + $contw < $mainw));
+            // console.log((-parseInt($objiq.css('left')) + $contw < $mainw));
+
+            // if (parseInt($objiq.css('left')) + (2 * $contw) < $mainw) {
+            //     $objiq.css('left', '-='+$contw);
+            // } else if (parseInt($objiq.css('left')) == 0) {
+            //     $objiq.css('left', '-='+($mainw - $contw));
+            // } else if (-parseInt($objiq.css('left')) + $contw < $mainw) {
+            //     $objiq.css('left', '-='+$contw);
+            // }
+
+            // if (parseInt($objiq.css('left')) + (2 * $contw) < $mainw) {
+            //     $objiq.css('left', '='+$contw);
+            // } else if ($mainw - $contw < $contw && parseInt($objiq.css('left')) < ($mainw - $contw)) {
+            //     $objiq.css('left', '-='+($mainw - $contw));
+            // }
+        });
+
+        $(window).load(function() {
+            if ($('body').hasClass('page-template-floor_plans')) {
+                $('#prk_ajax_container').append(
+                    '<div class="go_to_top_inpage"></div>'
+                );
+                $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
+                $('.go_to_top_inpage').css({
+                    'top': $btmval,
+                    'right': 0
+                });
+                $(document).on('click', '.go_to_top_inpage', function() {
+                    $('html, body').animate({scrollTop:0}, '500', 'swing');
+                });
             }
         });
+        $(window).resize(function() {
+            if ($('body').hasClass('page-template-floor_plans')) {
+                $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
+                $('.go_to_top_inpage').css({
+                    'top': $btmval,
+                    'right': 0
+                });
+            }
+        });
+
 
 
         $('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {

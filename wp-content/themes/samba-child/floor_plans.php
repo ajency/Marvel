@@ -53,8 +53,12 @@ $show_sidebar=false;
 ?>
 
 <style type="text/css">
-    #headings_wrap {display: none;}
+    #headings_wrap {  /* display: none; */margin-bottom: 45px;}
     #main {margin-top: 0;}
+    #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block {
+        margin-left: 0;
+        margin-right: 0;
+    }
 </style>
 
 <div id="centered_block" class="row">
@@ -79,11 +83,11 @@ $show_sidebar=false;
                 <div class="vc_column">
 
 
-                    <div class="vc_custom_heading wpb_content_element m_t_b_m">
+                    <!-- <div class="vc_custom_heading wpb_content_element m_t_b_m">
                         <h4 style="text-align: center;font-family:Montserrat;font-weight:400;font-style:normal">Residences</h4>
-                    </div>
+                    </div> -->
 
-                    <div class="wpb_tabs wpb_content_element" data-interval="0">
+                    <div class="wpb_tabs wpb_content_element floorplans_tab" data-interval="0">
                         <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix">
                             <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix">
                                 <li><a href="#tab-siteplan" class="standout">SITE PLAN</a></li>
@@ -123,8 +127,8 @@ $show_sidebar=false;
                                             </a>
                                         </p>
                                         <p class="btncol">
-                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_1"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog white">2D Layout</span></a>
-                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_1"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog">Availability</span></a>
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_1"><span class="wpb_button  wpb_btn-inverse tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_1"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
                                         </p>
                                     </div>
                                 </div>
@@ -153,199 +157,205 @@ $show_sidebar=false;
                                         </div>
 
                                         <div class="tabular_c">
-                                            <div class="left"></div>
-                                            <div class="right"></div>
-
-                                            <div class="tabular">
-                                                <div class="tab_row head">
-                                                    <div class="tab_col">A-Flat No. (Sq.Ft.)</div>
-                                                    <div class="tab_col">B-Flat No. (Sq.Ft.)</div>
-                                                    <div class="tab_col">C-Flat No. (Sq.Ft.)</div>
-                                                </div>
-                                                <div class="tab_row">
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col opened">
-                                                                    <span class="text_in"><span class="text_in">A 1001 (5,500)</span></span>
-                                                                    <div class="popup_tab_data">
-                                                                        <div class="pull-left left_d">Flat Area</div>
-                                                                        <div class="pull-left right_d">3,950</div>
-                                                                        <div class="clearfix"></div>
-                                                                        <div class="pull-left left_d">Terrace Area</div>
-                                                                        <div class="pull-left right_d">350</div>
-                                                                        <div class="clearfix"></div>
-                                                                        <div class="pull-left left_d">Total Sellable Area</div>
-                                                                        <div class="pull-left right_d">4,300</div>
-                                                                        <div class="clearfix"></div>
-                                                                        <div class="btncol">
-                                                                            <a class="wpb_button_a" title="2D Layout" href="#"><span class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>
-                                                                            <a class="wpb_button_a" title="Availability" href="#"><span class="wpb_button  wpb_btn-inverse wpb_btn-small">Request Hold</span></a>
+                                            <div class="left">
+                                                <i class="fa fa-chevron-left"></i>
+                                            </div>
+                                            <div class="right active">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </div>
+                                            <div class="tabul_hold">
+                                                <div class="tabular tabul_main">
+                                                    <div class="tab_row head">
+                                                        <div class="tab_col">A-Flat No. (Sq.Ft.)</div>
+                                                        <div class="tab_col">B-Flat No. (Sq.Ft.)</div>
+                                                        <div class="tab_col">C-Flat No. (Sq.Ft.)</div>
+                                                    </div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col">
+                                                                        <span class="text_in">A 1001 (5,500)</span>
+                                                                        <div class="popup_tab_data">
+                                                                            <div class="pull-left left_d">Flat Area</div>
+                                                                            <div class="pull-left right_d">3,950</div>
+                                                                            <div class="clearfix"></div>
+                                                                            <div class="pull-left left_d">Terrace Area</div>
+                                                                            <div class="pull-left right_d">350</div>
+                                                                            <div class="clearfix"></div>
+                                                                            <div class="pull-left left_d">Total Sellable Area</div>
+                                                                            <div class="pull-left right_d">4,300</div>
+                                                                            <div class="clearfix"></div>
+                                                                            <div class="btncol">
+                                                                                <a class="wpb_button_a image-popup-no-margins" title="2D Layout" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg"><span class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>
+                                                                                <a class="wpb_button_a" title="Availability" href="#"><span class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
                                                                 </div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="tab_row">
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab_row">
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab_row">
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab_row">
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab_row">
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_col">
-                                                        <div class="tabular inner">
-                                                            <div class="tab_row">
-                                                                <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
 
                                         <div class="btm_foot">
                                             <p>
-                                                Check availability in other Unit Types.
+                                                Check availability in other unit types.
                                                 <a href="#" class="wpb_button_a">
-                                                    <span class="wpb_button  wpb_btn-inverse wpb_btn-small">4 BHK</span>
+                                                    <span class="wpb_button  wpb_btn-inverse">4 BHK</span>
                                                 </a>
                                                 <a href="#" class="wpb_button_a">
-                                                    <span class="wpb_button  wpb_btn-inverse wpb_btn-small">4.5 BHK</span>
+                                                    <span class="wpb_button  wpb_btn-inverse">4.5 BHK</span>
                                                 </a>
                                             </p>
                                         </div>
@@ -363,8 +373,8 @@ $show_sidebar=false;
                                             </a>
                                         </p>
                                         <p class="btncol">
-                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_2"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog white">2D Layout</span></a>
-                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_2"><span class="wpb_button  wpb_btn-inverse wpb_btn-small tog">Availability</span></a>
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_2"><span class="wpb_button  wpb_btn-inverse tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_2"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
                                         </p>
                                     </div>
                                 </div>
@@ -419,8 +429,8 @@ $show_sidebar=false;
                                                                         <div class="pull-left right_d">4,300</div>
                                                                         <div class="clearfix"></div>
                                                                         <div class="btncol">
-                                                                            <a class="wpb_button_a" title="2D Layout" href="#"><span class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>
-                                                                            <a class="wpb_button_a" title="Availability" href="#"><span class="wpb_button  wpb_btn-inverse wpb_btn-small">Request Hold</span></a>
+                                                                            <a class="wpb_button_a image-popup-no-margins" title="2D Layout" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg"><span class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>
+                                                                            <a class="wpb_button_a" title="Availability" href="#"><span class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -580,19 +590,18 @@ $show_sidebar=false;
 
                                         <div class="btm_foot">
                                             <p>
-                                                Check availability in other Unit Types.
+                                                Check availability in other unit types.
                                                 <a href="#" class="wpb_button_a">
-                                                    <span class="wpb_button  wpb_btn-inverse wpb_btn-small">4 BHK</span>
+                                                    <span class="wpb_button  wpb_btn-inverse">4 BHK</span>
                                                 </a>
                                                 <a href="#" class="wpb_button_a">
-                                                    <span class="wpb_button  wpb_btn-inverse wpb_btn-small">4.5 BHK</span>
+                                                    <span class="wpb_button  wpb_btn-inverse">4.5 BHK</span>
                                                 </a>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
