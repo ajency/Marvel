@@ -458,7 +458,7 @@ function myplugin_add_custom_box() {
 
     		$custom_fields[] = array ( 'field'				 => 'property-sellable_area',
     							  	   'metabox_title'		 => 'Sellable Area',
-    							  	   'multiple_values' 	 => false,
+    							  	   'multiple_values' 	 => true,
     							  	   'element_type'		 => 'text',
     							  	   'option_value_prefix' => '',
     							  	   'option_value_postfix'=> 'Sq ft',
@@ -475,6 +475,17 @@ function myplugin_add_custom_box() {
 	    							  'option_value_prefix' => '',
 	    							  'option_value_postfix'=> ' Kms',
 	    							  'class'				=> 'allownumericwithdecimal',
+	    							  'priority'			=> 'default'
+	     							);
+
+
+	    	$custom_fields[] = array('field'				=> 'property-siteplan',
+	    							  'metabox_title'		=> 'Site Plan',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'file',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=> '',
 	    							  'priority'			=> 'default'
 	     							);
 
@@ -611,8 +622,10 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-type", true);
 							    }
 
+							    $edit_options_values = true ;
 
-								 generate_custom_field_element($post, 'checkbox', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args);
+
+								 generate_custom_field_element($post, 'checkbox', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
 
@@ -620,7 +633,9 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     							$property_status = maybe_unserialize(get_option('property-status'));
     							$current_property_meta_value =    get_post_meta($post->ID, "property-status", true);
 
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_status, $current_property_meta_value, $element_custom_field_args);
+    							$edit_options_values = true ;
+
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_status, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
 
@@ -634,9 +649,9 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     							}
 
 
+    							$edit_options_values = true ;
 
-
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value, $element_custom_field_args);
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
 
@@ -660,9 +675,9 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     								}
     							}
 
+								$edit_options_values = true;
 
-
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value, $element_custom_field_args);
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
 
@@ -670,9 +685,11 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
 
     							$property_neighbourhood = maybe_unserialize(get_option('property-neighbourhood'));
-							    $current_property_meta_value =    get_post_meta($post->ID, "property-neighbourhood", true) ;
+							    $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "property-neighbourhood", true)) ;
+								$edit_options_values = true;
 
-								generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_neighbourhood, $current_property_meta_value, $element_custom_field_args);
+
+								generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_neighbourhood, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
 
 							    $property_field_options = maybe_unserialize(get_option($metabox['field']));
@@ -683,39 +700,55 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
                                 $property_no_of_bedrooms = maybe_unserialize(get_option('property-no_of_bedrooms'));
                                 $current_property_meta_value =    get_post_meta($post->ID, "property-no_of_bedrooms", true);
 
-                                generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_no_of_bedrooms, $current_property_meta_value, $element_custom_field_args);
+                                $edit_options_values = true;
+                                generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_no_of_bedrooms, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
                                 break;
 
 		 case 'property-price':
                                 $property_price = array();
-                                $current_property_meta_value =    get_post_meta($post->ID, "property-price", true);
+                                $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "property-price", true));
 
-                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_price, $current_property_meta_value, $element_custom_field_args);
+                                $edit_options_values = false;
+                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_price, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
                                 break;
 
         case 'property-sellable_area':
-                                $property_sellable_area = array();
-                                $current_property_meta_value =    get_post_meta($post->ID, "property-sellable_area", true);
+                                $property_sellable_area = array('min-area' ,'max-area' );
+                                $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "property-sellable_area", true));
+                                if( ($current_property_meta_value==false) || (!is_array($current_property_meta_value)) ){
+                                	$current_property_meta_value = array('min-area'=>'','max-area'=>'');
+                                }  
+                                $edit_options_values = false;                              
 
-                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value, $element_custom_field_args);
+                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
                                 break;
 
 
         case 'property-address-details':
 
-            $address_field_data = get_custom_address_fields_by_id($post->ID);
-									get_custom_address_elements_html($address_field_data);
+					            $address_field_data = get_custom_address_fields_by_id($post->ID);
+														get_custom_address_elements_html($address_field_data);
 
-            /* $property_address_details = array();
-            $current_property_meta_value =    get_post_meta($post->ID, "property-sellable_area", true);
+					            /* $property_address_details = array();
+					            $current_property_meta_value =    get_post_meta($post->ID, "property-sellable_area", true);
 
-            generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value);
-*/
-            break;
+					            generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value);
+								*/
+					            break;
 
+
+        case 'property-siteplan':
+                                $property_price = array();
+                                $current_property_meta_value =    get_post_meta($post->ID, "property-price", true);
+                                $edit_options_values = false ;
+
+                                generate_custom_field_element($post, 'file', $multiple_values, 'custom_'.$custom_field_type,  $property_price, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+
+                                break;
+    
 
 
 
@@ -837,7 +870,7 @@ function get_custom_address_elements_html($address_field_data){
 
 }
 
-function generate_custom_field_element($post, $element_type, $multiple_values, $element_id,  $element_values, $current_property_meta_value, $element_custom_field_args){
+function generate_custom_field_element($post, $element_type, $multiple_values, $element_id,  $element_values, $current_property_meta_value, $element_custom_field_args,$edit_options_values){
 
 
 	$element_prefix_label   = $element_custom_field_args['option_value_prefix'];
@@ -881,7 +914,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 		case 'text' :
 
-$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
+//$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
 //var_dump($current_property_meta_value_arr);
 
 						if($multiple_values==true) {
@@ -890,10 +923,10 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 								foreach($element_values as $type){
 
 									 $new_current_val = '';
-									 if(is_array($current_property_meta_value_arr)){
+									 if(is_array($current_property_meta_value)){
 
 
-										 foreach($current_property_meta_value_arr as $cur_field_value_k=>$cur_field_value_v){
+										 foreach($current_property_meta_value as $cur_field_value_k=>$cur_field_value_v){
 
 											//echo "<br/>type : ".$type." cur_field_value_k:".$cur_field_value_k;
 											if($type==$cur_field_value_k){
@@ -902,14 +935,14 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 											}
 										}
 									 }
-//var_dump(array_search($type, $current_property_meta_value_arr));
+//var_dump(array_search($type, $current_property_meta_value));
 									 echo '<div class="admin_new_add">';
 									 echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 									?>
 
 								<!-- <div class="admin_new_add"> -->
 									<div class="admin_label adm_small">
-							    		<label for=""><?php echo $type; ?></label>
+							    		<label for=""><?php echo ucfirst($type); ?></label>
 								    </div>
 							    	<div class="admin_input adm_small">
 		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >
@@ -951,6 +984,22 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 						 	if($element_values!=false){
 								foreach($element_values as $type){
 
+
+									 $property_type_layout_image = '';
+									 $property_type_match = false;
+									
+									foreach ($current_property_meta_value_arr as $cur_prop_type_key => $cur_prop_type_value) {
+										if($type==$cur_prop_type_value['type']){
+											$img_id  = $cur_prop_type_value['layout'];
+											$prop_type_layout_img = wp_get_attachment_image_src( $img_id,'thumbnail' );
+											$property_type_layout_image = $prop_type_layout_img[0];
+											$property_type_match = true;
+										}
+									}	 
+						
+
+
+
 									echo '<div class="admin_new_add">';
 									echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 									?><div class="clearfix"></div>
@@ -958,11 +1007,27 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 								<!-- <div class="admin_new_add"> -->
 							    	<div class="admin_input adm_small" style="margin-bottom: 5px;">
 		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >
-		    								<input type="checkbox" value="<?php echo $new_current_val ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[<?php echo $type; ?>]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span  >'.$element_postfix_label.'</span>';?>
+		    								<input type="checkbox" <?php if($property_type_match==true){ echo " checked='checked' "; } ?>value="<?php echo $type; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span  >'.$element_postfix_label.'</span>';?>
+		    								<label class="inline" for=""><?php echo $type; ?></label>
+		    								<input type="file" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>_<?php echo str_replace(' ', '_', $type); ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
+				                        		<?php if( $property_type_layout_image!='') { ?>
+				                        			<img src="<?php echo $property_type_layout_image ?>" width="80" height="80" /> 
+				                        			<a href='javascript:void(0)' class='delete_property_type_layout'  property-type-value = '<?php echo $type; ?>' property-id='<?php echo get_the_ID(); ?>' >Delete</a>
+				                        		<?php 
+				                        			}
+				                        		?>
 		    							</span>
+
+
+
+		    							 
+
+
+
+
 		    						<!-- </div>
 									<div class="admin_label adm_small"> -->
-							    		<label class="inline" for=""><?php echo $type; ?></label>
+							    		
 								    </div>
 						<?php		echo "</div>";
 
@@ -973,15 +1038,57 @@ $current_property_meta_value_arr = maybe_unserialize($current_property_meta_valu
 
 
 						 }
-						 						break;
+						break;
+
+
+ 
+		case 'file' :
+
+						$img_id = get_post_meta(get_the_ID(), 'custom_property-siteplan', true); 
+
+						if($img_id!=false){
+							$site_plan_img = wp_get_attachment_image_src( $img_id,'thumbnail' );
+
+							$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);	
+
+						}
+							
+                         
+                    	echo '<div class="admin_new_add">';
+                    	echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
+
+                        ?>
+                        <div class="clearfix"></div>
+                        <span attr-field-val ="<?php echo $element_id; ?>" >  <input type="file" value="" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
+                        <?php if($site_plan_img!=false && $img_id!=false) { ?>
+                        			<img src="<?php echo $site_plan_img[0] ?>" width="80" height="80"  /> 
+								<a href='javascript:void(0)'  custom-field='custom_property-siteplan'   
+									class='delete_property_siteplan'  attr-value = '<?php echo $img_id; ?>'  
+									property-id='<?php echo get_the_ID(); ?>' >Delete</a>
+
+
+                        <?php } ?>
+                         </span>
+                    	<?php
+                    	echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
+                    	echo '</div>';
+
+                        
+
+
+						 break;
+
+
+
+
 
 	}
 ?>
 
 <?php
 
-	if( ($multiple_values==true && $element_type=='text') || ($element_type!='checkbox')  ||(($element_type!='text') && ($element_type!='custom_address_details_text') )) {
-
+	//if(  ($multiple_values==true && $element_type=='text') ||( ($element_type!='checkbox')  && ($element_type!='file') && ($element_type!='text') && ($element_type!='custom_address_details_text') )   ) {
+	if($edit_options_values==true){
 
     ?>
 
@@ -1357,6 +1464,12 @@ function save_custom_meta_box($post_id, $post, $update)
         $sel_property_address = $_REQUEST['address'];
 
 
+
+/* foreach ($variable as $key => $value) {
+	# code...
+} */
+
+
        $exist_address = $wpdb->get_var("select count(*) FROM {$wpdb->prefix}addresses WHERE addressable_id = ".$post_id);
         if($exist_address>0){
             $qry_address = "update {$wpdb->prefix}addresses SET city ='".$sel_property_address_city."',
@@ -1380,16 +1493,157 @@ function save_custom_meta_box($post_id, $post, $update)
         $wpdb->query($qry_address);
 
 
+
+
+
+// Make sure the file array isn't empty
+/*    if(!empty($_FILES['custom_property-siteplan']['name'])) {
+         
+        // Setup the array of supported file types. In this case, it's just PDF.
+        $supported_types = array('application/pdf');
+         
+        // Get the file type of the upload
+        $arr_file_type = wp_check_filetype(basename($_FILES['custom_property-siteplan']['name']));
+        $uploaded_type = $arr_file_type['type'];
+         
+        // Check if the type is supported. If not, throw an error.
+       // if(in_array($uploaded_type, $supported_types)) {
+ 
+            // Use the WordPress API to upload the file
+            $upload = wp_upload_bits($_FILES['custom_property-siteplan']['name'], null, file_get_contents($_FILES['custom_property-siteplan']['tmp_name']));
+     
+     
+            if(isset($upload['error']) && $upload['error'] != 0) {
+                wp_die('There was an error uploading your file. The error is: ' . $upload['error']);
+            } else {
+                add_post_meta($post_id, 'custom_property-siteplan', $upload);
+                update_post_meta($post_id, 'custom_property-siteplan', $upload);     
+            } // end if/else
+ 
+       / * } else {
+            wp_die("The file type that you've uploaded is not a PDF.");
+        } // end if/else * /
+         
+    } // end if */
+
+
+
+
+
+    if(!empty($_FILES['custom_property-siteplan']['name'])) {
+
+			$uploadStatus = wp_handle_upload( $_FILES['custom_property-siteplan'], array( 'test_form' => false ) );   // Let WordPress handle the upload
+
+            // Make sure that the file was uploaded correctly, without error
+            if( isset( $uploadStatus['file'] ) ) {
+                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+
+                // Let's add the image to our media library so we get access to metadata
+                $imageID = wp_insert_attachment( array(
+                        'post_mime_type'    => $uploadStatus['type'],
+                        'post_title'        => preg_replace( '/\.[^.]+$/', '', basename( $uploadStatus['file'] ) ),
+                        'post_content'      => '',
+                        'post_status'       => 'publish'
+                    ),
+                    $uploadStatus['file']
+                );
+
+                // Generate our attachment metadata then update the file.
+                $attachmentData = wp_generate_attachment_metadata( $imageID, $uploadStatus['file'] );
+                wp_update_attachment_metadata( $imageID,  $attachmentData );
+
+
+                $existingImage = get_post_meta($post_id,'custom_property-siteplan',true) ;            // IF a file already exists in this option, grab it
+                if( ! empty( $existingImage ) && is_numeric( $existingImage ) ) {       // IF the option does exist, delete it.
+                    wp_delete_attachment( $existingImage );
+                }
+
+				update_post_meta($post_id, 'custom_property-siteplan', $imageID);   
+
+			}
+
+
+	}
+
+ 
+
+		$property_types_data_value = array();
+
+		$current_property_type = maybe_unserialize(get_post_meta($post_id,'residential-property-type',true));
+
 		if($post->post_type=="residential-property"){
-            update_post_meta($post_id, "residential-property-type", $sel_property_type);
+
+			foreach ($sel_property_type as $proptype_key => $prop_value) {
+				$prop_type_match_found = false ;
+				$prop_type_match_found = '';
+
+				foreach ($current_property_type as $key_currentprop => $value_currentprop) {
+					if($value_currentprop['type']==$prop_value){
+							$prop_type_match_found = true ;
+
+							$prop_type_match_found = $value_currentprop ;
+					}
+				}
+
+
+				 
+$file_name_field = 'custom_property-type_'.str_replace(' ', '_', $prop_value) ;
+
+
+				if(!empty($_FILES[$file_name_field])) {
+
+					$uploadStatus = wp_handle_upload( $_FILES[$file_name_field], array( 'test_form' => false ) );   // Let WordPress handle the upload
+
+		            // Make sure that the file was uploaded correctly, without error
+		            if( isset( $uploadStatus['file'] ) ) {
+		                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+
+		                // Let's add the image to our media library so we get access to metadata
+		                $imageID = wp_insert_attachment( array(
+		                        'post_mime_type'    => $uploadStatus['type'],
+		                        'post_title'        => preg_replace( '/\.[^.]+$/', '', basename( $uploadStatus['file'] ) ),
+		                        'post_content'      => '',
+		                        'post_status'       => 'publish'
+		                    ),
+		                    $uploadStatus['file']
+		                );
+
+		                // Generate our attachment metadata then update the file.
+		                $attachmentData = wp_generate_attachment_metadata( $imageID, $uploadStatus['file'] );
+		                wp_update_attachment_metadata( $imageID,  $attachmentData );
+
+
+		                $existingImage = get_post_meta($post_id,'custom_property-siteplan',true) ;            // IF a file already exists in this option, grab it
+		                if( ! empty( $existingImage ) && is_numeric( $existingImage ) ) {       // IF the option does exist, delete it.
+		                    wp_delete_attachment( $existingImage );
+		                }
+		                $property_types_data_value[] = $arrayName = array('type' => $prop_value,'layout'=>$imageID );
+						//update_post_meta($post_id, 'custom_property-siteplan', $imageID);   
+
+					}
+					else if($prop_type_match_found == true){
+						$property_types_data_value[] = $prop_type_match_found;
+						
+					}
+
+
+				}
+				 
+
+
+
+
+
+			}
+             update_post_meta($post_id, "residential-property-type", maybe_serialize($property_types_data_value));
             update_post_meta($post_id, "property-no_of_bedrooms", $sel_property_no_of_bedrooms);
-        }
+        } 
 
 		if($post->post_type=="commercial-property"){
             update_post_meta($post_id, "commercial-property-type", $sel_property_type);
         }
 
-
+//exit();
 
 
 
@@ -1397,36 +1651,53 @@ function save_custom_meta_box($post_id, $post, $update)
 		update_post_meta($post_id, "property-status", $sel_property_status);
 		update_post_meta($post_id, "property-locality", $sel_property_locality);
 		update_post_meta($post_id, "property-neighbourhood", $sel_property_neighbourhood );
-        update_post_meta($post_id, "property-sellable_area", $sel_property_sellable_area);
+        update_post_meta($post_id, "property-sellable_area", maybe_serialize($sel_property_sellable_area));
         update_post_meta($post_id, "property-price", $sel_property_price);
 
 
 	}
-
-/*
-
-    $meta_box_text_value = "";
-    $meta_box_dropdown_value = "";
-    $meta_box_checkbox_value = "";
-
-    if(isset($_POST["meta-box-text"]))
-    {
-        $meta_box_text_value = $_POST["meta-box-text"];
-    }
-    update_post_meta($post_id, "meta-box-text", $meta_box_text_value);
-
-    if(isset($_POST["meta-box-dropdown"]))
-    {
-        $meta_box_dropdown_value = $_POST["meta-box-dropdown"];
-    }
-    update_post_meta($post_id, "meta-box-dropdown", $meta_box_dropdown_value);
-
-    if(isset($_POST["meta-box-checkbox"]))
-    {
-        $meta_box_checkbox_value = $_POST["meta-box-checkbox"];
-    }
-    update_post_meta($post_id, "meta-box-checkbox", $meta_box_checkbox_value); */
+ 
 }
 
 add_action("save_post", "save_custom_meta_box", 10, 3);
+
+function update_edit_form() {
+    echo ' enctype="multipart/form-data"';
+} // end update_edit_form
+add_action('post_edit_form_tag', 'update_edit_form');
+
+
+
+
+
+
+function delete_custom_file_field() {
+
+	$property_id   = $_REQUEST['data']['property_id'];
+	$custom_field_name = $_REQUEST['data']['custom_field_name'];
+	$custom_file_id = $_REQUEST['data']['attachment_id'];
+
+	$delete_success = false;
+
+	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,$custom_field_name,true) ); 
+      
+
+	  if($custom_file_field_value==$custom_file_id){
+
+	  	$result_delete_attachment = wp_delete_attachment($custom_file_field_value); 
+	  	if($result_delete_attachment!=false){
+	  		update_post_meta($property_id ,$custom_field_name,'');
+	  		$delete_success = true ; 
+	  	}
+
+	  }  
+
+    
+    wp_send_json($delete_success);
+
+
+}
+add_action( 'wp_ajax_delete_custom_file_field', 'delete_custom_file_field' );
+
+
 

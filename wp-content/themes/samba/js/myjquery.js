@@ -459,14 +459,73 @@ jQuery(document).ready(function($) {
 
 
 
+$('.delete_property_type_layout').live("click",function(evt){
+            /* Delete 2D Layout for the residential Property */ 
+
+            var self = this;
+
+            var curr_property_id = $(this).attr('property-id');
+            var property_type = $(this).attr('property-type-value'); 
+
+            var my_data = { 'property_id'    : curr_property_id,
+                            'property_type'  : property_type                                 
+                          } 
+
+            $.post(ajaxurl,{   //the server_url
+                    action: "delete_property_layout",                 //the submit_data array
+                    data:my_data
+                },
+                function(data) {                   //the callback_handler
+                    if (data==true) {
+
+
+                    $(self).parent().find('img').remove();
+                    $(self).remove();
+
+                     
+
+                    }
+
+                });
+
+
+        })
 
 
 
 
 
 
+$('.delete_property_siteplan').live("click",function(evt){
+            /* Delete 2D Layout for the residential Property */ 
+
+            var self = this;
+            var custom_field_name = $(this).attr('custom-field');
+            var curr_property_id = $(this).attr('property-id');
+            var attachment_id = $(this).attr('attr-value'); 
+
+            var my_data = { 'custom_field_name' : custom_field_name,
+                            'property_id'       : curr_property_id,
+                            'attachment_id'     : attachment_id
+                          } 
+
+            $.post(ajaxurl,{   //the server_url
+                    action: "delete_custom_file_field",                 //the submit_data array
+                    data:my_data
+                },
+                function(data) {                   //the callback_handler
+                    if (data==true) {
 
 
+                    $(self).parent().find('img').remove();
+                    $(self).remove(); 
+
+                    }
+
+                });
+
+
+        })
 
 
 
