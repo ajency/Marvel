@@ -2,17 +2,17 @@
     //all child js
     $(document).ready(function() {
         //remove this line later
-        // $('#prk_ajax_container .tabular.inner .tab_col .text_in').click(function() {
-        //     $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
-        //     console.log(!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened')));
-        //     console.log($(this).parent('.tab_col').attr('class'));
+        $('#prk_ajax_container .tabular.inner .tab_col .text_in').click(function() {
+            $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
+            console.log(!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened')));
+            console.log($(this).parent('.tab_col').attr('class'));
 
-        //     if (!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened'))) {
-        //         $(this).parent().addClass('opened');
-        //     } else {
-        //         $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
-        //     }
-        // });
+            if (!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened'))) {
+                $(this).parent().addClass('opened');
+            } else {
+                $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
+            }
+        });
 
 
         //tabular left and right
