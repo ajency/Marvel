@@ -106,6 +106,14 @@ pre {
 #content {
 	/*min-height: 672px;*/
 }
+.footer {
+	width: 240px;
+}
+@media screen and (min-width: 769px) and (max-width: 991px) {
+	.footer {
+		display: none;
+	}
+}
 .child-footer {
 	position: relative;
 	min-height: 40px;
@@ -179,6 +187,13 @@ pre {
 	background: rgba(72,72,72,0.4);
 	padding: 4px;
 }
+@media screen and (max-width: 1199px) {
+	.home_search {
+		right: 150px;
+	}
+}
+
+
 .home_search .hme_dd {
 	float: left;
 	position: relative;
@@ -457,6 +472,9 @@ pre {
     .colored .social_img_wrp {
         margin-right: 15px;
     }
+}
+@media only screen and (max-width: 680px) {
+	.child-footer
 }
 
 /*services page*/

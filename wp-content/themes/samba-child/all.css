@@ -435,8 +435,8 @@ h6 {
   .samba_responsive #logo_holder {
     display: none;
   }
-  .admin-bar #prk_responsive_menu.at_top,
-  .admin-bar #prk_responsive_menu {
+  #prk_responsive_menu.at_top,
+  #prk_responsive_menu {
     display: block;
     height: 80px;
     width: 100%;
@@ -2219,16 +2219,20 @@ h6 {
 }
 .btm_foot {
   background: #ebebeb;
-  height: 38px;
+  height: 39px;
 }
 .btm_foot a {
-  vertical-align: middle;
+  vertical-align: bottom;
   box-shadow: none;
 }
 .btm_foot a span {
   margin-bottom: 0;
   background: #909090;
   border-color: #848484;
+  margin-top: 2px !important;
+  line-height: normal !important;
+  font-size: 13px;
+  font-weight: normal !important;
 }
 .btm_foot a:hover {
   box-shadow: none;
