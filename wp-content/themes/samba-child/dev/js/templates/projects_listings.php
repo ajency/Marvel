@@ -63,9 +63,9 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                         <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
                         <!--<a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>-->
                         <a class="btn_norm single_share">
-                            <span class='st_sharethis'    st_url="<%=property_url %>" st_title="<%=property_title%>"  ></span>
+                            <span class='st_sharethis' st_image="<%=featured_image %>"   st_url="<%=property_url %>" st_title="<%=property_title%>"  ></span>
                         </a>
-                        <span class='st_email'  ></span>
+                        <!-- <span class='st_email'  ></span> -->
 
                     </div>
                     <div class="pull-right">
