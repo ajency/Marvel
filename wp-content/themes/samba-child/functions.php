@@ -101,7 +101,7 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->post_title = 	$res_property->post_title ;
 	$new_res_prop->guid = 	$res_property->guid ;
 	$new_res_prop->post_author = 	$res_property->post_author ;
-	$new_res_prop->post_url = 	site_url().'/Residential-Property/'.$res_property->post_name;
+	$new_res_prop->post_url = 	site_url().'/ResidentialProperties/'.$res_property->post_name;
 	$new_res_prop->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
 	$new_res_prop->featured_image_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
 	$new_res_prop->amenities = 	$property_amenities;
@@ -193,7 +193,7 @@ function floor_plans_tabs() {
 
 $cur_property_id = get_the_ID();
 
-$site_plan_img_url = site_url()."/wp-content/uploads/2015/05/Site-Plan.jpg";
+$site_plan_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
 
 $site_plan_img_id = maybe_unserialize(get_post_meta($cur_property_id,'custom_property-siteplan',true));
 
@@ -226,7 +226,26 @@ if($site_plan_img_id!=false){
  
 
 
-$floor_plans_tab_content = '
+$floor_plans_tab_content = '<style type="text/css">
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tab .download_prj span {
+  padding: 5px;
+  padding: 2px 7px;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  overflow: hidden;
+  display: inline-block;
+  text-indent: 99999px;
+  position: relative;
+  background: #f9f9f9;
+  color: #333;
+  border-color: #666;
+  text-shadow: 0 0 0 #fff;
+}
+
+</style>
+
+
  <!--tabs-->
             <div class="vc_row">
                 <div class="vc_column">
@@ -272,11 +291,21 @@ foreach ($property_types as $key_proptype => $value_proptype) {
                             </div>';
         foreach ($property_types as $key_proptype => $value_proptype) {
 
-$cur_prop_type_img_id = $value_proptype['layout'];
+            $cur_prop_type_img_id = $value_proptype['layout'];
 
-$cur_prop_type_img = wp_get_attachment_image_src( $cur_prop_type_img_id,'full' );
+            $cur_prop_type_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
 
-$cur_prop_type_img_url = $cur_prop_type_img[0];
+ 
+            if(isset($cur_prop_type_img_id) && ($cur_prop_type_img_id!=false)){
+
+               
+                $cur_prop_type_img = wp_get_attachment_image_src( $cur_prop_type_img_id,'full' );
+
+                $cur_prop_type_img_url = $cur_prop_type_img[0];
+
+            }
+
+
 
           $floor_plans_tab_content.=' <div id="tab-'.str_replace(" ", "_", $value_proptype['type']).'" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
                                 <div class="wpb_text_column wpb_content_element ">

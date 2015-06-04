@@ -67,9 +67,12 @@
 
                 $project_type_seperator = " ";
 
-                foreach ($project_type as $ptype_key => $ptype_value) {
-                   $project_types_display[]=   ucfirst($ptype_value['type']);
-                  }
+                if(is_array($project_type)){
+                  foreach ($project_type as $ptype_key => $ptype_value) {
+                     $project_types_display[]=   ucfirst($ptype_value['type']);
+                    }  
+                }
+                
 
 
                  if(is_array($project_types_display))
