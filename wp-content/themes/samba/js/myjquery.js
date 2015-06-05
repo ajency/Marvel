@@ -76,6 +76,20 @@ jQuery(document).ready(function($) {
 
                                             $(new_element_html).insertAfter(custom_element.last().closest('span'));
                                             $(self).closest('.row').find('.additional_option').val('');
+                                            break;
+
+                        case 'checkbox'     : 
+
+                        var new_element_html = '<span attr-field-val ="'+new_field_value+'" class="row" >' 
+                                            +'<input type="checkbox"  value="'+new_field_value+'" attr-name="<?php echo $element_id; ?>"  attr-value="'+new_field_value+'"   name="'+attr_name+'[]"   class="postbox custom_input_field  "  />' 
+                                            +'<label class="inline" for="">'+new_field_value+'</label>'
+                                            +'<input type="file" value="" attr-name=""  attr-value=""   name="'+attr_name+'_'+new_field_value+'"   class="postbox custom_input_field "  />'
+                                            +'</span>' 
+                                             $(new_element_html).insertAfter(custom_element.last().closest('span'));
+                                            $(self).closest('.row').find('.additional_option').val('');
+
+                                                  
+                                            break;
 
                     }
 
@@ -178,6 +192,9 @@ jQuery(document).ready(function($) {
 
                                             }
 
+                                            console.log('html_field_options')
+                                            console.log(html_field_options);
+
                                             /* commented on 18may2015
                                             $(self).closest('.row').find('.edit_options_area').html(html_field_options);
                                             $(self).closest('.row').find('.edit_options_area').html(html_field_options);
@@ -258,7 +275,7 @@ jQuery(document).ready(function($) {
             var addtional_option_box = '<div class="span_additional_option" > '+
             '<input type="text" name="additional_option" class="additional_option"  value=""/>'+
             '<input type="hidden"  class="field_type"  value="'+field_type+'"/>'+
-            ' &nbsp; <input type="button"  class="button button-primary button-large save_additional_option save_additional_option" value="Save Option" /> '+
+            ' &nbsp; <input type="button"  class="button button-primary button-large save_additional_option " value="Save Option" /> '+
             ' &nbsp; <input type="button"  class="preview button button-large cancel_additional_option cancel_additional_option" value="Cancel Option" /> '+
             '<div class="edit_area"></div>'
             '</div>';

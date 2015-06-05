@@ -987,15 +987,20 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 									 $property_type_layout_image = '';
 									 $property_type_match = false;
-									
-									foreach ($current_property_meta_value_arr as $cur_prop_type_key => $cur_prop_type_value) {
-										if($type==$cur_prop_type_value['type']){
-											$img_id  = $cur_prop_type_value['layout'];
-											$prop_type_layout_img = wp_get_attachment_image_src( $img_id,'thumbnail' );
-											$property_type_layout_image = $prop_type_layout_img[0];
-											$property_type_match = true;
+									 
+									if(is_array($current_property_meta_value_arr)){
+
+										foreach ($current_property_meta_value_arr as $cur_prop_type_key => $cur_prop_type_value) {
+											if($type==$cur_prop_type_value['type']){
+												$img_id  = $cur_prop_type_value['layout'];
+												$prop_type_layout_img = wp_get_attachment_image_src( $img_id,'thumbnail' );
+												$property_type_layout_image = $prop_type_layout_img[0];
+												$property_type_match = true;
+											}
 										}
-									}	 
+
+									}
+										 
 						
 
 
@@ -1428,8 +1433,8 @@ function save_custom_meta_box($post_id, $post, $update)
 {
 	global $wpdb;
 
-    if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
-        return $post_id;
+   /* if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
+        return $post_id; */
 
     if(!current_user_can("edit_post", $post_id))
         return $post_id;
