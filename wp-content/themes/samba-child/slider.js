@@ -2,17 +2,17 @@
     //all child js
     $(document).ready(function() {
         //remove this line later
-        // $('#prk_ajax_container .tabular.inner .tab_col .text_in').click(function() {
-        //     $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
-        //     console.log(!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened')));
-        //     console.log($(this).parent('.tab_col').attr('class'));
+        $('#prk_ajax_container .tabular.inner .tab_col .text_in').click(function() {
+            $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
+            console.log(!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened')));
+            console.log($(this).parent('.tab_col').attr('class'));
 
-        //     if (!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened'))) {
-        //         $(this).parent().addClass('opened');
-        //     } else {
-        //         $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
-        //     }
-        // });
+            if (!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened'))) {
+                $(this).parent().addClass('opened');
+            } else {
+                $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
+            }
+        });
 
 
         //tabular left and right
@@ -46,6 +46,17 @@
             // }
         });
 
+        function placesearchbar() {
+            $wid = window.innerWidth ? window.innerWidth : $(window).width();
+            if ($wid > 769) {
+                $leftg = $('#menu_section').width();
+                $seawid = $('.home_search').width();
+                $actual_right = ($wid - $leftg - $seawid) / 2;
+                $('.home_search').css('right', $actual_right);
+            }
+        }
+
+
         $(window).load(function() {
             if ($('body').hasClass('page-template-floor_plans')) {
                 $('#prk_ajax_container').append(
@@ -60,6 +71,9 @@
                     $('html, body').animate({scrollTop:0}, '500', 'swing');
                 });
             }
+            if ($('body').hasClass('home')) {
+                placesearchbar();
+            }
         });
         $(window).resize(function() {
             if ($('body').hasClass('page-template-floor_plans')) {
@@ -68,6 +82,9 @@
                     'top': $btmval,
                     'right': 0
                 });
+            }
+            if ($('body').hasClass('home')) {
+                placesearchbar();
             }
         });
 
