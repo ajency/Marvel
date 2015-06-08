@@ -56,6 +56,10 @@
             }
         }
 
+        if ($('body').hasClass('home')) {
+            $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+            $('.flexslider').height($hevp);
+        }
 
         $(window).load(function() {
             if ($('body').hasClass('page-template-floor_plans')) {
@@ -85,6 +89,10 @@
             }
             if ($('body').hasClass('home')) {
                 placesearchbar();
+            }
+            if ($('body').hasClass('home')) {
+                $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+                $('.flexslider').height($hevp);
             }
         });
 

@@ -474,7 +474,34 @@ pre {
     }
 }
 @media only screen and (max-width: 680px) {
-	.child-footer
+	#copy {
+		padding-top: 5px;
+ 		padding-bottom: 10px;
+	}
+	#after_widgets h5 {
+		margin-bottom: 10px;
+	}
+	#footer_in .widget.pirenko-social-widget {
+		margin-bottom: 5px;
+ 		margin-top: -5px;
+	}
+	.child-footer .widget ul.menu {
+		margin-top: 10px;
+		margin-bottom: -5px;
+ 		padding-bottom: 0;
+	}
+	.child-footer .menu li  {
+        display: inline-block;
+        width: auto;
+    }
+    #after_widgets.hidein769 p {
+    	line-height: 18px;
+    }
+}
+@media only screen and (max-width: 420px) {
+	#footer_in a {
+		font-size: 12px;
+	}
 }
 
 /*services page*/
