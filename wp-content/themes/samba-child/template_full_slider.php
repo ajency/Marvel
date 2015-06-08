@@ -40,6 +40,110 @@ Template Name: Page - Fullscreen Slider
     }
   }
 ?>
+<script type="text/javascript" src="<?php echo site_url(); ?>/wp-content/themes/samba-child/dev/js/lib/underscore.min.js"></script>
+<script type="text/javascript">
+
+jQuery(document).ready(function(){
+
+jQuery.ajax(ajax_var.url,{
+                        type: 'GET',
+                        action:'get_search_options',
+                        data :{action:'get_search_options'},
+                        complete: function() {
+
+                        },
+                        success: function(response) {
+
+                           window.search_options  = response;
+                           console.log('SEARCH OPTIONS')
+                           console.log(window.search_options)
+
+
+
+                           jQuery('#home_city').empty();
+                           jQuery('#home_city').append('<option value="">Select</option>')                        
+
+                           _.each(window.search_options.citylocality,function(vl_cl,ky_cl){
+                                console.log(vl_cl);
+                                console.log('ky'+ky_cl)
+
+                                 jQuery('#home_city').append('<option value="'+ky_cl+'">'+ky_cl+'</option>')
+
+                           }) 
+
+                           jQuery('#home_type').empty();
+                           jQuery('#home_type').append('<option value="">Select</option>')
+                           for(var i=0;i<window.search_options.type.length;i++){                           
+
+                            jQuery('#home_type').append('<option value="'+window.search_options.type[i]+'">'+window.search_options.type[i]+'</option>')
+                            
+                           }
+
+                        },
+                        error: function(){
+
+                        },
+
+                        dataType: 'json'
+                    });
+
+})
+
+
+
+
+jQuery('#home_city').live('change',function(){
+  jQuery('#home_location').empty();
+  jQuery('#home_location').append('<option value="">Select</option>');
+
+   _.each(window.search_options.citylocality,function(vl_cl,ky_cl){
+                                console.log(vl_cl);
+                                console.log('ky'+ky_cl)
+                                if(jQuery('#home_city').val()==ky_cl){
+                                  for(var j=0;j<vl_cl.length;j++){
+                                    jQuery('#home_location').append('<option value="'+vl_cl[j]+'">'+vl_cl[j]+'</option>')
+                                  }
+                                }
+
+                                 
+
+                           }) 
+
+})
+
+
+jQuery('.home_btn_sea').live('click',function(evt){
+
+  evt.preventDefault();
+  var search_url = SITE_URL+'/residential-properties/#';
+  //residential-properties/#/ct/blore/loc/mekri circle/type/1 BHK
+
+  if(jQuery('#home_city').val()!=''){
+    search_url= search_url + '/ct/'+jQuery('#home_city').val()
+  }
+
+
+  if(jQuery('#home_location').val()!=''){
+    search_url= search_url + '/loc/'+jQuery('#home_location').val()
+  }
+  
+
+  window.location.href = search_url;
+
+
+})
+
+
+
+
+
+
+</script>
+
+
+
+
+
 <div id="centered_block">
 <div id="main_block" class="row page-<?php echo get_the_ID(); ?>">
     <div id="content">

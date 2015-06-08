@@ -104,13 +104,48 @@ console.log('vl');
                             </tr>
                             <tr>
                                 <td>Types</td>
-                                <td><%=f_prop.get('property_type')%></td>
-                                <td><%=s_prop.get('property_type')%></td>
+                                <td><%=_.pluck(f_prop.get('property_type'),'type').join()%></td>
+                                <td><%=_.pluck(s_prop.get('property_type'),'type').join()%></td>
                             </tr>
                             <tr>
                                 <td>Sellable Area</td>
-                                <td><%= f_prop.get('property_sellablearea')!=''?f_prop.get('property_sellablearea')+'SQ. FT.': ' - ' %> </td>
-                                <td><%= s_prop.get('property_sellablearea')!=''?s_prop.get('property_sellablearea')+'SQ. FT.': ' - ' %></td>
+                                <td>
+                                <% 
+                                var min_sellable_area =' - ';
+                                var max_sellable_area =' - ';
+
+                                var array = jQuery.map(f_prop.get('property_sellablearea'), function(value, index) {
+                                                if(index=='min-area'){
+                                                      min_sellable_area = value;                                                    
+                                                }
+                                                else if(index=='max-area'){
+                                                      max_sellable_area = value;       
+                                                }
+
+                                                return [value];
+                                            });
+
+
+
+                                var s_min_sellable_area =' - ';
+                                var s_max_sellable_area =' - ';
+
+                                var s_array = jQuery.map(s_prop.get('property_sellablearea'), function(value, index) {
+                                                if(index=='min-area'){
+                                                      s_min_sellable_area = value;                                                    
+                                                }
+                                                else if(index=='max-area'){
+                                                      s_max_sellable_area = value;       
+                                                }
+
+                                                return [value];
+                                            });
+
+
+                                %>    
+
+                                <%= f_prop.get('property_sellablearea')!=''?min_sellable_area+' to '+max_sellable_area+' SQ.Ft.': ' - ' %> </td>
+                                <td><%= s_prop.get('property_sellablearea')!=''?s_min_sellable_area+" to "+s_max_sellable_area+' SQ.Ft.': ' - ' %></td>
                             </tr>
 
                             <tr class="head-row">

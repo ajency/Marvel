@@ -15,6 +15,7 @@
 
                console.log('PROJECTS LISTINGS  OPTIONS:-----')
                console.log(args);  
+              this.searchView = args;
                /*  _.bindAll(this ,'renderForm','renderError', 'saveProfileSuccess', 'saveProfileFailure','parsleyInitialize');
 
                 //ensure site model property is set
@@ -165,15 +166,15 @@
 
         var projectListingsTemplate = _.template(jQuery(self.template).html());
                                         
-        jQuery('#projects_listings').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection.models}));
-
+       // jQuery('#projects_listings').html(projectListingsTemplate({propertiesdata : getAppInstance().residentialPropertyCollection.models}));
+self.searchView.searchProperties();
 
 
 
 setTimeout(function(){
 
 console.log('LOADING SHARE BUTTON  LISTINGSSSSSSSSS:-------------------------------------------')
-console.log(jQuery('#projects_listings').html())
+//console.log(jQuery('#projects_listings').html())
   var switchTo5x=true;  
  stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false}); 
  stButtons.locateElements();
@@ -233,6 +234,7 @@ console.log(jQuery('#projects_listings').html())
                                '<div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>'+
                            '</div>'+
                        '</div>' ;
+                      
             }
 
             

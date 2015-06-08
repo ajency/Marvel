@@ -3,18 +3,19 @@
 <script type="text/template" id="projectlistSearchOptionsTemplate" >
 
 
-<% 
+<%  
 var selectedCity     = !_.isUndefined(selected.selectedCity)? selected.selectedCity : '' ;
 var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selectedLocality : '' ;
 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
 var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
+
 %>
     <div class="top-dd one">
         <select id="dd_status" name="dd_status" class='srchopt' >
          <option value="">Select</option>
         <% 
             _.each(data.status,function(vl,ky){
-            %><option value="<%=vl%>"    ><%=vl%></option>
+            %><option value="<%=vl%>"  <% if(selectedStatus==vl){%> selected  <% }%>  ><%=vl%></option>
 
             <% }) %>
 
@@ -35,10 +36,17 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
         <select id="dd_locality" name="dd_locality"  class='srchopt'  >
          <option value="">Select</option>
             <% 
-            /*  _.each(data.locality,function(vl,ky){
-            %  ><option value="< %=vl% >">< %=vl% ></option>
+            _.each(data.citylocality,function(vl,ky){
+if(selectedCity == ky) {
+    _.each(vl,function(vl_locality,ky_locality){
+            %><option value="<%=vl_locality%>"  <% if(vl_locality==selectedLocality) { %> selected <% } %>><%=vl_locality%></option><%
 
-            < % }) */
+    })
+}
+
+
+
+            }) 
 
             console.log('SELECTED OPTIONS DROPDOWN ');
             console.log(data);
@@ -56,9 +64,9 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     <div class="top-dd fou">
         <select id="dd_type" name="dd_type"  class='srchopt' >
          <option value="">Select</option>
-            <%  
+            <%   
             _.each(data.type,function(vl,ky){
-            %><option value="<%=vl%>"><%=vl%></option>
+            %><option value="<%=vl%>" <% if(selectedType==vl) { %> selected <% } %>><%=vl%></option>
 
             <% }) %>
         </select>
