@@ -34,9 +34,10 @@
                   this.selectedStatus   = args.pstatus;
                   this.selectedCity     = args.city;
                   this.selectedLocality = args.locality;
-                  this.selectedType     = args.propertytype;
+                  this.selectedType     = args.type;
 
                 }
+                
  
 
                 if(_.isUndefined(getAppInstance().searchOptions)){
@@ -118,7 +119,7 @@
                                     jQuery('.top_map').removeClass('current')
  
                                     if(_.isUndefined(getAppInstance().projectlistView ))
-                                        getAppInstance().projectlistView = new projectsListingsView();
+                                        getAppInstance().projectlistView = new projectsListingsView(self);
                                     else{
                                       console.log('self.searchProperties() :-------------------------------------1');
                                         self.searchProperties()
@@ -146,7 +147,7 @@
                                 else{
 
                                     if(_.isUndefined(getAppInstance().projectlistView ))
-                                        getAppInstance().projectlistView = new projectsListingsView();
+                                        getAppInstance().projectlistView = new projectsListingsView(self);
                                     else{
                                       console.log('self.searchProperties() :-------------------------------------2')
                                       self.searchProperties()
@@ -400,7 +401,7 @@
             },
 
             searchProperties: function(evt){
-
+ 
 
                 var self = this ;
 
@@ -446,9 +447,33 @@
                                           }) */
 
                 var search_collections = res_collection.models;
+               
                 
-                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
+                delete search_options['property_type'] ;
+
+                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
                     var search_collections = res_collection.where(search_options ) 
+
+
+                  var sel_search_collections = {};
+                  var cnt_sel_search_collection = 0;
+ 
+                  if( prop_type!='' && !_.isNull(prop_type)){
+                    alert('SEARCH----------------------------------------------')
+                     console.log(search_collections)
+
+                    _.each(search_collections,function(vl_searchres,ky_searchres){
+
+ 
+                       var exists_by_type = _.where(vl_searchres.get('property_type'),{type:prop_type})
+                      if(exists_by_type.length>0){
+                        sel_search_collections[cnt_sel_search_collection] = vl_searchres;
+
+                        cnt_sel_search_collection = cnt_sel_search_collection+1; 
+                      }
+                    })
+                    search_collections = sel_search_collections;
+                  }
 
                 /* var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
                                         
@@ -483,8 +508,8 @@
 
 setTimeout(function(){
 
-console.log('LOADING SHARE BUTTON :-------------------------------------------')
-console.log(jQuery('#projects_listings').html())
+//console.log('LOADING SHARE BUTTON :-------------------------------------------')
+//console.log(jQuery('#projects_listings').html())
   var switchTo5x=true;  
  stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false}); 
  stButtons.locateElements();

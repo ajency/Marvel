@@ -19,6 +19,10 @@ jQuery(document).ready(function($) {
         console.log('saving custom field options ');
 
         var self = this;
+
+        $(self).parent().find('.new_field_value').css({border:'red'});
+
+
         var custom_element = $(self).closest('.row').find('.custom_input_field');
 
         var attr_name = custom_element.attr('attr-name');
@@ -33,6 +37,12 @@ jQuery(document).ready(function($) {
         var new_field_value = $(self).closest('.row').find('.additional_option').val();
 
         var field_type = $(this).closest('.row').find('.field_type').val();
+
+        if(new_field_value==''){
+            $(self).parent().find('.spn_additional_option_msg').addClass('admin_msg_error').html('Please enter new custom field value.');
+            $(self).parent().find('.additional_option').addClass('admin_msg_error');
+            return;
+        }
 
 
         if(field_type == 'property-locality'){
@@ -92,6 +102,14 @@ jQuery(document).ready(function($) {
                                             break;
 
                     }
+                    $(self).parent().find('.spn_additional_option_msg').addClass('admin_msg_success').removeClass('admin_msg_error').html('<span>New Option Value Added Successfully</span>');
+                    //$(self).parent().find('.additional_option').addClass('admin_msg_success');
+
+                    setTimeout(function(){   
+                        
+                        $(self).parent().html('');
+
+                    },3000)
 
                 }
                 $("#myother_field").html(data);
@@ -102,6 +120,7 @@ jQuery(document).ready(function($) {
     $('.add_custom_postmeta_options').click(function(){
         if( $(this).closest('.row').find('.span_additional_option').length <= 0 ){
             var span_additional_input_option_box = get_additional_option_box($(this).attr('field-type'));
+            alert(span_additional_input_option_box)
             $(this).closest('.row').append(span_additional_input_option_box);
         }
 
@@ -129,7 +148,15 @@ jQuery(document).ready(function($) {
 
 
        //commented on 18may2015 6am $(this).closest('.row').find('.edit_options_area').show();
-        $(this).closest('.admin_input').find('.edit_options_area').show();
+        $(this).parent().find('.edit_options_area').show();
+        var loader_html = '<div id="np">'+
+                           '<div class="spinner">'+
+                               '<div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>'+
+                           '</div>'+
+                       '</div>';
+
+        $(this).parent().find('.edit_options_area').html(loader_html);
+       
 
         $(this).html('Cancel Edit');
         $(this).addClass('cancel_edit_custom_postmeta_options');
@@ -143,7 +170,7 @@ jQuery(document).ready(function($) {
                         'post_type'  : current_post_type
                       }
 
-        $(self).closest('.row').find('.edit_options_area').html('');
+       // $(self).closest('.row').find('.edit_options_area').html('');
 
         $.post(ajaxurl,{   //the server_url
                                         action: "get_custom_field_options",                 //the submit_data array
@@ -200,8 +227,8 @@ jQuery(document).ready(function($) {
                                             $(self).closest('.row').find('.edit_options_area').html(html_field_options);
                                             */
 
-                                             $(self).closest('.admin_input').find('.edit_options_area').html(html_field_options);
-                                            $(self).closest('.admin_input').find('.edit_options_area').html(html_field_options);
+                                            // $(self).closest('.admin_input').find('.edit_options_area').html(html_field_options);
+                                            $(self).parent().find('.edit_options_area').html(html_field_options);
 
                                            // $("#myother_field").html(data);
                                         }
@@ -254,7 +281,8 @@ jQuery(document).ready(function($) {
                                                 break;
 
                             case 'text'      :
-                                                $('[attr-field-val="'+$(self).attr('field-value')+'"]').remove();
+                                                $('[attr-field-val="'+$(self).attr('field-value')+'"]').closest('.admin_new_add').remove();
+                                                /* commented on 7june2015 $('[attr-field-val="'+$(self).attr('field-value')+'"]').remove(); */ 
                                                 break;
 
                         }
@@ -273,6 +301,7 @@ jQuery(document).ready(function($) {
         function get_additional_option_box(field_type){
 
             var addtional_option_box = '<div class="span_additional_option" > '+
+            '<span class="spn_additional_option_msg"></span><br/>'+
             '<input type="text" name="additional_option" class="additional_option"  value=""/>'+
             '<input type="hidden"  class="field_type"  value="'+field_type+'"/>'+
             ' &nbsp; <input type="button"  class="button button-primary button-large save_additional_option " value="Save Option" /> '+

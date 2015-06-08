@@ -478,7 +478,6 @@ function myplugin_add_custom_box() {
 	    							  'priority'			=> 'default'
 	     							);
 
-
 	    	$custom_fields[] = array('field'				=> 'property-siteplan',
 	    							  'metabox_title'		=> 'Site Plan',
 	    							  'multiple_values' 	=> false,
@@ -880,7 +879,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 	$custom_field_type		= $element_custom_field_args['field'];
 
 	echo '<div class="set_admin_input row"> ';
-	if($multiple_values==false)
+	if($multiple_values==false || ( ($multiple_values==true) && $element_type=='select'))
 		echo '	<div class="admin_label">
 		    		<label for="">'.$element_title.'</label>
 			    </div>
@@ -1096,7 +1095,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 	if($edit_options_values==true){
 
     ?>
-
+    	<br/><br/>
         <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="add_custom_postmeta_options">Add New Value</a> &nbsp;
         <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="edit_custom_postmeta_options">Edit</a>
         <div class="edit_options_area"></div>
@@ -1104,8 +1103,17 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
     <?php
     }
 
-	echo '</div>
-		</div>';
+    if($multiple_values==false || ( ($multiple_values==true) && $element_type=='select')){
+    	echo '	</div>
+    			</div>
+			</div>';
+    }
+    else{
+    	echo "	</div>
+    		</div>";
+    }
+
+		
 
 }
 
@@ -1122,8 +1130,11 @@ add_action( 'save_post', 'myplugin_save_postdata' );
 
 function my_enqueue($hook) {
     if( 'post.php' != $hook && 'post-new.php' != $hook ) return;
-
+    /* commented on 7june2015 
     wp_enqueue_script( 'undescore','https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js',
+        array('jquery') ); */
+
+wp_enqueue_script( 'undescore',site_url().'/wp-content/themes/samba-child/dev/js/lib/underscore.min.js',
         array('jquery') );
 
 	$load_map_script = false;
@@ -1290,7 +1301,10 @@ function get_properties_type_option_by_post_type($custom_field_option){
         else if ($post_type=="commercial-property")
             $real_custom_field_option_name = "commercial-property-type";
     }
-    else{
+    else if($custom_field_option_name=="property-locality" || $custom_field_option_name=="property-city" ){
+    		$real_custom_field_option_name = 'property-citylocality';
+    }
+    else {
     	$real_custom_field_option_name = $custom_field_option_name;
     }
 
@@ -1433,8 +1447,8 @@ function save_custom_meta_box($post_id, $post, $update)
 {
 	global $wpdb;
 
-   /* if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
-        return $post_id; */
+    if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
+        return $post_id;  
 
     if(!current_user_can("edit_post", $post_id))
         return $post_id;

@@ -69,6 +69,7 @@
         <?php wp_footer(); ?>
         <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/slider.js"></script>
         <script type="text/javascript">
+        var SITE_URL = "<?php echo site_url();?>";
         
           jQuery(window).load(function() {
             jQuery('.child-footer').fadeIn('slow');

@@ -204,3 +204,44 @@
 .clearfix {
     clear: both;
 }
+
+
+
+
+/* admin side loader */
+#np {
+  position: relative;
+  top: 35%;
+  left: 50%;
+  margin-left: -10px;
+}
+#np .spinner {
+  display: block;
+  z-index: 100;
+  top: 15px;
+  right: 15px;
+}
+#np .spinner .spinner-icon {
+  width: 20px;
+  height: 20px;
+  border: solid 2px transparent;
+  border-radius: 10px;
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+  -moz-animation: nprogress-spinner 400ms linear infinite;
+  -ms-animation: nprogress-spinner 400ms linear infinite;
+  -o-animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
+}
+/* end admin side loader*/
+
+
+
+.admin_msg_error{
+    color: red;
+
+}
+
+.admin_msg_success{
+
+   color: green;
+}
