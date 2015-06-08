@@ -315,8 +315,17 @@
                                                 '<span class="single_p_light">|</span>'+
                                                 '<span class="single_p_location">'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'</span>'+
                                             '</a>'+
-                                            '<p class="map_excerpt">'+
-                                            properties[i].get('property_type')+ 
+                                            '<p class="map_excerpt">';
+                                            
+                      var individial_proptype_cnt  = 0;                     
+                                            _.each(properties[i].get('property_type'),function(proptype_vl1,proptype_ky1){
+                                               if(individial_proptype_cnt>0) 
+                                                popup_content+= ', ';
+                                              popup_content+= proptype_vl1.type;                                              
+                                              individial_proptype_cnt++;
+                                            })  
+                                             
+                    popup_content = popup_content +                     
                                             '</p>'+
                                             ' <p class="map_p_cost">'+
                                                 property_price+
