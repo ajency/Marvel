@@ -169,6 +169,7 @@ $show_sidebar=false;
                                                         <div class="tab_col">A-Flat No. (Sq.Ft.)</div>
                                                         <div class="tab_col">B-Flat No. (Sq.Ft.)</div>
                                                         <div class="tab_col">C-Flat No. (Sq.Ft.)</div>
+                                                        <div class="tab_col">D-Flat No. (Sq.Ft.)</div>
                                                     </div>
                                                     <div class="tab_row">
                                                         <div class="tab_col">
@@ -212,46 +213,36 @@ $show_sidebar=false;
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab_row">
-                                                        <div class="tab_col">
-                                                            <div class="tabular inner">
-                                                                <div class="tab_row">
-                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div class="tab_col">
                                                             <div class="tabular inner">
                                                                 <div class="tab_row">
                                                                     <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab_col">
-                                                            <div class="tabular inner">
-                                                                <div class="tab_row">
-                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
-                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab_row">
-                                                        <div class="tab_col">
-                                                            <div class="tabular inner">
-                                                                <div class="tab_row">
-                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
                                                                     <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="tab_col">
                                                             <div class="tabular inner">
                                                                 <div class="tab_row">
                                                                     <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
                                                                     <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
                                                                 </div>
                                                             </div>
@@ -278,6 +269,32 @@ $show_sidebar=false;
                                                             <div class="tabular inner">
                                                                 <div class="tab_row">
                                                                     <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab_row">
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
                                                                     <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
                                                                 </div>
                                                             </div>
@@ -287,6 +304,22 @@ $show_sidebar=false;
                                                                 <div class="tab_row">
                                                                     <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
                                                                     <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -304,6 +337,14 @@ $show_sidebar=false;
                                                             <div class="tabular inner">
                                                                 <div class="tab_row">
                                                                     <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
                                                                     <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
                                                                 </div>
                                                             </div>
@@ -338,6 +379,14 @@ $show_sidebar=false;
                                                             <div class="tabular inner">
                                                                 <div class="tab_row">
                                                                     <div class="tab_col"><span class="text_in">A 1001 (5,500)</span></div>
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab_col">
+                                                            <div class="tabular inner">
+                                                                <div class="tab_row">
+                                                                    <div class="tab_col blue_bg"><span class="text_in">A 1001 (5,500)</span></div>
                                                                     <div class="tab_col blue_bg"><span class="text_in">A 1002 (5,500)</span></div>
                                                                 </div>
                                                             </div>
@@ -363,7 +412,7 @@ $show_sidebar=false;
                                 </div>
                             </div>
 
-                            <div id="tab-3_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                            <!-- <div id="tab-3_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
@@ -388,7 +437,6 @@ $show_sidebar=false;
                                 </div>
                                 <div id="ava_2" class="inner-panels avatab wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
                                     <div class="wpb_wrapper">
-                                        <!-- <p>Availability content goes here</p> -->
                                         <div class="top_head">
                                             <div class="pull-left">
                                                 <span class="box white_bg"></span>
@@ -601,7 +649,7 @@ $show_sidebar=false;
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 

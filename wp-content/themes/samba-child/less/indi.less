@@ -676,6 +676,11 @@
         border-top: 0;
         position: relative;
         &.tabul_main {
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            transition: all 0.5s;
             // position: absolute;
             left: 0;
             & > .tab_row > .tab_col {
@@ -857,4 +862,22 @@
 }
 .inner-panels.current {
     display: block;
+}
+
+
+//gallery
+.owl-carousel .item img.heightadjust {
+    position: absolute;
+    width: auto !important;
+    max-width: none;
+    height: 100% !important;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.no-csstransforms .owl-carousel .item img.heightadjust {
+    top: 0 !important;
 }

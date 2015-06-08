@@ -16,34 +16,66 @@
 
 
         //tabular left and right
+        var $actualWidth = 317;
+        $no_of_columns = $('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
+        $actual_table_width = $no_of_columns * $actualWidth;
+        $('.tabular_c').find('.tabul_main').width($actual_table_width);
+
         $(document).on('click', '.tabular_c .right', function() {
-            $par = $(this).parent('.tabular_c');
-            $objiq = $par.find('.tabul_main');
-            $contw = $par/*.find('.tabul_hold')*/.innerWidth();
-            $mainw = $objiq.width();
-            $r = Math.floor($mainw / $contw);
-            // console.log('$contw: ' + $contw);
-            // console.log('$mainw: ' + $mainw);
-            // console.log('$r: ' + $r);
-            // console.log(parseInt($objiq.css('left')) + (2 * $contw) < $mainw);
-            // console.log(parseInt($objiq.css('left')));
-            // console.log((parseInt($objiq.css('left')) + $contw));
-            // console.log((parseInt($objiq.css('left')) + $contw < $mainw));
-            // console.log((-parseInt($objiq.css('left')) + $contw < $mainw));
+            var $toShow;
 
-            // if (parseInt($objiq.css('left')) + (2 * $contw) < $mainw) {
-            //     $objiq.css('left', '-='+$contw);
-            // } else if (parseInt($objiq.css('left')) == 0) {
-            //     $objiq.css('left', '-='+($mainw - $contw));
-            // } else if (-parseInt($objiq.css('left')) + $contw < $mainw) {
-            //     $objiq.css('left', '-='+$contw);
-            // }
+            $wide = window.innerWidth ? window.innerWidth : $(window).width();
+            if ($wide < 1199) {
+                $toShow = 2;
+            } else if ($wide < 769) {
+                $toShow = 1;
+            } else {
+                $toShow = 3;
+            }
+            $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
+            $rotations = Math.floor($no_of_columns / $toShow);
+            $if_extra = $no_of_columns % $toShow;
 
-            // if (parseInt($objiq.css('left')) + (2 * $contw) < $mainw) {
-            //     $objiq.css('left', '='+$contw);
-            // } else if ($mainw - $contw < $contw && parseInt($objiq.css('left')) < ($mainw - $contw)) {
-            //     $objiq.css('left', '-='+($mainw - $contw));
-            // }
+            if ($rotations == 1 && $if_extra == 0) {
+                alert('nothing to show')
+            } else if ($rotations == 1 && $if_extra > 0) {
+                $(this).removeClass('active');
+                $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
+                $widthofcon = $(this).parents('.tabular_c').width();
+                $moveby = $widthoftab - $widthofcon;
+
+                if (parseInt($(this).parents('.tabular_c').find('.tabul_main').css('left')) !== $moveby) {
+                    $(this).parents('.tabular_c').find('.tabul_main').css('left', '-' + $moveby + 'px');
+                    $(this).prev('.left').addClass('active');
+                }
+            }
+        });
+        $(document).on('click', '.tabular_c .left', function() {
+            var $toShow;
+
+            $wide = window.innerWidth ? window.innerWidth : $(window).width();
+            if ($wide < 1199) {
+                $toShow = 2;
+            } else if ($wide < 769) {
+                $toShow = 1;
+            } else {
+                $toShow = 3;
+            }
+            $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
+            $rotations = Math.floor($no_of_columns / $toShow);
+            $if_extra = $no_of_columns % $toShow;
+
+            if ($rotations == 1 && $if_extra == 0) {
+                alert('nothing to show')
+            } else if ($rotations == 1 && $if_extra > 0) {
+                $(this).removeClass('active');
+                $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
+                $widthofcon = $(this).parents('.tabular_c').width();
+                $moveby = $widthoftab - $widthofcon;
+
+                $(this).parents('.tabular_c').find('.tabul_main').css('left', 0);
+                $(this).next('.right').addClass('active');
+            }
         });
 
         function placesearchbar() {
@@ -59,6 +91,19 @@
         if ($('body').hasClass('home')) {
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
             $('.flexslider').height($hevp);
+        }
+
+        function resizeimgs(tw, obj) {
+            var ar = obj.width() / obj.height();
+
+            //console.log('AR: '+ar+'\n cont: ' + (tw.width() / tw.height()));
+            if ( (tw.width() / tw.height()) < ar ) {
+                obj
+                    .removeClass()
+                    .addClass('heightadjust');
+            } else {
+                obj.removeClass('heightadjust');
+            }
         }
 
         $(window).load(function() {
@@ -78,6 +123,11 @@
             if ($('body').hasClass('home')) {
                 placesearchbar();
             }
+            if ($('body').hasClass('single-residential-property')) {
+                $('.owl-carousel .item img').each(function() {
+                    resizeimgs($(this).parent(), $(this));
+                });
+            }
         });
         $(window).resize(function() {
             if ($('body').hasClass('page-template-floor_plans')) {
@@ -95,8 +145,6 @@
                 $('.flexslider').height($hevp);
             }
         });
-
-
 
         $('.faq_faq .arconix-faq-wrap .arconix-faq-title').each(function(i) {
             $(this).prepend('<i class="faq_head_count">' + (i + 1) + '. </i>');
@@ -254,6 +302,7 @@
 
 
     function setEqualHeight(obj) {
+        obj.height('auto');
         var serhe = obj.map(function() {
             return $(this).height();
         }).get();
