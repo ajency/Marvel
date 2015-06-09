@@ -35,7 +35,7 @@ console.log(options);
                 var mainViewtemplate = _.template(jQuery(this.template).html());
                 //jQuery('.right_container').html(mainViewtemplate()); 
                             jQuery('#main').html(mainViewtemplate()); 
-                            this.make_div_dropable(".drag_area")
+                            this.make_div_dropable(".drag_area_block")
             },
 
             /*show_compare2:function(){
@@ -126,10 +126,30 @@ console.log(options);
                         //        console.log(jQuery(self).html())
  
                           //      alert(jQuery(self).attr('property-title'))
-                                jQuery(this).removeClass("border").removeClass("over");
+                                
                                 var dropped = ui.draggable;
-                                var droppedOn = jQuery(this);
+                                
+
+                                if( jQuery(this).find('.one').attr('property-id')=='' || _.isUndefined(jQuery(this).find('.one').attr('property-id')) ){
+                                    var droppedOn = jQuery(this).find('.one') ;
+
+                                }
+                                else{
+                                    var droppedOn = jQuery(this).find('.two') ;
+                                }
+
+
+                                console.log('droppedOn:---------------------')
+                                console.log(droppedOn)
+                                droppedOn.removeClass("border").removeClass("over");
+                                droppedOn.html('');
+                                /* commented on 8june2015 2_30pm
+                                jQuery(this).removeClass("border").removeClass("over");
+                                 var droppedOn = jQuery(this); 
                                 jQuery(this).html('');
+                                 */
+
+                                
                                 console.log('droppable.........................') 
 
                                 console.log(dropped)

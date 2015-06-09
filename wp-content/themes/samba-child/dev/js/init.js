@@ -135,7 +135,7 @@ require(['backbone','marionette',
 
 
             Backbone.emulateHTTP = true;
-            alert('TEST');
+            
 
             ProjectListApp = new Backbone.Marionette.Application();
 

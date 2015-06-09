@@ -128,6 +128,11 @@ jQuery('.home_btn_sea').live('click',function(evt){
   }
   
 
+   if(jQuery('#home_type').val()!=''){
+    search_url= search_url + '/type/'+jQuery('#home_type').val()
+  }
+  
+
   window.location.href = search_url;
 
 
@@ -173,8 +178,7 @@ jQuery('.home_btn_sea').live('click',function(evt){
               </div>
               <div class="hme_dd lo">
                 <select id="home_location">
-                  <option value="Locality">Locality</option>
-                  <option value="Locality">Locality</option>
+                  <option value="">Select</option>
                 </select>
               </div>
               <div class="hme_dd ty">
