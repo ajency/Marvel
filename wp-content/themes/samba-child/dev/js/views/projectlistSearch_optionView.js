@@ -164,6 +164,8 @@
 
 
    display_map : function(){ 
+
+    var self = this;
                 console.log('display map');;
                
                 jQuery('.top_map').addClass('current');
@@ -253,6 +255,39 @@
                             icon :  marker_image   
                         });
 
+
+
+                        google.maps.event.addListener(infowindow, 'domready', function() {
+                         /* var l = $('#hook').parent().parent().parent().siblings();
+                          var l = $('.map_info_c').closest('.gm-style-iw').parent().addClass('MYCUSTOM TEST CLASS');
+                         
+                          for (var i = 0; i < l.length; i++) {
+                              if($(l[i]).css('z-index') == 'auto') {
+                                  $(l[i]).css('border-radius', '16px 16px 16px 16px');
+                                  $(l[i]).css('border', '2px solid red');
+                              }
+                          }*/
+                          //alert(jQuery('.map_info_c').length);
+                         /* var l =  jQuery('.map_info_c').closest('.gm-style-iw').parent();
+                          for (var i = 0; i < l.length; i++) {
+
+                            jQuery(l[i]).addClass('MYCUSTOM_TEST_CLASS');
+                              
+                          } */
+
+                          jQuery('.map_info_c').closest('.gm-style-iw').parent().addClass('draggable');
+                          jQuery('.map_info_c').closest('.gm-style-iw').parent().attr('property-id',jQuery('.map_info_c').attr('property-id'))
+
+                          jQuery('.map_info_c').closest('.gm-style-iw').parent().attr('property-address',jQuery('.map_info_c').attr('property-address'))
+                          jQuery('.map_info_c').closest('.gm-style-iw').parent().attr('property-title',jQuery('.map_info_c').attr('property-title'))
+
+                      
+
+
+                          self.make_div_draggable()
+                      });
+
+
                         google.maps.event.addListener(marker, 'click', (function(marker, i) {
                         return function() {
 
@@ -303,7 +338,7 @@
                     var property_price = _.isEmpty(properties[i].get('property_price'))?'':'INR '+properties[i].get('property_price')
 
 
-                    var popup_content ='<div class="map_info_c  draggable"    property-id="'+properties[i].get('id')+'" property-title = "'+properties[i].get('post_title')+'" property-address="'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'">'+
+                    var popup_content ='<div class="map_info_c"    property-id="'+properties[i].get('id')+'" property-title = "'+properties[i].get('post_title')+'" property-address="'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'">'+
                                        '                  <div class="img_cont">'+
                                             '<a href="#" class="img_link">'+
                                                 '<img src="'+featured_img_thumbnail[0]+'" alt="" class="pull-left map_fi">'+
@@ -351,12 +386,28 @@
 
                       infowindow.setContent(popup_content);
                       infowindow.open(map, marker); 
-
+ 
 
                       jQuery('#projects_listings').height(jQuery(window).height() - jQuery('#projects_listings').position().top - 40);
                      // jQuery('#projects_listings').first(div).css({'padding':'5px 50px 25px'});
 
-                        if(jQuery(".draggable").length>0){
+                        self.make_div_draggable();
+ 
+
+                    }
+                  })(marker, i)); 
+                }
+        }
+        else{
+
+            jQuery('#projects_listings').html('<p class="no_props">No Properties to display!</p>');
+        }
+
+            },
+
+
+            make_div_draggable : function(){
+              if(jQuery(".draggable").length>0){
                                 console.log('draggable')
                                 jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
 
@@ -373,17 +424,6 @@
                         else{
                             console.log('no dragables')
                         }
- 
-
-                    }
-                  })(marker, i)); 
-                }
-        }
-        else{
-
-            jQuery('#projects_listings').html('<p class="no_props">No Properties to display!</p>');
-        }
-
             },
 
 
