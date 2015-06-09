@@ -5,7 +5,7 @@
 
 function get_map_address_details($property_id){
 
-	global $wpdb; 
+	global $wpdb;
 	$qry_map_address_details = "SELECT address, city, region, postcode, country, lat, lng  FROM {$wpdb->prefix}addresses WHERE addressable_id = ".$property_id;
 	//echo $qry_map_address_details;
 	$res_map_address_details = $wpdb->get_results($qry_map_address_details,ARRAY_A);
@@ -31,7 +31,7 @@ function get_search_options(){
     $property_amenities = get_terms( 'property_amenity', array(
     'orderby'    => 'count',
     'hide_empty' => 0,
- ) );  
+ ) );
 
     $search_option_data = array( 'cities'        => $property_cities,
                                  'status'        => $property_status,
@@ -51,7 +51,7 @@ function get_search_options(){
 
 function get_search_options_ajx(){
 
-	 
+
 	$search_option_data =  get_search_options();
 
 	wp_send_json( $search_option_data);
@@ -76,7 +76,7 @@ function get_res_property_meta_values($property_id){
                                              'property_locaity'      => $property_locality,
                                              'poperty_neighbourhood' => $property_neighbourhood,
                                              'property_type'		 => $property_type,
-                                             'property_sellablearea' => $property_sellablearea, 
+                                             'property_sellablearea' => $property_sellablearea,
                                              'map_address'	 		 => get_map_address_details($property_id),
                                              'property_price' 		 => $property_price
                                             );
@@ -128,7 +128,7 @@ function get_residential_properties_list_ajx() {
         $property_meta_value =  get_res_property_meta_values($res_property->ID);
         unset($res_property->ID);
         $sel_properties[] =  (object)array_merge((array)$res_property,$property_meta_value) ;*/
-         
+
 
     }
 
@@ -171,7 +171,7 @@ function marvel_scripts_styles(){
     // if(is_page_template()== 'project_list_new.php'){
 
      	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
-     	
+
 /*
         wp_enqueue_script('backbone', get_template_directory_uri() . '/dev/js/lib/backbone.js', array('jquery'), false, true);
         wp_enqueue_script('backbonebabysitter', get_template_directory_uri() . '/dev/js/lib/backbone.babysitter.js', array('jquery'), false, true);
@@ -217,14 +217,14 @@ $property_sellable_area = maybe_unserialize(get_post_meta($cur_property_id,'prop
 
 if(isset($property_sellable_area['min-area'])) {
     if(!empty($property_sellable_area['min-area'])){
-        $display_area = "  &#8211;  ".$property_sellable_area['min-area']." sq. ft" ;    
-    } 
+        $display_area = "  &#8211;  ".$property_sellable_area['min-area']." sq. ft" ;
+    }
 }
 
 if(isset($property_sellable_area['max-area'])) {
     if(!empty($property_sellable_area['max-area'])){
-        $display_area.= " to ".$property_sellable_area['max-area']." sq. ft" ;    
-    } 
+        $display_area.= " to ".$property_sellable_area['max-area']." sq. ft" ;
+    }
 }
 
 
@@ -237,7 +237,7 @@ if($site_plan_img_id!=false){
     $site_plan_img_url = $site_plan_img_data[0];
 }
 
- 
+
 
 
 $floor_plans_tab_content = '<style type="text/css">
@@ -309,10 +309,10 @@ foreach ($property_types as $key_proptype => $value_proptype) {
 
             $cur_prop_type_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
 
- 
+
             if(isset($cur_prop_type_img_id) && ($cur_prop_type_img_id!=false)){
 
-               
+
                 $cur_prop_type_img = wp_get_attachment_image_src( $cur_prop_type_img_id,'full' );
 
                 $cur_prop_type_img_url = $cur_prop_type_img[0];
@@ -325,7 +325,7 @@ foreach ($property_types as $key_proptype => $value_proptype) {
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Typical floor plan of a '.$value_proptype['type'].$display_area.' 
+                                            Typical floor plan of a '.$value_proptype['type'].$display_area.'
                                             <a class="wpb_button_a download_prj" title="Download" href="'.$cur_prop_type_img_url.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
@@ -347,7 +347,7 @@ foreach ($property_types as $key_proptype => $value_proptype) {
                                 <div id="ava_1_'.str_replace(" ", "_", $value_proptype['type']).'" class="inner-panels avatab wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
                                     <div class="wpb_wrapper">
                                         <!-- <p>Availability content goes here</p> -->
-                                          
+
 
                                         <div class="btm_foot">
                                             <p>
@@ -367,8 +367,8 @@ foreach ($property_types as $key_proptype => $value_proptype) {
 
 
           '<li><a href="#tab-'.str_replace(" ", "_", $value_proptype['type']).'">'.$value_proptype['type'].'</a></li>';
-        
- 
+
+
 
         }
 
@@ -952,7 +952,7 @@ $floor_plans_tab_content='
 
     return $floor_plans_tab_content;
 }
-add_shortcode('floor_plans_tabs00000', 'floor_plans_tabs00000'); 
+add_shortcode('floor_plans_tabs00000', 'floor_plans_tabs00000');
 
 
 
@@ -1025,8 +1025,8 @@ function floor_plans_tabs() {
   Global $wp_query;
 //$cur_property_id = get_the_ID();
 $cur_property_id = $wp_query->get_queried_object_id();
- 
- 
+
+
 
 
 $site_plan_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
@@ -1039,14 +1039,14 @@ $property_sellable_area = maybe_unserialize(get_post_meta($cur_property_id,'prop
 
 if(isset($property_sellable_area['min-area'])) {
     if(!empty($property_sellable_area['min-area'])){
-        $display_area = "  &#8211;  ".$property_sellable_area['min-area']." sq. ft" ;    
-    } 
+        $display_area = "  &#8211;  ".$property_sellable_area['min-area']." sq. ft" ;
+    }
 }
 
 if(isset($property_sellable_area['max-area'])) {
     if(!empty($property_sellable_area['max-area'])){
-        $display_area.= " to ".$property_sellable_area['max-area']." sq. ft" ;    
-    } 
+        $display_area.= " to ".$property_sellable_area['max-area']." sq. ft" ;
+    }
 }
 
 
@@ -1059,30 +1059,15 @@ if($site_plan_img_id!=false){
     $site_plan_img_url = $site_plan_img_data[0];
 }
 
- 
+
 
 
 
 
 
 $floor_plans_tab_content='
-<div id="prk_ajax_container" data-ajax_path="http://localhost/marvel/wp-content/themes/samba/inc/ajax-handler.php" data-retina="prk_not_retina" style="display: block; visibility: visible;">
 
-<style type="text/css">
-    #headings_wrap {  /* display: none; */margin-bottom: 45px;}
-    #main {margin-top: 0;}
-    #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block {
-        margin-left: 0;
-        margin-right: 0;
-    }
-</style>
-<div id="main_block" class="block_with_sections indi_prj_page floorplans columns centered prk_inner_block page-577" style="opacity: 1; visibility: visible;">
-                        <div id="main" role="main" class="main_with_sections with_title">
-
-<div id="main" role="main" class="main_with_sections with_title">
 <!--tabs-->
-            <div class="vc_row">
-                <div class="vc_column">
 
 
                     <!-- <div class="vc_custom_heading wpb_content_element m_t_b_m">
@@ -1095,11 +1080,11 @@ $floor_plans_tab_content='
                                 <li><a href="#tab-siteplan" class="standout">SITE PLAN</a></li>
                                 <!-- <li><a href="#tab-3bhk">4.5 BHK</a></li>-->';
 
- 
+
 
 foreach ($property_types as $key_proptype => $value_proptype) {
   $floor_plans_tab_content.='<li><a href="#tab-'.str_replace(" ", "_", $value_proptype['type']).'">'.$value_proptype['type'].'</a></li>';
-}                                
+}
 
  $floor_plans_tab_content.='<!-- <li><a href="#tab-3_5bhk">3.5 BHK</a></li> -->
                             </ul>
@@ -1138,10 +1123,10 @@ foreach ($property_types as $key_proptype => $value_proptype) {
 
             $cur_prop_type_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
 
- 
+
             if(isset($cur_prop_type_img_id) && ($cur_prop_type_img_id!=false)){
 
-               
+
                 $cur_prop_type_img = wp_get_attachment_image_src( $cur_prop_type_img_id,'full' );
 
                 $cur_prop_type_img_url = $cur_prop_type_img[0];
@@ -1160,7 +1145,7 @@ foreach ($property_types as $key_proptype => $value_proptype) {
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Typical floor plan of a '.$value_proptype['type'].$display_area.' 
+                                            Typical floor plan of a '.$value_proptype['type'].$display_area.'
                                             <a class="wpb_button_a download_prj" title="Download" href="'.$cur_prop_type_img_url.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
@@ -1404,7 +1389,7 @@ foreach ($property_types as $key_proptype => $value_proptype) {
                             </div>';
                         }
 
-                            
+
 
 
 
@@ -1415,21 +1400,10 @@ foreach ($property_types as $key_proptype => $value_proptype) {
                          </div>
                     </div>
 
-                </div>
-            </div>
             <!--/tabs end-->
-
-            </div>
-
-
-
-
-
-            </div>
-            </div>
             ';
 
 
     return $floor_plans_tab_content;
 }
-add_shortcode('floor_plans_tabs', 'floor_plans_tabs'); 
+add_shortcode('floor_plans_tabs', 'floor_plans_tabs');
