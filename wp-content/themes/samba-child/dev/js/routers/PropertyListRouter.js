@@ -30,7 +30,7 @@
 
 				index : function(pstatus,city,locality,proptype){ 
 
-		 
+		
 					var options = [];
 
 					if(!_.isUndefined(pstatus))
@@ -61,7 +61,7 @@
 
 					var searchOptionView = new searchOptionsView(options)
 					
-console.log('check options.....')
+					console.log('check options.....')
 					console.log(options)
 
 				},

@@ -468,7 +468,7 @@
                   var cnt_sel_search_collection = 0;
  
                   if( prop_type!='' && !_.isNull(prop_type)){
-                    alert('SEARCH----------------------------------------------')
+                    
                      console.log(search_collections)
 
                     _.each(search_collections,function(vl_searchres,ky_searchres){
