@@ -460,7 +460,7 @@ jQuery(document).ready(function($) {
             /* After creating a new group call make_div_dropable()  and pass id of the new div group
             ex: make_div_dropable("child_group_1")
             */
-            make_div_dropable(".drag_area")
+            make_div_dropable(".drag_area_block")
 
 
             if(jQuery(".draggable").length>0){
