@@ -324,13 +324,13 @@
                 });
               });
 
-  
 
-                          jQuery('.map_info_c').closest('.gm-style-iw').parent().addClass('draggable');
-                          jQuery('.map_info_c').closest('.gm-style-iw').parent().attr('property-id',jQuery('.map_info_c').attr('property-id'))
 
-                          jQuery('.map_info_c').closest('.gm-style-iw').parent().attr('property-address',jQuery('.map_info_c').attr('property-address'))
-                          jQuery('.map_info_c').closest('.gm-style-iw').parent().attr('property-title',jQuery('.map_info_c').attr('property-title'))
+                          jQuery('.map_info_c').closest('.gm-style-iw').addClass('draggable');
+                          jQuery('.map_info_c').closest('.gm-style-iw').attr('property-id',jQuery('.map_info_c').attr('property-id'))
+
+                          jQuery('.map_info_c').closest('.gm-style-iw').attr('property-address',jQuery('.map_info_c').attr('property-address'))
+                          jQuery('.map_info_c').closest('.gm-style-iw').attr('property-title',jQuery('.map_info_c').attr('property-title'))
                       
                           self.make_div_draggable()
                       });
@@ -457,14 +457,14 @@
             make_div_draggable : function(){
               if(jQuery(".draggable").length>0){
                                 console.log('draggable')
-                                jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+                                jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",appendTo: 'body', containment: 'parent',scroll: false,iframeFix: true,zIndex: 1000,
 
 
                                 start: function(event, ui) {
-                                    ui.helper.css({ height: 'auto', width: '300px' });
+                                    ui.helper.css({ height: 'auto', width: 'auto' });
                                 },
                                 stop: function(event, ui) {
-                                    ui.helper.css({ height: 'auto', width: '300px' });
+                                    ui.helper.css({ height: 'auto', width: 'auto' });
                                 }
 
                             });
