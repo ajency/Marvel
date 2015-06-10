@@ -1592,6 +1592,9 @@ function save_custom_meta_box($post_id, $post, $update)
 
 		if($post->post_type=="residential-property"){
 
+			if(!empty($sel_property_type) && is_array($sel_property_type)){				
+
+
 			foreach ($sel_property_type as $proptype_key => $prop_value) {
 				$prop_type_match_found = false ;
 				$prop_type_match_found = '';
@@ -1655,7 +1658,11 @@ $file_name_field = 'custom_property-type_'.str_replace(' ', '_', $prop_value) ;
 
 			}
              update_post_meta($post_id, "residential-property-type", maybe_serialize($property_types_data_value));
+            }
+            
+             
             update_post_meta($post_id, "property-no_of_bedrooms", $sel_property_no_of_bedrooms);
+
         } 
 
 		if($post->post_type=="commercial-property"){
