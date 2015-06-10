@@ -1,9 +1,9 @@
-  
+
 
         var searchOptionsView = Backbone.View.extend({
 
             el : ".top-dd-c"    ,
-           
+
             template :'#projectlistSearchOptionsTemplate',
 
             events : {
@@ -15,8 +15,8 @@
                 'click .top_map'    : 'searchPropertiesRoute',
                 'click .top_list'   : 'searchPropertiesRoute'
 
-           
-            }, 
+
+            },
 
             initialize : function(args) {
 
@@ -26,7 +26,7 @@
                /*  _.bindAll(this ,'renderForm'); */
 
                console.log('SEARCH OPTIONS:-----')
-               console.log(args);  
+               console.log(args);
 
 
                 if(!_.isUndefined(args)){
@@ -37,8 +37,8 @@
                   this.selectedType     = args.type;
 
                 }
-                
- 
+
+
 
                 if(_.isUndefined(getAppInstance().searchOptions)){
                     jQuery.ajax(AJAXURL,{
@@ -50,7 +50,7 @@
                         },
                         success: function(response) {
 
-                            getAppInstance().searchOptions = response ;    
+                            getAppInstance().searchOptions = response ;
 
                             self.load_display_properties();
                         },
@@ -66,7 +66,7 @@
                 }
 
 
-                
+
 
             },
 
@@ -79,7 +79,7 @@
 
             load_display_properties :function function_name (argument) {
 
-                        var self = this; 
+                        var self = this;
 
                          var seldata = { 'selectedCity'  : this.selectedCity,
                                       'selectedLocality' : this.selectedLocality,
@@ -98,26 +98,26 @@
 
                         }
 
-                        
+
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
                         getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
                         getAppInstance().residentialPropertyCollection.fetch({
                             success: function(collection) { // the fetched collection!
 
-                            
+
                                  if(!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
                                      jQuery('.top_map').addClass('current');
-                                 
+
                                     jQuery('.top_list').removeClass('current')
-                                  
+
                                     self.display_map();
                                 }
                                 else{
 
                                      jQuery('.top_list').addClass('current');
-                                 
+
                                     jQuery('.top_map').removeClass('current')
- 
+
                                     if(_.isUndefined(getAppInstance().projectlistView ))
                                         getAppInstance().projectlistView = new projectsListingsView(self);
                                     else{
@@ -139,11 +139,11 @@
 
                          if (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
                                      jQuery('.top_map').addClass('current');
-                                 
+
                                     jQuery('.top_map').removeClass('current')
                                     self.display_map();
                                 }
-                                 
+
                                 else{
 
                                     if(_.isUndefined(getAppInstance().projectlistView ))
@@ -152,7 +152,7 @@
                                       console.log('self.searchProperties() :-------------------------------------2')
                                       self.searchProperties()
                                     }
-                                        
+
                                 }
 
                     }
@@ -163,17 +163,17 @@
 
 
 
-   display_map : function(){ 
+   display_map : function(){
 
     var self = this;
                 console.log('display map');;
-               
+
                 jQuery('.top_map').addClass('current');
                 jQuery('.top_list').removeClass('current')
 
               //  var properties = getAppInstance().residentialPropertyCollection.toJSON();
 
-  
+
                 var prop_status = jQuery('#dd_status').val();
                 var prop_city = jQuery('#dd_city').val();
                 var prop_locality = jQuery('#dd_locality').val();
@@ -192,49 +192,49 @@
                  if(prop_type!='')
                                    search_options['property_type'] =  prop_type;
 
-                
+
 
                 var res_collection = getAppInstance().residentialPropertyCollection  ;
-                
+
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
- 
-                /*var search_collections = res_collection.where({'property_status':prop_status, 
-                                        'property_city':prop_city, 
-                                        'property_locaity': prop_locality, 
+
+                /*var search_collections = res_collection.where({'property_status':prop_status,
+                                        'property_city':prop_city,
+                                        'property_locaity': prop_locality,
                                         'property_type':prop_type
                                           }) */
 
                 var search_collections = res_collection.models;
-                
-                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
-                    var search_collections = res_collection.where(search_options ) 
 
- 
+                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
+                    var search_collections = res_collection.where(search_options )
+
+
                 var properties = search_collections;
                 console.log('properties:----------map')
                 console.log(properties)
 
-                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';                
+                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
 
                 var infowindow = new google.maps.InfoWindow();
 
-                var marker, i; 
- 
+                var marker, i;
+
 
                 if(properties.length>0){
 
 
-                    for (i = 0; i < properties.length; i++) {  
+                    for (i = 0; i < properties.length; i++) {
 
 
                         locations = properties[i].get('map_address')[0];
- 
+
                         jQuery('#projects_listings').css({'display':'block',
                                    'width' :'100%',
                                    'height' : 'auto',
                                    'min-height':'400px'
-                                   
+
                                 })
 
                         if(i==0){
@@ -242,17 +242,17 @@
                             var map = new google.maps.Map(document.getElementById('projects_listings'), {
                                 zoom:8,
                                 center: new google.maps.LatLng(locations.lat, locations.lng),
-                                mapTypeId: google.maps.MapTypeId.ROADMAP 
-                            
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+
                             });
 
                         }
 
- 
+
                         marker = new google.maps.Marker({
                             position: new google.maps.LatLng(locations.lat, locations.lng),
                             map: map,
-                            icon :  marker_image   
+                            icon :  marker_image
                         });
 
 
@@ -260,7 +260,7 @@
                         google.maps.event.addListener(infowindow, 'domready', function() {
                          /* var l = $('#hook').parent().parent().parent().siblings();
                           var l = $('.map_info_c').closest('.gm-style-iw').parent().addClass('MYCUSTOM TEST CLASS');
-                         
+
                           for (var i = 0; i < l.length; i++) {
                               if($(l[i]).css('z-index') == 'auto') {
                                   $(l[i]).css('border-radius', '16px 16px 16px 16px');
@@ -272,7 +272,7 @@
                           for (var i = 0; i < l.length; i++) {
 
                             jQuery(l[i]).addClass('MYCUSTOM_TEST_CLASS');
-                              
+
                           } */
 
 
@@ -331,7 +331,7 @@
 
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-address',jQuery('.map_info_c').attr('property-address'))
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-title',jQuery('.map_info_c').attr('property-title'))
-                      
+
                           self.make_div_draggable()
                       });
 
@@ -399,16 +399,16 @@
                                                 '<span class="single_p_location">'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'</span>'+
                                             '</a>'+
                                             '<p class="map_excerpt">';
-                                            
-                      var individial_proptype_cnt  = 0;                     
+
+                      var individial_proptype_cnt  = 0;
                                             _.each(properties[i].get('property_type'),function(proptype_vl1,proptype_ky1){
-                                               if(individial_proptype_cnt>0) 
+                                               if(individial_proptype_cnt>0)
                                                 popup_content+= ', ';
-                                              popup_content+= proptype_vl1.type;                                              
+                                              popup_content+= proptype_vl1.type;
                                               individial_proptype_cnt++;
-                                            })  
-                                             
-                    popup_content = popup_content +                     
+                                            })
+
+                    popup_content = popup_content +
                                             '</p>'+
                                             ' <p class="map_p_cost">'+
                                                 property_price+
@@ -429,21 +429,21 @@
                                     '</div>'
 
 
-   
+
 
 
                       infowindow.setContent(popup_content);
-                      infowindow.open(map, marker); 
- 
+                      infowindow.open(map, marker);
+
 
                       jQuery('#projects_listings').height(jQuery(window).height() - jQuery('#projects_listings').position().top - 40);
                      // jQuery('#projects_listings').first(div).css({'padding':'5px 50px 25px'});
 
                         self.make_div_draggable();
- 
+
 
                     }
-                  })(marker, i)); 
+                  })(marker, i));
                 }
         }
         else{
@@ -486,9 +486,9 @@
                 console.log(getAppInstance().searchOptions)
 
                  var self =this;
-               
+
                                 var template = _.template(jQuery(self.template).html());
-                        
+
                                 jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions}));
 
                                 var projectlistView = new projectsListingsView();
@@ -498,12 +498,12 @@
             },
 
             searchProperties: function(evt){
- 
+
 
                 var self = this ;
 
 
-              
+
                 var prop_city       = self.selectedCity;
                 var prop_locality   = self.selectedLocality;
                 var prop_type       = self.selectedType;
@@ -530,50 +530,50 @@
                  if(prop_type!='')
                                    search_options['property_type'] =  prop_type;
 
-                
+
 
                 var res_collection = getAppInstance().residentialPropertyCollection  ;
-                
+
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
- 
-                /*var search_collections = res_collection.where({'property_status':prop_status, 
-                                        'property_city':prop_city, 
-                                        'property_locaity': prop_locality, 
+
+                /*var search_collections = res_collection.where({'property_status':prop_status,
+                                        'property_city':prop_city,
+                                        'property_locaity': prop_locality,
                                         'property_type':prop_type
                                           }) */
 
                 var search_collections = res_collection.models;
-               
-                
+
+
                 delete search_options['property_type'] ;
 
                 if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
-                    var search_collections = res_collection.where(search_options ) 
+                    var search_collections = res_collection.where(search_options )
 
 
                   var sel_search_collections = {};
                   var cnt_sel_search_collection = 0;
- 
+
                   if( prop_type!='' && !_.isNull(prop_type)){
-                    
+
                      console.log(search_collections)
 
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
- 
+
                        var exists_by_type = _.where(vl_searchres.get('property_type'),{type:prop_type})
                       if(exists_by_type.length>0){
                         sel_search_collections[cnt_sel_search_collection] = vl_searchres;
 
-                        cnt_sel_search_collection = cnt_sel_search_collection+1; 
+                        cnt_sel_search_collection = cnt_sel_search_collection+1;
                       }
                     })
                     search_collections = sel_search_collections;
                   }
 
                 /* var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
-                                        
+
                                                 jQuery('#proj_list').html(projectListingsTemplate2({propertiesdata : search_collections}));
                 */
 
@@ -584,7 +584,7 @@
 
 
 
-            
+
 
                  //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
                     if( !_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true) {
@@ -598,7 +598,7 @@
                     jQuery('.top_map').removeClass('current')
 
                      var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
-                                                    
+
                  jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
 
 
@@ -607,12 +607,12 @@ setTimeout(function(){
 
 //console.log('LOADING SHARE BUTTON :-------------------------------------------')
 //console.log(jQuery('#projects_listings').html())
-  var switchTo5x=true;  
- stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false}); 
+  var switchTo5x=true;
+ stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false});
  stButtons.locateElements();
 
 },300)
- 
+
 
 
 
@@ -622,7 +622,7 @@ setTimeout(function(){
 
         if(jQuery(".draggable").length>0){
             console.log('draggable')
-            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 120, left: 150 },
 
 
     start: function(event, ui) {
@@ -642,8 +642,8 @@ setTimeout(function(){
         /*this.mainView.make_div_dropable2(".drag_area")
 
 
-   
-        
+
+
 
         if(jQuery(".draggable").length>0){
             console.log('draggable')
@@ -670,7 +670,7 @@ setTimeout(function(){
                 }
 
 
-            
+
 
 
             },
@@ -719,21 +719,21 @@ console.log('jQuery(evt.target).val()'+event_val)
               if(!_.isUndefined(prop_city) && prop_city !='' )
                 search_opt = '/ct/'+prop_city;
 
-              
+
               if(!_.isUndefined(prop_locality) && prop_locality!='')
                 search_opt = search_opt+'/loc/'+prop_locality;
-              
+
               if(!_.isUndefined(prop_type) && prop_type!='')
                 search_opt = search_opt+'/type/'+prop_type;
 
               var evt_type =   typeof jQuery(evt.target).attr('href');
 
               if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
-                
+
                 var RedirectUrl = SITEURL+'/residential-properties/#' ;
 
               }
-              else if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){ 
+              else if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){
 
                 var RedirectUrl = SITEURL+'/residential-properties/#map' ;
 
@@ -742,7 +742,7 @@ console.log('jQuery(evt.target).val()'+event_val)
 
 
               console.log('REDIRECT URL :  '+RedirectUrl+search_opt)
-              
+
 
               location.assign(RedirectUrl+search_opt) ;
 
@@ -750,19 +750,19 @@ console.log('jQuery(evt.target).val()'+event_val)
             }
 
 
-            
 
 
 
 
-           
 
 
-            
- 
 
 
-            
+
+
+
+
+
 
 
         });
