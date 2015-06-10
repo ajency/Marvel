@@ -2363,6 +2363,7 @@ h6 {
 }
 .compare_c .compare_i_c table {
   width: 100%;
+  table-layout: fixed;
 }
 .compare_c .compare_i_c th {
   border-left: 1px solid #EBEBEB;
