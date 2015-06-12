@@ -120,7 +120,7 @@ jQuery(document).ready(function($) {
     $('.add_custom_postmeta_options').click(function(){
         if( $(this).closest('.row').find('.span_additional_option').length <= 0 ){
             var span_additional_input_option_box = get_additional_option_box($(this).attr('field-type'));
-            alert(span_additional_input_option_box)
+           
             $(this).closest('.row').append(span_additional_input_option_box);
         }
 

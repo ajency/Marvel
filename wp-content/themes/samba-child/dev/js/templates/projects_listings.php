@@ -24,7 +24,7 @@ var property_id = _.isUndefined(propertyvl.id)? propertyvl.get('id'): propertyvl
  var property_title = _.isUndefined(propertyvl.post_title)? propertyvl.get('post_title'): propertyvl.post_title;
 
 var property_city = _.isUndefined(propertyvl.property_city)? propertyvl.get('property_city'): propertyvl.property_city;
-var property_locaity = _.isUndefined(propertyvl.property_locaity)? propertyvl.get('property_locaity'): propertyvl.property_locaity;
+var property_locality = _.isUndefined(propertyvl.property_locaity)? propertyvl.get('property_locaity'): propertyvl.property_locaity;
 var featured_image = _.isUndefined(propertyvl.featured_image)? propertyvl.get('featured_image'): propertyvl.featured_image;
 var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'): propertyvl.post_url;
 var property_type = _.isUndefined(propertyvl.property_type)? propertyvl.get('property_type'): propertyvl.property_type;
@@ -33,7 +33,7 @@ var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('p
 
 var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
     %>
-<div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locaity%>, <%=property_city%>" >
+<div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality%>, <%=property_city%>" >
     <div class="single_p_img">
         <img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">
             <div class="single_p_hov_c">
@@ -74,12 +74,13 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                 </div>
             </div>
         </div>
-        <div class="single_p_cap " property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locaity%>, <%=property_city%>" >
+        <div class="single_p_cap " property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality%>, <%=property_city%>" >
             <p class="single_p_inf">
                 <a href="#">
                     <span class="single_p_title"><%=property_title%></span>
-                    <span class="single_p_light">|</span>
-                    <span class="single_p_location"><%=property_locaity%> <%=property_city%></span>
+                    <% if(property_locality!='' ) { %><span class="single_p_light">|</span>
+                        <span class="single_p_location"><%=property_locality%></span>
+                    } %>
                 </a>
             </p>
         </div>

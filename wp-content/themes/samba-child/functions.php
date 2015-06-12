@@ -1407,3 +1407,15 @@ foreach ($property_types as $key_proptype => $value_proptype) {
     return $floor_plans_tab_content;
 }
 add_shortcode('floor_plans_tabs', 'floor_plans_tabs');
+
+
+
+
+
+
+
+
+
+
+
+
