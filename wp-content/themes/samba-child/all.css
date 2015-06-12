@@ -2312,6 +2312,65 @@ h6 {
 .no-csstransforms .owl-carousel .item img.heightadjust {
   top: 0 !important;
 }
+.go_to_top_inpage {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  width: 33px;
+  height: 33px;
+  background-image: url(img/backtotop.jpg);
+  cursor: pointer;
+}
+.enquiry_sideways {
+  background: #dadada;
+  padding: 6px 15px;
+  font-family: 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: none;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  color: #0f0f0f;
+  position: absolute;
+  right: -66px;
+  bottom: 180px;
+  cursor: pointer;
+  transform: rotateZ(-90deg);
+}
+.enquiry_sideways:hover {
+  background: #e2e2e2;
+  color: #0f0f0f;
+}
+.enquiry_sideways i {
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  background-image: url(img/enq_sideways.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  float: left;
+  margin-top: 3px;
+  margin-right: 10px;
+}
+.share_indi {
+  padding: 0;
+  vertical-align: bottom;
+  width: 34px;
+  height: 33px;
+  display: inline-block;
+  background-image: url(img/share_ico.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  bottom: 300px;
+  background-color: #838383;
+  cursor: pointer;
+}
+.share_indi .stButton .sharethis {
+  background-image: none !important;
+}
 .compare .bd_headings_text_shadow {
   display: none;
 }

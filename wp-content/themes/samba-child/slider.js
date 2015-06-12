@@ -108,14 +108,14 @@
 
         $(window).load(function() {
             if ($('body').hasClass('page-template-floor_plans')) {
-                $('#prk_ajax_container').append(
-                    '<div class="go_to_top_inpage"></div>'
-                );
-                $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
-                $('.go_to_top_inpage').css({
-                    'top': $btmval,
-                    'right': 0
-                });
+                // $('#prk_ajax_container').append(
+                //     '<div class="go_to_top_inpage"></div>'
+                // );
+                // $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
+                // $('.go_to_top_inpage').css({
+                //     'top': $btmval,
+                //     'right': 0
+                // });
                 $(document).on('click', '.go_to_top_inpage', function() {
                     $('html, body').animate({scrollTop:0}, '500', 'swing');
                 });
@@ -130,13 +130,13 @@
             }
         });
         $(window).resize(function() {
-            if ($('body').hasClass('page-template-floor_plans')) {
-                $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
-                $('.go_to_top_inpage').css({
-                    'top': $btmval,
-                    'right': 0
-                });
-            }
+            // if ($('body').hasClass('page-template-floor_plans')) {
+            //     $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
+            //     $('.go_to_top_inpage').css({
+            //         'top': $btmval,
+            //         'right': 0
+            //     });
+            // }
             if ($('body').hasClass('home')) {
                 placesearchbar();
             }
@@ -197,7 +197,7 @@
         //scroll down indi prj page
         $('.go_d_see').click(function(e) {
             e.preventDefault();
-            $('html, body').animate({scrollTop: $hevp}, '2000ms', 'easeInQuad');
+            $('html, body').animate({scrollTop: $hevp}, 1200, 'easeInQuad');
         });
 
         //set the height

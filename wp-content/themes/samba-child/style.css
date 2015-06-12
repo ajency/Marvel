@@ -561,15 +561,7 @@ pre {
     border-radius: 0;
     position: relative;
 }
-.go_to_top_inpage {
-	position: absolute;
-	bottom: 0;
-	right: -35px;
-	width: 33px;
-	height: 33px;
-	background-image: url(img/backtotop.jpg);
-	cursor: pointer;
-}
+
 
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav {
 	/*background: #f3f3f3;*/
