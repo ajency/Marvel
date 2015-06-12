@@ -120,7 +120,7 @@ jQuery(document).ready(function($) {
     $('.add_custom_postmeta_options').click(function(){
         if( $(this).closest('.row').find('.span_additional_option').length <= 0 ){
             var span_additional_input_option_box = get_additional_option_box($(this).attr('field-type'));
-            alert(span_additional_input_option_box)
+           
             $(this).closest('.row').append(span_additional_input_option_box);
         }
 
@@ -584,6 +584,64 @@ $('.delete_property_siteplan').live("click",function(evt){
 
 
 
+
+
+
+
+
+
+
+$('.get_property_type').live("click",function(evt){   
+
+    var  property_type_row ='';
+     
+     if(_.isUndefined(window.property_type_options)){
+
+         $.post(ajaxurl, {        //the server_url
+            action: "get_property_type_option",                 //the submit_data array            
+        }, function(data) {  
+                            if(_.isArray(data)){
+
+                                window.property_type_options = data ;
+                                property_type_row =  generate_options_html();
+                                $('.cust-prop-type-table').append(property_type_row)
+
+
+                            }
+                               
+
+                    }) 
+
+     }
+     else{
+            property_type_row =  generate_options_html()
+             $('.cust-prop-type-table').append(property_type_row)
+     }
+
+     
+
+
+
+})
+
+function generate_options_html(){
+
+
+    var html = "<select class='cust-prop-type-select'>";
+    _.each(window.property_type_options,function(vl,ky){
+        html = html + '<option value="'+vl.ID+'" >'+vl.property_type+'</option>';
+
+    })    
+
+    html = html + '</select>'
+           + '<span class="cust-prop-type-layout" > <input type="file"  class="cust-prop-type-layout-file"  /> </span> ' 
+           + '<span class="cust-prop-type-pdf" > <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '; 
+
+
+    return html ;
+
+
+}
 
 
 
