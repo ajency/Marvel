@@ -210,8 +210,7 @@ jQuery('.save_property_type').live("click",function(){
          * add class allownumericwithdecimal to input box for which only  integers should be allowed
          */
          function allow_integer_input_values(element){
-alert(element)
-alert(jQuery(element).length)
+ 
             jQuery(element).on("keypress keyup blur",function (evt) {
 
 

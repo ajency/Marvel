@@ -387,9 +387,9 @@ function myplugin_add_custom_box() {
     foreach ( $screens as $screen ) {
 
 	    	$custom_fields[] = array('field'				=> 'property-type',
-	    							  'metabox_title'		=> 'Property Typtruee',
+	    							  'metabox_title'		=> 'Property Type',
 	    							  'multiple_values' 	=> true,
-	    							  'element_type'		=> 'checkbox',
+	    							  'element_type'		=> 'select',
 	    							  'option_value_prefix' => '',
 	    							  'option_value_postfix'=> '',
 	    							  'class'				=>'',
@@ -621,10 +621,10 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-type", true);
 							    }
 
-							    $edit_options_values = true ;
+							    $edit_options_values = false ;
 
 
-								 generate_custom_field_element($post, 'checkbox', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+								 generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
 
@@ -894,21 +894,50 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 <div class="admin_new_add_c">
 <?php
 	switch($element_type){
-		case 'select' : echo '<span class="prefix_te">'.$element_prefix_label.'</span>'; ?>
-						<select name="<?php echo $element_id; ?>" id="<?php echo $element_id; ?>" class="postbox custom_input_field <?php echo $element_class ; ?>"  <?php if($multiple_values==true) { echo ' multiple="multiple" ';  } ?> >
-							<option value="">Select</option>
-							<?php if($element_values!=false) {
+		case 'select' : 
 
-										foreach($element_values as $type){ ?>
-											<option value="<?php echo $type; ?>" <?php if($current_property_meta_value==$type) echo " selected ";?>><?php echo ucfirst($type); ?></option>
 
-							<?php 		}
+						if($custom_field_type=='property-type'){
+							echo '<span class="prefix_te">'.$element_prefix_label.'</span>';  
+							echo '<span class="get_property_type">+</span>';
+							echo '<span class="cust-prop-type-table"></span>';
+									 
+									 
+							echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
 
-									}
-							?>
-						</select>
-						<?php
-						echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
+						}
+						else{
+
+							echo '<span class="prefix_te">'.$element_prefix_label.'</span>'; ?>
+									<select name="<?php echo $element_id; ?>" id="<?php echo $element_id; ?>" class="postbox custom_input_field <?php echo $element_class ; ?>"  <?php if($multiple_values==true) { echo ' multiple="multiple" ';  } ?> >
+										<option value="">Select</option>
+										<?php if($element_values!=false) {
+
+													foreach($element_values as $type){ ?>
+														<option value="<?php echo $type; ?>" <?php if($current_property_meta_value==$type) echo " selected ";?>><?php echo ucfirst($type); ?></option>
+
+										<?php 		}
+
+												}
+										?>
+									</select>
+									<?php
+							echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
+
+						}
+		
+
+
+
+
+
+
+
+
+
+
+
+
 						break;
 
 		case 'text' :
@@ -2029,5 +2058,16 @@ function delete_property_type(){
 add_action( 'wp_ajax_delete_property_type', 'delete_property_type' );
 
 
+
+function get_property_type_option(){
+
+	global $wpdb;
+
+	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
+	
+	wp_send_json($current_property_types );
+
+}
+add_action( 'wp_ajax_get_property_type_option', 'get_property_type_option' );
 
 
