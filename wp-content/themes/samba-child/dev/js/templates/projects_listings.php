@@ -21,7 +21,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
 
 
 var property_id = _.isUndefined(propertyvl.id)? propertyvl.get('id'): propertyvl.id;
- var property_title = _.isUndefined(propertyvl.post_title)? propertyvl.get('post_title'): propertyvl.post_title;
+var property_title = _.isUndefined(propertyvl.post_title)? propertyvl.get('post_title'): propertyvl.post_title;
 
 var property_city = _.isUndefined(propertyvl.property_city)? propertyvl.get('property_city'): propertyvl.property_city;
 var property_locality = _.isUndefined(propertyvl.property_locaity)? propertyvl.get('property_locaity'): propertyvl.property_locaity;
@@ -48,7 +48,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                         if(!_.isUndefined(proptype_val['type'])){
                              if(proptype_cnt>0)
                             current_property_types = current_property_types + ', ';
-                        current_property_types = current_property_types + proptype_val['type'];
+                        current_property_types = current_property_types + proptype_val['type_name'];
 
                         }
                         proptype_cnt++;
@@ -80,7 +80,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                     <span class="single_p_title"><%=property_title%></span>
                     <% if(property_locality!='' ) { %><span class="single_p_light">|</span>
                         <span class="single_p_location"><%=property_locality%></span>
-                    } %>
+                    <% } %>
                 </a>
             </p>
         </div>
