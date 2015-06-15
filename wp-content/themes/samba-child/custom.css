@@ -245,3 +245,39 @@
 
    color: green;
 }
+
+/*property type css*/
+.get_property_type {
+    display: block;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+.adm_property_type_row .adm_property_type_span_first {
+    margin-bottom: 15px;
+    display: block;
+    height: 28px;
+}
+.adm_property_type_row .adm_property_type_span label {
+    display: inline-block;
+    /*float: left;*/
+    width: 75px;
+    padding: 5px;
+    vertical-align: middle;
+}
+.adm_property_type_row .adm_property_type_span input {
+    padding: 5px;
+    width: 71%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.adm_property_type_row .adm_property_type_span:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.adm_property_type_row .cust-prop-type-pdf {
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}

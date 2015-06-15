@@ -88,25 +88,25 @@ jQuery(document).ready(function($) {
                                             $(self).closest('.row').find('.additional_option').val('');
                                             break;
 
-                        case 'checkbox'     : 
+                        case 'checkbox'     :
 
-                        var new_element_html = '<span attr-field-val ="'+new_field_value+'" class="row" >' 
-                                            +'<input type="checkbox"  value="'+new_field_value+'" attr-name="<?php echo $element_id; ?>"  attr-value="'+new_field_value+'"   name="'+attr_name+'[]"   class="postbox custom_input_field  "  />' 
+                        var new_element_html = '<span attr-field-val ="'+new_field_value+'" class="row" >'
+                                            +'<input type="checkbox"  value="'+new_field_value+'" attr-name="<?php echo $element_id; ?>"  attr-value="'+new_field_value+'"   name="'+attr_name+'[]"   class="postbox custom_input_field  "  />'
                                             +'<label class="inline" for="">'+new_field_value+'</label>'
                                             +'<input type="file" value="" attr-name=""  attr-value=""   name="'+attr_name+'_'+new_field_value+'"   class="postbox custom_input_field "  />'
-                                            +'</span>' 
+                                            +'</span>'
                                              $(new_element_html).insertAfter(custom_element.last().closest('span'));
                                             $(self).closest('.row').find('.additional_option').val('');
 
-                                                  
+
                                             break;
 
                     }
                     $(self).parent().find('.spn_additional_option_msg').addClass('admin_msg_success').removeClass('admin_msg_error').html('<span>New Option Value Added Successfully</span>');
                     //$(self).parent().find('.additional_option').addClass('admin_msg_success');
 
-                    setTimeout(function(){   
-                        
+                    setTimeout(function(){
+
                         $(self).parent().html('');
 
                     },3000)
@@ -120,7 +120,7 @@ jQuery(document).ready(function($) {
     $('.add_custom_postmeta_options').click(function(){
         if( $(this).closest('.row').find('.span_additional_option').length <= 0 ){
             var span_additional_input_option_box = get_additional_option_box($(this).attr('field-type'));
-           
+
             $(this).closest('.row').append(span_additional_input_option_box);
         }
 
@@ -156,7 +156,7 @@ jQuery(document).ready(function($) {
                        '</div>';
 
         $(this).parent().find('.edit_options_area').html(loader_html);
-       
+
 
         $(this).html('Cancel Edit');
         $(this).addClass('cancel_edit_custom_postmeta_options');
@@ -282,7 +282,7 @@ jQuery(document).ready(function($) {
 
                             case 'text'      :
                                                 $('[attr-field-val="'+$(self).attr('field-value')+'"]').closest('.admin_new_add').remove();
-                                                /* commented on 7june2015 $('[attr-field-val="'+$(self).attr('field-value')+'"]').remove(); */ 
+                                                /* commented on 7june2015 $('[attr-field-val="'+$(self).attr('field-value')+'"]').remove(); */
                                                 break;
 
                         }
@@ -506,20 +506,20 @@ jQuery(document).ready(function($) {
 
 
 $('.del_prop_type_layout_img').live("click",function(evt){
-            /* Delete 2D Layout Image for the residential Property */ 
+            /* Delete 2D Layout Image for the residential Property */
 
             var self = this;
 
             var curr_property_id = $(this).attr('property-id');
-            var property_type = $(this).attr('type-id'); 
-            var attachment_id = $(this).attr('file-id'); 
+            var property_type = $(this).attr('type-id');
+            var attachment_id = $(this).attr('file-id');
             var file_type     = 'layout_image'
 
             var my_data = { 'property_id'    : curr_property_id,
                             'property_type'  : property_type,
                             'attachment_id'  : attachment_id,
-                            'file_type'     : file_type                               
-                          } 
+                            'file_type'     : file_type
+                          }
 
             $.post(ajaxurl,{   //the server_url
                     action: "delete_property_type_layout_image_pdf_file",                 //the submit_data array
@@ -528,8 +528,8 @@ $('.del_prop_type_layout_img').live("click",function(evt){
                 function(data) {                   //the callback_handler
                     if (data==true) {
 
-                    $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-file" name="cust-prop-type-layout-file_'+property_type+'" id="cust-prop-type-layout-file_'+property_type+'">')
-                     
+                    $(self).parent().parent().append('<label class="forjpg">Image </label><input type="file" class="cust-prop-type-layout-file" name="cust-prop-type-layout-file_'+property_type+'" id="cust-prop-type-layout-file_'+property_type+'">')
+
                     $(self).parent().remove();
                     }
 
@@ -546,20 +546,20 @@ $('.del_prop_type_layout_img').live("click",function(evt){
 
 
 $('.del_prop_type_layout_pdf').live("click",function(evt){
-            /* Delete 2D Layout Pdf for the residential Property */ 
+            /* Delete 2D Layout Pdf for the residential Property */
 
             var self = this;
 
             var curr_property_id = $(this).attr('property-id');
-            var property_type = $(this).attr('type-id'); 
-            var attachment_id = $(this).attr('file-id'); 
+            var property_type = $(this).attr('type-id');
+            var attachment_id = $(this).attr('file-id');
             var file_type     = 'layout_pdf'
 
             var my_data = { 'property_id'    : curr_property_id,
                             'property_type'  : property_type,
                             'attachment_id'  : attachment_id,
-                            'file_type'     : file_type                               
-                          } 
+                            'file_type'     : file_type
+                          }
 
             $.post(ajaxurl,{   //the server_url
                     action: "delete_property_type_layout_image_pdf_file",                 //the submit_data array
@@ -568,8 +568,8 @@ $('.del_prop_type_layout_pdf').live("click",function(evt){
                 function(data) {                   //the callback_handler
                     if (data==true) {
 
-                    $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
-                     
+                    $(self).parent().parent().append('<label class="forpdf">PDF </label><input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
+
                     $(self).parent().remove();
                     }
 
@@ -580,17 +580,17 @@ $('.del_prop_type_layout_pdf').live("click",function(evt){
 
 
 $('.delete_property_siteplan').live("click",function(evt){
-            /* Delete 2D Layout for the residential Property */ 
+            /* Delete 2D Layout for the residential Property */
 
             var self = this;
             var custom_field_name = $(this).attr('custom-field');
             var curr_property_id = $(this).attr('property-id');
-            var attachment_id = $(this).attr('attr-value'); 
+            var attachment_id = $(this).attr('attr-value');
 
             var my_data = { 'custom_field_name' : custom_field_name,
                             'property_id'       : curr_property_id,
                             'attachment_id'     : attachment_id
-                          } 
+                          }
 
             $.post(ajaxurl,{   //the server_url
                     action: "delete_custom_file_field",                 //the submit_data array
@@ -601,7 +601,7 @@ $('.delete_property_siteplan').live("click",function(evt){
 
 
                     $(self).parent().find('img').remove();
-                    $(self).remove(); 
+                    $(self).remove();
 
                     }
 
@@ -612,22 +612,22 @@ $('.delete_property_siteplan').live("click",function(evt){
 
 
 
- 
 
 
 
 
 
 
-$('.get_property_type').live("click",function(evt){   
+
+$('.get_property_type').live("click",function(evt){
 
     var  property_type_row ='';
-     
+
      if(_.isUndefined(window.property_type_options)){
 
          $.post(ajaxurl, {        //the server_url
-            action: "get_property_type_option",                 //the submit_data array            
-        }, function(data) {  
+            action: "get_property_type_option",                 //the submit_data array
+        }, function(data) {
                             if(_.isArray(data)){
 
                                 window.property_type_options = data ;
@@ -636,9 +636,9 @@ $('.get_property_type').live("click",function(evt){
 
 
                             }
-                               
 
-                    }) 
+
+                    })
 
      }
      else{
@@ -647,7 +647,7 @@ $('.get_property_type').live("click",function(evt){
              $('.cust-prop-type-table').prepend(property_type_row)
      }
 
-     
+
 
 
 
@@ -662,11 +662,11 @@ function generate_options_html(){
     _.each(window.property_type_options,function(vl,ky){
         html = html + '<option value="'+vl.ID+'" >'+vl.property_type+'</option>';
 
-    })    
+    })
 
     html = html + '</select> </span>'
-                + '<span class="cust-prop-type-layout adm_property_type_span" > <input type="file"  class="cust-prop-type-layout-file"  /> </span> ' 
-                + '<span class="cust-prop-type-pdf adm_property_type_span" > <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '
+                + '<span class="cust-prop-type-layout adm_property_type_span" ><label class="forjpg">Image </label> <input type="file"  class="cust-prop-type-layout-file"  /> </span> '
+                + '<span class="cust-prop-type-pdf adm_property_type_span" ><label class="forpdf">PDF </label> <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '
                 + '</span>' ;
 
 
@@ -678,7 +678,7 @@ function generate_options_html(){
 
 
 
-$('.cust-prop-type-select').live("change",function(evt){   
+$('.cust-prop-type-select').live("change",function(evt){
 
     alert($('.cust-prop-type-select').val())
 
@@ -696,13 +696,13 @@ $('.cust-prop-type-select').live("change",function(evt){
     var cnt_selected_prop_types = 0;
     var selected_prop_type_count =0;
 
-    $('.cust-prop-type-select').each(function(){ 
+    $('.cust-prop-type-select').each(function(){
 
         selected_prop_types[cnt_selected_prop_types] = $(this).val();
             if(current_selected_property_type_id == $(this).val()){
                 selected_prop_type_count = selected_prop_type_count + 1;
             }
-                
+
          cnt_selected_prop_types++;
     });
 
@@ -716,31 +716,31 @@ $('.cust-prop-type-select').live("change",function(evt){
 
 
             if(adm_property_type_row.find('.cust-prop-type-layout-file').length>0){
-                adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','cust-prop-type-layout-file_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-file_'+current_selected_property_type_id);    
+                adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','cust-prop-type-layout-file_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-file_'+current_selected_property_type_id);
             }
             else{
                 adm_property_type_row.find('.cust-prop-type-layout').append('<input type="file"  class="cust-prop-type-layout-file" name="cust-prop-type-layout-file_'+current_selected_property_type_id+'"  id="cust-prop-type-layout-file_'+current_selected_property_type_id+'"  />')
 
-            }    
+            }
 
 
 
             if(adm_property_type_row.find('.cust-prop-type-layout-pdf').length>0){
-                adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','cust-prop-type-layout-pdf_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-pdf'+current_selected_property_type_id);    
+                adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','cust-prop-type-layout-pdf_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-pdf'+current_selected_property_type_id);
             }
             else{
-                adm_property_type_row.find('.cust-prop-type-pdf').append('<input type="file"  class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  id="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  />')                
+                adm_property_type_row.find('.cust-prop-type-pdf').append('<input type="file"  class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  id="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  />')
             }
-            
-            
+
+
     }
-   
+
 
 })
 
 
 
-$('.del_property_type_row').live("change",function(evt){   
+$('.del_property_type_row').live("change",function(evt){
 
 
 
@@ -749,20 +749,20 @@ $('.del_property_type_row').live("change",function(evt){
 
 
 
-    /* Delete 2D Layout Pdf for the residential Property */ 
+    /* Delete 2D Layout Pdf for the residential Property */
 
             var self = this;
 
             var curr_property_id = $(this).attr('property-id');
-            var property_type = $(this).attr('type-id'); 
-            var attachment_id = $(this).attr('file-id'); 
+            var property_type = $(this).attr('type-id');
+            var attachment_id = $(this).attr('file-id');
             var file_type     = 'layout_pdf'
 
             var my_data = { 'property_id'    : curr_property_id,
                             'property_type'  : property_type,
                             'attachment_id'  : attachment_id,
-                            'file_type'     : file_type                               
-                          } 
+                            'file_type'     : file_type
+                          }
 
             $.post(ajaxurl,{   //the server_url
                     action: "delete_property_type_row",                 //the submit_data array
@@ -772,7 +772,7 @@ $('.del_property_type_row').live("change",function(evt){
                     if (data==true) {
 
                     $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
-                     
+
                     $(self).parent().remove();
                     }
 

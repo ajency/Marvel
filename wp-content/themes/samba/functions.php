@@ -718,8 +718,8 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
                                 $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "property-sellable_area", true));
                                 if( ($current_property_meta_value==false) || (!is_array($current_property_meta_value)) ){
                                 	$current_property_meta_value = array('min-area'=>'','max-area'=>'');
-                                }  
-                                $edit_options_values = false;                              
+                                }
+                                $edit_options_values = false;
 
                                 generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_sellable_area, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
@@ -747,7 +747,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
                                 generate_custom_field_element($post, 'file', $multiple_values, 'custom_'.$custom_field_type,  $property_price, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
                                 break;
-    
+
 
 
 
@@ -893,7 +893,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 	if($custom_field_type=='property-type'){
 ?>
 		<div class="admin_new_add_c">
-<?php		
+<?php
 	}
 	else{
 ?>		<div class="admin_new_add_c">
@@ -903,28 +903,28 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 <?php
 	switch($element_type){
-		case 'select' : 
+		case 'select' :
 
 
 						if($custom_field_type=='property-type'){
-							echo '<span class="prefix_te">'.$element_prefix_label.'</span>';  
-							
+							echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
+
 							echo '<span class="cust-prop-type-table">';
-							
-							 
+
+
 
 							$current_selected_types = maybe_unserialize($current_property_meta_value);
 							$custom_field_options_values = maybe_unserialize($element_values);
 
 							foreach ($current_selected_types as $key_selected_type => $value_selected_type) {
-						
+
 
 								    echo '<span class="adm_property_type_row">
-								    		 <span class="adm_property_type_span_first"> 
-								    		 	<select name="cust_prop_type_select[]" class="cust-prop-type-select"> 
+								    		 <span class="adm_property_type_span_first">
+								    		 	<select name="cust_prop_type_select[]" class="cust-prop-type-select">
 								          			<option value="" >Select</option>';
 								          			foreach ($custom_field_options_values['property_types'] as $k_cust_type_option_values => $v__cust_type_option_values) {
-								          				
+
 								          				$is_current_type_selected ='';
 								          				if($value_selected_type['type'] == $v__cust_type_option_values['ID']){
 								          					$is_current_type_selected =' selected ';
@@ -932,40 +932,40 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 								          				echo '<option value="'.$v__cust_type_option_values['ID'].'"   '.$is_current_type_selected.'>'.$v__cust_type_option_values['property_type'].'</option>';
 								          			}
-								     
 
-								    echo '		</select> 
+
+								    echo '		</select>
 								    		 </span>
 								             <span class="cust-prop-type-layout adm_property_type_span" >';
-								    
+
 										    $cur_prop_layout_img_url ="";
 										    $cur_prop_layout_img_filename ="";
 
 										    if($value_selected_type['layout_image']!='' ){
 
-										    	$layout_image = wp_get_attachment_image_src($value_selected_type['layout_image']); 
+										    	$layout_image = wp_get_attachment_image_src($value_selected_type['layout_image']);
 										    	$cur_prop_layout_img_url = $layout_image[0];
-										    	$cur_prop_layout_img_filename =basename( get_attached_file( $value_selected_type['layout_image'] ) ); 
+										    	$cur_prop_layout_img_filename =basename( get_attached_file( $value_selected_type['layout_image'] ) );
 
-										    	 
+
 										    }
 										    if($cur_prop_layout_img_url!='' && $cur_prop_layout_img_url != false){
-										    	echo '<span class="layout_pdf_link_span" type-id="'.$value_selected_type['type'].'" > 
-										    			<a href="'.$cur_prop_layout_img_url.'"  target="_blank" >'.$cur_prop_layout_img_filename.'</a> 
+										    	echo '<span class="layout_pdf_link_span" type-id="'.$value_selected_type['type'].'" >
+										    			<a href="'.$cur_prop_layout_img_url.'"  target="_blank" >'.$cur_prop_layout_img_filename.'</a>
 										    			<span class="del_prop_type_layout_img"  file-id="'.$value_selected_type['layout_image'].'" property-id="'.$post->ID.'"    type-id="'.$value_selected_type['type'].'" > X </span>
 										    		  </span>
 										    		 ';
 										    }
 										    else{
-										    	echo '<input type="file"  class="cust-prop-type-layout-file"  
-										    			name = "cust-prop-type-layout-file_'.$value_selected_type['type'].'" 
+										    	echo '<input type="file"  class="cust-prop-type-layout-file"
+										    			name = "cust-prop-type-layout-file_'.$value_selected_type['type'].'"
 										    			id ="cust-prop-type-layout-file_'.$value_selected_type['type'].'"  />';
 										    }
 
 
 
-								             	 
-								    echo '  </span>   
+
+								    echo '  </span>
 								             <span class="cust-prop-type-pdf adm_property_type_span" > ';
 
 
@@ -975,8 +975,8 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    $cur_prop_layout_pdf_filename ="";
 //echo 'pdf id : '.$value_selected_type['layout_pdf'];
 										    if($value_selected_type['layout_pdf']!='' ){
-										    	
-										    	// $layout_pdf = wp_get_attachment_image_src($value_selected_type['layout_pdf']); 
+
+										    	// $layout_pdf = wp_get_attachment_image_src($value_selected_type['layout_pdf']);
 
 										    	//var_dump($layout_pdf);
 										    	//$cur_prop_layout_pdf_url = $layout_pdf[0];
@@ -985,65 +985,65 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 										    	$parsed_pdf_file = parse_url( wp_get_attachment_url( $value_selected_type['layout_pdf'] ) );
 												$cur_prop_layout_pdf_url    = dirname( $parsed_pdf_file [ 'path' ] ) . '/' . rawurlencode( basename( $parsed_pdf_file[ 'path' ] ) );
-										    	$cur_prop_layout_pdf_filename =basename( get_attached_file( $value_selected_type['layout_pdf'] ) ); 
+										    	$cur_prop_layout_pdf_filename =basename( get_attached_file( $value_selected_type['layout_pdf'] ) );
 
 										    }
 										    if($cur_prop_layout_pdf_url!='' && $cur_prop_layout_pdf_url != false){
-										    	echo '<span class="layout_img_link_span" type-id="'.$value_selected_type['type'].'" > 
-										    			<a href="'.$cur_prop_layout_pdf_url.'" target="_blank" >'.$cur_prop_layout_pdf_filename.'</a> 
+										    	echo '<span class="layout_img_link_span" type-id="'.$value_selected_type['type'].'" >
+										    			<a href="'.$cur_prop_layout_pdf_url.'" target="_blank" >'.$cur_prop_layout_pdf_filename.'</a>
 										    		    <span class="del_prop_type_layout_pdf"  file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'" >X</span>
 										    		  </span>';
 										    }
 										    else{
-										    	echo '<input type="file"  class="cust-prop-type-layout-pdf" 
-										    				name="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'" 
-										    				id="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'" 
+										    	echo '<input type="file"  class="cust-prop-type-layout-pdf"
+										    				name="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
+										    				id="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
 										    			/>';
 										    }
 
 
 
 
-								    echo'	</span>  
+								    echo'	</span>
 								    		<span class="cust-prop-type-pdf adm_property_type_span" > <input type="button" value="Delete" class="del_property_type_row"   file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'"  /> </span>
 								          </span>' ;
 
 							}
 
 							echo '</span>';
-							echo '<span class="get_property_type">+</span>';
-							echo "<style type='text/css'>
+							echo '<span class="get_property_type button button-primary button-large">+</span>';
+							// echo "<style type='text/css'>
 
-									.adm_property_type_row{
+							// 		.adm_property_type_row{
 
-										display:inline-block;
-									}
-
-
-									.adm_property_type_row .adm_property_type_span{
-									    display:inline-block;
-									    float:left;
-									    padding:5px;
-									     border-left:0px solid #147084;
-									    border-top:1px solid #147084;
-									    border-bottom:1px solid #147084;
-									    border-right:1px solid #147084;
-									    background-color: #e3e3e3;
-									}
+							// 			display:inline-block;
+							// 		}
 
 
-									.adm_property_type_row .adm_property_type_span_first{
-									    display:inline-block;
-									    float:left;
-									    padding:5px;
-									    border-left:1px solid #147084;
-									    border-top:1px solid #147084;
-									    border-bottom:1px solid #147084;
-									    border-right:1px solid #147084;
-									    background-color: #e3e3e3;
-									}
-							</style>";
-							 
+							// 		.adm_property_type_row .adm_property_type_span{
+							// 		    display:inline-block;
+							// 		    float:left;
+							// 		    padding:5px;
+							// 		     border-left:0px solid #147084;
+							// 		    border-top:1px solid #147084;
+							// 		    border-bottom:1px solid #147084;
+							// 		    border-right:1px solid #147084;
+							// 		    background-color: #e3e3e3;
+							// 		}
+
+
+							// 		.adm_property_type_row .adm_property_type_span_first{
+							// 		    display:inline-block;
+							// 		    float:left;
+							// 		    padding:5px;
+							// 		    border-left:1px solid #147084;
+							// 		    border-top:1px solid #147084;
+							// 		    border-bottom:1px solid #147084;
+							// 		    border-right:1px solid #147084;
+							// 		    background-color: #e3e3e3;
+							// 		}
+							// </style>";
+
 
 						}
 						else{
@@ -1065,7 +1065,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 							echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
 
 						}
-		
+
 
 
 
@@ -1155,7 +1155,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 									 $property_type_layout_image = '';
 									 $property_type_match = false;
-									 
+
 									if(is_array($current_property_meta_value_arr)){
 
 										foreach ($current_property_meta_value_arr as $cur_prop_type_key => $cur_prop_type_value) {
@@ -1168,8 +1168,8 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										}
 
 									}
-										 
-						
+
+
 
 
 
@@ -1184,23 +1184,23 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 		    								<label class="inline" for=""><?php echo $type; ?></label>
 		    								<input type="file" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>_<?php echo str_replace(' ', '_', $type); ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
 				                        		<?php if( $property_type_layout_image!='') { ?>
-				                        			<img src="<?php echo $property_type_layout_image ?>" width="80" height="80" /> 
+				                        			<img src="<?php echo $property_type_layout_image ?>" width="80" height="80" />
 				                        			<a href='javascript:void(0)' class='delete_property_type_layout'  property-type-value = '<?php echo $type; ?>' property-id='<?php echo get_the_ID(); ?>' >Delete</a>
-				                        		<?php 
+				                        		<?php
 				                        			}
 				                        		?>
 		    							</span>
 
 
 
-		    							 
+
 
 
 
 
 		    						<!-- </div>
 									<div class="admin_label adm_small"> -->
-							    		
+
 								    </div>
 						<?php		echo "</div>";
 
@@ -1214,19 +1214,19 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 						break;
 
 
- 
+
 		case 'file' :
 
-						$img_id = get_post_meta(get_the_ID(), 'custom_property-siteplan', true); 
+						$img_id = get_post_meta(get_the_ID(), 'custom_property-siteplan', true);
 
 						if($img_id!=false){
 							$site_plan_img = wp_get_attachment_image_src( $img_id,'thumbnail' );
 
-							$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);	
+							$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
 
 						}
-							
-                         
+
+
                     	echo '<div class="admin_new_add">';
                     	echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 
@@ -1234,9 +1234,9 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
                         <div class="clearfix"></div>
                         <span attr-field-val ="<?php echo $element_id; ?>" >  <input type="file" value="" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
                         <?php if($site_plan_img!=false && $img_id!=false) { ?>
-                        			<img src="<?php echo $site_plan_img[0] ?>" width="80" height="80"  /> 
-								<a href='javascript:void(0)'  custom-field='custom_property-siteplan'   
-									class='delete_property_siteplan'  attr-value = '<?php echo $img_id; ?>'  
+                        			<img src="<?php echo $site_plan_img[0] ?>" width="80" height="80"  />
+								<a href='javascript:void(0)'  custom-field='custom_property-siteplan'
+									class='delete_property_siteplan'  attr-value = '<?php echo $img_id; ?>'
 									property-id='<?php echo get_the_ID(); ?>' >Delete</a>
 
 
@@ -1246,7 +1246,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
                     	echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
                     	echo '</div>';
 
-                        
+
 
 
 						 break;
@@ -1282,7 +1282,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
     		</div>";
     }
 
-		
+
 
 }
 
@@ -1300,13 +1300,13 @@ add_action( 'save_post', 'myplugin_save_postdata' );
 function my_enqueue($hook) {
 
 
-	//if( 'edit.php' == $hook  ) 
+	//if( 'edit.php' == $hook  )
 		wp_enqueue_script( 'custom-admin-script',site_url().'/wp-content/themes/samba/js/custom_admin_script.js',array('jquery'));
 
 
 
     if( 'post.php' != $hook && 'post-new.php' != $hook ) return;
-    /* commented on 7june2015 
+    /* commented on 7june2015
     wp_enqueue_script( 'undescore','https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js',
         array('jquery') ); */
 
@@ -1345,7 +1345,7 @@ wp_enqueue_script( 'undescore',site_url().'/wp-content/themes/samba-child/dev/js
 
     }
 
-	
+
 
 
 
@@ -1624,7 +1624,7 @@ function save_custom_meta_box($post_id, $post, $update)
 	global $wpdb;
 
     if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
-        return $post_id;  
+        return $post_id;
 
     if(!current_user_can("edit_post", $post_id))
         return $post_id;
@@ -1693,32 +1693,32 @@ function save_custom_meta_box($post_id, $post, $update)
 
 // Make sure the file array isn't empty
 /*    if(!empty($_FILES['custom_property-siteplan']['name'])) {
-         
+
         // Setup the array of supported file types. In this case, it's just PDF.
         $supported_types = array('application/pdf');
-         
+
         // Get the file type of the upload
         $arr_file_type = wp_check_filetype(basename($_FILES['custom_property-siteplan']['name']));
         $uploaded_type = $arr_file_type['type'];
-         
+
         // Check if the type is supported. If not, throw an error.
        // if(in_array($uploaded_type, $supported_types)) {
- 
+
             // Use the WordPress API to upload the file
             $upload = wp_upload_bits($_FILES['custom_property-siteplan']['name'], null, file_get_contents($_FILES['custom_property-siteplan']['tmp_name']));
-     
-     
+
+
             if(isset($upload['error']) && $upload['error'] != 0) {
                 wp_die('There was an error uploading your file. The error is: ' . $upload['error']);
             } else {
                 add_post_meta($post_id, 'custom_property-siteplan', $upload);
-                update_post_meta($post_id, 'custom_property-siteplan', $upload);     
+                update_post_meta($post_id, 'custom_property-siteplan', $upload);
             } // end if/else
- 
+
        / * } else {
             wp_die("The file type that you've uploaded is not a PDF.");
         } // end if/else * /
-         
+
     } // end if */
 
 
@@ -1753,14 +1753,14 @@ function save_custom_meta_box($post_id, $post, $update)
                     wp_delete_attachment( $existingImage );
                 }
 
-				update_post_meta($post_id, 'custom_property-siteplan', $imageID);   
+				update_post_meta($post_id, 'custom_property-siteplan', $imageID);
 
 			}
 
 
 	}
 
- 
+
 
 		$property_types_data_value = array();
 
@@ -1768,19 +1768,19 @@ function save_custom_meta_box($post_id, $post, $update)
 
 		if($post->post_type=="residential-property"){
 
-			if(!empty($sel_property_type) && is_array($sel_property_type)){				
+			if(!empty($sel_property_type) && is_array($sel_property_type)){
 
 
 			foreach ($sel_property_type as $proptype_key => $prop_value) {
 
 				$prop_type_match_found = false ;
-			 
+
 				$prop_type_match = array();
-				
+
 				$imageID 	 = '';
-				
+
 				$pdf_imageID = '';
-				
+
 				foreach ($current_property_type as $key_currentprop => $value_currentprop) {
 					if($value_currentprop['type']==$prop_value){
 							$prop_type_match_found = true ;
@@ -1819,14 +1819,14 @@ function save_custom_meta_box($post_id, $post, $update)
 		                $existingImage = $prop_type_match_found['layout_image'] ;            // IF a file already exists in this option, grab it
 		                if( ! empty( $existingImage ) && is_numeric( $existingImage ) ) {       // IF the option does exist, delete it.
 		                    wp_delete_attachment( $existingImage );
-		                }	               
-						
+		                }
 
-					}				 
+
+					}
 
 
 				}
-				 
+
 
 
 
@@ -1865,10 +1865,10 @@ function save_custom_meta_box($post_id, $post, $update)
 		                if( ! empty( $existingPdf ) && is_numeric( $existingPdf ) ) {       // IF the option does exist, delete it.
 		                    wp_delete_attachment( $existingPdf );
 		                }
-		               
+
 
 					}
-					
+
 				}
 
 
@@ -1894,11 +1894,11 @@ function save_custom_meta_box($post_id, $post, $update)
 			}
              update_post_meta($post_id, "residential-property-type", maybe_serialize($property_types_data_value));
             }
-            
-             
+
+
             update_post_meta($post_id, "property-no_of_bedrooms", $sel_property_no_of_bedrooms);
 
-        } 
+        }
 
 		if($post->post_type=="commercial-property"){
             update_post_meta($post_id, "commercial-property-type", $sel_property_type);
@@ -1917,7 +1917,7 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
 	}
- 
+
 }
 
 add_action("save_post", "save_custom_meta_box", 10, 3);
@@ -1940,20 +1940,20 @@ function delete_custom_file_field() {
 
 	$delete_success = false;
 
-	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,$custom_field_name,true) ); 
-      
+	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,$custom_field_name,true) );
+
 
 	  if($custom_file_field_value==$custom_file_id){
 
-	  	$result_delete_attachment = wp_delete_attachment($custom_file_field_value); 
+	  	$result_delete_attachment = wp_delete_attachment($custom_file_field_value);
 	  	if($result_delete_attachment!=false){
 	  		update_post_meta($property_id ,$custom_field_name,'');
-	  		$delete_success = true ; 
+	  		$delete_success = true ;
 	  	}
 
-	  }  
+	  }
 
-    
+
     wp_send_json($delete_success);
 
 
@@ -1977,8 +1977,8 @@ function delete_property_type_layout_image_pdf_file() {
 
 	$delete_success = false;
 
-	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) ); 
-      
+	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) );
+
 
 	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
 
@@ -1992,10 +1992,10 @@ function delete_property_type_layout_image_pdf_file() {
 	  		if($data['type'] == $property_type){
 
 	  			if($data[$file_type] == $custom_file_id){
-	  				$result_delete_attachment = wp_delete_attachment($data[$file_type]); 
+	  				$result_delete_attachment = wp_delete_attachment($data[$file_type]);
 				  	if($result_delete_attachment!=false){
-				  		
-				  		$delete_success = true ; 
+
+				  		$delete_success = true ;
 				  	}
 	  			}
 
@@ -2007,20 +2007,20 @@ function delete_property_type_layout_image_pdf_file() {
 						$data['layout_pdf'] = '';
 	  				}
 
-	  			}	 
-	  			 			
+	  			}
+
 	  		}
-	  		$updated_data [] = $data; 
-	  		 
+	  		$updated_data [] = $data;
+
 	  	}
 
-	  	
 
-	  }  
+
+	  }
 
 	  update_post_meta($property_id,'residential-property-type',true);
 
-    
+
     wp_send_json($delete_success);
 
 
@@ -2037,7 +2037,7 @@ add_action( 'wp_ajax_delete_property_type_layout_image_pdf_file', 'delete_proper
 
 
 function my_custom_submenu_page_callback() {
-  
+
 
 
 
@@ -2049,7 +2049,7 @@ if( ! class_exists( 'WP_List_Table' ) ) {
 class My_Example_List_Table extends WP_List_Table {
 
    /* var $example_data = array(
-            array( 'ID' => 1,'property_type' => '1 BHK', 'number_bedrooms' => '1', 
+            array( 'ID' => 1,'property_type' => '1 BHK', 'number_bedrooms' => '1',
                    'action' => 'Edit' ),
             array( 'ID' => 2, 'property_type' => '2 BHK','number_bedrooms' => '2',
                    'action' => 'Edit' ),
@@ -2075,7 +2075,7 @@ class My_Example_List_Table extends WP_List_Table {
 
 
   function column_default( $item, $column_name ) {
-    switch( $column_name ) { 
+    switch( $column_name ) {
         case 'property_type':
 						$actions = array(
 						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"  bedrooms="'.$item['number_bedrooms'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
@@ -2097,7 +2097,7 @@ class My_Example_List_Table extends WP_List_Table {
 function get_columns(){
         $columns = array(
             'property_type' => __( 'Property Type', 'mylisttable' ),
-            'number_bedrooms'    => __( 'No Of Bedrooms', 'mylisttable' ) 
+            'number_bedrooms'    => __( 'No Of Bedrooms', 'mylisttable' )
             //'action'      => __( 'Action', 'mylisttable' )
         );
          return $columns;
@@ -2112,7 +2112,7 @@ function prepare_items() {
 
 function get_data(){
 
-	 
+
 
 	global $wpdb;
 
@@ -2120,7 +2120,7 @@ function get_data(){
 
 	if($current_property_types==false){
 		return array();
-	}		
+	}
 	else{
 
 
@@ -2129,15 +2129,15 @@ function get_data(){
 		}
 		else if($current_property_types['max_property_types']>0){
 
- 
+
 			return maybe_unserialize($current_property_types['property_types']);
 		}
-		 
-		
+
+
 	}
-	
-	 
-			
+
+
+
 }
 
 
@@ -2154,7 +2154,7 @@ function get_sortable_columns() {
 } //class
 
 
-/* 
+/*
 function get_property_types(){
 	global $wpdb;
 
@@ -2170,24 +2170,24 @@ function get_property_types(){
 
 
   $myListTable = new My_Example_List_Table();
-  echo '<div class="wrap"><h3>Property Types </h3>'; 
-  $myListTable->prepare_items(); 
+  echo '<div class="wrap"><h3>Property Types </h3>';
+  $myListTable->prepare_items();
   echo '<div col-container>
 
-  <div class="property_type_message "> 
-  	 
+  <div class="property_type_message ">
+
   </div>
 
   			<div id="col-right">
 				<div class="col-wrap">';
-  $myListTable->display(); 
+  $myListTable->display();
 
   echo '		</div>
   			</div>
   			<div id="col-left">
 				<div class="col-wrap">
 
- 
+
 
 
 					<div class="form-wrap">
@@ -2199,7 +2199,7 @@ function get_property_types(){
 							<input type="hidden" name="screen" value="edit-property_amenity">
 							<input type="hidden" name="custom_field_name" value="property_amenity">
 							<input type="hidden" name="post_type" value="residential-property">
-							<input type="hidden" id="_wpnonce_add-tag" name="_wpnonce_add-tag" value="781a607a1b"> 
+							<input type="hidden" id="_wpnonce_add-tag" name="_wpnonce_add-tag" value="781a607a1b">
 							<input type="hidden" name="_wp_http_referer" value="/marvel/wp-admin/edit-tags.php?taxonomy=property_amenity&amp;post_type=residential-property"> -->
 
 							<input type="hidden" name="edit_id" id="edit_id"  value="" />
@@ -2211,37 +2211,37 @@ function get_property_types(){
 							<div class="form-field term-slug-wrap">
 								<label for="tag-slug">Number Of Bedrooms</label>
 								<input name="new-property-bedrooms" id="new-property-bedrooms" class="allownumericwithoutdecimal"  type="text" value="" size="40" >
-								<p><!-- The “slug” is the URL-friendly version of the name. 
+								<p><!-- The “slug” is the URL-friendly version of the name.
 								It is usually all lowercase and contains only letters, numbers, and hyphens. --></p>
 							</div>
-							 
-							 
+
+
 
 							<p class="submit">
-								<input type="button" name="add_new_property_type" id="add_new_property_type" 
+								<input type="button" name="add_new_property_type" id="add_new_property_type"
 								class="button button-primary save_property_type" value="Save">
-								<input type="button" name="cancel_edit_property_type" id="cancel_edit_property_type" 
+								<input type="button" name="cancel_edit_property_type" id="cancel_edit_property_type"
 								class="button cancel_edit_property_type" value="Cancel" style="display:none">
 							</p><br>
-							
+
 						</form>
 				</div>
 
 
- 
+
 
 
 
 
 				</div>
-			</div>	
+			</div>
 
   		</div>  ';
   echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="residential-property-type" /> ';
-  echo '</div>'; 
+  echo '</div>';
 
 }
- 
+
 
 
 
@@ -2255,8 +2255,8 @@ add_action('admin_menu', 'register_my_custom_submenu_page');
 
 
 
-function save_property_type(){ 
- 
+function save_property_type(){
+
 	$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
 	$property_type 		= $_REQUEST['data']['property_type'];
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
@@ -2265,7 +2265,7 @@ function save_property_type(){
 
 	$new_property_type['number_bedrooms'] 	= $num_bedrooms;
 	$new_property_type['property_type'] 	= $property_type;
- 
+
 
 	if($property_edit_id!=''){
 		$new_property_type['ID'] = $property_edit_id;
@@ -2283,21 +2283,21 @@ function save_property_type(){
 
 		$updated_new_max_property_type = $current_property_types['max_property_types'];
 
-	}		
+	}
 	else{
 			if(!isset($current_property_types['max_property_types'])){
 
-				$new_property_type['ID'] = 1;	
-				$current_property_types ['property_types'] = array(); 
+				$new_property_type['ID'] = 1;
+				$current_property_types ['property_types'] = array();
 			}
 			else if(count($current_property_types['max_property_types'])<=0 || $current_property_types==false ){
 
-				$new_property_type['ID'] = 1;	
-				$current_property_types ['property_types'] = array(); 
-					
+				$new_property_type['ID'] = 1;
+				$current_property_types ['property_types'] = array();
+
 			}
 			else{
-				
+
 				/*$current_max_property_id = 0;
 				foreach ($current_property_types as $key => $value) {
 					if($value['ID']>$current_max_property_id){
@@ -2312,7 +2312,7 @@ function save_property_type(){
 			if(!is_array($current_property_types['property_types'])){
 				$current_property_types['property_types'] = array();
 			}
-			
+
 			$updated_new_property_types =    $current_property_types['property_types'];
 			$updated_new_property_types[] = $new_property_type ;
 			$updated_new_max_property_type = $new_property_type['ID'];
@@ -2345,8 +2345,8 @@ function delete_property_type(){
 
 	foreach ($current_property_types['property_types'] as $key => $value) {
 		 if($value['ID']!=$property_type_id ){
-	 	
-		 	$updated_property_types [] = $value ;		 		
+
+		 	$updated_property_types [] = $value ;
 		 }
 		 else if($value['ID']==$property_type_id ){
 			 $found_del_type = true ;
@@ -2354,7 +2354,7 @@ function delete_property_type(){
 
 	}
 
-	$updated_new_property_types =  array('max_property_types' => $current_property_types['max_property_types'],  
+	$updated_new_property_types =  array('max_property_types' => $current_property_types['max_property_types'],
 									 'property_types'	  => $updated_property_types);
 
 	update_option('residential-property-type',maybe_serialize($updated_new_property_types));
@@ -2370,7 +2370,7 @@ function get_property_type_option(){
 	global $wpdb;
 
 	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
-	
+
 	if(isset($current_property_types['property_types'])){
 		wp_send_json(maybe_unserialize($current_property_types['property_types']));
 	}
@@ -2378,7 +2378,7 @@ function get_property_type_option(){
 		wp_send_json(array() );
 	}
 
-	
+
 
 }
 add_action( 'wp_ajax_get_property_type_option', 'get_property_type_option' );
@@ -2403,12 +2403,12 @@ function delete_property_type_row() {
 
 	$property_id   		= $_REQUEST['data']['property_id'];
 	$property_type 		= $_REQUEST['data']['property_type'];
- 
+
 
 	$delete_success = false;
 
-	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) ); 
-      
+	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) );
+
 
 	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
 
@@ -2421,19 +2421,19 @@ function delete_property_type_row() {
 
 	  		if($data['type'] == $property_type){
 
-	  				if($data['layout_image']!='') 
-	  					$result_delete_attachment = wp_delete_attachment($data['layout_image']); 
+	  				if($data['layout_image']!='')
+	  					$result_delete_attachment = wp_delete_attachment($data['layout_image']);
 	  				if($data['layout_pdf']!='')
-				  		$result_delete_attachment = wp_delete_attachment($data['layout_pdf']);  
-				  	 
-	  		} 
-	  			 			
-	  	}
-	  	$updated_data [] = $data; 
-	  
-	}  
+				  		$result_delete_attachment = wp_delete_attachment($data['layout_pdf']);
 
-    
+	  		}
+
+	  	}
+	  	$updated_data [] = $data;
+
+	}
+
+
     wp_send_json($delete_success);
 
 
