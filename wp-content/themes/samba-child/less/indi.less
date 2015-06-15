@@ -7,7 +7,7 @@
             background: rgba(72, 72, 72, 0.4);
             padding: 4px 10px;
             color: #fff;
-            .fontmont;
+            /*.fontmont;*/
         }
         @media screen and (max-width: 767px) {
             top: 75px;
@@ -178,7 +178,7 @@
         .wpb_wrapper .show_h {
             h3 {
                 display: block !important;
-                .fontmont;
+                /*.fontmont;*/
                 font-size: 16px;
                 font-weight: normal;
                 margin-top: 0;
@@ -481,7 +481,7 @@
             .frm_submit {
                 text-align: center;
                 padding-bottom: 15px;
-                input {text-transform: uppercase; .fontmont; font-weight: normal;}
+                input {text-transform: uppercase; /*.fontmont;*/ font-weight: normal;}
                 input:disabled, input:disabled::hover {
                     background: #ddd !important;
                     border-color: #ccc !important;
@@ -881,3 +881,45 @@
 .no-csstransforms .owl-carousel .item img.heightadjust {
     top: 0 !important;
 }
+
+/*table layoyt*/
+.table-cover{
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    .tabular_c{
+        font-size: 0;
+        padding-left: 0 !important;
+        .left{
+            position: absolute !important;
+            top: 35% !important;
+            left: 1px !important;
+        }
+        .right{
+            position: absolute !important;
+            right: 1px !important;
+            top: 35% !important;
+        }
+        .tabul_hold{
+            display: inline-block;
+            /*&:not(:first-child){
+                margin-left: -7px;
+            }*/
+            table{
+                width: 100%;
+                border-collapse: collapse;
+                th{
+                    background: #f8f8f8;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 35px;
+                }
+                td{
+                    font-size: 13px;
+                    line-height: 35px;
+                }
+            }
+        }
+    }
+}
+/*/table layout*/
