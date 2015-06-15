@@ -890,8 +890,17 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 			    </div>
 		      ';
 
+	if($custom_field_type=='property-type'){
 ?>
-<div class="admin_new_add_c">
+		<div class="admin_new_add_c">
+<?php		
+	}
+	else{
+?>		<div class="admin_new_add_c">
+<?php
+	}
+?>
+
 <?php
 	switch($element_type){
 		case 'select' : 
@@ -899,11 +908,142 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 						if($custom_field_type=='property-type'){
 							echo '<span class="prefix_te">'.$element_prefix_label.'</span>';  
+							
+							echo '<span class="cust-prop-type-table">';
+							
+							 
+
+							$current_selected_types = maybe_unserialize($current_property_meta_value);
+							$custom_field_options_values = maybe_unserialize($element_values);
+
+							foreach ($current_selected_types as $key_selected_type => $value_selected_type) {
+						
+
+								    echo '<span class="adm_property_type_row">
+								    		 <span class="adm_property_type_span_first"> 
+								    		 	<select name="cust_prop_type_select[]" class="cust-prop-type-select"> 
+								          			<option value="" >Select</option>';
+								          			foreach ($custom_field_options_values['property_types'] as $k_cust_type_option_values => $v__cust_type_option_values) {
+								          				
+								          				$is_current_type_selected ='';
+								          				if($value_selected_type['type'] == $v__cust_type_option_values['ID']){
+								          					$is_current_type_selected =' selected ';
+								          				}
+
+								          				echo '<option value="'.$v__cust_type_option_values['ID'].'"   '.$is_current_type_selected.'>'.$v__cust_type_option_values['property_type'].'</option>';
+								          			}
+								     
+
+								    echo '		</select> 
+								    		 </span>
+								             <span class="cust-prop-type-layout adm_property_type_span" >';
+								    
+										    $cur_prop_layout_img_url ="";
+										    $cur_prop_layout_img_filename ="";
+
+										    if($value_selected_type['layout_image']!='' ){
+
+										    	$layout_image = wp_get_attachment_image_src($value_selected_type['layout_image']); 
+										    	$cur_prop_layout_img_url = $layout_image[0];
+										    	$cur_prop_layout_img_filename =basename( get_attached_file( $value_selected_type['layout_image'] ) ); 
+
+										    	 
+										    }
+										    if($cur_prop_layout_img_url!='' && $cur_prop_layout_img_url != false){
+										    	echo '<span class="layout_pdf_link_span" type-id="'.$value_selected_type['type'].'" > 
+										    			<a href="'.$cur_prop_layout_img_url.'"  target="_blank" >'.$cur_prop_layout_img_filename.'</a> 
+										    			<span class="del_prop_type_layout_img"  file-id="'.$value_selected_type['layout_image'].'" property-id="'.$post->ID.'"    type-id="'.$value_selected_type['type'].'" > X </span>
+										    		  </span>
+										    		 ';
+										    }
+										    else{
+										    	echo '<input type="file"  class="cust-prop-type-layout-file"  
+										    			name = "cust-prop-type-layout-file_'.$value_selected_type['type'].'" 
+										    			id ="cust-prop-type-layout-file_'.$value_selected_type['type'].'"  />';
+										    }
+
+
+
+								             	 
+								    echo '  </span>   
+								             <span class="cust-prop-type-pdf adm_property_type_span" > ';
+
+
+
+
+								      		$cur_prop_layout_pdf_url ="";
+										    $cur_prop_layout_pdf_filename ="";
+//echo 'pdf id : '.$value_selected_type['layout_pdf'];
+										    if($value_selected_type['layout_pdf']!='' ){
+										    	
+										    	// $layout_pdf = wp_get_attachment_image_src($value_selected_type['layout_pdf']); 
+
+										    	//var_dump($layout_pdf);
+										    	//$cur_prop_layout_pdf_url = $layout_pdf[0];
+
+
+
+										    	$parsed_pdf_file = parse_url( wp_get_attachment_url( $value_selected_type['layout_pdf'] ) );
+												$cur_prop_layout_pdf_url    = dirname( $parsed_pdf_file [ 'path' ] ) . '/' . rawurlencode( basename( $parsed_pdf_file[ 'path' ] ) );
+										    	$cur_prop_layout_pdf_filename =basename( get_attached_file( $value_selected_type['layout_pdf'] ) ); 
+
+										    }
+										    if($cur_prop_layout_pdf_url!='' && $cur_prop_layout_pdf_url != false){
+										    	echo '<span class="layout_img_link_span" type-id="'.$value_selected_type['type'].'" > 
+										    			<a href="'.$cur_prop_layout_pdf_url.'" target="_blank" >'.$cur_prop_layout_pdf_filename.'</a> 
+										    		    <span class="del_prop_type_layout_pdf"  file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'" >X</span>
+										    		  </span>';
+										    }
+										    else{
+										    	echo '<input type="file"  class="cust-prop-type-layout-pdf" 
+										    				name="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'" 
+										    				id="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'" 
+										    			/>';
+										    }
+
+
+
+
+								    echo'	</span>  
+								    		<span class="cust-prop-type-pdf adm_property_type_span" > <input type="button" value="Delete" class="del_property_type_row"   file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'"  /> </span>
+								          </span>' ;
+
+							}
+
+							echo '</span>';
 							echo '<span class="get_property_type">+</span>';
-							echo '<span class="cust-prop-type-table"></span>';
-									 
-									 
-							echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
+							echo "<style type='text/css'>
+
+									.adm_property_type_row{
+
+										display:inline-block;
+									}
+
+
+									.adm_property_type_row .adm_property_type_span{
+									    display:inline-block;
+									    float:left;
+									    padding:5px;
+									     border-left:0px solid #147084;
+									    border-top:1px solid #147084;
+									    border-bottom:1px solid #147084;
+									    border-right:1px solid #147084;
+									    background-color: #e3e3e3;
+									}
+
+
+									.adm_property_type_row .adm_property_type_span_first{
+									    display:inline-block;
+									    float:left;
+									    padding:5px;
+									    border-left:1px solid #147084;
+									    border-top:1px solid #147084;
+									    border-bottom:1px solid #147084;
+									    border-right:1px solid #147084;
+									    background-color: #e3e3e3;
+									}
+							</style>";
+							 
 
 						}
 						else{
@@ -1499,7 +1639,7 @@ function save_custom_meta_box($post_id, $post, $update)
 
 	if( ($post->post_type=="residential-property") || ($post->post_type=="commercial-property") ){
 
-		$sel_property_type = $_REQUEST["custom_property-type"];
+		$sel_property_type = $_REQUEST["cust_prop_type_select"];
 		$sel_property_city = $_REQUEST["custom_property-city"];
 		$sel_property_status = $_REQUEST["custom_property-status"];
 		$sel_property_locality = $_REQUEST["custom_property-locality"];
@@ -1632,21 +1772,26 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
 			foreach ($sel_property_type as $proptype_key => $prop_value) {
-				$prop_type_match_found = false ;
-				$prop_type_match_found = '';
 
+				$prop_type_match_found = false ;
+			 
+				$prop_type_match = array();
+				
+				$imageID 	 = '';
+				
+				$pdf_imageID = '';
+				
 				foreach ($current_property_type as $key_currentprop => $value_currentprop) {
 					if($value_currentprop['type']==$prop_value){
 							$prop_type_match_found = true ;
 
-							$prop_type_match_found = $value_currentprop ;
+							$prop_type_match = $value_currentprop ;
 					}
 				}
 
 
-				 
-$file_name_field = 'custom_property-type_'.str_replace(' ', '_', $prop_value) ;
 
+				$file_name_field = 'cust-prop-type-layout-file_'.str_replace(' ', '_', $prop_value) ;
 
 				if(!empty($_FILES[$file_name_field])) {
 
@@ -1671,23 +1816,77 @@ $file_name_field = 'custom_property-type_'.str_replace(' ', '_', $prop_value) ;
 		                wp_update_attachment_metadata( $imageID,  $attachmentData );
 
 
-		                $existingImage = get_post_meta($post_id,'custom_property-siteplan',true) ;            // IF a file already exists in this option, grab it
+		                $existingImage = $prop_type_match_found['layout_image'] ;            // IF a file already exists in this option, grab it
 		                if( ! empty( $existingImage ) && is_numeric( $existingImage ) ) {       // IF the option does exist, delete it.
 		                    wp_delete_attachment( $existingImage );
-		                }
-		                $property_types_data_value[] = $arrayName = array('type' => $prop_value,'layout'=>$imageID );
-						//update_post_meta($post_id, 'custom_property-siteplan', $imageID);   
-
-					}
-					else if($prop_type_match_found == true){
-						$property_types_data_value[] = $prop_type_match_found;
+		                }	               
 						
-					}
+
+					}				 
 
 
 				}
 				 
 
+
+
+
+
+
+
+
+				$pdf_file_name_field = 'cust-prop-type-layout-pdf_'.str_replace(' ', '_', $prop_value) ;
+
+
+				if(!empty($_FILES[$pdf_file_name_field])) {
+
+					$pdf_uploadStatus = wp_handle_upload( $_FILES[$pdf_file_name_field], array( 'test_form' => false ) );   // Let WordPress handle the upload
+
+		            // Make sure that the file was uploaded correctly, without error
+		            if( isset( $pdf_uploadStatus['file'] ) ) {
+		                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+
+		                // Let's add the image to our media library so we get access to metadata
+		                $pdf_imageID = wp_insert_attachment( array(
+		                        'post_mime_type'    => $pdf_uploadStatus['type'],
+		                        'post_title'        => preg_replace( '/\.[^.]+$/', '', basename( $pdf_uploadStatus['file'] ) ),
+		                        'post_content'      => '',
+		                        'post_status'       => 'publish'
+		                    ),
+		                    $pdf_uploadStatus['file']
+		                );
+
+		                // Generate our attachment metadata then update the file.
+		                $pdf_attachmentData = wp_generate_attachment_metadata( $pdf_imageID, $pdf_uploadStatus['file'] );
+		                wp_update_attachment_metadata( $pdf_imageID,  $pdf_attachmentData );
+
+
+		                $existingPdf = get_post_meta($post_id,'custom_property-siteplan',true) ;            // IF a file already exists in this option, grab it
+		                if( ! empty( $existingPdf ) && is_numeric( $existingPdf ) ) {       // IF the option does exist, delete it.
+		                    wp_delete_attachment( $existingPdf );
+		                }
+		               
+
+					}
+					
+				}
+
+
+				if($prop_type_match_found==true){
+
+					if($pdf_imageID!=false && $pdf_imageID!='' )
+						$prop_type_match['layout_pdf']    = $pdf_imageID;
+					if($imageID!=false && $imageID!='' )
+						$prop_type_match['layout_image']  = $imageID;
+
+					$property_types_data_value[] = $prop_type_match;
+
+				}
+				else{
+
+					$property_types_data_value[] = array('type'=>$prop_value,'layout_image'=>$imageID,'layout_pdf'=>$pdf_imageID) ;
+
+				}
 
 
 
@@ -1760,6 +1959,77 @@ function delete_custom_file_field() {
 
 }
 add_action( 'wp_ajax_delete_custom_file_field', 'delete_custom_file_field' );
+
+
+
+
+
+
+
+
+
+function delete_property_type_layout_image_pdf_file() {
+
+	$property_id   		= $_REQUEST['data']['property_id'];
+	$property_type 	= $_REQUEST['data']['property_type'];
+	$custom_file_id 	= $_REQUEST['data']['attachment_id'];
+	$file_type 			= $_REQUEST['data']['file_type'];
+
+	$delete_success = false;
+
+	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) ); 
+      
+
+	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
+
+
+
+	  	foreach ($custom_file_field_value as $key => $value) {
+
+	  		$data = maybe_unserialize($value);
+
+
+	  		if($data['type'] == $property_type){
+
+	  			if($data[$file_type] == $custom_file_id){
+	  				$result_delete_attachment = wp_delete_attachment($data[$file_type]); 
+				  	if($result_delete_attachment!=false){
+				  		
+				  		$delete_success = true ; 
+				  	}
+	  			}
+
+	  			if($delete_success==true){
+	  				if($file_type=='layout_image'){
+						$data['layout_image'] = '';
+	  				}
+	  				else if($file_type=='layout_pdf'){
+						$data['layout_pdf'] = '';
+	  				}
+
+	  			}	 
+	  			 			
+	  		}
+	  		$updated_data [] = $data; 
+	  		 
+	  	}
+
+	  	
+
+	  }  
+
+	  update_post_meta($property_id,'residential-property-type',true);
+
+    
+    wp_send_json($delete_success);
+
+
+}
+add_action( 'wp_ajax_delete_property_type_layout_image_pdf_file', 'delete_property_type_layout_image_pdf_file' );
+
+
+
+
 
 
 
@@ -1841,14 +2111,32 @@ function prepare_items() {
 }
 
 function get_data(){
+
+	 
+
 	global $wpdb;
 
 	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
 
-	if($current_property_types==false)
-		$current_property_types = array();
+	if($current_property_types==false){
+		return array();
+	}		
+	else{
+
+
+		if(!isset($current_property_types['max_property_types'])    ||    $current_property_types['max_property_types']<=0 ){
+			return array();
+		}
+		else if($current_property_types['max_property_types']>0){
+
+ 
+			return maybe_unserialize($current_property_types['property_types']);
+		}
+		 
+		
+	}
 	
-	return $current_property_types;
+	 
 			
 }
 
@@ -1866,13 +2154,13 @@ function get_sortable_columns() {
 } //class
 
 
-
+/* 
 function get_property_types(){
 	global $wpdb;
 
 	$property_types = maybe_unserialize(get_option('residential-property-type'));
 
-}
+} */
 
 
   echo '<div class="wrap"><div id="icon-tools" class="icon32"></div>';
@@ -1940,15 +2228,7 @@ function get_property_types(){
 				</div>
 
 
-
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -1990,43 +2270,65 @@ function save_property_type(){
 	if($property_edit_id!=''){
 		$new_property_type['ID'] = $property_edit_id;
 
-		foreach ($current_property_types as $key => $value) {
+		foreach ($current_property_types['property_types'] as $key => $value) {
+
 			if($property_edit_id == $value['ID']){
-					 	$current_property_types[$key] = $new_property_type;
+					$updated_new_property_types[$key] = $new_property_type;
+			}
+			else{
+					$updated_new_property_types[$key] = $value;
 			}
 
 		}
 
+		$updated_new_max_property_type = $current_property_types['max_property_types'];
+
 	}		
 	else{
-			if(count($current_property_types)<=0 || $current_property_types==false){
-				$new_property_type['ID'] = 1;	 
+			if(!isset($current_property_types['max_property_types'])){
+
+				$new_property_type['ID'] = 1;	
+				$current_property_types ['property_types'] = array(); 
+			}
+			else if(count($current_property_types['max_property_types'])<=0 || $current_property_types==false ){
+
+				$new_property_type['ID'] = 1;	
+				$current_property_types ['property_types'] = array(); 
 					
 			}
 			else{
 				
-				$current_max_property_id = 0;
+				/*$current_max_property_id = 0;
 				foreach ($current_property_types as $key => $value) {
 					if($value['ID']>$current_max_property_id){
 					 	$current_max_property_id = $value['ID'];
 					}
 				}
-				$new_property_type['ID']  = $current_max_property_id + 1 ;	
+				$new_property_type['ID']  = $current_max_property_id + 1 ;	*/
 
+				$new_property_type['ID'] = $current_property_types['max_property_types'] + 1;
+			}
+
+			if(!is_array($current_property_types['property_types'])){
+				$current_property_types['property_types'] = array();
 			}
 			
-			$current_property_types[] = $new_property_type ;
+			$updated_new_property_types =    $current_property_types['property_types'];
+			$updated_new_property_types[] = $new_property_type ;
+			$updated_new_max_property_type = $new_property_type['ID'];
 	}
 
 
 
-	$result = update_option('residential-property-type',maybe_serialize($current_property_types));
+	$result = update_option('residential-property-type',maybe_serialize(array('max_property_types' => $updated_new_max_property_type,
+																			  'property_types'     => $updated_new_property_types
+																		)));
 
 	if($result==false){
 		$current_property_types = maybe_unserialize(get_option('residential-property-type'));
 	}
 
-	wp_send_json(array('success' => $result, 'ID'=>$new_property_type['ID'], 'data'=>$current_property_types));
+	wp_send_json(array('success' => $result, 'ID'=>$new_property_type['ID'], 'data'=>$updated_new_property_types));
 
 }
 add_action( 'wp_ajax_save_property_type', 'save_property_type' );
@@ -2040,7 +2342,8 @@ function delete_property_type(){
 	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
 
 	$found_del_type = false ;
-	foreach ($current_property_types as $key => $value) {
+
+	foreach ($current_property_types['property_types'] as $key => $value) {
 		 if($value['ID']!=$property_type_id ){
 	 	
 		 	$updated_property_types [] = $value ;		 		
@@ -2051,7 +2354,10 @@ function delete_property_type(){
 
 	}
 
-	update_option('residential-property-type',maybe_serialize($updated_property_types));
+	$updated_new_property_types =  array('max_property_types' => $current_property_types['max_property_types'],  
+									 'property_types'	  => $updated_property_types);
+
+	update_option('residential-property-type',maybe_serialize($updated_new_property_types));
 
 	wp_send_json(array('success'=>true,'types'=>$updated_property_types ));
 }
@@ -2065,9 +2371,71 @@ function get_property_type_option(){
 
 	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
 	
-	wp_send_json($current_property_types );
+	if(isset($current_property_types['property_types'])){
+		wp_send_json(maybe_unserialize($current_property_types['property_types']));
+	}
+	else{
+		wp_send_json(array() );
+	}
+
+	
 
 }
 add_action( 'wp_ajax_get_property_type_option', 'get_property_type_option' );
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function delete_property_type_row() {
+
+	$property_id   		= $_REQUEST['data']['property_id'];
+	$property_type 		= $_REQUEST['data']['property_type'];
+ 
+
+	$delete_success = false;
+
+	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) ); 
+      
+
+	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
+
+
+
+	  	foreach ($custom_file_field_value as $key => $value) {
+
+	  		$data = maybe_unserialize($value);
+
+
+	  		if($data['type'] == $property_type){
+
+	  				if($data['layout_image']!='') 
+	  					$result_delete_attachment = wp_delete_attachment($data['layout_image']); 
+	  				if($data['layout_pdf']!='')
+				  		$result_delete_attachment = wp_delete_attachment($data['layout_pdf']);  
+				  	 
+	  		} 
+	  			 			
+	  	}
+	  	$updated_data [] = $data; 
+	  
+	}  
+
+    
+    wp_send_json($delete_success);
+
+
+}
+add_action( 'wp_ajax_delete_property_type_row', 'delete_property_type_row' );

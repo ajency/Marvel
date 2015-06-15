@@ -505,31 +505,32 @@ jQuery(document).ready(function($) {
 
 
 
-$('.delete_property_type_layout').live("click",function(evt){
-            /* Delete 2D Layout for the residential Property */ 
+$('.del_prop_type_layout_img').live("click",function(evt){
+            /* Delete 2D Layout Image for the residential Property */ 
 
             var self = this;
 
             var curr_property_id = $(this).attr('property-id');
-            var property_type = $(this).attr('property-type-value'); 
+            var property_type = $(this).attr('type-id'); 
+            var attachment_id = $(this).attr('file-id'); 
+            var file_type     = 'layout_image'
 
             var my_data = { 'property_id'    : curr_property_id,
-                            'property_type'  : property_type                                 
+                            'property_type'  : property_type,
+                            'attachment_id'  : attachment_id,
+                            'file_type'     : file_type                               
                           } 
 
             $.post(ajaxurl,{   //the server_url
-                    action: "delete_property_layout",                 //the submit_data array
+                    action: "delete_property_type_layout_image_pdf_file",                 //the submit_data array
                     data:my_data
                 },
                 function(data) {                   //the callback_handler
                     if (data==true) {
 
-
-                    $(self).parent().find('img').remove();
-                    $(self).remove();
-
+                    $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-file" name="cust-prop-type-layout-file_'+property_type+'" id="cust-prop-type-layout-file_'+property_type+'">')
                      
-
+                    $(self).parent().remove();
                     }
 
                 });
@@ -540,6 +541,42 @@ $('.delete_property_type_layout').live("click",function(evt){
 
 
 
+
+
+
+
+$('.del_prop_type_layout_pdf').live("click",function(evt){
+            /* Delete 2D Layout Pdf for the residential Property */ 
+
+            var self = this;
+
+            var curr_property_id = $(this).attr('property-id');
+            var property_type = $(this).attr('type-id'); 
+            var attachment_id = $(this).attr('file-id'); 
+            var file_type     = 'layout_pdf'
+
+            var my_data = { 'property_id'    : curr_property_id,
+                            'property_type'  : property_type,
+                            'attachment_id'  : attachment_id,
+                            'file_type'     : file_type                               
+                          } 
+
+            $.post(ajaxurl,{   //the server_url
+                    action: "delete_property_type_layout_image_pdf_file",                 //the submit_data array
+                    data:my_data
+                },
+                function(data) {                   //the callback_handler
+                    if (data==true) {
+
+                    $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
+                     
+                    $(self).parent().remove();
+                    }
+
+                });
+
+
+        })
 
 
 $('.delete_property_siteplan').live("click",function(evt){
@@ -575,16 +612,7 @@ $('.delete_property_siteplan').live("click",function(evt){
 
 
 
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -604,7 +632,7 @@ $('.get_property_type').live("click",function(evt){
 
                                 window.property_type_options = data ;
                                 property_type_row =  generate_options_html();
-                                $('.cust-prop-type-table').append(property_type_row)
+                                $('.cust-prop-type-table').prepend(property_type_row)
 
 
                             }
@@ -615,7 +643,8 @@ $('.get_property_type').live("click",function(evt){
      }
      else{
             property_type_row =  generate_options_html()
-             $('.cust-prop-type-table').append(property_type_row)
+            alert($('.cust-prop-type-table').length)
+             $('.cust-prop-type-table').prepend(property_type_row)
      }
 
      
@@ -627,15 +656,18 @@ $('.get_property_type').live("click",function(evt){
 function generate_options_html(){
 
 
-    var html = "<select class='cust-prop-type-select'>";
+    var html = "<span class='adm_property_type_row'>"
+               +" <span class='adm_property_type_span_first'> <select name='cust_prop_type_select[]' class='cust-prop-type-select'>";
+         html = html + '<option value="" >Select</option>';
     _.each(window.property_type_options,function(vl,ky){
         html = html + '<option value="'+vl.ID+'" >'+vl.property_type+'</option>';
 
     })    
 
-    html = html + '</select>'
-           + '<span class="cust-prop-type-layout" > <input type="file"  class="cust-prop-type-layout-file"  /> </span> ' 
-           + '<span class="cust-prop-type-pdf" > <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '; 
+    html = html + '</select> </span>'
+                + '<span class="cust-prop-type-layout adm_property_type_span" > <input type="file"  class="cust-prop-type-layout-file"  /> </span> ' 
+                + '<span class="cust-prop-type-pdf adm_property_type_span" > <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '
+                + '</span>' ;
 
 
     return html ;
@@ -646,8 +678,110 @@ function generate_options_html(){
 
 
 
+$('.cust-prop-type-select').live("change",function(evt){   
+
+    alert($('.cust-prop-type-select').val())
+
+    var self = this;
+
+    var current_selected_property_type_id = $(self).val() ;
+    var adm_property_type_row = $(self).closest('.adm_property_type_row');
+
+    if(current_selected_property_type_id ==''){
+        adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','').attr('id','');
+        adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','').attr('id','');
+    }
+
+    var selected_prop_types = [];
+    var cnt_selected_prop_types = 0;
+    var selected_prop_type_count =0;
+
+    $('.cust-prop-type-select').each(function(){ 
+
+        selected_prop_types[cnt_selected_prop_types] = $(this).val();
+            if(current_selected_property_type_id == $(this).val()){
+                selected_prop_type_count = selected_prop_type_count + 1;
+            }
+                
+         cnt_selected_prop_types++;
+    });
+
+    if(selected_prop_type_count>=2){
+        alert('Pleasechoose other Property Type, as this Property Type is already Selected.');
+        $(self).val('')
+        adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','').attr('id','');
+        adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','').attr('id','');
+    }
+    else{
 
 
+            if(adm_property_type_row.find('.cust-prop-type-layout-file').length>0){
+                adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','cust-prop-type-layout-file_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-file_'+current_selected_property_type_id);    
+            }
+            else{
+                adm_property_type_row.find('.cust-prop-type-layout').append('<input type="file"  class="cust-prop-type-layout-file" name="cust-prop-type-layout-file_'+current_selected_property_type_id+'"  id="cust-prop-type-layout-file_'+current_selected_property_type_id+'"  />')
+
+            }    
+
+
+
+            if(adm_property_type_row.find('.cust-prop-type-layout-pdf').length>0){
+                adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','cust-prop-type-layout-pdf_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-pdf'+current_selected_property_type_id);    
+            }
+            else{
+                adm_property_type_row.find('.cust-prop-type-pdf').append('<input type="file"  class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  id="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  />')                
+            }
+            
+            
+    }
+   
+
+})
+
+
+
+$('.del_property_type_row').live("change",function(evt){   
+
+
+
+
+
+
+
+
+    /* Delete 2D Layout Pdf for the residential Property */ 
+
+            var self = this;
+
+            var curr_property_id = $(this).attr('property-id');
+            var property_type = $(this).attr('type-id'); 
+            var attachment_id = $(this).attr('file-id'); 
+            var file_type     = 'layout_pdf'
+
+            var my_data = { 'property_id'    : curr_property_id,
+                            'property_type'  : property_type,
+                            'attachment_id'  : attachment_id,
+                            'file_type'     : file_type                               
+                          } 
+
+            $.post(ajaxurl,{   //the server_url
+                    action: "delete_property_type_row",                 //the submit_data array
+                    data:my_data
+                },
+                function(data) {                   //the callback_handler
+                    if (data==true) {
+
+                    $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
+                     
+                    $(self).parent().remove();
+                    }
+
+                });
+
+
+
+    $(this).closest('.adm_property_type_row').remove();
+})
 
 
 });
