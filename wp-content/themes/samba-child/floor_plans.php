@@ -653,6 +653,14 @@ $show_sidebar=false;
                         </div>
                     </div>
 
+
+                    <div class="go_to_top_inpage"></div>
+                    <a class="enquiry_sideways">
+                        <i></i>
+                        Enquire Now
+                    </a>
+                    <div class="share_indi"></div>
+
                 </div>
             </div>
             <!--/tabs end-->
