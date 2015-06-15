@@ -207,8 +207,38 @@
 
                 var search_collections = res_collection.models;
 
-                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
+                delete search_options['property_type'] ;
+
+                if( (prop_status!='') || (prop_city!='') || (prop_locality!='')  )
                     var search_collections = res_collection.where(search_options )
+
+
+                var sel_search_collections = {};
+                var cnt_sel_search_collection = 0;
+
+
+
+                if( prop_type!='' && !_.isNull(prop_type)){
+
+                     console.log('MAP PROPERTY is not NULL & NOt Empty:------------------- SEARCH COLLECTIONS ')
+                     console.log(search_collections)
+
+                    _.each(search_collections,function(vl_searchres,ky_searchres){
+
+
+                       var exists_by_type = _.where(vl_searchres.get('property_type'),{type:prop_type})
+                      if(exists_by_type.length>0){
+                        sel_search_collections[cnt_sel_search_collection] = vl_searchres;
+
+                        cnt_sel_search_collection = cnt_sel_search_collection+1;
+                      }
+                    })
+                    search_collections = sel_search_collections;
+                  }
+
+
+
+
 
 
                 var properties = search_collections;
@@ -222,10 +252,11 @@
                 var marker, i;
 
 
-                if(properties.length>0){
+                //commented on 1june2015 if(properties.length>0){
+                  if(_.size(properties)>0){
 
 
-                    for (i = 0; i < properties.length; i++) {
+                    for (i = 0; i < _.size(properties); i++) {
 
 
                         locations = properties[i].get('map_address')[0];
@@ -404,7 +435,7 @@
                                             _.each(properties[i].get('property_type'),function(proptype_vl1,proptype_ky1){
                                                if(individial_proptype_cnt>0)
                                                 popup_content+= ', ';
-                                              popup_content+= proptype_vl1.type;
+                                              popup_content+= proptype_vl1.type_name;
                                               individial_proptype_cnt++;
                                             })
 

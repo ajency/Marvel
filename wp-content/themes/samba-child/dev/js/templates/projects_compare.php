@@ -104,8 +104,8 @@ console.log('vl');
                             </tr>
                             <tr>
                                 <td>Types</td>
-                                <td><%=_.pluck(f_prop.get('property_type'),'type').join()%></td>
-                                <td><%=_.pluck(s_prop.get('property_type'),'type').join()%></td>
+                                <td><%=_.pluck(f_prop.get('property_type'),'type_name').join()%></td>
+                                <td><%=_.pluck(s_prop.get('property_type'),'type_name').join()%></td>
                             </tr>
                             <tr>
                                 <td>Sellable Area</td>
