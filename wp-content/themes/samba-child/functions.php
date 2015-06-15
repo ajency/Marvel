@@ -93,6 +93,29 @@ function get_res_property_meta_values($property_id){
 
               }
 
+              if($value['layout_image']!=''){
+
+                $layout_image = wp_get_attachment_image_src($value['layout_image']);
+                $layout_image_url = $layout_image[0];
+                $layout_image_filename =basename( get_attached_file( $value['layout_image'] ) );
+
+                $value['layout_image_data'] = array('ID'  => $value['layout_image'], 
+                                                    'url' => $layout_image_url, 
+                                                    'name'=> $layout_image_filename);
+
+              }
+
+              if($value['layout_pdf']!=''){
+
+                $parsed_pdf_file = parse_url( wp_get_attachment_url( $value['layout_pdf'] ) );
+                $layout_pdf_url    = dirname( $parsed_pdf_file [ 'path' ] ) . '/' . rawurlencode( basename( $parsed_pdf_file[ 'path' ] ) );
+                $layout_pdf_filename =basename( get_attached_file( $value['layout_pdf'] ) );
+
+                $value['layout_pdf_data'] = array('ID'  => $value['layout_pdf'], 
+                                                  'url' => $layout_pdf_url, 
+                                                  'name'=> $layout_pdf_filename);
+              }
+
               $property_type_updated[] = $value; 
             
        }
@@ -1050,10 +1073,17 @@ add_shortcode('floor_plans_tabs00000', 'floor_plans_tabs00000');
 
 function floor_plans_tabs() {
 
-  Global $wp_query;
+  global $wp_query;
 //$cur_property_id = get_the_ID();
 $cur_property_id = $wp_query->get_queried_object_id();
 
+//$property_type_option = maybe_unserialize(get_option('residential-property-type'));
+
+//$property_type_option_values = $property_type_option['property_types'];
+
+
+
+$property_data = get_res_property_meta_values($cur_property_id);
 
 
 
@@ -1061,9 +1091,9 @@ $site_plan_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_mi
 
 $site_plan_img_id = maybe_unserialize(get_post_meta($cur_property_id,'custom_property-siteplan',true));
 
-$property_types = maybe_unserialize(get_post_meta($cur_property_id,'residential-property-type',true));
+$property_types = $property_data['property_type'];
 
-$property_sellable_area = maybe_unserialize(get_post_meta($cur_property_id,'property-sellable_area',true));
+$property_sellable_area = $property_data['property_sellablearea'];
 
 if(isset($property_sellable_area['min-area'])) {
     if(!empty($property_sellable_area['min-area'])){
@@ -1111,7 +1141,23 @@ $floor_plans_tab_content='
 
 
 foreach ($property_types as $key_proptype => $value_proptype) {
-  $floor_plans_tab_content.='<li><a href="#tab-'.str_replace(" ", "_", $value_proptype['type']).'">'.$value_proptype['type'].'</a></li>';
+
+      /* $option_value_name = '';
+
+      foreach ($property_type_option_values as $key_type_options => $value_type_options) {
+
+         if($value_type_options['ID'] == $value_proptype['type']){
+
+              $option_value_name = $value_type_options['property_type'];
+         }
+      
+      } */
+
+      $option_value_name = $value_proptype['type_name'];
+
+
+
+  $floor_plans_tab_content.='<li><a href="#tab-'.str_replace(" ", "_", $value_proptype['type']).'">'.$option_value_name.'</a></li>';
 }
 
  $floor_plans_tab_content.='<!-- <li><a href="#tab-3_5bhk">3.5 BHK</a></li> -->
@@ -1147,8 +1193,7 @@ foreach ($property_types as $key_proptype => $value_proptype) {
 
 foreach ($property_types as $key_proptype => $value_proptype) {
 
-            $cur_prop_type_img_id = $value_proptype['layout'];
-
+            $cur_prop_type_img_id = $value_proptype['layout_image_data']['ID'];
             $cur_prop_type_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
 
 
@@ -1157,9 +1202,17 @@ foreach ($property_types as $key_proptype => $value_proptype) {
 
                 $cur_prop_type_img = wp_get_attachment_image_src( $cur_prop_type_img_id,'full' );
 
-                $cur_prop_type_img_url = $cur_prop_type_img[0];
+                $cur_prop_type_img_url = $value_proptype['layout_image_data']['url'];
 
             }
+
+
+if(isset($value_proptype['layout_pdf_data']['ID'])){
+  $pdfurl = wp_get_attachment_url($value_proptype['layout_pdf_data']['ID']);
+}
+else{
+  $pdfurl = "javascript:void(0)";
+}
 
 
 
@@ -1173,8 +1226,8 @@ foreach ($property_types as $key_proptype => $value_proptype) {
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Typical floor plan of a '.$value_proptype['type'].$display_area.'
-                                            <a class="wpb_button_a download_prj" title="Download" href="'.$cur_prop_type_img_url.'" download>
+                                            Typical floor plan of a '.$option_value_name.$display_area.'
+                                            <a class="wpb_button_a download_prj" title="Download" href="'.$pdfurl.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
                                         </p>
