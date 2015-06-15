@@ -643,7 +643,7 @@ $('.get_property_type').live("click",function(evt){
      }
      else{
             property_type_row =  generate_options_html()
-            alert($('.cust-prop-type-table').length)
+           // alert($('.cust-prop-type-table').length)
              $('.cust-prop-type-table').prepend(property_type_row)
      }
 
@@ -680,7 +680,7 @@ function generate_options_html(){
 
 $('.cust-prop-type-select').live("change",function(evt){
 
-    alert($('.cust-prop-type-select').val())
+   // alert($('.cust-prop-type-select').val())
 
     var self = this;
 
@@ -782,6 +782,44 @@ $('.del_property_type_row').live("change",function(evt){
 
     $(this).closest('.adm_property_type_row').remove();
 })
+
+
+
+
+
+
+
+
+
+
+
+
+var fileTypes = ['jpg', 'jpeg', 'png', 'what', 'ever', 'you', 'want'];  //acceptable file types
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var extension = input.files[0].name.split('.').pop().toLowerCase(),  //file extension from input file
+            isSuccess = fileTypes.indexOf(extension) > -1;  //is extension in acceptable types
+
+        if (isSuccess) { //yes
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                alert('image has read completely!');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+        else { //no
+            //warning
+        }
+    }
+}
+
+
+
+
+
+
 
 
 });

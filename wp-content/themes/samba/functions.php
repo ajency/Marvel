@@ -877,8 +877,12 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 	$element_class 			= $element_custom_field_args['class'];
 	$element_title 			= $element_custom_field_args['metabox_title'];
 	$custom_field_type		= $element_custom_field_args['field'];
+	
+	if($custom_field_type=='property-type') 
+		echo '<div class="set_admin_input row additional_class_property_type"> ';
+	else
+		echo '<div class="set_admin_input row"> ';
 
-	echo '<div class="set_admin_input row"> ';
 	if($multiple_values==false || ( ($multiple_values==true) && $element_type=='select'))
 		echo '	<div class="admin_label">
 		    		<label for="">'.$element_title.'</label>
@@ -890,16 +894,10 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 			    </div>
 		      ';
 
-	if($custom_field_type=='property-type'){
-?>
+?>	
 		<div class="admin_new_add_c">
-<?php
-	}
-	else{
-?>		<div class="admin_new_add_c">
-<?php
-	}
-?>
+
+
 
 <?php
 	switch($element_type){
@@ -915,6 +913,13 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 							$current_selected_types = maybe_unserialize($current_property_meta_value);
 							$custom_field_options_values = maybe_unserialize($element_values);
+
+
+
+
+							 if(is_array($current_selected_types)!==true) 
+								$current_selected_types = array();  
+								
 
 							foreach ($current_selected_types as $key_selected_type => $value_selected_type) {
 
@@ -957,7 +962,8 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    		 ';
 										    }
 										    else{
-										    	echo '<input type="file"  class="cust-prop-type-layout-file"
+										    	echo '<label class="forjpg">Image </label>
+										    		  <input type="file"  class="cust-prop-type-layout-file"
 										    			name = "cust-prop-type-layout-file_'.$value_selected_type['type'].'"
 										    			id ="cust-prop-type-layout-file_'.$value_selected_type['type'].'"  />';
 										    }
@@ -995,7 +1001,8 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    		  </span>';
 										    }
 										    else{
-										    	echo '<input type="file"  class="cust-prop-type-layout-pdf"
+										    	echo '<label class="forpdf">PDF </label>
+										    		  <input type="file"  class="cust-prop-type-layout-pdf"
 										    				name="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
 										    				id="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
 										    			/>';
@@ -1766,6 +1773,9 @@ function save_custom_meta_box($post_id, $post, $update)
 
 		$current_property_type = maybe_unserialize(get_post_meta($post_id,'residential-property-type',true));
 
+		
+
+
 		if($post->post_type=="residential-property"){
 
 			if(!empty($sel_property_type) && is_array($sel_property_type)){
@@ -1781,13 +1791,18 @@ function save_custom_meta_box($post_id, $post, $update)
 
 				$pdf_imageID = '';
 
-				foreach ($current_property_type as $key_currentprop => $value_currentprop) {
-					if($value_currentprop['type']==$prop_value){
-							$prop_type_match_found = true ;
 
-							$prop_type_match = $value_currentprop ;
-					}
+				if(is_array($current_property_type)){
+					foreach ($current_property_type as $key_currentprop => $value_currentprop) {
+						if($value_currentprop['type']==$prop_value){
+								$prop_type_match_found = true ;
+
+								$prop_type_match = $value_currentprop ;
+						}
+					}	
 				}
+
+				
 
 
 
@@ -1892,6 +1907,9 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
 			}
+
+
+			
              update_post_meta($post_id, "residential-property-type", maybe_serialize($property_types_data_value));
             }
 
@@ -1904,7 +1922,7 @@ function save_custom_meta_box($post_id, $post, $update)
             update_post_meta($post_id, "commercial-property-type", $sel_property_type);
         }
 
-//exit();
+
 
 
 
