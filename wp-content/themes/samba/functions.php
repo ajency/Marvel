@@ -963,7 +963,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    }
 										    else{
 										    	echo '<label class="forjpg">Image </label>
-										    		  <input type="file"  class="cust-prop-type-layout-file"
+										    		  <input type="file"  class="cust-prop-type-layout-file" accept=".png,.jpg,.gif,.bmp" 
 										    			name = "cust-prop-type-layout-file_'.$value_selected_type['type'].'"
 										    			id ="cust-prop-type-layout-file_'.$value_selected_type['type'].'"  />';
 										    }
@@ -1002,7 +1002,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    }
 										    else{
 										    	echo '<label class="forpdf">PDF </label>
-										    		  <input type="file"  class="cust-prop-type-layout-pdf"
+										    		  <input type="file"  class="cust-prop-type-layout-pdf"  accept=".pdf"  
 										    				name="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
 										    				id="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
 										    			/>';
