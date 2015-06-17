@@ -2445,13 +2445,17 @@ function delete_property_type_row() {
 				  		$result_delete_attachment = wp_delete_attachment($data['layout_pdf']);
 
 	  		}
+	  		else{
+	  			$updated_data[] = $value;
+	  		}
+
 
 	  	}
-	  	$updated_data [] = $data;
+	  	
 
 	}
 
-
+	update_post_meta($property_id,'residential-property-type',$updated_data);
     wp_send_json($delete_success);
 
 
