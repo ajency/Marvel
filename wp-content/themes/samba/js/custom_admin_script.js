@@ -179,8 +179,8 @@ jQuery('.save_property_type').live("click",function(){
 
                         var edit_element =  jQuery(".edit_property_type[type_id='"+data.ID+"']") 
 
-                        alert(".edit_property_type[type_id='"+data.ID+"']")
-                        alert(jQuery(".edit_property_type[type_id='"+data.ID+"']").length )
+                        /* alert(".edit_property_type[type_id='"+data.ID+"']")
+                        alert(jQuery(".edit_property_type[type_id='"+data.ID+"']").length ) */
 
                         edit_element.attr('type_name',property_type)
                                     .attr('bedrooms',num_bedrooms)
