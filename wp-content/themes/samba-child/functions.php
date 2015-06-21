@@ -95,7 +95,7 @@ function get_res_property_meta_values($property_id){
 
               if($value['layout_image']!=''){
 
-                $layout_image = wp_get_attachment_image_src($value['layout_image']);
+                $layout_image = wp_get_attachment_image_src($value['layout_image'],'full');
                 $layout_image_url = $layout_image[0];
                 $layout_image_filename =basename( get_attached_file( $value['layout_image'] ) );
 
