@@ -95,17 +95,17 @@
                 visible = 2, //Set the number of items that will be visible
                 index = 0, //Starting index
                 endIndex = ( $item.length / visible ) - 1; //End index
-            
+
             $('.tabular_c .right').click(function(){
                 if(index < endIndex ){
                   index++;
                   $item.animate({'left':'-=' +scroll+ 'px'});
                 }
             });
-            
+
             $('.tabular_c .left').click(function(){
                 if(index > 0){
-                  index--;            
+                  index--;
                   $item.animate({'left':'+=' +scroll+ 'px'});
                 }
             });
@@ -329,6 +329,7 @@
                 $(this).addClass('curr');
                 $(this).find('span').addClass('white')
             }
+            jQuery.fn.myFunction();
         });
 
     });
@@ -390,21 +391,21 @@ var vwidth;
 var tcwidth=parseInt(jQuery('.table-cover').width());
 
 if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
-    {      
+    {
         vwidth = parseInt(jQuery('.table-cover').width())/3;
-    } 
+    }
     else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
-    {      
+    {
         vwidth = parseInt(jQuery('.table-cover').width())/2;
-    } 
-    
-    else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560) 
-    {      
+    }
+
+    else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
+    {
 
         vwidth = parseInt(jQuery('.table-cover').width())/2;
     }
-    else if(parseInt(jQuery(window).width()) <= 559) 
-    {      
+    else if(parseInt(jQuery(window).width()) <= 559)
+    {
 
         vwidth = parseInt(jQuery('.table-cover').width());
     }
@@ -414,7 +415,9 @@ if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) 
 jQuery(window).resize(function() {
         jQuery.fn.myFunction();
     });
-
+jQuery(window).load(function() {
+        jQuery.fn.myFunction();
+    });
 
 
 
