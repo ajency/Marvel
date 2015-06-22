@@ -157,13 +157,13 @@ $show_sidebar=false;
                                         </div>
 
                                         <div class="tabular_c">
-                                            <div class="left">
+                                            <div class="left" style="display: none;">
                                                 <i class="fa fa-chevron-left"></i>
                                             </div>
-                                            <div class="right active">
+                                            <div class="right active" style="display: none;">
                                                 <i class="fa fa-chevron-right"></i>
                                             </div>
-                                            <div class="tabul_hold">
+                                            <div class="tabul_hold" style="display: none;">
                                                 <div class="tabular tabul_main">
                                                     <div class="tab_row head">
                                                         <div class="tab_col">A-Flat No. (Sq.Ft.)</div>
@@ -426,7 +426,7 @@ $show_sidebar=false;
                                                         <tr>
                                                             <td class="blue_bg">A 1001 (5,500)</td>
                                                             <td class="blue_bg">A 1002 (5,500)</td>
-                                                        </tr>   
+                                                        </tr>
                                                     </table>
                                                 </div> <!-- /tabul_hold -->
                                                 <div class="tabul_hold">
@@ -449,7 +449,7 @@ $show_sidebar=false;
                                                         <tr>
                                                             <td class="blue_bg">A 1001 (5,500)</td>
                                                             <td class="blue_bg">A 1002 (5,500)</td>
-                                                        </tr>   
+                                                        </tr>
                                                     </table>
                                                 </div> <!-- /tabul_hold -->
                                                 <div class="tabul_hold">
@@ -472,7 +472,7 @@ $show_sidebar=false;
                                                         <tr>
                                                             <td class="blue_bg">A 1001 (5,500)</td>
                                                             <td class="blue_bg">A 1002 (5,500)</td>
-                                                        </tr>   
+                                                        </tr>
                                                     </table>
                                                 </div> <!-- /tabular_C -->
                                                 <div class="tabul_hold">
@@ -495,7 +495,7 @@ $show_sidebar=false;
                                                         <tr>
                                                             <td class="blue_bg">A 1001 (5,500)</td>
                                                             <td class="blue_bg">A 1002 (5,500)</td>
-                                                        </tr>   
+                                                        </tr>
                                                     </table>
                                                 </div> <!-- /tabular_C -->
                                             </div> <!-- /table-holder -->
