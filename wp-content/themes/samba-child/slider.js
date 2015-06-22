@@ -16,67 +16,100 @@
 
 
         //tabular left and right
-        var $actualWidth = 317;
-        $no_of_columns = $('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
-        $actual_table_width = $no_of_columns * $actualWidth;
-        $('.tabular_c').find('.tabul_main').width($actual_table_width);
+        // var $actualWidth = 317;
+        // $no_of_columns = $('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
+        // $actual_table_width = $no_of_columns * $actualWidth;
+        // $('.tabular_c').find('.tabul_main').width($actual_table_width);
 
-        $(document).on('click', '.tabular_c .right', function() {
-            var $toShow;
+        // $(document).on('click', '.tabular_c .right', function() {
+        //     var $toShow;
 
-            $wide = window.innerWidth ? window.innerWidth : $(window).width();
-            if ($wide < 1199) {
-                $toShow = 2;
-            } else if ($wide < 769) {
-                $toShow = 1;
-            } else {
-                $toShow = 3;
-            }
-            $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
-            $rotations = Math.floor($no_of_columns / $toShow);
-            $if_extra = $no_of_columns % $toShow;
+        //     $wide = window.innerWidth ? window.innerWidth : $(window).width();
+        //     if ($wide < 1199) {
+        //         $toShow = 2;
+        //     } else if ($wide < 769) {
+        //         $toShow = 1;
+        //     } else {
+        //         $toShow = 3;
+        //     }
+        //     $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
+        //     $rotations = Math.floor($no_of_columns / $toShow);
+        //     $if_extra = $no_of_columns % $toShow;
 
-            if ($rotations == 1 && $if_extra == 0) {
-                alert('nothing to show')
-            } else if ($rotations == 1 && $if_extra > 0) {
-                $(this).removeClass('active');
-                $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
-                $widthofcon = $(this).parents('.tabular_c').width();
-                $moveby = $widthoftab - $widthofcon;
+        //     if ($rotations == 1 && $if_extra == 0) {
+        //         alert('nothing to show')
+        //     } else if ($rotations == 1 && $if_extra > 0) {
+        //         $(this).removeClass('active');
+        //         $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
+        //         $widthofcon = $(this).parents('.tabular_c').width();
+        //         $moveby = $widthoftab - $widthofcon;
 
-                if (parseInt($(this).parents('.tabular_c').find('.tabul_main').css('left')) !== $moveby) {
-                    $(this).parents('.tabular_c').find('.tabul_main').css('left', '-' + $moveby + 'px');
-                    $(this).prev('.left').addClass('active');
+        //         if (parseInt($(this).parents('.tabular_c').find('.tabul_main').css('left')) !== $moveby) {
+        //             $(this).parents('.tabular_c').find('.tabul_main').css('left', '-' + $moveby + 'px');
+        //             $(this).prev('.left').addClass('active');
+        //         }
+        //     }
+        // });
+        // $(document).on('click', '.tabular_c .left', function() {
+        //     var $toShow;
+
+        //     $wide = window.innerWidth ? window.innerWidth : $(window).width();
+        //     if ($wide < 1199) {
+        //         $toShow = 2;
+        //     } else if ($wide < 769) {
+        //         $toShow = 1;
+        //     } else {
+        //         $toShow = 3;
+        //     }
+        //     $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
+        //     $rotations = Math.floor($no_of_columns / $toShow);
+        //     $if_extra = $no_of_columns % $toShow;
+
+        //     if ($rotations == 1 && $if_extra == 0) {
+        //         alert('nothing to show')
+        //     } else if ($rotations == 1 && $if_extra > 0) {
+        //         $(this).removeClass('active');
+        //         $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
+        //         $widthofcon = $(this).parents('.tabular_c').width();
+        //         $moveby = $widthoftab - $widthofcon;
+
+        //         $(this).parents('.tabular_c').find('.tabul_main').css('left', 0);
+        //         $(this).next('.right').addClass('active');
+        //     }
+        // });
+
+        // responsive-table
+        // var scroll = 100;
+        // var scroll = $('.tabul_hold').width();
+        // var speed = 0;
+        //     $('.tabular_c .right').click(function() {
+        //     $('.table-holder').animate({
+        //         'scrollLeft': '+=' + scroll
+        //     }, speed);
+        // });
+        // /responsive-table
+
+        // responsive-table test2
+        var scroll = $('.tabul_hold').width();
+            var $item = $('div.tabul_hold'), //Cache your DOM selector
+                visible = 2, //Set the number of items that will be visible
+                index = 0, //Starting index
+                endIndex = ( $item.length / visible ) - 1; //End index
+
+            $('.tabular_c .right').click(function(){
+                if(index < endIndex ){
+                  index++;
+                  $item.animate({'left':'-=' +scroll+ 'px'});
                 }
-            }
-        });
-        $(document).on('click', '.tabular_c .left', function() {
-            var $toShow;
+            });
 
-            $wide = window.innerWidth ? window.innerWidth : $(window).width();
-            if ($wide < 1199) {
-                $toShow = 2;
-            } else if ($wide < 769) {
-                $toShow = 1;
-            } else {
-                $toShow = 3;
-            }
-            $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
-            $rotations = Math.floor($no_of_columns / $toShow);
-            $if_extra = $no_of_columns % $toShow;
-
-            if ($rotations == 1 && $if_extra == 0) {
-                alert('nothing to show')
-            } else if ($rotations == 1 && $if_extra > 0) {
-                $(this).removeClass('active');
-                $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
-                $widthofcon = $(this).parents('.tabular_c').width();
-                $moveby = $widthoftab - $widthofcon;
-
-                $(this).parents('.tabular_c').find('.tabul_main').css('left', 0);
-                $(this).next('.right').addClass('active');
-            }
-        });
+            $('.tabular_c .left').click(function(){
+                if(index > 0){
+                  index--;
+                  $item.animate({'left':'+=' +scroll+ 'px'});
+                }
+            });
+        // responsive-table test2
 
         function placesearchbar() {
             $wid = window.innerWidth ? window.innerWidth : $(window).width();
@@ -296,6 +329,7 @@
                 $(this).addClass('curr');
                 $(this).find('span').addClass('white')
             }
+            jQuery.fn.myFunction();
         });
 
     });
@@ -349,3 +383,41 @@
         }
     });
 })( jQuery );
+
+// table
+jQuery.fn.myFunction = function testfun()
+{
+var vwidth;
+var tcwidth=parseInt(jQuery('.table-cover').width());
+
+if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
+    {
+        vwidth = parseInt(jQuery('.table-cover').width())/3;
+    }
+    else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
+    {
+        vwidth = parseInt(jQuery('.table-cover').width())/2;
+    }
+
+    else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
+    {
+
+        vwidth = parseInt(jQuery('.table-cover').width())/2;
+    }
+    else if(parseInt(jQuery(window).width()) <= 559)
+    {
+
+        vwidth = parseInt(jQuery('.table-cover').width());
+    }
+    jQuery('.tabul_hold').css('width', vwidth);
+}
+
+jQuery(window).resize(function() {
+        jQuery.fn.myFunction();
+    });
+jQuery(window).load(function() {
+        jQuery.fn.myFunction();
+    });
+
+
+

@@ -1423,12 +1423,7 @@ h6 {
   background: rgba(72, 72, 72, 0.4);
   padding: 4px 10px;
   color: #fff;
-  font-family: 'Cantarell', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-shadow: none;
-  text-rendering: optimizeLegibility;
+  /*.fontmont;*/
 }
 @media screen and (max-width: 767px) {
   #prk_ajax_container .full_fi_title {
@@ -1613,12 +1608,7 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .le_p_m .wpb_wrapper .show_h h3 {
   display: block !important;
-  font-family: 'Cantarell', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-shadow: none;
-  text-rendering: optimizeLegibility;
+  /*.fontmont;*/
   font-size: 16px;
   font-weight: normal;
   margin-top: 0;
@@ -1918,12 +1908,7 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .formid_row .le_form_t .frm_submit input {
   text-transform: uppercase;
-  font-family: 'Cantarell', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-shadow: none;
-  text-rendering: optimizeLegibility;
+  /*.fontmont;*/
   font-weight: normal;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .formid_row .le_form_t .frm_submit input:disabled,
@@ -2377,6 +2362,47 @@ h6 {
 .share_indi .stButton .sharethis {
   background-image: none !important;
 }
+/*table layoyt*/
+.table-cover {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+.table-cover .tabular_c {
+  font-size: 0;
+  padding-left: 0 !important;
+}
+.table-cover .tabular_c .left {
+  position: absolute !important;
+  top: 35% !important;
+  left: 1px !important;
+}
+.table-cover .tabular_c .right {
+  position: absolute !important;
+  right: 1px !important;
+  top: 35% !important;
+}
+.table-cover .tabular_c .tabul_hold {
+  display: inline-block;
+  /*&:not(:first-child){
+                margin-left: -7px;
+            }*/
+}
+.table-cover .tabular_c .tabul_hold table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table-cover .tabular_c .tabul_hold table th {
+  background: #f8f8f8;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 35px;
+}
+.table-cover .tabular_c .tabul_hold table td {
+  font-size: 13px;
+  line-height: 35px;
+}
+/*/table layout*/
 .compare .bd_headings_text_shadow {
   display: none;
 }
