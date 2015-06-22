@@ -265,7 +265,7 @@ function codex_residential_property_init() {
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => array( 'slug' => 'ResidentialProperties' ),
+        'rewrite'            => array( 'slug' => 'residential-properties' ),
         'capability_type'    => 'post',
         'has_archive'        => true,
         'hierarchical'       => false,
@@ -442,7 +442,7 @@ function myplugin_add_custom_box() {
 
         if($screen=="residential-property") {
 
-	    	$custom_fields[] = array ( 'field'				 => 'property-no_of_bedrooms',
+	    	/* $custom_fields[] = array ( 'field'				 => 'property-no_of_bedrooms',
 	    							   'metabox_title'		 => 'No Of Bedrooms',
 	    							   'multiple_values' 	 => false,
 	    							   'element_type'		 => 'select',
@@ -450,7 +450,7 @@ function myplugin_add_custom_box() {
 	    							   'option_value_postfix'=> '',
 	    							   'class'				 => '',
 	    							   'priority'			=> 'default'
-	    								 );
+	    								 ); */
 
 
 

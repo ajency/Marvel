@@ -71,8 +71,10 @@ function get_res_property_meta_values($property_id){
     $property_type            = maybe_unserialize(get_post_meta($property_id, 'residential-property-type',true));
     $property_price           = get_post_meta($property_id, 'property-price',true);
 
-    $property_type_updated = array();
-    
+    $property_type_updated    = array();
+    $property_type_penthouses = array();
+    $property_type_other      = array();    
+
 
     if(is_array($property_type)){
 
@@ -116,11 +118,30 @@ function get_res_property_meta_values($property_id){
                                                   'name'=> $layout_pdf_filename);
               }
 
-              $property_type_updated[] = $value; 
+              //$property_type_updated[] = $value; 
+              if(stripos($value['type_name'], 'penthouse')!==false || stripos($value['type_name'], 'pent house')!==false ){
+                 $property_type_penthouses[] = $value;
+              }
+              else{
+                $property_type_other[] = $value;
+              }
+
+             
             
        }
 
     }
+
+    $sortedproperty_type_other = sort_multidimensional_array($property_type_other,'no_bedrooms');
+    //echo ' sortedproperty_type_other :--- ';
+    //var_dump( $property_type_other);
+
+    $sorted_pproperty_type_penthouses = sort_multidimensional_array($property_type_penthouses,'no_bedrooms');
+    //echo ' sorted_pproperty_type_penthouses :--- ';
+    //var_dump($property_type_penthouses);
+
+    $property_type_updated = array_merge($sortedproperty_type_other,$sorted_pproperty_type_penthouses);
+
 
     $residential_property_meta_data = array('property_city'          => $property_cities,
                                              'property_status'       => $property_status,
@@ -166,7 +187,7 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->post_title                = 	$res_property->post_title ;
 	$new_res_prop->guid                      = 	$res_property->guid ;
 	$new_res_prop->post_author               = 	$res_property->post_author ;
-	$new_res_prop->post_url                  = 	site_url().'/ResidentialProperties/'.$res_property->post_name;
+	$new_res_prop->post_url                  = 	site_url().'/residential-properties/'.$res_property->post_name;
 	$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
 	$new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
 	$new_res_prop->amenities                 = 	$property_amenities;
@@ -1095,7 +1116,9 @@ $property_types = $property_data['property_type'];
 
 $property_sellable_area = $property_data['property_sellablearea'];
 
-if(isset($property_sellable_area['min-area'])) {
+$display_area='';
+
+/* commented on 21june2015 if(isset($property_sellable_area['min-area'])) {
     if(!empty($property_sellable_area['min-area'])){
         $display_area = "  &#8211;  ".$property_sellable_area['min-area']." sq. ft" ;
     }
@@ -1105,7 +1128,7 @@ if(isset($property_sellable_area['max-area'])) {
     if(!empty($property_sellable_area['max-area'])){
         $display_area.= " to ".$property_sellable_area['max-area']." sq. ft" ;
     }
-}
+} */
 
 
 
@@ -1500,3 +1523,17 @@ add_shortcode('floor_plans_tabs', 'floor_plans_tabs');
 
 
 
+function sort_multidimensional_array($myArray,$sort_key){
+
+ 
+   usort($myArray, function($a, $b) use ($sort_key) {
+ 
+    //echo '\n <br/> Compare '.$a[$sort_key].' with '. $b[$sort_key];
+    
+
+    return (float)$a['no_bedrooms'] - (float)$b['no_bedrooms'];
+});
+  return $myArray;
+
+
+}

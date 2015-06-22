@@ -88,9 +88,9 @@ jQuery(document).ready(function($) {
                         case 'text'         :
 
 
-                                            var new_element_html = '<span attr-field-val ="'+new_field_value+'" > <br/> &nbsp; '+new_field_value+'  <input type="text" value="" attr-name="'+attr_name+'" attr-value="'+new_field_value+'"     name="'+attr_name+'['+new_field_value+']"   class="postbox custom_input_field"  /> </span>';
+                                            var new_element_html = '<div class="admin_input adm_small"><span attr-field-val ="'+new_field_value+'"  class="row"> <br/> &nbsp; '+new_field_value+'  <input type="text" value="" attr-name="'+attr_name+'" attr-value="'+new_field_value+'"     name="'+attr_name+'['+new_field_value+']"   class="postbox custom_input_field"  /> <span class="kms_handle"> Kms</span></span></div>';
 
-                                            $(new_element_html).insertAfter(custom_element.last().closest('span'));
+                                            $(new_element_html).insertAfter(custom_element.last().closest('.admin_input'));
                                             $(self).closest('.row').find('.additional_option').val('');
                                             break;
 
@@ -113,7 +113,8 @@ jQuery(document).ready(function($) {
 
                     setTimeout(function(){
 
-                        $(self).parent().html('');
+                        //$(self).parent().html('');
+                        $(self).parent().remove();
 
                     },3000)
 
@@ -128,6 +129,9 @@ jQuery(document).ready(function($) {
             var span_additional_input_option_box = get_additional_option_box($(this).attr('field-type'));
 
             $(this).closest('.row').append(span_additional_input_option_box);
+        }
+        else{
+             $(this).closest('.row').find('.span_additional_option').show()
         }
 
     }).addClass('preview button button-large');

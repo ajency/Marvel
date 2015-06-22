@@ -12,7 +12,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
 %>
     <div class="top-dd one">
         <select id="dd_status" name="dd_status" class='srchopt' >
-         <option value="">Select</option>
+         <option value="">Status</option>
         <% 
             _.each(data.status,function(vl,ky){
             %><option value="<%=vl%>"  <% if(selectedStatus==vl){%> selected  <% }%>  ><%=vl%></option>
@@ -23,7 +23,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd two">
         <select id="dd_city" name="dd_city"  class='srchopt' >
-         <option value="">Select</option>
+         <option value="">City</option>
             <%  
          /* commented on 21june2015    _.each(data.citylocality,function(vl,ky){ */
             console.log('data.city');
@@ -40,7 +40,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd thr">
         <select id="dd_locality" name="dd_locality"  class='srchopt'  >
-         <option value="">Select</option>
+         <option value="">Locality</option>
             <% 
             /* commented on 21june2015 _.each(data.citylocality,function(vl,ky){ */
                  var locality_options = _.isUndefined(data.locality.localities)?[]:data.locality.localities;
@@ -71,7 +71,7 @@ if(selectedCity == vl__locality.city_id) {
     </div>
     <div class="top-dd fou">
         <select id="dd_type" name="dd_type"  class='srchopt' >
-         <option value="">Select</option>
+         <option value="">Type</option>
             <%   
             _.each(data.type,function(vl,ky){
             %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_type%></option>
