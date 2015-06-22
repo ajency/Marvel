@@ -187,7 +187,7 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->post_title                = 	$res_property->post_title ;
 	$new_res_prop->guid                      = 	$res_property->guid ;
 	$new_res_prop->post_author               = 	$res_property->post_author ;
-	$new_res_prop->post_url                  = 	site_url().'/ResidentialProperties/'.$res_property->post_name;
+	$new_res_prop->post_url                  = 	site_url().'/residential-properties/'.$res_property->post_name;
 	$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
 	$new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
 	$new_res_prop->amenities                 = 	$property_amenities;
@@ -1116,7 +1116,9 @@ $property_types = $property_data['property_type'];
 
 $property_sellable_area = $property_data['property_sellablearea'];
 
-if(isset($property_sellable_area['min-area'])) {
+$display_area='';
+
+/* commented on 21june2015 if(isset($property_sellable_area['min-area'])) {
     if(!empty($property_sellable_area['min-area'])){
         $display_area = "  &#8211;  ".$property_sellable_area['min-area']." sq. ft" ;
     }
@@ -1126,7 +1128,7 @@ if(isset($property_sellable_area['max-area'])) {
     if(!empty($property_sellable_area['max-area'])){
         $display_area.= " to ".$property_sellable_area['max-area']." sq. ft" ;
     }
-}
+} */
 
 
 
