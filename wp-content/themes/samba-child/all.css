@@ -1107,6 +1107,7 @@ h6 {
   background-image: url(img/enquiry.png);
   background-repeat: no-repeat;
   background-position: center center;
+  cursor: pointer;
 }
 .single_p_w .single_p_img .single_btm a.single_enq i {
   visibility: hidden;
@@ -1119,6 +1120,7 @@ h6 {
   text-shadow: none;
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
+  cursor: pointer;
 }
 .single_p_w .single_p_img .single_btm a.single_share {
   padding: 0;
@@ -1129,6 +1131,7 @@ h6 {
   background-image: url(img/share_ico.png);
   background-position: center;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 .single_p_w .single_p_img .single_btm a.single_share .stButton .sharethis {
   background-image: none !important;
@@ -1285,6 +1288,7 @@ h6 {
   background-image: url(img/enquiry.png);
   background-repeat: no-repeat;
   background-position: center center;
+  cursor: pointer;
 }
 .map_info_c a.single_enq i {
   visibility: hidden;
@@ -1301,11 +1305,13 @@ h6 {
 .map_info_c a.single_share {
   border-left-color: #afafaf;
   height: 33px;
+  cursor: pointer;
 }
 .map_info_c a.single_know {
   width: 38px;
   text-align: center;
   font-size: 16px;
+  cursor: pointer;
 }
 .last_one {
   width: 100%;
@@ -2399,11 +2405,16 @@ h6 {
 }
 .compare_c .info_bar a.back_btn {
   margin-bottom: 0;
-  background: #EBEBEB;
-  border-color: #999;
+  background: #666666;
+  border-color: #555555;
+  color: #fff;
 }
 .compare_c .info_bar a.back_btn:hover {
-  background: #fafafa;
+  background: #505050;
+  border-color: #3f3f3f;
+}
+.compare_c .info_bar a.back_btn:active {
+  border-color: #3b3b3b;
 }
 .compare_c .info_bar a.back_btn i {
   margin-right: 8px;
