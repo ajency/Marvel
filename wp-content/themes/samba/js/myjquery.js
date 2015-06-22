@@ -740,7 +740,7 @@ $('.cust-prop-type-select').live("change",function(evt){
 
 
 
-$('.del_property_type_row').live("change",function(evt){
+$('.del_property_type_row').live("click",function(evt){
 
 
 
@@ -763,6 +763,10 @@ $('.del_property_type_row').live("change",function(evt){
                             'attachment_id'  : attachment_id,
                             'file_type'     : file_type
                           }
+                             
+
+                          console.log('my_data')
+                          console.log(my_data)
 
             $.post(ajaxurl,{   //the server_url
                     action: "delete_property_type_row",                 //the submit_data array
@@ -771,16 +775,17 @@ $('.del_property_type_row').live("change",function(evt){
                 function(data) {                   //the callback_handler
                     if (data==true) {
 
-                    $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
+                   // $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
 
-                    $(self).parent().remove();
+                  //  $(self).parent().remove();
+                  $(self).closest('.adm_property_type_row').remove();
                     }
 
                 });
 
 
 
-    $(this).closest('.adm_property_type_row').remove();
+    $(self).closest('.adm_property_type_row').remove();
 })
 
 
