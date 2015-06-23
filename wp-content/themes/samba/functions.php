@@ -442,7 +442,7 @@ function myplugin_add_custom_box() {
 
         if($screen=="residential-property") {
 
-	    	/* $custom_fields[] = array ( 'field'				 => 'property-no_of_bedrooms',
+	    	$custom_fields[] = array ( 'field'				 => 'property-no_of_bedrooms',
 	    							   'metabox_title'		 => 'No Of Bedrooms',
 	    							   'multiple_values' 	 => false,
 	    							   'element_type'		 => 'select',
@@ -450,7 +450,7 @@ function myplugin_add_custom_box() {
 	    							   'option_value_postfix'=> '',
 	    							   'class'				 => '',
 	    							   'priority'			=> 'default'
-	    								 ); */
+	    								 );
 
 
 
@@ -639,28 +639,23 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     						    break;
 
     	case 'property-city'	:
-    							$property_city = maybe_unserialize(get_option('property-city'));
+    							$property_city_locality = maybe_unserialize(get_option('property-citylocality'));
     							$current_property_meta_value =    get_post_meta($post->ID, "property-city", true);
 
-								if($property_city==false){
+								$property_city= array();
+    							if($property_city_locality!=false){
+    								$property_city = array_keys($property_city_locality);
+    							}
 
-									$property_city['cities'] = array();
-								} 
-								else {
-									if(!isset($property_city['cities']))
-										$property_city['cities'] = array();
-								}
-    							 
 
     							$edit_options_values = true ;
 
-								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city['cities'] , $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_city, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
 
     	case 'property-locality'			:
-    							$property_options_locality_data = maybe_unserialize(get_option('property-locality'));
-    							$property_options_locality = isset($property_options_locality_data['localities'])?$property_options_locality_data['localities']:array();
+    							$property_city_locality = maybe_unserialize(get_option('property-citylocality'));
 
     							$current_property_meta_value =    get_post_meta($post->ID, "property-locality", true);
 
@@ -668,12 +663,12 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
     							$property_locality = array();
 
-    							if($property_options_locality!==false){
+    							if($property_city_locality!==false){
 
-    								foreach($property_options_locality as $property_options_locality_k => $property_options_locality_v ){
-	    								if($property_options_locality_v['city_id'] == $current_property_meta_city ){
+    								foreach($property_city_locality as $property_city_locality_k => $property_city_locality_v ){
+	    								if($property_city_locality_k == $current_property_meta_city ){
 
-	    									$property_locality[] = $property_options_locality_v;
+	    									$property_locality = $property_city_locality_v;
 	    								}
 
     								}
@@ -1058,44 +1053,6 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 
 						}
-						else if($custom_field_type=='property-city'){
-
-							 
-							echo '<span class="prefix_te">'.$element_prefix_label.'</span>'; ?>
-									<select name="<?php echo $element_id; ?>" id="<?php echo $element_id; ?>" class="postbox custom_input_field <?php echo $element_class ; ?>"  <?php if($multiple_values==true) { echo ' multiple="multiple" ';  } ?> >
-										<option value="">Select</option>
-										<?php if($element_values!=false) {
-
-													foreach($element_values as $city){ ?>
-														<option value="<?php echo $city['ID']; ?>" <?php if($current_property_meta_value==$city['ID']) echo " selected ";?>><?php echo ucfirst($city['name']); ?></option>
-
-										<?php 		}
-
-												}
-										?>
-									</select>
-									<?php
-							echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
-						}
-						else if($custom_field_type=='property-locality'){
-
-							
-							echo '<span class="prefix_te">'.$element_prefix_label.'</span>'; ?>
-									<select name="<?php echo $element_id; ?>" id="<?php echo $element_id; ?>" class="postbox custom_input_field <?php echo $element_class ; ?>"  <?php if($multiple_values==true) { echo ' multiple="multiple" ';  } ?> >
-										<option value="">Select</option>
-										<?php if($element_values!=false) {
-
-													foreach($element_values as $locality){ ?>
-														<option value="<?php echo $locality['ID']; ?>" <?php if($current_property_meta_value==$locality['ID']) echo " selected ";?>><?php echo ucfirst($locality['name']); ?></option>
-
-										<?php 		}
-
-												}
-										?>
-									</select>
-									<?php
-							echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
-						}
 						else{
 
 							echo '<span class="prefix_te">'.$element_prefix_label.'</span>'; ?>
@@ -1428,19 +1385,15 @@ function add_new_custom_field_option() {
 
     //var_dump($_REQUEST);
 
-    /* commented on 21june2015  if($custom_field_option_name == "property-city" ){
-
-    	$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-city', 'post_type'=>$post_type   )) ;
-    }
-    else if($custom_field_option_name == "property-locality"){
+    if($custom_field_option_name == "property-city" || $custom_field_option_name == "property-locality"){
 
 		$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-citylocality', 'post_type'=>$post_type   )) ;
 
     }
-    else{ */
+    else{
 
     	$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>$custom_field_option_name, 'post_type'=>$post_type   )) ;
-    //}
+    }
 
 
 
@@ -1453,7 +1406,7 @@ function add_new_custom_field_option() {
         $add_new_value = true;
     else{
 
-		/* commented on 21june2015 if($custom_field_option_name == "property-city"){
+		if($custom_field_option_name == "property-city"){
 			$property_types_data = array_keys($property_types );
 
 			if(array_search($custom_field_option_val,$property_types_data)===false){
@@ -1470,62 +1423,6 @@ function add_new_custom_field_option() {
             	$add_new_value = true;
 			}
 		}
-		else */
-			 
-
-		if($custom_field_option_name == "property-city"){
-			$city_exists = false;
-
-			if(isset($property_types['cities'])){
-				if(is_array($property_types['cities'])){
-					foreach ($property_types['cities'] as $key_city => $value_city) {
-							 
-							 if($value_city['name']==$custom_field_option_val){
-							 		$city_exists = true;
-							 }
-						}
-						if($city_exists ===false) 
-			            	$add_new_value = true;
-				}
-				else{
-
-					$add_new_value = true;
-				}
-			}
-			else{
-					$add_new_value = true;
-			}
-
-			
-			 
-
-		}
-		else if($custom_field_option_name == "property-locality"){
-
-			$locality_exists = false;
-
-			if(isset($property_types['localities'])){
-				if(is_array($property_types['localities'])){
-					foreach ($property_types['localities'] as $key_locality => $value_locality) {
-							 
-							 if($value_locality['name']==$custom_field_option_val){
-							 		$locality_exists = true;
-							 }
-						}
-						if($locality_exists ===false) 
-			            	$add_new_value = true;
-				}
-				else{
-
-					$add_new_value = true;
-				}
-			}
-			else{
-					$add_new_value = true;
-			}
-
-
-		}			
 		else if(array_search($custom_field_option_val,$property_types)===false){
             $add_new_value = true;
         }
@@ -1537,106 +1434,38 @@ function add_new_custom_field_option() {
 
         if($custom_field_option_name == "property-city"){
 
-        	$new_city_id = 1;
-        	if(isset($property_types['max_property_city'])){
+        	$property_types[$custom_field_option_val] = array();
 
-        		if($property_types['max_property_city']==''){
-        			$new_city_id = 1;
-        		}        			
-        		else{
-        			$new_city_id = $property_types['max_property_city'] + 1 ;
-        		}      		
-        			
-        	}
-        	 
-
-        	if($new_city_id == 1 || !isset($property_types['max_property_city'])   ){
-
-        		$new_city_data  =  array('ID'=>$new_city_id, 
-        								  'name'=>$custom_field_option_val);
-        															   
-        		$new_property_types_data	=    array('max_property_city'=>$new_city_id,
-        														 	 'cities' => array($new_city_data));
-        													 
-        	}
-        	else{
-        		$new_city_data = array('ID'=>$new_city_id, 'name'=>$custom_field_option_val);
-
-        		$property_types['cities'][]		= $new_city_data ;        																		
-
-				$new_property_types_data =   array('max_property_city'=>$new_city_id,
-        														  'cities' => $property_types['cities']
-        														 )   ;
- 
-        	}
-
- 
-        	
-        	$return_result = update_option('property-city',maybe_serialize($new_property_types_data));
-
-        	$return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val, 'option_data' =>$new_city_data );
-         //echo "\n\n <br/> <br/> ============================1001========================================";
+        	$return_result = update_option('property-citylocality',maybe_serialize($property_types));
 
         }
-        else if($custom_field_option_name == "property-locality"){
+        if($custom_field_option_name == "property-locality"){
 
-        	$new_locality_id = 1;
-        	if(isset($property_types['max_property_locality'])){
+        	$property_types_data[] = $custom_field_option_val;
 
-        		if($property_types['max_property_locality']==''){
-        			$new_locality_id = 1;
-        		}        			
-        		else{
-        			$new_locality_id = $property_types['max_property_locality'] + 1 ;
-        		}      		
-        			
-        	}
-        	 
+        	foreach ($property_types as $k_property_type => $v_property_type) {
+        		 if($k_property_type==$post_city){
+        		 	$v_property_type[] = $custom_field_option_val;
+        		 }
 
-        	if($new_locality_id == 1 || !isset($property_types['max_property_locality']) ){
+        		 $new_property_types[$k_property_type] = $v_property_type;
 
-        		$new_locality_data  =  array('ID'		=> $new_locality_id,
-        									 'city_id'  => $post_city,
-        								  	 'name'     => $custom_field_option_val);
-        															   
-        		$new_property_types_data	=    array('max_property_locality'=>$new_locality_id,
-        												'localities' => array($new_locality_data));
-        													 
-        	}
-        	else{
-        		$new_locality_data = array('ID'=>$new_locality_id, 'city_id'=>$post_city, 'name'=>$custom_field_option_val);
-
-        		$property_types['localities'][]		= $new_locality_data ;        																		
-
-				$new_property_types_data =   array('max_property_locality'=>$new_locality_id,
-        										    'localities' => $property_types['localities']
-        										  )   ;
- 
         	}
 
- 			
-        	
-        	$return_result = update_option('property-locality',maybe_serialize($new_property_types_data));
-
-        	$return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val, 'option_data' =>$new_locality_data );
+        	$return_result = update_option('property-citylocality',maybe_serialize($new_property_types));
         }
         else{
-
-
-        	//echo "\n\n <br/> <br/> ============================1003========================================";
 
         	 $property_types[] = $custom_field_option_val;
 
         	 $return_result = update_option($real_custom_field_option_name,maybe_serialize($property_types));
-
-        	 $return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val );
         }
 
 
     }
 
 
-	wp_send_json($return_result_json);
+	wp_send_json($return_result);
 
 }
 add_action( 'wp_ajax_save_custom_field_option', 'add_new_custom_field_option' );
@@ -1655,12 +1484,8 @@ function get_properties_type_option_by_post_type($custom_field_option){
         else if ($post_type=="commercial-property")
             $real_custom_field_option_name = "commercial-property-type";
     }
-    else if($custom_field_option_name=="property-city" ){
-    		$real_custom_field_option_name = 'property-city';
-    }
-    else if($custom_field_option_name=="property-locality"){
-    	$real_custom_field_option_name = 'property-locality';
-
+    else if($custom_field_option_name=="property-locality" || $custom_field_option_name=="property-city" ){
+    		$real_custom_field_option_name = 'property-citylocality';
     }
     else {
     	$real_custom_field_option_name = $custom_field_option_name;
@@ -1684,12 +1509,8 @@ function get_custom_field_options() {
     $custom_field_option_name   = $_REQUEST['data']['field_type'];
     $post_type                  = $_REQUEST['data']['post_type'];
 
-   /* commented on 21june2015 7am $custom_field_data = array('post_type'  => $post_type,
+    $custom_field_data = array('post_type'  => $post_type,
                                'field_name' => ($custom_field_option_name=='property-city'||$custom_field_option_name=='property-locality')?'property-citylocality':$custom_field_option_name
-                               ); */
-	$custom_field_data = array('post_type'  => $post_type,
-							   'field_name' => $custom_field_option_name
-                               // commented on 21june2015 'field_name' => ($custom_field_option_name=='property-city'||$custom_field_option_name=='property-locality')?'property-citylocality':$custom_field_option_name
                                );
 
     $property_types_data = get_properties_type_option_by_post_type($custom_field_data);
@@ -1720,38 +1541,30 @@ function delete_custom_field_option() {
                                );
 
 
-    /* commented on21june2015 if($custom_field_option_name=="property-city" || $custom_field_option_name == "property-locality"){
+    if($custom_field_option_name=="property-city" || $custom_field_option_name == "property-locality"){
 
 		 $custom_fields = get_properties_type_option_by_post_type(array('post_type'  => $post_type,
                                'field_name' => 'property-citylocality'
                                ));
     }
-    else{*/
-
+    else{
     	$custom_fields = get_properties_type_option_by_post_type($custom_field_data);
-   // }
+    }
 
 
 
-    $existing_fields_values =   maybe_unserialize($custom_fields['property_types']);
+    $existing_fields_values =   $custom_fields['property_types'];
     $real_property_type_option_name =  $custom_fields['real_property_type_option_name'];
 
     $new_field_data = array();
 
     $delete_success = false;
 
-    if($custom_field_option_name=="property-city"){
-    	$existing_options_fields_values = $existing_fields_values['cities'];
-    }
-    else{
-    	$existing_options_fields_values = $existing_fields_values;
-    }
-
-    foreach($existing_options_fields_values as $f_k => $f_v){
+    foreach($existing_fields_values as $f_k => $f_v){
 
     	if($custom_field_option_name=="property-city"){
 
-    		 if($custom_field_option_value!=$f_v['ID']){
+    		 if($custom_field_option_value!=$f_k){
 	            $new_field_data[$f_k] = $f_v ;
 	            $delete_success = true;
 	        }
@@ -1788,15 +1601,7 @@ function delete_custom_field_option() {
 
     }
 
-    if($custom_field_option_name=="property-city"){
-    	$new_options_field_data = array('max_property_city' => $existing_fields_values['max_property_city'],
-    									'cities'			=> $new_field_data);
-    }
-    else{
-    	$new_options_field_data = $new_field_data;
-    }
-
-    update_option($real_property_type_option_name,$new_options_field_data);
+    update_option($real_property_type_option_name,$new_field_data);
 
     wp_send_json($delete_success);
 

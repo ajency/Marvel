@@ -1,4 +1,43 @@
 (function($) {
+
+
+/*var propertytitle = $("#field_kasrgy").val();
+if(propertytitle.length){
+  $('.property-title').append('<h4>'+propertytitle+'</h4>');  
+}*/
+
+
+/*Dynamic menu created using content head on single property page*/
+    $(".tab-section").each(function() {
+        var lastClass = $(this).attr('class').split(' ').pop();
+        var menutext;
+        if($(this).find('h4').length){
+            menutext = $(this).find( "h4" ).html();
+        }else{
+            menutext = $(this).find( "h5" ).html();
+        
+    }
+    $('#residentialpropertymenu').append('<li class="menu-item"><a class="tab-menu-item" data-target="'+lastClass+'">'+menutext+'</a></li>');
+    });
+
+    $(document).on('click', '.tab-menu-item', function(event) {
+        event.preventDefault()
+        $(this).addClass('current').parent().siblings().children().removeClass('current');
+        var target = $(this).attr('data-target');
+        $('html,body').animate({
+            scrollTop: $("."+target).offset().top},
+            'slow');
+    });
+
+
+
+
+
+
+
+
+
+
     //all child js
     $(document).ready(function() {
         //remove this line later

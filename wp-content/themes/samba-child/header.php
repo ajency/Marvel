@@ -82,8 +82,18 @@
                 </a>  
             </div>
             <div class="clearfix"></div>
-        <?php if( get_post_type(get_the_ID())!= 'residential-property'){  ?>
+        <?php if( get_post_type(get_the_ID()) == 'residential-property'){  ?>
           <div class="opened_menu twelve">
+            <div class="property-title"><h4><?php echo get_the_title(); ?></h4></div>
+            <nav id="nav-main" class="nav-collapse collapse" role="navigation">
+                <div class="nav-wrap">
+                      <ul class="sf-menu sf-vertical" id="residentialpropertymenu"></ul>
+               </div>
+            </nav>
+        </div>
+       <?php }else{ ?>
+
+       <div class="opened_menu twelve">
             <nav id="nav-main" class="nav-collapse collapse" role="navigation">
                 <div class="nav-wrap">
                       <?php
@@ -95,7 +105,18 @@
                </div>
             </nav>
         </div>
-       <?php } ?>
+
+        <?php } ?>
+
+
+
+
+
+
+
+
+
+
 
         <div class="clearfix"></div>
         <div id="samba_collapse_menu" class="close_flagger">

@@ -63,9 +63,9 @@ console.log('vl');
 
                     <p>
                         You are comparing between
-                        <a href="#" class="comp_n">Marvel <%=f_prop.get('post_title')%></a>
+                        <a href="#" class="comp_n"><%=f_prop.get('post_title')%></a>
                         and
-                        <a href="#" class="comp_n">Marvel <%=s_prop.get('post_title')%></a>
+                        <a href="#" class="comp_n"><%=s_prop.get('post_title')%></a>
                     </p>
                 </div>
                     <!--start here next-->
@@ -79,7 +79,7 @@ console.log('vl');
                                     </div>
                                     <p class="single_p_inf">
                                         <a href="#">
-                                            <span class="single_p_title">Marvel <%=f_prop.get('post_title')%></span>
+                                            <span class="single_p_title"><%=f_prop.get('post_title')%></span>
                                             <span class="single_p_light">|</span>
                                             <span class="single_p_location"><%=f_prop.get('property_locaity') %> <%=f_prop.get('property_city') %></span>
                                         </a>
@@ -91,7 +91,7 @@ console.log('vl');
                                     </div>
                                     <p class="single_p_inf">
                                         <a href="#">
-                                            <span class="single_p_title">Marvel <%=s_prop.get('post_title') %></span>
+                                            <span class="single_p_title"><%=s_prop.get('post_title') %></span>
                                             <span class="single_p_light">|</span>
                                             <span class="single_p_location"><%=s_prop.get('property_locaity') %>  <%=f_prop.get('property_city') %></span>
                                         </a>
@@ -144,8 +144,8 @@ console.log('vl');
 
                                 %>    
 
-                                <%= f_prop.get('property_sellablearea')!=''?min_sellable_area+' to '+max_sellable_area+' SQ. Ft.': ' - ' %> </td>
-                                <td><%= s_prop.get('property_sellablearea')!=''?s_min_sellable_area+" to "+s_max_sellable_area+' SQ. Ft.': ' - ' %></td>
+                                <%= f_prop.get('property_sellablearea')!=''?min_sellable_area+' to '+max_sellable_area+' SQ.Ft.': ' - ' %> </td>
+                                <td><%= s_prop.get('property_sellablearea')!=''?s_min_sellable_area+" to "+s_max_sellable_area+' SQ.Ft.': ' - ' %></td>
                             </tr>
 
                             <tr class="head-row">
