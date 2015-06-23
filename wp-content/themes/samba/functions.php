@@ -265,7 +265,7 @@ function codex_residential_property_init() {
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => array( 'slug' => 'residential-properties' ),
+        'rewrite'            => array( 'slug' => 'ResidentialProperties' ),
         'capability_type'    => 'post',
         'has_archive'        => true,
         'hierarchical'       => false,

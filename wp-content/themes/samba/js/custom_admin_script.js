@@ -205,6 +205,46 @@ jQuery('.save_property_type').live("click",function(){
     })
 
 
+
+  /**
+         * Restricts input box to enter only integers/floating point numbers
+         * add class allownumericwithdecimal to input box for which only floating point numbers/integers should be allowed
+         */
+        function allow_float_input_values(element){
+
+            jQuery(element).on("keypress keyup blur",function (event) {
+                //this.value = this.value.replace(/[^0-9\.]/g,'');
+              /*  if (event.keyCode == 9 || event.keyCode == 8 ||   event.keyCode == 46 || (event.keyCode>=35 && event.keyCode <=40 ) ) {
+                    return true;
+                }
+
+              //  $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+                if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }*/
+                console.log(event.which)
+
+                if(event.which < 46  || event.which > 57 || event.which==47) {
+                         event.preventDefault();
+                 } // prevent if not number/dot
+
+                if(event.which == 46  && jQuery(this).val().indexOf('.') != -1) {
+                        event.preventDefault();
+                } // prevent if already dot
+
+
+
+
+
+
+            });
+
+        }
+
+
+
+
+
         /**
          * Restricts input box to enter only integers  numbers
          * add class allownumericwithdecimal to input box for which only  integers should be allowed
@@ -226,7 +266,8 @@ jQuery('.save_property_type').live("click",function(){
 
         jQuery(document).ready(function(){
 
-        allow_integer_input_values('#new-property-bedrooms');    
+         
+        allow_float_input_values('#new-property-bedrooms');
         })
 
         
