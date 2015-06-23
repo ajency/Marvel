@@ -1414,6 +1414,29 @@ h6 {
 .placeholder:-ms-input-placeholder {
   color: #999999;
 }
+.menu-sing .sf-menu > li {
+  float: none;
+}
+.menu-sing .sf-menu > li a {
+  color: #b2b3b5 !important;
+}
+.menu-sing .sf-menu > li a:hover {
+  color: #fff !important;
+}
+.menu-sing .sf-menu > li.div {
+  float: none;
+  width: 35px !important;
+  height: 1px;
+  background-color: #7c7c7c;
+  margin: 15px auto;
+  margin-bottom: 25px;
+}
+.menu-sing .sf-menu > li.title h4 {
+  color: #fff;
+  font-weight: normal;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
 #prk_ajax_container .full_fi_title {
   position: absolute;
   top: 25px;
