@@ -712,19 +712,29 @@ setTimeout(function(){
 
                 console.log('load_locality_options')
                 console.log(getAppInstance().searchOptions)
+                var localities_options = [];
 
-                            _.each(getAppInstance().searchOptions['citylocality'], function(vl,ky){
+                if(!_.isUndefined(getAppInstance().searchOptions['locality'].localities)){
+                    if(_.isArray(getAppInstance().searchOptions['locality'].localities) )
+                      localities_options = getAppInstance().searchOptions['locality'].localities;
+                }
 
-console.log(ky)
-console.log('jQuery(evt.target).val()'+event_val)
-                                if(ky==event_val){
-                                    jQuery('#dd_locality').empty();
-                                    jQuery('#dd_locality').append("<option value=''>Select</option>")
-                                    _.each(vl,function(v,k){
+                            console.log('event_val:---------------------------------------------')
+                            console.log(event_val)
 
-                                        jQuery('#dd_locality').append("<option value='"+v+"'>"+v+"</option>")
+                            jQuery('#dd_locality').empty();
+                            jQuery('#dd_locality').append("<option value=''>Select</option>")
 
-                                    })
+                            _.each(localities_options, function(vl_localities,ky_localities){
+
+                                console.log('vl_localities.city_id:----------------')
+                                console.log(vl_localities.city_id)
+
+                                
+                                     
+                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){                                    
+
+                                  jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+vl_localities.name+"</option>")                                    
 
                                 }
                             })
