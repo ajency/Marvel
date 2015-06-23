@@ -157,13 +157,13 @@ $show_sidebar=false;
                                         </div>
 
                                         <div class="tabular_c">
-                                            <div class="left">
+                                            <div class="left" style="display: none;">
                                                 <i class="fa fa-chevron-left"></i>
                                             </div>
-                                            <div class="right active">
+                                            <div class="right active" style="display: none;">
                                                 <i class="fa fa-chevron-right"></i>
                                             </div>
-                                            <div class="tabul_hold">
+                                            <div class="tabul_hold" style="display: none;">
                                                 <div class="tabular tabul_main">
                                                     <div class="tab_row head">
                                                         <div class="tab_col">A-Flat No. (Sq.Ft.)</div>
@@ -394,6 +394,114 @@ $show_sidebar=false;
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- table-testing -->
+                                            <div class="clearfix"></div>
+                                            <div class="table-cover">
+                                                <div class="tabular_c">
+                                                <div class="left">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                </div>
+                                                <div class="right active">
+                                                    <i class="fa fa-chevron-right"></i>
+                                                </div>
+                                                <div class="table-holder">
+                                                <div class="tabul_hold">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th colspan="2">A-Flat No. (Sq.Ft.)</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td>A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                    </table>
+                                                </div> <!-- /tabul_hold -->
+                                                <div class="tabul_hold">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th colspan="2">B-Flat No. (Sq.Ft.)</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td>A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                    </table>
+                                                </div> <!-- /tabul_hold -->
+                                                <div class="tabul_hold">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th colspan="2">C-Flat No. (Sq.Ft.)</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td>A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                    </table>
+                                                </div> <!-- /tabular_C -->
+                                                <div class="tabul_hold">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th colspan="2">D-Flat No. (Sq.Ft.)</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td>A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="blue_bg">A 1001 (5,500)</td>
+                                                            <td class="blue_bg">A 1002 (5,500)</td>
+                                                        </tr>
+                                                    </table>
+                                                </div> <!-- /tabular_C -->
+                                            </div> <!-- /table-holder -->
+                                                </div> <!-- /tabula_c -->
+                                            </div> <!-- /table-cover -->
+                                            <!-- /table-testing -->
 
                                         </div>
 
