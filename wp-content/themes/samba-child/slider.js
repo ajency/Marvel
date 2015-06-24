@@ -1,41 +1,45 @@
 (function($) {
 
 
-/*var propertytitle = $("#field_kasrgy").val();
-if(propertytitle.length){
-  $('.property-title').append('<h4>'+propertytitle+'</h4>');  
-}*/
-
-
 /*Dynamic menu created using content head on single property page*/
-    $(".tab-section").each(function() {
-        var lastClass = $(this).attr('class').split(' ').pop();
-        var menutext;
-        if($(this).find('h4').length){
-            menutext = $(this).find( "h4" ).html();
-        }else{
-            menutext = $(this).find( "h5" ).html();
-        
+$(".tab-section").each(function(index) {
+
+    $(this).attr('tab-index', index);
+
+    var menutext = $(this).find( ":header" ).html();
+    $('#residentialpropertymenu').append('<li class="menu-item"><a class="tab-menu-item" data-target="'+index+'">'+menutext+'</a></li>');
+
+    
+    /*var distance = $(this).offset().top,
+    $window = $(window);
+    $window.scroll(function() {
+        if ( $window.scrollTop() >= distance ) {
+            $("a[data-target='" + index +"']").addClass('current').parent().siblings().children().removeClass('current');
+        }
+    });*/
+
+});
+
+$(document).on('click', '.tab-menu-item', function(event) {
+    event.preventDefault()
+    var anchor = $(this).attr('data-target');
+
+    $(this).addClass('current').parent().siblings().children().removeClass('current');
+    $('html,body').animate({
+        scrollTop: $("div[tab-index='" + anchor +"']").offset().top - 30},
+        'slow');
+});
+
+
+
+function checkIfInView(element){
+    var offset = $(element).offset().top - $(window).scrollTop();
+    if(offset > window.innerHeight){
+       $('html,body').animate({scrollTop: offset}, 1000);
+        return false;
     }
-    $('#residentialpropertymenu').append('<li class="menu-item"><a class="tab-menu-item" data-target="'+lastClass+'">'+menutext+'</a></li>');
-    });
-
-    $(document).on('click', '.tab-menu-item', function(event) {
-        event.preventDefault()
-        $(this).addClass('current').parent().siblings().children().removeClass('current');
-        var target = $(this).attr('data-target');
-        $('html,body').animate({
-            scrollTop: $("."+target).offset().top},
-            'slow');
-    });
-
-
-
-
-
-
-
-
+   return true;
+}
 
 
     //all child js
