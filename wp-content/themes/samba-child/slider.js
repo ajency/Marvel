@@ -7,7 +7,7 @@ $(".tab-section").each(function(index) {
     $(this).attr('tab-index', index);
 
     var menutext = $(this).find( ":header" ).html();
-    $('#residentialpropertymenu').append('<li class="menu-item"><a class="tab-menu-item" data-target="'+index+'">'+menutext+'</a></li>');
+    $('#residentialpropertymenu').append('<li class="menu-item"><a class="fade_anchor_menu tab-menu-item" data-target="'+index+'"><div class="prk_menu_square" style="width: 14px; background-color: rgb(183, 183, 183);"></div>'+menutext+'</a></li>');
 
     
     /*var distance = $(this).offset().top,
