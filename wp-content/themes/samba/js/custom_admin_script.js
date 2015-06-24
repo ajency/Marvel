@@ -50,15 +50,17 @@ jQuery('.edit_property_unit_type').live("click",function(evt){
     var self = this; 
     var edit_type_id = jQuery(this).attr('type_id');  
     var edit_type_name = jQuery(this).attr('type_name');  
-    var edit_type_bedrooms = jQuery(this).attr('bedrooms');  
+    var edit_type_bedrooms = jQuery(this).attr('bedrooms'); 
+    var edit_type_proptype_id = jQuery(this).attr('property_type_id');   
 
     jQuery('#edit_id').val(edit_type_id) 
     jQuery('#new-property-bedrooms').val(edit_type_bedrooms);
     jQuery('#new-property-unit-type').val(edit_type_name);
+    jQuery('#new-prop-type').val(edit_type_proptype_id);
 
     jQuery('.save_property_unit_type').attr('id','update_property_unit_type').attr('name','update_property_unit_type') 
     jQuery('.add_edit_type_formtitle').find('.title').html('Edit Property Unit Type');
-     jQuery('.cancel_edit_property_unit_type').show(); 
+    jQuery('.cancel_edit_property_unit_type').show(); 
  
 
 })
@@ -99,9 +101,10 @@ jQuery('.save_property_unit_type').live("click",function(){
 
         var self = this;    
 
-         var edit_id       = jQuery('#edit_id').val();  
-         var num_bedrooms  = jQuery('#new-property-bedrooms').val();
+         var edit_id            = jQuery('#edit_id').val();  
+         var num_bedrooms       = jQuery('#new-property-bedrooms').val();
          var property_unit_type = jQuery('#new-property-unit-type').val();
+         var prop_type_id       = jQuery('#new-prop-type').val();
 
        
 
@@ -116,10 +119,17 @@ jQuery('.save_property_unit_type').live("click",function(){
 
          }
 
+          if(prop_type_id==''){ 
+            alert('Please select property type')
+            return
+
+         }
+
 
          var my_data = { 'num_bedrooms'  : num_bedrooms ,
                          'property_unit_type' : property_unit_type,
-                         'edit_id'       : edit_id
+                         'edit_id'       : edit_id,
+                         'prop_type_id'  : prop_type_id
                            
                        } 
 
@@ -144,7 +154,9 @@ jQuery('.save_property_unit_type').live("click",function(){
                     if(edit_id==''){ /* Add New Property Unit Type*/
                         jQuery('#new-property-bedrooms').val('');
                         jQuery('#new-property-unit-type').val('');
-
+                        var new_prop_type_name = $("#new-prop-type option:selected").text();
+                        alert(new_prop_type_name)
+                        jQuery('#new-prop-type').val('');
                       
                         var last_row_class = jQuery('table.propertyunittypes').find('tr:last').hasClass('alternate')
 
@@ -157,7 +169,7 @@ jQuery('.save_property_unit_type').live("click",function(){
                                                 +'<td class="property_unit_type column-property_unit_type "><span class="spn_property_unit_type">'+property_unit_type+'</span>'
                                                 +'        <div class="row-actions">'
                                                 +'            <span class="edit">'
-                                                +'                <a href="javascript:void(0)" class="edit_property_unit_type" type_id="'+data.ID+'"   type_name="'+property_unit_type+'" bedrooms="'+num_bedrooms+'" >Edit</a> | '
+                                                +'                <a href="javascript:void(0)" class="edit_property_unit_type" type_id="'+data.ID+'"   type_name="'+property_unit_type+'" bedrooms="'+num_bedrooms+'"  property_type_id="'+prop_type_id+'">Edit</a> | '
                                                 +'            </span>'
                                                 +'            <span class="delete">'
                                                 +'                <a href="javascript:void(0)" class="delete_property_unit_type" type_id="'+data.ID+'">Delete</a>'
@@ -166,6 +178,7 @@ jQuery('.save_property_unit_type').live("click",function(){
                                                 +'    </td>'
                                                 +'    <td class="number_bedrooms column-number_bedrooms">'+num_bedrooms
                                                 +'    </td>'
+                                                +'    <td class="property_type column-property_type">"'+new_prop_type_name+'"</td>'
                                                 +'</tr>';
 
                         jQuery('table.propertyunittypes tbody').append(property_unit_type_row);
@@ -182,12 +195,16 @@ jQuery('.save_property_unit_type').live("click",function(){
 
                         /* alert(".edit_property_unit_type[type_id='"+data.ID+"']")
                         alert(jQuery(".edit_property_unit_type[type_id='"+data.ID+"']").length ) */
-
+                        var new_prop_type_name = jQuery("#new-prop-type option:selected").text();
+                        //alert(new_prop_type_name)
+                         
 
                         edit_element.attr('type_name',property_unit_type)
                                     .attr('bedrooms',num_bedrooms)
-                                    .closest('tr').find('td:last').html(num_bedrooms)
+                                    .attr('property_type_id',prop_type_id)
+                                    .closest('tr').find('td:last').html(new_prop_type_name)
                                     .closest('tr').find('.spn_property_unit_type').html(property_unit_type)
+                                    .closest('tr').find( "td:nth-last-child(2)" ).html(num_bedrooms);
 
                         jQuery('.property_unit_type_message').removeClass('error')
                                                         .removeClass('update-nag')
@@ -375,9 +392,7 @@ jQuery('.save_property_type').live("click",function(){
                                                 +'                <a href="javascript:void(0)" class="delete_property_type" type_id="'+data.ID+'">Delete</a>'
                                                 +'            </span>'
                                                 +'        </div>'
-                                                +'    </td>'
-                                                +'    <td class="number_bedrooms column-number_bedrooms">'+num_bedrooms
-                                                +'    </td>'
+                                                +'    </td>'                                               
                                                 +'</tr>';
 
                         jQuery('table.propertytypes tbody').append(property_type_row);

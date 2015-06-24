@@ -51,7 +51,7 @@ class My_Example_List_Table extends WP_List_Table {
     switch( $column_name ) {
         case 'property_unit_type':
 						$actions = array(
-						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  bedrooms="'.$item['number_bedrooms'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
 						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 						        );
 
@@ -63,7 +63,23 @@ class My_Example_List_Table extends WP_List_Table {
         //case 'action':
             return $item[ $column_name ];
         case 'property_type':
-        	return $item[ $column_name ];
+
+        $display_property_type = ' - ';
+
+        		$property_type_options = maybe_unserialize(get_option('residential-property-type'));
+        		if($property_type_options!=false){
+        			if(isset($property_type_options['property_types'])){
+        				if(is_array($property_type_options['property_types'])){
+        					foreach ($property_type_options['property_types'] as $prop_type ) {
+        						if($prop_type['ID'] == $item[ 'property_type_id' ]){
+        							$display_property_type = $prop_type['property_type'] ;
+        						}
+        					}
+        				}
+        			}
+        		}
+
+        	return $display_property_type;
         default:
             return print_r( $item, true ) ; //Show the whole array for troubleshooting purposes
     }
@@ -104,7 +120,7 @@ function get_data(){
 			return array();
 		}
 		else if($current_property_unit_types['max_property_unit_types']>0){
-
+///var_dump(maybe_unserialize($current_property_unit_types['property_unit_types']));
 
 			return maybe_unserialize($current_property_unit_types['property_unit_types']);
 		}
@@ -141,12 +157,12 @@ function get_property_unit_types(){
 
 
   echo '<div class="wrap"><div id="icon-tools" class="icon32"></div>';
-    echo '<h2>Residential Properties Settings</h2>';
+  echo '<h2>Residential Properties Settings</h2>';
   echo '</div>';
 
 
   $property_type_options = maybe_unserialize(get_option('residential-property-type'));
-  var_dump($property_type_options);
+  ///var_dump($property_type_options);
   $myListTable = new My_Example_List_Table();
   echo '<div class="wrap"><h3>Property Unit Types </h3>';
   $myListTable->prepare_items();
@@ -195,7 +211,7 @@ function get_property_unit_types(){
 
 							<div class="form-field term-slug-wrap">
 								<label for="tag-slug">Property Types</label>
-								<select name="new-property-type" id="new-property-type">
+								<select name="new-prop-type" id="new-prop-type">
 									<option value="">Select</option>';
 
 		if(isset($property_type_options['property_types'])){
@@ -251,15 +267,17 @@ add_action('admin_menu', 'register_my_custom_submenu_page');
 
 function save_property_unit_type(){
 
+	
 	$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
-	$property_unit_type 		= $_REQUEST['data']['property_unit_type'];
+	$property_unit_type = $_REQUEST['data']['property_unit_type'];
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
+	$new_prop_type 		= $_REQUEST['data']['prop_type_id'];
 
 	$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
 
-	$new_property_unit_type['number_bedrooms'] 	= $num_bedrooms;
+	$new_property_unit_type['number_bedrooms'] 		= $num_bedrooms;
 	$new_property_unit_type['property_unit_type'] 	= $property_unit_type;
-
+	$new_property_unit_type['property_type_id'] 	= $new_prop_type;
 
 	if($property_edit_id!=''){
 		$new_property_unit_type['ID'] = $property_edit_id;

@@ -2243,12 +2243,12 @@ add_action( 'wp_ajax_delete_property_unit_type_layout_image_pdf_file', 'delete_p
 
 
 
-
+require_once( ABSPATH . 'wp-content/themes/samba/includes/residential-properties-settings.php' );
 
 function register_my_custom_submenu_page() {
 //  add_submenu_page( 'tools.php', 'My Custom Submenu Page', 'My Custom Submenu Page', 'manage_options', 'my-custom-submenu-page', 'my_custom_submenu_page_callback' );
-	 require_once( ABSPATH . 'wp-content/themes/samba/includes/residential-properties-settings.php' );
+add_submenu_page( 'edit.php?post_type=residential-property', 'Property Type Settings', 'Property Type Settings', 'manage_options', 'residential-property-type-settings', 'custom_submenu_page_property_type_callback' );	 
   add_submenu_page( 'edit.php?post_type=residential-property', 'Property Unit Type Settings', 'Property Unit Type Settings', 'manage_options', 'residential-property-unit-type-settings', 'custom_submenu_page_property_unit_type_callback' );
-  add_submenu_page( 'edit.php?post_type=residential-property', 'Property Type Settings', 'Property Type Settings', 'manage_options', 'residential-property-type-settings', 'custom_submenu_page_property_type_callback' );
+  
 }
 add_action('admin_menu', 'register_my_custom_submenu_page');
