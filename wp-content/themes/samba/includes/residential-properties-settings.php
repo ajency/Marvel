@@ -52,7 +52,7 @@ class My_Example_List_Table extends WP_List_Table {
         case 'property_unit_type':
 						$actions = array(
 						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 						        );
 
 						  return sprintf('%1$s %2$s', "<span class='spn_property_unit_type'>".$item['property_unit_type']."</span>", $this->row_actions($actions) );
@@ -147,13 +147,7 @@ function get_sortable_columns() {
 } //class
 
 
-/*
-function get_property_unit_types(){
-	global $wpdb;
-
-	$property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
-
-} */
+ 
 
 
   echo '<div class="wrap"><div id="icon-tools" class="icon32"></div>';
@@ -229,7 +223,7 @@ function get_property_unit_types(){
 
 							<p class="submit">
 								<input type="button" name="add_new_property_unit_type" id="add_new_property_unit_type"
-								class="button button-primary save_property_unit_type" value="Save"><span class="spinner" style="display:none"></span>
+								class="button button-primary save_property_unit_type" value="Save"><span class="spinner" style="display:none; position:absolute;"></span>
 								<input type="button" name="cancel_edit_property_unit_type" id="cancel_edit_property_unit_type"
 								class="button cancel_edit_property_unit_type" value="Cancel" style="display:none">
 							</p><br>
@@ -251,18 +245,7 @@ function get_property_unit_types(){
   echo '</div>';
 
 }
-
-
-
-
-
-
-/*function register_my_custom_submenu_page() {
-//  add_submenu_page( 'tools.php', 'My Custom Submenu Page', 'My Custom Submenu Page', 'manage_options', 'my-custom-submenu-page', 'my_custom_submenu_page_callback' );
-  add_submenu_page( 'edit.php?post_type=residential-property', 'Residential Properties Settings', 'Residential Properties Settings', 'manage_options', 'residential-properties-settings', 'my_custom_submenu_page_callback' );
-}
-add_action('admin_menu', 'register_my_custom_submenu_page');
-*/
+ 
 
 
 function save_property_unit_type(){
@@ -494,20 +477,7 @@ if( ! class_exists( 'WP_List_Table' ) ) {
 
 class My_Example_List_Table extends WP_List_Table {
 
-   /* var $example_data = array(
-            array( 'ID' => 1,'property_type' => '1 BHK', 'number_bedrooms' => '1',
-                   'action' => 'Edit' ),
-            array( 'ID' => 2, 'property_type' => '2 BHK','number_bedrooms' => '2',
-                   'action' => 'Edit' ),
-            array( 'ID' => 3, 'property_type' => '3 BHK', 'number_bedrooms' => '3',
-                   'action' => 'Edit' ),
-            array( 'ID' => 4, 'property_type' => '4 BHK', 'number_bedrooms' => '4',
-                   'action' => 'Edit' ),
-            array( 'ID' => 5, 'property_type'     => '5 BHK', 'number_bedrooms'    => '5',
-                   'action' => 'Edit' ),
-            array(' ID' => 6, 'property_type' => '6 BHK', 'number_bedrooms' => '6',
-                  'action' => 'Edit' )
-        ); */
+  
     function __construct(){
     global $status, $page;
 
@@ -526,7 +496,7 @@ class My_Example_List_Table extends WP_List_Table {
 						$actions = array(
 						            //'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"  bedrooms="'.$item['number_bedrooms'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
 							'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"   >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_type" type_id ="'.$item['ID'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"   >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 						        );
 
 						  return sprintf('%1$s %2$s', "<span class='spn_property_type'>".$item['property_type']."</span>", $this->row_actions($actions) );
@@ -666,7 +636,7 @@ function get_property_types(){
 
 		echo'				<p class="submit">
 								<input type="button" name="add_new_property_type" id="add_new_property_type"
-								class="button button-primary save_property_type" value="Save"> <span class="spinner" style="display:none"></span>
+								class="button button-primary save_property_type" value="Save"> <span class="spinner" style="display:none; position:absolute"></span>
 								<input type="button" name="cancel_edit_property_type" id="cancel_edit_property_type"
 								class="button cancel_edit_property_type" value="Cancel" style="display:none">
 							</p><br>
