@@ -1,7 +1,219 @@
   
 
 
+/* Residential properties settings Property Unit Type */
+jQuery('.delete_property_unit_type').live("click",function(evt){   
 
+    var self = this; 
+    var del_type_id = jQuery(this).attr('type_id');  
+
+     var my_data = { 'type_id'  : del_type_id ,
+                   }
+
+
+      jQuery.post(ajaxurl, {        //the server_url
+            action: "delete_property_unit_type",                 //the submit_data array
+            data:my_data
+        }, function(data) { 
+
+                            if(data.success == true ){
+                                 console.log(jQuery(self).closest('tr').html())
+                                 jQuery(self).closest('tr').remove();
+
+                                  jQuery('.property_unit_type_message').removeClass('error')
+                                                        .removeClass('update-nag')
+                                                        .addClass('updated')
+                                                        .html('<p>Property Unit Type Deleted</p>')
+                            }
+                            else{
+
+                                 jQuery('.property_unit_type_message').addClass('error')
+                                                        .removeClass('update-nag')
+                                                        .removeClass('updated')
+                                                        .html('<p>Error Deleting Property Unit Type</p>')
+
+                            }
+
+                    }) 
+
+
+
+})
+
+
+
+
+
+
+jQuery('.edit_property_unit_type').live("click",function(evt){   
+
+    var self = this; 
+    var edit_type_id = jQuery(this).attr('type_id');  
+    var edit_type_name = jQuery(this).attr('type_name');  
+    var edit_type_bedrooms = jQuery(this).attr('bedrooms');  
+
+    jQuery('#edit_id').val(edit_type_id) 
+    jQuery('#new-property-bedrooms').val(edit_type_bedrooms);
+    jQuery('#new-property-unit-type').val(edit_type_name);
+
+    jQuery('.save_property_unit_type').attr('id','update_property_unit_type').attr('name','update_property_unit_type') 
+    jQuery('.add_edit_type_formtitle').find('.title').html('Edit Property Unit Type');
+     jQuery('.cancel_edit_property_unit_type').show(); 
+ 
+
+})
+
+
+
+jQuery('.add_new_type_form').live("click",function(evt){   
+
+    display_add_new_property_unit_type_form();
+})
+
+jQuery('.cancel_edit_property_unit_type').live("click",function(evt){   
+
+    display_add_new_property_unit_type_form();
+})
+
+function display_add_new_property_unit_type_form(){
+     jQuery('#edit_id').val('') 
+    jQuery('#new-property-bedrooms').val('');
+    jQuery('#new-property-unit-type').val('');
+
+    jQuery('.save_property_unit_type').attr('id','add_new_property_unit_type').attr('name','add_new_property_unit_type') 
+    jQuery('.add_edit_type_formtitle').find('.title').html('Add New Property Unit Type');
+    jQuery('.cancel_edit_property_unit_type').hide();
+}
+
+
+
+
+
+
+
+
+//jQuery('#update_property_unit_type').live("click",function(){
+jQuery('.save_property_unit_type').live("click",function(){
+
+        console.log('Updating custom field options ');
+
+        var self = this;    
+
+         var edit_id       = jQuery('#edit_id').val();  
+         var num_bedrooms  = jQuery('#new-property-bedrooms').val();
+         var property_unit_type = jQuery('#new-property-unit-type').val();
+
+       
+
+         if(property_unit_type==''){
+            alert('Please enter property unit type')
+            return
+
+         }
+         if(num_bedrooms==''){ 
+            alert('Please enter number of bedrooms')
+            return
+
+         }
+
+
+         var my_data = { 'num_bedrooms'  : num_bedrooms ,
+                         'property_unit_type' : property_unit_type,
+                         'edit_id'       : edit_id
+                           
+                       } 
+
+
+        jQuery.post(ajaxurl, {         
+            action: "save_property_unit_type",                  
+            data:my_data
+        }, function(data) { 
+
+           //the callback_handler;
+            if (data) {
+                if(data.success!=true){
+
+                    jQuery('.property_unit_type_message').addClass('error')
+                                                        .removeClass('update-nag')
+                                                        .removeClass('updated')
+                                                        .html('<p>Error Saving Property Unit Type</p>')
+                }
+                else if(data.success==true){
+
+
+                    if(edit_id==''){ /* Add New Property Unit Type*/
+                        jQuery('#new-property-bedrooms').val('');
+                        jQuery('#new-property-unit-type').val('');
+
+                      
+                        var last_row_class = jQuery('table.propertyunittypes').find('tr:last').hasClass('alternate')
+
+                        var new_row_class =' ';
+                        if(last_row_class==false){
+                            new_row_class = ' alternate ';
+                        }
+
+                        var property_unit_type_row = '<tr class="'+new_row_class+'">'
+                                                +'<td class="property_unit_type column-property_unit_type "><span class="spn_property_unit_type">'+property_unit_type+'</span>'
+                                                +'        <div class="row-actions">'
+                                                +'            <span class="edit">'
+                                                +'                <a href="javascript:void(0)" class="edit_property_unit_type" type_id="'+data.ID+'"   type_name="'+property_unit_type+'" bedrooms="'+num_bedrooms+'" >Edit</a> | '
+                                                +'            </span>'
+                                                +'            <span class="delete">'
+                                                +'                <a href="javascript:void(0)" class="delete_property_unit_type" type_id="'+data.ID+'">Delete</a>'
+                                                +'            </span>'
+                                                +'        </div>'
+                                                +'    </td>'
+                                                +'    <td class="number_bedrooms column-number_bedrooms">'+num_bedrooms
+                                                +'    </td>'
+                                                +'</tr>';
+
+                        jQuery('table.propertyunittypes tbody').append(property_unit_type_row);
+                        jQuery('.property_unit_type_message').removeClass('error')
+                                                        .removeClass('update-nag')
+                                                        .addClass('updated')
+                                                        .html('<p>New Property Unit Type Added</p>')
+
+                    }
+                    else{  /* Update Property Unit Type*/
+
+                        var edit_element =  jQuery(".edit_property_unit_type[type_id='"+data.ID+"']") 
+
+
+                        /* alert(".edit_property_unit_type[type_id='"+data.ID+"']")
+                        alert(jQuery(".edit_property_unit_type[type_id='"+data.ID+"']").length ) */
+
+
+                        edit_element.attr('type_name',property_unit_type)
+                                    .attr('bedrooms',num_bedrooms)
+                                    .closest('tr').find('td:last').html(num_bedrooms)
+                                    .closest('tr').find('.spn_property_unit_type').html(property_unit_type)
+
+                        jQuery('.property_unit_type_message').removeClass('error')
+                                                        .removeClass('update-nag')
+                                                        .addClass('updated')
+                                                        .html('<p>Property Unit Type Updated</p>')
+
+                    }
+
+                    
+
+                    
+
+                }
+                 
+            }
+        });
+    })
+
+/* End Residential properties settings Property Unit Type */
+
+
+
+
+
+
+/* Residential properties settings Property Type */
 jQuery('.delete_property_type').live("click",function(evt){   
 
     var self = this; 
@@ -106,7 +318,7 @@ jQuery('.save_property_type').live("click",function(){
        
 
          if(property_type==''){
-            alert('Please enter property Type')
+            alert('Please enter Property Type')
             return
 
          }
@@ -205,6 +417,9 @@ jQuery('.save_property_type').live("click",function(){
             }
         });
     })
+/* End Residential properties settings Property Type */
+
+
 
 
 
@@ -266,43 +481,6 @@ jQuery('.save_property_type').live("click",function(){
             });
         }
 
-
-
-
-
-        /**
-         * Restricts input box to enter only integers/floating point numbers
-         * add class allownumericwithdecimal to input box for which only floating point numbers/integers should be allowed
-         */
-        function allow_float_input_values(element){
-
-            jQuery(element).on("keypress keyup blur",function (event) {
-                //this.value = this.value.replace(/[^0-9\.]/g,'');
-              /*  if (event.keyCode == 9 || event.keyCode == 8 ||   event.keyCode == 46 || (event.keyCode>=35 && event.keyCode <=40 ) ) {
-                    return true;
-                }
-
-              //  $(this).val($(this).val().replace(/[^0-9\.]/g,''));
-                if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-                    event.preventDefault();
-                }*/
-
-                if(event.which < 46  || event.which > 59) {
-                         event.preventDefault();
-                 } // prevent if not number/dot
-
-                if(event.which == 46  && $(this).val().indexOf('.') != -1) {
-                        event.preventDefault();
-                } // prevent if already dot
-
-
-
-
-
-
-            });
-
-        }
 
 
 

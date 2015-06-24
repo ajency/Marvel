@@ -55,7 +55,7 @@
                 <?php 
                 $project_locality = get_post_meta(get_the_ID(),'property-locality',true);
                 $project_city = get_post_meta(get_the_ID(),'property-city',true);
-                $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-type',true));
+                $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-unit-type',true));
   
                 $location_seperator = '';
                 $project_type_seperator='';
