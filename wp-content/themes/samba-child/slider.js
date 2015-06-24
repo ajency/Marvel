@@ -9,7 +9,7 @@ $(".tab-section").each(function(index) {
     var menutext = $(this).find( ":header" ).html();
     $('#residentialpropertymenu').append('<li class="menu-item"><a class="fade_anchor_menu tab-menu-item" data-target="'+index+'"><div class="prk_menu_square" style="width: 14px; background-color: rgb(183, 183, 183);"></div>'+menutext+'</a></li>');
 
-    
+
     /*var distance = $(this).offset().top,
     $window = $(window);
     $window.scroll(function() {
@@ -58,113 +58,23 @@ function checkIfInView(element){
         });
 
         //location collapse
-        function locolapse() {
+
+        //go down btn - centering
+        function setleft() {
             $width = window.innerWidth ? window.innerWidth : $(window).width();
-            if ($width < 769) {
-                $('.vc_custom_heading').filter(function () {
-                    return $(this).text().toLowerCase() == 'location';
-                }).addClass('r_collapsible r_toggle');
-                $('.vc_custom_heading').filter(function () {
-                    return $(this).text().toLowerCase() == 'location';
-                }).next('.sec_int').hide();
-                $('.vc_custom_heading').filter(function () {
-                    return $(this).text().toLowerCase() == 'location';
-                }).next('.sec_int').next('.inner_row_father').hide();
-                $('.vc_custom_heading').filter(function () {
-                    return $(this).text().toLowerCase() == 'location';
-                }).click(function() {
-                    $(this).toggleClass('r_toggle');
-                    $(this).next('.sec_int').toggle();
-                    $(this).next('.sec_int').next('.inner_row_father').toggle();
-                });
+            if ($width > 769) {
+                $lw = $('#menu_section').width();
+                $aw = $width - $lw;
+                $lv = (($aw - $('.go_d_see').width()) / 2 ) + $lw - 9;
             } else {
-                $('.vc_custom_heading').filter(function () {
-                    return $(this).text().toLowerCase() == 'location';
-                }).removeClass('r_collapsible r_toggle');
-                $('.vc_custom_heading').filter(function () {
-                    return $(this).text().toLowerCase() == 'location';
-                }).next('.sec_int').show();
-                $('.vc_custom_heading').filter(function () {
-                    return $(this).text().toLowerCase() == 'location';
-                }).next('.sec_int').next('.inner_row_father').show();
+                $lv = (($width - $('.go_d_see').width()) / 2 );
             }
+            $('.go_d_see').css('left', $lv);
         }
-        locolapse();
-
-
-        //tabular left and right
-        // var $actualWidth = 317;
-        // $no_of_columns = $('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
-        // $actual_table_width = $no_of_columns * $actualWidth;
-        // $('.tabular_c').find('.tabul_main').width($actual_table_width);
-
-        // $(document).on('click', '.tabular_c .right', function() {
-        //     var $toShow;
-
-        //     $wide = window.innerWidth ? window.innerWidth : $(window).width();
-        //     if ($wide < 1199) {
-        //         $toShow = 2;
-        //     } else if ($wide < 769) {
-        //         $toShow = 1;
-        //     } else {
-        //         $toShow = 3;
-        //     }
-        //     $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
-        //     $rotations = Math.floor($no_of_columns / $toShow);
-        //     $if_extra = $no_of_columns % $toShow;
-
-        //     if ($rotations == 1 && $if_extra == 0) {
-        //         alert('nothing to show')
-        //     } else if ($rotations == 1 && $if_extra > 0) {
-        //         $(this).removeClass('active');
-        //         $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
-        //         $widthofcon = $(this).parents('.tabular_c').width();
-        //         $moveby = $widthoftab - $widthofcon;
-
-        //         if (parseInt($(this).parents('.tabular_c').find('.tabul_main').css('left')) !== $moveby) {
-        //             $(this).parents('.tabular_c').find('.tabul_main').css('left', '-' + $moveby + 'px');
-        //             $(this).prev('.left').addClass('active');
-        //         }
-        //     }
-        // });
-        // $(document).on('click', '.tabular_c .left', function() {
-        //     var $toShow;
-
-        //     $wide = window.innerWidth ? window.innerWidth : $(window).width();
-        //     if ($wide < 1199) {
-        //         $toShow = 2;
-        //     } else if ($wide < 769) {
-        //         $toShow = 1;
-        //     } else {
-        //         $toShow = 3;
-        //     }
-        //     $no_of_columns = $(this).parents('.tabular_c').find('.tabul_main').find('.head').find('.tab_col').length;
-        //     $rotations = Math.floor($no_of_columns / $toShow);
-        //     $if_extra = $no_of_columns % $toShow;
-
-        //     if ($rotations == 1 && $if_extra == 0) {
-        //         alert('nothing to show')
-        //     } else if ($rotations == 1 && $if_extra > 0) {
-        //         $(this).removeClass('active');
-        //         $widthoftab = $(this).parents('.tabular_c').find('.tabul_main').width();
-        //         $widthofcon = $(this).parents('.tabular_c').width();
-        //         $moveby = $widthoftab - $widthofcon;
-
-        //         $(this).parents('.tabular_c').find('.tabul_main').css('left', 0);
-        //         $(this).next('.right').addClass('active');
-        //     }
-        // });
-
-        // responsive-table
-        // var scroll = 100;
-        // var scroll = $('.tabul_hold').width();
-        // var speed = 0;
-        //     $('.tabular_c .right').click(function() {
-        //     $('.table-holder').animate({
-        //         'scrollLeft': '+=' + scroll
-        //     }, speed);
-        // });
-        // /responsive-table
+        setleft();
+        $(window).resize(function() {
+            setleft();
+        });
 
         // responsive-table test2
         var scroll = $('.tabul_hold').width();
@@ -240,7 +150,6 @@ function checkIfInView(element){
             }
         });
         $(window).resize(function() {
-            locolapse();
             // if ($('body').hasClass('page-template-floor_plans')) {
             //     $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
             //     $('.go_to_top_inpage').css({
@@ -305,22 +214,6 @@ function checkIfInView(element){
             $('#full_fi_c').css('height', $hevp);
         });
 
-        //go down btn - centering
-        function setleft() {
-            $width = window.innerWidth ? window.innerWidth : $(window).width();
-            if ($width > 769) {
-                $lw = $('#menu_section').width();
-                $aw = $width - $lw;
-                $lv = (($aw - $('.go_d_see').width()) / 2 ) + $lw - 9;
-            } else {
-                $lv = (($width - $('.go_d_see').width()) / 2 );
-            }
-            $('.go_d_see').css('left', $lv);
-        }
-        setleft();
-        $(window).resize(function() {
-            setleft();
-        });
         //scroll down indi prj page
         $('.go_d_see').click(function(e) {
             e.preventDefault();
