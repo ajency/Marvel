@@ -33,6 +33,9 @@ h6 {
     padding: 0 20px;
   }
 }
+#back_to_top-collapsed {
+  visibility: hidden;
+}
 .lisofwork {
   padding-bottom: 15px;
 }
@@ -1450,13 +1453,12 @@ h6 {
 }
 @media screen and (max-width: 767px) {
   #prk_ajax_container .full_fi_title {
-    top: 75px;
+    top: 99px;
   }
 }
 #prk_ajax_container .go_d_see {
   position: absolute;
   bottom: 20px;
-  left: 59%;
   background-image: url(img/go_down.png);
   background-color: rgba(67, 64, 60, 0.6);
   background-repeat: no-repeat;
@@ -1466,7 +1468,8 @@ h6 {
 }
 @media screen and (max-width: 767px) {
   #prk_ajax_container .go_d_see {
-    left: 50%;
+    left: 50% !important;
+    margin-left: -14.5px;
   }
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block {
@@ -1487,7 +1490,7 @@ h6 {
   margin-bottom: 20px;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block h5 {
-  font-size: 18x;
+  font-size: 18px;
   text-transform: uppercase;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_text_column p {
@@ -1624,11 +1627,6 @@ h6 {
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .do_3 .wpb_column .wpb_wrapper .prk_service h3 {
   display: none;
 }
-#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .le_p_m .wpb_column .wpb_wrapper .prk_service img,
-#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .se_o_6 .wpb_column .wpb_wrapper .prk_service img,
-#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .do_3 .wpb_column .wpb_wrapper .prk_service img {
-  padding-bottom: 20px;
-}
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .le_p_m .wpb_wrapper .show_h h3 {
   display: block !important;
   /*.fontmont;*/
@@ -1637,6 +1635,13 @@ h6 {
   margin-top: 0;
   margin-bottom: 18px;
   text-shadow: 0 0 0 #fff;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .le_p_m .prk_service.prk_service_center > div:nth-of-type(1) {
+  max-height: 171px;
+  overflow: hidden;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .le_p_m .prk_service_ctt {
+  margin-top: 10px;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .se_o_6 .wpb_column .wpb_wrapper .prk_service {
   position: relative;
@@ -1990,9 +1995,21 @@ h6 {
   padding-left: 35px;
   padding-right: 25px;
 }
+@media screen and (max-width: 767px) {
+  .add_padd .vc_col-sm-6:nth-child(1) > .wpb_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
 .add_padd .vc_col-sm-6:nth-child(2) > .wpb_wrapper {
   padding-left: 25px;
   padding-right: 35px;
+}
+@media screen and (max-width: 767px) {
+  .add_padd .vc_col-sm-6:nth-child(2) > .wpb_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 .add_padd .wpb_call_to_action {
   padding-left: 0;
@@ -2426,6 +2443,52 @@ h6 {
   line-height: 35px;
 }
 /*/table layout*/
+.vc_custom_heading.r_collapsible.r_toggle h1,
+.vc_custom_heading.r_collapsible.r_toggle h2,
+.vc_custom_heading.r_collapsible.r_toggle h3,
+.vc_custom_heading.r_collapsible.r_toggle h4,
+.vc_custom_heading.r_collapsible.r_toggle h5,
+.vc_custom_heading.r_collapsible.r_toggle h6 {
+  text-align: left !important;
+  background-color: #fff;
+  color: #444444;
+  border-bottom: 1px solid #d1d1d1;
+  cursor: pointer;
+}
+.vc_custom_heading.r_collapsible.r_toggle h1:after,
+.vc_custom_heading.r_collapsible.r_toggle h2:after,
+.vc_custom_heading.r_collapsible.r_toggle h3:after,
+.vc_custom_heading.r_collapsible.r_toggle h4:after,
+.vc_custom_heading.r_collapsible.r_toggle h5:after,
+.vc_custom_heading.r_collapsible.r_toggle h6:after {
+  content: '+';
+  float: right;
+}
+.vc_custom_heading.r_collapsible h1,
+.vc_custom_heading.r_collapsible h2,
+.vc_custom_heading.r_collapsible h3,
+.vc_custom_heading.r_collapsible h4,
+.vc_custom_heading.r_collapsible h5,
+.vc_custom_heading.r_collapsible h6 {
+  text-align: left !important;
+  background-color: #939393;
+  color: #fff;
+  padding: 5px 10px;
+}
+.vc_custom_heading.r_collapsible h1:after,
+.vc_custom_heading.r_collapsible h2:after,
+.vc_custom_heading.r_collapsible h3:after,
+.vc_custom_heading.r_collapsible h4:after,
+.vc_custom_heading.r_collapsible h5:after,
+.vc_custom_heading.r_collapsible h6:after {
+  content: '-';
+  float: right;
+}
+@media screen and (max-width: 769px) {
+  .single-residential-property .vc_sep_dashed h4:before {
+    display: none;
+  }
+}
 .compare .bd_headings_text_shadow {
   display: none;
 }

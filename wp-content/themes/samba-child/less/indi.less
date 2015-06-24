@@ -35,13 +35,13 @@
             /*.fontmont;*/
         }
         @media screen and (max-width: 767px) {
-            top: 75px;
+            top: 99px;
         }
     }
     .go_d_see {
         position: absolute;
         bottom: 20px;
-        left: 59%;
+        // left: 59%;
         background-image: url(img/go_down.png);
         background-color: rgba(67, 64, 60, 0.6);
         background-repeat: no-repeat;
@@ -49,7 +49,8 @@
         width: 35px;
         height: 24px;
         @media screen and (max-width: 767px) {
-            left: 50%;
+            left: 50% !important;
+            margin-left: -14.5px;
         }
     }
 }
@@ -68,7 +69,7 @@
         margin-bottom: 20px;
 //        font-size: 20px;
     }
-    h5 {font-size: 18x; text-transform: uppercase;}
+    h5 {font-size: 18px; text-transform: uppercase;}
 
     .wpb_text_column p {
         margin-bottom: 25px !important;
@@ -194,7 +195,7 @@
                 padding: 25px;
                 h3 {display: none}
                 img {
-                    padding-bottom: 20px;
+                    // padding-bottom: 20px;
                 }
             }
         }
@@ -210,6 +211,15 @@
                 margin-bottom: 18px;
                 text-shadow: 0 0 0 #fff;
             }
+        }
+        .prk_service.prk_service_center {
+            & > div:nth-of-type(1) {
+                max-height: 171px;
+                overflow: hidden;
+            }
+        }
+        .prk_service_ctt {
+            margin-top: 10px;
         }
     }
     .se_o_6 {
@@ -558,10 +568,18 @@
         padding-left: 35px;
         padding-right: 25px;
 //        padding-right: 6px;
+        @media screen and (max-width: 767px) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     } .vc_col-sm-6:nth-child(2) > .wpb_wrapper {
 //        padding-left: 6px;
         padding-left: 25px;
         padding-right: 35px;
+        @media screen and (max-width: 767px) {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     }
     .wpb_call_to_action {padding-left: 0;}
     .wpb_single_image img {
@@ -1004,3 +1022,35 @@
 }
 /*/table layout*/
 
+
+
+//tablet classes
+.vc_custom_heading.r_collapsible {
+    &.r_toggle {
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left !important;
+            background-color: #fff;
+            color: #444444;
+            border-bottom: 1px solid #d1d1d1;
+            cursor: pointer;
+            &:after {
+                content: '+';
+                float: right;
+            }
+        }
+    }
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left !important;
+        background-color: #939393;
+        color: #fff;
+        // padding-bottom: 15px;
+        padding: 5px 10px;
+        &:after {
+            content: '-';
+            float: right;
+        }
+    }
+}
+@media screen and (max-width: 769px) {
+    .single-residential-property .vc_sep_dashed h4:before {display: none;}
+}
