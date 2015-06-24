@@ -171,6 +171,10 @@ function get_residential_properties_list_ajx() {
 
     $property_amenities = wp_get_post_terms($res_property->ID , 'property_amenity', array("fields" => "all"));
 
+    $image_id = get_post_thumbnail_id($res_property->ID);
+    $image_url = wp_get_attachment_image_src($image_id,'medium', true);
+    $property_featured_image = $image_url[0];
+
 	$new_res_prop->id                        = 	$res_property->ID ;
 	$new_res_prop->post_date                 = 	$res_property->post_date ;
 	$new_res_prop->post_excerpt              = 	$res_property->post_excerpt ;
@@ -179,7 +183,8 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->guid                      = 	$res_property->guid ;
 	$new_res_prop->post_author               = 	$res_property->post_author ;
 	$new_res_prop->post_url                  = 	site_url().'/ResidentialProperties/'.$res_property->post_name;
-	$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+	//$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+  $new_res_prop->featured_image            = $property_featured_image;
 	$new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
 	$new_res_prop->amenities                 = 	$property_amenities;
 
