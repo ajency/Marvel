@@ -386,8 +386,8 @@ function myplugin_add_custom_box() {
     $screens = array( 'residential-property', 'commercial-property' );
     foreach ( $screens as $screen ) {
 
-	    	$custom_fields[] = array('field'				=> 'property-type',
-	    							  'metabox_title'		=> 'Property Type',
+	    	$custom_fields[] = array('field'				=> 'property-unit-type',
+	    							  'metabox_title'		=> 'Property Unit Type',
 	    							  'multiple_values' 	=> true,
 	    							  'element_type'		=> 'select',
 	    							  'option_value_prefix' => '',
@@ -611,20 +611,20 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
     switch($custom_field_type){
 
-    	case 'property-type' :
+    	case 'property-unit-type' :
     							if($current_post_type=="residential-property"){
-							        $property_types = maybe_unserialize(get_option('residential-property-type'));
-							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-type", true);
+							        $property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-unit-type", true);
 							    }
 							    else{
-							        $property_types = maybe_unserialize(get_option('commercial-property-type'));
-							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-type", true);
+							        $property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
+							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-unit-type", true);
 							    }
 
 							    $edit_options_values = false ;
 
 
-								 generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_types, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+								 generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_unit_types, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
 
@@ -883,8 +883,8 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 	$element_title 			= $element_custom_field_args['metabox_title'];
 	$custom_field_type		= $element_custom_field_args['field'];
 
-	if($custom_field_type=='property-type')
-		echo '<div class="set_admin_input row additional_class_property_type"> ';
+	if($custom_field_type=='property-unit-type')
+		echo '<div class="set_admin_input row additional_class_property_unit_type"> ';
 	else
 		echo '<div class="set_admin_input row"> ';
 
@@ -909,7 +909,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 		case 'select' :
 
 
-						if($custom_field_type=='property-type'){
+						if($custom_field_type=='property-unit-type'){
 							echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 
 							echo '<span class="cust-prop-type-table">';
@@ -929,24 +929,24 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 							foreach ($current_selected_types as $key_selected_type => $value_selected_type) {
 
 
-								    echo '<span class="adm_property_type_row">
-								    		 <span class="adm_property_type_span_first">
+								    echo '<span class="adm_property_unit_type_row">
+								    		 <span class="adm_property_unit_type_span_first">
 								    		 	<select name="cust_prop_type_select[]" class="cust-prop-type-select">
 								          			<option value="" >Select</option>';
-								          			foreach ($custom_field_options_values['property_types'] as $k_cust_type_option_values => $v__cust_type_option_values) {
+								          			foreach ($custom_field_options_values['property_unit_types'] as $k_cust_type_option_values => $v__cust_type_option_values) {
 
 								          				$is_current_type_selected ='';
 								          				if($value_selected_type['type'] == $v__cust_type_option_values['ID']){
 								          					$is_current_type_selected =' selected ';
 								          				}
 
-								          				echo '<option value="'.$v__cust_type_option_values['ID'].'"   '.$is_current_type_selected.'>'.$v__cust_type_option_values['property_type'].'</option>';
+								          				echo '<option value="'.$v__cust_type_option_values['ID'].'"   '.$is_current_type_selected.'>'.$v__cust_type_option_values['property_unit_type'].'</option>';
 								          			}
 
 
 								    echo '		</select>
 								    		 </span>
-								             <span class="cust-prop-type-layout adm_property_type_span" >';
+								             <span class="cust-prop-type-layout adm_property_unit_type_span" >';
 
 										    $cur_prop_layout_img_url ="";
 										    $cur_prop_layout_img_filename ="";
@@ -977,7 +977,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 
 								    echo '  </span>
-								             <span class="cust-prop-type-pdf adm_property_type_span" > ';
+								             <span class="cust-prop-type-pdf adm_property_unit_type_span" > ';
 
 
 
@@ -1017,22 +1017,22 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 
 								    echo'	</span>
-								    		<span class="cust-prop-type-pdf adm_property_type_span" > <button type="button" value="Delete" class="del_property_type_row button button-delete button-large"   file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'"  ><i class="fa fa-trash"></i></button> </span>
+								    		<span class="cust-prop-type-pdf adm_property_unit_type_span" > <button type="button" value="Delete" class="del_property_unit_type_row button button-delete button-large"   file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'"  ><i class="fa fa-trash"></i></button> </span>
 								          </span>' ;
 
 							}
 
 							echo '</span>';
-							echo '<span class="get_property_type button button-primary button-large">+</span>';
+							echo '<span class="get_property_unit_type button button-primary button-large">+</span>';
 							// echo "<style type='text/css'>
 
-							// 		.adm_property_type_row{
+							// 		.adm_property_unit_type_row{
 
 							// 			display:inline-block;
 							// 		}
 
 
-							// 		.adm_property_type_row .adm_property_type_span{
+							// 		.adm_property_unit_type_row .adm_property_unit_type_span{
 							// 		    display:inline-block;
 							// 		    float:left;
 							// 		    padding:5px;
@@ -1044,7 +1044,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 							// 		}
 
 
-							// 		.adm_property_type_row .adm_property_type_span_first{
+							// 		.adm_property_unit_type_row .adm_property_unit_type_span_first{
 							// 		    display:inline-block;
 							// 		    float:left;
 							// 		    padding:5px;
@@ -1203,8 +1203,8 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 								foreach($element_values as $type){
 
 
-									 $property_type_layout_image = '';
-									 $property_type_match = false;
+									 $property_unit_type_layout_image = '';
+									 $property_unit_type_match = false;
 
 									if(is_array($current_property_meta_value_arr)){
 
@@ -1212,8 +1212,8 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 											if($type==$cur_prop_type_value['type']){
 												$img_id  = $cur_prop_type_value['layout'];
 												$prop_type_layout_img = wp_get_attachment_image_src( $img_id,'thumbnail' );
-												$property_type_layout_image = $prop_type_layout_img[0];
-												$property_type_match = true;
+												$property_unit_type_layout_image = $prop_type_layout_img[0];
+												$property_unit_type_match = true;
 											}
 										}
 
@@ -1230,12 +1230,12 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 								<!-- <div class="admin_new_add"> -->
 							    	<div class="admin_input adm_small" style="margin-bottom: 5px;">
 		    							<span attr-field-val ="<?php echo $type; ?>" class="row" >
-		    								<input type="checkbox" <?php if($property_type_match==true){ echo " checked='checked' "; } ?>value="<?php echo $type; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span  >'.$element_postfix_label.'</span>';?>
+		    								<input type="checkbox" <?php if($property_unit_type_match==true){ echo " checked='checked' "; } ?>value="<?php echo $type; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $type; ?>"   name="<?php echo $element_id; ?>[]"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />  <?php echo '<span  >'.$element_postfix_label.'</span>';?>
 		    								<label class="inline" for=""><?php echo $type; ?></label>
 		    								<input type="file" value="<?php echo $current_property_meta_value ; ?>" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>_<?php echo str_replace(' ', '_', $type); ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
-				                        		<?php if( $property_type_layout_image!='') { ?>
-				                        			<img src="<?php echo $property_type_layout_image ?>" width="80" height="80" />
-				                        			<a href='javascript:void(0)' class='delete_property_type_layout'  property-type-value = '<?php echo $type; ?>' property-id='<?php echo get_the_ID(); ?>' >Delete</a>
+				                        		<?php if( $property_unit_type_layout_image!='') { ?>
+				                        			<img src="<?php echo $property_unit_type_layout_image ?>" width="80" height="80" />
+				                        			<a href='javascript:void(0)' class='delete_property_unit_type_layout'  property-unit-type-value = '<?php echo $type; ?>' property-id='<?php echo get_the_ID(); ?>' >Delete</a>
 				                        		<?php
 				                        			}
 				                        		?>
@@ -1318,7 +1318,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
         <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="add_custom_postmeta_options">Add New Value</a> &nbsp;
         <a href="javascript:void(0)" field-type="<?php echo $custom_field_type; ?>"  class="edit_custom_postmeta_options">Edit</a>
         <div class="edit_options_area"></div>
-        <!-- <input type="button" field-type="property-type" name="add_type" class="add_custom_postmeta_options" value="Add Types" /> -->
+        <!-- <input type="button" field-type="property-unit-type" name="add_type" class="add_custom_postmeta_options" value="Add Types" /> -->
     <?php
     }
 
@@ -1430,33 +1430,33 @@ function add_new_custom_field_option() {
 
     /* commented on 21june2015  if($custom_field_option_name == "property-city" ){
 
-    	$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-city', 'post_type'=>$post_type   )) ;
+    	$property_unit_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-city', 'post_type'=>$post_type   )) ;
     }
     else if($custom_field_option_name == "property-locality"){
 
-		$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-citylocality', 'post_type'=>$post_type   )) ;
+		$property_unit_types_data = get_properties_type_option_by_post_type(array( "field_name"=>'property-citylocality', 'post_type'=>$post_type   )) ;
 
     }
     else{ */
 
-    	$property_types_data = get_properties_type_option_by_post_type(array( "field_name"=>$custom_field_option_name, 'post_type'=>$post_type   )) ;
+    	$property_unit_types_data = get_properties_type_option_by_post_type(array( "field_name"=>$custom_field_option_name, 'post_type'=>$post_type   )) ;
     //}
 
 
 
-    $property_types                = $property_types_data['property_types'];
-    $real_custom_field_option_name = $property_types_data['real_property_type_option_name'];
+    $property_unit_types                = $property_unit_types_data['property_unit_types'];
+    $real_custom_field_option_name = $property_unit_types_data['real_property_unit_type_option_name'];
 
     $add_new_value = false;
 
-    if($property_types==false)
+    if($property_unit_types==false)
         $add_new_value = true;
     else{
 
 		/* commented on 21june2015 if($custom_field_option_name == "property-city"){
-			$property_types_data = array_keys($property_types );
+			$property_unit_types_data = array_keys($property_unit_types );
 
-			if(array_search($custom_field_option_val,$property_types_data)===false){
+			if(array_search($custom_field_option_val,$property_unit_types_data)===false){
             	$add_new_value = true;
 			}
         //property_city
@@ -1464,9 +1464,9 @@ function add_new_custom_field_option() {
 		}
 		else if($custom_field_option_name == "property-locality"){
 
-			$property_types_data = isset($property_types[$post_city])? $property_types[$post_city]:array();
+			$property_unit_types_data = isset($property_unit_types[$post_city])? $property_unit_types[$post_city]:array();
 
-			if(array_search($custom_field_option_val,$property_types_data)===false){
+			if(array_search($custom_field_option_val,$property_unit_types_data)===false){
             	$add_new_value = true;
 			}
 		}
@@ -1476,9 +1476,9 @@ function add_new_custom_field_option() {
 		if($custom_field_option_name == "property-city"){
 			$city_exists = false;
 
-			if(isset($property_types['cities'])){
-				if(is_array($property_types['cities'])){
-					foreach ($property_types['cities'] as $key_city => $value_city) {
+			if(isset($property_unit_types['cities'])){
+				if(is_array($property_unit_types['cities'])){
+					foreach ($property_unit_types['cities'] as $key_city => $value_city) {
 							 
 							 if($value_city['name']==$custom_field_option_val){
 							 		$city_exists = true;
@@ -1504,9 +1504,9 @@ function add_new_custom_field_option() {
 
 			$locality_exists = false;
 
-			if(isset($property_types['localities'])){
-				if(is_array($property_types['localities'])){
-					foreach ($property_types['localities'] as $key_locality => $value_locality) {
+			if(isset($property_unit_types['localities'])){
+				if(is_array($property_unit_types['localities'])){
+					foreach ($property_unit_types['localities'] as $key_locality => $value_locality) {
 							 
 							 if($value_locality['name']==$custom_field_option_val){
 							 		$locality_exists = true;
@@ -1526,7 +1526,7 @@ function add_new_custom_field_option() {
 
 
 		}			
-		else if(array_search($custom_field_option_val,$property_types)===false){
+		else if(array_search($custom_field_option_val,$property_unit_types)===false){
             $add_new_value = true;
         }
     }
@@ -1538,41 +1538,41 @@ function add_new_custom_field_option() {
         if($custom_field_option_name == "property-city"){
 
         	$new_city_id = 1;
-        	if(isset($property_types['max_property_city'])){
+        	if(isset($property_unit_types['max_property_city'])){
 
-        		if($property_types['max_property_city']==''){
+        		if($property_unit_types['max_property_city']==''){
         			$new_city_id = 1;
         		}        			
         		else{
-        			$new_city_id = $property_types['max_property_city'] + 1 ;
+        			$new_city_id = $property_unit_types['max_property_city'] + 1 ;
         		}      		
         			
         	}
         	 
 
-        	if($new_city_id == 1 || !isset($property_types['max_property_city'])   ){
+        	if($new_city_id == 1 || !isset($property_unit_types['max_property_city'])   ){
 
         		$new_city_data  =  array('ID'=>$new_city_id, 
         								  'name'=>$custom_field_option_val);
         															   
-        		$new_property_types_data	=    array('max_property_city'=>$new_city_id,
+        		$new_property_unit_types_data	=    array('max_property_city'=>$new_city_id,
         														 	 'cities' => array($new_city_data));
         													 
         	}
         	else{
         		$new_city_data = array('ID'=>$new_city_id, 'name'=>$custom_field_option_val);
 
-        		$property_types['cities'][]		= $new_city_data ;        																		
+        		$property_unit_types['cities'][]		= $new_city_data ;        																		
 
-				$new_property_types_data =   array('max_property_city'=>$new_city_id,
-        														  'cities' => $property_types['cities']
+				$new_property_unit_types_data =   array('max_property_city'=>$new_city_id,
+        														  'cities' => $property_unit_types['cities']
         														 )   ;
  
         	}
 
  
         	
-        	$return_result = update_option('property-city',maybe_serialize($new_property_types_data));
+        	$return_result = update_option('property-city',maybe_serialize($new_property_unit_types_data));
 
         	$return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val, 'option_data' =>$new_city_data );
          //echo "\n\n <br/> <br/> ============================1001========================================";
@@ -1581,42 +1581,42 @@ function add_new_custom_field_option() {
         else if($custom_field_option_name == "property-locality"){
 
         	$new_locality_id = 1;
-        	if(isset($property_types['max_property_locality'])){
+        	if(isset($property_unit_types['max_property_locality'])){
 
-        		if($property_types['max_property_locality']==''){
+        		if($property_unit_types['max_property_locality']==''){
         			$new_locality_id = 1;
         		}        			
         		else{
-        			$new_locality_id = $property_types['max_property_locality'] + 1 ;
+        			$new_locality_id = $property_unit_types['max_property_locality'] + 1 ;
         		}      		
         			
         	}
         	 
 
-        	if($new_locality_id == 1 || !isset($property_types['max_property_locality']) ){
+        	if($new_locality_id == 1 || !isset($property_unit_types['max_property_locality']) ){
 
         		$new_locality_data  =  array('ID'		=> $new_locality_id,
         									 'city_id'  => $post_city,
         								  	 'name'     => $custom_field_option_val);
         															   
-        		$new_property_types_data	=    array('max_property_locality'=>$new_locality_id,
+        		$new_property_unit_types_data	=    array('max_property_locality'=>$new_locality_id,
         												'localities' => array($new_locality_data));
         													 
         	}
         	else{
         		$new_locality_data = array('ID'=>$new_locality_id, 'city_id'=>$post_city, 'name'=>$custom_field_option_val);
 
-        		$property_types['localities'][]		= $new_locality_data ;        																		
+        		$property_unit_types['localities'][]		= $new_locality_data ;        																		
 
-				$new_property_types_data =   array('max_property_locality'=>$new_locality_id,
-        										    'localities' => $property_types['localities']
+				$new_property_unit_types_data =   array('max_property_locality'=>$new_locality_id,
+        										    'localities' => $property_unit_types['localities']
         										  )   ;
  
         	}
 
  			
         	
-        	$return_result = update_option('property-locality',maybe_serialize($new_property_types_data));
+        	$return_result = update_option('property-locality',maybe_serialize($new_property_unit_types_data));
 
         	$return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val, 'option_data' =>$new_locality_data );
         }
@@ -1625,9 +1625,9 @@ function add_new_custom_field_option() {
 
         	//echo "\n\n <br/> <br/> ============================1003========================================";
 
-        	 $property_types[] = $custom_field_option_val;
+        	 $property_unit_types[] = $custom_field_option_val;
 
-        	 $return_result = update_option($real_custom_field_option_name,maybe_serialize($property_types));
+        	 $return_result = update_option($real_custom_field_option_name,maybe_serialize($property_unit_types));
 
         	 $return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val );
         }
@@ -1649,11 +1649,11 @@ function get_properties_type_option_by_post_type($custom_field_option){
     $post_type                  = $custom_field_option['post_type'];
     $custom_field_option_name   = $custom_field_option['field_name'];
 
-    if($custom_field_option_name=="property-type"){
+    if($custom_field_option_name=="property-unit-type"){
         if($post_type=="residential-property" )
-            $real_custom_field_option_name = "residential-property-type";
+            $real_custom_field_option_name = "residential-property-unit-type";
         else if ($post_type=="commercial-property")
-            $real_custom_field_option_name = "commercial-property-type";
+            $real_custom_field_option_name = "commercial-property-unit-type";
     }
     else if($custom_field_option_name=="property-city" ){
     		$real_custom_field_option_name = 'property-city';
@@ -1666,14 +1666,14 @@ function get_properties_type_option_by_post_type($custom_field_option){
     	$real_custom_field_option_name = $custom_field_option_name;
     }
 
-    $property_types = maybe_unserialize(get_option($real_custom_field_option_name));
+    $property_unit_types = maybe_unserialize(get_option($real_custom_field_option_name));
 
 
 
-    $property_types_arr = $property_types===false? array(): $property_types;
+    $property_unit_types_arr = $property_unit_types===false? array(): $property_unit_types;
 
-    $custom_fields_details = array( 'real_property_type_option_name' => $real_custom_field_option_name,
-    							    'property_types' 			     => $property_types_arr  )  ;
+    $custom_fields_details = array( 'real_property_unit_type_option_name' => $real_custom_field_option_name,
+    							    'property_unit_types' 			     => $property_unit_types_arr  )  ;
 
     return  $custom_fields_details;
 
@@ -1692,9 +1692,9 @@ function get_custom_field_options() {
                                // commented on 21june2015 'field_name' => ($custom_field_option_name=='property-city'||$custom_field_option_name=='property-locality')?'property-citylocality':$custom_field_option_name
                                );
 
-    $property_types_data = get_properties_type_option_by_post_type($custom_field_data);
+    $property_unit_types_data = get_properties_type_option_by_post_type($custom_field_data);
 
-    wp_send_json($property_types_data['property_types']);
+    wp_send_json($property_unit_types_data['property_unit_types']);
 
 
 }
@@ -1733,8 +1733,8 @@ function delete_custom_field_option() {
 
 
 
-    $existing_fields_values =   maybe_unserialize($custom_fields['property_types']);
-    $real_property_type_option_name =  $custom_fields['real_property_type_option_name'];
+    $existing_fields_values =   maybe_unserialize($custom_fields['property_unit_types']);
+    $real_property_unit_type_option_name =  $custom_fields['real_property_unit_type_option_name'];
 
     $new_field_data = array();
 
@@ -1796,7 +1796,7 @@ function delete_custom_field_option() {
     	$new_options_field_data = $new_field_data;
     }
 
-    update_option($real_property_type_option_name,$new_options_field_data);
+    update_option($real_property_unit_type_option_name,$new_options_field_data);
 
     wp_send_json($delete_success);
 
@@ -1841,7 +1841,7 @@ function save_custom_meta_box($post_id, $post, $update)
 
 	if( ($post->post_type=="residential-property") || ($post->post_type=="commercial-property") ){
 
-		$sel_property_type = $_REQUEST["cust_prop_type_select"];
+		$sel_property_unit_type = $_REQUEST["cust_prop_type_select"];
 		$sel_property_city = $_REQUEST["custom_property-city"];
 		$sel_property_status = $_REQUEST["custom_property-status"];
 		$sel_property_locality = $_REQUEST["custom_property-locality"];
@@ -1964,19 +1964,19 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
 
-		$property_types_data_value = array();
+		$property_unit_types_data_value = array();
 
-		$current_property_type = maybe_unserialize(get_post_meta($post_id,'residential-property-type',true));
+		$current_property_unit_type = maybe_unserialize(get_post_meta($post_id,'residential-property-unit-type',true));
 
 
 
 
 		if($post->post_type=="residential-property"){
 
-			if(!empty($sel_property_type) && is_array($sel_property_type)){
+			if(!empty($sel_property_unit_type) && is_array($sel_property_unit_type)){
 
 
-			foreach ($sel_property_type as $proptype_key => $prop_value) {
+			foreach ($sel_property_unit_type as $proptype_key => $prop_value) {
 
 				$prop_type_match_found = false ;
 
@@ -1987,8 +1987,8 @@ function save_custom_meta_box($post_id, $post, $update)
 				$pdf_imageID = '';
 
 
-				if(is_array($current_property_type)){
-					foreach ($current_property_type as $key_currentprop => $value_currentprop) {
+				if(is_array($current_property_unit_type)){
+					foreach ($current_property_unit_type as $key_currentprop => $value_currentprop) {
 						if($value_currentprop['type']==$prop_value){
 								$prop_type_match_found = true ;
 
@@ -2089,12 +2089,12 @@ function save_custom_meta_box($post_id, $post, $update)
 					if($imageID!=false && $imageID!='' )
 						$prop_type_match['layout_image']  = $imageID;
 
-					$property_types_data_value[] = $prop_type_match;
+					$property_unit_types_data_value[] = $prop_type_match;
 
 				}
 				else{
 
-					$property_types_data_value[] = array('type'=>$prop_value,'layout_image'=>$imageID,'layout_pdf'=>$pdf_imageID) ;
+					$property_unit_types_data_value[] = array('type'=>$prop_value,'layout_image'=>$imageID,'layout_pdf'=>$pdf_imageID) ;
 
 				}
 
@@ -2105,7 +2105,7 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
 
-             update_post_meta($post_id, "residential-property-type", maybe_serialize($property_types_data_value));
+             update_post_meta($post_id, "residential-property-unit-type", maybe_serialize($property_unit_types_data_value));
             }
 
 
@@ -2114,7 +2114,7 @@ function save_custom_meta_box($post_id, $post, $update)
         }
 
 		if($post->post_type=="commercial-property"){
-            update_post_meta($post_id, "commercial-property-type", $sel_property_type);
+            update_post_meta($post_id, "commercial-property-unit-type", $sel_property_unit_type);
         }
 
 
@@ -2181,16 +2181,16 @@ add_action( 'wp_ajax_delete_custom_file_field', 'delete_custom_file_field' );
 
 
 
-function delete_property_type_layout_image_pdf_file() {
+function delete_property_unit_type_layout_image_pdf_file() {
 
 	$property_id   		= $_REQUEST['data']['property_id'];
-	$property_type 	= $_REQUEST['data']['property_type'];
+	$property_unit_type 	= $_REQUEST['data']['property_unit_type'];
 	$custom_file_id 	= $_REQUEST['data']['attachment_id'];
 	$file_type 			= $_REQUEST['data']['file_type'];
 
 	$delete_success = false;
 
-	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) );
+	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-unit-type',true) );
 
 
 	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
@@ -2202,7 +2202,7 @@ function delete_property_type_layout_image_pdf_file() {
 	  		$data = maybe_unserialize($value);
 
 
-	  		if($data['type'] == $property_type){
+	  		if($data['type'] == $property_unit_type){
 
 	  			if($data[$file_type] == $custom_file_id){
 	  				$result_delete_attachment = wp_delete_attachment($data[$file_type]);
@@ -2231,428 +2231,24 @@ function delete_property_type_layout_image_pdf_file() {
 
 	  }
 
-	  update_post_meta($property_id,'residential-property-type',true);
+	  update_post_meta($property_id,'residential-property-unit-type',true);
 
 
     wp_send_json($delete_success);
 
 
 }
-add_action( 'wp_ajax_delete_property_type_layout_image_pdf_file', 'delete_property_type_layout_image_pdf_file' );
+add_action( 'wp_ajax_delete_property_unit_type_layout_image_pdf_file', 'delete_property_unit_type_layout_image_pdf_file' );
 
 
 
 
-
-
-
-
-
-
-function my_custom_submenu_page_callback() {
-
-
-
-
-
-if( ! class_exists( 'WP_List_Table' ) ) {
-    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
-}
-
-class My_Example_List_Table extends WP_List_Table {
-
-   /* var $example_data = array(
-            array( 'ID' => 1,'property_type' => '1 BHK', 'number_bedrooms' => '1',
-                   'action' => 'Edit' ),
-            array( 'ID' => 2, 'property_type' => '2 BHK','number_bedrooms' => '2',
-                   'action' => 'Edit' ),
-            array( 'ID' => 3, 'property_type' => '3 BHK', 'number_bedrooms' => '3',
-                   'action' => 'Edit' ),
-            array( 'ID' => 4, 'property_type' => '4 BHK', 'number_bedrooms' => '4',
-                   'action' => 'Edit' ),
-            array( 'ID' => 5, 'property_type'     => '5 BHK', 'number_bedrooms'    => '5',
-                   'action' => 'Edit' ),
-            array(' ID' => 6, 'property_type' => '6 BHK', 'number_bedrooms' => '6',
-                  'action' => 'Edit' )
-        ); */
-    function __construct(){
-    global $status, $page;
-
-        parent::__construct( array(
-            'singular'  => __( 'Property Type', 'mylisttable' ),     //singular name of the listed records
-            'plural'    => __( 'Property Types', 'mylisttable' ),   //plural name of the listed records
-            'ajax'      => false        //does this table support ajax?
-    ) );
-    }
-
-
-
-  function column_default( $item, $column_name ) {
-    switch( $column_name ) {
-        case 'property_type':
-						$actions = array(
-						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"  bedrooms="'.$item['number_bedrooms'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_type" type_id ="'.$item['ID'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
-						        );
-
-						  return sprintf('%1$s %2$s', "<span class='spn_property_type'>".$item['property_type']."</span>", $this->row_actions($actions) );
-
-
-
-        case 'number_bedrooms':
-        //case 'action':
-            return $item[ $column_name ];
-        default:
-            return print_r( $item, true ) ; //Show the whole array for troubleshooting purposes
-    }
-  }
-
-function get_columns(){
-        $columns = array(
-            'property_type' => __( 'Property Type', 'mylisttable' ),
-            'number_bedrooms'    => __( 'No Of Bedrooms', 'mylisttable' )
-            //'action'      => __( 'Action', 'mylisttable' )
-        );
-         return $columns;
-    }
-function prepare_items() {
-  $columns  = $this->get_columns();
-  $hidden   = array();
-  $sortable = array();
-  $this->_column_headers = array( $columns, $hidden, $sortable );
-  $this->items = $this->get_data();//$this->example_data;
-}
-
-function get_data(){
-
-
-
-	global $wpdb;
-
-	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
-
-	if($current_property_types==false){
-		return array();
-	}
-	else{
-
-
-		if(!isset($current_property_types['max_property_types'])    ||    $current_property_types['max_property_types']<=0 ){
-			return array();
-		}
-		else if($current_property_types['max_property_types']>0){
-
-
-			return maybe_unserialize($current_property_types['property_types']);
-		}
-
-
-	}
-
-
-
-}
-
-
-
-function get_sortable_columns() {
-  $sortable_columns = array(
-    'property_type'  => array('property_type',true),
-    'number_bedrooms' => array('number_bedrooms',false),
-    // 'action'   => array('actoin',false)
-  );
-  return $sortable_columns;
-}
-
-} //class
-
-
-/*
-function get_property_types(){
-	global $wpdb;
-
-	$property_types = maybe_unserialize(get_option('residential-property-type'));
-
-} */
-
-
-  echo '<div class="wrap"><div id="icon-tools" class="icon32"></div>';
-    echo '<h2>Residential Properties Settings</h2>';
-  echo '</div>';
-
-
-
-  $myListTable = new My_Example_List_Table();
-  echo '<div class="wrap"><h3>Property Types </h3>';
-  $myListTable->prepare_items();
-  echo '<div col-container>
-
-  <div class="property_type_message ">
-
-  </div>
-
-  			<div id="col-right">
-				<div class="col-wrap">';
-  $myListTable->display();
-
-  echo '		</div>
-  			</div>
-  			<div id="col-left">
-				<div class="col-wrap">
-
-
-
-
-					<div class="form-wrap">
-						<h3 class="add_edit_type_formtitle"><span class="title">Add New Property Type</span>
-							<a href="javascript:void(0)" class="add-new-h2 add_new_type_form">Add New</a>
-						</h3>
-						<form id="frm_property_type" method="post" action="" class="validate">
-							<!-- <input type="hidden" name="action" value="">
-							<input type="hidden" name="screen" value="edit-property_amenity">
-							<input type="hidden" name="custom_field_name" value="property_amenity">
-							<input type="hidden" name="post_type" value="residential-property">
-							<input type="hidden" id="_wpnonce_add-tag" name="_wpnonce_add-tag" value="781a607a1b">
-							<input type="hidden" name="_wp_http_referer" value="/marvel/wp-admin/edit-tags.php?taxonomy=property_amenity&amp;post_type=residential-property"> -->
-
-							<input type="hidden" name="edit_id" id="edit_id"  value="" />
-							<div class="form-field form-required term-name-wrap">
-								<label for="tag-name">Type</label>
-								<input name="new-property-type" id="new-property-type" type="text" value="" size="40" aria-required="true">
-								<p><!-- The name is how it appears on your site. --></p>
-							</div>
-							<div class="form-field term-slug-wrap">
-								<label for="tag-slug">Number Of Bedrooms</label>
-								<input name="new-property-bedrooms" id="new-property-bedrooms" class="allownumericwithdecimal"  type="text" value="" size="40" >
-								<p><!-- The “slug” is the URL-friendly version of the name.
-								It is usually all lowercase and contains only letters, numbers, and hyphens. --></p>
-							</div>
-
-
-
-							<p class="submit">
-								<input type="button" name="add_new_property_type" id="add_new_property_type"
-								class="button button-primary save_property_type" value="Save">
-								<input type="button" name="cancel_edit_property_type" id="cancel_edit_property_type"
-								class="button cancel_edit_property_type" value="Cancel" style="display:none">
-							</p><br>
-
-						</form>
-				</div>
-
-
-
-
-
-
-
-				</div>
-			</div>
-
-  		</div>  ';
-  echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="residential-property-type" /> ';
-  echo '</div>';
-
-}
-
-
-
-
-
+require_once( ABSPATH . 'wp-content/themes/samba/includes/residential-properties-settings.php' );
 
 function register_my_custom_submenu_page() {
 //  add_submenu_page( 'tools.php', 'My Custom Submenu Page', 'My Custom Submenu Page', 'manage_options', 'my-custom-submenu-page', 'my_custom_submenu_page_callback' );
-  add_submenu_page( 'edit.php?post_type=residential-property', 'Residential Properties Settings', 'Residential Properties Settings', 'manage_options', 'residential-properties-settings', 'my_custom_submenu_page_callback' );
+add_submenu_page( 'edit.php?post_type=residential-property', 'Property Type Settings', 'Property Type Settings', 'manage_options', 'residential-property-type-settings', 'custom_submenu_page_property_type_callback' );	 
+  add_submenu_page( 'edit.php?post_type=residential-property', 'Property Unit Type Settings', 'Property Unit Type Settings', 'manage_options', 'residential-property-unit-type-settings', 'custom_submenu_page_property_unit_type_callback' );
+  
 }
 add_action('admin_menu', 'register_my_custom_submenu_page');
-
-
-
-function save_property_type(){
-
-	$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
-	$property_type 		= $_REQUEST['data']['property_type'];
-	$property_edit_id 	= $_REQUEST['data']['edit_id'];
-
-	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
-
-	$new_property_type['number_bedrooms'] 	= $num_bedrooms;
-	$new_property_type['property_type'] 	= $property_type;
-
-
-	if($property_edit_id!=''){
-		$new_property_type['ID'] = $property_edit_id;
-
-		foreach ($current_property_types['property_types'] as $key => $value) {
-
-			if($property_edit_id == $value['ID']){
-					$updated_new_property_types[$key] = $new_property_type;
-			}
-			else{
-					$updated_new_property_types[$key] = $value;
-			}
-
-		}
-
-		$updated_new_max_property_type = $current_property_types['max_property_types'];
-
-	}
-	else{
-			if(!isset($current_property_types['max_property_types'])){
-
-				$new_property_type['ID'] = 1;
-				$current_property_types ['property_types'] = array();
-			}
-			else if(count($current_property_types['max_property_types'])<=0 || $current_property_types==false ){
-
-				$new_property_type['ID'] = 1;
-				$current_property_types ['property_types'] = array();
-
-			}
-			else{
-
-				/*$current_max_property_id = 0;
-				foreach ($current_property_types as $key => $value) {
-					if($value['ID']>$current_max_property_id){
-					 	$current_max_property_id = $value['ID'];
-					}
-				}
-				$new_property_type['ID']  = $current_max_property_id + 1 ;	*/
-
-				$new_property_type['ID'] = $current_property_types['max_property_types'] + 1;
-			}
-
-			if(!is_array($current_property_types['property_types'])){
-				$current_property_types['property_types'] = array();
-			}
-
-			$updated_new_property_types =    $current_property_types['property_types'];
-			$updated_new_property_types[] = $new_property_type ;
-			$updated_new_max_property_type = $new_property_type['ID'];
-	}
-
-
-
-	$result = update_option('residential-property-type',maybe_serialize(array('max_property_types' => $updated_new_max_property_type,
-																			  'property_types'     => $updated_new_property_types
-																		)));
-
-	if($result==false){
-		$current_property_types = maybe_unserialize(get_option('residential-property-type'));
-	}
-
-	wp_send_json(array('success' => $result, 'ID'=>$new_property_type['ID'], 'data'=>$updated_new_property_types));
-
-}
-add_action( 'wp_ajax_save_property_type', 'save_property_type' );
-
-
-
-
-function delete_property_type(){
-
-	$property_type_id = $_REQUEST['data']['type_id'];
-	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
-
-	$found_del_type = false ;
-
-	foreach ($current_property_types['property_types'] as $key => $value) {
-		 if($value['ID']!=$property_type_id ){
-
-		 	$updated_property_types [] = $value ;
-		 }
-		 else if($value['ID']==$property_type_id ){
-			 $found_del_type = true ;
-		 }
-
-	}
-
-	$updated_new_property_types =  array('max_property_types' => $current_property_types['max_property_types'],
-									 'property_types'	  => $updated_property_types);
-
-	update_option('residential-property-type',maybe_serialize($updated_new_property_types));
-
-	wp_send_json(array('success'=>true,'types'=>$updated_property_types ));
-}
-add_action( 'wp_ajax_delete_property_type', 'delete_property_type' );
-
-
-
-function get_property_type_option(){
-
-	global $wpdb;
-
-	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
-
-	if(isset($current_property_types['property_types'])){
-		wp_send_json(maybe_unserialize($current_property_types['property_types']));
-	}
-	else{
-		wp_send_json(array() );
-	}
-
-
-
-}
-add_action( 'wp_ajax_get_property_type_option', 'get_property_type_option' );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function delete_property_type_row() {
-
-	$property_id   		= $_REQUEST['data']['property_id'];
-	$property_type 		= $_REQUEST['data']['property_type'];
-
-
-	$delete_success = false;
-
-	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-type',true) );
-
-
-	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
-
-
-
-	  	foreach ($custom_file_field_value as $key => $value) {
-
-	  		$data = maybe_unserialize($value);
-
-
-	  		if($data['type'] == $property_type){
-
-	  				if($data['layout_image']!='')
-	  					$result_delete_attachment = wp_delete_attachment($data['layout_image']);
-	  				if($data['layout_pdf']!='')
-				  		$result_delete_attachment = wp_delete_attachment($data['layout_pdf']);
-
-	  		}
-	  		else{
-	  			$updated_data[] = $value;
-	  		}
-
-
-	  	}
-	  	
-
-	}
-
-	update_post_meta($property_id,'residential-property-type',$updated_data);
-    wp_send_json($delete_success);
-
-
-}
-add_action( 'wp_ajax_delete_property_type_row', 'delete_property_type_row' );

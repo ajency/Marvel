@@ -12,7 +12,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
 %>
     <div class="top-dd one">
         <select id="dd_status" name="dd_status" class='srchopt' >
-         <option value="">Status</option>
+         <option value="">Select</option>
         <% 
             _.each(data.status,function(vl,ky){
             %><option value="<%=vl%>"  <% if(selectedStatus==vl){%> selected  <% }%>  ><%=vl%></option>
@@ -23,16 +23,10 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd two">
         <select id="dd_city" name="dd_city"  class='srchopt' >
-         <option value="">City</option>
+         <option value="">Select</option>
             <%  
-         /* commented on 21june2015    _.each(data.citylocality,function(vl,ky){ */
-            console.log('data.city');
-            console.log(data);
-            var cities_options = _.isUndefined(data.cities.cities)?[]:data.cities.cities;
-
-            _.each(cities_options,function(vl,ky){ 
-
-            %><option value="<%=vl.ID%>"   <% if(selectedCity == vl.ID) {%> selected <% }%> ><%=vl.name%></option>
+            _.each(data.citylocality,function(vl,ky){
+            %><option value="<%=ky%>"   <% if(selectedCity == ky) {%> selected <% }%> ><%=ky%></option>
 
             <% }) %>
 
@@ -40,16 +34,14 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd thr">
         <select id="dd_locality" name="dd_locality"  class='srchopt'  >
-         <option value="">Locality</option>
+         <option value="">Select</option>
             <% 
-            /* commented on 21june2015 _.each(data.citylocality,function(vl,ky){ */
-                 var locality_options = _.isUndefined(data.locality.localities)?[]:data.locality.localities;
-                _.each(locality_options,function(vl__locality,ky__locality){ 
-if(selectedCity == vl__locality.city_id) {
-   
-            %><option value="<%=vl__locality.ID%>"  <% if(vl__locality.ID==selectedLocality) { %> selected <% } %>><%=vl__locality.name%></option><%
+            _.each(data.citylocality,function(vl,ky){
+if(selectedCity == ky) {
+    _.each(vl,function(vl_locality,ky_locality){
+            %><option value="<%=vl_locality%>"  <% if(vl_locality==selectedLocality) { %> selected <% } %>><%=vl_locality%></option><%
 
-    
+    })
 }
 
 
@@ -71,10 +63,10 @@ if(selectedCity == vl__locality.city_id) {
     </div>
     <div class="top-dd fou">
         <select id="dd_type" name="dd_type"  class='srchopt' >
-         <option value="">Type</option>
+         <option value="">Select</option>
             <%   
             _.each(data.type,function(vl,ky){
-            %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_type%></option>
+            %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_unit_type%></option>
 
             <% }) %>
         </select>

@@ -1,4 +1,47 @@
 (function($) {
+
+
+/*Dynamic menu created using content head on single property page*/
+$(".tab-section").each(function(index) {
+
+    $(this).attr('tab-index', index);
+
+    var menutext = $(this).find( ":header" ).html();
+    $('#residentialpropertymenu').append('<li class="menu-item"><a class="fade_anchor_menu tab-menu-item" data-target="'+index+'"><div class="prk_menu_square" style="width: 14px; background-color: rgb(183, 183, 183);"></div>'+menutext+'</a></li>');
+
+    
+    /*var distance = $(this).offset().top,
+    $window = $(window);
+    $window.scroll(function() {
+        if ( $window.scrollTop() >= distance ) {
+            $("a[data-target='" + index +"']").addClass('current').parent().siblings().children().removeClass('current');
+        }
+    });*/
+
+});
+
+$(document).on('click', '.tab-menu-item', function(event) {
+    event.preventDefault()
+    var anchor = $(this).attr('data-target');
+
+    $(this).addClass('current').parent().siblings().children().removeClass('current');
+    $('html,body').animate({
+        scrollTop: $("div[tab-index='" + anchor +"']").offset().top - 30},
+        'slow');
+});
+
+
+
+function checkIfInView(element){
+    var offset = $(element).offset().top - $(window).scrollTop();
+    if(offset > window.innerHeight){
+       $('html,body').animate({scrollTop: offset}, 1000);
+        return false;
+    }
+   return true;
+}
+
+
     //all child js
     $(document).ready(function() {
         //remove this line later

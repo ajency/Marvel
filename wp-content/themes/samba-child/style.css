@@ -69,6 +69,26 @@ pre {
 #logo_holder {
 	padding-top: 32px;
 }
+
+
+.tab-menu-item{
+cursor:pointer;
+}
+
+a.current{
+color: rgb(255, 255, 255) !important;
+}
+
+.property-title{
+text-align:center;
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+.property-title h4{
+color: rgb(255, 255, 255);
+}
+
 .nav-collapse.collapse {
 	padding-left: 0;
 }

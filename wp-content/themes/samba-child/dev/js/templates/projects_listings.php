@@ -27,7 +27,7 @@ var property_city = _.isUndefined(propertyvl.property_city)? propertyvl.get('pro
 var property_locality = _.isUndefined(propertyvl.property_locaity)? propertyvl.get('property_locaity'): propertyvl.property_locaity;
 var featured_image = _.isUndefined(propertyvl.featured_image)? propertyvl.get('featured_image'): propertyvl.featured_image;
 var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'): propertyvl.post_url;
-var property_type = _.isUndefined(propertyvl.property_type)? propertyvl.get('property_type'): propertyvl.property_type;
+var property_unit_type = _.isUndefined(propertyvl.property_unit_type)? propertyvl.get('property_unit_type'): propertyvl.property_unit_type;
 var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
 
 
@@ -41,20 +41,20 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                 <div class="clearfix"></div>
                 <div class="single_p_info">
                     <h6>
-                    <% var current_property_types = '';
+                    <% var current_property_unit_types = '';
                     var proptype_cnt = 0;
-                    _.each(property_type,function(proptype_val,proptype_key){
+                    _.each(property_unit_type,function(proptype_val,proptype_key){
 
                         if(!_.isUndefined(proptype_val['type'])){
                              if(proptype_cnt>0)
-                            current_property_types = current_property_types + ', ';
-                        current_property_types = current_property_types + proptype_val['type_name'];
+                            current_property_unit_types = current_property_unit_types + ', ';
+                        current_property_unit_types = current_property_unit_types + proptype_val['type_name'];
 
                         }
                         proptype_cnt++;
                     })
                     %>
-                    <%=current_property_types%> </h6>
+                    <%=current_property_unit_types%> </h6>
                     <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
                 </div>
 

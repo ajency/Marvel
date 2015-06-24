@@ -20,7 +20,7 @@ function get_map_address_details($property_id){
 
 function get_search_options(){
 
-    $property_type = maybe_unserialize(get_option('residential-property-type',true));
+    $property_unit_type = maybe_unserialize(get_option('residential-property-unit-type',true));
     $property_cities = maybe_unserialize(get_option('property-city',true));
     $property_status = maybe_unserialize(get_option('property-status',true));
     $property_locality = maybe_unserialize(get_option('property-locality',true));
@@ -38,7 +38,7 @@ function get_search_options(){
                                  'locality'      => $property_locality,
                                  'neighbourhood' => $property_neighbourhood,
                                  'no_of_bedrooms'=> $property_bedrooms,
-                                 'type'          => maybe_unserialize($property_type['property_types']),
+                                 'type'          => maybe_unserialize($property_unit_type['property_unit_types']),
                                  'citylocality'  => $property_citylocality,
                                  'amenities'     => $property_amenities
                                 );
@@ -68,28 +68,28 @@ function get_res_property_meta_values($property_id){
     $property_status          = get_post_meta($property_id, 'property-status',true);
     $property_locality        = get_post_meta($property_id, 'property-locality',true);
     $property_neighbourhood   = maybe_unserialize(get_post_meta($property_id, 'property-neighbourhood',true));
-    $property_type            = maybe_unserialize(get_post_meta($property_id, 'residential-property-type',true));
+    $property_unit_type            = maybe_unserialize(get_post_meta($property_id, 'residential-property-unit-type',true));
     $property_price           = get_post_meta($property_id, 'property-price',true);
 
-    $property_type_updated    = array();
-    $property_type_penthouses = array();
-    $property_type_other      = array();    
+    $property_unit_type_updated    = array();
+    $property_unit_type_penthouses = array();
+    $property_unit_type_other      = array();    
 
 
-    if(is_array($property_type)){
+    if(is_array($property_unit_type)){
 
-       $property_type_option =  maybe_unserialize(get_option('residential-property-type'));
-       $property_type_option_values = maybe_unserialize($property_type_option['property_types']);
+       $property_unit_type_option =  maybe_unserialize(get_option('residential-property-unit-type'));
+       $property_unit_type_option_values = maybe_unserialize($property_unit_type_option['property_unit_types']);
 
-       //var_dump($property_type_option_values);  
+       //var_dump($property_unit_type_option_values);  
 
-       foreach ($property_type as $key => $value) {
+       foreach ($property_unit_type as $key => $value) {
 
-              foreach ($property_type_option_values as $key_typeoption => $value_typeoption) {
+              foreach ($property_unit_type_option_values as $key_typeoption => $value_typeoption) {
                   if($value['type'] ==$value_typeoption['ID'] ){
 
 
-                    $value['type_name'] = $value_typeoption['property_type'] ;
+                    $value['type_name'] = $value_typeoption['property_unit_type'] ;
                     $value['no_bedrooms'] = $value_typeoption['number_bedrooms'] ;
                   }
 
@@ -118,19 +118,19 @@ function get_res_property_meta_values($property_id){
                                                   'name'=> $layout_pdf_filename);
               }
 
-              $property_type_updated[] = $value; 
+              $property_unit_type_updated[] = $value; 
               /* if(stripos($value['type_name'], 'penthouse')!==false || stripos($value['type_name'], 'pent house')!==false ){
-                 $property_type_penthouses[] = $value;
+                 $property_unit_type_penthouses[] = $value;
               }
               else{
-                $property_type_other[] = $value;
+                $property_unit_type_other[] = $value;
               }*/  
             
        }
 
     }
 
-    $sortedproperty_types = sort_multidimensional_array($property_type_updated,'no_bedrooms');
+    $sortedproperty_unit_types = sort_multidimensional_array($property_unit_type_updated,'no_bedrooms');
     
 
 
@@ -138,7 +138,7 @@ function get_res_property_meta_values($property_id){
                                              'property_status'       => $property_status,
                                              'property_locaity'      => $property_locality,
                                              'poperty_neighbourhood' => $property_neighbourhood,
-                                             'property_type'		     => $sortedproperty_types,
+                                             'property_unit_type'		     => $sortedproperty_unit_types,
                                              'property_sellablearea' => $property_sellablearea,
                                              'map_address'	 		     => get_map_address_details($property_id),
                                              'property_price' 		   => $property_price
@@ -171,6 +171,10 @@ function get_residential_properties_list_ajx() {
 
     $property_amenities = wp_get_post_terms($res_property->ID , 'property_amenity', array("fields" => "all"));
 
+    $image_id = get_post_thumbnail_id($res_property->ID);
+    $image_url = wp_get_attachment_image_src($image_id,'medium', true);
+    $property_featured_image = $image_url[0];
+
 	$new_res_prop->id                        = 	$res_property->ID ;
 	$new_res_prop->post_date                 = 	$res_property->post_date ;
 	$new_res_prop->post_excerpt              = 	$res_property->post_excerpt ;
@@ -179,7 +183,8 @@ function get_residential_properties_list_ajx() {
 	$new_res_prop->guid                      = 	$res_property->guid ;
 	$new_res_prop->post_author               = 	$res_property->post_author ;
 	$new_res_prop->post_url                  = 	site_url().'/ResidentialProperties/'.$res_property->post_name;
-	$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+	//$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+  $new_res_prop->featured_image            = $property_featured_image;
 	$new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
 	$new_res_prop->amenities                 = 	$property_amenities;
 
@@ -270,9 +275,9 @@ function floor_plans_tabs() {
 //$cur_property_id = get_the_ID();
 $cur_property_id = $wp_query->get_queried_object_id();
 
-//$property_type_option = maybe_unserialize(get_option('residential-property-type'));
+//$property_unit_type_option = maybe_unserialize(get_option('residential-property-unit-type'));
 
-//$property_type_option_values = $property_type_option['property_types'];
+//$property_unit_type_option_values = $property_unit_type_option['property_unit_types'];
 
 
 
@@ -284,7 +289,7 @@ $site_plan_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_mi
 
 $site_plan_img_id = maybe_unserialize(get_post_meta($cur_property_id,'custom_property-siteplan',true));
 
-$property_types = $property_data['property_type'];
+$property_unit_types = $property_data['property_unit_type'];
 
 $property_sellable_area = $property_data['property_sellablearea'];
 
@@ -304,8 +309,8 @@ if(isset($property_sellable_area['max-area'])) {
 
 
 
-if($property_types==false)
-    $property_types =  array( );
+if($property_unit_types==false)
+    $property_unit_types =  array( );
 
 if($site_plan_img_id!=false){
     $site_plan_img_data =  wp_get_attachment_image_src( $site_plan_img_id,'full' );
@@ -335,15 +340,15 @@ $floor_plans_tab_content='
 
 
 
-foreach ($property_types as $key_proptype => $value_proptype) {
+foreach ($property_unit_types as $key_proptype => $value_proptype) {
 
       /* $option_value_name = '';
 
-      foreach ($property_type_option_values as $key_type_options => $value_type_options) {
+      foreach ($property_unit_type_option_values as $key_type_options => $value_type_options) {
 
          if($value_type_options['ID'] == $value_proptype['type']){
 
-              $option_value_name = $value_type_options['property_type'];
+              $option_value_name = $value_type_options['property_unit_type'];
          }
       
       } */
@@ -386,7 +391,7 @@ foreach ($property_types as $key_proptype => $value_proptype) {
 
 
 
-foreach ($property_types as $key_proptype => $value_proptype) {
+foreach ($property_unit_types as $key_proptype => $value_proptype) {
 
             $cur_prop_type_img_id = $value_proptype['layout_image_data']['ID'];
             $cur_prop_type_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";

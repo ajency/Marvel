@@ -55,7 +55,7 @@
                 <?php 
                 $project_locality = get_post_meta(get_the_ID(),'property-locality',true);
                 $project_city = get_post_meta(get_the_ID(),'property-city',true);
-                $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-type',true));
+                $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-unit-type',true));
   
                 $location_seperator = '';
                 $project_type_seperator='';
@@ -91,7 +91,8 @@
         </div>
         <a href="#" class="go_d_see"></a>
     <?php
-      echo prk_output_featured_image(get_the_ID());
+      //echo prk_output_featured_image(get_the_ID());
+    echo get_the_post_thumbnail(get_the_ID(), 'large');
       if ($show_title==true)
       {
           prk_output_title($data);

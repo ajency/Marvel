@@ -1,4 +1,8 @@
-
+<?php
+/*
+Template Name: Page - With Sections
+*/
+?>
 <?php 
   get_header(); 
   $show_sidebar=$prk_samba_frontend_options['right_sidebar'];
@@ -48,48 +52,9 @@
   $show_sidebar=false;
 ?>
 <div id="centered_block" class="row">
-<div id="main_block" class="block_with_sections hideTitle page-<?php echo get_the_ID(); ?>">
-    <div id="full_fi_c">
-        <div class="full_fi_title">
-            <p class="f_f_t">
-                <?php 
-                $project_locality = get_post_meta(get_the_ID(),'property-locality',true);
-                $project_city = get_post_meta(get_the_ID(),'property-city',true);
-                $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-unit-type',true));
-  
-                $location_seperator = '';
-                $project_type_seperator='';
-                if( ($project_city!=false || $project_locality!=false ) && ($project_city!='' || $project_locality!='') )
-                  $location_seperator = ", ";
-
-                if( ($project_type!=false   ) && ($project_type!=''  ) ){
-                  $project_type_seperator = ", ";
-
-                $project_type_seperator = " ";
-
-                foreach ($project_type as $ptype_key => $ptype_value) {
-                   $project_types_display[]=   ucfirst($ptype_value['type']);
-                  }
-
-
-                 if(is_array($project_types_display))
-                   $display_project_types_wt_sep = implode(', ',$project_types_display) ;
-                 else 
-                    $display_project_types_wt_sep = $project_types_display;
-
-                }
-                  
-
-
-
-                echo $display_project_types_wt_sep.$project_type_seperator.ucfirst(get_the_title()).$location_seperator.ucfirst($project_locality)." ".ucfirst($project_city);
-                ?>
-            </p>
-        </div>
-        <a href="#" class="go_d_see"></a>
+<div id="main_block" class="block_with_sections page-<?php echo get_the_ID(); ?>">
     <?php
-      //echo prk_output_featured_image(get_the_ID());
-    echo get_the_post_thumbnail(get_the_ID(), 'large');
+      echo prk_output_featured_image(get_the_ID());
       if ($show_title==true)
       {
           prk_output_title($data);
@@ -100,7 +65,6 @@
         $extra_class="";
       }
     ?>
-    </div>
     <div id="content">
         <div id="main" role="main" class="main_with_sections<?php echo $extra_class; ?>">
             <?php
