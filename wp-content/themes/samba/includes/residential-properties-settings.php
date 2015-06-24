@@ -229,7 +229,7 @@ function get_property_unit_types(){
 
 							<p class="submit">
 								<input type="button" name="add_new_property_unit_type" id="add_new_property_unit_type"
-								class="button button-primary save_property_unit_type" value="Save">
+								class="button button-primary save_property_unit_type" value="Save"><span class="spinner" style="display:none"></span>
 								<input type="button" name="cancel_edit_property_unit_type" id="cancel_edit_property_unit_type"
 								class="button cancel_edit_property_unit_type" value="Cancel" style="display:none">
 							</p><br>
@@ -666,7 +666,7 @@ function get_property_types(){
 
 		echo'				<p class="submit">
 								<input type="button" name="add_new_property_type" id="add_new_property_type"
-								class="button button-primary save_property_type" value="Save">
+								class="button button-primary save_property_type" value="Save"> <span class="spinner" style="display:none"></span>
 								<input type="button" name="cancel_edit_property_type" id="cancel_edit_property_type"
 								class="button cancel_edit_property_type" value="Cancel" style="display:none">
 							</p><br>

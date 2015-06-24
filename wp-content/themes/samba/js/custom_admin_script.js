@@ -91,6 +91,7 @@ function display_add_new_property_unit_type_form(){
 
 
 
+     
 
 
 
@@ -106,7 +107,8 @@ jQuery('.save_property_unit_type').live("click",function(){
          var property_unit_type = jQuery('#new-property-unit-type').val();
          var prop_type_id       = jQuery('#new-prop-type').val();
 
-       
+         <span class="spinner" style="display:inline-block"></span>
+         jQuery(self).parent().find('.spinner').css('display:inline-block');
 
          if(property_unit_type==''){
             alert('Please enter property unit type')
@@ -138,7 +140,7 @@ jQuery('.save_property_unit_type').live("click",function(){
             action: "save_property_unit_type",                  
             data:my_data
         }, function(data) { 
-
+        jQuery(self).parent().find('.spinner').css('display:none');
            //the callback_handler;
             if (data) {
                 if(data.success!=true){
@@ -154,7 +156,7 @@ jQuery('.save_property_unit_type').live("click",function(){
                     if(edit_id==''){ /* Add New Property Unit Type*/
                         jQuery('#new-property-bedrooms').val('');
                         jQuery('#new-property-unit-type').val('');
-                        var new_prop_type_name = $("#new-prop-type option:selected").text();
+                        var new_prop_type_name = jQuery("#new-prop-type option:selected").text();
                         alert(new_prop_type_name)
                         jQuery('#new-prop-type').val('');
                       
@@ -327,6 +329,7 @@ jQuery('.save_property_type').live("click",function(){
         console.log('Updating custom field options ');
 
         var self = this;    
+        jQuery(self).parent().find('.spinner').css('display:inline-block');
 
          var edit_id       = jQuery('#edit_id').val();  
          var num_bedrooms  = jQuery('#new-property-bedrooms').val();
@@ -357,7 +360,8 @@ jQuery('.save_property_type').live("click",function(){
             action: "save_property_type",                  
             data:my_data
         }, function(data) { 
-
+            
+            jQuery(self).parent().find('.spinner').css('display:none');
            //the callback_handler;
             if (data) {
                 if(data.success!=true){
