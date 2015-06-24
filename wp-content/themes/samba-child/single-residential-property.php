@@ -91,7 +91,8 @@
         </div>
         <a href="#" class="go_d_see"></a>
     <?php
-      echo prk_output_featured_image(get_the_ID());
+      //echo prk_output_featured_image(get_the_ID());
+    echo get_the_post_thumbnail(get_the_ID(), 'large');
       if ($show_title==true)
       {
           prk_output_title($data);
