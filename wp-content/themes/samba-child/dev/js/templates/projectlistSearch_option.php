@@ -66,7 +66,7 @@ if(selectedCity == ky) {
          <option value="">Select</option>
             <%   
             _.each(data.type,function(vl,ky){
-            %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_type%></option>
+            %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_unit_type%></option>
 
             <% }) %>
         </select>

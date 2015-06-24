@@ -129,7 +129,7 @@
                                    search_options['property_locaity'] =  prop_locality;
 
                  if(prop_type!='')
-                                   search_options['property_type'] =  prop_type;s
+                                   search_options['property_unit_type'] =  prop_type;s
 
                 var res_collection = getAppInstance().residentialPropertyCollection  ;
                 

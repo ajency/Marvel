@@ -511,24 +511,24 @@ $('.del_prop_type_layout_img').live("click",function(evt){
             var self = this;
 
             var curr_property_id = $(this).attr('property-id');
-            var property_type = $(this).attr('type-id');
+            var property_unit_type = $(this).attr('type-id');
             var attachment_id = $(this).attr('file-id');
             var file_type     = 'layout_image'
 
             var my_data = { 'property_id'    : curr_property_id,
-                            'property_type'  : property_type,
+                            'property_unit_type'  : property_unit_type,
                             'attachment_id'  : attachment_id,
                             'file_type'     : file_type
                           }
 
             $.post(ajaxurl,{   //the server_url
-                    action: "delete_property_type_layout_image_pdf_file",                 //the submit_data array
+                    action: "delete_property_unit_type_layout_image_pdf_file",                 //the submit_data array
                     data:my_data
                 },
                 function(data) {                   //the callback_handler
                     if (data==true) {
 
-                    $(self).parent().parent().append('<label class="forjpg"><i class="fa fa-image"></i> </label><input type="file" class="cust-prop-type-layout-file"  accept=".png,.jpg,.gif,.bmp"   name="cust-prop-type-layout-file_'+property_type+'"  id="cust-prop-type-layout-file_'+property_type+'">')
+                    $(self).parent().parent().append('<label class="forjpg"><i class="fa fa-image"></i> </label><input type="file" class="cust-prop-type-layout-file"  accept=".png,.jpg,.gif,.bmp"   name="cust-prop-type-layout-file_'+property_unit_type+'"  id="cust-prop-type-layout-file_'+property_unit_type+'">')
 
                     $(self).parent().remove();
                     }
@@ -551,24 +551,24 @@ $('.del_prop_type_layout_pdf').live("click",function(evt){
             var self = this;
 
             var curr_property_id = $(this).attr('property-id');
-            var property_type = $(this).attr('type-id');
+            var property_unit_type = $(this).attr('type-id');
             var attachment_id = $(this).attr('file-id');
             var file_type     = 'layout_pdf'
 
             var my_data = { 'property_id'    : curr_property_id,
-                            'property_type'  : property_type,
+                            'property_unit_type'  : property_unit_type,
                             'attachment_id'  : attachment_id,
                             'file_type'     : file_type
                           }
 
             $.post(ajaxurl,{   //the server_url
-                    action: "delete_property_type_layout_image_pdf_file",                 //the submit_data array
+                    action: "delete_property_unit_type_layout_image_pdf_file",                 //the submit_data array
                     data:my_data
                 },
                 function(data) {                   //the callback_handler
                     if (data==true) {
 
-                    $(self).parent().parent().append('<label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label><input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'"  accept=".pdf"  id="cust-prop-type-layout-pdf_'+property_type+'">')
+                    $(self).parent().parent().append('<label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label><input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_unit_type+'"  accept=".pdf"  id="cust-prop-type-layout-pdf_'+property_unit_type+'">')
 
                     $(self).parent().remove();
                     }
@@ -619,20 +619,20 @@ $('.delete_property_siteplan').live("click",function(evt){
 
 
 
-$('.get_property_type').live("click",function(evt){
+$('.get_property_unit_type').live("click",function(evt){
 
-    var  property_type_row ='';
+    var  property_unit_type_row ='';
 
-     if(_.isUndefined(window.property_type_options)){
+     if(_.isUndefined(window.property_unit_type_options)){
 
          $.post(ajaxurl, {        //the server_url
-            action: "get_property_type_option",                 //the submit_data array
+            action: "get_property_unit_type_option",                 //the submit_data array
         }, function(data) {
                             if(_.isArray(data)){
 
-                                window.property_type_options = data ;
-                                property_type_row =  generate_options_html();
-                                $('.cust-prop-type-table').prepend(property_type_row)
+                                window.property_unit_type_options = data ;
+                                property_unit_type_row =  generate_options_html();
+                                $('.cust-prop-type-table').prepend(property_unit_type_row)
 
 
                             }
@@ -642,9 +642,9 @@ $('.get_property_type').live("click",function(evt){
 
      }
      else{
-            property_type_row =  generate_options_html()
+            property_unit_type_row =  generate_options_html()
            // alert($('.cust-prop-type-table').length)
-             $('.cust-prop-type-table').prepend(property_type_row)
+             $('.cust-prop-type-table').prepend(property_unit_type_row)
      }
 
 
@@ -656,17 +656,17 @@ $('.get_property_type').live("click",function(evt){
 function generate_options_html(){
 
 
-    var html = "<span class='adm_property_type_row'>"
-               +" <span class='adm_property_type_span_first'> <select name='cust_prop_type_select[]' class='cust-prop-type-select'>";
+    var html = "<span class='adm_property_unit_type_row'>"
+               +" <span class='adm_property_unit_type_span_first'> <select name='cust_prop_type_select[]' class='cust-prop-type-select'>";
          html = html + '<option value="" >Select</option>';
-    _.each(window.property_type_options,function(vl,ky){
-        html = html + '<option value="'+vl.ID+'" >'+vl.property_type+'</option>';
+    _.each(window.property_unit_type_options,function(vl,ky){
+        html = html + '<option value="'+vl.ID+'" >'+vl.property_unit_type+'</option>';
 
     })
 
     html = html + '</select> </span>'
-                + '<span class="cust-prop-type-layout adm_property_type_span" ><label class="forjpg"><i class="fa fa-image"></i> </label> <input type="file"  class="cust-prop-type-layout-file"  /> </span> '
-                + '<span class="cust-prop-type-pdf adm_property_type_span" ><label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label> <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '
+                + '<span class="cust-prop-type-layout adm_property_unit_type_span" ><label class="forjpg"><i class="fa fa-image"></i> </label> <input type="file"  class="cust-prop-type-layout-file"  /> </span> '
+                + '<span class="cust-prop-type-pdf adm_property_unit_type_span" ><label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label> <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '
                 + '</span>' ;
 
 
@@ -684,12 +684,12 @@ $('.cust-prop-type-select').live("change",function(evt){
 
     var self = this;
 
-    var current_selected_property_type_id = $(self).val() ;
-    var adm_property_type_row = $(self).closest('.adm_property_type_row');
+    var current_selected_property_unit_type_id = $(self).val() ;
+    var adm_property_unit_type_row = $(self).closest('.adm_property_unit_type_row');
 
-    if(current_selected_property_type_id ==''){
-        adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','').attr('id','');
-        adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','').attr('id','');
+    if(current_selected_property_unit_type_id ==''){
+        adm_property_unit_type_row.find('.cust-prop-type-layout-file').attr('name','').attr('id','');
+        adm_property_unit_type_row.find('.cust-prop-type-layout-pdf').attr('name','').attr('id','');
     }
 
     var selected_prop_types = [];
@@ -699,7 +699,7 @@ $('.cust-prop-type-select').live("change",function(evt){
     $('.cust-prop-type-select').each(function(){
 
         selected_prop_types[cnt_selected_prop_types] = $(this).val();
-            if(current_selected_property_type_id == $(this).val()){
+            if(current_selected_property_unit_type_id == $(this).val()){
                 selected_prop_type_count = selected_prop_type_count + 1;
             }
 
@@ -707,29 +707,29 @@ $('.cust-prop-type-select').live("change",function(evt){
     });
 
     if(selected_prop_type_count>=2){
-        alert('Pleasechoose other Property Type, as this Property Type is already Selected.');
+        alert('Please Choose other Property Unit Type, as this Property Unit Type is already Selected.');
         $(self).val('')
-        adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','').attr('id','');
-        adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','').attr('id','');
+        adm_property_unit_type_row.find('.cust-prop-type-layout-file').attr('name','').attr('id','');
+        adm_property_unit_type_row.find('.cust-prop-type-layout-pdf').attr('name','').attr('id','');
     }
     else{
 
 
-            if(adm_property_type_row.find('.cust-prop-type-layout-file').length>0){
-                adm_property_type_row.find('.cust-prop-type-layout-file').attr('name','cust-prop-type-layout-file_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-file_'+current_selected_property_type_id);
+            if(adm_property_unit_type_row.find('.cust-prop-type-layout-file').length>0){
+                adm_property_unit_type_row.find('.cust-prop-type-layout-file').attr('name','cust-prop-type-layout-file_'+current_selected_property_unit_type_id).attr('id','cust-prop-type-layout-file_'+current_selected_property_unit_type_id);
             }
             else{
-                adm_property_type_row.find('.cust-prop-type-layout').append('<input type="file"  class="cust-prop-type-layout-file" accept=".png,.jpg,.gif,.bmp" name="cust-prop-type-layout-file_'+current_selected_property_type_id+'"  id="cust-prop-type-layout-file_'+current_selected_property_type_id+'"  />')
+                adm_property_unit_type_row.find('.cust-prop-type-layout').append('<input type="file"  class="cust-prop-type-layout-file" accept=".png,.jpg,.gif,.bmp" name="cust-prop-type-layout-file_'+current_selected_property_unit_type_id+'"  id="cust-prop-type-layout-file_'+current_selected_property_unit_type_id+'"  />')
 
             }
 
 
 
-            if(adm_property_type_row.find('.cust-prop-type-layout-pdf').length>0){
-                adm_property_type_row.find('.cust-prop-type-layout-pdf').attr('name','cust-prop-type-layout-pdf_'+current_selected_property_type_id).attr('id','cust-prop-type-layout-pdf'+current_selected_property_type_id);
+            if(adm_property_unit_type_row.find('.cust-prop-type-layout-pdf').length>0){
+                adm_property_unit_type_row.find('.cust-prop-type-layout-pdf').attr('name','cust-prop-type-layout-pdf_'+current_selected_property_unit_type_id).attr('id','cust-prop-type-layout-pdf'+current_selected_property_unit_type_id);
             }
             else{
-                adm_property_type_row.find('.cust-prop-type-pdf').append('<input type="file"  class="cust-prop-type-layout-pdf" accept=".pdf" name="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  id="cust-prop-type-layout-pdf_'+current_selected_property_type_id+'"  />')
+                adm_property_unit_type_row.find('.cust-prop-type-pdf').append('<input type="file"  class="cust-prop-type-layout-pdf" accept=".pdf" name="cust-prop-type-layout-pdf_'+current_selected_property_unit_type_id+'"  id="cust-prop-type-layout-pdf_'+current_selected_property_unit_type_id+'"  />')
             }
 
 
@@ -740,7 +740,7 @@ $('.cust-prop-type-select').live("change",function(evt){
 
 
 
-$('.del_property_type_row').live("click",function(evt){
+$('.del_property_unit_type_row').live("click",function(evt){
 
 
 
@@ -754,12 +754,12 @@ $('.del_property_type_row').live("click",function(evt){
             var self = this;
 
             var curr_property_id = $(this).attr('property-id');
-            var property_type = $(this).attr('type-id');
+            var property_unit_type = $(this).attr('type-id');
             var attachment_id = $(this).attr('file-id');
             var file_type     = 'layout_pdf'
 
             var my_data = { 'property_id'    : curr_property_id,
-                            'property_type'  : property_type,
+                            'property_unit_type'  : property_unit_type,
                             'attachment_id'  : attachment_id,
                             'file_type'     : file_type
                           }
@@ -769,23 +769,23 @@ $('.del_property_type_row').live("click",function(evt){
                           console.log(my_data)
 
             $.post(ajaxurl,{   //the server_url
-                    action: "delete_property_type_row",                 //the submit_data array
+                    action: "delete_property_unit_type_row",                 //the submit_data array
                     data:my_data
                 },
                 function(data) {                   //the callback_handler
                     if (data==true) {
 
-                   // $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_type+'" id="cust-prop-type-layout-pdf_'+property_type+'">')
+                   // $(self).parent().parent().append('<input type="file" class="cust-prop-type-layout-pdf" name="cust-prop-type-layout-pdf_'+property_unit_type+'" id="cust-prop-type-layout-pdf_'+property_unit_type+'">')
 
                   //  $(self).parent().remove();
-                  $(self).closest('.adm_property_type_row').remove();
+                  $(self).closest('.adm_property_unit_type_row').remove();
                     }
 
                 });
 
 
 
-    $(self).closest('.adm_property_type_row').remove();
+    $(self).closest('.adm_property_unit_type_row').remove();
 })
 
 

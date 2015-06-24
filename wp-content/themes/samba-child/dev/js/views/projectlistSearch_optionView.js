@@ -190,7 +190,7 @@
                                    search_options['property_locaity'] =  prop_locality;
 
                  if(prop_type!='')
-                                   search_options['property_type'] =  prop_type;
+                                   search_options['property_unit_type'] =  prop_type;
 
 
 
@@ -202,12 +202,12 @@
                 /*var search_collections = res_collection.where({'property_status':prop_status,
                                         'property_city':prop_city,
                                         'property_locaity': prop_locality,
-                                        'property_type':prop_type
+                                        'property_unit_type':prop_type
                                           }) */
 
                 var search_collections = res_collection.models;
 
-                delete search_options['property_type'] ;
+                delete search_options['property_unit_type'] ;
 
                 if( (prop_status!='') || (prop_city!='') || (prop_locality!='')  )
                     var search_collections = res_collection.where(search_options )
@@ -226,7 +226,7 @@
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
 
-                       var exists_by_type = _.where(vl_searchres.get('property_type'),{type:prop_type})
+                       var exists_by_type = _.where(vl_searchres.get('property_unit_type'),{type:prop_type})
                       if(exists_by_type.length>0){
                         sel_search_collections[cnt_sel_search_collection] = vl_searchres;
 
@@ -372,7 +372,7 @@
 
                       /*       var popup_content = "<table cellpadding='0' cellspacing='0' border='0' ><tr><td>"+
                        "<img src='"+properties[i].get('featured_image')+"' width='60' /></td><td><b>"+properties[i].get('post_title')
-                       +" </b> |  "+properties[i].get('property_locaity')+" "+properties[i].get('property_city')+" <br/>"+properties[i].get('property_type')+"</td></tr>";
+                       +" </b> |  "+properties[i].get('property_locaity')+" "+properties[i].get('property_city')+" <br/>"+properties[i].get('property_unit_type')+"</td></tr>";
 
                         */
 
@@ -432,7 +432,7 @@
                                             '<p class="map_excerpt">';
 
                       var individial_proptype_cnt  = 0;
-                                            _.each(properties[i].get('property_type'),function(proptype_vl1,proptype_ky1){
+                                            _.each(properties[i].get('property_unit_type'),function(proptype_vl1,proptype_ky1){
                                                if(individial_proptype_cnt>0)
                                                 popup_content+= ', ';
                                               popup_content+= proptype_vl1.type_name;
@@ -559,7 +559,7 @@
                                    search_options['property_locaity'] =  prop_locality;
 
                  if(prop_type!='')
-                                   search_options['property_type'] =  prop_type;
+                                   search_options['property_unit_type'] =  prop_type;
 
 
 
@@ -571,13 +571,13 @@
                 /*var search_collections = res_collection.where({'property_status':prop_status,
                                         'property_city':prop_city,
                                         'property_locaity': prop_locality,
-                                        'property_type':prop_type
+                                        'property_unit_type':prop_type
                                           }) */
 
                 var search_collections = res_collection.models;
 
 
-                delete search_options['property_type'] ;
+                delete search_options['property_unit_type'] ;
 
                 if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
                     var search_collections = res_collection.where(search_options )
@@ -593,7 +593,7 @@
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
 
-                       var exists_by_type = _.where(vl_searchres.get('property_type'),{type:prop_type})
+                       var exists_by_type = _.where(vl_searchres.get('property_unit_type'),{type:prop_type})
                       if(exists_by_type.length>0){
                         sel_search_collections[cnt_sel_search_collection] = vl_searchres;
 
