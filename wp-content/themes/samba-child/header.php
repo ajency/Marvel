@@ -88,15 +88,18 @@
                 <div class="nav-wrap">
                       <ul class="sf-menu sf-vertical" id="residentialpropertymenu">
                         <li class="menu-item">
-                          <a href="#" class="fade_anchor_menu" style="color: rgb(255, 255, 255);">
-                            <div class="prk_menu_square" style="width: 14px; background-color: rgb(183, 183, 183);"></div>
-                            <?php if(get_post_type(get_the_ID()) == 'residential-property'){ ?>
-                            &lt; Residential
-                            <?php }else if(get_post_type(get_the_ID()) == 'commercial-property'){ ?>
-                            &lt; Commercial
-                            <?php } ?>
-                          </a>
-                        </li>
+                         <?php if(get_post_type(get_the_ID()) == 'residential-property'){ ?>
+                         <a href="<?php echo get_site_url() ?>/residential-properties" class="fade_anchor_menu" style="color: rgb(255, 255, 255);">
+                          <div class="prk_menu_square" style="width: 14px; background-color: rgb(183, 183, 183);"></div>
+                          &lt; Residential                            
+                        </a>
+                        <?php }else if(get_post_type(get_the_ID()) == 'commercial-property'){ ?>
+                        <a href="<?php echo get_site_url() ?>/commercial-properties" class="fade_anchor_menu" style="color: rgb(255, 255, 255);">
+                          <div class="prk_menu_square" style="width: 14px; background-color: rgb(183, 183, 183);"></div>
+                          &lt; Commercial                            
+                        </a>
+                        <?php } ?>
+                      </li>
                         <li class="div"></li>
                         <li class="title">
                           <h4><?php echo get_the_title(); ?></h4>
