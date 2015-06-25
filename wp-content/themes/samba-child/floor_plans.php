@@ -52,6 +52,7 @@ if ($childs=='weirdostf')
 $show_sidebar=false;
 ?>
 
+<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_directory_uri(); ?>/tabslider/styles/jquery.sliderTabs.min.css">
 <style type="text/css">
     #headings_wrap {  /* display: none; */margin-bottom: 45px;}
     #main {margin-top: 0;}
@@ -88,11 +89,14 @@ $show_sidebar=false;
                     </div> -->
 
                     <div class="wpb_tabs wpb_content_element floorplans_tab" data-interval="0">
-                        <div class="wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix">
+                        <div class="tabby wpb_wrapper wpb_ tour_tabs_wrapper u i-tabs vc_clearfix">
                             <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix">
                                 <li><a href="#tab-siteplan" class="standout">SITE PLAN</a></li>
                                 <li><a href="#tab-3bhk">4.5 BHK</a></li>
-                                <!-- <li><a href="#tab-3_5bhk">3.5 BHK</a></li> -->
+                                <li><a href="#tab-3_5bhk">3.5 BHK</a></li>
+                                <li><a href="#tab-4_5bhk">4.5 BHK</a></li>
+                                <li><a href="#tab-5_5bhk">5.5 BHK</a></li>
+                                <li><a href="#tab-6_5bhk">6.5 BHK</a></li>
                             </ul>
 
                             <div id="tab-siteplan" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
@@ -114,7 +118,6 @@ $show_sidebar=false;
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div id="tab-3bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
@@ -520,7 +523,7 @@ $show_sidebar=false;
                                 </div>
                             </div>
 
-                            <!-- <div id="tab-3_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                            <div id="tab-3_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
@@ -757,7 +760,58 @@ $show_sidebar=false;
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
+
+                            <div id="tab-4_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <p style="text-align: center;">
+                                            Typical floor plan of a 3 BHK &#8211; 3700 sq. ft to 5000 sq. ft.
+                                            <a class="wpb_button_a download_prj" title="Download" href="#">
+                                                <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
+                                            </a>
+                                        </p>
+                                        <p class="btncol">
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_2"><span class="wpb_button  wpb_btn-inverse tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_2"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tab-5_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <p style="text-align: center;">
+                                            Typical floor plan of a 3 BHK &#8211; 3700 sq. ft to 5000 sq. ft.
+                                            <a class="wpb_button_a download_prj" title="Download" href="#">
+                                                <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
+                                            </a>
+                                        </p>
+                                        <p class="btncol">
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_2"><span class="wpb_button  wpb_btn-inverse tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_2"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tab-6_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                                <div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <p style="text-align: center;">
+                                            Typical floor plan of a 3 BHK &#8211; 3700 sq. ft to 5000 sq. ft.
+                                            <a class="wpb_button_a download_prj" title="Download" href="#">
+                                                <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
+                                            </a>
+                                        </p>
+                                        <p class="btncol">
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_2"><span class="wpb_button  wpb_btn-inverse tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_2"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -768,6 +822,7 @@ $show_sidebar=false;
                         Enquire Now
                     </a>
                     <div class="share_indi"></div>
+
 
                 </div>
             </div>
@@ -817,3 +872,13 @@ $show_sidebar=false;
 
 
     <?php get_footer(); ?>
+
+    <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/tabslider/jquery.sliderTabs.min.js"></script>
+    <script type="text/javascript">
+        var slider = jQuery("div.tabby").sliderTabs({
+          mouseheel: false,
+          //panelArrows: false,
+          width: null,
+          tabHeight: 43
+        });
+    </script>
