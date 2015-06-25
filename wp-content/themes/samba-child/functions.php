@@ -239,6 +239,11 @@ function marvel_scripts_styles(){
     // if(is_page_template()== 'project_list_new.php'){
 
      	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
+      wp_enqueue_script('jquery_easing', get_stylesheet_directory_uri(). '/jquery.easing.1.3.js', array('jquery'), false, true);
+      wp_enqueue_script( 'slider',  get_stylesheet_directory_uri() . '/slider.js', array('jquery'), false, true);
+      wp_enqueue_script( 'collapsible',  get_stylesheet_directory_uri() . '/collapsible.js', array('jquery'), false, true);
+      
+      
 
 /*
         wp_enqueue_script('backbone', get_template_directory_uri() . '/dev/js/lib/backbone.js', array('jquery'), false, true);
