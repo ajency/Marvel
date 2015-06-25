@@ -323,7 +323,8 @@ color: rgb(255, 255, 255);
 }
 
 .wpb_column.vc_column_container, ul.wpb_thumbnails-fluid>li, .last_toggle_el_margin, .wpb_button {
-	margin-bottom: 40px;
+	/*margin-bottom: 40px;*/
+	margin-bottom: 28px;
 }
 
 #footer_in .widget {
@@ -476,11 +477,12 @@ color: rgb(255, 255, 255);
     .child-footer .widget-4 {display: table-footer-group;}
     .child-footer .widget-5 {display: table-header-group;}
     #footer_in .widget.pirenko-social-widget {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         width: 100%;
     }
     .widget_nav_menu:after {
         content: '';
+        display: block;
         width: 300px;
         height: 1px;
         margin: 15px auto 0 auto;

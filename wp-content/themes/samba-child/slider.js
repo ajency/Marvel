@@ -323,18 +323,23 @@ function checkIfInView(element){
 
 
     function setEqualHeight(obj) {
-        obj.height('auto');
-        var serhe = obj.map(function() {
-            return $(this).height();
-        }).get();
-        var maxse = Math.max.apply(null, serhe);
-        obj.height(maxse);
+        $width = window.innerWidth ? window.innerWidth : $(window).width();
+        if ($width > 769) {
+            obj.height('auto');
+            var serhe = obj.map(function() {
+                return $(this).height();
+            }).get();
+            var maxse = Math.max.apply(null, serhe);
+            obj.height(maxse);
+        } else {
+            obj.height('auto');
+        }
     }
 
     $(window).load(function() {
         $('.child-footer').fadeIn('slow');
 
-        //equal height services column
+        //equal height amenities
         setEqualHeight($('.le_p_m .wpb_wrapper .prk_service'));
 
         //equal height specifications
@@ -348,7 +353,7 @@ function checkIfInView(element){
 
     });
     $(window).resize(function() {
-        //equal height services column
+        //equal height amenities
         setEqualHeight($('.le_p_m .wpb_wrapper .prk_service'));
 
         //equal height specifications
