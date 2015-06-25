@@ -1747,6 +1747,7 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tab {
   text-align: center;
+  width: 100% !important;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tab > .wpb_text_column,
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tab .download_prj {
@@ -2487,6 +2488,18 @@ h6 {
 @media screen and (max-width: 769px) {
   .single-residential-property .vc_sep_dashed h4:before {
     display: none;
+  }
+}
+ul.ui-tabs-nav {
+  height: 43px;
+  overflow: hidden;
+}
+.head_show_in_mob {
+  display: none;
+}
+@media screen and (max-width: 769px) {
+  .head_show_in_mob {
+    display: block;
   }
 }
 .compare .bd_headings_text_shadow {

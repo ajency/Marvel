@@ -336,6 +336,7 @@
     }
         .wpb_tab  {
             text-align: center;
+            width: 100% !important;
             & > .wpb_text_column, .download_prj {
                 display: inline-block;
             }
@@ -1053,4 +1054,20 @@
 }
 @media screen and (max-width: 769px) {
     .single-residential-property .vc_sep_dashed h4:before {display: none;}
+}
+
+ul.ui-tabs-nav {
+    // width: 100% !important;
+    height: 43px;
+    overflow: hidden;
+}
+
+
+
+//resposnive tabs and such
+.head_show_in_mob {
+    display: none;
+    @media screen and (max-width: 769px) {
+        display: block;
+    }
 }
