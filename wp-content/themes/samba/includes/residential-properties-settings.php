@@ -51,7 +51,7 @@ class My_Example_List_Table extends WP_List_Table {
     switch( $column_name ) {
         case 'property_unit_type':
 						$actions = array(
-						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type="'.$item['material_type'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
 						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 						        );
 
@@ -62,6 +62,11 @@ class My_Example_List_Table extends WP_List_Table {
         case 'number_bedrooms':
         //case 'action':
             return $item[ $column_name ];
+
+        case 'material_type':
+        //case 'action':
+            return $item['material_type'];
+
         case 'property_type':
 
         $display_property_type = ' - ';
@@ -88,8 +93,10 @@ class My_Example_List_Table extends WP_List_Table {
 function get_columns(){
         $columns = array(
             'property_unit_type' => __( 'Property Unit Type', 'mylisttable' ),
+            'material_type'    => __( 'Material Type', 'mylisttable' ),
             'number_bedrooms'    => __( 'No Of Bedrooms', 'mylisttable' ),
             'property_type'    => __( 'Property Type', 'mylisttable' )
+
             //'action'      => __( 'Action', 'mylisttable' )
         );
          return $columns;
@@ -192,8 +199,13 @@ function get_sortable_columns() {
 
 							<input type="hidden" name="edit_id" id="edit_id"  value="" />
 							<div class="form-field form-required term-name-wrap">
-								<label for="tag-name">Type</label>
+								<label for="tag-name">Unit Type</label>
 								<input name="new-property-unit-type" id="new-property-unit-type" type="text" value="" size="40" aria-required="true">
+								<p><!-- The name is how it appears on your site. --></p>
+							</div>
+							<div class="form-field form-required term-name-wrap">
+								<label for="tag-name">Material Type</label>
+								<input name="material-type" id="material-type" type="text" value="" size="40" aria-required="true">
 								<p><!-- The name is how it appears on your site. --></p>
 							</div>
 							<div class="form-field term-slug-wrap">
@@ -253,6 +265,7 @@ function save_property_unit_type(){
 	
 	$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
 	$property_unit_type = $_REQUEST['data']['property_unit_type'];
+	$material_type = $_REQUEST['data']['material_type'];
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
 	$new_prop_type 		= $_REQUEST['data']['prop_type_id'];
 
@@ -260,6 +273,7 @@ function save_property_unit_type(){
 
 	$new_property_unit_type['number_bedrooms'] 		= $num_bedrooms;
 	$new_property_unit_type['property_unit_type'] 	= $property_unit_type;
+	$new_property_unit_type['material_type'] 	= $material_type;
 	$new_property_unit_type['property_type_id'] 	= $new_prop_type;
 
 	if($property_edit_id!=''){
@@ -492,14 +506,18 @@ class My_Example_List_Table extends WP_List_Table {
 
   function column_default( $item, $column_name ) {
     switch( $column_name ) {
-        case 'property_type':
-						$actions = array(
+    	case 'property_type':
+    	$actions = array(
 						            //'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"  bedrooms="'.$item['number_bedrooms'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-							'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"   >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"   >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
-						        );
+    		'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"  data-material="'.$item['material_group'].'"  >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+    		'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_type'].'"   >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+    		);
 
-						  return sprintf('%1$s %2$s', "<span class='spn_property_type'>".$item['property_type']."</span>", $this->row_actions($actions) );
+    	return sprintf('%1$s %2$s', "<span class='spn_property_type'>".$item['property_type']."</span>", $this->row_actions($actions) );
+
+
+    	case 'material_group':
+    	return $item['material_group'];
 
 
 
@@ -514,6 +532,7 @@ class My_Example_List_Table extends WP_List_Table {
 function get_columns(){
         $columns = array(
             'property_type' => __( 'Property Type', 'mylisttable' ),
+            'material_group' => __( 'Material Group', 'mylisttable' ),
             //'number_bedrooms'    => __( 'No Of Bedrooms', 'mylisttable' )
             //'action'      => __( 'Action', 'mylisttable' )
         );
@@ -562,6 +581,7 @@ function get_data(){
 function get_sortable_columns() {
   $sortable_columns = array(
     'property_type'  => array('property_type',true),
+    'material_group'  => array('material_group',true),
    // 'number_bedrooms' => array('number_bedrooms',false),
     // 'action'   => array('actoin',false)
   );
@@ -624,7 +644,14 @@ function get_property_types(){
 								<label for="tag-name">Type</label>
 								<input name="new-property-type" id="new-property-type" type="text" value="" size="40" aria-required="true">
 								<p><!-- The name is how it appears on your site. --></p>
+							</div>
+							<div class="form-field form-required term-name-wrap">
+								<label for="tag-name">Material Group</label>
+								<input name="material-group" id="material-group" type="text" value="" size="40" aria-required="true">
+								<p><!-- The name is how it appears on your site. --></p>
 							</div>';
+
+
 							/* <div class="form-field term-slug-wrap">
 								<label for="tag-slug">Number Of Bedrooms</label>
 								<input name="new-property-bedrooms" id="new-property-bedrooms" class="allownumericwithdecimal"  type="text" value="" size="40" >
@@ -677,11 +704,14 @@ function save_property_type(){
 	//$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
 	$property_type 		= $_REQUEST['data']['property_type'];
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
+	$material_group 		= $_REQUEST['data']['material_group'];
+	
 
 	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
 
 	//$new_property_type['number_bedrooms'] 	= $num_bedrooms;
 	$new_property_type['property_type'] 	= $property_type;
+	$new_property_type['material_group'] 	= $material_group;
 
 
 	if($property_edit_id!=''){
