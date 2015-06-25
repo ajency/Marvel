@@ -507,7 +507,7 @@ jQuery('.save_property_type').live("click",function(){
                          event.preventDefault();
                  } // prevent if not number/dot
 
-                if(event.which == 46  && $(this).val().indexOf('.') != -1) {
+                if(event.which == 46  && jQuery(this).val().indexOf('.') != -1) {
                         event.preventDefault();
                 } // prevent if already dot
 
