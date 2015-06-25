@@ -1026,32 +1026,32 @@
 
 
 //tablet classes
-.vc_custom_heading.r_collapsible {
-    &.r_toggle {
-        h1, h2, h3, h4, h5, h6 {
-            text-align: left !important;
-            background-color: #fff;
-            color: #444444;
-            border-bottom: 1px solid #d1d1d1;
-            cursor: pointer;
-            &:after {
-                content: '+';
-                float: right;
-            }
-        }
-    }
-    h1, h2, h3, h4, h5, h6 {
-        text-align: left !important;
-        background-color: #939393;
-        color: #fff;
-        // padding-bottom: 15px;
-        padding: 5px 10px;
-        &:after {
-            content: '-';
-            float: right;
-        }
-    }
-}
+// .vc_custom_heading.r_collapsible {
+//     &.r_toggle {
+//         h1, h2, h3, h4, h5, h6 {
+//             text-align: left !important;
+//             background-color: #fff;
+//             color: #444444;
+//             border-bottom: 1px solid #d1d1d1;
+//             cursor: pointer;
+//             &:after {
+//                 content: '+';
+//                 float: right;
+//             }
+//         }
+//     }
+//     h1, h2, h3, h4, h5, h6 {
+//         text-align: left !important;
+//         background-color: #939393;
+//         color: #fff;
+//         // padding-bottom: 15px;
+//         padding: 5px 10px;
+//         &:after {
+//             content: '-';
+//             float: right;
+//         }
+//     }
+// }
 @media screen and (max-width: 769px) {
     .single-residential-property .vc_sep_dashed h4:before {display: none;}
 }
@@ -1069,5 +1069,48 @@ ul.ui-tabs-nav {
     display: none;
     @media screen and (max-width: 769px) {
         display: block;
+    }
+}
+//hide seperators in mobile
+.single-residential-property .smallline, .single-commercial-property .smallline {
+    @media screen and (max-width: 769px) {
+        display: none;
+    }
+}
+.col_head_loc {
+    @media screen and (max-width: 769px) {
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left !important;
+            background-color: #fff;
+            color: #444444;
+            border-bottom: 1px solid #d1d1d1;
+            padding: 5px 10px;
+            cursor: pointer;
+            &:after {
+                content: '+';
+                float: right;
+            }
+        }
+        &.toggle_open {
+            h1, h2, h3, h4, h5, h6 {
+                text-align: left !important;
+                background-color: #939393;
+                color: #fff;
+                // padding-bottom: 15px;
+                padding: 5px 10px;
+                &:after {
+                    content: '-';
+                    float: right;
+                }
+            }
+        }
+    } //media 769 ends
+}
+.col_cont_loc {
+    @media screen and (max-width: 769px) {
+        display: none;
+        &.visi {
+            display: block;
+        }
     }
 }
