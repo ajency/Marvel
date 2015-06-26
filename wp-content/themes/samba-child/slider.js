@@ -156,19 +156,27 @@ function checkIfInView(element){
             if ($('body').hasClass('home')) {
                 placesearchbar();
             }
-            if ($('div').hasClass('owl-carousel')) {
+            if ($('div').hasClass('owl-carousel') && !($('body').hasClass('single-residential-property')) && !($('body').hasClass('single-commercial-property'))) {
+                console.log($('div').hasClass('owl-carousel') && !($('body').hasClass('single-residential-property')));
+                setInterval(function() {
+                    $('.owl-carousel .item img').each(function() {
+                        //resizeimgs($(this).parent(), $(this));
+                    });
+                }, 0.5);
+                // $(document).click(function() {
+                //     $('.owl-carousel .item img').each(function() {
+                //         resizeimgs($(this).parent(), $(this));
+                //     });
+                // });
+            } else if (($('body').hasClass('single-residential-property')) || ($('body').hasClass('single-commercial-property'))) {
+                console.log($('body').hasClass('single-residential-property'));
                 $('.owl-carousel .item img').each(function() {
                     resizeimgs($(this).parent(), $(this));
-                });
-                $(document).click(function() {
-                    $('.owl-carousel .item img').each(function() {
-                        resizeimgs($(this).parent(), $(this));
-                    });
                 });
             }
         });
         $(window).resize(function() {
-            if ($('div').hasClass('owl-carousel')) {
+            if (($('body').hasClass('single-residential-property')) || ($('body').hasClass('single-commercial-property'))) {
                 $('.owl-carousel .item img').each(function() {
                     resizeimgs($(this).parent(), $(this));
                 });
@@ -196,13 +204,23 @@ function checkIfInView(element){
         if ($('div').hasClass('gallery')) {
             $('.gallery a.thumbnail').addClass('poppup'); //was image-popup-no-margins
         }
-        if ($('div').hasClass('owl-carousel')) {
+        if ($('div').hasClass('owl-carousel') && !($('div').hasClass('nothis'))) {
             $('.owl-carousel .owl-item .item a').each(function() {
                 $(this).attr('href', $(this).find('img').attr('src'));
             });
             $('.owl-carousel .owl-item .item a').addClass('poppup'); //was image-popup-no-margins
             $('.owl-carousel .owl-controls .owl-buttons .owl-prev').html('<i class="fa fa-chevron-left"></i>');
             $('.owl-carousel .owl-controls .owl-buttons .owl-next').html('<i class="fa fa-chevron-right"></i>');
+        }
+        if ($('div').hasClass('nothis')) {
+            $('.owl-carousel .owl-item .item a').addClass('poppup2'); //was image-popup-no-margins
+            $('.owl-carousel .owl-controls .owl-buttons .owl-prev').html('<i class="fa fa-chevron-left"></i>');
+            $('.owl-carousel .owl-controls .owl-buttons .owl-next').html('<i class="fa fa-chevron-right"></i>');
+            $('.owl-wrapper').magnificPopup({
+                delegate: 'a',
+                type: 'iframe',
+                mainClass: 'mfp-fade'
+            });
         }
         if ($('div').hasClass('cont_sp')) {
             $(document).on('click', '#ui-id-3', function(e) {
@@ -290,30 +308,33 @@ function checkIfInView(element){
             $('.gallery .owl-controls .owl-buttons .owl-next').html('<i class="fa fa-chevron-right"></i>');
         }
 
+        if (!($('div').hasClass('nothis'))) {
 
-        $('.owl-wrapper').each(function() {
-            $(this).magnificPopup({
-              delegate: 'a',
-              type: 'image',
-              tLoading: 'Loading image #%curr%...',
-              mainClass: 'mfp-img-mobile',
-              gallery: {
-                enabled: true,
-                navigateByImgClick: true,
-                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-              },
-              image: {
-                tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-                titleSrc: function(item) {
-                  return item.el.attr('title') + '<small>Marvel</small>';
-                }
-              },
+            $('.owl-wrapper').each(function() {
+                $(this).magnificPopup({
+                  delegate: 'a',
+                  type: 'image',
+                  tLoading: 'Loading image #%curr%...',
+                  mainClass: 'mfp-img-mobile',
+                  gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                  },
+                  image: {
+                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                    titleSrc: function(item) {
+                      return item.el.attr('title') + '<small>Marvel</small>';
+                    }
+                  },
 
-              midClick: true,
-              removalDelay: 300,
-              mainClass: 'my-mfp-zoom-in'
+                  midClick: true,
+                  removalDelay: 300,
+                  mainClass: 'my-mfp-zoom-in'
+                });
             });
-        });
+
+        }
 
         //set min-height for project listings
         if($('div').hasClass('proj_list')) {
