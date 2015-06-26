@@ -78,19 +78,25 @@ function get_res_property_meta_values($property_id){
     $property_meta_options = get_search_options();
 
     $property_city_name = '';
-    foreach ($property_meta_options['cities']['cities'] as $option_city ) {
-      if($option_city['ID'] ==$property_cities){
-        $property_city_name = $option_city['name'];
+    if(isset($property_meta_options['cities']['cities'])){
+      foreach ($property_meta_options['cities']['cities'] as $option_city ) {
+        if($option_city['ID'] ==$property_cities){
+          $property_city_name = $option_city['name'];
+        }
       }
-    }
+  }
 
 
      $property_locality_name = '';
-    foreach ($property_meta_options['locality']['localities'] as $option_locality ) {
+     if(isset($property_meta_options['locality']['localities'])){
+
+      foreach ($property_meta_options['locality']['localities'] as $option_locality ) {
       if($option_locality['ID'] == $property_locality){
         $property_locality_name = $option_locality['name'];
       }
-    }
+      }
+     }
+    
 
 
     if(is_array($property_unit_type)){
