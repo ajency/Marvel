@@ -702,6 +702,8 @@ function generate_options_html(){
     html = html + '</select> </span>'
                 + '<span class="cust-prop-type-layout adm_property_unit_type_span" ><label class="forjpg"><i class="fa fa-image"></i> </label> <input type="file"  class="cust-prop-type-layout-file"  /> </span> '
                 + '<span class="cust-prop-type-pdf adm_property_unit_type_span" ><label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label> <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '
+                + '<label class="">Min. area </label> <input type="text" class="cust-prop-type-unit_type_minarea" />'
+                + '<label class="">Max. area </label> <input type="text" class="cust-prop-type-unit_type_maxarea" />'
                 + '</span>' ;
 
 
@@ -723,8 +725,11 @@ $('.cust-prop-type-select').live("change",function(evt){
     var adm_property_unit_type_row = $(self).closest('.adm_property_unit_type_row');
 
     if(current_selected_property_unit_type_id ==''){
+
         adm_property_unit_type_row.find('.cust-prop-type-layout-file').attr('name','').attr('id','');
         adm_property_unit_type_row.find('.cust-prop-type-layout-pdf').attr('name','').attr('id','');
+        adm_property_unit_type_row.find('.cust-prop-type-unit_type_minarea').attr('name','').attr('id','');
+        adm_property_unit_type_row.find('.cust-prop-type-unit_type_maxarea').attr('name','').attr('id','');
     }
 
     var selected_prop_types = [];
@@ -766,6 +771,10 @@ $('.cust-prop-type-select').live("change",function(evt){
             else{
                 adm_property_unit_type_row.find('.cust-prop-type-pdf').append('<input type="file"  class="cust-prop-type-layout-pdf" accept=".pdf" name="cust-prop-type-layout-pdf_'+current_selected_property_unit_type_id+'"  id="cust-prop-type-layout-pdf_'+current_selected_property_unit_type_id+'"  />')
             }
+
+
+            adm_property_unit_type_row.find('.cust-prop-type-unit_type_minarea').attr('name','cust-prop-type-unit_type_minarea_'+current_selected_property_unit_type_id).attr('id','cust-prop-type-unit_type_minarea_'+current_selected_property_unit_type_id);
+            adm_property_unit_type_row.find('.cust-prop-type-unit_type_maxarea').attr('name','cust-prop-type-unit_type_maxarea_'+current_selected_property_unit_type_id).attr('id','cust-prop-type-unit_type_maxarea_'+current_selected_property_unit_type_id);
 
 
     }
