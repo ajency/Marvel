@@ -69,22 +69,30 @@ jQuery(document).ready(function($) {
             action: "save_custom_field_option",                 //the submit_data array
             data:my_data
         }, function(data) {                   //the callback_handler
-            if (data) {
+              
 
-                if(data==true){
+                if(data.success==true){
                     switch(Html_input_type){
 
                         case 'select'       :
                         case 'select-one'   :
-                                                custom_element.append("<option value='"+new_field_value+"'>"+new_field_value+"</option>")
+                                                //custom_element.append("<option value='"+new_field_value+"'>"+new_field_value+"</option>")
+                                                 if(!_.isUndefined(data.option_data))
+                                                    var new_option_value = data.option_data.ID;
+                                                else
+                                                    var new_option_value = data.option_name;
+
+                                                custom_element.append("<option value='"+new_option_value+"'>"+new_field_value+"</option>")
                                                 $(self).closest('.row').find('.additional_option').val('');
                                                 break;
                         case 'text'         :
 
 
-                                            var new_element_html = '<span attr-field-val ="'+new_field_value+'" > <br/> &nbsp; '+new_field_value+'  <input type="text" value="" attr-name="'+attr_name+'" attr-value="'+new_field_value+'"     name="'+attr_name+'['+new_field_value+']"   class="postbox custom_input_field"  /> </span>';
+                                            //var new_element_html = '<span attr-field-val ="'+new_field_value+'" > <br/> &nbsp; '+new_field_value+'  <input type="text" value="" attr-name="'+attr_name+'" attr-value="'+new_field_value+'"     name="'+attr_name+'['+new_field_value+']"   class="postbox custom_input_field"  /> </span>';
+                                            var new_element_html = '<div class="admin_input adm_small"><span attr-field-val ="'+new_field_value+'"  class="row"> <br/> &nbsp; '+new_field_value+'  <input type="text" value="" attr-name="'+attr_name+'" attr-value="'+new_field_value+'"     name="'+attr_name+'['+new_field_value+']"   class="postbox custom_input_field"  /> <span class="kms_handle"> Kms</span></span></div>';
 
-                                            $(new_element_html).insertAfter(custom_element.last().closest('span'));
+                                            //$(new_element_html).insertAfter(custom_element.last().closest('span'));
+                                            $(new_element_html).insertAfter(custom_element.last().closest('.admin_input'));
                                             $(self).closest('.row').find('.additional_option').val('');
                                             break;
 
@@ -107,13 +115,14 @@ jQuery(document).ready(function($) {
 
                     setTimeout(function(){
 
-                        $(self).parent().html('');
+                         //$(self).parent().html('');
+                       $(self).parent().remove();
 
                     },3000)
 
                 }
                 $("#myother_field").html(data);
-            }
+             
         });
     })
 
@@ -123,6 +132,10 @@ jQuery(document).ready(function($) {
 
             $(this).closest('.row').append(span_additional_input_option_box);
         }
+        else{
+             $(this).closest('.row').find('.span_additional_option').show()
+        }
+ 
 
     }).addClass('preview button button-large');
 
@@ -148,6 +161,8 @@ jQuery(document).ready(function($) {
 
 
        //commented on 18may2015 6am $(this).closest('.row').find('.edit_options_area').show();
+       var selected_city = $('#custom_property-city').val();
+
         $(this).parent().find('.edit_options_area').show();
         var loader_html = '<div id="np">'+
                            '<div class="spinner">'+
@@ -187,35 +202,47 @@ jQuery(document).ready(function($) {
                                             if(field_type=='property-city'){
 
                                                 var i=0;
-                                                _.each(response_data,function(vl_res,ky_res){
+                                               /*  _.each(response_data,function(vl_res,ky_res){
 
                                                         data[i] = ky_res ;
                                                         i = i+1;
-                                                })
+                                                }) */
+                                                var data = response_data.cities;
 
                                             }
                                             else if(field_type == 'property-locality'){
 
 
-                                                _.each(response_data,function(vl_res,ky_res){
+                                               /* _.each(response_data,function(vl_res,ky_res){
 
                                                     if(ky_res==$('#custom_property-city').val()){
                                                         data  = vl_res ;
-                                                    }
+                                                    }*/
+                                                    var data = response_data.localities;
 
 
 
-                                                })
+                                             
 
                                             }
                                             else{
                                                 var data = response_data;
                                             }
 
-
+                                             var html_field_options = '';
                                             for(var i=0;i<data.length;i++){
 
-                                               var html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i]+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i]+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                               //var html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i]+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i]+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                               if(field_type=='property-city'){
+                                                    html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i].name+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i].ID+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                                 }
+                                                 else if(field_type=='property-locality'){
+                                                   if(selected_city == data[i].city_id )
+                                                        html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i].name+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i].ID+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                                 }
+                                                 else{
+                                                    html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i]+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i]+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                                 }  
 
                                             }
 
@@ -332,22 +359,30 @@ jQuery(document).ready(function($) {
             }, function(data) {                   //the callback_handler
                 if (data) {
 
-                    var property_city_locality = data['citylocality'];
+                    //var property_city_locality = data['citylocality'];
 
                     //_.where(property_city_locality,{});
-                    console.log(property_city_locality[selected_city]);
+                    //console.log(property_city_locality[selected_city]);
+
+                     var localities_data = data['locality'];
+                    var localities = localities_data.localities;
 
 
-                    var localities_list = property_city_locality[selected_city];
+                    //var localities_list = property_city_locality[selected_city];
 
                     $('#custom_property-locality').empty();
 
                     $('#custom_property-locality').append('<option value=""  >Select</option>');
 
-                    _.each(localities_list,function(locality_vl, locality_k ){
+                   // _.each(localities_list,function(locality_vl, locality_k ){ */
+                    _.each(localities,function(locality_vl, locality_k ){
+
 
                        //$('#custom_property-locality').append(new Option(locality_vl, locality_vl, true, true))
-                       $('#custom_property-locality').append('<option value="'+locality_vl+'"  >'+locality_vl+'</option>');
+                       //$('#custom_property-locality').append('<option value="'+locality_vl+'"  >'+locality_vl+'</option>');
+
+                       if(parseInt(locality_vl.city_id)==parseInt(selected_city))
+                            $('#custom_property-locality').append('<option value="'+locality_vl.ID+'"  >'+locality_vl.name+'</option>');
                     })
 
 
