@@ -1031,6 +1031,17 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    			/>';
 										    }
 
+										    echo '<label class="">Min. area </label>
+										    		  <input type="text"  class="cust-prop-type-unit_type_minarea" 
+										    				name="cust-prop-type-unit_type_minarea_'.$value_selected_type['type'].'"
+										    				id="cust-prop-type-unit_type_minarea_'.$value_selected_type['type'].'"
+										    			/>';
+										    echo '<label class="">Max. area </label>
+										    		  <input type="text"  class="cust-prop-type-unit_type_maxarea" 
+										    				name="cust-prop-type-unit_type_maxarea_'.$value_selected_type['type'].'"
+										    				id="cust-prop-type-unit_type_maxarea_'.$value_selected_type['type'].'"
+										    			/>';			
+
 
 
 
