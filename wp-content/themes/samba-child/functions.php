@@ -68,12 +68,29 @@ function get_res_property_meta_values($property_id){
     $property_status          = get_post_meta($property_id, 'property-status',true);
     $property_locality        = get_post_meta($property_id, 'property-locality',true);
     $property_neighbourhood   = maybe_unserialize(get_post_meta($property_id, 'property-neighbourhood',true));
-    $property_unit_type            = maybe_unserialize(get_post_meta($property_id, 'residential-property-unit-type',true));
+    $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'residential-property-unit-type',true));
     $property_price           = get_post_meta($property_id, 'property-price',true);
 
     $property_unit_type_updated    = array();
     $property_unit_type_penthouses = array();
     $property_unit_type_other      = array();    
+
+    $property_meta_options = get_search_options();
+
+    $property_city_name = '';
+    foreach ($property_meta_options['cities']['cities'] as $option_city ) {
+      if($option_city['ID'] ==$property_cities){
+        $property_city_name = $option_city['name'];
+      }
+    }
+
+
+     $property_locality_name = '';
+    foreach ($property_meta_options['locality']['localities'] as $option_locality ) {
+      if($option_locality['ID'] == $property_locality){
+        $property_locality_name = $option_locality['name'];
+      }
+    }
 
 
     if(is_array($property_unit_type)){
@@ -138,10 +155,12 @@ function get_res_property_meta_values($property_id){
                                              'property_status'       => $property_status,
                                              'property_locaity'      => $property_locality,
                                              'poperty_neighbourhood' => $property_neighbourhood,
-                                             'property_unit_type'		     => $sortedproperty_unit_types,
+                                             'property_unit_type'		 => $sortedproperty_unit_types,
                                              'property_sellablearea' => $property_sellablearea,
                                              'map_address'	 		     => get_map_address_details($property_id),
-                                             'property_price' 		   => $property_price
+                                             'property_price' 		   => $property_price,
+                                             'property_city_name'    => $property_city_name,
+                                             'property_locality_name'=> $property_locality_name
                                             );
 
     return $residential_property_meta_data;
