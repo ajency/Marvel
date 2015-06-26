@@ -44,6 +44,19 @@ function checkIfInView(element){
 
     //all child js
     $(document).ready(function() {
+        $fullwidth = window.innerWidth ? window.innerWidth : $(window).width();
+        $(window).resize(function() {
+            $fullwidth = window.innerWidth ? window.innerWidth : $(window).width();
+        });
+        $(document).on('click', '.promise_btns .prk_service .service_lnk a', function(e) {
+            e.preventDefault();
+            //console.log($fullwidth);
+            if ($fullwidth > 769)
+                $('html, body').animate({scrollTop: ($($(this).attr('href')).offset().top - 50)}, 1200);
+            else
+                $('html, body').animate({scrollTop: ($($(this).attr('href')).offset().top - 100)}, 1200);
+        });
+
         //remove this line later
         $('#prk_ajax_container .tabular.inner .tab_col .text_in').click(function() {
             $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
@@ -116,7 +129,7 @@ function checkIfInView(element){
         function resizeimgs(tw, obj) {
             var ar = obj.width() / obj.height();
 
-            console.log('AR: '+ar+'\n cont: ' + (tw.width() / tw.height()));
+            //console.log('AR: '+ar+'\n cont: ' + (tw.width() / tw.height()));
             if ( (tw.width() / tw.height()) < ar ) {
                 obj
                     .removeClass()
@@ -143,13 +156,23 @@ function checkIfInView(element){
             if ($('body').hasClass('home')) {
                 placesearchbar();
             }
-            if ($('body').hasClass('single-residential-property')) {
+            if ($('div').hasClass('owl-carousel')) {
                 $('.owl-carousel .item img').each(function() {
                     resizeimgs($(this).parent(), $(this));
+                });
+                $(document).click(function() {
+                    $('.owl-carousel .item img').each(function() {
+                        resizeimgs($(this).parent(), $(this));
+                    });
                 });
             }
         });
         $(window).resize(function() {
+            if ($('div').hasClass('owl-carousel')) {
+                $('.owl-carousel .item img').each(function() {
+                    resizeimgs($(this).parent(), $(this));
+                });
+            }
             // if ($('body').hasClass('page-template-floor_plans')) {
             //     $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
             //     $('.go_to_top_inpage').css({

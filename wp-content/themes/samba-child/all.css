@@ -33,6 +33,36 @@ h6 {
     padding: 0 20px;
   }
 }
+@media (max-width: 480px) {
+  .samba_responsive .single_page_title {
+    margin-top: 0 !important;
+  }
+}
+@media (min-width: 481px) {
+  .samba_responsive #main.prk_normal_page {
+    margin-top: 40px !important;
+  }
+}
+#nav-main .prk_btm_square {
+  display: none !important;
+}
+#nav-main .sf-menu .sub-menu {
+  display: block !important;
+  width: 100%;
+}
+#nav-main .sf-menu .sub-menu li {
+  width: 100%;
+}
+#nav-main .sf-menu .sub-menu li a {
+  padding: 6px 15px;
+  font-style: italic;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+#nav-main .sf-menu .sub-menu li a .icon-right-open-mini {
+  display: none;
+}
 #back_to_top-collapsed {
   visibility: hidden;
 }
@@ -727,6 +757,11 @@ h6 {
 }
 .mapView .main_with_sections {
   margin-top: 0;
+}
+@media screen and (max-width: 769px) {
+  #proj_list_main {
+    margin-top: 34px;
+  }
 }
 @media screen and (max-width: 769px) {
   padding-top: 50px;
@@ -2522,43 +2557,43 @@ ul.ui-tabs-nav {
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h1,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h1,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h1,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h2,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h3,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h4,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h5,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h6,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service .bd_headings_text_shadow {
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow {
     font-size: 18px;
     text-align: left !important;
     background-color: #fff;
@@ -2576,43 +2611,43 @@ ul.ui-tabs-nav {
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h1:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h1:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h1:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h2:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h3:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h4:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h5:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h6:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service .bd_headings_text_shadow:after {
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow:after {
     content: '+';
     float: right;
   }
@@ -2621,43 +2656,43 @@ ul.ui-tabs-nav {
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h1 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h1 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h1 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h1 br,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h2 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h2 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h2 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h2 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h2 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h2 br,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h3 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h3 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h3 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h3 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h3 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h3 br,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h4 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h4 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h4 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h4 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h4 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h4 br,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h5 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h5 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h5 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h5 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h5 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h5 br,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h6 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h6 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h6 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h6 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h6 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service h6 br,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6 br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow br,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service .bd_headings_text_shadow br {
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow br {
     display: none;
   }
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h1,
@@ -2665,37 +2700,37 @@ ul.ui-tabs-nav {
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h1,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h1,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h1,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h1,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h2,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h2,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h3,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h3,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h4,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h4,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h5,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h5,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h6,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h6 {
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h6 {
     text-align: left !important;
     background-color: #939393;
     color: #fff;
@@ -2705,37 +2740,37 @@ ul.ui-tabs-nav {
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h1:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h1:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h1:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h1:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h2:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h2:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h3:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h3:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h4:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h4:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h5:after,
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h5:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h6:after,
   #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service.toggle_open h6:after {
+  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h6:after {
     content: '-';
     float: right;
   }
@@ -3117,14 +3152,29 @@ ul.ui-tabs-nav {
     padding: 25px 20px;
   }
 }
-.promise_btns {
-  padding-top: 50px;
+.popmake-title {
+  font-family: 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: none;
+  text-rendering: optimizeLegibility;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.popmake-content h5 {
+  margin-bottom: 15px !important;
+  font-size: 16px;
 }
 .promise_btns .prk_service {
   width: 50%;
   float: left;
   padding-top: 45px;
   cursor: pointer;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  position: relative;
 }
 .promise_btns .prk_service h3 {
   font-size: 16px;
@@ -3132,9 +3182,60 @@ ul.ui-tabs-nav {
   color: #145994;
   padding-bottom: 25px;
 }
+@media screen and (max-width: 580px) {
+  .promise_btns .prk_service h3 {
+    font-size: 14px;
+  }
+}
 .promise_btns .prk_service:hover {
   background-color: #e9e9e9 !important;
 }
 .promise_btns .prk_service:hover h3 {
   color: #333333;
+}
+.promise_btns .prk_service .simple_line {
+  display: none;
+}
+.promise_btns .prk_service .service_lnk a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-indent: -99999px;
+  overflow: hidden;
+}
+@media screen and (max-width: 520px) {
+  .promise_btns .prk_service {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border-right: 0;
+    text-align: left;
+  }
+  .promise_btns .prk_service .prk_service_ctt {
+    margin-top: 0;
+  }
+  .promise_btns .prk_service > div:nth-of-type(1) {
+    float: left;
+  }
+  .promise_btns .prk_service > div:nth-of-type(1) img {
+    height: 35px;
+    /* width: 100%; */
+    margin: 4px 17px;
+  }
+  .promise_btns .prk_service > div:nth-of-type(2).clearfix {
+    display: none;
+  }
+  .promise_btns .prk_service h3 {
+    padding-bottom: 0;
+    margin-top: 15px;
+  }
+}
+.promise h5 {
+  text-transform: none;
+}
+.prodi {
+  margin-top: 25px !important;
+  margin-bottom: 15px !important;
 }

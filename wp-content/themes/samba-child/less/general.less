@@ -13,6 +13,41 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width: 769px) {
     #single_page_teaser {padding: 0 20px;}
 }
+@media (max-width: 480px) {
+    .samba_responsive .single_page_title {
+        margin-top: 0 !important;
+    }
+    .samba_responsive #main.prk_normal_page {
+        // margin-top: 0 !important;
+    }
+}
+@media (min-width: 481px) {
+    .samba_responsive #main.prk_normal_page {
+        margin-top: 40px !important;
+    }
+}
+
+#nav-main .prk_btm_square {
+    display: none !important;
+}
+#nav-main .sf-menu .sub-menu {
+    display: block !important;
+    width: 100%;
+}
+#nav-main .sf-menu .sub-menu li {
+    width: 100%;
+}
+#nav-main .sf-menu .sub-menu li a {
+    padding: 6px 15px;
+    font-style: italic;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+#nav-main .sf-menu .sub-menu li a .icon-right-open-mini {
+    display: none;
+}
+
 
 
 #back_to_top-collapsed {visibility: hidden;}
