@@ -427,7 +427,7 @@
                                             '<a href="#" class="map_p_title">'+
                                                 '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
                                                 '<span class="single_p_light">|</span>'+
-                                                '<span class="single_p_location">'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'</span>'+
+                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+' '+'</span>'+
                                             '</a>'+
                                             '<p class="map_excerpt">';
 

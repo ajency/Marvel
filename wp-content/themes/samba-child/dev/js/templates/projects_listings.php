@@ -30,6 +30,8 @@ var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'
 var property_unit_type = _.isUndefined(propertyvl.property_unit_type)? propertyvl.get('property_unit_type'): propertyvl.property_unit_type;
 var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
 
+var property_locality_name = _.isUndefined(propertyvl.property_locality_name)? propertyvl.get('property_locality_name'): propertyvl.property_locality_name;
+
 
 var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
     %>
@@ -79,7 +81,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                 <a href="#">
                     <span class="single_p_title"><%=property_title%></span>
                     <% if(property_locality!='' ) { %><span class="single_p_light">|</span>
-                        <span class="single_p_location"><%=property_locality%></span>
+                        <span class="single_p_location"><%=property_locality_name%></span>
                     <% } %>
                 </a>
             </p>
