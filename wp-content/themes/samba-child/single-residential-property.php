@@ -52,7 +52,7 @@
     <div id="full_fi_c">
         <div class="full_fi_title">
             <p class="f_f_t">
-                <?php 
+                <?php /*
                 $project_locality = get_post_meta(get_the_ID(),'property-locality',true);
                 $project_city = get_post_meta(get_the_ID(),'property-city',true);
                 $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-unit-type',true));
@@ -86,7 +86,7 @@
 
 
                 echo $display_project_types_wt_sep.$project_type_seperator.ucfirst(get_the_title()).$location_seperator.ucfirst($project_locality)." ".ucfirst($project_city);
-                ?>
+               */ ?>Marvel Sample Apartment
             </p>
         </div>
         <a href="#" class="go_d_see"></a>

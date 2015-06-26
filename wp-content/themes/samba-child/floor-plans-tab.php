@@ -216,8 +216,8 @@ else{
                                         </p>
                                         <p class="btncol">
                                             <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_1_'.str_replace(" ", "_", $value_proptype['type']).'"><span class="wpb_button  wpb_btn-inverse tog white">2D Layout</span></a>
-                                            <a class="wpb_button_a ava_tog" title="Availability" href="javascript:void(0)"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
-                                            <!-- <a class="wpb_button_a ava_tog" title="Availability" href="#ava_1_".str_replace(" ", "_", $value_proptype["type"])."><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>-->
+                                           <!-- <a class="wpb_button_a ava_tog" title="Availability" href="javascript:void(0)"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>-->
+                                             <a class="wpb_button_a ava_tog" title="Availability" href="#ava_1_'.str_replace(" ", "_", $value_proptype["type"]).'"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
                                         </p>
                                     </div>
                                 </div>

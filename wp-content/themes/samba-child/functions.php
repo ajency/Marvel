@@ -242,6 +242,7 @@ function marvel_scripts_styles(){
       wp_enqueue_script('jquery_easing', get_stylesheet_directory_uri(). '/jquery.easing.1.3.js', array('jquery'), false, true);
       wp_enqueue_script( 'slider',  get_stylesheet_directory_uri() . '/slider.js', array('jquery'), false, true);
       wp_enqueue_script( 'collapsible',  get_stylesheet_directory_uri() . '/collapsible.js', array('jquery'), false, true);
+      wp_enqueue_script( 'custom-js',  get_stylesheet_directory_uri() . '/js/custom-js.js', array('jquery'), false, true);
       
       
 
@@ -289,12 +290,21 @@ add_action('wp_enqueue_scripts', 'marvel_scripts_styles');
 function sort_multidimensional_array($myArray,$sort_key){
 
  
-   usort($myArray, function($a, $b) use ($sort_key) {
+   usort($myArray, function($a, $b)  {
  
     //echo '\n <br/> Compare '.$a[$sort_key].' with '. $b[$sort_key];
     
 
-    return (float)$a['no_bedrooms'] - (float)$b['no_bedrooms'];
+    //return (float)$a['no_bedrooms'] - (float)$b['no_bedrooms'];
+    if((float)$a['no_bedrooms'] > (float)$b['no_bedrooms'] )
+      $return_val =  1;
+    else if((float)$a['no_bedrooms'] < (float)$b['no_bedrooms'] )
+      $return_val = -1;
+    else if((float)$a['no_bedrooms'] === (float)$b['no_bedrooms'] )
+      $return_val = 0;
+
+    return $return_val;
+
 });
   return $myArray;
 
