@@ -57,8 +57,50 @@ $property_data = get_res_property_meta_values($cur_property_id);
 
 
 $site_plan_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
+$site_plan_img_url = site_url()."/wp-content/themes/samba-child/img/2d_layout_missing.jpg";
+$siteplan_pdf_url ="javascript:void(0)";
 
 $site_plan_img_id = maybe_unserialize(get_post_meta($cur_property_id,'custom_property-siteplan',true));
+
+
+
+
+ 
+if($site_plan_img_id !=false && is_array($site_plan_img_id )){
+ 
+    if($site_plan_img_id['image_id']!='' && isset($site_plan_img_id['image_id'])){
+ 
+
+ 
+ 
+                $siteplan_image = wp_get_attachment_image_src($site_plan_img_id['image_id'],'full');
+                 
+                $siteplan_image_url = $siteplan_image[0];
+                $siteplan_image_filename =basename( get_attached_file( $site_plan_img_id['image_id'] ) );
+
+    }
+    else{
+        $siteplan_image_url = $site_plan_img_url ;
+        
+    }
+                 
+      if($site_plan_img_id['pdf_id']!='' && isset($site_plan_img_id['pdf_id'])){
+ 
+        $parsed_siteplan_pdf_file = parse_url( wp_get_attachment_url( $site_plan_img_id['pdf_id'] ) );
+        $siteplan_pdf_url    = dirname( $parsed_siteplan_pdf_file [ 'path' ] ) . '/' . rawurlencode( basename( $parsed_siteplan_pdf_file[ 'path' ] ) );
+        $siteplan_pdf_filename =basename( get_attached_file( $site_plan_img_id['pdf_id'] ) );
+    }
+    else{
+        
+        $siteplan_pdf_url ="javascript:void(0)";
+    }
+    
+}
+
+ 
+
+
+
 
 $property_unit_types = $property_data['property_unit_type'];
 
@@ -144,7 +186,7 @@ foreach ($property_unit_types as $key_proptype => $value_proptype) {
                                             Site Plan of '.get_the_title($cur_property_id);
  $floor_plans_tab_content.='
 
-                                            <a class="wpb_button_a download_prj" title="Download" href="'.$site_plan_img_url.'" download>
+                                            <a class="wpb_button_a download_prj" title="Download" href="'.$siteplan_pdf_url.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
                                         </p>
@@ -153,8 +195,8 @@ foreach ($property_unit_types as $key_proptype => $value_proptype) {
                                 <div class="clearfix"></div>
                                 <div class="wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">
                                     <div class="wpb_wrapper">
-                                        <a class="image-popup-no-margins boxed_shadow" href="'.$site_plan_img_url.'" target="_self">
-                                            <img width="700" height="561" src="'.$site_plan_img_url.'" class=" vc_box_border_grey attachment-full" alt="layout" />
+                                        <a class="image-popup-no-margins boxed_shadow" href="'.$siteplan_image_url.'" target="_self">
+                                            <img width="700" height="561" src="'.$siteplan_image_url.'" class=" vc_box_border_grey attachment-full" alt="layout" />
                                         </a>
                                     </div>
                                 </div>
