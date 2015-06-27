@@ -985,7 +985,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    		 ';
 										    }
 										    else{
-										    	echo '<label class="forjpg">Image </label>
+										    	echo '<label class="forjpg"><i class="fa fa-image"></i> </label>
 										    		  <input type="file"  class="cust-prop-type-layout-file" accept=".png,.jpg,.gif,.bmp"
 										    			name = "cust-prop-type-layout-file_'.$value_selected_type['type'].'"
 										    			id ="cust-prop-type-layout-file_'.$value_selected_type['type'].'"  />';
@@ -1024,7 +1024,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    		  </span>';
 										    }
 										    else{
-										    	echo '<label class="forpdf">PDF </label>
+										    	echo '<label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label>
 										    		  <input type="file"  class="cust-prop-type-layout-pdf"  accept=".pdf"
 										    				name="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
 										    				id="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
@@ -1298,12 +1298,47 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 		case 'file' :
 
-						$img_id = get_post_meta(get_the_ID(), 'custom_property-siteplan', true);
+/* echo "<br/> element type ";
+var_dump($element_type);
 
-						if($img_id!=false){
+echo " <br/> multiple_values";
+var_dump($multiple_values);
+
+echo "<br/>  element_id";
+var_dump($element_id);
+
+echo " <br/> element_values";
+var_dump($element_values);
+
+echo "<br/> current_property_meta_value ";
+var_dump($current_property_meta_value);
+
+echo " <br/> element_custom_field_args";
+var_dump($element_custom_field_args);
+
+echo " <br/> edit_options_values";
+var_dump($edit_options_values); */
+
+					if($element_custom_field_args['field'] =="property-siteplan"){ 
+
+
+						$property_siteplan_data = maybe_unserialize(get_post_meta(get_the_ID(), 'custom_property-siteplan', true));
+
+
+						$img_id 		 = isset($property_siteplan_data['image_id'])? $property_siteplan_data['image_id']:'';
+						$siteplan_pdf_id = isset($property_siteplan_data['pdf_id'])?$property_siteplan_data['pdf_id']:'';
+
+						if($img_id!=false && $img_id!=''){
 							$site_plan_img = wp_get_attachment_image_src( $img_id,'thumbnail' );
 
-							$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
+							//$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
+
+						}
+
+						if($siteplan_pdf_id!=false && $siteplan_pdf_id!=''){
+							$site_plan_pdf = wp_get_attachment_image_src( $siteplan_pdf_id );
+
+							//$current_property_meta_value_arr = maybe_unserialize($current_property_meta_value);
 
 						}
 
@@ -1313,19 +1348,73 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
                         ?>
                         <div class="clearfix"></div>
-                        <span attr-field-val ="<?php echo $element_id; ?>" >  <input type="file" value="" attr-name="<?php echo $element_id; ?>"  attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id; ?>"   class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
-                        <?php if($site_plan_img!=false && $img_id!=false) { ?>
-                        			<img src="<?php echo $site_plan_img[0] ?>" width="80" height="80"  />
-								<a href='javascript:void(0)'  custom-field='custom_property-siteplan'
-									class='delete_property_siteplan'  attr-value = '<?php echo $img_id; ?>'
-									property-id='<?php echo get_the_ID(); ?>' >Delete</a>
+                        <span attr-field-val ="<?php echo $element_id; ?>" >  
+                        	
+                        <?php if($img_id!='' && $img_id!=false) { 
+
+                        	$siteplan_image = wp_get_attachment_image_src($img_id);
+							$cur_prop_siteplan_img_url = $siteplan_image[0];
+							$cur_prop_siteplan_img_filename =basename( get_attached_file( $img_id ) );
+
+                        ?>
+                        			<span class="spn_custom_img"> 
+                        				<label class="forjpg"><i class="fa fa-image"></i> </label>
+                        				<a href="<?php echo $cur_prop_siteplan_img_url; ?>"><?php echo $cur_prop_siteplan_img_filename; ?></a>
+										&nbsp; &nbsp; <a href='javascript:void(0)'  custom-field='custom_property-siteplan'
+											class='delete_property_siteplan_image'  attr-value = '<?php echo $img_id; ?>'
+											property-id='<?php echo get_the_ID(); ?>' >Delete</a>
+									</span>		
+
+                        <?php }
+                        else{
+                        	?>		<span class="spn_custom_img"> 
+                        				<label class="forjpg"><i class="fa fa-image"></i> </label>
+                        				<input type="file" value="" attr-name="<?php echo $element_id; ?>"  
+                        					attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id."_image"; ?>"   
+                        					class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
+                        			</span>		
+                        <?php	
+                        } ?>
 
 
-                        <?php } ?>
+
+                         <?php  
+
+                         		if($siteplan_pdf_id!=false && $siteplan_pdf_id!='' ) { 
+
+                         			$parsed_siteplan_pdf_file = parse_url( wp_get_attachment_url( $siteplan_pdf_id ) );
+									$cur_prop_siteplan_pdf_url    = dirname( $parsed_siteplan_pdf_file [ 'path' ] ) . '/' . rawurlencode( basename( $parsed_siteplan_pdf_file[ 'path' ] ) );
+ 						    	    $cur_prop_siteplan_pdf_filename =basename( get_attached_file( $siteplan_pdf_id) );
+
+
+                         ?>
+                        			<span class="spn_custom_img">
+                        				<label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label> 
+                        				<a href="<?php echo $cur_prop_siteplan_pdf_url; ?>"><?php echo  $cur_prop_siteplan_pdf_filename; ?></a>
+										&nbsp; &nbsp; <a href='javascript:void(0)'  custom-field='custom_property-siteplan'
+											class='delete_property_siteplan_pdf'  attr-value = '<?php echo $siteplan_pdf_id; ?>'
+											property-id='<?php echo get_the_ID(); ?>' >Delete</a>
+									</span>		
+
+                        <?php }
+                        else{
+                        	?>		<span class="spn_custom_pdf"> 
+                        				<label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label>
+                        				<input type="file" value="" attr-name="<?php echo $element_id; ?>"  
+                        					attr-value="<?php echo $element_id; ?>"   name="<?php echo $element_id."_pdf"; ?>"   
+                        					class="postbox custom_input_field  <?php echo $element_class ; ?>"  />
+                        			</span>		
+                        <?php	
+                        } ?>
+
                          </span>
                     	<?php
-                    	echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
+                    	//echo '<span class="kms_handle">'.$element_postfix_label.'</span>';
                     	echo '</div>';
+
+					}
+
+						
 
 
 
@@ -1899,7 +1988,7 @@ function save_custom_meta_box($post_id, $post, $update)
 	# code...
 } */
 
-
+		/* Add Geocode Map Data*/
        $exist_address = $wpdb->get_var("select count(*) FROM {$wpdb->prefix}addresses WHERE addressable_id = ".$post_id);
         if($exist_address>0){
             $qry_address = "update {$wpdb->prefix}addresses SET city ='".$sel_property_address_city."',
@@ -1921,7 +2010,7 @@ function save_custom_meta_box($post_id, $post, $update)
         }
 
         $wpdb->query($qry_address);
-
+        /* End Add Geocode Map Data*/
 
 
 
@@ -1958,42 +2047,162 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
 
+		$existing_siteplan = maybe_unserialize(get_post_meta($post_id,'custom_property-siteplan',true)) ; 
+    	$delete_existing_siteplan_image = false;
+    	$delete_existing_siteplan_pdf = false;    	
+		$siteplan_imageID = "";
+		$siteplan_pdfID   = "";
 
 
-    if(!empty($_FILES['custom_property-siteplan']['name'])) {
-
-			$uploadStatus = wp_handle_upload( $_FILES['custom_property-siteplan'], array( 'test_form' => false ) );   // Let WordPress handle the upload
-
-            // Make sure that the file was uploaded correctly, without error
-            if( isset( $uploadStatus['file'] ) ) {
-                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-
-                // Let's add the image to our media library so we get access to metadata
-                $imageID = wp_insert_attachment( array(
-                        'post_mime_type'    => $uploadStatus['type'],
-                        'post_title'        => preg_replace( '/\.[^.]+$/', '', basename( $uploadStatus['file'] ) ),
-                        'post_content'      => '',
-                        'post_status'       => 'publish'
-                    ),
-                    $uploadStatus['file']
-                );
-
-                // Generate our attachment metadata then update the file.
-                $attachmentData = wp_generate_attachment_metadata( $imageID, $uploadStatus['file'] );
-                wp_update_attachment_metadata( $imageID,  $attachmentData );
 
 
-                $existingImage = get_post_meta($post_id,'custom_property-siteplan',true) ;            // IF a file already exists in this option, grab it
-                if( ! empty( $existingImage ) && is_numeric( $existingImage ) ) {       // IF the option does exist, delete it.
-                    wp_delete_attachment( $existingImage );
-                }
 
-				update_post_meta($post_id, 'custom_property-siteplan', $imageID);
+    	if(!empty($_FILES['custom_property-siteplan_image']['name'])) {
 
+				$uploadSiteplanImageStatus = wp_handle_upload( $_FILES['custom_property-siteplan_image'], array( 'test_form' => false ) );   // Let WordPress handle the upload
+
+	            // Make sure that the file was uploaded correctly, without error
+	            if( isset( $uploadSiteplanImageStatus['file'] ) ) {
+	                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+
+	                // Let's add the image to our media library so we get access to metadata
+	                $siteplan_imageID = wp_insert_attachment( array(
+	                        'post_mime_type'    => $uploadSiteplanImageStatus['type'],
+	                        'post_title'        => preg_replace( '/\.[^.]+$/', '', basename( $uploadSiteplanImageStatus['file'] ) ),
+	                        'post_content'      => '',
+	                        'post_status'       => 'publish'
+	                    ),
+	                    $uploadSiteplanImageStatus['file']
+	                );
+
+	                // Generate our attachment metadata then update the file.
+	                $attachment_siteplan_imageData = wp_generate_attachment_metadata(  $siteplan_imageID, $uploadSiteplanImageStatus['file'] );
+	                wp_update_attachment_metadata(  $siteplan_imageID,  $attachment_siteplan_imageData );
+echo " NEW SITEPLAN IMAGE ID ".$siteplan_imageID;
+
+					$delete_existing_siteplan_image = true;
+
+	                /*  // IF a file already exists in this option, grab it
+	                if(  ( $existing_siteplan !=false) && !empty( $existing_siteplan )   ) {       // IF the option does exist, delete it.
+	                    wp_delete_attachment( $existingImage );
+	                }
+
+					update_post_meta($post_id, 'custom_property-siteplan', $imageID); */
+
+				}
+
+
+		}
+
+
+
+
+		if(!empty($_FILES['custom_property-siteplan_pdf']['name'])) {
+
+				$uploadSiteplanPdfStatus = wp_handle_upload( $_FILES['custom_property-siteplan_pdf'], array( 'test_form' => false ) );   // Let WordPress handle the upload
+
+	            // Make sure that the file was uploaded correctly, without error
+	            if( isset( $uploadSiteplanPdfStatus['file'] ) ) {
+	                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+
+	                // Let's add the image to our media library so we get access to metadata
+	                $siteplan_pdfID = wp_insert_attachment( array(
+	                        'post_mime_type'    => $uploadSiteplanPdfStatus['type'],
+	                        'post_title'        => preg_replace( '/\.[^.]+$/', '', basename( $uploadSiteplanPdfStatus['file'] ) ),
+	                        'post_content'      => '',
+	                        'post_status'       => 'publish'
+	                    ),
+	                    $uploadSiteplanPdfStatus['file']
+	                );
+
+	                // Generate our attachment metadata then update the file.
+	                $attachment_siteplan_pdfData = wp_generate_attachment_metadata(  $siteplan_pdfID , $uploadSiteplanPdfStatus['file'] );
+	                wp_update_attachment_metadata(  $siteplan_imageID,  $attachment_siteplan_pdfData );
+
+
+					$delete_existing_siteplan_pdf = true;
+
+	                /*  // IF a file already exists in this option, grab it
+	                if(  ( $existing_siteplan !=false) && !empty( $existing_siteplan )   ) {       // IF the option does exist, delete it.
+	                    wp_delete_attachment( $existingImage );
+	                }
+
+					update_post_meta($post_id, 'custom_property-siteplan', $imageID); */
+
+				}
+
+
+		}
+
+		
+
+
+		if($delete_existing_siteplan_image ==true && $existing_siteplan !=false){
+			if(isset($existing_siteplan['image_id'])  && !empty($existing_siteplan['image_id']) ){
+				 wp_delete_attachment( $existing_siteplan['image_id'] );
 			}
+		}
 
 
-	}
+		if($delete_existing_siteplan_pdf ==true && $existing_siteplan !=false){
+			if(isset($existing_siteplan['pdf_id'] )&& !empty( $existing_siteplan['pdf_id']) ){
+				 wp_delete_attachment( $existing_siteplan['pdf_id'] );
+			}
+		}
+
+		if($existing_siteplan!=false & is_array($existing_siteplan)){
+				if(isset($existing_siteplan['image_id']) && $delete_existing_siteplan_image==false  ){
+					$siteplan_imageID = $existing_siteplan['image_id'];
+				}
+				if(isset($existing_siteplan['pdf_id'])  && $delete_existing_siteplan_pdf==false ){
+					$siteplan_pdfID = $existing_siteplan['pdf_id'];
+				}
+		}
+
+
+		$siteplan_meta_data = array('image_id' => $siteplan_imageID,
+							 		'pdf_id'   => $siteplan_pdfID
+									);
+
+
+		update_post_meta($post_id, 'custom_property-siteplan', maybe_serialize($siteplan_meta_data));
+
+  
+
+	    if(!empty($_FILES['custom_property-siteplan']['name'])) {
+
+				$uploadStatus = wp_handle_upload( $_FILES['custom_property-siteplan'], array( 'test_form' => false ) );   // Let WordPress handle the upload
+
+	            // Make sure that the file was uploaded correctly, without error
+	            if( isset( $uploadStatus['file'] ) ) {
+	                require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+
+	                // Let's add the image to our media library so we get access to metadata
+	                $imageID = wp_insert_attachment( array(
+	                        'post_mime_type'    => $uploadStatus['type'],
+	                        'post_title'        => preg_replace( '/\.[^.]+$/', '', basename( $uploadStatus['file'] ) ),
+	                        'post_content'      => '',
+	                        'post_status'       => 'publish'
+	                    ),
+	                    $uploadStatus['file']
+	                );
+
+	                // Generate our attachment metadata then update the file.
+	                $attachmentData = wp_generate_attachment_metadata( $imageID, $uploadStatus['file'] );
+	                wp_update_attachment_metadata( $imageID,  $attachmentData );
+
+
+	                $existingImage = get_post_meta($post_id,'custom_property-siteplan',true) ;            // IF a file already exists in this option, grab it
+	                if( ! empty( $existingImage ) && is_numeric( $existingImage ) ) {       // IF the option does exist, delete it.
+	                    wp_delete_attachment( $existingImage );
+	                }
+
+					update_post_meta($post_id, 'custom_property-siteplan', $imageID);
+
+				}
+
+
+		}
 
 
 
@@ -2029,11 +2238,7 @@ function save_custom_meta_box($post_id, $post, $update)
 						}
 					}
 				}
-
-
-
-
-
+  
 				$file_name_field = 'cust-prop-type-layout-file_'.str_replace(' ', '_', $prop_value) ;
 
 				if(!empty($_FILES[$file_name_field])) {
@@ -2216,6 +2421,77 @@ function delete_custom_file_field() {
 
 }
 add_action( 'wp_ajax_delete_custom_file_field', 'delete_custom_file_field' );
+
+
+
+
+
+
+
+
+
+
+
+
+function delete_property_siteplan_image_pdf_file() {
+
+	$property_id   		= $_REQUEST['data']['property_id'];
+	/* $property_unit_type 	= $_REQUEST['data']['property_unit_type'];
+	$custom_file_id 	= $_REQUEST['data']['attachment_id']; */
+	$file_type 			= $_REQUEST['data']['file_type'];
+
+	$delete_success = false;
+
+	$custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'custom_property-siteplan',true) );
+
+
+
+	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
+
+	  	switch ($file_type) {
+
+	  		case 'siteplan_image':
+	  							  if(isset($custom_file_field_value['image_id'])){
+	  							  		$result_delete_attachment = wp_delete_attachment($custom_file_field_value['image_id']);
+									  	if($result_delete_attachment!=false){
+
+									  		$delete_success = true ;
+
+									  		$custom_file_field_value['image_id'] = '';
+									  	}
+	  							  }  
+
+	  							  break;
+	  		case 'siteplan_pdf':
+	  							  if(isset($custom_file_field_value['pdf_id'])){
+	  							  		$result_delete_attachment = wp_delete_attachment($custom_file_field_value['pdf_id']);
+									  	if($result_delete_attachment!=false){
+
+									  		$delete_success = true ;
+									  		$custom_file_field_value['pdf_id'] = '';
+									  	}
+	  							  }  
+	  							  break;					  
+	  		
+	  		default 			:
+	  			 
+	  							break;
+	  	}
+	  }
+ 
+		update_post_meta($property_id,'custom_property-siteplan',$custom_file_field_value); 
+
+    wp_send_json($delete_success);
+
+
+}
+add_action( 'wp_ajax_delete_property_siteplan_image_pdf_file', 'delete_property_siteplan_image_pdf_file' );
+
+
+
+
+
+
 
 
 

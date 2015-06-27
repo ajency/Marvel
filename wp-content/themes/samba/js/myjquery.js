@@ -540,6 +540,76 @@ jQuery(document).ready(function($) {
     }
 
 
+$('.delete_property_siteplan_image').live("click",function(evt){
+            /* Delete 2D siteplan Image for the residential Property */
+
+            var self = this;
+            var curr_property_id = $(this).attr('property-id');          
+            var file_type     = 'siteplan_image'
+
+            var my_data = { 'property_id'    : curr_property_id,
+                            /*'property_unit_type'  : property_unit_type,
+                            'attachment_id'  : attachment_id,*/
+                            'file_type'     : file_type
+                          }
+
+            $.post(ajaxurl,{   //the server_url
+                    action: "delete_property_siteplan_image_pdf_file",                 //the submit_data array
+                    data:my_data
+                },
+                function(data) {                   //the callback_handler
+                    if (data==true) {
+
+                    $(self).closest('span').html(' <label class="forjpg"><i class="fa fa-image"></i> </label>'
+                                                 +' <input type="file" value="" attr-name="custom_property-siteplan"  '
+                                                 +'    attr-value="custom_property-siteplan"   name="custom_property-siteplan_image"   '
+                                                 +'    class="postbox custom_input_field  custom_input_field"  />') 
+                    }
+
+                });
+
+
+        })
+
+
+$('.delete_property_siteplan_pdf').live("click",function(evt){
+            /* Delete 2D siteplan Image for the residential Property */
+
+            var self = this;
+            var curr_property_id = $(this).attr('property-id');          
+            var file_type     = 'siteplan_pdf'
+
+            var my_data = { 'property_id'    : curr_property_id,
+                            /*'property_unit_type'  : property_unit_type,
+                            'attachment_id'  : attachment_id,*/
+                            'file_type'     : file_type
+                          }
+
+            $.post(ajaxurl,{   //the server_url
+                    action: "delete_property_siteplan_image_pdf_file",                 //the submit_data array
+                    data:my_data
+                },
+                function(data) {                   //the callback_handler
+                    if (data==true) {
+
+                    $(self).closest('span').html(' <label class="forjpg"><i class="fa fa-pdf"></i> </label>'
+                                                 +' <input type="file" value="" attr-name="custom_property-siteplan"  '
+                                                 +'    attr-value="custom_property-siteplan"   name="custom_property-siteplan_pdf"   '
+                                                 +'    class="postbox custom_input_field  custom_input_field"  />') 
+                    }
+
+                });
+
+
+        })
+
+
+
+
+
+
+
+
 
 
 $('.del_prop_type_layout_img').live("click",function(evt){
