@@ -449,7 +449,7 @@ function myplugin_add_custom_box() {
     							  	   'priority'			=> 'default'
     								 );
 
-        if($screen=="residential-property") {
+       // if($screen=="residential-property") {
 
 	    	/* $custom_fields[] = array ( 'field'				 => 'property-no_of_bedrooms',
 	    							   'metabox_title'		 => 'No Of Bedrooms',
@@ -465,7 +465,7 @@ function myplugin_add_custom_box() {
 
 
 
-    		$custom_fields[] = array ( 'field'				 => 'property-sellable_area',
+    		/* $custom_fields[] = array ( 'field'				 => 'property-sellable_area',
     							  	   'metabox_title'		 => 'Sellable Area',
     							  	   'multiple_values' 	 => true,
     							  	   'element_type'		 => 'text',
@@ -473,9 +473,9 @@ function myplugin_add_custom_box() {
     							  	   'option_value_postfix'=> 'Sq ft',
     							  	   'class'				 => 'allownumericwithdecimal',
     							  	   'priority'			=> 'default'
-    								 );
+    								 ); */
 
-	    	}
+	    	//}
 
 	    	$custom_fields[] = array('field'				=> 'property-neighbourhood',
 	    							  'metabox_title'		=> 'Neighbourhood',
