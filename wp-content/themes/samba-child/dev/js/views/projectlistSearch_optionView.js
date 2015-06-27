@@ -417,7 +417,7 @@
                     var property_price = _.isEmpty(properties[i].get('property_price'))?'':'INR '+properties[i].get('property_price')
 
 
-                    var popup_content ='<div class="map_info_c"    property-id="'+properties[i].get('id')+'" property-title = "'+properties[i].get('post_title')+'" property-address="'+properties[i].get('property_locaity')+' '+properties[i].get('property_city')+'">'+
+                    var popup_content ='<div class="map_info_c"    property-id="'+properties[i].get('id')+'" property-title = "'+properties[i].get('post_title')+'" property-address="'+properties[i].get('property_locality_name')+' '+properties[i].get('property_city_name')+'">'+
                                        '                  <div class="img_cont">'+
                                             '<a href="#" class="img_link">'+
                                                 '<img src="'+featured_img_thumbnail[0]+'" alt="" class="pull-left map_fi">'+

@@ -181,12 +181,26 @@ foreach ($property_unit_types as $key_proptype => $value_proptype) {
             }
 
 
-if(isset($value_proptype['layout_pdf_data']['ID'])){
-  $pdfurl = wp_get_attachment_url($value_proptype['layout_pdf_data']['ID']);
-}
-else{
-  $pdfurl = "javascript:void(0)";
-}
+            if(isset($value_proptype['layout_pdf_data']['ID'])){
+              $pdfurl = wp_get_attachment_url($value_proptype['layout_pdf_data']['ID']);
+            }
+            else{
+              $pdfurl = "javascript:void(0)";
+            }
+
+
+            if(isset($value_proptype['min_area'])) {
+                if(!empty($value_proptype['min_area'])){
+                    $display_area = "  &#8211;  ".$value_proptype['min_area']." SQ FT." ;
+                }
+            }
+
+
+            if(isset($value_proptype['max_area'])) {
+                if(!empty($value_proptype['max_area'])){
+                    $display_area.= " to ".$value_proptype['max_area']." SQ FT." ;
+                }
+            } 
 
 
 
@@ -200,7 +214,7 @@ else{
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Typical floor plan of a '.$value_proptype['type_name'].'
+                                            Typical floor plan of a '.$value_proptype['type_name'].' '.$display_area.'
                                             <a class="wpb_button_a download_prj" title="Download" href="'.$pdfurl.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>

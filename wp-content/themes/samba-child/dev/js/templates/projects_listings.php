@@ -31,11 +31,12 @@ var property_unit_type = _.isUndefined(propertyvl.property_unit_type)? propertyv
 var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
 
 var property_locality_name = _.isUndefined(propertyvl.property_locality_name)? propertyvl.get('property_locality_name'): propertyvl.property_locality_name;
+var property_city_name = _.isUndefined(propertyvl.property_city_name)? propertyvl.get('property_city_name'): propertyvl.property_city_name;
 
 
 var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
     %>
-<div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality%>, <%=property_city%>" >
+<div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
     <div class="single_p_img">
         <img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">
             <div class="single_p_hov_c">
