@@ -1031,6 +1031,19 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 										    			/>';
 										    }
 
+										    echo '<label class="">Min. area </label>
+										    		  <input type="text"  class="cust-prop-type-unit_type_minarea" 
+										    				name="cust-prop-type-unit_type_minarea_'.$value_selected_type['type'].'"
+										    				id="cust-prop-type-unit_type_minarea_'.$value_selected_type['type'].'"
+										    				value="'.$value_selected_type['min_area'].'" 
+										    			/>';
+										    echo '<label class="">Max. area </label>
+										    		  <input type="text"  class="cust-prop-type-unit_type_maxarea" 
+										    				name="cust-prop-type-unit_type_maxarea_'.$value_selected_type['type'].'"
+										    				id="cust-prop-type-unit_type_maxarea_'.$value_selected_type['type'].'"
+										    				value = "'.$value_selected_type['max_area'].'" 
+										    			/>';			
+
 
 
 
@@ -2102,6 +2115,9 @@ function save_custom_meta_box($post_id, $post, $update)
 				}
 
 
+				$unit_type_min_area = $_REQUEST["cust-prop-type-unit_type_minarea_".str_replace(' ', '_', $prop_value)] ;
+				$unit_type_max_area = $_REQUEST["cust-prop-type-unit_type_maxarea_".str_replace(' ', '_', $prop_value)] ;
+
 				if($prop_type_match_found==true){
 
 					if($pdf_imageID!=false && $pdf_imageID!='' )
@@ -2109,12 +2125,20 @@ function save_custom_meta_box($post_id, $post, $update)
 					if($imageID!=false && $imageID!='' )
 						$prop_type_match['layout_image']  = $imageID;
 
+					$prop_type_match['min_area']  = $unit_type_min_area;
+					$prop_type_match['max_area']  = $unit_type_max_area;
+
 					$property_unit_types_data_value[] = $prop_type_match;
 
 				}
 				else{
 
-					$property_unit_types_data_value[] = array('type'=>$prop_value,'layout_image'=>$imageID,'layout_pdf'=>$pdf_imageID) ;
+					$property_unit_types_data_value[] = array('type'		 => $prop_value,
+															  'layout_image' => $imageID,
+															  'layout_pdf'	 => $pdf_imageID,
+															  'min_area'     => $unit_type_min_area,
+															  'max_area'	 => $unit_type_max_area				
+															 ) ;
 
 				}
 

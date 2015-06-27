@@ -61,23 +61,23 @@ jQuery.ajax(ajax_var.url,{
 
 
                            jQuery('#home_city').empty();
-                           jQuery('#home_city').append('<option value="">Select</option>')                        
+                           jQuery('#home_city').append('<option value="">City</option>')                        
 
-                           _.each(window.search_options.citylocality,function(vl_cl,ky_cl){
+                           _.each(window.search_options.cities.cities,function(vl_cl,ky_cl){
                                 console.log(vl_cl);
                                 console.log('ky'+ky_cl)
 
-                                 jQuery('#home_city').append('<option value="'+ky_cl+'">'+ky_cl+'</option>')
+                                 jQuery('#home_city').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
 
                            }) 
 
-                           jQuery('#home_type').empty();
-                           jQuery('#home_type').append('<option value="">Select</option>')
+                          /* jQuery('#home_type').empty();
+                           jQuery('#home_type').append('<option value="">Type</option>')
                            for(var i=0;i<window.search_options.type.length;i++){                           
 
-                            jQuery('#home_type').append('<option value="'+window.search_options.type[i]+'">'+window.search_options.type[i]+'</option>')
+                            jQuery('#home_type').append('<option value="'+window.search_options.type[i].ID+'">'+window.search_options.type[i].property_unit_type+'</option>')
                             
-                           }
+                           } */
 
                         },
                         error: function(){
@@ -96,13 +96,16 @@ jQuery('#home_city').live('change',function(){
   jQuery('#home_location').empty();
   jQuery('#home_location').append('<option value="">Select</option>');
 
-   _.each(window.search_options.citylocality,function(vl_cl,ky_cl){
+console.log('window.search_options.locality.localities........')
+  console.log(window.search_options.locality.localities)
+
+   _.each(window.search_options.locality.localities,function(vl_cl,ky_cl){
                                 console.log(vl_cl);
                                 console.log('ky'+ky_cl)
-                                if(jQuery('#home_city').val()==ky_cl){
-                                  for(var j=0;j<vl_cl.length;j++){
-                                    jQuery('#home_location').append('<option value="'+vl_cl[j]+'">'+vl_cl[j]+'</option>')
-                                  }
+                                if(jQuery('#home_city').val()==vl_cl.city_id){
+                                 
+                                    jQuery('#home_location').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
+                                   
                                 }
 
                                  
@@ -172,19 +175,20 @@ jQuery('.home_btn_sea').live('click',function(evt){
             <div class="home_search">
               <div class="hme_dd wc">
                 <select id="home_city">
-                  <option value="Pune">Pune</option>
-                  <option value="Bangalore">Bangalore</option>
+                  <option value="" >City</option>
+               <!--   <option value="Pune">Pune</option>
+                  <option value="Bangalore">Bangalore</option> -->
                 </select>
               </div>
               <div class="hme_dd lo">
                 <select id="home_location">
-                  <option value="">Select</option>
+                  <option value="">Locality</option>
                 </select>
               </div>
               <div class="hme_dd ty">
                 <select id="home_type">
                   <option value="Type">Type</option>
-                  <option value="3_BHK">3 BHK</option>
+                <!--  <option value="3_BHK">3 BHK</option> -->
                 </select>
               </div>
               <div class="hme_dd lo">
