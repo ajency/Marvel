@@ -2078,7 +2078,7 @@ function save_custom_meta_box($post_id, $post, $update)
 	                // Generate our attachment metadata then update the file.
 	                $attachment_siteplan_imageData = wp_generate_attachment_metadata(  $siteplan_imageID, $uploadSiteplanImageStatus['file'] );
 	                wp_update_attachment_metadata(  $siteplan_imageID,  $attachment_siteplan_imageData );
-echo " NEW SITEPLAN IMAGE ID ".$siteplan_imageID;
+
 
 					$delete_existing_siteplan_image = true;
 
