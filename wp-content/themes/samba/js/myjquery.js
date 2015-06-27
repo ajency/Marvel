@@ -352,6 +352,10 @@ jQuery(document).ready(function($) {
 
             var selected_city = $('#custom_property-city').val();
 
+            $('#custom_property-locality').empty();
+
+            $('#custom_property-locality').append('<option value=""  >Select</option>');
+
 
             $.post(ajaxurl, {        //the server_url
                 action: "get_search_options",                 //the submit_data array
@@ -370,9 +374,7 @@ jQuery(document).ready(function($) {
 
                     //var localities_list = property_city_locality[selected_city];
 
-                    $('#custom_property-locality').empty();
-
-                    $('#custom_property-locality').append('<option value=""  >Select</option>');
+                    
 
                    // _.each(localities_list,function(locality_vl, locality_k ){ */
                     _.each(localities,function(locality_vl, locality_k ){
