@@ -558,4 +558,50 @@ jQuery('.save_property_type').live("click",function(){
 
         })
 
+
+
+
+
+
+
+
+
+
+/*Rent/Resale Property Listing/Import*/
+
+        jQuery('#import-expand').live("click",function(evt){
+            evt.preventDefault();
+            var iteration = jQuery(this).data('iteration') || 1
+            switch ( iteration) {
+                case 1:
+                jQuery(this).removeClass("button-primary");
+                jQuery(this).find('.toggle-state').html('-');
+                jQuery( ".import-wrap" ).slideDown( "slow", function() {
+                });
+                break;
+
+                case 2:
+                jQuery(this).addClass("button-primary");
+                jQuery(this).find('.toggle-state').html('+');
+                jQuery( ".import-wrap" ).slideUp( "slow", function() {
+                });
+                break;
+            }
+            iteration++;
+            if (iteration>2) iteration=1
+                jQuery(this).data('iteration',iteration)
+        });
+
+
+
+        jQuery('#rent-resale-import-btn').live("click",function(evt){
+            evt.preventDefault();
+            alert('button clicked');
+          });
+
+
+
+
+
+
         

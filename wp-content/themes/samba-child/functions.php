@@ -1,6 +1,7 @@
 <?php
 
 require_once('floor-plans-tab.php');
+require_once('rent-resale.php');
 
 
 function get_map_address_details($property_id){
