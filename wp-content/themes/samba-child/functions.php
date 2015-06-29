@@ -1,7 +1,7 @@
 <?php
 
 require_once('floor-plans-tab.php');
-
+require_once('modules/shortcode/services.php');
 
 function get_map_address_details($property_id){
 
