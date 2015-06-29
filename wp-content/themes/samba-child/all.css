@@ -646,7 +646,7 @@ img.mfp-img {
 .no_props {
   text-align: center;
   text-transform: uppercase;
-  margin: 90px;
+  margin: 130px 20px;
   color: #DDD;
 }
 .mfp-bottom-bar {
@@ -765,9 +765,15 @@ img.mfp-img {
 .mapView .main_with_sections {
   margin-top: 0;
 }
+#proj_list {
+  margin-top: 99px !important;
+}
 @media screen and (max-width: 769px) {
   #proj_list_main {
     margin-top: 80px;
+  }
+  #proj_list {
+    margin-top: 0 !important;
   }
 }
 @media screen and (max-width: 769px) {
@@ -796,7 +802,7 @@ img.mfp-img {
     padding-left: 20px;
   }
 }
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 480px) {
   .project-list.row .single_p_w.six.columns {
     width: 100% !important;
     float: none;
@@ -902,6 +908,7 @@ img.mfp-img {
 }
 .top-view a {
   display: inline-block;
+  vertical-align: top;
   color: #fff;
   padding: 4px 10px;
   width: 35px;
@@ -914,6 +921,11 @@ img.mfp-img {
   color: #666666;
 }
 .top-compar {
+  position: absolute;
+  width: 100%;
+  top: 72px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.85);
   padding: 25px 50px;
 }
 @media screen and (max-width: 991px) {
@@ -1153,6 +1165,8 @@ img.mfp-img {
   padding: 5px 12px;
   border-color: #555;
   display: inline-block;
+  white-space: nowrap;
+  vertical-align: sub;
 }
 .single_p_w .single_p_img .single_btm a.btn_norm:hover {
   background-color: #505050;
@@ -1183,6 +1197,7 @@ img.mfp-img {
   text-rendering: optimizeLegibility;
   text-transform: uppercase;
   cursor: pointer;
+  white-space: nowrap;
 }
 .single_p_w .single_p_img .single_btm a.single_share {
   padding: 0;
@@ -1230,6 +1245,7 @@ img.mfp-img {
   height: 500px;
 }
 .ui-draggable-dragging.single_p_w {
+  z-index: 10;
   background: #fff;
   border: 2px solid rgba(0, 0, 0, 0.1);
   padding-top: 10px;
@@ -3179,6 +3195,8 @@ ul.ui-tabs-nav {
   height: 19px;
   margin: 0 auto;
   background: url(img/yes.png) center center no-repeat;
+  text-indent: -99999px;
+  overflow: hidden;
 }
 .compare_c .compare_f {
   margin-top: 50px;
@@ -3205,6 +3223,11 @@ ul.ui-tabs-nav {
   margin-bottom: 0;
   margin-top: 15px;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width: 769px) {
+  .compare_c .info_bar {
+    margin-top: 80px;
+  }
 }
 @media screen and (max-width: 680px) {
   .compare_c .info_bar {
