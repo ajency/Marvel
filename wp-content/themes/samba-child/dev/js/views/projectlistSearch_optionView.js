@@ -751,10 +751,10 @@ setTimeout(function(){
 
 
               if(!_.isUndefined(prop_status) && prop_status !='' )
-                search_opt = '/st/'+prop_status;
+                search_opt = search_opt + '/st/'+prop_status;
 
               if(!_.isUndefined(prop_city) && prop_city !='' )
-                search_opt = '/ct/'+prop_city;
+                search_opt = search_opt + '/ct/'+prop_city;
 
 
               if(!_.isUndefined(prop_locality) && prop_locality!='')
