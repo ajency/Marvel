@@ -138,8 +138,8 @@ $show_sidebar=false;
                     </div>
                     <!--single project listing-->
                     <div class="single_p_w six columns">
-                        <div class="single_p_img">
-                            <img src="http://loremflickr.com/1000/1000/building">
+                        <div class="single_p_img" style="background-image: url(http://loremflickr.com/1000/1000/building);">
+                            <!-- <img src="http://loremflickr.com/1000/1000/building"> -->
                             <div class="compare">
                                 <a href="#" class="comp_ico showinlarge"></a>
                             </div>

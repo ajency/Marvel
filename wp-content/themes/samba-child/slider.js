@@ -156,18 +156,18 @@ function checkIfInView(element){
             if ($('body').hasClass('home')) {
                 placesearchbar();
             }
-            if ($('div').hasClass('owl-carousel') && !($('body').hasClass('single-residential-property')) && !($('body').hasClass('single-commercial-property'))) {
-                console.log($('div').hasClass('owl-carousel') && !($('body').hasClass('single-residential-property')));
+            if ($('div').hasClass('owl-carousel') && $('div').hasClass('wpb_tab')) {
                 setInterval(function() {
-                    $('.owl-carousel .item img').each(function() {
-                        //resizeimgs($(this).parent(), $(this));
+                    $('.wpb_tab .owl-carousel .item img').each(function() {
+                        resizeimgs($(this).parent(), $(this));
                     });
                 }, 0.5);
-                // $(document).click(function() {
-                //     $('.owl-carousel .item img').each(function() {
-                //         resizeimgs($(this).parent(), $(this));
-                //     });
-                // });
+            }
+
+            if ($('div').hasClass('nothis') && !($('body').hasClass('single-residential-property')) && !($('body').hasClass('single-commercial-property'))) {
+                $('.nothis .owl-carousel .item img').each(function() {
+                    resizeimgs($(this).parent(), $(this));
+                });
             } else if (($('body').hasClass('single-residential-property')) || ($('body').hasClass('single-commercial-property'))) {
                 console.log($('body').hasClass('single-residential-property'));
                 $('.owl-carousel .item img').each(function() {
@@ -176,6 +176,11 @@ function checkIfInView(element){
             }
         });
         $(window).resize(function() {
+            if ($('div').hasClass('nothis')) {
+                $('.nothis .owl-carousel .item img').each(function() {
+                    resizeimgs($(this).parent(), $(this));
+                });
+            }
             if (($('body').hasClass('single-residential-property')) || ($('body').hasClass('single-commercial-property'))) {
                 $('.owl-carousel .item img').each(function() {
                     resizeimgs($(this).parent(), $(this));
