@@ -447,7 +447,10 @@
                                             '<div class="map_btm">'+
                                             '    <div class="pull-left">'+
                                             '       <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>'+
-                                            '      <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>'+
+                                            '      <!-- <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a> -->'+
+                                            '       <a class="btn_norm single_share">'+
+                                            '         <span class="st_sharethis" st_image="'+featured_img_thumbnail[0]+'"   st_url="'+properties[i].get('post_url')+'" st_title="'+properties[i].get('post_title')+'"  ></span>'+
+                                            '      </a>'+
                                             '        <a href="#" class="btn_norm single_compare"></a>'+
                                             '    </div>'+
                                             '    <div class="pull-right">'+
@@ -471,6 +474,15 @@
                      // jQuery('#projects_listings').first(div).css({'padding':'5px 50px 25px'});
 
                         self.make_div_draggable();
+
+
+                        setTimeout(function(){ 
+                          
+                            var switchTo5x=true;  
+                           stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false}); 
+                           stButtons.locateElements();
+
+                        },300)
 
 
                     }
