@@ -16,7 +16,7 @@
             },*/ 
 
             initialize : function(options){
-console.log(options);
+            console.log(options);
 
 
             if(!_.isUndefined(options))
@@ -136,6 +136,16 @@ console.log(options);
                                 }
                                 else{
                                     var droppedOn = jQuery(this).find('.two') ;
+
+                                    if(jQuery(this).find('.one').attr('property-id')== dropped.attr('property-id')){
+                                        
+                                        //ui.draggable.animate(ui.draggable.data().origPosition,"fast");
+                                        
+                                          setTimeout(function(){ 
+                                            alert('Please Select two different projects to compare')
+                                            return;
+                                        })
+                                    }
                                 }
 
 
