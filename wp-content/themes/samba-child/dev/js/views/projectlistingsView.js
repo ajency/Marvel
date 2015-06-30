@@ -176,7 +176,7 @@ setTimeout(function(){
 console.log('LOADING SHARE BUTTON  LISTINGSSSSSSSSS:-------------------------------------------')
 //console.log(jQuery('#projects_listings').html())
   var switchTo5x=true;  
- stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false}); 
+ stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false}); 
  stButtons.locateElements();
 
 },300)

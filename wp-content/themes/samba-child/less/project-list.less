@@ -9,16 +9,21 @@
 .mapView .main_with_sections {
     margin-top: 0;
 }
-
+#proj_list {
+    margin-top: 99px !important;
+}
 @media screen and (max-width: 769px) {
     #proj_list_main {
-        margin-top: 34px;
+        margin-top: 80px;
+    }
+    #proj_list {
+        margin-top: 0 !important;
     }
 }
 
 // .proj_list {
     @media screen and (max-width: 769px) {
-        padding-top: 50px;
+        // padding-top: 50px;
         .project-list.row .single_p_w, .project-list.row .last_one {
             width: 50% !important;
             float: left;
@@ -33,11 +38,26 @@
             &:nth-child(2n) {padding-left: 20px;}
         }
     }
-    @media screen and (max-width: 680px) {
-        .project-list.row .single_p_w {
+    @media screen and (max-width: 480px) {
+        .project-list.row .single_p_w.six.columns {
             width: 100% !important;
             float: none;
             padding: 0;
+        }
+    }
+    @media screen and (min-width: 1367px) and (max-width: 1599px) {
+        .project-list.row .single_p_w.six.columns {
+            width: 33.33% !important;
+        }
+    }
+    @media screen and (min-width: 1600px) and (max-width: 1920px) {
+        .project-list.row .single_p_w.six.columns {
+            width: 25% !important;
+        }
+    }
+    @media screen and (min-width: 1920px) {
+        .project-list.row .single_p_w.six.columns {
+            width: 25% !important;
         }
     }
     [class*="column"]+[class*="column"]:last-child {
@@ -71,6 +91,9 @@
                 color: darken(@grey-bg, 25%);
             }
         }
+        &.one {
+            width: 16.66667%;
+        }
     }
     .comp_top {
         display: none;
@@ -101,6 +124,7 @@
         text-align: right;
         a {
             display: inline-block;
+            vertical-align: top;
             color: #fff;
             padding: 4px 10px;
             width: 35px;
@@ -115,6 +139,12 @@
     }
     //comparision
     .top-compar {
+        position: absolute;
+        width: 100%;
+        top: 72px;
+        z-index: 1;
+        background-color: rgba(255, 255, 255, 0.85);
+
         padding: 25px 50px;
         @media screen and (max-width: 991px) {
             padding-left: 15px;
@@ -290,6 +320,8 @@
                     a.btn_norm {
                         .btn_norm(5px; 12px);
                         display: inline-block;
+                        white-space: nowrap;
+                        vertical-align: sub;
                     }
                     a.single_enq {
                         i {visibility: hidden;} //display none causes a shift in objects because
@@ -305,6 +337,7 @@
                         .fontmont;
                         text-transform: uppercase;
                         cursor: pointer;
+                        white-space: nowrap;
                     }
                     a.single_share {
                         padding: 0;
@@ -347,6 +380,7 @@
 .ui-draggable-dragging {
     //list view
     &.single_p_w {
+        z-index: 10;
         // width: 100% !important;
         background: #fff;
         border: 2px solid rgba(0,0,0,0.1);

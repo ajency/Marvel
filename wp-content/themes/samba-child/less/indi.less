@@ -317,7 +317,6 @@
                     }
                     &.half {
                         width: 49%;
-//                        margin-right: 2px;
                         &.left {
                             float: left;
                         }
@@ -340,6 +339,24 @@
                         border-color: #848484;
                     }
                 }
+            }
+            @media screen and (max-width: 1284px) {
+                padding: 25px 50px;
+            }
+            @media screen and (max-width: 1164px) {
+                padding: 25px 30px;
+            }
+            @media screen and (max-width: 1024px) {
+                padding: 25px 180px;
+            }
+            @media screen and (max-width: 894px) {
+                padding: 25px 130px;
+            }
+            @media screen and (max-width: 580px) {
+                padding: 25px 60px;
+            }
+            @media screen and (max-width: 380px) {
+                padding: 25px;
             }
         }
     }
@@ -928,12 +945,12 @@
     width: auto !important;
     max-width: none;
     height: 100% !important;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 .no-csstransforms .owl-carousel .item img.heightadjust {
     top: 0 !important;

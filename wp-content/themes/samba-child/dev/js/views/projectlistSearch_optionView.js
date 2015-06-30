@@ -447,7 +447,10 @@
                                             '<div class="map_btm">'+
                                             '    <div class="pull-left">'+
                                             '       <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>'+
-                                            '      <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>'+
+                                            '      <!-- <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a> -->'+
+                                            '       <a class="btn_norm single_share">'+
+                                            '         <span class="st_sharethis" st_image="'+featured_img_thumbnail[0]+'"   st_url="'+properties[i].get('post_url')+'" st_title="'+properties[i].get('post_title')+'"  ></span>'+
+                                            '      </a>'+
                                             '        <a href="#" class="btn_norm single_compare"></a>'+
                                             '    </div>'+
                                             '    <div class="pull-right">'+
@@ -473,9 +476,25 @@
                         self.make_div_draggable();
 
 
+                        setTimeout(function(){ 
+                          
+                            var switchTo5x=true;  
+                           stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false}); 
+                           stButtons.locateElements();
+
+                        },300)
+
+
                     }
                   })(marker, i));
                 }
+
+
+                var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 70;
+               // alert(min_ht) ;
+                jQuery ('#projects_listings').css('min-height',min_ht+'px');
+
+               
         }
         else{
 
@@ -631,6 +650,10 @@
                      var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
 
                  jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
+
+                 var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 70;
+                //alert(min_ht+'=========') ;
+                jQuery ('#projects_listings').css('min-height',min_ht+'px');
 
 
 
