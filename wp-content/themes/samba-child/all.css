@@ -977,7 +977,6 @@ img.mfp-img {
 }
 .top-compar .drag_area .remove_from_comp {
   font-family: Arial;
-  padding-left: 1px;
   font-size: 19px;
   display: block;
   width: 20px;
@@ -1240,6 +1239,7 @@ img.mfp-img {
 .single_p_w .single_p_img .single_btm a.single_share * {
   display: block;
   height: 100%;
+  cursor: pointer;
 }
 .single_p_w .single_p_img .single_btm a.single_share .stButton .sharethis {
   background-image: none !important;
