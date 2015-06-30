@@ -70,7 +70,15 @@ function checkIfInView(element){
             }
         });
 
-        //location collapse
+        $(document).on('click', '.home_search', function() {
+            $width = window.innerWidth ? window.innerWidth : $(window).width();
+            if (!($(this).hasClass('popup')) && $width < 768) {
+                $('.home_search.popup').show();
+            }
+        });
+        $(document).on('click', '.home_search.popup .searc_head i', function() {
+            $(this).parents('.popup').hide();
+        });
 
         //go down btn - centering
         function setleft() {
@@ -115,9 +123,13 @@ function checkIfInView(element){
             $wid = window.innerWidth ? window.innerWidth : $(window).width();
             if ($wid > 769) {
                 $leftg = $('#menu_section').width();
-                $seawid = $('.home_search').width();
+                $seawid = $('.adjustcenter').width();
                 $actual_right = ($wid - $leftg - $seawid) / 2;
-                $('.home_search').css('right', $actual_right);
+                $('.adjustcenter').css('right', $actual_right);
+            } else {
+                $seawid = $('.adjustcenter').width();
+                $actual_right = ($wid - $seawid) / 2;
+                $('.adjustcenter').css('right', $actual_right);
             }
         }
 
@@ -353,7 +365,7 @@ function checkIfInView(element){
         if($('div').hasClass('proj_list')) {
             console.log('has map');
             $('#projects_listings').css({
-                'minHeight': $(window).height() - $('#projects_listings').position().top - 70,
+                'minHeight': $(window).height() - $('#projects_listings').position().top - 43,
                 'position': 'relative'
             });
         }

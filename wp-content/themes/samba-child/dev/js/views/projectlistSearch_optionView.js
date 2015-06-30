@@ -651,7 +651,7 @@
 
                  jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
 
-                 var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 70;
+                 var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 43;
                 //alert(min_ht+'=========') ;
                 jQuery ('#projects_listings').css('min-height',min_ht+'px');
 
