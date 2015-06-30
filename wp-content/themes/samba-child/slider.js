@@ -429,7 +429,7 @@ function checkIfInView(element){
 
         //map view - set height to fill the remaining space
         if ($('div').hasClass('gm-style')) {
-            $('#projects_listings').height($(window).height() - $('#projects_listings').position().top - 40);
+            $('#projects_listings').height($(window).height() - $('#projects_listings').position().top - 43);
         }
     });
 })( jQuery );
