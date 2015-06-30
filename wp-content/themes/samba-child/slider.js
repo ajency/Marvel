@@ -258,6 +258,14 @@ function checkIfInView(element){
                 $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
             }
             $('#full_fi_c').css('height', $hevp);
+            if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
+                resizeimgs($('#full_fi_c'), $('#full_fi_c').find('img'));
+            }
+        });
+        $(window).load(function() {
+            if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
+                resizeimgs($('#full_fi_c'), $('#full_fi_c').find('img'));
+            }
         });
 
         //scroll down indi prj page
