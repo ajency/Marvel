@@ -460,6 +460,7 @@ color: rgb(255, 255, 255);
 	}
 	.child-footer > div > .widget-6 {
 		float: none;
+		display: none;
 	}
 	.child-footer .widget-6 .WP_Editor_Widget a {
 		border: 0;
@@ -486,6 +487,7 @@ color: rgb(255, 255, 255);
     }
     .child-footer {
         display: table;
+        height: 83px;
     }
     .child-footer .widget-4 {display: table-footer-group;}
     .child-footer .widget-5 {display: table-header-group;}
