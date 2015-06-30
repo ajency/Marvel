@@ -141,10 +141,10 @@
                                         
                                         //ui.draggable.animate(ui.draggable.data().origPosition,"fast");
                                         
-                                          setTimeout(function(){ 
+                                           
                                             alert('Please Select two different projects to compare')
                                             return;
-                                        })
+                                
                                     }
                                 }
 
