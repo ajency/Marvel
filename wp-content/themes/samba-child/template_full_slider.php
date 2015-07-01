@@ -10,6 +10,7 @@ Template Name: Page - Fullscreen Slider
     get_header();
   }
 
+
   $data = get_post_meta( $post->ID, '_custom_meta_theme_page', true );
   $show_slider=true;
     if (isset($data['alchemy_autoplay']) && $data['alchemy_autoplay']!="")
@@ -61,7 +62,7 @@ jQuery.ajax(ajax_var.url,{
 
 
                            jQuery('#home_city').empty();
-                           jQuery('#home_city').append('<option value="">City</option>')                        
+                           jQuery('#home_city').append('<option value="">City</option>')
 
                            _.each(window.search_options.cities.cities,function(vl_cl,ky_cl){
                                 console.log(vl_cl);
@@ -69,14 +70,14 @@ jQuery.ajax(ajax_var.url,{
 
                                  jQuery('#home_city').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
 
-                           }) 
+                           })
 
                           /* jQuery('#home_type').empty();
                            jQuery('#home_type').append('<option value="">Type</option>')
-                           for(var i=0;i<window.search_options.type.length;i++){                           
+                           for(var i=0;i<window.search_options.type.length;i++){
 
                             jQuery('#home_type').append('<option value="'+window.search_options.type[i].ID+'">'+window.search_options.type[i].property_unit_type+'</option>')
-                            
+
                            } */
 
                         },
@@ -103,14 +104,14 @@ console.log('window.search_options.locality.localities........')
                                 console.log(vl_cl);
                                 console.log('ky'+ky_cl)
                                 if(jQuery('#home_city').val()==vl_cl.city_id){
-                                 
+
                                     jQuery('#home_location').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
-                                   
+
                                 }
 
-                                 
 
-                           }) 
+
+                           })
 
 })
 
@@ -129,12 +130,12 @@ jQuery('.home_btn_sea').live('click',function(evt){
   if(jQuery('#home_location').val()!=''){
     search_url= search_url + '/loc/'+jQuery('#home_location').val()
   }
-  
+
 
    if(jQuery('#home_type').val()!=''){
     search_url= search_url + '/type/'+jQuery('#home_type').val()
   }
-  
+
 
   window.location.href = search_url;
 
@@ -147,10 +148,6 @@ jQuery('.home_btn_sea').live('click',function(evt){
 
 
 </script>
-
-
-
-
 
 <div id="centered_block">
 <div id="main_block" class="row page-<?php echo get_the_ID(); ?>">
@@ -172,26 +169,31 @@ jQuery('.home_btn_sea').live('click',function(evt){
            <div class="clearfix"></div>
             </div>
 
-            <div class="home_search">
-              <div class="hme_dd wc">
-                <select id="home_city">
-                  <option value="" >City</option>
-               <!--   <option value="Pune">Pune</option>
-                  <option value="Bangalore">Bangalore</option> -->
-                </select>
+            <div class="home_search adjustcenter">
+              <div class="showin767">
+                <input type="text" class="taptoview" placeholder="Find your home">
               </div>
-              <div class="hme_dd lo">
-                <select id="home_location">
-                  <option value="">Locality</option>
-                </select>
+              <div class="hidein767">
+                <div class="hme_dd wc">
+                  <select id="home_city">
+                    <option value="" >City</option>
+                 <!--   <option value="Pune">Pune</option>
+                    <option value="Bangalore">Bangalore</option> -->
+                  </select>
+                </div>
+                <div class="hme_dd lo">
+                  <select id="home_location">
+                    <option value="">Locality</option>
+                  </select>
+                </div>
+                <div class="hme_dd ty">
+                  <select id="home_type">
+                    <option value="Type">Type</option>
+                  <!--  <option value="3_BHK">3 BHK</option> -->
+                  </select>
+                </div>
               </div>
-              <div class="hme_dd ty">
-                <select id="home_type">
-                  <option value="Type">Type</option>
-                <!--  <option value="3_BHK">3 BHK</option> -->
-                </select>
-              </div>
-              <div class="hme_dd lo">
+              <div class="hme_dd lo btn">
                 <button class="home_btn_sea" type="submit">
                   <i class="fa fa-search"></i>
                 </button>

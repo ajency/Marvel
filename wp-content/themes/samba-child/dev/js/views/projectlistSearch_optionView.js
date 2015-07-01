@@ -476,10 +476,10 @@
                         self.make_div_draggable();
 
 
-                        setTimeout(function(){ 
-                          
-                            var switchTo5x=true;  
-                           stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false}); 
+                        setTimeout(function(){
+
+                            var switchTo5x=true;
+                           stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
                            stButtons.locateElements();
 
                         },300)
@@ -490,11 +490,11 @@
                 }
 
 
-                var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 70;
+                var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 43;
                // alert(min_ht) ;
                 jQuery ('#projects_listings').css('min-height',min_ht+'px');
 
-               
+
         }
         else{
 
@@ -651,7 +651,7 @@
 
                  jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
 
-                 var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 70;
+                 var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 43;
                 //alert(min_ht+'=========') ;
                 jQuery ('#projects_listings').css('min-height',min_ht+'px');
 
@@ -749,11 +749,11 @@ setTimeout(function(){
 
                             _.each(localities_options, function(vl_localities,ky_localities){
 
-                               if(parseInt(vl_localities.city_id)==parseInt(event_val)){ 
-                                    jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+vl_localities.name+"</option>")  
-                               
+                               if(parseInt(vl_localities.city_id)==parseInt(event_val)){
+                                    jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+vl_localities.name+"</option>")
 
-                                    
+
+
 
                                 }
                             })

@@ -7,11 +7,11 @@
   <meta charset="utf-8">
   <title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title>
   <?php
-    $count = wp_count_posts('post'); 
-    if ($count->publish > 0) 
+    $count = wp_count_posts('post');
+    if ($count->publish > 0)
     {
       echo "\n\t<link rel=\"alternate\" type=\"application/rss+xml\" title=\"". get_bloginfo('name') ." Feed\" href=\"". home_url() ."/feed/\">\n";
-    } 
+    }
   global $prk_samba_frontend_options;
   global $retina_device;
   global $prk_translations;
@@ -28,6 +28,37 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('samba_theme'.$resp_class); ?>>
+
+<!--home search popup-->
+<div class="home_search popup" style="display: none;">
+  <div class="searc_head">
+    Find your home
+    <i class="close-btn"></i>
+  </div>
+  <div class="hme_dd wc">
+    <select id="home_city2">
+      <option value="" >City</option>
+    </select>
+  </div>
+  <div class="hme_dd lo">
+    <select id="home_location2">
+      <option value="">Locality</option>
+    </select>
+  </div>
+  <div class="hme_dd ty">
+    <select id="home_type2">
+      <option value="Type">Type</option>
+    </select>
+  </div>
+  <div class="hme_dd lo">
+    <button class="home_btn_sea2" type="submit">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>
+<!--ends home search popup-->
+
+
   <?php
       global $prk_back_css;
       echo $prk_back_css;
@@ -54,16 +85,16 @@
             echo prk_output_alt_logo($retina_device);
           ?>
         </div>
-        
+
         <a href="#" class="head_enq_ico" id="">Enquiry</a>
-        
+
         <div id="back_to_top-collapsed">
           <div class="navicon-arrow-up-2"></div>
         </div>
       </div>
       <div id="body_hider"></div>
     <div id="st-container" class="st-container<?php if ($prk_samba_frontend_options['3d_menu']=="false"){echo ' no-csstransforms3d'; }?>">
- 
+
     <!-- content push wrapper -->
 
     <div class="st-pusher">
@@ -73,16 +104,16 @@
                   <?php
                     echo prk_output_logo($retina_device);
                   ?>
-                </a>  
+                </a>
             </div>
             <div class="clearfix"></div>
-        <div class="opened_menu twelve"> 
+        <div class="opened_menu twelve">
             <nav id="nav-main" class="nav-collapse collapse" role="navigation">
                 <div class="nav-wrap">
-                      <?php 
-                          if ( has_nav_menu( 'top_right_navigation' ) ) 
+                      <?php
+                          if ( has_nav_menu( 'top_right_navigation' ) )
                           {
-                            wp_nav_menu(array('theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker)); 
+                            wp_nav_menu(array('theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker));
                           }
                       ?>
                </div>
@@ -96,13 +127,13 @@
           <div class="footer">
             <footer id="content-info" role="contentinfo">
                 <div id="footer_bk">
-                  <?php 
+                  <?php
                     if ($prk_samba_frontend_options['bottom_sidebar']=="yes")
                     {
                         ?>
                           <div id="footer_in" style="display: none">
                               <?php
-                                  if (function_exists('dynamic_sidebar') && dynamic_sidebar('sidebar-footer')) : 
+                                  if (function_exists('dynamic_sidebar') && dynamic_sidebar('sidebar-footer')) :
                                   endif;
                               ?>
                               <div class="clearfix"></div>

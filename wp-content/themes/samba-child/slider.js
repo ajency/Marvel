@@ -70,7 +70,15 @@ function checkIfInView(element){
             }
         });
 
-        //location collapse
+        $(document).on('click', '.home_search', function() {
+            $width = window.innerWidth ? window.innerWidth : $(window).width();
+            if (!($(this).hasClass('popup')) && $width < 768) {
+                $('.home_search.popup').show();
+            }
+        });
+        $(document).on('click', '.home_search.popup .searc_head i', function() {
+            $(this).parents('.popup').hide();
+        });
 
         //go down btn - centering
         function setleft() {
@@ -115,9 +123,13 @@ function checkIfInView(element){
             $wid = window.innerWidth ? window.innerWidth : $(window).width();
             if ($wid > 769) {
                 $leftg = $('#menu_section').width();
-                $seawid = $('.home_search').width();
+                $seawid = $('.adjustcenter').width();
                 $actual_right = ($wid - $leftg - $seawid) / 2;
-                $('.home_search').css('right', $actual_right);
+                $('.adjustcenter').css('right', $actual_right);
+            } else {
+                $seawid = $('.adjustcenter').width();
+                $actual_right = ($wid - $seawid) / 2;
+                $('.adjustcenter').css('right', $actual_right);
             }
         }
 
@@ -258,6 +270,14 @@ function checkIfInView(element){
                 $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
             }
             $('#full_fi_c').css('height', $hevp);
+            if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
+                resizeimgs($('#full_fi_c'), $('#full_fi_c').find('img'));
+            }
+        });
+        $(window).load(function() {
+            if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
+                resizeimgs($('#full_fi_c'), $('#full_fi_c').find('img'));
+            }
         });
 
         //scroll down indi prj page
@@ -345,7 +365,7 @@ function checkIfInView(element){
         if($('div').hasClass('proj_list')) {
             console.log('has map');
             $('#projects_listings').css({
-                'minHeight': $(window).height() - $('#projects_listings').position().top - 70,
+                'minHeight': $(window).height() - $('#projects_listings').position().top - 43,
                 'position': 'relative'
             });
         }
@@ -421,7 +441,7 @@ function checkIfInView(element){
 
         //map view - set height to fill the remaining space
         if ($('div').hasClass('gm-style')) {
-            $('#projects_listings').height($(window).height() - $('#projects_listings').position().top - 40);
+            $('#projects_listings').height($(window).height() - $('#projects_listings').position().top - 43);
         }
     });
 })( jQuery );

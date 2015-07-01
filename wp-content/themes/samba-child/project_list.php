@@ -111,6 +111,7 @@ $show_sidebar=false;
                         <div class="before_drag">
                             Drag for Comparision
                         </div>
+                        <a href="#" class="remove_from_comp">×</a>
                         <div class="after_drag_content">
                             <p class="dragged_title">
                                 <span class="single_p_title">Marvel Edge</span><br>
