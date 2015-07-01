@@ -158,9 +158,11 @@ console.log(options) */
                 if(options.repopulate_city == true){
                     $('.services_dd_city').empty();
                     $('.services_dd_city').append('<option value="">City</option>')
+
+                    var sorted_city_list = _.sortBy(html_data.city_list);
                    
-                    _.each(html_data.city_list,function(vl_city,ky_city){
-                        
+                   // _.each(html_data.city_list,function(vl_city,ky_city){
+                    _.each(sorted_city_list,function(vl_city,ky_city){   
                         var selected_pune =' '; 
                         if(vl_city=="Pune")
                             var selected_pune = ' selected ';
@@ -212,9 +214,13 @@ console.log(options) */
 
 
                  if(options.repopulate_locality==true){
+
+                    var sorted_area_list = _.sortBy(html_data.area_list);
+
                     $('.services_dd_locality').empty();
                     $('.services_dd_locality').append('<option value="">Locality</option>')
-                    _.each(html_data.area_list,function(vl_area,ky_area){
+                    //_.each(html_data.area_list,function(vl_area,ky_area){
+                     _.each(sorted_area_list,function(vl_area,ky_area){   
                         $('.services_dd_locality').append('<option value="'+vl_area+'">'+vl_area+'</option>')
 
                     })
@@ -222,9 +228,13 @@ console.log(options) */
 
 
                 if(options.repopulate_bedrooms==true){
+
+                    var sorted_bedrooms = _.sortBy(html_data.bedrooms_list);
+
                     $('.services_dd_type').empty();
                     $('.services_dd_type').append('<option value="">No. of Bedrooms</option>')
-                    _.each(html_data.bedrooms_list,function(vl_bedroom,ky_bedroom){
+                    //_.each(html_data.bedrooms_list,function(vl_bedroom,ky_bedroom){
+                    _.each(sorted_bedrooms,function(vl_bedroom,ky_bedroom){  
                         $('.services_dd_type').append('<option value="'+vl_bedroom+'">'+vl_bedroom+'</option>')
 
                     })

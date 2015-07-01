@@ -39,6 +39,7 @@ function  services_properties_rent_resale(){
     $punecity_localities        = array_unique($all_punecity_localities);
     $punecity_bedroooms         = array_unique($all_punecity_bedrooms);
 
+    sort($uniq_cities);
     
     $pune_city_property_exists = false;
     foreach ($uniq_cities as $key_ => $value_) {
@@ -52,6 +53,9 @@ function  services_properties_rent_resale(){
 //var_dump($res);
 
 if($pune_city_property_exists==true){
+    sort($punecity_localities);
+    sort($punecity_bedroooms);
+
     $dropdown_localities = $punecity_localities;
     $dropdown_bedrooms = $punecity_bedroooms;
 
@@ -59,6 +63,10 @@ if($pune_city_property_exists==true){
     $city_properties_cnt = $wpdb->get_var($qry_count_properties);
 }    
 else {
+
+sort($uniq_areas);
+sort($uniq_no_of_bedrooms);
+
     $dropdown_localities = $uniq_areas;
     $dropdown_bedrooms = $uniq_no_of_bedrooms;
 
