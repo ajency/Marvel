@@ -3,7 +3,7 @@ function  services_properties_rent_resale(){
 
 
     global $wpdb;
-    $qry_get_rent_resale_data = " SELECT * FROM `table 25` ";
+    $qry_get_rent_resale_data = " SELECT * FROM `table 25` ORDER BY Project_Name  ";
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
 
@@ -15,12 +15,16 @@ function  services_properties_rent_resale(){
         $all_no_of_rooms[]      = $result_data['No_of_Rooms'];
         if(strtolower($result_data['City']) == "pune")
             $all_punecity_localities[] = $result_data['Area'];
+            $all_punecity_bedrooms[] = $result_data['No_of_Bedrooms'];
         }    
+
+         
 
     $uniq_cities                = array_unique($all_cities);
     $uniq_areas                 = array_unique($all_areas);
     $uniq_no_of_bedrooms        = array_unique($all_no_of_bedrooms);
     $punecity_localities        = array_unique($all_punecity_localities);
+    $punecity_bedroooms        = array_unique($all_punecity_bedrooms);
       
 
 ?>
@@ -29,6 +33,13 @@ function  services_properties_rent_resale(){
 
 <!--Careers Bottom content-->
                 <!--Careers Bottom content-->
+                <a class="wpb_button_a" href="#">
+                    <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_resale">View Properties on Resale</span>
+                </a>
+                <a class="wpb_button_a" href="#">
+                    <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_rent">View Properties on Rent</span>
+                </a>
+
                 <div class="vc_row-fluid full-width">
                     <div class="vc_col-sm-12">
                         <div class="top-dd-c">
@@ -41,7 +52,7 @@ function  services_properties_rent_resale(){
                             </div>
 -->
                             <div class="top-dd two">
-                                <select id="dd_city"> 
+                                <select id="dd_city" class="services_dd_city" > 
                                     <option value="">City</option>                                   
                                     <?php  
                                     foreach ($uniq_cities  as $city_val) {
@@ -51,7 +62,7 @@ function  services_properties_rent_resale(){
                                 </select>
                             </div>
                             <div class="top-dd thr">
-                                <select id="dd_locality"  >
+                                <select id="dd_locality" class="services_dd_locality" >
                                     <option value="">Locality</option>
                                     <?php  
                                     foreach ($punecity_localities   as $locality_val) {
@@ -62,10 +73,10 @@ function  services_properties_rent_resale(){
                                 </select>
                             </div>
                             <div class="top-dd fou">
-                                <select id="dd_type"  >
+                                <select id="dd_type" class="services_dd_type" >
                                     <option value="">No. of Bedrooms</option>
                                      <?php  
-                                    foreach ($uniq_no_of_bedrooms  as $bedrooms_val) {
+                                    foreach ($punecity_bedroooms  as $bedrooms_val) {
                                         ?><option value="<?php echo $bedrooms_val; ?>"  ><?php echo $bedrooms_val;?></option>
                                     <?php
                                     }
@@ -91,110 +102,162 @@ function  services_properties_rent_resale(){
 
 
 
-                <div id="services_properties"></div>
-
+                
 
                 <div class="prk_inner_block vc_row-fluid centered columns">
                     <div class="row">
-                        <div class="vc_col-sm-12 wpb_column vc_column_container">
-                            <h5>Residential Projects on Rent in Pune (3)</h5>
+                        <div class="vc_col-sm-12 wpb_column vc_column_container serices_properties_heading">
+                            <h5>Residential Projects for Resale in Pune (3)</h5>
                         </div>
                     </div>
                 </div>
-                <div class="prk_inner_block vc_row-fluid centered columns forent">
-                    <div class="row partintro">
-                        <div class="vc_col-sm-12 wpb_column vc_column_container bgrey">
-                            <div class="wpb_wrapper img_hold">
-                                <div class="clearfix"></div>
-                                <div class="work_cont">
-                                    <img src="http://loremflickr.com/1000/457/luxury,house">
-                                    <div class="forent_cap">Sample Flat</div>
+
+                <input type="hidden" name="services_project_type"  id="services_project_type"  value="resale" />
+                <div id="services_properties_listings">
+                   
+
+
+                <?php 
+                $current_project = '';
+                foreach ( $res_get_rent_resale_data as $key_rent_resale => $value_rent_resale) {
+                    # code...
+                    if ($value_rent_resale['type']=='resale' && strtolower($value_rent_resale['City']) == "pune") {
+
+                        //echo "<br/> <h2> CURRENT PROJECT NAME: ".$current_project."</h2>";
+                        //echo "<br/> <h2> NEW PROJECT NAME : ".$value_rent_resale['Project_Name']."</h2>";
+
+
+                        if($current_project !='' &&  (strcasecmp($current_project,$value_rent_resale['Project_Name'])!==0) ){
+                           // echo "<h3> END MAIN PROJECT DIV</h3>";
+                        ?>
+
+                                            </div>
+                                        </div>
+                                    </div>    
                                 </div>
                             </div>
-<!--
-                        </div>
-                        <div class="vc_col-sm-6 wpb_column vc_column_container ">
--->
-                            <div class="wpb_wrapper introtext">
-                                <div class="clearfix"></div>
-                                <div class="work_cont">
-                                    <a href="#" class="proj_title">
-                                        <span class="title">Marvel Diva</span>
-                                        <span class="divi">|</span>
-                                        <span class="loca">Magarpatta Road</span>
-                                    </a>
-                                    <p class="excerpt">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    </p>
+                            <div class="clearfix"></div>
+                        </div>   
+                        <?php
+                        }
+
+                        if($current_project !='' &&  (strcasecmp($current_project,$value_rent_resale['Project_Name'])===0) ){
+                            //echo "<h3> CONTINUE MAIN PROJECT DIV</h3>";
+                            ?>
+
+                                                <div class="top_inner t_i_body">
+                                                    <div class="set">
+                                                        <big><?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?></big>
+                                                    </div>
+                                                    <div class="set">
+                                                        <big><?php echo $value_rent_resale['Area_Sq_ft']; ?></big>
+                                                    </div>
+                                                    <div class="set">
+                                                        <big><?php echo $value_rent_resale['No_of_Rooms']; ?></big>
+                                                    </div>
+                                                    <div class="set rent">
+                                                       <?php if($value_rent_resale['Rental_Value_Unfurnished']!='') { ?> <big><?php echo $value_rent_resale['Rental_Value_Unfurnished']; ?></big><small> - Unfurnished</small><?php } ?>
+                                                       <?php if($value_rent_resale['Rental_Value_Furnished']!=''){ ?> <big><?php echo $value_rent_resale['Rental_Value_Furnished']; ?></big><small> - Furnished</small><?php } ?>
+                                                    </div>
+                                                    <div class="set alrt">
+                                                        <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
+                                                    </div>
+                                                </div>
+                            <?php
+
+                        }
+                        else if($current_project =='' || (strcasecmp($current_project,$value_rent_resale['Project_Name'])!==0) ){
+                            $current_project = $value_rent_resale['Project_Name'];
+                            //echo "<h1> New Project </h1>";
+                    
+
+                ?>
+
+                        <div class="prk_inner_block vc_row-fluid centered columns forent">
+                            <div class="row partintro">
+                                <div class="vc_col-sm-12 wpb_column vc_column_container bgrey">
+                                    <div class="wpb_wrapper img_hold">
+                                        <div class="clearfix"></div>
+                                        <div class="work_cont">
+                                            <img src="http://loremflickr.com/1000/457/luxury,house">
+                                            <div class="forent_cap">Sample Flat</div>
+                                        </div>
+                                    </div>
+        <!--
+                                </div>
+                                <div class="vc_col-sm-6 wpb_column vc_column_container ">
+        -->
+                                    <div class="wpb_wrapper introtext">
+                                        <div class="clearfix"></div>
+                                        <div class="work_cont">
+                                            <a href="#" class="proj_title">
+                                                <span class="title"><?php echo $value_rent_resale['Project_Name']; ?></span>
+                                                <span class="divi">|</span>
+                                                <span class="loca"><?php echo $value_rent_resale['Area']; ?></span>
+                                            </a>
+                                            <p class="excerpt">
+                                                <?php echo $value_rent_resale['Flat_Description']; ?>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row list_forent">
-                        <div class="vc_col-sm-12 wpb_column vc_column_container">
-                            <div class="wpb_wrapper">
-                                <div class="clearfix"></div>
-                                <div class="work_cont tab_con">
-                                    <div class="top-tab">
-                                       <div class="top_inner t_i_head">
-                                            <div class="set">
-                                                <small class="clr_lt">Building | Floor</small>
-                                            </div>
-                                            <div class="set">
-                                                <small class="clr_lt">Area (SQ.FT.)</small>
-                                            </div>
-                                            <div class="set">
-                                                <small class="clr_lt">No. Of Rooms</small>
-                                            </div>
-                                            <div class="set rent">
-                                                <small class="clr_lt">Rent (Rs./Month)</small>
-                                            </div>
-                                            <div class="set">
+                            <div class="row list_forent">
+                                <div class="vc_col-sm-12 wpb_column vc_column_container">
+                                    <div class="wpb_wrapper">
+                                        <div class="clearfix"></div>
+                                        <div class="work_cont tab_con">
+                                            <div class="top-tab">
+                                               <div class="top_inner t_i_head">
+                                                    <div class="set">
+                                                        <small class="clr_lt">Building | Floor</small>
+                                                    </div>
+                                                    <div class="set">
+                                                        <small class="clr_lt">Area (SQ.FT.)</small>
+                                                    </div>
+                                                    <div class="set">
+                                                        <small class="clr_lt">No. Of Rooms</small>
+                                                    </div>
+                                                    <div class="set rent">
+                                                        <small class="clr_lt">Rent (Rs./Month)</small>
+                                                    </div>
+                                                    <div class="set">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="top_inner t_i_body">
+                                                    <div class="set">
+                                                        <big><?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?></big>
+                                                    </div>
+                                                    <div class="set">
+                                                        <big><?php echo $value_rent_resale['Area_Sq_ft']; ?></big>
+                                                    </div>
+                                                    <div class="set">
+                                                        <big><?php echo $value_rent_resale['No_of_Rooms']; ?></big>
+                                                    </div>
+                                                    <div class="set rent">
+                                                       <?php if($value_rent_resale['Rental_Value_Unfurnished']!='') { ?> <big><?php echo $value_rent_resale['Rental_Value_Unfurnished']; ?></big><small> - Unfurnished</small><?php } ?>
+                                                       <?php if($value_rent_resale['Rental_Value_Furnished']!=''){ ?> <big><?php echo $value_rent_resale['Rental_Value_Furnished']; ?></big><small> - Furnished</small><?php } ?>
+                                                    </div>
+                                                    <div class="set alrt">
+                                                        <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
+                                                    </div>
+                                                </div>
                                                 
-                                            </div>
+                                               
+            <?php
+                    }
+                }
+            }
+            ?>
+                                                </div>
                                         </div>
-                                        <div class="top_inner t_i_body">
-                                            <div class="set">
-                                                <big>D 10</big>
-                                            </div>
-                                            <div class="set">
-                                                <big>2,155</big>
-                                            </div>
-                                            <div class="set">
-                                                <big>3.5 BHK</big>
-                                            </div>
-                                            <div class="set rent">
-                                                <big>45,000</big><small> - Unfurnished</small>
-                                            </div>
-                                            <div class="set alrt">
-                                                <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="top_inner t_i_body">
-                                            <div class="set">
-                                                <big>D 10</big>
-                                            </div>
-                                            <div class="set">
-                                                <big>2,155</big>
-                                            </div>
-                                            <div class="set">
-                                                <big>3.5 BHK</big>
-                                            </div>
-                                            <div class="set rent">
-                                                <big>45,000</big><small> - Unfurnished</small>
-                                            </div>
-                                            <div class="set alrt">
-                                                <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
-                                            </div>
-                                        </div>
+                                    </div>    
                                 </div>
                             </div>
-                        </div>    
-                    </div>
-                </div>
-                    <div class="clearfix"></div>
-                </div>
+                            <div class="clearfix"></div>
+                        </div>   
+ 
                 
 
 <?php
@@ -206,33 +269,33 @@ add_shortcode('services_properties_rent_resale', 'services_properties_rent_resal
 
 function get_services_properties($rent_resale='rent',$city='',$locality='',$no_bedrooms=''){
 
-global $wpdb;
-$table_name = " `table 25` ";
- echo 'CITY'.$city;
+    global $wpdb;
+    $table_name = " `table 25` ";
+    // echo 'CITY'.$city;
 
-$where_sql =" WHERE type ='".$rent_resale."' ";
+    $where_sql =" WHERE type ='".$rent_resale."' ";
 
-if($city!='') {     
-    $where_sql.=" and City = '".$city."'";
-}
-
-
-if($locality!='') {    
-    $where_sql.=" and Area = '".$locality."'";
-}
+    if($city!='') {     
+        $where_sql.=" and City = '".$city."'";
+    }
 
 
-if($no_bedrooms!='') {    
-    $where_sql.=" and No_of_Bedrooms = '".$no_bedrooms."'";
-}
-
-$qry_get_services_properties = "SELECT * FROM ".$table_name." ".$where_sql;
- 
-
-$res_get_services_properties = $wpdb->get_results($qry_get_services_properties,ARRAY_A);
+    if($locality!='') {    
+        $where_sql.=" and Area = '".$locality."'";
+    }
 
 
-return $res_get_services_properties;
+    if($no_bedrooms!='') {    
+        $where_sql.=" and No_of_Bedrooms = '".$no_bedrooms."'";
+    }
+
+    $qry_get_services_properties = "SELECT * FROM ".$table_name." ".$where_sql;
+     
+
+    $res_get_services_properties = $wpdb->get_results($qry_get_services_properties,ARRAY_A);
+
+
+    return $res_get_services_properties;
 
 
 }
@@ -252,6 +315,13 @@ function get_services_properties_ajx(){
      var_dump($_REQUEST);*/ 
 
     $rent_resale = 'rent';
+
+    if(isset($_REQUEST['data']['type'])) {
+        if($_REQUEST['data']['type']!='')
+            $rent_resale = $_REQUEST['data']['type'];
+        
+    } 
+
     if(isset($_REQUEST['data']['city'])) {
         $city = $_REQUEST['data']['city'];
         

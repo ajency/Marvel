@@ -49,18 +49,56 @@ jQuery(document).ready(function($) {
     })
 
 
-    $('#dd_city').live("change",function(evt){
+
+    $('.view_properties_resale').live("click",function(evt){
  
+        $('#services_project_type').val('resale');
+
+        var options = {'repopulate_city':true,
+                        'repopulate_locality':  true,
+                        'repopulate_bedrooms' : true
+
+                        };
+
+        fetch_servies_projects(options)
+
+        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS FOR RESALE IN <span class="city_head">PUNE</span>');
+
+        
+
+     })
+
+    $('.view_properties_rent').live("click",function(evt){
+         $('#services_project_type').val('rent');
+         var options = {'repopulate_city':true,
+                        'repopulate_locality':  true,
+                        'repopulate_bedrooms' : true
+                        
+                        };
+
+        fetch_servies_projects(options)
+
+        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT IN <span class="city_head">PUNE</span>');
+
+        
+
+     })
+
+
+    function fetch_servies_projects(options){
+
         var city = $('#dd_city').val();
         var locality = $('#dd_locality').val();
         var no_bedrooms = $('#dd_type').val();
+        var type = $('#services_project_type').val();
 
 
 
         var my_data = { 'city' :city,
-                     'locality': locality,
-                     'no_bedrooms':no_bedrooms
-                   }
+                        'locality': locality,
+                        'no_bedrooms':no_bedrooms,
+                        'type' :type
+                     }
 
 
 
@@ -72,6 +110,80 @@ jQuery(document).ready(function($) {
 
             console.log('get_services_properties_ajx data');
             console.log(data)
+            var html=''
+
+            if(data==false){
+                html ="No Properties to display."
+                jQuery('#services_properties_listings').html(html);
+            }
+            else{
+                html_data = display_services_properties(data)
+                jQuery('#services_properties_listings').html(html_data.property_list_html);
+
+
+/*
+
+var property_list_details = {'property_list_html':property_list_html,
+                              'city_list':city_list,
+                              'area_list':area_list,
+                              'bedrooms_list':bedrooms_list,
+
+                            }
+
+
+                            var options = {'repopulate_city':true,
+                        'repopulate_locality':  true,
+                        'repopulate_bedrooms' : true
+                        
+                        };
+*/
+
+
+                if(options.repopulate_city == true){
+                    $('.services_dd_city').empty();
+                    $('.services_dd_city').append('<option value="">City</option>')
+                    _.each(html_data.city_list,function(vl_city,ky_city){
+                        $('.services_dd_city').append('<option value="'+vl_city+'">'+vl_city+'</option>')
+
+                    })
+                }
+
+
+
+                 if(options.repopulate_locality==true){
+                    $('.services_dd_locality').empty();
+                    $('.services_dd_locality').append('<option value="">Locality</option>')
+                    _.each(html_data.area_list,function(vl_area,ky_area){
+                        $('.services_dd_locality').append('<option value="'+vl_area+'">'+vl_area+'</option>')
+
+                    })
+                }
+
+
+                if(options.repopulate_bedrooms==true){
+                    $('.services_dd_type').empty();
+                    $('.services_dd_type').append('<option value="">No. of Bedrooms</option>')
+                    _.each(html_data.bedrooms_list,function(vl_bedroom,ky_bedroom){
+                        $('.services_dd_type').append('<option value="'+vl_bedroom+'">'+vl_bedroom+'</option>')
+
+                    })
+                }
+
+                
+
+
+            }
+            console.log(html);
+
+            /* var property_list_details = {'property_list_html':property_list_html,
+                              'city_list':city_list,
+                              'area_list':area_list,
+                              'bedrooms_list':bedrooms_list,
+
+                            }
+            */
+
+            
 
                             /* if(data.success == true ){
                                  console.log(jQuery(self).closest('tr').html())
@@ -93,7 +205,250 @@ jQuery(document).ready(function($) {
 
                     }) 
 
+    }
+
+
+    $('.services_dd_city,.services_dd_locality,.services_dd_type').live("change",function(evt){
+ 
+            var  services_dd_city = false;
+            var repopulate_locality = false;
+            var repopulate_bedrooms = false;
+            var repopulate_city = false;
+
+        if($(this).hasClass('services_dd_city')){
+             
+            repopulate_locality = true;
+            repopulate_bedrooms = true;
+
+        }
+
+        if($(this).hasClass('services_dd_locality')){           
+             
+            repopulate_bedrooms = true;
+
+        } 
+        
+
+         var options = {'repopulate_city':repopulate_city,
+                        'repopulate_locality':  repopulate_locality,
+                        'repopulate_bedrooms' : repopulate_bedrooms
+                        
+                        };
+
+        fetch_servies_projects(options);
+
     })
+
+
+    function display_services_properties(services_properties){
+
+
+        var current_property_type = $('#services_project_type').val();
+
+        var current_project = '';
+        var property_list_html='';
+        var city_list = [];
+        var city_list_cnt =0;
+
+        var area_list = [];
+        var area_list_cnt =0;
+
+        var bedrooms_list = [];
+        var bedrooms_list_cnt = 0;
+
+        /* var city_area = [];
+        var city_area_cnt =0; */
+
+
+        _.each(services_properties,function(servproperties_vl,servproperties_ky){
+
+            if(_.contains(city_list,servproperties_vl.City)!=true){
+                city_list[city_list_cnt] = servproperties_vl.City;
+                city_list_cnt = city_list_cnt + 1;
+            }
+
+            if(_.contains(area_list,servproperties_vl.Area)!=true){
+                area_list[area_list_cnt] = servproperties_vl.Area;
+                area_list_cnt = area_list_cnt+1;
+            }
+
+
+             if(_.contains(bedrooms_list,servproperties_vl.No_of_Bedrooms)!=true){
+                bedrooms_list[bedrooms_list_cnt] = servproperties_vl.No_of_Bedrooms;
+                bedrooms_list_cnt = bedrooms_list_cnt+1;
+            }
+             
+
+
+                console.log('servproperties_vl');
+                console.log(servproperties_vl)
+                            if(servproperties_vl.type == current_property_type){
+                console.log('type match '+servproperties_vl.type+' : '+current_property_type);
+
+                if(current_project !='' &&  (current_project !=servproperties_vl.Project_Name) ){
+                    property_list_html = property_list_html +            
+                    '                           </div>'+
+                    '                        </div>'+
+                    '                    </div>'+    
+                    '                </div>'+
+                    '            </div>'+
+                    '            <div class="clearfix"></div>'+
+                    '        </div>'  
+                         
+                }
+                if(current_project !='' &&  (current_project ==servproperties_vl.Project_Name) ){
+                            //echo "<h3> CONTINUE MAIN PROJECT DIV</h3>";
+                             property_list_html = property_list_html +      
+
+                                                '<div class="top_inner t_i_body">'+
+                                                '    <div class="set">'+
+                                                '        <big>'+servproperties_vl.Building+' '+servproperties_vl.Floor+'</big>'+
+                                                '    </div>'+
+                                                '    <div class="set">'+
+                                                '        <big>'+servproperties_vl.Area_Sq_ft+'</big>'+
+                                                '    </div>'+
+                                                '    <div class="set">'+
+                                                '        <big>'+servproperties_vl.No_of_Rooms+'</big>'+
+                                                '    </div>'+
+                                                '    <div class="set rent">'
+                        if(servproperties_vl.Rental_Value_Unfurnished!='') {   
+                            property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Unfurnished+'</big><small> - Unfurnished</small>';
+                        }
+
+                        if(servproperties_vl.Rental_Value_Furnished!=''){ 
+                            property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Furnished+'</big><small> - Furnished</small>';
+                        }
+                        property_list_html = property_list_html+
+                                                '    </div>'+
+                                                '    <div class="set alrt">'+
+                                                '        <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
+                                                '    </div>'+
+                                                '</div>';
+                        }
+
+
+
+
+
+
+
+
+
+
+                        else if(current_project =='' || (current_project!=servproperties_vl.Project_Name) ){
+                           current_project = servproperties_vl.Project_Name;
+                            //echo "<h1> New Project </h1>";
+                    
+                        property_list_html = property_list_html+
+                 
+
+                                            '<div class="prk_inner_block vc_row-fluid centered columns forent">'+
+                                            '    <div class="row partintro">'+
+                                            '        <div class="vc_col-sm-12 wpb_column vc_column_container bgrey">'+
+                                            '            <div class="wpb_wrapper img_hold">'+
+                                            '                <div class="clearfix"></div>'+
+                                            '                <div class="work_cont">'+
+                                            '                    <img src="http://loremflickr.com/1000/457/luxury,house">'+
+                                            '                    <div class="forent_cap">Sample Flat</div>'+
+                                            '                </div>'+
+                                            '            </div>'+
+                                            '    <!--'+
+                                            '        </div>'+
+                                            '        <div class="vc_col-sm-6 wpb_column vc_column_container ">'+
+                                            '    -->'+
+                                            '            <div class="wpb_wrapper introtext">'+
+                                            '                <div class="clearfix"></div>'+
+                                            '                <div class="work_cont">'+
+                                            '                    <a href="#" class="proj_title">'+
+                                            '                        <span class="title">'+servproperties_vl.Project_Name+'</span>'+
+                                            '                        <span class="divi">|</span>'+
+                                            '                        <span class="loca">'+servproperties_vl.Area+'</span>'+
+                                            '                    </a>'+
+                                            '                    <p class="excerpt">'+
+                                                                    servproperties_vl.Flat_Description+
+                                            '                    </p>'+
+                                            '                </div>'+
+                                            '            </div>'+
+                                            '        </div>'+
+                                            '    </div>'+
+                                            '    <div class="row list_forent">'+
+                                            '        <div class="vc_col-sm-12 wpb_column vc_column_container">'+
+                                            '            <div class="wpb_wrapper">'+
+                                            '                <div class="clearfix"></div>'+
+                                            '                <div class="work_cont tab_con">'+
+                                            '                    <div class="top-tab">'+
+                                            '                       <div class="top_inner t_i_head">'+
+                                            '                            <div class="set">'+
+                                            '                                <small class="clr_lt">Building | Floor</small>'+
+                                            '                            </div>'+
+                                            '                            <div class="set">'+
+                                            '                                <small class="clr_lt">Area (SQ.FT.)</small>'+
+                                            '                            </div>'+
+                                            '                            <div class="set">'+
+                                            '                                <small class="clr_lt">No. Of Rooms</small>'+
+                                            '                            </div>'+
+                                            '                            <div class="set rent">'+
+                                            '                                <small class="clr_lt">Rent (Rs./Month)</small>'+
+                                            '                            </div>'+
+                                            '                            <div class="set">'+                                                                            
+                                            '                            </div>'+
+                                            '                        </div>'+
+                                            '                        <div class="top_inner t_i_body">'+
+                                            '                            <div class="set">'+
+                                            '                                <big>'+servproperties_vl.Building+' '+servproperties_vl.Floor+'</big>'+
+                                            '                            </div>'+
+                                            '                            <div class="set">'+
+                                            '                                <big>'+servproperties_vl.Area_Sq_ft+' </big>'+
+                                            '                            </div>'+
+                                            '                            <div class="set">'+
+                                            '                                <big>'+servproperties_vl.No_of_Rooms+'</big>'+
+                                            '                            </div>'+
+                                            '                            <div class="set rent">';
+                                                         if(servproperties_vl.Rental_Value_Unfurnished!='') {   
+                                                            property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Unfurnished+'</big><small> - Unfurnished</small>';
+                                                        }
+
+                                                        if(servproperties_vl.Rental_Value_Furnished!=''){ 
+                                                            property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Furnished+'</big><small> - Furnished</small>';
+                                                        }                   
+                                                        property_list_html = property_list_html+
+                                                                        '</div>'+
+                                                                        '<div class="set alrt">'+
+                                                                        '    <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
+                                                                        '</div>'+
+                                                                    '</div>';
+                                                
+                                               
+            
+                    }
+
+
+
+
+            }//end if(servproperties_vl.type == current_property_type){
+
+
+        }) //end _.each(services_properties,function(servproperties_vl,servproperties_ky){
+
+        property_list_html = property_list_html+ 
+                    '                            </div>'+
+                    '                    </div>'+
+                    '                </div>'+    
+                    '            </div>'+
+                    '        </div>'+
+                    '        <div class="clearfix"></div>'+
+                    '    </div>'      
+var property_list_details = {'property_list_html':property_list_html,
+                              'city_list':city_list,
+                              'area_list':area_list,
+                              'bedrooms_list':bedrooms_list,
+
+                            }
+
+
+    return property_list_details;
+    }
+
 
 	
 
