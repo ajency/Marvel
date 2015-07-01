@@ -50,7 +50,9 @@ jQuery(document).ready(function($) {
 
 
 
-    $('.view_properties_resale').live("click",function(evt){
+   // $('.view_properties_resale').live("click",function(evt){
+    $('.view_properties_resale .button_left a.wpb_button_a').live("click",function(evt){
+ 
  
         $('#services_project_type').val('resale');
 
@@ -66,13 +68,14 @@ jQuery(document).ready(function($) {
 
         fetch_servies_projects(options)
 
-        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS FOR RESALE   <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
+        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RESALE   <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
 
         
 
      })
 
-    $('.view_properties_rent').live("click",function(evt){
+    //$('.view_properties_rent').live("click",function(evt){
+   $('.view_properties_rent .button_left a.wpb_button_a').live("click",function(evt){
         
         $('#services_project_type').val('rent');
 

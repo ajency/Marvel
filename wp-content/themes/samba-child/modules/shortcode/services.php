@@ -73,12 +73,12 @@ else {
 
 <!--Careers Bottom content-->
                 <!--Careers Bottom content-->
-                <a class="wpb_button_a" href="#">
+               <!--  <a class="wpb_button_a" href="#">
                     <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_resale">View Properties on Resale</span>
                 </a>
                 <a class="wpb_button_a" href="#">
                     <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_rent">View Properties on Rent</span>
-                </a>
+                </a> -->
 
                 <div class="vc_row-fluid full-width totally-full-width">
                     <div class="vc_col-sm-12">
@@ -147,7 +147,7 @@ else {
                 <div class="prk_inner_block vc_row-fluid centered columns">
                     <div class="row">
                         <div class="vc_col-sm-12 wpb_column vc_column_container serices_properties_heading">
-                            <h5>Residential Projects for Resale <span class="spn_title_city"><?php if($pune_city_property_exists==true) { echo  " in Pune "; } ?> </span> <span class="spn_title_property_cnt">(<?php echo $city_properties_cnt; ?>)</span></h5>
+                            <h5>Residential Projects On Resale <span class="spn_title_city"><?php if($pune_city_property_exists==true) { echo  " in Pune "; } ?> </span> <span class="spn_title_property_cnt">(<?php echo $city_properties_cnt; ?>)</span></h5>
                         </div>
                     </div>
                 </div>
