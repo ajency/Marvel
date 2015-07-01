@@ -5,7 +5,7 @@ function  services_properties_rent_resale(){
     global $wpdb;
 
     $table_name ="  `table 25`  ";
-    $qry_get_rent_resale_data = " SELECT * FROM ".$table_name." ORDER BY Project_Name  ";
+    $qry_get_rent_resale_data = " SELECT * FROM ".$table_name." WHERE   type like 'resale' ORDER BY Project_Name   ";
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
  
@@ -40,7 +40,7 @@ function  services_properties_rent_resale(){
     $punecity_bedroooms         = array_unique($all_punecity_bedrooms);
 
     sort($uniq_cities);
-    
+
     $pune_city_property_exists = false;
     foreach ($uniq_cities as $key_ => $value_) {
 
