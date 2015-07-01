@@ -83,7 +83,7 @@ Template Name: Page - Resi Projects List New
 </div><!-- #main_block -->
 </div>
 
-<div id="map"></div>       
+<div id="mapspan"></div>       
 
     <script>
         var THEMEURL = '<?php echo get_parent_template_directory_uri(); ?>';
