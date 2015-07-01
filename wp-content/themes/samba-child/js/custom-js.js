@@ -62,7 +62,7 @@ jQuery(document).ready(function($) {
 
         fetch_servies_projects(options)
 
-        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS FOR RESALE IN <span class="city_head">PUNE</span>');
+        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS FOR RESALE  <span class="city_head"></span>');
 
         
 
@@ -78,7 +78,7 @@ jQuery(document).ready(function($) {
 
         fetch_servies_projects(options)
 
-        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT IN <span class="city_head">PUNE</span>');
+        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT  <span class="city_head"></span>');
 
         
 
@@ -86,6 +86,8 @@ jQuery(document).ready(function($) {
 
 
     function fetch_servies_projects(options){
+
+        jQuery('#services_properties_listings').html(get_spinner());
 
         var city = $('#dd_city').val();
         var locality = $('#dd_locality').val();
@@ -348,7 +350,7 @@ var property_list_details = {'property_list_html':property_list_html,
                                             '            <div class="wpb_wrapper img_hold">'+
                                             '                <div class="clearfix"></div>'+
                                             '                <div class="work_cont">'+
-                                            '                    <img src="http://loremflickr.com/1000/457/luxury,house">'+
+                                            '                    <img src="'+servproperties_vl.Image_File_Name+'">'+
                                             '                    <div class="forent_cap">Sample Flat</div>'+
                                             '                </div>'+
                                             '            </div>'+
@@ -451,6 +453,18 @@ var property_list_details = {'property_list_html':property_list_html,
 
 
 	
+
+    function get_spinner(){
+
+        var spinner = '<div id="np">'+
+                           '<div class="spinner">'+
+                               '<div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>'+
+                           '</div>'+
+                       '</div>' 
+
+                       return spinner;
+
+    }
 
 
 });

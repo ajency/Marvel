@@ -179,7 +179,7 @@ function  services_properties_rent_resale(){
                                     <div class="wpb_wrapper img_hold">
                                         <div class="clearfix"></div>
                                         <div class="work_cont">
-                                            <img src="http://loremflickr.com/1000/457/luxury,house">
+                                            <img src="<?php echo $value_rent_resale['Image_File_Name']; ?>">
                                             <div class="forent_cap">Sample Flat</div>
                                         </div>
                                     </div>
