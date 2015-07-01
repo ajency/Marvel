@@ -1,4 +1,4 @@
-<?php 
+<?php
 function  services_properties_rent_resale(){
 
 
@@ -16,16 +16,16 @@ function  services_properties_rent_resale(){
         if(strtolower($result_data['City']) == "pune")
             $all_punecity_localities[] = $result_data['Area'];
             $all_punecity_bedrooms[] = $result_data['No_of_Bedrooms'];
-        }    
+        }
 
-         
+
 
     $uniq_cities                = array_unique($all_cities);
     $uniq_areas                 = array_unique($all_areas);
     $uniq_no_of_bedrooms        = array_unique($all_no_of_bedrooms);
     $punecity_localities        = array_unique($all_punecity_localities);
     $punecity_bedroooms        = array_unique($all_punecity_bedrooms);
-      
+
 
 ?>
 
@@ -40,7 +40,7 @@ function  services_properties_rent_resale(){
                     <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_rent">View Properties on Rent</span>
                 </a>
 
-                <div class="vc_row-fluid full-width">
+                <div class="vc_row-fluid full-width totally-full-width">
                     <div class="vc_col-sm-12">
                         <div class="top-dd-c">
 <!--
@@ -52,9 +52,9 @@ function  services_properties_rent_resale(){
                             </div>
 -->
                             <div class="top-dd two">
-                                <select id="dd_city" class="services_dd_city" > 
-                                    <option value="">City</option>                                   
-                                    <?php  
+                                <select id="dd_city" class="services_dd_city" >
+                                    <option value="">City</option>
+                                    <?php
                                     foreach ($uniq_cities  as $city_val) {
                                         ?><option value="<?php echo $city_val; ?>" <?php if(strtolower($city_val)=="pune") { echo " selected "; }; ?>><?php echo $city_val;?></option><?php
                                     }
@@ -64,7 +64,7 @@ function  services_properties_rent_resale(){
                             <div class="top-dd thr">
                                 <select id="dd_locality" class="services_dd_locality" >
                                     <option value="">Locality</option>
-                                    <?php  
+                                    <?php
                                     foreach ($punecity_localities   as $locality_val) {
                                         if(!empty($locality_val)) {?><option value="<?php echo $locality_val; ?>"  ><?php echo $locality_val;?></option><?php } ?>
                                     <?php
@@ -75,7 +75,7 @@ function  services_properties_rent_resale(){
                             <div class="top-dd fou">
                                 <select id="dd_type" class="services_dd_type" >
                                     <option value="">No. of Bedrooms</option>
-                                     <?php  
+                                     <?php
                                     foreach ($punecity_bedroooms  as $bedrooms_val) {
                                         ?><option value="<?php echo $bedrooms_val; ?>"  ><?php echo $bedrooms_val;?></option>
                                     <?php
@@ -102,7 +102,7 @@ function  services_properties_rent_resale(){
 
 
 
-                
+
 
                 <div class="prk_inner_block vc_row-fluid centered columns">
                     <div class="row">
@@ -114,10 +114,10 @@ function  services_properties_rent_resale(){
 
                 <input type="hidden" name="services_project_type"  id="services_project_type"  value="resale" />
                 <div id="services_properties_listings">
-                   
 
 
-                <?php 
+
+                <?php
                 $current_project = '';
                 foreach ( $res_get_rent_resale_data as $key_rent_resale => $value_rent_resale) {
                     # code...
@@ -133,11 +133,11 @@ function  services_properties_rent_resale(){
 
                                             </div>
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                        </div>   
+                        </div>
                         <?php
                         }
 
@@ -169,7 +169,7 @@ function  services_properties_rent_resale(){
                         else if($current_project =='' || (strcasecmp($current_project,$value_rent_resale['Project_Name'])!==0) ){
                             $current_project = $value_rent_resale['Project_Name'];
                             //echo "<h1> New Project </h1>";
-                    
+
 
                 ?>
 
@@ -222,7 +222,7 @@ function  services_properties_rent_resale(){
                                                         <small class="clr_lt">Rent (Rs./Month)</small>
                                                     </div>
                                                     <div class="set">
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <div class="top_inner t_i_body">
@@ -243,8 +243,8 @@ function  services_properties_rent_resale(){
                                                         <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
                                                     </div>
                                                 </div>
-                                                
-                                               
+
+
             <?php
                     }
                 }
@@ -252,14 +252,14 @@ function  services_properties_rent_resale(){
             ?>
                                                 </div>
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                        </div>   
-            </div>            
- 
-                
+                        </div>
+            </div>
+
+
 
 <?php
 
@@ -276,22 +276,22 @@ function get_services_properties($rent_resale='rent',$city='',$locality='',$no_b
 
     $where_sql =" WHERE type ='".$rent_resale."' ";
 
-    if($city!='') {     
+    if($city!='') {
         $where_sql.=" and City = '".$city."'";
     }
 
 
-    if($locality!='') {    
+    if($locality!='') {
         $where_sql.=" and Area = '".$locality."'";
     }
 
 
-    if($no_bedrooms!='') {    
+    if($no_bedrooms!='') {
         $where_sql.=" and No_of_Bedrooms = '".$no_bedrooms."'";
     }
 
     $qry_get_services_properties = "SELECT * FROM ".$table_name." ".$where_sql;
-     
+
 
     $res_get_services_properties = $wpdb->get_results($qry_get_services_properties,ARRAY_A);
 
@@ -311,31 +311,31 @@ function get_services_properties_ajx(){
 
      /* if(isset($_REQUEST['type_rent_resale'])){
         $rent_resale = $_REQUEST['type_rent_resale'];
-     } 
+     }
 
-     var_dump($_REQUEST);*/ 
+     var_dump($_REQUEST);*/
 
     $rent_resale = 'rent';
 
     if(isset($_REQUEST['data']['type'])) {
         if($_REQUEST['data']['type']!='')
             $rent_resale = $_REQUEST['data']['type'];
-        
-    } 
+
+    }
 
     if(isset($_REQUEST['data']['city'])) {
         $city = $_REQUEST['data']['city'];
-        
-    } 
+
+    }
 
     if(isset($_REQUEST['data']['locality'])) {
-        $locality = $_REQUEST['data']['locality'];     
+        $locality = $_REQUEST['data']['locality'];
     }
 
 
     if(isset($_REQUEST['data']['no_bedrooms'])) {
         $no_bedrooms = $_REQUEST['data']['no_bedrooms'];
-         
+
     }
 
     $res_get_services_properties = get_services_properties($rent_resale,$city,$locality,$no_bedrooms);
@@ -345,8 +345,8 @@ function get_services_properties_ajx(){
 }
 add_action( 'wp_ajax_get_services_properties_ajx', 'get_services_properties_ajx' );
 add_action('wp_ajax_nopriv_get_services_properties_ajx', 'get_services_properties_ajx');
- 
 
-?>                
+
+?>
 
 
