@@ -1168,3 +1168,24 @@ color: rgb(255, 255, 255);
 body .stwrapper.stwrapper5x {
 	height: 394px !important;
 }
+
+/**Services**/
+#services_properties_listings {
+	position: relative;
+  	min-height: 350px;
+}
+
+.vc_row-fluid.totally-full-width {
+	margin: 0 -70px;
+}
+@media screen and (max-width: 769px) {
+ 	.vc_row-fluid.totally-full-width {
+ 		margin: 0 -60px;
+		padding: 35px;
+ 	}
+ }
+@media screen and (max-width: 767px) {
+	.page-template-page-services .top-dd {
+		display: inline-block;
+    }
+}
