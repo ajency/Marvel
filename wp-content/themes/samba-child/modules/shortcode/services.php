@@ -9,8 +9,7 @@ function  services_properties_rent_resale(){
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
  
-    $count_properties_pune = " SELECT  count(DISTINCT Project_Name) as pune_city_cnt FROM ".$table_name."  WHERE City ='Pune' and type = 'resale'  ";
-    $pune_city_cnt = $wpdb->get_var($count_properties_pune);
+    
   
      
  
@@ -35,16 +34,38 @@ function  services_properties_rent_resale(){
 
 
     $uniq_cities                = array_unique($all_cities);
-    $uniq_areas                 = array_unique($all_areas);
+    $uniq_areas                 = array_unique($all_areas); //localities
     $uniq_no_of_bedrooms        = array_unique($all_no_of_bedrooms);
     $punecity_localities        = array_unique($all_punecity_localities);
     $punecity_bedroooms         = array_unique($all_punecity_bedrooms);
 
     
+    $pune_city_property_exists = false;
+    foreach ($uniq_cities as $key_ => $value_) {
 
-$res = array_search(strtolower('Pune'), array_map('strtolower', $array));
+        if(strtolower($value_)=="pune")
+            $pune_city_property_exists = true ;
+        
+    }
+
+//$res = array_search(strtolower('Pune'), array_map('strtolower', $uniq_cities));
 //var_dump($res);
 
+if($pune_city_property_exists==true){
+    $dropdown_localities = $punecity_localities;
+    $dropdown_bedrooms = $punecity_bedroooms;
+
+    $qry_count_properties = " SELECT  count(DISTINCT Project_Name) as pune_city_cnt FROM ".$table_name."  WHERE City ='Pune' and type = 'resale'  ";
+    $city_properties_cnt = $wpdb->get_var($qry_count_properties);
+}    
+else {
+    $dropdown_localities = $uniq_areas;
+    $dropdown_bedrooms = $uniq_no_of_bedrooms;
+
+    $qry_count_properties = " SELECT  count(DISTINCT Project_Name) as pune_city_cnt FROM ".$table_name."  WHERE   type = 'resale'  ";
+    $city_properties_cnt = $wpdb->get_var($qry_count_properties);
+}
+    
 
 ?>
 
@@ -84,7 +105,7 @@ $res = array_search(strtolower('Pune'), array_map('strtolower', $array));
                                 <select id="dd_locality" class="services_dd_locality" >
                                     <option value="">Locality</option>
                                     <?php
-                                    foreach ($punecity_localities   as $locality_val) {
+                                    foreach ($dropdown_localities   as $locality_val) {
                                         if(!empty($locality_val)) {?><option value="<?php echo $locality_val; ?>"  ><?php echo $locality_val;?></option><?php } ?>
                                     <?php
                                     }
@@ -95,7 +116,7 @@ $res = array_search(strtolower('Pune'), array_map('strtolower', $array));
                                 <select id="dd_type" class="services_dd_type" >
                                     <option value="">No. of Bedrooms</option>
                                      <?php
-                                    foreach ($punecity_bedroooms  as $bedrooms_val) {
+                                    foreach ($dropdown_bedrooms  as $bedrooms_val) {
                                         ?><option value="<?php echo $bedrooms_val; ?>"  ><?php echo $bedrooms_val;?></option>
                                     <?php
                                     }
@@ -126,7 +147,7 @@ $res = array_search(strtolower('Pune'), array_map('strtolower', $array));
                 <div class="prk_inner_block vc_row-fluid centered columns">
                     <div class="row">
                         <div class="vc_col-sm-12 wpb_column vc_column_container serices_properties_heading">
-                            <h5>Residential Projects for Resale in Pune (3)</h5>
+                            <h5>Residential Projects for Resale <span class="spn_title_city"><?php if($pune_city_property_exists==true) { echo  " in Pune "; } ?> </span> <span class="spn_title_property_cnt">(<?php echo $city_properties_cnt; ?>)</span></h5>
                         </div>
                     </div>
                 </div>

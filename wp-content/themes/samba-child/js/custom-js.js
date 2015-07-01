@@ -59,14 +59,14 @@ jQuery(document).ready(function($) {
         $('.services_dd_type').val('');
 
         var options = {'repopulate_city':true,
-                        'repopulate_locality':  true,
-                        'repopulate_bedrooms' : true
+                        'repopulate_locality':  false,
+                        'repopulate_bedrooms' : false
 
                         };
 
         fetch_servies_projects(options)
 
-        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS FOR RESALE  <span class="city_head"></span>');
+        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS FOR RESALE   <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
 
         
 
@@ -81,14 +81,14 @@ jQuery(document).ready(function($) {
         $('.services_dd_type').val('');
 
          var options = {'repopulate_city':true,
-                        'repopulate_locality':  true,
-                        'repopulate_bedrooms' : true
+                        'repopulate_locality':  false,
+                        'repopulate_bedrooms' : false
                         
                         };
 
         fetch_servies_projects(options)
 
-        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT  <span class="city_head"></span>');
+        $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT    <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
 
         
 
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
             }
             else{
                 html_data = display_services_properties(data)
-                jQuery('#services_properties_listings').html(html_data.property_list_html);
+               
 
 
 /*
@@ -141,8 +141,6 @@ var property_list_details = {'property_list_html':property_list_html,
                               'bedrooms_list':bedrooms_list,
 
                             }
-
-
                             var options = {'repopulate_city':true,
                         'repopulate_locality':  true,
                         'repopulate_bedrooms' : true
@@ -150,15 +148,63 @@ var property_list_details = {'property_list_html':property_list_html,
                         };
 */
 
+/* console.log('REPOPULATE OPTIOSN:----------***')
+console.log(options) */
+
 
                 if(options.repopulate_city == true){
                     $('.services_dd_city').empty();
                     $('.services_dd_city').append('<option value="">City</option>')
+                   
                     _.each(html_data.city_list,function(vl_city,ky_city){
-                        $('.services_dd_city').append('<option value="'+vl_city+'">'+vl_city+'</option>')
+                        
+                        var selected_pune =' '; 
+                        if(vl_city=="Pune")
+                            var selected_pune = ' selected ';
+                        $('.services_dd_city').append('<option value="'+vl_city+'" '+selected_pune+' >'+vl_city+'</option>')
 
                     })
+
+                   /* console.log('REPOPULATE CITY ')
+                    console.log(data)
+                    console.log('Pune Defaulted')
+                    console.log(_.where(data,{City:{$likeI:'pune'}}))
+                    console.log('*******')
+                    console.log(_.where(data,{City:'Pune'}))*/
+                    var pune_properties = _.where(data,{City:'Pune'})
+
+                   //console.log(_.uniq(pune_properties.Project_Name, JSON.stringify));
+                    if(_.size(pune_properties)>0){
+                        var no_of_projects = _.countBy(pune_properties, "Project_Name")
+                        $('.spn_title_city').html(' IN PUNE ')
+                       
+                    }
+                    else{
+                        var no_of_projects = _.countBy(data, "Project_Name")
+                    }
+                    $('.spn_title_property_cnt').html('('+_.size(no_of_projects)+')')
+
+
                 }
+                else /* if(options.repopulate_locality==true && options.repopulate_bedrooms==true) */{
+
+                    var selected_city = $('.services_dd_city').val();
+                    if(selected_city!=''){
+                        var city_properties = _.where(data,{City:selected_city})
+                        var no_of_projects = _.countBy(city_properties, "Project_Name")
+
+                        $('.spn_title_city').html(' IN '+selected_city+' ')
+                    }
+                    else{
+                        $('.spn_title_city').html('')
+                        var no_of_projects = _.countBy(data, "Project_Name")
+                    }
+
+                    $('.spn_title_property_cnt').html('('+_.size(no_of_projects)+')')
+
+                }
+
+
 
 
 
@@ -180,6 +226,9 @@ var property_list_details = {'property_list_html':property_list_html,
 
                     })
                 }
+
+
+                 jQuery('#services_properties_listings').html(html_data.property_list_html);
 
                 
 
@@ -228,6 +277,9 @@ var property_list_details = {'property_list_html':property_list_html,
             var repopulate_city = false;
 
         if($(this).hasClass('services_dd_city')){
+
+            $('.services_dd_locality').val('');
+           $('.services_dd_type').val(''); 
              
             repopulate_locality = true;
             repopulate_bedrooms = true;
