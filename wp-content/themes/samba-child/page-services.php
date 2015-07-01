@@ -3,8 +3,8 @@
 Template Name: Page - Services
 */
 ?>
-<?php 
-  get_header(); 
+<?php
+  get_header();
   $show_sidebar=$prk_samba_frontend_options['right_sidebar'];
   if ($show_sidebar=="yes")
     $show_sidebar=true;
@@ -41,7 +41,7 @@ Template Name: Page - Services
     {
       //ADD THE CATEGORIES TO THE FILTER
       if ($in_flag==true)
-      { 
+      {
         $inside_filter.=$childs.", ";
       }
       if ($childs=='weirdostf')
@@ -70,13 +70,13 @@ Template Name: Page - Services
             <?php
                 if ($show_slider=="yes")
                 {
-                  echo '<div class="prk_featured_flexslider">'; 
+                  echo '<div class="prk_featured_flexslider">';
                     echo do_shortcode('[prk_slider id="samba_slider-'.get_the_ID().'" category="'.$inside_filter.'" autoplay="'.$autoplay.'" delay="'.$delay.'" sl_size=""]');
                   echo '</div>';
                 }
                 if ($show_slider=="show_revol")
                 {
-                  echo '<div class="prk_rv">'; 
+                  echo '<div class="prk_rv">';
                     echo do_shortcode('[rev_slider '.$data['alchemy_revslider'].']');
                   echo '</div>';
                 }
@@ -86,26 +86,18 @@ Template Name: Page - Services
                 }
                 else
                 {
-                  echo '<div class="twelve">'; 
+                  echo '<div class="twelve">';
                 }
                 while (have_posts()) : the_post(); ?>
                 <?php the_content(); ?>
                 <?php wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
-                
-                
+
+
                 <!--Careers Bottom content-->
                 <!--Careers Bottom content-->
-                <div class="vc_row-fluid full-width">
+                <!-- <div class="vc_row-fluid full-width">
                     <div class="vc_col-sm-12">
                         <div class="top-dd-c">
-<!--
-                            <div class="top-dd one">
-                                <select id="dd_status">
-                                    <option>Ongoing</option>
-                                    <option>Upcoming</option>
-                                </select>
-                            </div>
--->
                             <div class="top-dd two">
                                 <select id="dd_city">
                                     <option>Pune</option>
@@ -126,10 +118,6 @@ Template Name: Page - Services
                             </div>
                             <div class="top-note">
                                 <p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p>
-<!--
-                                <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
-                                <a href="#" class="top_map"><i class="fa fa-map-marker"></i></a>
--->
                             </div>
                         </div>
                     </div>
@@ -152,10 +140,6 @@ Template Name: Page - Services
                                     <div class="forent_cap">Sample Flat</div>
                                 </div>
                             </div>
-<!--
-                        </div>
-                        <div class="vc_col-sm-6 wpb_column vc_column_container ">
--->
                             <div class="wpb_wrapper introtext">
                                 <div class="clearfix"></div>
                                 <div class="work_cont">
@@ -191,7 +175,7 @@ Template Name: Page - Services
                                                 <small class="clr_lt">Rent (Rs./Month)</small>
                                             </div>
                                             <div class="set">
-                                                
+
                                             </div>
                                         </div>
                                         <div class="top_inner t_i_body">
@@ -211,7 +195,7 @@ Template Name: Page - Services
                                                 <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="top_inner t_i_body">
                                             <div class="set">
                                                 <big>D 10</big>
@@ -229,11 +213,11 @@ Template Name: Page - Services
                                                 <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
                                             </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                     </div>
-                </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="prk_inner_block vc_row-fluid centered columns forent">
@@ -246,10 +230,6 @@ Template Name: Page - Services
                                     <div class="forent_cap">Sample Flat</div>
                                 </div>
                             </div>
-<!--
-                        </div>
-                        <div class="vc_col-sm-6 wpb_column vc_column_container ">
--->
                             <div class="wpb_wrapper introtext">
                                 <div class="clearfix"></div>
                                 <div class="work_cont">
@@ -285,7 +265,7 @@ Template Name: Page - Services
                                                 <small class="clr_lt">Rent (Rs./Month)</small>
                                             </div>
                                             <div class="set">
-                                                
+
                                             </div>
                                         </div>
                                         <div class="top_inner t_i_body">
@@ -304,18 +284,18 @@ Template Name: Page - Services
                                             <div class="set alrt">
                                                 <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>
                                             </div>
-                                        </div>                                        
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                     </div>
-                </div>
                     <div class="clearfix"></div>
-                </div>
+                </div> -->
                 <div class="spacer-25"></div>
               <?php endwhile; /* End loop */ ?>
-            <?php 
-              if ($show_sidebar) 
+            <?php
+              if ($show_sidebar)
               {
                   ?>
                 <aside id="sidebar" class="<?php echo SIDEBAR_CLASSES; ?> inside right_floated top_15" role="complementary">
