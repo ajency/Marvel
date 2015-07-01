@@ -257,6 +257,7 @@ function  services_properties_rent_resale(){
                             </div>
                             <div class="clearfix"></div>
                         </div>   
+            </div>            
  
                 
 
