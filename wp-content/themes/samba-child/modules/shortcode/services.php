@@ -7,7 +7,13 @@ function  services_properties_rent_resale(){
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
 
-    $pids = array();
+    $pids                    = array();
+    $all_cities              = array();
+    $all_areas               = array();
+    $all_no_of_bedrooms      = array();
+    $all_punecity_localities = array();
+    $all_punecity_bedrooms   = array(); 
+
     foreach ($res_get_rent_resale_data as $result_data) {
         $all_cities[]           = $result_data['City'];
         $all_areas[]            = $result_data['Area'];
@@ -346,7 +352,4 @@ function get_services_properties_ajx(){
 add_action( 'wp_ajax_get_services_properties_ajx', 'get_services_properties_ajx' );
 add_action('wp_ajax_nopriv_get_services_properties_ajx', 'get_services_properties_ajx');
 
-
-?>
-
-
+ 
