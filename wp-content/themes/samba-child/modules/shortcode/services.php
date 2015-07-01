@@ -3,10 +3,14 @@ function  services_properties_rent_resale(){
 
 
     global $wpdb;
-    $qry_get_rent_resale_data = " SELECT * FROM `table 25` ORDER BY Project_Name  ";
+
+    $table_name ="  `table 25`  ";
+    $qry_get_rent_resale_data = " SELECT * FROM ".$table_name." ORDER BY Project_Name  ";
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
-
+    $count_properties_pune = " SELECT  count(DISTINCT Project_Name) as pune_city_cnt FROM ".$table_name."  WHERE City ='Pune' and type = 'resale'  ";
+    $pune_city_cnt = $wpdb->get_var($count_properties_pune);
+  
     $pids = array();
     foreach ($res_get_rent_resale_data as $result_data) {
         $all_cities[]           = $result_data['City'];
@@ -24,7 +28,12 @@ function  services_properties_rent_resale(){
     $uniq_areas                 = array_unique($all_areas);
     $uniq_no_of_bedrooms        = array_unique($all_no_of_bedrooms);
     $punecity_localities        = array_unique($all_punecity_localities);
-    $punecity_bedroooms        = array_unique($all_punecity_bedrooms);
+    $punecity_bedroooms         = array_unique($all_punecity_bedrooms);
+
+    
+
+$res = array_search(strtolower('Pune'), array_map('strtolower', $array));
+//var_dump($res);
 
 
 ?>
