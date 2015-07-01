@@ -54,6 +54,10 @@ jQuery(document).ready(function($) {
  
         $('#services_project_type').val('resale');
 
+        $('.services_dd_city').val('');
+        $('.services_dd_locality').val('');
+        $('.services_dd_type').val('');
+
         var options = {'repopulate_city':true,
                         'repopulate_locality':  true,
                         'repopulate_bedrooms' : true
@@ -69,7 +73,13 @@ jQuery(document).ready(function($) {
      })
 
     $('.view_properties_rent').live("click",function(evt){
-         $('#services_project_type').val('rent');
+        
+        $('#services_project_type').val('rent');
+
+        $('.services_dd_city').val('');
+        $('.services_dd_locality').val('');
+        $('.services_dd_type').val('');
+
          var options = {'repopulate_city':true,
                         'repopulate_locality':  true,
                         'repopulate_bedrooms' : true
