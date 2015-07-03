@@ -88,6 +88,18 @@ sort($uniq_no_of_bedrooms);
                     <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_rent">View Properties on Rent</span>
                 </a> -->
 
+              <div class="vc_separator wpb_content_element vc_separator_align_center vc_el_width_100 vc_sep_dashed vc_sep_color_white services_properties_h4">
+                     <span class="vc_sep_holder vc_sep_holder_l">
+                        <span class="vc_sep_line"></span>
+                    </span>
+                    <h4>Properties on Resale</h4> 
+                    <span class="vc_sep_holder vc_sep_holder_r">
+                        <span class="vc_sep_line"></span>
+                    </span>
+              </div>
+
+
+
                 <div class="vc_row-fluid full-width totally-full-width">
                     <div class="vc_col-sm-12">
                         <div class="top-dd-c">

@@ -70,7 +70,8 @@ jQuery(document).ready(function($) {
 
         $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RESALE   <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
 
-        
+        $('.services_properties_h4').find('h4').html('Properties on Resale');
+
 
      })
 
@@ -92,7 +93,7 @@ jQuery(document).ready(function($) {
         fetch_servies_projects(options)
 
         $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT    <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
-
+        $('.services_properties_h4').find('h4').html('Properties on Rent');
         
 
      })
