@@ -8,7 +8,8 @@ function  services_properties_rent_resale(){
     $qry_get_rent_resale_data = " SELECT * FROM ".$table_name." WHERE   type like 'resale' ORDER BY Project_Name   ";
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
- 
+    $rent_cost_header = "Cost";
+
     
   
      
@@ -88,7 +89,7 @@ sort($uniq_no_of_bedrooms);
                     <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_rent">View Properties on Rent</span>
                 </a> -->
 
-              <div class="vc_separator wpb_content_element vc_separator_align_center vc_el_width_100 vc_sep_dashed vc_sep_color_white services_properties_h4">
+              <div id="spn_services_div" class="vc_separator wpb_content_element vc_separator_align_center vc_el_width_100 vc_sep_dashed vc_sep_color_white services_properties_h4">
                      <span class="vc_sep_holder vc_sep_holder_l">
                         <span class="vc_sep_line"></span>
                     </span>
@@ -279,7 +280,7 @@ sort($uniq_no_of_bedrooms);
                                                         <small class="clr_lt">No. Of Rooms</small>
                                                     </div>
                                                     <div class="set rent">
-                                                        <small class="clr_lt">Rent (Rs./Month)</small>
+                                                        <small class="clr_lt"><?php echo $rent_cost_header ; ?></small>
                                                     </div>
                                                     <div class="set">
 
