@@ -361,6 +361,12 @@ function checkIfInView(element){
 
         }
 
+        //404
+        if ($('body').hasClass('error404')) {
+            $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+            $('#prk_ajax_container').css('min-height', $hevp - 43);
+        }
+
         //set min-height for project listings
         if($('div').hasClass('proj_list')) {
             console.log('has map');
@@ -443,6 +449,11 @@ function checkIfInView(element){
         if ($('div').hasClass('gm-style')) {
             $('#projects_listings').height($(window).height() - $('#projects_listings').position().top - 43);
         }
+
+        if ($('body').hasClass('error404')) {
+            $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+            $('#prk_ajax_container').css('min-height', $hevp - 43);
+        }
     });
 })( jQuery );
 
@@ -480,6 +491,3 @@ jQuery(window).resize(function() {
 jQuery(window).load(function() {
         jQuery.fn.myFunction();
     });
-
-
-

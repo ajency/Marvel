@@ -68,6 +68,11 @@ $show_sidebar=false;
     <div id="content">
         <div id="main" role="main" class="main_with_sections<?php echo $extra_class; ?>">
 
+            <div class="vc_separator wpb_content_element vc_separator_align_center vc_el_width_100 vc_sep_dashed vc_sep_color_white">
+                <span class="vc_sep_holder vc_sep_holder_l"><span class="vc_sep_line"></span></span>
+                <h4>Properties on Rent</h4> <span class="vc_sep_holder vc_sep_holder_r"><span class="vc_sep_line"></span></span>
+            </div>
+
             <!--these are the project list styles-->
             <!--these are the project list styles-->
             <!--these are the project list styles-->
