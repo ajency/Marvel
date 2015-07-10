@@ -1,6 +1,6 @@
 
-<?php 
-  get_header(); 
+<?php
+  get_header();
   $show_sidebar=$prk_samba_frontend_options['right_sidebar'];
   if ($show_sidebar=="yes")
     $show_sidebar=true;
@@ -37,7 +37,7 @@
     {
       //ADD THE CATEGORIES TO THE FILTER
       if ($in_flag==true)
-      { 
+      {
         $inside_filter.=$childs.", ";
       }
       if ($childs=='weirdostf')
@@ -56,7 +56,7 @@
                 $project_locality = get_post_meta(get_the_ID(),'property-locality',true);
                 $project_city = get_post_meta(get_the_ID(),'property-city',true);
                 $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-unit-type',true));
-  
+
                 $location_seperator = '';
                 $project_type_seperator='';
                 if( ($project_city!=false || $project_locality!=false ) && ($project_city!='' || $project_locality!='') )
@@ -70,18 +70,18 @@
                 if(is_array($project_type)){
                   foreach ($project_type as $ptype_key => $ptype_value) {
                      $project_types_display[]=   ucfirst($ptype_value['type']);
-                    }  
+                    }
                 }
-                
+
 
 
                  if(is_array($project_types_display))
                    $display_project_types_wt_sep = implode(', ',$project_types_display) ;
-                 else 
+                 else
                     $display_project_types_wt_sep = $project_types_display;
 
                 }
-                  
+
 
 
 
@@ -109,13 +109,13 @@
             <?php
                 if ($show_slider=="yes")
                 {
-                  echo '<div class="prk_featured_flexslider">'; 
+                  echo '<div class="prk_featured_flexslider">';
                     echo do_shortcode('[prk_slider id="samba_slider-'.get_the_ID().'" category="'.$inside_filter.'" autoplay="'.$autoplay.'" delay="'.$delay.'" sl_size=""]');
                   echo '</div>';
                 }
                 if ($show_slider=="show_revol")
                 {
-                  echo '<div class="prk_rv">'; 
+                  echo '<div class="prk_rv">';
                     echo do_shortcode('[rev_slider '.$data['alchemy_revslider'].']');
                   echo '</div>';
                 }
@@ -125,16 +125,24 @@
                 }
                 else
                 {
-                  echo '<div class="twelve">'; 
+                  echo '<div class="twelve">';
                 }
                 while (have_posts()) : the_post(); ?>
                 <?php the_content(); ?>
                 <?php wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
                 <div class="clearfix"></div>
+
+                <div class="go_to_top_inpage"></div>
+                <!-- <a class="enquiry_sideways">
+                  <i></i>
+                  Enquire Now
+                </a> -->
+                <div class="share_indi"></div>
+
                 </div>
               <?php endwhile; /* End loop */ ?>
-            <?php 
-              if ($show_sidebar) 
+            <?php
+              if ($show_sidebar)
               {
                   ?>
                 <aside id="sidebar" class="<?php echo SIDEBAR_CLASSES; ?> inside right_floated top_15" role="complementary">

@@ -11,8 +11,9 @@
 .compare_c {
     //top bar
     .info_bar {
+        position: relative;
         background: #EBEBEB;
-        padding: 25px 50px 14px;
+        padding: 33px 25px 6px;
         .fontmont;
         p {
             display: inline-block;
@@ -22,9 +23,11 @@
             a {
                 color: #333;
                 font-weight: bold;
+                pointer-events: none;
             }
         }
         a.back_btn {
+            // pointer-events: auto;
             margin-bottom: 0;
             background: #666666;
             border-color: #555555;
@@ -59,6 +62,7 @@
                 display: block;
                 color: #666;
                 padding: 10px 5px 0;
+                pointer-events: none;
                 .single_p_location {font-weight: normal;}
             }
             .co_img_c {

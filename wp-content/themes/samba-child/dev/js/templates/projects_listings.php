@@ -91,5 +91,14 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
 <%
 })
 %>
+<div class="single_p_w last_one six columns">
+    <div class="last_one_t">
+        <h4>Looking for more options?</h4>
+        <p>Tell us your requirement and <br>we will let you know when there is a match.</p>
+        <a href="#" class="btn_norm single_know">
+            Give Details
+        </a>
+    </div>
+</div>
 </div>
 </script>

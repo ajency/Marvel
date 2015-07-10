@@ -112,6 +112,8 @@ img.mfp-img {
     .wpb_column.vc_column_container {margin-bottom: 0;}
     .top-dd-c {
         margin-bottom: 35px;
+        position: relative;
+        width: 100% !important;
     }
     .forent {
         .wpb_wrapper {
@@ -120,8 +122,10 @@ img.mfp-img {
         .list_forent .wpb_wrapper {min-height: 0;}
         .bgrey {background: #F3F3F3; padding: 0; position: relative;}
         .partintro {
-            margin-top: 25px;
-            margin-bottom: 35px;
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 0;
+            margin-bottom: 10px;
             .img_hold {
                 width: 50%;
                 height: 100%;
@@ -183,7 +187,7 @@ img.mfp-img {
         }
     }
     .list_forent {
-        margin-bottom: 35px;
+        // margin-bottom: 35px;
         .wpb_wrapper {padding: 0;}
         .top-tab {
 
@@ -319,6 +323,7 @@ img.mfp-img {
 .tab_con {
     overflow: auto;
     height: auto;
+    margin-bottom: 35px !important;
 }
 @media screen and (max-width: 627px),
 (min-width: 769px) and (max-width: 991px) {
@@ -526,7 +531,7 @@ img.mfp-img {
 //services
 .service .vc_col-sm-12 {
     .top-dd-c {
-        padding: 22px 50px;
+        padding: 22px 25px;
         @media screen and (max-width: 1167px) {
             text-align: center;
             padding: 22px 20px;
@@ -682,5 +687,46 @@ img.mfp-img {
         &:hover {
             background-image: url(img/NavArrowRight_2.png);
         }
+    }
+}
+
+//button styling
+.view_properties_rent.wpb_call_to_action .wpb_button_a,
+.view_properties_resale.wpb_call_to_action .wpb_button_a,
+.popmake-2739.wpb_call_to_action .wpb_button_a {
+    .wpb_btn-inverse {
+        background-color: #909090 !important;
+        border: 1px solid #848484 !important;
+        &:hover {
+            background-color: #7c7c7c !important;
+            border: 1px solid #6f6f6f !important;
+        }
+        &:active {
+            background: #7c7c7c !important;
+            border: 1px solid #686868 !important;
+        }
+    }
+}
+.popmake-2739 {
+    width: 232px;
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 35px;
+    .wpb_button_a {
+        .wpb_btn-inverse {
+        }
+    }
+}
+
+.job_listing {
+    .position .wpb_button_a .wpb_button {
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+}
+.prk_inner_block.wpb_row.col-le-m-b {
+    .vc_col-sm-12 {
+        margin-bottom: 20px !important;
     }
 }
