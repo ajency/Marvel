@@ -427,10 +427,10 @@ console.log(options) */
                            current_project = servproperties_vl.Project_Name;
                             //echo "<h1> New Project </h1>";
 
-                            if($('#services_project_type').val=="rent"){
+                            if($('#services_project_type').val()=="rent"){
                                 var rent_resale_head = 'Rent (Rs./Month)';
                             }
-                            else if($('#services_project_type').val=="resale"){
+                            else if($('#services_project_type').val()=="resale"){
                                 var rent_resale_head = 'Cost';   
                             }
                     
