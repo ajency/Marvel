@@ -886,7 +886,19 @@ color: rgb(255, 255, 255);
 	background-color: #EBEBEB;
 	margin-bottom: 15px;
 }
-.contact-cover.contact-inline .frm_form_field select {color: #111 !important;}
+.contact-cover.contact-inline .frm_form_field select {
+	color: #111 !important;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0 !important;
+	background-color: #fff !important;
+	background-image: url(img/dd_arr.png) !important;
+	background-position-x: 99% !important;
+	background-position-y: center !important;
+	background-position: right 10px center !important;
+	background-repeat: no-repeat !important;
+}
 .contact-cover.contact-inline .limit-width, .contact-cover .limit-width {
 	max-width: 700px;
 }

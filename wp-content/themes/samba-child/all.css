@@ -929,6 +929,8 @@ img.mfp-img {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  border-radius: 0;
+  background-color: #fff;
   background-image: url(img/dd_arr.png) !important;
   background-position-x: 99%;
   background-position-y: center;
@@ -2352,7 +2354,7 @@ img.mfp-img {
     float: none;
   }
 }
-@media screen and (min-width: 769px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .vc_row-fluid [class*="vc_col-sm-"],
   [class*="vc_col-sm-"] {
     float: none;
