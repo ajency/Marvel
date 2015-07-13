@@ -109,7 +109,10 @@ img.mfp-img {
 #gallery-1 .gallery-item {width: 100% !important;}
 //services page
 .service {
-    .wpb_column.vc_column_container {margin-bottom: 0;}
+    .wpb_column.vc_column_container {
+        margin-bottom: 11px !important;
+        padding-bottom: 0;
+    }
     .top-dd-c {
         margin-bottom: 35px;
         position: relative;
@@ -323,7 +326,7 @@ img.mfp-img {
 .tab_con {
     overflow: auto;
     height: auto;
-    margin-bottom: 35px !important;
+    margin-bottom: 0 !important; //was 35
 }
 @media screen and (max-width: 627px),
 (min-width: 769px) and (max-width: 991px) {
@@ -431,10 +434,12 @@ img.mfp-img {
     }
     .samba_responsive .no-csstransforms3d .st-pusher {
         margin-top: 80px;
+        border-top: 1px solid #7c7c7c;
     }
     .samba_responsive #nav-collapsed-icon {
         padding-left: 19px;
         padding-top: 30px;
+        height: 80px;
     }
     .samba_responsive #nav-collapsed-icon .prk_menu_block {
         width: 28px;
@@ -472,13 +477,13 @@ img.mfp-img {
 }
 
 .head_enq_ico {
-    width: 26px;
-    height: 26px;
+    width: 80px;
+    height: 80px;
     background: url(img/enq_ico_23.png) no-repeat center center;
     display: block;
     position: absolute;
-    right: 19px;
-    top: 25px;
+    right: 0;
+    top: 0;
     text-indent: 9999999px;
     overflow: hidden;
 }

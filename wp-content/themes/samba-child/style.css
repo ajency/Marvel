@@ -109,6 +109,25 @@ color: rgb(255, 255, 255);
   	font-weight: 400;
 	text-transform: uppercase;
 }
+@media screen and (max-width: 769px) {
+	.sf-menu>li>a {
+		border-bottom: 1px solid #7c7c7c;
+		padding: 15px 15px;
+	}
+	#nav-main .sf-menu .sub-menu li a {
+		padding: 15px;
+	}
+	/*chaing the menu type*/
+	#body_hider {
+		display: none !important;
+	}
+	#height_helper {display: none !important;}
+	.samba_responsive .no-csstransforms3d #menu_section {
+		height: auto !important;
+		padding-top: 0;
+	}
+}
+
 .prk_menu_square {
 	display: none;
 }
@@ -135,6 +154,9 @@ color: rgb(255, 255, 255);
 }
 .footer {
 	width: 240px;
+	position: fixed !important;
+	top: auto !important;
+	bottom: 0 !important;
 }
 @media screen and (min-width: 769px) and (max-width: 991px) {
 	.footer {
@@ -147,7 +169,7 @@ color: rgb(255, 255, 255);
   	color: #fff;
   	background: #666;
   	z-index: 5;
-  	display: none;
+  	/*display: none;*/
     padding-top: 3px;
     font-family: 'Cantarell', 'Open Sans';
 }
@@ -156,6 +178,16 @@ color: rgb(255, 255, 255);
 }
 #footer_in a {
 	font-size: 13px;
+}
+@media screen and (max-width: 932px) {
+	#footer_in .columns {
+		padding: 0 !important;
+	}
+}
+@media screen and (max-width: 798px) {
+	.child-footer .pirenko-social-widget {
+		width: 170px;
+	}
 }
 .home .child-footer {
 	width: 100%;
@@ -256,6 +288,8 @@ color: rgb(255, 255, 255);
 	margin-right: 4px;
 	width: 125px;
 	border: 0;
+	border-radius: 0;
+	line-height: 21px;
 	padding: 5px 10px;
 	font-family: 'Cantarell', sans-serif;
 	-webkit-appearance: none;
@@ -351,7 +385,7 @@ color: rgb(255, 255, 255);
 		display: block;
 		width: 100%;
 		border: 1px solid #b6b6b6;
-		background: #fff;
+		background-color: #fff;
 		padding: 8px 15px;
 		color: #848484;
 	}
@@ -607,7 +641,7 @@ color: rgb(255, 255, 255);
     }
     .child-footer {
         display: table;
-        height: 83px;
+        min-height: 83px;
     }
     .child-footer .widget-4 {display: table-footer-group;}
     .child-footer .widget-5 {display: table-header-group;}
@@ -758,7 +792,7 @@ color: rgb(255, 255, 255);
 	background: none !important;
 	border: 0 !important;
 	font-weight: normal;
-	/*white-space: normal;*/
+	white-space: normal;
     border-radius: 0;
 }
 .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav li a {
@@ -862,6 +896,14 @@ color: rgb(255, 255, 255);
 }
 .with_frm_style .contact-inline .form-field {
 	margin-bottom: 0 !important;
+}
+@media screen and (max-width: 600px) {
+	.with_frm_style .contact-inline .form-field {
+		float: none;
+		width: 100%;
+		margin-top: 5px;
+		margin-bottom: 5px !important;
+	}
 }
 #frm_form_4_container, .frm_forms.with_frm_style {
 	max-width: 100% !important;

@@ -49,8 +49,12 @@
     }
     @media screen and (min-width: 768px) and (max-width: 769px) {
         .project-list.row .single_p_w, .project-list.row .last_one {
-            &:nth-child(n) {padding-right: 20px;}
-            &:nth-child(2n) {padding-left: 20px;}
+            &:nth-child(n) {padding-right: 30px;padding-left: 14px;}
+            &:nth-child(2n) {padding-left: 30px;padding-right: 14px;}
+        }
+        .project-list.row .columns {
+            padding-left: 30px;
+            padding-right: 30px;
         }
     }
     @media screen and (max-width: 480px) {
@@ -85,12 +89,19 @@
 
         position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
         z-index: 5;
+        padding-left: 290px;
 
         @media screen and (max-width: 991px) {
             padding-left: 15px;
             padding-right: 15px;
+            padding-left: 190px
+        }
+        @media screen and (max-width: 769px) {
+            padding-left: 30px;
+            padding-right: 30px;
         }
     }
     .top-dd {
@@ -106,7 +117,14 @@
         select {
             padding: 5px 8px;
             border: 1px solid darken(@grey-bg, 12%);
-//            .fontmont;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url(img/dd_arr.png) !important;
+            background-position-x: 99%;
+            background-position-y: center;
+            background-position: right 10px center;
+            background-repeat: no-repeat;
             .fontopen;
             &:disabled {
                 color: darken(@grey-bg, 25%);
@@ -244,8 +262,8 @@
             }
         }
         @media screen and (max-width: 769px) {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: 30px;
+            padding-right: 30px;
         }
     }
     //projects list

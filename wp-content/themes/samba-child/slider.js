@@ -95,6 +95,12 @@ function checkIfInView(element){
         setleft();
         $(window).resize(function() {
             setleft();
+            if ($('div').hasClass('home_search')) {
+                $width = window.innerWidth ? window.innerWidth : $(window).width();
+                if ($width > 769) {
+                    $('.home_search.popup').hide();
+                }
+            }
         });
 
         // responsive-table test2
@@ -153,12 +159,12 @@ function checkIfInView(element){
 
 
         //position absolute - acting as position fixed for bigger screens
-        if ($('body').hasClass('page-template-project_list_new') && $(window).width() > 769) {
-            $acwidth = $(window).width() - $('#menu_section').width() - 100;
-            $('.top-dd-c').width($acwidth);
-        } else if ($(window).width() <= 769) {
-            $('.top-dd-c').width('auto');
-        }
+        // if ($('body').hasClass('page-template-project_list_new') && $(window).width() > 769) {
+        //     $acwidth = $(window).width() - $('#menu_section').width() - 100;
+        //     $('.top-dd-c').width($acwidth);
+        // } else if ($(window).width() <= 769) {
+        //     $('.top-dd-c').width('auto');
+        // }
 
         $(window).load(function() {
             if ($('body').hasClass('page-template-floor_plans')) {
@@ -205,22 +211,22 @@ function checkIfInView(element){
             }
         });
         if ($('body').hasClass('page-template-project_list_new')) {
-            setInterval(function() {
-                if ($(window).width() > 769) {
-                    $acwidth = $(window).width() - $('.mCustomScrollBox').width() - 100;
-                    $('.top-dd-c').width($acwidth);
-                } else if ($(window).width() <= 769) {
-                    $('.top-dd-c').width('auto');
-                }
-            }, 0.5);
+            // setInterval(function() {
+            //     if ($(window).width() > 769) {
+            //         $acwidth = $(window).width() - $('.mCustomScrollBox').width() - 100;
+            //         $('.top-dd-c').width($acwidth);
+            //     } else if ($(window).width() <= 769) {
+            //         $('.top-dd-c').width('auto');
+            //     }
+            // }, 0.5);
         }
         $(window).resize(function() {
-            if ($('body').hasClass('page-template-project_list_new') && $(window).width() > 769) {
-                $acwidth = $(window).width() - $('.mCustomScrollBox').width() - 100;
-                $('.top-dd-c').width($acwidth);
-            } else if ($(window).width() <= 769) {
-                $('.top-dd-c').width('auto');
-            }
+            // if ($('body').hasClass('page-template-project_list_new') && $(window).width() > 769) {
+            //     $acwidth = $(window).width() - $('.mCustomScrollBox').width() - 100;
+            //     $('.top-dd-c').width($acwidth);
+            // } else if ($(window).width() <= 769) {
+            //     $('.top-dd-c').width('auto');
+            // }
 
             if ($('div').hasClass('nothis')) {
                 $('.nothis .owl-carousel .item img').each(function() {
