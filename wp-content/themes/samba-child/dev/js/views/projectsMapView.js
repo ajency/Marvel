@@ -1,16 +1,16 @@
-  
+
 
         var propertiesMapView = Backbone.View.extend({
 
             el : ".top-dd-c"    ,
-           
+
             template :'#projectlistSearchOptionsTemplate',
 
             events : {
                 'click .btn_norm'	: 'searchProperties',
 
-           
-            }, 
+
+            },
 
             initialize : function(args) {
                 _.bindAll(this ,'render','searchProperties');
@@ -29,7 +29,7 @@
              */
             render : function(evt) {
 
-                 
+
                 var self = this;
 
                 jQuery.ajax(AJAXURL,{
@@ -40,9 +40,9 @@
 
                     },
                     success: function(response) {
-                       
+
                         var template = _.template(jQuery(self.template).html());
-                        
+
                                 jQuery('.top-dd-c').html(template({data : response}));
 
                                 var projectlistView = new projectsListingsView();
@@ -70,25 +70,25 @@
 
 
 
-            show_markers_on_map : function(properties){ 
-    
+            show_markers_on_map : function(properties){
+
 
 
                 var marker_image = 'http://marvel.ajency.in/wp-content/uploads/sites/8/2015/04/marvelLogo.png';
-                
+
 
                 var map = new google.maps.Map(document.getElementById('mapspan'), {
                   zoom: 10,
                   center: new google.maps.LatLng(-33.92, 151.25),
-                  mapTypeId: google.maps.MapTypeId.ROADMAP 
-                    
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+
                 });
 
                 var infowindow = new google.maps.InfoWindow();
 
-                var marker, i; 
+                var marker, i;
 
-                for (i = 0; i < properties.length; i++) {  
+                for (i = 0; i < properties.length; i++) {
 
                     locations = properties.map_address;
                   marker = new google.maps.Marker({
@@ -106,12 +106,12 @@
                 }
             },
 
- 
+
 
 
 
             searchProperties: function(){
-                
+
 
                 var prop_status = jQuery('#dd_status').val();
                 var prop_city = jQuery('#dd_city').val();
@@ -132,34 +132,34 @@
                                    search_options['property_unit_type'] =  prop_type;s
 
                 var res_collection = getAppInstance().residentialPropertyCollection  ;
-                
-                 
-                var search_collections = res_collection.models;
-                
-                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
-                    var search_collections = res_collection.where(search_options ) 
 
-               
+
+                var search_collections = res_collection.models;
+
+                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') || (prop_type!='') )
+                    var search_collections = res_collection.where(search_options )
+
+
              var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
-                                                    
+
              jQuery('#proj_list').html(projectListingsTemplate2({propertiesdata : search_collections}));
 
 
             }
 
-            
 
 
 
 
-           
 
 
-            
- 
 
 
-            
+
+
+
+
+
 
 
         });

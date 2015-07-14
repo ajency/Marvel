@@ -109,15 +109,15 @@ console.log('vl');
                             </tr>
                             <tr>
                                 <td>Sellable Area</td>
-                                
-                                <% 
+
+                                <%
 
                                 var f_max_area_arr =  _.pluck(f_prop.get('property_unit_type'),'max_area');
                                 var f_min_area_arr =  _.pluck(f_prop.get('property_unit_type'),'min_area');
 
                                 var f_max_area = _.size(f_max_area_arr)>0?_.max(f_max_area_arr):'';
                                 var f_min_area = _.size(f_min_area_arr)>0?_.min(f_min_area_arr):'';
-                                
+
                                 var s_max_area_arr = _.max(_.pluck(s_prop.get('property_unit_type'),'max_area'));
                                 var s_min_area_arr = _.min(_.pluck(s_prop.get('property_unit_type'),'min_area'));
 
@@ -132,10 +132,10 @@ console.log('vl');
 
                                 var array = jQuery.map(f_prop.get('property_sellablearea'), function(value, index) {
                                                 if(index=='min-area'){
-                                                      min_sellable_area = value;                                                    
+                                                      min_sellable_area = value;
                                                 }
                                                 else if(index=='max-area'){
-                                                      max_sellable_area = value;       
+                                                      max_sellable_area = value;
                                                 }
 
                                                 return [value];
@@ -148,18 +148,18 @@ console.log('vl');
 
                                 var s_array = jQuery.map(s_prop.get('property_sellablearea'), function(value, index) {
                                                 if(index=='min-area'){
-                                                      s_min_sellable_area = value;                                                    
+                                                      s_min_sellable_area = value;
                                                 }
                                                 else if(index=='max-area'){
-                                                      s_max_sellable_area = value;       
+                                                      s_max_sellable_area = value;
                                                 }
 
                                                 return [value];
                                             });
-                                */            
+                                */
 
 
-                                %>    
+                                %>
 
                                 <td><%= f_min_area+' to '+f_max_area+' SQ. FT.'  %></td>
                                 <td><%= s_min_area+' to '+s_max_area+' SQ. FT.'  %></td>
@@ -222,7 +222,7 @@ console.log('vl');
                     </div>
                     <div class="compare_f full-width">
                         <p class="foot_head">Looking for Help?</p>
-                        <p>Its very easy to get overwhelmed with the unique propositions of Marvel properties. Let us help you in making up your mmind.</p>
+                        <p>Its very easy to get overwhelmed with the unique propositions of Marvel properties. Let us help you in making up your mind.</p>
                         <a href="#" class="wpb_button">Give Details</a>
                     </div>
             </div>
