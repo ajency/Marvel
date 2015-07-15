@@ -658,7 +658,7 @@
 
                      var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
 
-                 jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
+                 jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections, dropdown_city:jQuery('#dd_city').val()}));
 
                  var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 43;
                 //alert(min_ht+'=========') ;
@@ -744,19 +744,26 @@ setTimeout(function(){
 
                 console.log('load_locality_options')
                 console.log(getAppInstance().searchOptions)
+                var localities_options = [];
+                var sorted_localities_options = [];
 
                 if(!_.isUndefined(getAppInstance().searchOptions['locality'].localities)){
                     if(_.isArray(getAppInstance().searchOptions['locality'].localities) )
                       localities_options = getAppInstance().searchOptions['locality'].localities;
                 }
 
+                if(_.size(localities_options)>0){
+                      sorted_localities_options = _.sortBy(localities_options, function(obj){ return obj.name.toLowerCase() });
+                }
+
                             console.log('event_val:---------------------------------------------')
                             console.log(event_val)
 
                             jQuery('#dd_locality').empty();
-                            jQuery('#dd_locality').append("<option value=''>Select</option>")
-
-                            _.each(localities_options, function(vl_localities,ky_localities){
+                            jQuery('#dd_locality').append("<option value=''>Locality:All</option>")
+                            jQuery('#dd_locality').append("<option class='select-dash' disabled='disabled'>------------------------------</option>");
+                           
+                            _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){
                                     jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+vl_localities.name+"</option>")

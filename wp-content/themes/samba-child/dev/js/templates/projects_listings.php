@@ -7,7 +7,7 @@
 <%
 console.log('-=-=-=-=-=--=-');
 console.log(propertiesdata);
-
+console.log(dropdown_city);
 
 %>
 <%
@@ -83,6 +83,9 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                     <span class="single_p_title"><%=property_title%></span>
                     <% if(property_locality!='' ) { %><span class="single_p_light">|</span>
                         <span class="single_p_location"><%=property_locality_name%></span>
+                    <% } 
+                    if(dropdown_city=='') { %>
+                    <%= _.isUndefined(property_city_name)?'':property_city_name%>
                     <% } %>
                 </a>
             </p>
