@@ -289,10 +289,10 @@
 
 
                         google.maps.event.addListener(marker, 'mouseover', function() {
-                            marker.setIcon(marker_image2);
+                            this.setIcon(marker_image2);
                         });
                         google.maps.event.addListener(marker, 'mouseout', function() {
-                            marker.setIcon(marker_image);
+                            this.setIcon(marker_image);
                         });
 
                         google.maps.event.addListener(infowindow, 'domready', function() {
