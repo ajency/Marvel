@@ -245,7 +245,8 @@
                 console.log('properties:----------map')
                 console.log(properties)
 
-                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
+                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_norm.png';
+                var marker_image2 = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
 
                 var infowindow = new google.maps.InfoWindow();
 
@@ -287,6 +288,12 @@
                         });
 
 
+                        google.maps.event.addListener(marker, 'mouseover', function() {
+                            marker.setIcon(marker_image2);
+                        });
+                        google.maps.event.addListener(marker, 'mouseout', function() {
+                            marker.setIcon(marker_image);
+                        });
 
                         google.maps.event.addListener(infowindow, 'domready', function() {
                          /* var l = $('#hook').parent().parent().parent().siblings();
@@ -436,7 +443,14 @@
                                             '<a href="#" class="map_p_title">'+
                                                 '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
                                                 '<span class="single_p_light">|</span>'+
-                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+' '+'</span>'+
+                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+' ';
+
+                          if(jQuery('#dd_city').val()==''){
+                              popup_content = popup_content + properties[i].get('property_city_name');
+                           }   
+                              popup_content = popup_content + '</span>'+  
+                                                
+                          
                                             '</a>'+
                                             '<p class="map_excerpt">';
 

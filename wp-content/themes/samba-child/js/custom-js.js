@@ -75,6 +75,7 @@ jQuery(document).ready(function($) {
         $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RESALE   <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
 
         $('.services_properties_h4').find('h4').html('Properties on Resale');
+        $('.services_top_note').html('');
 
 
      })
@@ -104,6 +105,7 @@ jQuery(document).ready(function($) {
 
         $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT    <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
         $('.services_properties_h4').find('h4').html('Properties on Rent');
+        $('.services_top_note').html('<p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p>');
         
 
      })

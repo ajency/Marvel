@@ -147,8 +147,8 @@ sort($uniq_no_of_bedrooms);
                             <div class="top-sea">
                                 <button type="submit" class="btn_norm sea"><i class="fa fa-search"></i></button>
                             </div>
-                            <div class="top-note">
-                                <p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p>
+                            <div class="top-note services_top_note">
+                                <?php /* <p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p> */ ?>
 <!--
                                 <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
                                 <a href="#" class="top_map"><i class="fa fa-map-marker"></i></a>
