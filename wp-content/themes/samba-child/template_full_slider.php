@@ -61,10 +61,10 @@ jQuery.ajax(ajax_var.url,{
 
 
 
-                           jQuery('#home_city').empty();
+                           jQuery('.home_city').empty();
 
-                           jQuery('#home_city').append('<option value="">City:All</option>')
-                           jQuery('#home_city').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
+                           jQuery('.home_city').append('<option value="">City:All</option>')
+                           jQuery('.home_city').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
 
 
                            var sorted_cities_options = [];
@@ -76,16 +76,16 @@ jQuery.ajax(ajax_var.url,{
                                     console.log(vl_cl);
                                     console.log('ky'+ky_cl)
 
-                                     jQuery('#home_city').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
+                                     jQuery('.home_city').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
 
                                })
                             }
 
                             
 
-                           jQuery('#home_type').empty();
-                           jQuery('#home_type').append('<option value="">Type:All</option>')
-                           jQuery('#home_type').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
+                           jQuery('.home_type').empty();
+                           jQuery('.home_type').append('<option value="">Type:All</option>')
+                           jQuery('.home_type').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
                            
 
                             var sorted_type_options = [];
@@ -94,7 +94,7 @@ jQuery.ajax(ajax_var.url,{
             
                               for(var i=0;i<_.size(sorted_type_options);i++){
 
-                                jQuery('#home_type').append('<option value="'+sorted_type_options[i].ID+'">'+sorted_type_options[i].property_unit_type+'</option>')
+                                jQuery('.home_type').append('<option value="'+sorted_type_options[i].ID+'">'+sorted_type_options[i].property_unit_type+'</option>')
 
                               } 
                             }
@@ -112,10 +112,10 @@ jQuery.ajax(ajax_var.url,{
 
 
 
-jQuery('#home_city').live('change',function(){
-  jQuery('#home_location').empty();
-  jQuery('#home_location').append('<option value="">Locality:All</option>');
-  jQuery('#home_location').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
+jQuery('.home_city').live('change',function(){
+  jQuery('.home_location').empty();
+  jQuery('.home_location').append('<option value="">Locality:All</option>');
+  jQuery('.home_location').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
 
   console.log('window.search_options.locality.localities........')
   console.log(window.search_options.locality.localities)
@@ -130,9 +130,9 @@ jQuery('#home_city').live('change',function(){
       _.each(sorted_locality_options,function(vl_cl,ky_cl){
             console.log(vl_cl);
             console.log('ky'+ky_cl)
-            if(jQuery('#home_city').val()==vl_cl.city_id){
+            if(jQuery('.home_city').val()==vl_cl.city_id){
 
-                jQuery('#home_location').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
+                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
 
             } 
        })
@@ -141,24 +141,24 @@ jQuery('#home_city').live('change',function(){
 })
 
 
-jQuery('.home_btn_sea').live('click',function(evt){
+jQuery('.home_btn_search_properties').live('click',function(evt){
 
   evt.preventDefault();
-  var search_url = SITE_URL+'/residential-properties/#';
+  var search_url = SITE_URL+'/residential-properties/#/st/Ongoing';
   //residential-properties/#/ct/blore/loc/mekri circle/type/1 BHK
 
-  if(jQuery('#home_city').val()!=''){
-    search_url= search_url + '/ct/'+jQuery('#home_city').val()
+  if(jQuery('.home_city').val()!=''){
+    search_url= search_url + '/ct/'+jQuery('.home_city').val()
   }
 
 
-  if(jQuery('#home_location').val()!=''){
-    search_url= search_url + '/loc/'+jQuery('#home_location').val()
+  if(jQuery('.home_location').val()!=''){
+    search_url= search_url + '/loc/'+jQuery('.home_location').val()
   }
 
 
-   if(jQuery('#home_type').val()!=''){
-    search_url= search_url + '/type/'+jQuery('#home_type').val()
+   if(jQuery('.home_type').val()!=''){
+    search_url= search_url + '/type/'+jQuery('.home_type').val()
   }
 
 
@@ -200,26 +200,26 @@ jQuery('.home_btn_sea').live('click',function(evt){
               </div>
               <div class="hidein767">
                 <div class="hme_dd wc">
-                  <select id="home_city">
+                  <select id="home_city"  class="home_city">
                     <option value="" >City:All</option>
                  <!--   <option value="Pune">Pune</option>
                     <option value="Bangalore">Bangalore</option> -->
                   </select>
                 </div>
                 <div class="hme_dd lo">
-                  <select id="home_location">
+                  <select id="home_location"  class="home_location">
                     <option value="">Locality:All</option>
                   </select>
                 </div>
                 <div class="hme_dd ty">
-                  <select id="home_type">
+                  <select id="home_type" class='home_type'>
                     <option value="Type">Type:All</option>
                   <!--  <option value="3_BHK">3 BHK</option> -->
                   </select>
                 </div>
               </div>
               <div class="hme_dd lo btn">
-                <button class="home_btn_sea" type="submit">
+                <button class="home_btn_sea home_btn_search_properties" type="submit">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
