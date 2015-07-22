@@ -37,8 +37,8 @@ var property_city_name = _.isUndefined(propertyvl.property_city_name)? propertyv
 var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
     %>
 <div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
-    <div class="single_p_img">
-        <img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">
+    <div class="single_p_img" style="background-image: url(<% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>);">
+        <!--<img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">-->
             <div class="single_p_hov_c">
                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                 <div class="clearfix"></div>
@@ -83,7 +83,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                     <span class="single_p_title"><%=property_title%></span>
                     <% if(property_locality!='' ) { %><span class="single_p_light">|</span>
                         <span class="single_p_location"><%=property_locality_name%></span>
-                    <% } 
+                    <% }
                     if(dropdown_city=='') { %>
                     <%= _.isUndefined(property_city_name)?'':property_city_name%>
                     <% } %>

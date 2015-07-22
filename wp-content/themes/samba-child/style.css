@@ -441,7 +441,8 @@ color: rgb(255, 255, 255);
 .vc_separator.smallline .vc_sep_holder .vc_sep_line {border-color: #D1D1D1;}
 .vc_separator.smallline {
     width: 100px;
-    margin: 15px auto;
+    margin: 40px auto;
+    margin-bottom: 34px;
 }
 
 .member_ul .six, .member_ul .three {
@@ -588,6 +589,18 @@ color: rgb(255, 255, 255);
 
 }
 
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	.child-footer .pirenko-social-widget {
+		width: 170px;
+		padding: 0;
+	}
+	/*.colored .social_img_wrp {
+		margin-right: 0;
+	}*/
+	.prk_with_back.zocial.icon:before {
+		font-size: 16px;
+	}
+}
 @media screen and (max-width: 896px) {
     .child-footer .widget-6 .WP_Editor_Widget a {
         padding-left: 15px;
@@ -692,15 +705,55 @@ color: rgb(255, 255, 255);
     	line-height: 18px;
     }
 }
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 480px) {
+	#after_widgets.hidein769 {
+		padding-top: 2px;
+	}
+	#after_widgets.hidein769 h5 {
+		display: none;
+	}
+	#after_widgets.hidein769 p {
+		font-size: 11px;
+		margin-bottom: 0;
+	}
 	#footer_in a {
-		font-size: 12px;
+		font-size: 10px;
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+	.colored .social_img_wrp {
+		margin-right: 0;
+	}
+	.prk_with_back.zocial.icon {
+		padding-top: 3px;
+		padding-bottom: 4px;
+	}
+	.prk_with_back.zocial.icon:before {
+		font-size: 17px;
+	}
+	.child-footer .widget ul.menu {
+		margin-top: 6px;
+		margin-bottom: -8px;
+		margin-left: -3px;
+	}
+	.sf-menu>li>a {
+		padding: 12px 15px;
+	}
+	.home_search {
+		bottom: 175px;
 	}
 }
 
 /*services page*/
 .wpb_call_to_action {
 	padding-top: 0;
+}
+@media screen and (max-width: 768px) {
+	.wpb_call_to_action {
+		/*padding: 15px 15px;*/
+		padding: 0;
+		margin-bottom: 20px;
+	}
 }
 .wpb_call_to_action h3.header_font {
 	display: none;
@@ -1008,6 +1061,12 @@ color: rgb(255, 255, 255);
 	padding: 0 20px;
 	margin: 25px 0;
 }
+@media screen and (max-width: 1024px) {
+	.samba_bquote_wrapper {
+		padding: 0;
+		border: 0;
+	}
+}
 .samba_bquote_wrapper .prk_blockquote {
 	background-color: transparent;
 }
@@ -1043,6 +1102,12 @@ color: rgb(255, 255, 255);
 .nri_fullrow.prk_section.prk_full_width {
     padding: 30px 0;
     padding-bottom: 0;
+}
+@media only screen and (max-width: 767px) {
+	.nri_fullrow.prk_section.prk_full_width {
+		width: auto;
+		padding: 30px 15px;
+	}
 }
 .nri_fullrow.prk_section.prk_full_width .wpb_call_to_action {
     padding-bottom: 0;

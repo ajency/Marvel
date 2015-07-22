@@ -3,18 +3,21 @@
 <script type="text/template" id="projectlistSearchOptionsTemplate" >
 
 
-<%  
+<%
 var selectedCity     = !_.isUndefined(selected.selectedCity)? selected.selectedCity : '' ;
 var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selectedLocality : '' ;
 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
 var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
 
 %>
+    <div class="proj-showinmob">
+        <a href="#" class="filter-btn"></a>
+    </div>
     <div class="top-dd one">
         <select id="dd_status" name="dd_status" class='srchopt' >
          <option value="">Status:All</option>
          <option class="select-dash" disabled="disabled">----------------------------------</option>
-        <% 
+        <%
         var sorted_status = [];
         if(_.size(data.status)>0){
 
@@ -33,7 +36,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
         <select id="dd_city" name="dd_city"  class='srchopt' >
          <option value="">City:All</option>
          <option class="select-dash" disabled="disabled">----------------------------------</option>
-            <%  
+            <%
              /* commented on 21june2015    _.each(data.citylocality,function(vl,ky){ */
             console.log('data.city');
             console.log(data);
@@ -45,7 +48,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
                 var sorted_cities_options  = _.sortBy(cities_options, function(obj){ return obj.name.toLowerCase() });
 
 
-                _.each(sorted_cities_options,function(vl,ky){ 
+                _.each(sorted_cities_options,function(vl,ky){
 
                 %><option value="<%=vl.ID%>"   <% if(selectedCity == vl.ID) {%> selected <% }%> ><%=vl.name%></option>
 
@@ -60,18 +63,18 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
         <select id="dd_locality" name="dd_locality"  class='srchopt'  >
          <option value="">Locality:All</option>
          <option class="select-dash" disabled="disabled">------------------------------</option>
-            <% 
+            <%
             /* commented on 21june2015 _.each(data.citylocality,function(vl,ky){ */
                  var locality_options = _.isUndefined(data.locality.localities)?[]:data.locality.localities;
-                
+
                 var sorted_locality_options = [];
 
                 if(_.size(locality_options)>0){
-                    var sorted_locality_options  = _.sortBy(locality_options, function(obj){ return obj.name.toLowerCase() });               
+                    var sorted_locality_options  = _.sortBy(locality_options, function(obj){ return obj.name.toLowerCase() });
 
-                    _.each(locality_options,function(vl__locality,ky__locality){ 
+                    _.each(locality_options,function(vl__locality,ky__locality){
                         if(selectedCity == vl__locality.city_id) {
-       
+
                         %><option value="<%=vl__locality.ID%>"  <% if(vl__locality.ID==selectedLocality) { %> selected <% } %>><%=vl__locality.name%></option>
                         <% }
 
@@ -96,7 +99,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
         <select id="dd_type" name="dd_type"  class='srchopt' >
          <option value="">Type:All</option>
          <option class="select-dash" disabled="disabled">------------------------------</option>
-            <% 
+            <%
 
             console.log('SORT POTIONS :---------------------')  ;
             console.log(_.size(data.type));
@@ -104,7 +107,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
             var sorted_type_options = [];
             if(_.size(data.type) > 0)
                 var sorted_type_options  = _.sortBy(data.type, function(obj){ return obj.property_unit_type.toLowerCase() });
-            
+
             _.each(sorted_type_options,function(vl,ky){
             %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_unit_type%></option>
 

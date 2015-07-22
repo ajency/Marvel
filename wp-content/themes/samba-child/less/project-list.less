@@ -100,8 +100,26 @@
             padding-left: 190px
         }
         @media screen and (max-width: 769px) {
-            padding-left: 30px;
-            padding-right: 30px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+    .proj-showinmob {
+        display: none;
+        float: left;
+        @media screen and (max-width: 767px) {
+            display: block;
+        }
+        a.filter-btn {
+            display: block;
+            width: 37px;
+            height: 33px;
+            background-image: url(img/filter1.png);
+            background-size: cover;
+            -moz-background-size: cover;
+            &.active {
+                background-image: url(img/filter2.png);
+            }
         }
     }
     .top-dd {
@@ -184,7 +202,7 @@
         width: 100%;
         top: 72px;
         z-index: 1;
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(255, 255, 255, 0.95);
 
         padding: 25px 50px;
         @media screen and (max-width: 991px) {
@@ -220,20 +238,22 @@
                 // padding-left: 1px;
                 font-size: 19px;
                 display: block;
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-                border-radius: 50%;
+                width: 32px;
+                height: 48px;
+                line-height: 48px;
+                // border-radius: 50%;
                 text-align: center;
-                background-color: rgb(102, 102, 102); //was rgb(195, 2, 2);
-                color: #fff;
+                background-color: #f9f9f9; //was rgb(195, 2, 2);
+                color: #333333;
                 position: absolute;
-                top: -10px;
-                right: -10px;
+                top: 0;
+                right: 0;
+                display: none;
             }
             .after_drag_content {
                 display: none;
                 text-align: center;
+                padding: 6px 0;
                 .dragged_title {margin-bottom: 0; color: #999;}
                 .single_p_title {font-weight: bold; color: #000;}
                 .single_p_location {}
@@ -241,7 +261,8 @@
             &.after_drag {
                 background: #f8f8f8;
                 border: 1px solid #c2c2c2;
-                padding: 6px 0;
+                // padding: 6px 0;
+                padding: 0;
                 line-height: 18px;
                 vertical-align: middle;
                 .before_drag {
@@ -249,6 +270,13 @@
                 }
                 .after_drag_content {
                     display: block;
+                }
+                &:hover {
+                    background-color: #f0f0f0;
+                    border-color: #b5b5b5;
+                    .remove_from_comp {
+                        display: block;
+                    }
                 }
             }
         }
@@ -303,6 +331,10 @@
                 height: 192px;
                 overflow: hidden;
                 position: relative;
+                background-size: cover;
+                -moz-background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
                 img {
                     width: 100%;
                     height: auto;
@@ -397,6 +429,8 @@
                         background-repeat: no-repeat;
                         background-position: center center;
                         cursor: pointer;
+                        float: left;
+                        margin-right: 5px;
                     }
                     a.single_know {
                         .fontmont;
@@ -414,6 +448,7 @@
                         background-position: center;
                         background-repeat: no-repeat;
                         cursor: pointer;
+                        float: left;
                         * {
                             display: block;
                             height: 100%;
