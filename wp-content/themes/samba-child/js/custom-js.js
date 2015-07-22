@@ -53,6 +53,10 @@ jQuery(document).ready(function($) {
    // $('.view_properties_resale').live("click",function(evt){
     $('.view_properties_resale .button_left a.wpb_button_a').live("click",function(evt){
  
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: $('#spn_services_div').offset().top
+        }, 50);
  
         $('#services_project_type').val('resale');
 
@@ -70,13 +74,21 @@ jQuery(document).ready(function($) {
 
         $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RESALE   <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
 
-        
+        $('.services_properties_h4').find('h4').html('Properties on Resale');
+        $('.services_top_note').html('');
+
 
      })
 
     //$('.view_properties_rent').live("click",function(evt){
    $('.view_properties_rent .button_left a.wpb_button_a').live("click",function(evt){
         
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: $('#spn_services_div').offset().top
+        }, 50);
+
+
         $('#services_project_type').val('rent');
 
         $('.services_dd_city').val('');
@@ -92,7 +104,8 @@ jQuery(document).ready(function($) {
         fetch_servies_projects(options)
 
         $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT    <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
-
+        $('.services_properties_h4').find('h4').html('Properties on Rent');
+        $('.services_top_note').html('<p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p>');
         
 
      })
@@ -415,6 +428,13 @@ console.log(options) */
                         else if(current_project =='' || (current_project!=servproperties_vl.Project_Name) ){
                            current_project = servproperties_vl.Project_Name;
                             //echo "<h1> New Project </h1>";
+
+                            if($('#services_project_type').val()=="rent"){
+                                var rent_resale_head = 'Rent (Rs./Month)';
+                            }
+                            else if($('#services_project_type').val()=="resale"){
+                                var rent_resale_head = 'Cost';   
+                            }
                     
                         property_list_html = property_list_html+
                  
@@ -465,7 +485,7 @@ console.log(options) */
                                             '                                <small class="clr_lt">No. Of Rooms</small>'+
                                             '                            </div>'+
                                             '                            <div class="set rent">'+
-                                            '                                <small class="clr_lt">Rent (Rs./Month)</small>'+
+                                            '                                <small class="clr_lt">'+rent_resale_head+'</small>'+
                                             '                            </div>'+
                                             '                            <div class="set">'+                                                                            
                                             '                            </div>'+

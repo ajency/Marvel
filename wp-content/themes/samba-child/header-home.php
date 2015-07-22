@@ -36,22 +36,22 @@
     <i class="close-btn"></i>
   </div>
   <div class="hme_dd wc">
-    <select id="home_city2">
+    <select id="home_city2"  class="home_city">
       <option value="" >City</option>
     </select>
   </div>
   <div class="hme_dd lo">
-    <select id="home_location2">
+    <select id="home_location2"  class="home_location">
       <option value="">Locality</option>
     </select>
   </div>
   <div class="hme_dd ty">
-    <select id="home_type2">
+    <select id="home_type2"  class='home_type'>
       <option value="Type">Type</option>
     </select>
   </div>
   <div class="hme_dd lo">
-    <button class="home_btn_sea2" type="submit">
+    <button class="home_btn_sea2 home_btn_search_properties" type="submit">
       <i class="fa fa-search"></i>
     </button>
   </div>

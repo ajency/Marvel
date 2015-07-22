@@ -8,7 +8,8 @@ function  services_properties_rent_resale(){
     $qry_get_rent_resale_data = " SELECT * FROM ".$table_name." WHERE   type like 'resale' ORDER BY Project_Name   ";
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
- 
+    $rent_cost_header = "Cost";
+
     
   
      
@@ -88,6 +89,18 @@ sort($uniq_no_of_bedrooms);
                     <span class="wpb_button  wpb_btn-inverse wpb_regularsize view_properties_rent">View Properties on Rent</span>
                 </a> -->
 
+              <div id="spn_services_div" class="vc_separator wpb_content_element vc_separator_align_center vc_el_width_100 vc_sep_dashed vc_sep_color_white services_properties_h4">
+                     <span class="vc_sep_holder vc_sep_holder_l">
+                        <span class="vc_sep_line"></span>
+                    </span>
+                    <h4>Properties on Resale</h4> 
+                    <span class="vc_sep_holder vc_sep_holder_r">
+                        <span class="vc_sep_line"></span>
+                    </span>
+              </div>
+
+
+
                 <div class="vc_row-fluid full-width totally-full-width">
                     <div class="vc_col-sm-12">
                         <div class="top-dd-c">
@@ -134,8 +147,8 @@ sort($uniq_no_of_bedrooms);
                             <div class="top-sea">
                                 <button type="submit" class="btn_norm sea"><i class="fa fa-search"></i></button>
                             </div>
-                            <div class="top-note">
-                                <p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p>
+                            <div class="top-note services_top_note">
+                                <?php /* <p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p> */ ?>
 <!--
                                 <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
                                 <a href="#" class="top_map"><i class="fa fa-map-marker"></i></a>
@@ -267,7 +280,7 @@ sort($uniq_no_of_bedrooms);
                                                         <small class="clr_lt">No. Of Rooms</small>
                                                     </div>
                                                     <div class="set rent">
-                                                        <small class="clr_lt">Rent (Rs./Month)</small>
+                                                        <small class="clr_lt"><?php echo $rent_cost_header ; ?></small>
                                                     </div>
                                                     <div class="set">
 

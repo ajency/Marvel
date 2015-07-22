@@ -245,7 +245,8 @@
                 console.log('properties:----------map')
                 console.log(properties)
 
-                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
+                var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_norm.png';
+                var marker_image2 = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
 
                 var infowindow = new google.maps.InfoWindow();
 
@@ -287,6 +288,12 @@
                         });
 
 
+                        google.maps.event.addListener(marker, 'mouseover', function() {
+                            this.setIcon(marker_image2);
+                        });
+                        google.maps.event.addListener(marker, 'mouseout', function() {
+                            this.setIcon(marker_image);
+                        });
 
                         google.maps.event.addListener(infowindow, 'domready', function() {
                          /* var l = $('#hook').parent().parent().parent().siblings();
@@ -436,7 +443,14 @@
                                             '<a href="#" class="map_p_title">'+
                                                 '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
                                                 '<span class="single_p_light">|</span>'+
-                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+' '+'</span>'+
+                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+' ';
+
+                          if(jQuery('#dd_city').val()==''){
+                              popup_content = popup_content + properties[i].get('property_city_name');
+                           }   
+                              popup_content = popup_content + '</span>'+  
+                                                
+                          
                                             '</a>'+
                                             '<p class="map_excerpt">';
 
@@ -658,7 +672,7 @@
 
                      var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
 
-                 jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections}));
+                 jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections, dropdown_city:jQuery('#dd_city').val()}));
 
                  var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 43;
                 //alert(min_ht+'=========') ;
@@ -744,19 +758,26 @@ setTimeout(function(){
 
                 console.log('load_locality_options')
                 console.log(getAppInstance().searchOptions)
+                var localities_options = [];
+                var sorted_localities_options = [];
 
                 if(!_.isUndefined(getAppInstance().searchOptions['locality'].localities)){
                     if(_.isArray(getAppInstance().searchOptions['locality'].localities) )
                       localities_options = getAppInstance().searchOptions['locality'].localities;
                 }
 
+                if(_.size(localities_options)>0){
+                      sorted_localities_options = _.sortBy(localities_options, function(obj){ return obj.name.toLowerCase() });
+                }
+
                             console.log('event_val:---------------------------------------------')
                             console.log(event_val)
 
                             jQuery('#dd_locality').empty();
-                            jQuery('#dd_locality').append("<option value=''>Select</option>")
-
-                            _.each(localities_options, function(vl_localities,ky_localities){
+                            jQuery('#dd_locality').append("<option value=''>Locality:All</option>")
+                            jQuery('#dd_locality').append("<option class='select-dash' disabled='disabled'>------------------------------</option>");
+                           
+                            _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){
                                     jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+vl_localities.name+"</option>")
