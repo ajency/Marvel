@@ -610,6 +610,9 @@ color: rgb(255, 255, 255);
     .widget_nav_menu {padding-left: 0; padding-right: 0;}
 }
 @media only screen and (max-width: 769px) {
+	#footer_in {
+		margin-bottom: 0;
+	}
 	.child-footer .prk-widget-body {
 		float: none;
 		display: block;
@@ -657,7 +660,7 @@ color: rgb(255, 255, 255);
     }
     .child-footer {
         display: table;
-        min-height: 83px;
+        min-height: 68px;
     }
     .child-footer .widget-4 {display: table-footer-group;}
     .child-footer .widget-5 {display: table-header-group;}
@@ -725,8 +728,8 @@ color: rgb(255, 255, 255);
 		margin-right: 0;
 	}
 	.prk_with_back.zocial.icon {
-		padding-top: 3px;
-		padding-bottom: 4px;
+		padding-top: 5px;
+		padding-bottom: 2px;
 	}
 	.prk_with_back.zocial.icon:before {
 		font-size: 17px;
