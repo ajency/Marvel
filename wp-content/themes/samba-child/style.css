@@ -1461,3 +1461,20 @@ visibility:hidden;
 .job_listings{
 border-top: none!important;
 }
+
+/*popup - popmake*/
+.popmake>.popmake-close {
+	padding: 10px 8px !important;
+	background: none !important;
+	position: fixed !important;
+	right: 0;
+	top: 0;
+	font-size: 0 !important;
+	overflow: hidden;
+}
+.popmake>.popmake-close:after {
+	content: '×';
+	text-indent: 0 !important;
+	font-size: 32px;
+	font-family: Arial;
+}

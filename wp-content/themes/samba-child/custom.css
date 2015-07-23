@@ -299,6 +299,16 @@
     vertical-align: top;
     background-color: #eee;
 }
+.additional_class_property_unit_type .admin_input .admin_new_add_c .adm_property_unit_type_row span.cust-prop-type-pdf:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.additional_class_property_unit_type .admin_input .admin_new_add_c .adm_property_unit_type_row > label,
+.additional_class_property_unit_type .admin_input .admin_new_add_c .adm_property_unit_type_row > input {
+    display: block;
+    float: none;
+}
 .additional_class_property_unit_type .admin_input .admin_new_add_c .adm_property_unit_type_row select {
     height: auto;
     padding: 5px;

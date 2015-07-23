@@ -116,8 +116,14 @@
                       <?php
                           if ( has_nav_menu( 'top_right_navigation' ) )
                           {
-                            wp_nav_menu(array('theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker));
-                          }
+                            if (is_page('about') || is_page('brand-promise')){
+                              wp_nav_menu(array('menu'=>'aboutmenu', 'theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker));
+                              echo "about page";
+                            } else {
+                              wp_nav_menu(array('theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker));
+                            }
+}
+
                       ?>
                </div>
             </nav>
