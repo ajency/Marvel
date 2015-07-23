@@ -80,16 +80,19 @@ console.log('vl');
                                             <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                                             <div class="clearfix"></div>
                                             <div class="single_p_info">
-                                                <h6>Office Spaces: 1200 - 50,000 sq. ft.</h6>
-                                                <h6>Retail Spaces: 500 - 1,400 sq. ft.</h6>
+                                                <h6><%=_.pluck(f_prop.get('property_unit_type'),'type_name').join()%></h6>
+                                                <h6><%=f_prop.get('property_price') %></h6>
                                             </div>
                                             <div class="single_btm">
                                                 <div class="pull-left">
                                                     <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
-                                                    <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>
+                                                   <!--  <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a> -->
+                                                    <a class="btn_norm single_share">
+                                                        <span class='st_sharethis' st_image="<%=f_prop.get('featured_image') %>"   st_url="<%=f_prop.get('post_url') %>" st_title="<%=f_prop.get('post_title')%>"  ></span>
+                                                    </a>
                                                 </div>
                                                 <div class="pull-right">
-                                                    <a href="#" class="btn_norm single_know">Know More</a>
+                                                    <a href="<%=f_prop.get('post_url') %>" target="_blank" class="btn_norm single_know">Know More</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,16 +114,19 @@ console.log('vl');
                                             <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                                             <div class="clearfix"></div>
                                             <div class="single_p_info">
-                                                <h6>Office Spaces: 1200 - 50,000 sq. ft.</h6>
-                                                <h6>Retail Spaces: 500 - 1,400 sq. ft.</h6>
+                                                <h6><%=_.pluck(s_prop.get('property_unit_type'),'type_name').join()%></h6>
+                                                <h6><%=s_prop.get('property_price') %></h6>
                                             </div>
                                             <div class="single_btm">
                                                 <div class="pull-left">
                                                     <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
-                                                    <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>
+                                                    <!-- <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a> -->
+                                                    <a class="btn_norm single_share">
+                                                        <span class='st_sharethis' st_image="<%=s_prop.get('featured_image') %>"   st_url="<%=s_prop.get('post_url') %>" st_title="<%=s_prop.get('post_title')%>"  ></span>
+                                                    </a>
                                                 </div>
                                                 <div class="pull-right">
-                                                    <a href="#" class="btn_norm single_know">Know More</a>
+                                                    <a href="<%=s_prop.get('post_url') %>" target="_blank" class="btn_norm single_know">Know More</a>
                                                 </div>
                                             </div>
                                         </div>
