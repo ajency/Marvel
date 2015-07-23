@@ -3588,7 +3588,8 @@ ul.ui-tabs-nav {
 }
 @media screen and (max-width: 580px) {
   .promise_btns .prk_service h3 {
-    font-size: 14px;
+    font-size: 13px;
+    padding-top: 2px;
   }
 }
 .promise_btns .prk_service:hover {
