@@ -101,7 +101,13 @@
                                 jQuery('#main').html(projectListingsTemplate({pid:self.pid,psid:self.psid,propertiesdata : getAppInstance().residentialPropertyCollection.models, searchOptions:getAppInstance().searchOptions}));
                                  
 
+                                setTimeout(function(){
 
+                                    var switchTo5x=true;
+                                   stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
+                                   stButtons.locateElements();
+
+                                },300)
 
 
                             },
