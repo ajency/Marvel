@@ -13,8 +13,15 @@
                 'change .srchopt'   : 'searchPropertiesRoute',
                 'change #dd_city'   : 'load_locality_options',
                 'click .top_map'    : 'searchPropertiesRoute',
-                'click .top_list'   : 'searchPropertiesRoute'
+                'click .top_list'   : 'searchPropertiesRoute',
+                
 
+
+            },
+
+            add_property_for_comparison:function(){
+
+              alert('add property for comparison')
 
             },
 
@@ -379,7 +386,7 @@
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-address',jQuery('.map_info_c').attr('property-address'))
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-title',jQuery('.map_info_c').attr('property-title'))
 
-                          self.make_div_draggable()
+                         /* commented on 23july2015  self.make_div_draggable() */
                       });
 
 
@@ -474,7 +481,7 @@
                                             '       <a class="btn_norm single_share">'+
                                             '         <span class="st_sharethis" st_image="'+featured_img_thumbnail[0]+'"   st_url="'+properties[i].get('post_url')+'" st_title="'+properties[i].get('post_title')+'"  ></span>'+
                                             '      </a>'+
-                                            '        <a href="#" class="btn_norm single_compare"></a>'+
+                                            '        <a href="javascript:void(0)" class="btn_norm single_compare add_to_compare"    property-id="'+properties[i].get('id')+'" property-title = "'+properties[i].get('post_title')+'" property-address="'+properties[i].get('property_locality_name')+' '+properties[i].get('property_city_name')+'"></a>'+
                                             '    </div>'+
                                             '    <div class="pull-right">'+
                                             '        <a href="'+properties[i].get('post_url')+'" class="btn_norm single_know">'+
