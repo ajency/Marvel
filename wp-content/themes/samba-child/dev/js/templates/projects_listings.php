@@ -1,7 +1,29 @@
 <script type="text/templte" id="spn_propertieslistings">
 <div id="proj_list" class="project-list row">
 <div class="twelve columns">
-    <h5>Residential Projects </h5>
+<%  var properties_count = _.size(propertiesdata);
+    
+    var display_properties_count = '';
+    
+    if(properties_count>0){
+        display_properties_count = " ("+properties_count+") ";
+    }
+ 
+
+
+    if(dropdown_city!='' && !_.isUndefined(dropdown_city) && !_.isNull(dropdown_city)){
+%><h5>Residential Projects in <%=dropdown_city_name %> <%=display_properties_count%></h5>
+<%
+    }
+    else{
+    %><h5>Residential Projects <%=display_properties_count%></h5>
+    <%        
+    }
+ 
+    
+ %>
+ 
+    
 </div>
 <!--single project listing-->
 <%

@@ -672,7 +672,7 @@
 
                      var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
 
-                 jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections, dropdown_city:jQuery('#dd_city').val()}));
+                 jQuery('#projects_listings').html(projectListingsTemplate2({propertiesdata : search_collections, dropdown_city:jQuery('#dd_city').val(), dropdown_city_name:jQuery("#dd_city option:selected").text()}));
 
                  var min_ht = jQuery(window).height() - jQuery('#projects_listings').position().top - 43;
                 //alert(min_ht+'=========') ;
