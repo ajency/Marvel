@@ -263,6 +263,13 @@
                 //commented on 1june2015 if(properties.length>0){
                   if(_.size(properties)>0){
 
+                     var map = new google.maps.Map(document.getElementById('projects_listings'), {
+                                zoom:11,
+                                center: new google.maps.LatLng(18.52043, 73.85674),
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+
+                            });
+
 
                     for (i = 0; i < _.size(properties); i++) {
 
@@ -276,16 +283,16 @@
 
                                 })
 
-                        if(i==0){
+                       /* commented on 23july2015 zoom to pune if(i==0){
 
                             var map = new google.maps.Map(document.getElementById('projects_listings'), {
-                                zoom:8,
+                                zoom:15,
                                 center: new google.maps.LatLng(locations.lat, locations.lng),
                                 mapTypeId: google.maps.MapTypeId.ROADMAP
 
                             });
 
-                        }
+                        } */
 
 
                         marker = new google.maps.Marker({

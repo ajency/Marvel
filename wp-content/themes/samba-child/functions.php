@@ -62,6 +62,33 @@ add_action( 'wp_ajax_get_search_options', 'get_search_options_ajx' );
 add_action( 'wp_ajax_nopriv_get_search_options', 'get_search_options_ajx' );
 
 
+
+function get_main_property_type_by_unit_type_id($unit_type_id){
+  //echo '\n unit_type_id'.$unit_type_id;
+        global $wpdb;
+        $property_type_details = array();
+
+        $property_type_option =  maybe_unserialize(get_option('residential-property-type'));
+        $property_type_option_value = maybe_unserialize($property_type_option['property_types']);
+ 
+  //var_dump($property_type_option_value);
+        foreach ($property_type_option_value as $key => $value) {
+
+
+          if((int)$value['ID'] ==(int)$unit_type_id){
+
+          
+            $property_type_details = array('property_type_name'         => $value['property_type'],
+                                           'property_type_id'           => $value['ID'],
+                                           'property_type_materialgroup'=> $value['material_group'],
+                                           );
+          }
+        }
+
+        return $property_type_details;
+
+}
+
 function get_res_property_meta_values($property_id){
 	  $property_sellablearea    = maybe_unserialize(get_post_meta($property_id, 'property-sellable_area',true));
     $property_cities          = get_post_meta($property_id, 'property-city',true);
@@ -106,7 +133,12 @@ function get_res_property_meta_values($property_id){
 
        //var_dump($property_unit_type_option_values);  
 
+       
+
+
        foreach ($property_unit_type as $key => $value) {
+
+              $main_property_type = array();
 
               foreach ($property_unit_type_option_values as $key_typeoption => $value_typeoption) {
                   if($value['type'] ==$value_typeoption['ID'] ){
@@ -114,10 +146,25 @@ function get_res_property_meta_values($property_id){
 
                     $value['type_name'] = $value_typeoption['property_unit_type'] ;
                     $value['no_bedrooms'] = $value_typeoption['number_bedrooms'] ;
+
+                    $main_property_type = get_main_property_type_by_unit_type_id($value_typeoption['property_type_id']);
+ 
+
+                   $value = array_merge($value,$main_property_type);
+                   $value['property_unit_type_display'] = $value['type_name']." ".$main_property_type['property_type_name'];
+
+                   /* echo "\n\n\n FETCHD TYPE ";
+                   var_dump($main_property_type);
+                   echo "\n\n\nMERGED ";
+
+                   var_dump($value); */
+
+
                   }
 
               }
 
+              
               if($value['layout_image']!=''){
 
                 $layout_image = wp_get_attachment_image_src($value['layout_image'],'full');
