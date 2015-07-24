@@ -187,12 +187,28 @@
             color: #fff;
             padding: 4px 10px;
             width: 35px;
+            height: 32px;
             text-align: center;
-            background: darken(@grey-bg, 7.8%);
+            background-color: darken(@grey-bg, 7.8%);
+            background-repeat: no-repeat;
+            background-position: center;
             border: 1px solid darken(@grey-bg, 12%);
+            i {display: none;}
             &.current {
-                background: #fff;
+                background-color: #fff;
                 color: darken(@grey-bg, 52%);
+                &.top_list {
+                    background-image: url(img/listview.png);
+                }
+                &.top_map {
+                    background-image: url(img/mapview.png);
+                }
+            }
+            &.top_list {
+                background-image: url(img/listview2.png);
+            }
+            &.top_map {
+                background-image: url(img/mapview2.png);
             }
         }
     }
@@ -229,6 +245,9 @@
             position: relative;
             @media screen and (min-width: 770px) and (max-width: 800px) {
                 width: 170px;
+            }
+            &.over {
+                border: 2px dashed #66afe9;
             }
             .before_drag {
                 display: block;

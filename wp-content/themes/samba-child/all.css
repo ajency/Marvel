@@ -342,7 +342,7 @@ img.mfp-img {
   }
   .service .list_forent .top-tab .top_inner .set:after {
     content: '';
-    display: block;
+    display: none;
     width: 0;
     height: 0;
     border-right: 4px solid transparent;
@@ -393,6 +393,7 @@ img.mfp-img {
     overflow-x: scroll;
     overflow-y: hidden;
     height: 281px;
+    border-top: 1px solid #dddddd;
   }
 }
 .flexslider li img {
@@ -1014,13 +1015,31 @@ img.mfp-img {
   color: #fff;
   padding: 4px 10px;
   width: 35px;
+  height: 32px;
   text-align: center;
-  background: #d7d7d7;
+  background-color: #d7d7d7;
+  background-repeat: no-repeat;
+  background-position: center;
   border: 1px solid #cccccc;
 }
+.top-view a i {
+  display: none;
+}
 .top-view a.current {
-  background: #fff;
+  background-color: #fff;
   color: #666666;
+}
+.top-view a.current.top_list {
+  background-image: url(img/listview.png);
+}
+.top-view a.current.top_map {
+  background-image: url(img/mapview.png);
+}
+.top-view a.top_list {
+  background-image: url(img/listview2.png);
+}
+.top-view a.top_map {
+  background-image: url(img/mapview2.png);
 }
 .top-compar {
   position: fixed;
@@ -1068,6 +1087,9 @@ img.mfp-img {
   .top-compar .drag_area {
     width: 170px;
   }
+}
+.top-compar .drag_area.over {
+  border: 2px dashed #66afe9;
 }
 .top-compar .drag_area .before_drag {
   display: block;
