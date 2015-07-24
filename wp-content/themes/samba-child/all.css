@@ -65,9 +65,6 @@ h6 {
 #nav-main .sf-menu .sub-menu li a .icon-right-open-mini {
   display: none;
 }
-img.mfp-img {
-  margin-top: 50px;
-}
 #back_to_top-collapsed {
   visibility: hidden;
 }
@@ -783,6 +780,9 @@ img.mfp-img {
 .prk_inner_block.wpb_row.col-le-m-b .vc_col-sm-12 {
   margin-bottom: 20px !important;
 }
+.media-accordion br {
+  display: none;
+}
 .btn_norm {
   border: 0;
   background-color: #666666;
@@ -1216,7 +1216,7 @@ img.mfp-img {
 }
 .single_p_w {
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 27px;
 }
 .single_p_w:hover .single_p_img .single_p_hov_c {
   opacity: 1;
@@ -1385,7 +1385,7 @@ img.mfp-img {
 }
 .single_p_w .single_p_cap {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 .single_p_w .single_p_cap a {
   color: #666666;
@@ -1767,7 +1767,7 @@ img.mfp-img {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block {
   background: #fff;
-  padding-top: 25px;
+  padding-top: 60px;
 }
 @media screen and (max-width: 769px) {
   #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block {
@@ -1785,7 +1785,7 @@ img.mfp-img {
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block h4,
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block h5 {
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block h5 {
   font-size: 18px;
@@ -1844,6 +1844,7 @@ img.mfp-img {
   border-color: #555;
   font-weight: normal;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .indi_map_cta i {
   background: none;
@@ -1875,9 +1876,6 @@ img.mfp-img {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .la_g .vc_column_container {
   margin-bottom: 0;
-}
-#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .am_h {
-  margin-top: 55px;
 }
 @media screen and (max-width: 769px) {
   #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .am_h {
@@ -2012,6 +2010,11 @@ img.mfp-img {
   margin-top: 0;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .do_3 .wpb_wrapper a {
+  display: block;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .do_3 .wpb_wrapper a:last-child:after {
+  content: '';
+  clear: both;
   display: block;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .do_3 .wpb_wrapper a span {
@@ -2333,6 +2336,7 @@ img.mfp-img {
   text-align: justify;
   font-size: 13px;
   color: #666666;
+  margin-top: -5px;
 }
 .add_padd .vc_col-sm-6:nth-child(1) > .wpb_wrapper {
   padding-left: 35px;
@@ -2358,6 +2362,7 @@ img.mfp-img {
   .add_padd .vc_col-sm-6:nth-child(2) > .wpb_wrapper {
     padding-left: 25px;
     padding-right: 25px;
+    margin-top: 15px;
   }
 }
 @media screen and (max-width: 769px) {
@@ -2846,15 +2851,15 @@ ul.ui-tabs-nav {
   }
 }
 @media screen and (max-width: 769px) {
-  .single-residential-property .smallline,
+  .single-residential-property .collapse-on .smallline,
   .single-commercial-property .smallline,
-  .single-residential-property .section_ender,
+  .single-residential-property .collapse-on .section_ender,
   .single-commercial-property .section_ender {
     display: none;
   }
-  .single-residential-property .smallline.show_in_small,
+  .single-residential-property .collapse-on .smallline.show_in_small,
   .single-commercial-property .smallline.show_in_small,
-  .single-residential-property .section_ender.show_in_small,
+  .single-residential-property .collapse-on .section_ender.show_in_small,
   .single-commercial-property .section_ender.show_in_small {
     display: block;
     width: auto !important;
@@ -2868,54 +2873,54 @@ ul.ui-tabs-nav {
   }
 }
 @media screen and (max-width: 769px) {
-  .single-residential-property .section_ender.show_in_small,
+  .single-residential-property .collapse-on .section_ender.show_in_small,
   .single-commercial-property .section_ender.show_in_small {
     background-color: #999;
   }
 }
 @media screen and (max-width: 769px) {
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow {
     font-size: 18px;
     text-align: left !important;
     background-color: #fff;
@@ -2928,218 +2933,221 @@ ul.ui-tabs-nav {
     margin-left: -25px;
     margin-right: -25px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow:after {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow:after {
     content: '+';
     float: right;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h1 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h1 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h1 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h1 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h1 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h2 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h2 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h2 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h2 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h2 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h3 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h3 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h3 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h3 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h3 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h4 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h4 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h4 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h4 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h4 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h5 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h5 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h5 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h5 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h5 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc h6 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec h6 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 h6 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h6 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame h6 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6 br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow br,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow br {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h1 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h1 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h1 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h1 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h1 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h1 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h2 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h2 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h2 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h2 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h2 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h2 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h3 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h3 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h3 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h3 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h3 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h3 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h4 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h4 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h4 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h4 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h4 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h4 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h5 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h5 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h5 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h5 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h5 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h5 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc h6 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec h6 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 h6 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h6 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame h6 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service h6 br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc .bd_headings_text_shadow br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec .bd_headings_text_shadow br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2 .bd_headings_text_shadow br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 .bd_headings_text_shadow br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame .bd_headings_text_shadow br,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service .bd_headings_text_shadow br {
     display: none;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h6,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h6 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h6,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h6 {
     text-align: left !important;
     background-color: #939393;
     color: #fff;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h1:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h2:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h3:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h4:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h5:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h6:after,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h6:after {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h1:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h2:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h3:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h4:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h5:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_loc.toggle_open h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec.toggle_open h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec2.toggle_open h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3.toggle_open h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_ame.toggle_open h6:after,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .prk_service.toggle_open h6:after {
     content: '-';
     float: right;
   }
 }
+#prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .add_padd .vc_col-sm-6:nth-child(2) > .wpb_wrapper {
+  margin-top: 0;
+}
 @media screen and (max-width: 769px) {
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .vc_custom_heading h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .vc_custom_heading h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .vc_custom_heading h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .vc_custom_heading h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .vc_custom_heading h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .vc_custom_heading h6 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .vc_custom_heading h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .vc_custom_heading h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .vc_custom_heading h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .vc_custom_heading h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .vc_custom_heading h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .vc_custom_heading h6 {
     margin-top: 34px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_head_sec3 h6 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_head_sec3 h6 {
     font-size: 18px;
     border-bottom-color: #999999;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .am_h.col_head_ame {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .am_h.col_head_ame {
     margin-top: 0;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h1,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h4,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h5,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h6 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h1,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h4,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h5,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .am_h.col_head_ame h6 {
     font-size: 18px;
     border-top: 1px solid #d1d1d1;
     border-bottom-color: #999999;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_loc,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_ame {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_loc,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_ame {
     display: none;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_loc.visi,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec.visi,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec2.visi,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec3.visi,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_ame.visi {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_loc.visi,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec.visi,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec2.visi,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec3.visi,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_ame.visi {
     width: auto !important;
     display: block;
     background-color: #f3f3f3;
@@ -3149,66 +3157,66 @@ ul.ui-tabs-nav {
     padding-left: 25px !important;
     padding-right: 25px !important;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_loc.visi.sec_int.wpb_text_column p,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec.visi.sec_int.wpb_text_column p,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec2.visi.sec_int.wpb_text_column p,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec3.visi.sec_int.wpb_text_column p,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_ame.visi.sec_int.wpb_text_column p {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_loc.visi.sec_int.wpb_text_column p,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec.visi.sec_int.wpb_text_column p,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec2.visi.sec_int.wpb_text_column p,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec3.visi.sec_int.wpb_text_column p,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_ame.visi.sec_int.wpb_text_column p {
     padding: 15px;
     margin-bottom: 0 !important;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_loc:last-child,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec:last-child,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec2:last-child,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec3:last-child,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_ame:last-child {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_loc:last-child,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec:last-child,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec2:last-child,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec3:last-child,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_ame:last-child {
     border-bottom: 1px solid #d1d1d1;
   }
 }
-#prk_ajax_container .indi_prj_page.centered.prk_inner_block .wpb_column.vc_column_container .wpb_column.vc_column_container {
+#prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .wpb_column.vc_column_container .wpb_column.vc_column_container {
   margin-bottom: 0 !important;
 }
 @media screen and (max-width: 769px) {
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec2,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_sec3 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec2,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_sec3 {
     padding-top: 25px;
   }
 }
 @media screen and (max-width: 769px) {
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_cont_loc .indi_map_cta {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_cont_loc .indi_map_cta {
     margin-bottom: 15px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .prk_service_ctt {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .prk_service_ctt {
     margin-top: 0;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service {
     min-height: 59px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:last-child {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:last-child {
     min-height: 57px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service.toggle_open h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service.toggle_open h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service.toggle_open h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service.toggle_open h5 {
     font-size: 18px;
     padding-left: 70px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service.toggle_open > div:nth-of-type(1) {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service.toggle_open > div:nth-of-type(1) {
     display: block;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service .service_inner_desc {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service .service_inner_desc {
     display: none;
     padding: 15px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service .service_inner_desc p {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service .service_inner_desc p {
     text-align: left !important;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service .service_inner_desc.visi {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service .service_inner_desc.visi {
     display: block;
   }
 }
 @media screen and (max-width: 769px) {
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service {
     margin-bottom: 0 !important;
     margin-left: -25px !important;
     margin-right: -25px !important;
@@ -3216,41 +3224,41 @@ ul.ui-tabs-nav {
     padding-left: 25px !important;
     padding-right: 25px !important;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service > div:nth-of-type(1) {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service > div:nth-of-type(1) {
     position: absolute;
     top: 10px;
     left: 25px;
     display: none;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:first-child .prk_service_ctt h3.bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:first-child .prk_service_ctt h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:first-child .prk_service_ctt h3.bd_headings_text_shadow,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:first-child .prk_service_ctt h5 {
     border-top: 1px solid #d1d1d1;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:last-child .prk_service_ctt h3.bd_headings_text_shadow,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:last-child .prk_service_ctt h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:last-child .prk_service_ctt h3.bd_headings_text_shadow,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap.se_o_6 .wpb_column .wpb_wrapper .prk_service:last-child .prk_service_ctt h5 {
     border-bottom: 1px solid #999999;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .vc_col-sm-4:last-child .prk_service:last-child {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .vc_col-sm-4:last-child .prk_service:last-child {
     min-height: 59px !important;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .vc_col-sm-4:last-child .prk_service.toggle_open:last-child h3,
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_spec_wrap .vc_col-sm-4:last-child .prk_service.toggle_open:last-child h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .vc_col-sm-4:last-child .prk_service.toggle_open:last-child h3,
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_spec_wrap .vc_col-sm-4:last-child .prk_service.toggle_open:last-child h5 {
     color: #fff !important;
   }
 }
 @media screen and (max-width: 769px) {
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper {
     margin: 0 -25px !important;
     padding: 0 25px !important;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper:after {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper:after {
     content: '';
     display: block;
     width: 100%;
     height: 0;
     clear: both;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper h5 {
     font-size: 18px;
     text-align: left !important;
     background-color: #fff;
@@ -3263,43 +3271,43 @@ ul.ui-tabs-nav {
     margin-left: -25px;
     margin-right: -25px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper h5:after {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper h5:after {
     content: '+';
     float: right;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper h5 br {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper h5 br {
     display: none;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper.toggle_open {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper.toggle_open {
     padding: 0 25px 15px 25px !important;
     border-bottom: 1px solid #d1d1d1;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper.toggle_open h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper.toggle_open h5 {
     background-color: #939393;
     color: #fff;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper.toggle_open h5:after {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper.toggle_open h5:after {
     content: '-';
     float: right;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper .wpb_button_a {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper .wpb_button_a {
     display: none;
     max-width: 250px;
     margin: auto;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper .wpb_button_a.visi {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper .wpb_button_a.visi {
     display: block;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper .wpb_button_a:nth-of-type(1) {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .wpb_wrapper .wpb_button_a:nth-of-type(1) {
     margin-top: 25px;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .vc_col-sm-4:nth-of-type(1) h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .vc_col-sm-4:nth-of-type(1) h5 {
     border-top: 1px solid #d1d1d1;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .vc_col-sm-4:nth-of-type(3) h5 {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .col_down_wrap.do_3 .vc_col-sm-4:nth-of-type(3) h5 {
     border-bottom: 1px solid #999;
   }
-  #prk_ajax_container .indi_prj_page.centered.prk_inner_block .formid_row {
+  #prk_ajax_container .collapse-on.indi_prj_page.centered.prk_inner_block .formid_row {
     margin: 0 -25px !important;
     padding-left: 25px;
     padding-right: 25px;

@@ -154,9 +154,9 @@ color: rgb(255, 255, 255);
 }
 .footer {
 	width: 240px;
-	position: fixed !important;
+	/*position: fixed !important;
 	top: auto !important;
-	bottom: 0 !important;
+	bottom: 0 !important;*/
 }
 @media screen and (min-width: 769px) and (max-width: 991px) {
 	.footer {
@@ -567,9 +567,16 @@ color: rgb(255, 255, 255);
 }
 #copy {
 	text-align: center;
+	padding-bottom: 2px;
 }
 #copy p {
 	margin-bottom: 2px;
+}
+@media screen and (min-width: 769px) {
+	#after_widgets {
+		position: relative;
+		/*top: 110px !important;*/
+	}
 }
 #after_widgets h5 {
 	font-family: 'Cantarell', sans-serif;
@@ -1478,3 +1485,6 @@ border-top: none!important;
 	font-size: 32px;
 	font-family: Arial;
 }
+
+/*New feedback corrections*/
+.my-mfp-zoom-in.mfp-ready.mfp-bg {opacity: 0.8 !important;}

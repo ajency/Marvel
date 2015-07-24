@@ -298,16 +298,24 @@ function checkIfInView(element){
 
         //top move down for individual projects page
         $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+        $wid = window.innerWidth ? window.innerWidth : $(window).width();
         if (!($('.indi_prj_page').hasClass('floorplans'))) {
-            $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+            if ($wid < 769)
+                $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', ($hevp - 49));
+            else
+                $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
         }
 
         $('#full_fi_c').css('height', $hevp);
         //$('#centered_block').css('minHeight', $hevp);
         $(window).resize(function() {
             $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+            $wid = window.innerWidth ? window.innerWidth : $(window).width();
             if (!($('.indi_prj_page').hasClass('floorplans'))) {
-                $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
+                if ($wid < 769)
+                    $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', ($hevp - 49));
+                else
+                    $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
             }
             $('#full_fi_c').css('height', $hevp);
             if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
@@ -326,8 +334,11 @@ function checkIfInView(element){
             $('html, body').animate({scrollTop: $hevp}, 1200, 'easeInQuad');
         });
 
-        //set the height
-        $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
+        //set the height of map
+        if ($wid < 769)
+            $('.indi_map_area iframe').height(350);
+        else
+            $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
 
         $('.gallery').each(function() {
             $(this).owlCarousel({
@@ -435,6 +446,11 @@ function checkIfInView(element){
             jQuery.fn.myFunction();
         });
 
+
+        // //top value for left sidebar content in home page
+        // $topval_home = $(window).height() - $('#after_widgets').offset().top - $('#after_widgets').height() - 43 - 47;
+        // $('#after_widgets').css('top', $topval_home);
+
     });
 
 
@@ -482,8 +498,11 @@ function checkIfInView(element){
         setEqualHeight($('.lisofwork .wpb_wrapper'));
 
 
-        //map height set
-        $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
+        //set the height of map
+        if ($wid < 769)
+            $('.indi_map_area iframe').height(350);
+        else
+            $('.indi_map_area iframe').height($('.indi_map_area').find('.vc_col-sm-6').eq(1).height());
 
         //map view - set height to fill the remaining space
         if ($('div').hasClass('gm-style')) {
