@@ -1704,6 +1704,11 @@ h6 {
   margin: 15px auto;
   margin-bottom: 25px;
 }
+@media screen and (max-width: 769px) {
+  .menu-sing .sf-menu > li.div {
+    display: none;
+  }
+}
 .menu-sing .sf-menu > li.title h4 {
   color: #fff;
   font-weight: normal;

@@ -301,7 +301,7 @@ function checkIfInView(element){
         $wid = window.innerWidth ? window.innerWidth : $(window).width();
         if (!($('.indi_prj_page').hasClass('floorplans'))) {
             if ($wid < 769)
-                $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', ($hevp - 49));
+                $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', ($hevp - 10));
             else
                 $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
         }
@@ -313,7 +313,7 @@ function checkIfInView(element){
             $wid = window.innerWidth ? window.innerWidth : $(window).width();
             if (!($('.indi_prj_page').hasClass('floorplans'))) {
                 if ($wid < 769)
-                    $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', ($hevp - 49));
+                    $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', ($hevp - 10));
                 else
                     $('#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block').css('marginTop', $hevp);
             }
