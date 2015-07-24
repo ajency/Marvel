@@ -177,7 +177,7 @@
                 var mainViewtemplate = _.template(jQuery(this.template).html());
                 //jQuery('.right_container').html(mainViewtemplate()); 
                             jQuery('#main').html(mainViewtemplate()); 
-                            this.make_div_dropable(".drag_area_block")
+                            this.make_div_dropable(".drag_area")
             },
 
             /*show_compare2:function(){
@@ -272,7 +272,7 @@
                                 var dropped = ui.draggable;
                                 
 
-                                if( jQuery(this).find('.one').attr('property-id')=='' || _.isUndefined(jQuery(this).find('.one').attr('property-id')) ){
+                               /* if( jQuery(this).find('.one').attr('property-id')=='' || _.isUndefined(jQuery(this).find('.one').attr('property-id')) ){
                                     var droppedOn = jQuery(this).find('.one') ;
 
                                 }
@@ -288,18 +288,78 @@
                                             return;
                                 
                                     }
-                                }
+                                }*/
+var droppedOn = jQuery(this);
 
+var droppedOn_target =  jQuery(_.first(droppedOn)) ;
+
+var dropped_target =  jQuery(_.first(dropped)) ;
+
+console.log('droppedOn_target:-----')
+console.log( droppedOn_target.hasClass('two'))
+
+//var dropped_target = jQuery(_.first(ui.draggable).target);
+                                 
 
                                 console.log('droppedOn:---------------------')
                                 console.log(droppedOn)
-                                droppedOn.removeClass("border").removeClass("over");
-                                droppedOn.html('');
+
+                                console.log('Dropped---------------------------')
+                                console.log(dropped)
+                               
                                 /* commented on 8june2015 2_30pm
                                 jQuery(this).removeClass("border").removeClass("over");
                                  var droppedOn = jQuery(this); 
                                 jQuery(this).html('');
                                  */
+
+                                // alert(dropped.attr('property-id') + ' ----- ' + droppedOn_target.attr('property-id') )
+
+
+                                if(droppedOn_target.hasClass('one')==true){
+
+                                    var one_property_id = dropped_target.attr('property-id');
+                                    var second_property_id = jQuery('.drag_area_block2').find('.two').attr('property-id')  ; 
+
+                                    console.log('one_property_id:=========================')
+                                    console.log(one_property_id);
+                                    console.log('second_property_id:=========================')
+                                    console.log(second_property_id);
+                                    if(!_.isUndefined(one_property_id) &&  !_.isUndefined(second_property_id)){
+                                       
+                                       if( parseInt(one_property_id) == parseInt(second_property_id) ){
+                                                alert('Please Select two different projects to compare')
+                                                                            return;
+                                        } 
+                                    }
+
+                                    
+                                    
+                                    
+                                }
+                                else if(droppedOn_target.hasClass('two')==true  ){
+
+                                    var one_property_id = dropped_target.attr('property-id');
+                                    var second_property_id = jQuery('.drag_area_block2').find('.one').attr('property-id') ;
+
+
+                                    console.log('one_property_id:=========================')
+                                    console.log(one_property_id);
+                                    console.log('second_property_id:=========================')
+                                    console.log(second_property_id);
+
+
+                                    if(!_.isUndefined(one_property_id) &&  !_.isUndefined(second_property_id)){
+                                       if( parseInt(one_property_id) == parseInt(second_property_id) ){
+                                            alert('Please Select two different projects to compare')
+                                                                                return;
+                                        }
+                                    }
+                                }
+
+                                droppedOn.removeClass("border").removeClass("over");
+                                droppedOn.html('');  
+
 
                                 
                                 console.log('droppable.........................') 
