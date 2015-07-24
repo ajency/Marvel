@@ -15,7 +15,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd one">
         <select id="dd_status" name="dd_status" class='srchopt' >
-         <option value="">Status:All</option>
+         <option value="">Status : All</option>
          <option class="select-dash" disabled="disabled">----------------------------------</option>
         <%
         var sorted_status = [];
@@ -34,7 +34,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd two">
         <select id="dd_city" name="dd_city"  class='srchopt' >
-         <option value="">City:All</option>
+         <option value="">City : All</option>
          <option class="select-dash" disabled="disabled">----------------------------------</option>
             <%
              /* commented on 21june2015    _.each(data.citylocality,function(vl,ky){ */
@@ -61,7 +61,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd thr">
         <select id="dd_locality" name="dd_locality"  class='srchopt'  >
-         <option value="">Locality:All</option>
+         <option value="">Locality : All</option>
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
             /* commented on 21june2015 _.each(data.citylocality,function(vl,ky){ */
@@ -97,7 +97,7 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
     </div>
     <div class="top-dd fou">
         <select id="dd_type" name="dd_type"  class='srchopt' >
-         <option value="">Type:All</option>
+         <option value="">Type : All</option>
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
 

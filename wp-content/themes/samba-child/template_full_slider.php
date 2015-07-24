@@ -63,7 +63,7 @@ jQuery.ajax(ajax_var.url,{
 
                            jQuery('.home_city').empty();
 
-                           jQuery('.home_city').append('<option value="">City:All</option>')
+                           jQuery('.home_city').append('<option value="">City : All</option>')
                            jQuery('.home_city').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
 
 
@@ -84,7 +84,7 @@ jQuery.ajax(ajax_var.url,{
                             
 
                            jQuery('.home_type').empty();
-                           jQuery('.home_type').append('<option value="">Type:All</option>')
+                           jQuery('.home_type').append('<option value="">Type : All</option>')
                            jQuery('.home_type').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
                            
 
@@ -114,7 +114,7 @@ jQuery.ajax(ajax_var.url,{
 
 jQuery('.home_city').live('change',function(){
   jQuery('.home_location').empty();
-  jQuery('.home_location').append('<option value="">Locality:All</option>');
+  jQuery('.home_location').append('<option value="">Locality : All</option>');
   jQuery('.home_location').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
 
   console.log('window.search_options.locality.localities........')
@@ -201,19 +201,19 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
               <div class="hidein767">
                 <div class="hme_dd wc">
                   <select id="home_city"  class="home_city">
-                    <option value="" >City:All</option>
+                    <option value="" >City : All</option>
                  <!--   <option value="Pune">Pune</option>
                     <option value="Bangalore">Bangalore</option> -->
                   </select>
                 </div>
                 <div class="hme_dd lo">
                   <select id="home_location"  class="home_location">
-                    <option value="">Locality:All</option>
+                    <option value="">Locality : All</option>
                   </select>
                 </div>
                 <div class="hme_dd ty">
                   <select id="home_type" class='home_type'>
-                    <option value="Type">Type:All</option>
+                    <option value="Type">Type : All</option>
                   <!--  <option value="3_BHK">3 BHK</option> -->
                   </select>
                 </div>
