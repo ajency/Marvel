@@ -13,17 +13,12 @@
                 'change .srchopt'   : 'searchPropertiesRoute',
                 'change #dd_city'   : 'load_locality_options',
                 'click .top_map'    : 'searchPropertiesRoute',
-                'click .top_list'   : 'searchPropertiesRoute',
-                
-
+                'click .top_list'   : 'searchPropertiesRoute' 
 
             },
 
-            add_property_for_comparison:function(){
-
-              alert('add property for comparison')
-
-            },
+              
+ 
 
             initialize : function(args) {
 

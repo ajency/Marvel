@@ -16,14 +16,35 @@
             },*/ 
               events : {
                
-                'click .add_to_compare'   : 'add_property_for_comparison4'
+                'click .add_to_compare'   : 'add_property_for_comparison4',
+                'click .remove_from_comp' : 'remove_comparison_property'
 
 
             },
-  add_property_for_comparison4:function(evt){
+
+
+
+        remove_comparison_property : function(evt){ 
+
+            evt.preventDefault();
+
+            var target_ele = jQuery(evt.target);
+             target_ele.closest('.drag_area').attr('property-id','') 
+
+            //var prop_id = target_ele.closest('.drag_area').attr('property_id');
+
+            target_ele.closest('.drag_area_block2').find('.btn_compare').attr('href','javascript:void(0)').addClass('disabled');
+            
+            target_ele.closest('.drag_area').html('Drag for Comparision').removeClass('after_drag')
+ 
+           
+
+        },
+
+        add_property_for_comparison4:function(evt){
 
               
-
+ 
         console.log("drop");
 
         //        console.log($(self).html())
@@ -32,15 +53,15 @@
         
         var dropped = jQuery(evt.target);
         
-
-        if( jQuery('.drag_area_block').find('.one').attr('property-id')=='' || _.isUndefined(jQuery('.drag_area_block').find('.one').attr('property-id')) ){
-            var droppedOn = jQuery('.drag_area_block').find('.one') ;
+ 
+        if( jQuery('.drag_area_block2').find('.one').attr('property-id')=='' || _.isUndefined(jQuery('.drag_area_block2').find('.one').attr('property-id')) ){
+            var droppedOn = jQuery('.drag_area_block2').find('.one') ;
 
         }
         else{
-            var droppedOn = jQuery('.drag_area_block').find('.two') ;
+            var droppedOn = jQuery('.drag_area_block2').find('.two') ;
 
-            if(jQuery('.drag_area_block').find('.one').attr('property-id')== dropped.attr('property-id')){
+            if(jQuery('.drag_area_block2').find('.one').attr('property-id')== dropped.attr('property-id')){
                 
                 //ui.draggable.animate(ui.draggable.data().origPosition,"fast");               
                    
@@ -87,6 +108,7 @@
                         '<p class="dragged_title">'+
                             '<span class="single_p_title">'+draggable_property_title+'</span><br>'+
                             '<span class="single_p_location">'+draggable_property_address+'</span>'+
+                            '<a href="javascript:void(0)" class="remove_from_comp">×</a>'+
                         '</p>'+
                     '</div>'
 
@@ -387,6 +409,7 @@ console.log( droppedOn_target.hasClass('two'))
                                                 '<p class="dragged_title">'+
                                                     '<span class="single_p_title">'+draggable_property_title+'</span><br>'+
                                                     '<span class="single_p_location">'+draggable_property_address+'</span>'+
+                                                    '<a href="javascript:void(0)" class="remove_from_comp">×</a>'+
                                                 '</p>'+
                                             '</div>'
 
