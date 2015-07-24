@@ -73,7 +73,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                         if(!_.isUndefined(proptype_val['type'])){
                              if(proptype_cnt>0)
                             current_property_unit_types = current_property_unit_types + ', ';
-                        current_property_unit_types = current_property_unit_types + proptype_val['type_name'];
+                        current_property_unit_types = current_property_unit_types + proptype_val['property_unit_type_display'];
 
                         }
                         proptype_cnt++;

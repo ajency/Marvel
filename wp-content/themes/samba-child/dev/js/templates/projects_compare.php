@@ -80,7 +80,7 @@ console.log('vl');
                                             <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                                             <div class="clearfix"></div>
                                             <div class="single_p_info">
-                                                <h6><%=_.pluck(f_prop.get('property_unit_type'),'type_name').join()%></h6>
+                                                <h6><%=_.pluck(f_prop.get('property_unit_type'),'property_unit_type_display').join()%></h6>
                                                 <h6><%=f_prop.get('property_price') %></h6>
                                             </div>
                                             <div class="single_btm">
@@ -114,7 +114,7 @@ console.log('vl');
                                             <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
                                             <div class="clearfix"></div>
                                             <div class="single_p_info">
-                                                <h6><%=_.pluck(s_prop.get('property_unit_type'),'type_name').join()%></h6>
+                                                <h6><%=_.pluck(s_prop.get('property_unit_type'),'property_unit_type_display').join()%></h6>
                                                 <h6><%=s_prop.get('property_price') %></h6>
                                             </div>
                                             <div class="single_btm">
@@ -148,8 +148,8 @@ console.log('vl');
                             </tr>
                             <tr>
                                 <td>Types</td>
-                                <td><%=_.pluck(f_prop.get('property_unit_type'),'type_name').join()%></td>
-                                <td><%=_.pluck(s_prop.get('property_unit_type'),'type_name').join()%></td>
+                                <td><%=_.pluck(f_prop.get('property_unit_type'),'property_unit_type_display').join()%></td>
+                                <td><%=_.pluck(s_prop.get('property_unit_type'),'property_unit_type_display').join()%></td>
                             </tr>
                             <tr>
                                 <td>Sellable Area</td>
