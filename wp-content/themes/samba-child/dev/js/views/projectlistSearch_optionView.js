@@ -785,7 +785,7 @@ setTimeout(function(){
                             console.log(event_val)
 
                             jQuery('#dd_locality').empty();
-                            jQuery('#dd_locality').append("<option value=''>Locality:All</option>")
+                            jQuery('#dd_locality').append("<option value=''>Locality : All</option>")
                             jQuery('#dd_locality').append("<option class='select-dash' disabled='disabled'>------------------------------</option>");
                            
                             _.each(sorted_localities_options, function(vl_localities,ky_localities){
