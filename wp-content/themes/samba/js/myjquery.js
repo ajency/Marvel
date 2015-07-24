@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
             action: "save_custom_field_option",                 //the submit_data array
             data:my_data
         }, function(data) {                   //the callback_handler
-              
+
 
                 if(data.success==true){
                     switch(Html_input_type){
@@ -122,7 +122,7 @@ jQuery(document).ready(function($) {
 
                 }
                 $("#myother_field").html(data);
-             
+
         });
     })
 
@@ -135,7 +135,7 @@ jQuery(document).ready(function($) {
         else{
              $(this).closest('.row').find('.span_additional_option').show()
         }
- 
+
 
     }).addClass('preview button button-large');
 
@@ -222,7 +222,7 @@ jQuery(document).ready(function($) {
 
 
 
-                                             
+
 
                                             }
                                             else{
@@ -242,7 +242,7 @@ jQuery(document).ready(function($) {
                                                  }
                                                  else{
                                                     html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i]+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i]+"' field-name='"+field_type+"' >Delete</a> </div>";
-                                                 }  
+                                                 }
 
                                             }
 
@@ -374,7 +374,7 @@ jQuery(document).ready(function($) {
 
                     //var localities_list = property_city_locality[selected_city];
 
-                    
+
 
                    // _.each(localities_list,function(locality_vl, locality_k ){ */
                     _.each(localities,function(locality_vl, locality_k ){
@@ -544,7 +544,7 @@ $('.delete_property_siteplan_image').live("click",function(evt){
             /* Delete 2D siteplan Image for the residential Property */
 
             var self = this;
-            var curr_property_id = $(this).attr('property-id');          
+            var curr_property_id = $(this).attr('property-id');
             var file_type     = 'siteplan_image'
 
             var my_data = { 'property_id'    : curr_property_id,
@@ -563,7 +563,7 @@ $('.delete_property_siteplan_image').live("click",function(evt){
                     $(self).closest('span').html(' <label class="forjpg"><i class="fa fa-image"></i> </label>'
                                                  +' <input type="file" value="" attr-name="custom_property-siteplan"  '
                                                  +'    attr-value="custom_property-siteplan"   name="custom_property-siteplan_image"   '
-                                                 +'    class="postbox custom_input_field  custom_input_field"  />') 
+                                                 +'    class="postbox custom_input_field  custom_input_field"  />')
                     }
 
                 });
@@ -576,7 +576,7 @@ $('.delete_property_siteplan_pdf').live("click",function(evt){
             /* Delete 2D siteplan Image for the residential Property */
 
             var self = this;
-            var curr_property_id = $(this).attr('property-id');          
+            var curr_property_id = $(this).attr('property-id');
             var file_type     = 'siteplan_pdf'
 
             var my_data = { 'property_id'    : curr_property_id,
@@ -595,7 +595,7 @@ $('.delete_property_siteplan_pdf').live("click",function(evt){
                     $(self).closest('span').html(' <label class="forjpg"><i class="fa fa-pdf"></i> </label>'
                                                  +' <input type="file" value="" attr-name="custom_property-siteplan"  '
                                                  +'    attr-value="custom_property-siteplan"   name="custom_property-siteplan_pdf"   '
-                                                 +'    class="postbox custom_input_field  custom_input_field"  />') 
+                                                 +'    class="postbox custom_input_field  custom_input_field"  />')
                     }
 
                 });
@@ -774,9 +774,11 @@ function generate_options_html(){
     html = html + '</select> </span>'
                 + '<span class="cust-prop-type-layout adm_property_unit_type_span" ><label class="forjpg"><i class="fa fa-image"></i> </label> <input type="file"  class="cust-prop-type-layout-file"  /> </span> '
                 + '<span class="cust-prop-type-pdf adm_property_unit_type_span" ><label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label> <input type="file"   class="cust-prop-type-layout-pdf"   /> </span> '
+                + '<span class="area-set">'
                 + '<label class="">Min. area </label> <input type="text" class="cust-prop-type-unit_type_minarea" />'
                 + '<label class="">Max. area </label> <input type="text" class="cust-prop-type-unit_type_maxarea" />'
-                + '</span>' ;
+                + '</span>'
+                + '</span>';
 
 
     return html ;
@@ -879,7 +881,7 @@ $('.del_property_unit_type_row').live("click",function(evt){
                             'attachment_id'  : attachment_id,
                             'file_type'     : file_type
                           }
-                             
+
 
                           console.log('my_data')
                           console.log(my_data)
