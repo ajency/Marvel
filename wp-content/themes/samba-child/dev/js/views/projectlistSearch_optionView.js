@@ -402,6 +402,8 @@
                         */
 
 
+              map.setCenter(marker.getPosition()); //Center align the Marker
+
               circle = new google.maps.Circle({
                 map: map,
                 fillColor : '#BBD8E9',
