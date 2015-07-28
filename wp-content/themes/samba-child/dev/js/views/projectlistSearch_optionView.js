@@ -13,12 +13,12 @@
                 'change .srchopt'   : 'searchPropertiesRoute',
                 'change #dd_city'   : 'load_locality_options',
                 'click .top_map'    : 'searchPropertiesRoute',
-                'click .top_list'   : 'searchPropertiesRoute' 
+                'click .top_list'   : 'searchPropertiesRoute'
 
             },
 
-              
- 
+
+
 
             initialize : function(args) {
 
@@ -345,13 +345,24 @@
                             iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(0, 0, 0, 0.2) 0px 1px 6px', 'z-index' : '1'});
 
                             //for the mobile scales
-                            iwOuter.children().css({
-                              width: '288px',
-                              'min-width': '352px'
-                            });
-                            iwOuter.parent().css({
-                              'min-width': '404px'
-                            });
+                            var acwi = window.innerWidth ? window.innerWidth : jQuery(window).width();
+                            if (acwi < 680) {
+                              iwOuter.children().css({
+                                width: '300px',
+                                'min-width': '310px'
+                              });
+                              iwOuter.parent().css({
+                                'min-width': '320px'
+                              });
+                            } else {
+                              iwOuter.children().css({
+                                width: '288px',
+                                'min-width': '352px'
+                              });
+                              iwOuter.parent().css({
+                                'min-width': '404px'
+                              });
+                            }
 
                             // Taking advantage of the already established reference to
                             // div .gm-style-iw with iwOuter variable.
@@ -383,7 +394,7 @@
 
 
                         jQuery('.map_info_c').closest('.gm-style-iw').addClass('draggable');
-                        
+
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-id',jQuery('.map_info_c').attr('property-id'))
 
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-address',jQuery('.map_info_c').attr('property-address'))
@@ -461,10 +472,10 @@ infowindow.open(map,marker);
 
                           if(jQuery('#dd_city').val()==''){
                               popup_content = popup_content + properties[i].get('property_city_name');
-                           }   
-                              popup_content = popup_content + '</span>'+  
-                                                
-                          
+                           }
+                              popup_content = popup_content + '</span>'+
+
+
                                             '</a>'+
                                             '<p class="map_excerpt">';
 
@@ -790,7 +801,7 @@ setTimeout(function(){
                             jQuery('#dd_locality').empty();
                             jQuery('#dd_locality').append("<option value=''>Locality : All</option>")
                             jQuery('#dd_locality').append("<option class='select-dash' disabled='disabled'>------------------------------</option>");
-                           
+
                             _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){

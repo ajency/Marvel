@@ -1455,6 +1455,11 @@ h6 {
   background: #fff;
   padding: 6px;
 }
+@media screen and (max-width: 680px) {
+  .map_info_c {
+    width: 310px;
+  }
+}
 .map_info_c .btn_norm {
   float: left;
   font-size: 14px;

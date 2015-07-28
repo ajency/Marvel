@@ -53,18 +53,36 @@ function checkIfInView(element){
                 });
                 var classes = ['ab_spec', 'ab_resi', 'ab_gall']
                 //above amenities
-                $amtop = $('.am_h').prev().prev().prev().find('.vc_col-sm-6').eq(1).find('.wpb_wrapper').offset().top + $('.am_h').prev().prev().prev().find('.vc_col-sm-6').eq(1).find('.wpb_wrapper').height() - 35;
-                $('.ab_amen').css('top', $amtop);
-                $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
+                if ($('div').hasClass('.am_h')) {
+                    $amtop = $('.am_h').offset().top - 350 + 170;
+                    $('.ab_amen').css('top', $amtop);
+                    $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
+                } else if ($('.tab-section').length > 2) {
+                    $amtop = $('.tab-section').eq(1).next().next().offset().top - 350 + 170;
+                    $('.ab_amen').css('top', $amtop);
+                    $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
+                } else {
+                    $('.ab_amen').hide();
+                    $('.ab_amen2').hide();
+                }
                 //in specifications
-                $spetop = $('.tab-section').eq(1).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 35 - 20;
-                $('.ab_spec').css('top', $spetop);
-                $('.ab_spec2').css('top', ($spetop - 33 - 20 - 64));
+                if ($('.tab-section').length > 2) {
+                    $spetop = $('.tab-section').eq(1).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 35 - 20;
+                    $('.ab_spec').css('top', $spetop);
+                    $('.ab_spec2').css('top', ($spetop - 33 - 20 - 64));
+                } else {
+                    $('.ab_spec').hide();
+                    $('.ab_spec2').hide();
+                }
                 //floorplans
-                console.log('floor height: ' + $('.floorplans_tab').parent().height());
-                $restop = $('.gallery_indi ').offset().top + 108; //+ $('.floorplans_tab').height() - 35 - 20;
-                $('.ab_resi').css('top', $restop);
-                $('.ab_resi2').css('top', ($restop - 33 - 20 - 64));
+                if ($('div').hasClass('.gallery_indi')) {
+                    $restop = $('.gallery_indi ').offset().top + 108; //+ $('.floorplans_tab').height() - 35 - 20;
+                    $('.ab_resi').css('top', $restop);
+                    $('.ab_resi2').css('top', ($restop - 33 - 20 - 64));
+                } else {
+                    $('.ab_resi').hide();
+                    $('.ab_resi2').hide();
+                }
             }
         });
 
