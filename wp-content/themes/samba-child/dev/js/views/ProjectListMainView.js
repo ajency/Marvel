@@ -283,6 +283,7 @@
 
  
                      jQuery(dropable_el).droppable({ accept: ".draggable", 
+                        hoverClass: "over",
                        drop: function(event, ui) {
                                 // $(ui.draggable).clone().appendTo($(this));
                                 console.log("drop");
@@ -484,7 +485,7 @@ console.log( droppedOn_target.hasClass('two'))
                         }, 
                         over: function(event, elem) {
 
-                                jQuery(this).addClass("over");
+                                //jQuery(this).addClass("over");
                                 console.log("over");
 
                                 console.log('-------------------');
@@ -497,7 +498,7 @@ console.log( droppedOn_target.hasClass('two'))
                                 
                         },
                         out: function(event, elem) {
-                                jQuery(self).removeClass("over");
+                               // jQuery(self).removeClass("over");
                         }
                   });
 
