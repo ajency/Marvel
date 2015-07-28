@@ -53,7 +53,7 @@ function checkIfInView(element){
                 });
                 var classes = ['ab_spec', 'ab_resi', 'ab_gall']
                 //above amenities
-                $amtop = $('.am_h').prev().prev().prev().find('.vc_col-sm-6').eq(1).find('.wpb_wrapper').offset().top + $('.am_h').prev().prev().prev().find('.vc_col-sm-6').eq(1).find('.wpb_wrapper').height() - 35;
+                $amtop = $('.am_h').offset().top - 350 + 170;
                 $('.ab_amen').css('top', $amtop);
                 $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
                 //in specifications
