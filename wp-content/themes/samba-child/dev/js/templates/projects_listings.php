@@ -101,7 +101,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
         </div>
         <div class="single_p_cap " property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality%>, <%=property_city%>" >
             <p class="single_p_inf">
-                <a href="#">
+                <a href="<%=property_url%>">
                     <span class="single_p_title"><%=property_title%></span>
                     <% if(property_locality!='' ) { %><span class="single_p_light">|</span>
                         <span class="single_p_location"><%=property_locality_name%></span>

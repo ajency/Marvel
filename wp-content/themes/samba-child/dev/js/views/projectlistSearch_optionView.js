@@ -382,7 +382,8 @@
 
 
 
-                          jQuery('.map_info_c').closest('.gm-style-iw').addClass('draggable');
+                        jQuery('.map_info_c').closest('.gm-style-iw').addClass('draggable');
+                        
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-id',jQuery('.map_info_c').attr('property-id'))
 
                           jQuery('.map_info_c').closest('.gm-style-iw').attr('property-address',jQuery('.map_info_c').attr('property-address'))
@@ -403,8 +404,10 @@
 
 
               map.setCenter(marker.getPosition()); //Center align the Marker
+infowindow.open(map,marker);
 
-              circle = new google.maps.Circle({
+
+              /* circle = new google.maps.Circle({
                 map: map,
                 fillColor : '#BBD8E9',
                 fillOpacity : 0.3,
@@ -435,7 +438,7 @@
                   strokeOpacity: 0.3
                 });
               });
-            }
+            }  */
 
 
 
@@ -451,7 +454,7 @@
                                            ' </a>'+
                                         '</div>'+
                                         '<div class="map_info "       >'+
-                                            '<a href="#" class="map_p_title">'+
+                                            '<a href="'+properties[i].get('post_url')+'" class="map_p_title">'+
                                                 '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
                                                 '<span class="single_p_light">|</span>'+
                                                 '<span class="single_p_location">'+properties[i].get('property_locality_name')+' ';
@@ -507,7 +510,7 @@
                       jQuery('#projects_listings').height(jQuery(window).height() - jQuery('#projects_listings').position().top - 40);
                      // jQuery('#projects_listings').first(div).css({'padding':'5px 50px 25px'});
 
-                        self.make_div_draggable();
+                    // Draggabled commented 27july2015    self.make_div_draggable();
 
 
                         setTimeout(function(){
