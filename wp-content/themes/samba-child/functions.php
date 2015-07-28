@@ -225,11 +225,70 @@ function get_res_property_meta_values($property_id){
 
 
 
+function get_residential_properties_list(){
+  global $wpdb;
+    $sel_properties = array();
+    $residential_properties = get_posts( array(
+        'post_type' => 'residential-property',
+        'post_status' => 'publish',
+        'posts_per_page' => -1
+    ) );
+
+  $new_res_prop = new stdClass();
+    foreach (  $residential_properties as $res_property ) {
+
+
+    $property_amenities = wp_get_post_terms($res_property->ID , 'property_amenity', array("fields" => "all"));
+
+    $image_id = get_post_thumbnail_id($res_property->ID);
+    $image_url = wp_get_attachment_image_src($image_id,'medium', true);
+    $property_featured_image = $image_url[0];
+
+  $new_res_prop->id                        =  $res_property->ID ;
+  $new_res_prop->post_date                 =  $res_property->post_date ;
+  $new_res_prop->post_excerpt              =  $res_property->post_excerpt ;
+  $new_res_prop->post_parent               =  $res_property->post_parent ;
+  $new_res_prop->post_title                =  $res_property->post_title ;
+  $new_res_prop->guid                      =  $res_property->guid ;
+  $new_res_prop->post_author               =  $res_property->post_author ;
+  $new_res_prop->post_url                  =  site_url().'/ResidentialProperties/'.$res_property->post_name;
+  //$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+  $new_res_prop->featured_image            = $property_featured_image;
+  $new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
+  $new_res_prop->amenities                 =  $property_amenities;
+
+  $property_meta_value =  get_res_property_meta_values($res_property->ID);
+  $sel_properties[] =  (object)array_merge((array)$new_res_prop,$property_meta_value) ;
+
+    /*$res_property->id = $res_property->ID;
+    $res_property->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+        $property_meta_value =  get_res_property_meta_values($res_property->ID);
+        unset($res_property->ID);
+        $sel_properties[] =  (object)array_merge((array)$res_property,$property_meta_value) ;*/
+
+
+    }
+
+
+
+   /*  foreach ( $rooms_list as $room ) {
+
+        $room = new RoomModel( $room );
+
+        $room_data [ ] = $room->get_all_roomdata();
+    }*/
+    
+      
+        return $sel_properties;
+    
+}
+
+
 
 
 function get_residential_properties_list_ajx() {
 
-    global $wpdb;
+    /* global $wpdb;
     $sel_properties = array();
     $residential_properties = get_posts( array(
         'post_type' => 'residential-property',
@@ -267,7 +326,7 @@ function get_residential_properties_list_ajx() {
 		$res_property->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
         $property_meta_value =  get_res_property_meta_values($res_property->ID);
         unset($res_property->ID);
-        $sel_properties[] =  (object)array_merge((array)$res_property,$property_meta_value) ;*/
+        $sel_properties[] =  (object)array_merge((array)$res_property,$property_meta_value) ;* /
 
 
     }
@@ -280,6 +339,10 @@ function get_residential_properties_list_ajx() {
 
         $room_data [ ] = $room->get_all_roomdata();
     }*/
+
+
+
+    $sel_properties = get_residential_properties_list();
     wp_send_json( array(
         'code' => 'OK',
         'data' => $sel_properties
@@ -388,7 +451,7 @@ function sort_multidimensional_array($myArray,$sort_key){
 }
 
 
-
+require_once('modules/custom_formidable.php');
 
 
 
