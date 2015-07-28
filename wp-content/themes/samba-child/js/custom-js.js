@@ -562,4 +562,110 @@ var property_list_details = {'property_list_html':property_list_html,
     }
 
 
+
+
+
+    /* Populate cities and Properties values on Fomidable form added on Contact page
+    */
+    function get_formidable_contact_properties(tab_id){ 
+
+        if(!_.isUndefined(tab_id)){
+
+            var tab_container = jQuery( "[aria-labelledby='"+tab_id+"']" )
+            var city_selector = tab_container.find('#field_ky_contact1city');
+            var properties_selector = tab_container.find('#field_ky_contact1projects');
+        }
+        else{
+            var city_selector = jQuery('#field_ky_contact1city');
+            var properties_selector = jQuery('#field_ky_contact1projects');
+        }
+         
+         properties_selector.empty();
+
+         if(_.size(window.residential_properties)>0){
+                    show_cities_on_formidable_contact(city_selector)
+
+         }
+         else{
+                jQuery.post(ajax_var.url, {        //the server_url
+                    action: "get_residential_properties_list_ajx",                 //the submit_data array
+                    data:{}
+                    }, function(response) { 
+
+
+                        console.log('RESPONSE')
+                        console.log(response);
+                        if(response.code == 'OK' ){
+                            window.residential_properties =  response.data;  
+                            city_selector.empty();                            
+                            show_cities_on_formidable_contact(city_selector)
+
+                        }      
+                })
+
+         }
+          
+    }
+
+    function show_cities_on_formidable_contact(city_selector){
+
+         var uniq_cities = [];
+         var uniq_cities_cnt =0; 
+         city_selector.empty()
+         city_selector.append("<option value='' >City</option>")
+
+         _.each(window.residential_properties,function(vl,ky){ 
+
+            if(_.indexOf(uniq_cities, vl.property_city)<0){
+
+                uniq_cities[uniq_cities_cnt] = vl.property_city;
+                
+                city_selector.append('<option value="'+vl.property_city_name+'" city_id="'+vl.property_city+'">'+vl.property_city_name+'</option>');
+
+                uniq_cities_cnt = uniq_cities_cnt + 1;
+            }
+        })
+
+    }
+
+    get_formidable_contact_properties();
+
+    jQuery('.contact_form_tab_container li a').live('click',function(){
+         
+        get_formidable_contact_properties($(this).attr('id'));
+    })
+
+    jQuery('#field_ky_contact1city').live('change',function(){
+
+          var city_id = jQuery(this).children(":selected").attr("city_id");
+
+          var project_selector = jQuery(this).closest('form').find('#field_ky_contact1projects')
+
+          project_selector.empty()
+          project_selector.append('<option value="">Select the Project</option>')
+
+          if(!_.isUndefined(window.residential_properties)){
+                _.each(window.residential_properties,function(prop_vl,prop_ky){   
+
+                    if(city_id == prop_vl.property_city){
+
+                        project_selector.append('<option value="'+prop_vl.post_title+'">'+prop_vl.post_title+'</option>'); 
+
+                    }                  
+
+              })
+  
+          }
+          
+            console.log(window.residential_properties);
+
+    })
+
+    /* END Populate cities and Properties values on Fomidable form added on Contact page
+    */
+
+
+    
+
+
 });

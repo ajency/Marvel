@@ -29,7 +29,7 @@ function get_field_id_by_key($field_keys=array()){
 
 
 
- 
+ /*
 function frm_populate_formidable_field_values($values, $field){
 
         switch($field->field_key){
@@ -82,4 +82,4 @@ add_filter('frm_setup_edit_fields_vars', 'frm_populate_formidable_field_values',
  
 
 
- 
+ */
