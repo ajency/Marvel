@@ -57,6 +57,10 @@ function checkIfInView(element){
                     $amtop = $('.am_h').offset().top - 350 + 170;
                     $('.ab_amen').css('top', $amtop);
                     $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
+                } else if ($('.tab-section').length > 2) {
+                    $amtop = $('.tab-section').eq(1).next().next().offset().top - 350 + 170;
+                    $('.ab_amen').css('top', $amtop);
+                    $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
                 } else {
                     $('.ab_amen').hide();
                     $('.ab_amen2').hide();
