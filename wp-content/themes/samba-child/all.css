@@ -1448,6 +1448,11 @@ h6 {
   background-color: #fff;
   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
 }
+@media screen and (max-width: 680px) {
+  #projects_listings .gm-style-iw {
+    width: 302px !important;
+  }
+}
 .map_info_c {
   position: relative;
   width: 352px;
@@ -1525,6 +1530,7 @@ h6 {
   margin-bottom: -1px;
   line-height: 17px;
   margin-top: 2px;
+  font-size: 12px;
 }
 .map_info_c .map_info p {
   color: #333;
@@ -1534,6 +1540,11 @@ h6 {
   left: 145px;
   bottom: 6px;
   width: 201px;
+}
+@media screen and (max-width: 680px) {
+  .map_info_c .map_btm {
+    width: 151px;
+  }
 }
 .map_info_c a.single_enq {
   width: 38px;
@@ -2788,11 +2799,11 @@ h6 {
 }
 .single-residential-property .go_to_top_inpage,
 .single-commercial-property .go_to_top_inpage {
-  bottom: 210px;
+  bottom: 179px;
 }
 .single-residential-property .share_indi,
 .single-commercial-property .share_indi {
-  bottom: 260px;
+  bottom: 229px;
 }
 .single-residential-property .enquiry_sideways,
 .single-commercial-property .enquiry_sideways {

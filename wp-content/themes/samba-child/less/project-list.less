@@ -540,6 +540,9 @@
         left: 0 !important;
         background-color: #fff;
         box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+        @media screen and (max-width: 680px) {
+            width: 302px !important;
+        }
     }
     .map_info_c {
 //        margin: 25px;
@@ -607,6 +610,7 @@
                 margin-bottom: -1px;
                 line-height: 17px;
                 margin-top: 2px;
+                font-size: 12px;
             }
             p {
                 color: #333;
@@ -617,6 +621,9 @@
             left: 145px;
             bottom: 6px;
             width: 201px;
+            @media screen and (max-width: 680px) {
+                width: 151px;
+            }
         }
         a.single_enq {
             i {visibility: hidden;} //display none causes a shift in objects because
