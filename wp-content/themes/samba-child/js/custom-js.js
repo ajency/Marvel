@@ -804,4 +804,14 @@ var property_list_details = {'property_list_html':property_list_html,
     
 
 
+    jQuery('.popmake-services-enquiry').live('click',function(){
+
+        var project_name    = jQuery(this).attr('project-name')
+        var building_floor  = jQuery(this).attr('building-floor')
+
+
+        jQuery('#field_serv_cont_projectname').val(project_name);
+        jQuery('#field_serv_cont_buildingfloor').val(building_floor)
+    })
+
 });
