@@ -707,8 +707,10 @@ var property_list_details = {'property_list_html':property_list_html,
             console.log('NEARBY AREA : ')
             console.log(nearby_area)
 
+             var closer_properties ="";
+
             if(_.size(this_area)>0 || _.size(nearby_area) >0){
-                var closer_properties ="";
+               
                 closer_properties = "There " ;
                 var properties_txt = " properties ";
 
@@ -735,7 +737,10 @@ var property_list_details = {'property_list_html':property_list_html,
                         closer_properties = closer_properties + _.size(nearby_area)+" "+properties_txt+" nearby areas "; 
                     }
 
-                jQuery('.spn_nearby_properties').find('.wpb_call_desc').html(closer_properties)    
+               // jQuery('.spn_nearby_properties').find('.wpb_call_desc').html(closer_properties)   
+
+
+                jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html(closer_properties)   
 
             } 
 
