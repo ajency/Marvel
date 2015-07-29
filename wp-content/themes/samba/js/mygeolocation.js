@@ -106,8 +106,21 @@ function update_address_fields_data(addressComponents,latlong,formatted_address)
     cityEl.val('');
 
 
-    jQuery('#custom-address_lat').val(latlong['A']);
-    jQuery('#custom-address_lng').val(latlong['F']);
+    var cnt_latlong = 0
+    _.each(latlong,function(latlong_v,latlong_k){
+
+        if(cnt_latlong==0){
+            jQuery('#custom-address_lat').val(latlong_v);
+        }
+        else{
+            jQuery('#custom-address_lng').val(latlong_v);
+        }
+        cnt_latlong = cnt_latlong + 1;
+    })
+   /* commented on 29july2015  jQuery('#custom-address_lat').val(latlong['G']);
+    jQuery('#custom-address_lng').val(latlong['K']); */
+
+    
     jQuery('#address').val(formatted_address);
 
 
