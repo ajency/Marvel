@@ -60,7 +60,7 @@ function checkIfInView(element){
                     $('.ab_amen').hide();
                     $('.ab_amen2').hide();
 
-                    $spetop = $('.tab-section').eq(2).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 35 - 20 + 400;
+                    $spetop = $('.tab-section').eq(2).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 0;
                     $('.ab_spec').css('top', $spetop);
                     $('.ab_spec2').css('top', ($spetop - 33 - 20 - 64));
                 } else {
@@ -78,7 +78,7 @@ function checkIfInView(element){
                 }
                 //floorplans
                 if ($('div').hasClass('gallery_indi')) {
-                    $restop = $('.gallery_indi ').offset().top + 108; //+ $('.floorplans_tab').height() - 35 - 20;
+                    $restop = $('.gallery_indi ').offset().top + 108 + 294; //+ $('.floorplans_tab').height() - 35 - 20;
                     $('.ab_resi').css('top', $restop);
                     $('.ab_resi2').css('top', ($restop - 33 - 20 - 64));
                 } else {
