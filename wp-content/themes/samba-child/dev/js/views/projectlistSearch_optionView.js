@@ -335,7 +335,11 @@
                             iwBackground.children(':nth-child(4)').css({'display' : 'none'});
                             // Moves the infowindow 115px to the right. because after
                             //applying styles and all, the arrow and close btn do not position properly
-                            iwOuter.parent().parent().css({left: '55px'});
+                            if (acwi <= 320) {
+                              iwOuter.parent().parent().css({left: '55px'});
+                            } else {
+                              iwOuter.parent().parent().css({left: '87px'});
+                            }
                             // Moves the shadow of the arrow 76px to the left margin
                             if (acwi < 680) {
                               iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 70px !important;'});
