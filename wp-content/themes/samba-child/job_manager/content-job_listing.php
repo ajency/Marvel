@@ -5,7 +5,7 @@
 		<div class="position row">
 			<h3 class="vc_col-sm-2 wpb_column vc_column_container job-name"><?php the_title();?></h3>
 		  <div class="job-description vc_col-sm-8 wpb_column vc_column_container"><div class="wpb_wrapper"><p><?php echo $post->post_content;?></p></div></div>
-			<a href="#" class="wpb_button_a vc_col-sm-2 wpb_column vc_column_container">
+			<a href="#" class="wpb_button_a vc_col-sm-2 wpb_column vc_column_container popmake-careers-apply-now">
 				<span class="wpb_button wpb_btn-inverse wpb_regularsize">Apply Now</span>
 			</a>
 			<div class="company">
