@@ -51,23 +51,25 @@ function checkIfInView(element){
                 $('.tab-section').each(function() {
                     console.log($(this).text().trim() + ': ' + $(this).offset().top);
                 });
-                var classes = ['ab_spec', 'ab_resi', 'ab_gall']
                 //above amenities
-                if ($('div').hasClass('.am_h')) {
+                if ($('div').hasClass('am_h')) {
                     $amtop = $('.am_h').offset().top - 350 + 170;
                     $('.ab_amen').css('top', $amtop);
                     $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
-                } else if ($('.tab-section').length > 2) {
-                    $amtop = $('.tab-section').eq(1).next().next().offset().top - 350 + 170 - 141;
-                    $('.ab_amen').css('top', $amtop);
-                    $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
+                } else if ($('.tab-section').length > 3) {
+                    $('.ab_amen').hide();
+                    $('.ab_amen2').hide();
+
+                    $spetop = $('.tab-section').eq(2).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 35 - 20 + 400;
+                    $('.ab_spec').css('top', $spetop);
+                    $('.ab_spec2').css('top', ($spetop - 33 - 20 - 64));
                 } else {
                     $('.ab_amen').hide();
                     $('.ab_amen2').hide();
                 }
                 //in specifications
                 if ($('.tab-section').length > 2) {
-                    $spetop = $('.tab-section').eq(1).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 35 - 20;
+                    $spetop = $('.tab-section').eq(2).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 0; //was 46
                     $('.ab_spec').css('top', $spetop);
                     $('.ab_spec2').css('top', ($spetop - 33 - 20 - 64));
                 } else {
@@ -75,7 +77,7 @@ function checkIfInView(element){
                     $('.ab_spec2').hide();
                 }
                 //floorplans
-                if ($('div').hasClass('.gallery_indi')) {
+                if ($('div').hasClass('gallery_indi')) {
                     $restop = $('.gallery_indi ').offset().top + 108; //+ $('.floorplans_tab').height() - 35 - 20;
                     $('.ab_resi').css('top', $restop);
                     $('.ab_resi2').css('top', ($restop - 33 - 20 - 64));
