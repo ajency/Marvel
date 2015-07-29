@@ -579,32 +579,143 @@ var property_list_details = {'property_list_html':property_list_html,
             var city_selector = jQuery('#field_ky_contact1city');
             var properties_selector = jQuery('#field_ky_contact1projects');
         }
+
+
+
+        if(city_selector.length>0 || jQuery('.spn_nearby_properties').find('.wpb_call_desc').length>0){
          
-         properties_selector.empty();
+             properties_selector.empty();
 
-         if(_.size(window.residential_properties)>0){
-                    show_cities_on_formidable_contact(city_selector)
+             if(_.size(window.residential_properties)>0){
+                        show_cities_on_formidable_contact(city_selector)
+                        show_nearby_properties()
 
-         }
-         else{
-                jQuery.post(ajax_var.url, {        //the server_url
-                    action: "get_residential_properties_list_ajx",                 //the submit_data array
-                    data:{}
-                    }, function(response) { 
+             }
+             else{
+                    jQuery.post(ajax_var.url, {        //the server_url
+                        action: "get_residential_properties_list_ajx",                 //the submit_data array
+                        data:{}
+                        }, function(response) { 
 
 
-                        console.log('RESPONSE')
-                        console.log(response);
-                        if(response.code == 'OK' ){
-                            window.residential_properties =  response.data;  
-                            city_selector.empty();                            
-                            show_cities_on_formidable_contact(city_selector)
+                            console.log('RESPONSE')
+                            console.log(response);
+                            if(response.code == 'OK' ){
+                                window.residential_properties =  response.data;  
+                                city_selector.empty();                            
+                                show_cities_on_formidable_contact(city_selector)
+                                show_nearby_properties();
 
-                        }      
-                })
+                            }      
+                    })
 
-         }
+             }
+        }
+
           
+    }
+
+
+
+
+    var rad = function(x) {
+              return x * Math.PI / 180;
+            };
+
+    var getDistance = function(p1, p2) {
+      var R = 6378137; // Earth’s mean radius in meter
+      var dLat = rad(p2.lat - p1.lat);
+      var dLong = rad(p2.lng - p1.lng);
+      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(rad(p1.lat)) * Math.cos(rad(p2.lat)) *
+        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = R * c;
+      return d; // returns the distance in meter
+    };
+
+
+
+
+    function show_nearby_properties(){
+
+        if(jQuery('.spn_nearby_properties').find('.wpb_call_desc').length>0){
+
+            console.log('window residential_properties')
+            console.log(window.residential_properties)
+            console.log('Post ID :'+jQuery('#post_id').val())
+
+
+            var current_property = _.first( _.where(window.residential_properties,{id:parseInt(jQuery('#post_id').val()) }) )
+            console.log('current_property')
+            console.log(current_property)
+
+            var current_property_map_address  = _.first(current_property.map_address);
+
+            var current_property_map_lat =   current_property_map_address.lat;
+
+            var current_property_map_lng =   current_property_map_address.lng;
+
+
+            // We create a circle to look within:
+            /* search_area = {
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                center : new google.maps.LatLng(location.lat, location.lon),
+                radius : 500
+            }
+
+            search_area = new google.maps.Circle(search_area);
+
+             $.each(markers, function(i,marker) {
+               if (google.maps.geometry.poly.containsLocation(marker.getPosition(), search_area)) {
+                 in_area.push(marker);
+               }
+            });
+
+            */
+            var this_area_cnt = 0;
+            var nearby_area_cnt = 0;
+            var nearby_area = [];
+            var this_area = [];
+
+
+            _.each(window.residential_properties,function(resprop_v,resprop_k){
+
+                var property_map_address  = _.first(resprop_v.map_address);
+
+                var distance = getDistance(current_property_map_address,property_map_address);
+
+                if(parseFloat(distance)  <=2000 && distance != 0 ){
+                    this_area[this_area_cnt] = resprop_v ;
+                    this_area_cnt = this_area_cnt + 1;
+                }
+                else if(parseFloat(distance)  >2000 && parseFloat(distance)  <5000 ){
+                    nearby_area[nearby_area_cnt] = resprop_v ;
+                    nearby_area_cnt = nearby_area_cnt + 1;
+                }
+
+                console.log("ID :"+resprop_v.id+"  || Distance : "+distance)
+            })
+
+
+ 
+
+            console.log('THIS AREA : ')
+            console.log(this_area)
+            console.log('NEARBY AREA : ')
+            console.log(nearby_area)
+
+            
+
+
+
+
+            jQuery('.spn_nearby_properties').find('.wpb_call_desc').html('test area')
+
+        }
+
     }
 
     function show_cities_on_formidable_contact(city_selector){
