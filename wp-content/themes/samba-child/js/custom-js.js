@@ -707,12 +707,37 @@ var property_list_details = {'property_list_html':property_list_html,
             console.log('NEARBY AREA : ')
             console.log(nearby_area)
 
-            
+            if(_.size(this_area)>0 || _.size(nearby_area) >0){
+                var closer_properties ="";
+                closer_properties = "There " ;
+                var properties_txt = " properties ";
+
+                    if(_.size(this_area)>0){
+
+                        if(_.size(this_area) == 1){
+                            var properties_txt = ' property ';
+                            closer_properties = closer_properties + ' is ';          
+                        }
+
+                        closer_properties = closer_properties + _.size(this_area)+" "+properties_txt+" in this area ";                    
+                    }
+                    if(_.size(this_area)>0 && _.size(nearby_area) >0)
+                        closer_properties = closer_properties + " and ";
+                    if( _.size(nearby_area) >0) {
+
+                        properties_txt = " properties ";
+                        if(_.size(nearby_area) == 1){
+                            var properties_txt = ' property ';
+                            closer_properties = closer_properties + ' is';          
+                        }
 
 
+                        closer_properties = closer_properties + _.size(nearby_area)+" "+properties_txt+" nearby areas "; 
+                    }
 
+                jQuery('.spn_nearby_properties').find('.wpb_call_desc').html(closer_properties)    
 
-            jQuery('.spn_nearby_properties').find('.wpb_call_desc').html('test area')
+            } 
 
         }
 
