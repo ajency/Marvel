@@ -120,8 +120,9 @@ jQuery('.save_property_unit_type').live("click",function(){
          var edit_id            = jQuery('#edit_id').val();  
          var num_bedrooms       = jQuery('#new-property-bedrooms').val();
          var property_unit_type = jQuery('#new-property-unit-type').val();
-         var material_type = jQuery('#material-type').val();
+         var material_type      = jQuery('#material-type').val();
          var prop_type_id       = jQuery('#new-prop-type').val();
+         var post_type          = jQuery('#current_post_type').val();
 
          
          jQuery(self).parent().find('.spinner').css('display','inline-block');
@@ -154,7 +155,8 @@ jQuery('.save_property_unit_type').live("click",function(){
                          'property_unit_type' : property_unit_type,
                          'material_type' : material_type,
                          'edit_id'       : edit_id,
-                         'prop_type_id'  : prop_type_id
+                         'prop_type_id'  : prop_type_id,
+                         'post_type'     : post_type   
                            
                        } 
 
@@ -230,6 +232,7 @@ jQuery('.save_property_unit_type').live("click",function(){
                         edit_element.attr('type_name',property_unit_type)
                                     .attr('bedrooms',num_bedrooms)
                                     .attr('property_type_id',prop_type_id)
+                                    .attr('material_type',material_type)
                                     .closest('tr').find('td:last').html(new_prop_type_name)
                                     .closest('tr').find('td.material_type').html(material_type)
                                     .closest('tr').find('.spn_property_unit_type').html(property_unit_type)
@@ -276,6 +279,7 @@ jQuery('.delete_property_type').live("click",function(evt){
     var del_type_id = jQuery(this).attr('type_id');  
 
      var my_data = { 'type_id'  : del_type_id ,
+                     'post_type': jQuery('#current_post_type').val()
                    }
 
 
@@ -346,10 +350,11 @@ jQuery('.cancel_edit_property_type').live("click",function(evt){
 })
 
 function display_add_new_property_type_form(){
-     jQuery('#edit_id').val('') 
+    jQuery('#edit_id').val('') 
     jQuery('#new-property-bedrooms').val('');
-    jQuery('#new-property-type').val('');
-     jQuery('#material-type').val('');
+    jQuery('#new-property-type').val('');    
+    jQuery('#material-group').val('');
+
 
     jQuery('.save_property_type').attr('id','add_new_property_type').attr('name','add_new_property_type') 
     jQuery('.add_edit_type_formtitle').find('.title').html('Add New Property Type');
@@ -372,10 +377,11 @@ jQuery('.save_property_type').live("click",function(){
         jQuery(self).parent().find('.spinner').css('display','inline-block');
         jQuery(self).prop('disabled',true)
 
-         var edit_id       = jQuery('#edit_id').val();  
-         var num_bedrooms  = jQuery('#new-property-bedrooms').val();
-         var property_type = jQuery('#new-property-type').val();
+         var edit_id        = jQuery('#edit_id').val();  
+         var num_bedrooms   = jQuery('#new-property-bedrooms').val();
+         var property_type  = jQuery('#new-property-type').val();
          var material_group = jQuery('#material-group').val();
+         var post_type      = jQuery(this).attr('post_type');
 
                
 
@@ -402,7 +408,8 @@ jQuery('.save_property_type').live("click",function(){
          var my_data = { 'num_bedrooms'  : num_bedrooms ,
                          'property_type' : property_type,
                          'material_group' : material_group,
-                         'edit_id'       : edit_id
+                         'edit_id'       : edit_id,
+                         'post_type'      : post_type
                            
                        } 
 
@@ -466,6 +473,7 @@ jQuery('.save_property_type').live("click",function(){
 
                         edit_element.attr('type_name',property_type)
                                     .attr('bedrooms',num_bedrooms)
+                                    .attr('data-material',material_group)
                                     .closest('tr').find('td:last').html(material_group)
                                     .closest('tr').find('.spn_property_type').html(property_type);
                         delete_element.attr('type_name',property_type)

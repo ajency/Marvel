@@ -36,7 +36,7 @@ class My_Example_List_Table extends WP_List_Table {
                   'action' => 'Edit' )
         ); */
     function __construct(){
-    global $status, $page;
+    global $status, $page, $post_type;
 
         parent::__construct( array(
             'singular'  => __( 'Property Unit Type', 'mylisttable' ),     //singular name of the listed records
@@ -71,7 +71,13 @@ class My_Example_List_Table extends WP_List_Table {
 
         $display_property_type = ' - ';
 
-        		$property_type_options = maybe_unserialize(get_option('residential-property-type'));
+        		if($this->post_type == "residential-property"){
+        			$property_type_options = maybe_unserialize(get_option('residential-property-type'));	
+        		}
+        		else if($this->post_type == "commercial-property"){
+        			$property_type_options = maybe_unserialize(get_option('commercial-property-type'));	
+        		}
+        		
         		if($property_type_options!=false){
         			if(isset($property_type_options['property_types'])){
         				if(is_array($property_type_options['property_types'])){
@@ -101,8 +107,9 @@ function get_columns(){
         );
          return $columns;
     }
-function prepare_items() {
+function prepare_items($args) {
   $columns  = $this->get_columns();
+  $this->post_type = $args['post_type'];
   $hidden   = array();
   $sortable = array();
   $this->_column_headers = array( $columns, $hidden, $sortable );
@@ -110,12 +117,20 @@ function prepare_items() {
 }
 
 function get_data(){
-
-
+echo "--";
+var_dump($this->post_type);
+echo "**";
 
 	global $wpdb;
 
-	$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+	if($this->post_type=="residential-property"){
+
+		$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+	}
+	else if($this->post_type=="commercial-property"){ 
+
+		$current_property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));	
+	}
 
 	if($current_property_unit_types==false){
 		return array();
@@ -158,15 +173,28 @@ function get_sortable_columns() {
 
 
   echo '<div class="wrap"><div id="icon-tools" class="icon32"></div>';
-  echo '<h2>Residential Properties Settings</h2>';
+
+  if($_REQUEST['post_type']=="residential-property"){
+
+  	echo '<h2>Residential Properties Settings</h2>';
+  	$property_type_options = maybe_unserialize(get_option('residential-property-type'));
+    	
+  }
+  else if($_REQUEST['post_type']=="commercial-property"){
+	echo '<h2>Commercial Properties Settings</h2>';   
+	$property_type_options = maybe_unserialize(get_option('commercial-property-type'));    	
+  }
+
   echo '</div>';
 
 
-  $property_type_options = maybe_unserialize(get_option('residential-property-type'));
+  
   ///var_dump($property_type_options);
   $myListTable = new My_Example_List_Table();
   echo '<div class="wrap"><h3>Property Unit Types </h3>';
-  $myListTable->prepare_items();
+
+  $args = array('post_type'=>$_REQUEST['post_type']);
+  $myListTable->prepare_items($args);
   echo '<div col-container>
 
   <div class="property_unit_type_message ">
@@ -253,7 +281,19 @@ function get_sortable_columns() {
 			</div>
 
   		</div>  ';
-  echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="residential-property-unit-type" /> ';
+
+  echo '<input type="hidden" name="current_post_type" id="current_post_type" value="'.$_REQUEST['post_type'].'" /> ';
+
+  if($_REQUEST['post_type']=="residential-property"){
+  	echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="residential-property-unit-type" /> ';
+  	
+  }
+  else if($_REQUEST['post_type']=="commercial-property"){
+  	echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="commercial-property-unit-type" /> ';
+  	
+  }
+
+  
   echo '</div>';
 
 }
@@ -268,8 +308,16 @@ function save_property_unit_type(){
 	$material_type = $_REQUEST['data']['material_type'];
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
 	$new_prop_type 		= $_REQUEST['data']['prop_type_id'];
+	$post_type 			= $_REQUEST['data']['post_type'];
 
-	$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+	if($post_type =="residential-property"){
+		$meta_key = 'residential-property-unit-type';
+	}
+	else if($post_type =="commercial-property"){
+		$meta_key = 'commercial-property-unit-type';
+	}
+
+	$current_property_unit_types = maybe_unserialize(get_option($meta_key));
 
 	$new_property_unit_type['number_bedrooms'] 		= $num_bedrooms;
 	$new_property_unit_type['property_unit_type'] 	= $property_unit_type;
@@ -329,12 +377,12 @@ function save_property_unit_type(){
 
 
 
-	$result = update_option('residential-property-unit-type',maybe_serialize(array('max_property_unit_types' => $updated_new_max_property_unit_type,
+	$result = update_option($meta_key,maybe_serialize(array('max_property_unit_types' => $updated_new_max_property_unit_type,
 																			  'property_unit_types'     => $updated_new_property_unit_types
 																		)));
 
 	if($result==false){
-		$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+		$current_property_unit_types = maybe_unserialize(get_option($meta_key));
 	}
 
 	wp_send_json(array('success' => $result, 'ID'=>$new_property_unit_type['ID'], 'data'=>$updated_new_property_unit_types));
@@ -483,7 +531,7 @@ function custom_submenu_page_property_type_callback() {
 
 
 
-
+ 
 
 if( ! class_exists( 'WP_List_Table' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
@@ -493,7 +541,7 @@ class My_Example_List_Table extends WP_List_Table {
 
   
     function __construct(){
-    global $status, $page;
+    global $status, $page, $post_type;
 
         parent::__construct( array(
             'singular'  => __( 'Property Type', 'mylisttable' ),     //singular name of the listed records
@@ -538,7 +586,9 @@ function get_columns(){
         );
          return $columns;
     }
-function prepare_items() {
+function prepare_items($args) {
+
+  $this->post_type = $args['post_type'];
   $columns  = $this->get_columns();
   $hidden   = array();
   $sortable = array();
@@ -552,7 +602,14 @@ function get_data(){
 
 	global $wpdb;
 
-	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
+	if($this->post_type=="residential-property"){
+		$current_property_types = maybe_unserialize(get_option('residential-property-type'));	
+	}
+	else if($this->post_type=="commercial-property"){
+		$current_property_types = maybe_unserialize(get_option('commercial-property-type'));	
+	}
+
+	
 
 	if($current_property_types==false){
 		return array();
@@ -601,14 +658,17 @@ function get_property_types(){
 
 
   echo '<div class="wrap"><div id="icon-tools" class="icon32"></div>';
-    echo '<h2>Residential Properties Settings</h2>';
+  if($_REQUEST['post_type']=="residential-property")
+    	echo '<h2>Residential Properties Settings</h2>';
+  else if($_REQUEST['post_type']=="commercial-property")
+  		echo '<h2>Commercial Properties Settings</h2>';    	
   echo '</div>';
 
-
+  $args = array('post_type'=>$_REQUEST['post_type']);
 
   $myListTable = new My_Example_List_Table();
   echo '<div class="wrap"><h3>Property Types </h3>';
-  $myListTable->prepare_items();
+  $myListTable->prepare_items($args);
   echo '<div col-container>
 
   <div class="property_type_message ">
@@ -663,7 +723,8 @@ function get_property_types(){
 
 		echo'				<p class="submit">
 								<input type="button" name="add_new_property_type" id="add_new_property_type"
-								class="button button-primary save_property_type" value="Save"> <span class="spinner" style="display:none; position:absolute"></span>
+								class="button button-primary save_property_type" value="Save"  post_type="'.$_REQUEST['post_type'].'">
+								<span class="spinner" style="display:none; position:absolute"></span>
 								<input type="button" name="cancel_edit_property_type" id="cancel_edit_property_type"
 								class="button cancel_edit_property_type" value="Cancel" style="display:none">
 							</p><br>
@@ -681,7 +742,16 @@ function get_property_types(){
 			</div>
 
   		</div>  ';
-  echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="residential-property-type" /> ';
+
+  echo '<input type="hidden" name="current_post_type" id="current_post_type" value="'.$_REQUEST['post_type'].'" /> ';
+  if($_REQUEST['post_type']=="residential-property"){
+  	echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="residential-property-type" /> ';
+
+  }
+  else if($_REQUEST['post_type']=="commercial-property"){
+  	echo '<input type="hidden" name="custom_field_name" id="custom_field_name" value="commercial-property-type" /> ';
+  }
+  
   echo '</div>';
 
 }
@@ -704,10 +774,17 @@ function save_property_type(){
 	//$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
 	$property_type 		= $_REQUEST['data']['property_type'];
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
-	$material_group 		= $_REQUEST['data']['material_group'];
+	$material_group 	= $_REQUEST['data']['material_group'];
+	$post_type   		= $_REQUEST['data']['post_type'];
 	
 
-	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
+	if($post_type=="residential-property"){
+		$current_property_types = maybe_unserialize(get_option('residential-property-type'));	
+	}
+	else if($post_type=="commercial-property"){
+		$current_property_types = maybe_unserialize(get_option('commercial-property-type'));	
+	}
+	
 
 	//$new_property_type['number_bedrooms'] 	= $num_bedrooms;
 	$new_property_type['property_type'] 	= $property_type;
@@ -766,13 +843,25 @@ function save_property_type(){
 	}
 
 
-
-	$result = update_option('residential-property-type',maybe_serialize(array('max_property_types' => $updated_new_max_property_type,
+	if($post_type=="residential-property"){
+		$result = update_option('residential-property-type',maybe_serialize(array('max_property_types' => $updated_new_max_property_type,
 																			  'property_types'     => $updated_new_property_types
 																		)));
+	}
+	else if($post_type=="commercial-property"){
+		$result = update_option('commercial-property-type',maybe_serialize(array('max_property_types' => $updated_new_max_property_type,
+																			  'property_types'     => $updated_new_property_types
+																		)));	
+	}
 
 	if($result==false){
-		$current_property_types = maybe_unserialize(get_option('residential-property-type'));
+		if($post_type=="residential-property"){
+			$current_property_types = maybe_unserialize(get_option('residential-property-type'));
+		}
+		else if($post_type=="commercial-property"){
+			$current_property_types = maybe_unserialize(get_option('commercial-property-type'));
+		}
+
 	}
 
 	wp_send_json(array('success' => $result, 'ID'=>$new_property_type['ID'], 'data'=>$updated_new_property_types));
@@ -786,7 +875,17 @@ add_action( 'wp_ajax_save_property_type', 'save_property_type' );
 function delete_property_type(){
 
 	$property_type_id = $_REQUEST['data']['type_id'];
-	$current_property_types = maybe_unserialize(get_option('residential-property-type'));
+	$post_type 		  = $_REQUEST['current_post_type'];
+
+	if($post_type=="residential-property"){
+		$meta_key = 'residential-property-type' ; 		
+	}
+	else if($post_type=="commercial-property"){
+		$meta_key = 'commercial-property-type' ; 		
+	}
+
+	$current_property_types = maybe_unserialize(get_option($meta_key));
+	
 
 	$found_del_type = false ;
 
@@ -804,7 +903,7 @@ function delete_property_type(){
 	$updated_new_property_types =  array('max_property_types' => $current_property_types['max_property_types'],
 									 'property_types'	  => $updated_property_types);
 
-	update_option('residential-property-type',maybe_serialize($updated_new_property_types));
+	update_option($meta_key,maybe_serialize($updated_new_property_types));
 
 	wp_send_json(array('success'=>true,'types'=>$updated_property_types ));
 }
