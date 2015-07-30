@@ -1485,12 +1485,12 @@ wp_enqueue_script( 'undescore',site_url().'/wp-content/themes/samba-child/dev/js
 
 	$load_map_script = false;
     if ( $hook == 'post-new.php' ){
-		if($_REQUEST[post_type]=='residential-property')
+		if($_REQUEST[post_type]=='residential-property' || $_REQUEST[post_type]=='commercial-property')
 			$load_map_script = true;
     }
     if($hook == 'post.php' ) {
     	if($_REQUEST['action']=='edit'){
-    		if(get_post_type( $_REQUEST['post']) == 'residential-property')
+    		if(get_post_type( $_REQUEST['post']) == 'residential-property' || get_post_type( $_REQUEST['post']) == 'commercial-property')
     			$load_map_script = true;
 
     	}

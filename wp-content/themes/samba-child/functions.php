@@ -18,9 +18,19 @@ function get_map_address_details($property_id){
 
 
 
-function get_search_options(){
+function get_search_options($post_type){
 
-    $property_unit_type = maybe_unserialize(get_option('residential-property-unit-type',true));
+    if($post_type =="residential-property"){
+
+        $property_unit_type = maybe_unserialize(get_option('residential-property-unit-type',true));
+
+    } 
+    else if($post_type =="commercial-property"){
+
+        $property_unit_type = maybe_unserialize(get_option('commercial-property-unit-type',true));
+    }
+
+    
     $property_cities = maybe_unserialize(get_option('property-city',true));
     $property_status = maybe_unserialize(get_option('property-status',true));
     $property_locality = maybe_unserialize(get_option('property-locality',true));
@@ -52,7 +62,9 @@ function get_search_options(){
 function get_search_options_ajx(){
 
 
-	$search_option_data =  get_search_options();
+$post_type = $_REQUEST['post_type'];
+
+	$search_option_data =  get_search_options($post_type);
 
 	wp_send_json( $search_option_data);
 
@@ -89,20 +101,31 @@ function get_main_property_type_by_unit_type_id($unit_type_id){
 
 }
 
-function get_res_property_meta_values($property_id){
+function get_res_property_meta_values($property_id, $post_type){
 	  $property_sellablearea    = maybe_unserialize(get_post_meta($property_id, 'property-sellable_area',true));
     $property_cities          = get_post_meta($property_id, 'property-city',true);
     $property_status          = get_post_meta($property_id, 'property-status',true);
     $property_locality        = get_post_meta($property_id, 'property-locality',true);
     $property_neighbourhood   = maybe_unserialize(get_post_meta($property_id, 'property-neighbourhood',true));
-    $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'residential-property-unit-type',true));
+    if($post_type=="residential-property"){
+
+      $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'residential-property-unit-type',true));
+
+    }
+    else if($post_type=="commercial-property"){
+
+      $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'commercial-property-unit-type',true));
+
+    }
+
+    
     $property_price           = get_post_meta($property_id, 'property-price',true);
 
     $property_unit_type_updated    = array();
     $property_unit_type_penthouses = array();
     $property_unit_type_other      = array();    
 
-    $property_meta_options = get_search_options();
+    $property_meta_options = get_search_options($post_type);
 
     $property_city_name = '';
     if(isset($property_meta_options['cities']['cities'])){
@@ -128,7 +151,14 @@ function get_res_property_meta_values($property_id){
 
     if(is_array($property_unit_type)){
 
-       $property_unit_type_option =  maybe_unserialize(get_option('residential-property-unit-type'));
+
+       if($post_type=="residential-property"){
+          $property_unit_type_option =  maybe_unserialize(get_option('residential-property-unit-type'));
+       }
+       else  if($post_type=="commercial-property"){
+          $property_unit_type_option =  maybe_unserialize(get_option('commercial-property-unit-type'));
+       }
+       
        $property_unit_type_option_values = maybe_unserialize($property_unit_type_option['property_unit_types']);
 
        //var_dump($property_unit_type_option_values);  
@@ -257,7 +287,9 @@ function get_residential_properties_list($post_type){
   $new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
   $new_res_prop->amenities                 =  $property_amenities;
 
-  $property_meta_value =  get_res_property_meta_values($res_property->ID);
+  $new_res_prop->post_type                 =  $res_property->post_type ;
+
+  $property_meta_value =  get_res_property_meta_values($res_property->ID,$res_property->post_type);
   $sel_properties[] =  (object)array_merge((array)$new_res_prop,$property_meta_value) ;
 
     /*$res_property->id = $res_property->ID;

@@ -158,8 +158,11 @@
 
    // getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
 
-    if(self.post_type=='residential-property') {
          // alert('residential collection')
+   console.log('LISTING VIEW OPTIONS :--------------------------------------------------------------------');
+   console.log(self)
+
+    if(self.searchView.post_type=='residential-property') {
             getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
     }
     else{

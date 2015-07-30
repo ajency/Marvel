@@ -47,7 +47,7 @@
                     jQuery.ajax(AJAXURL,{
                         type: 'GET',
                         action:'get_search_options',
-                        data :{action:'get_search_options'},
+                        data :{action:'get_search_options',post_type:self.post_type},
                         complete: function() {
 
                         },
@@ -209,7 +209,7 @@
 
 
 
-                var res_collection = getAppInstance().residentialPropertyCollection  ;
+                var res_collection = getAppInstance().commercialPropertyCollection  ;
 
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
