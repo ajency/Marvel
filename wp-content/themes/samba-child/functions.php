@@ -225,11 +225,11 @@ function get_res_property_meta_values($property_id){
 
 
 
-function get_residential_properties_list(){
+function get_residential_properties_list($post_type){
   global $wpdb;
     $sel_properties = array();
     $residential_properties = get_posts( array(
-        'post_type' => 'residential-property',
+        'post_type' => $post_type,
         'post_status' => 'publish',
         'posts_per_page' => -1
     ) );
@@ -288,6 +288,8 @@ function get_residential_properties_list(){
 
 function get_residential_properties_list_ajx() {
 
+
+
     /* global $wpdb;
     $sel_properties = array();
     $residential_properties = get_posts( array(
@@ -339,10 +341,11 @@ function get_residential_properties_list_ajx() {
 
         $room_data [ ] = $room->get_all_roomdata();
     }*/
+$post_type = $_REQUEST['post_type'];
 
-
-
-    $sel_properties = get_residential_properties_list();
+ 
+ 
+    $sel_properties = get_residential_properties_list($post_type);
     wp_send_json( array(
         'code' => 'OK',
         'data' => $sel_properties

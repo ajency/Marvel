@@ -10,7 +10,7 @@
 			/**
 			 * 
 			 */
-			var PropertyListRouter = Backbone.Router.extend({
+			var commercial_propertylist_router = Backbone.Router.extend({
 
 				initialize : function(){ 
 
@@ -45,8 +45,8 @@
 					if(!_.isUndefined(proptype))
 						options['type'] = proptype;
 
-					options['post_type'] = 'residential-property'
-
+					 
+					options['post_type'] = 'commercial-property'
 
  
 
@@ -94,7 +94,8 @@
 					if(!_.isUndefined(proptype))
 						options['type'] = proptype;
 
-					options['post_type'] = 'residential-property'
+					options['post_type'] = 'commercial-property'
+
 
   
 					 

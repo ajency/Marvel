@@ -37,6 +37,7 @@
                   this.selectedCity     = args.city;
                   this.selectedLocality = args.locality;
                   this.selectedType     = args.type;
+                  this.post_type        = args.post_type;
 
                 }
 
@@ -102,7 +103,19 @@
 
 
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
-                        getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+                      //alert(this.post_type) 
+                       if(this.post_type=='residential-property') {
+                       // alert('residential collection')
+                          getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+                        }
+                        else{
+
+
+                       // alert('commercial collection')
+                          getAppInstance().residentialPropertyCollection = new CommercialPropertiesCollection();
+                        }
+                       
+
                         getAppInstance().residentialPropertyCollection.fetch({
                             success: function(collection) { // the fetched collection!
 
