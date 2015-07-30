@@ -580,7 +580,8 @@ var property_list_details = {'property_list_html':property_list_html,
             var properties_selector = jQuery('#field_ky_contact1projects');
         }
 
-
+console.log(' (.nri_fullrow.indi_pr.redsp ).find(.wpb_call_desc).length')
+console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
 
         if(city_selector.length>0 || jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
          
@@ -638,6 +639,7 @@ var property_list_details = {'property_list_html':property_list_html,
 
 
     function show_nearby_properties(){
+        console.log('show nearby properties')
 
         if(jQuery('.spn_nearby_properties').find('.wpb_call_desc').length>0){
 
