@@ -329,27 +329,38 @@
                             var iwOuter = jQuery(this);
                             var iwBackground = iwOuter.prev();
                             var acwi = window.innerWidth ? window.innerWidth : jQuery(window).width();
+                            console.log('actual screen width: ' + acwi);
                             // Remove the background shadow DIV
                             iwBackground.children(':nth-child(2)').css({'display' : 'none'});
                             // Remove the white background DIV
                             iwBackground.children(':nth-child(4)').css({'display' : 'none'});
                             // Moves the infowindow 115px to the right. because after
                             //applying styles and all, the arrow and close btn do not position properly
-                            if (acwi <= 320) {
-                              iwOuter.parent().parent().css({left: '55px'});
+                            if (acwi <= 680) {
+                              iwOuter.parent().parent().css({left: '108px'});
                             } else {
-                              iwOuter.parent().parent().css({left: '87px'});
+                              iwOuter.parent().parent().css({left: '128px'});
                             }
+                            // Moves the shadow of the arrow 76px to the left margin function
+                            function setarrowposition() {
+                              if (acwi < 680) {
+                                iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                                // Moves the arrow 76px to the left margin
+                                iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                              } else {
+                                iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                                // Moves the arrow 76px to the left margin
+                                iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                              }
+                            }
+                            jQuery('html, body').mousemove(function(e) {
+                              setarrowposition();
+                            });
+                            jQuery('html, body').click(function() {
+                              setarrowposition();
+                            });
                             // Moves the shadow of the arrow 76px to the left margin
-                            if (acwi < 680) {
-                              iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 70px !important;'});
-                              // Moves the arrow 76px to the left margin
-                              iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 70px !important;'});
-                            } else {
-                              iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
-                              // Moves the arrow 76px to the left margin
-                              iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
-                            }
+                            setarrowposition();
                             // Changes the desired color for the tail outline.
                             // The outline of the tail is composed of two descendants of div which contains the tail.
                             // The .find('div').children() method refers to all the div which are direct descendants of the previous div.
