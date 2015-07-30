@@ -156,7 +156,20 @@
 
 
 
-    getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+   // getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+
+    if(self.post_type=='residential-property') {
+         // alert('residential collection')
+            getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+    }
+    else{
+
+
+   // alert('commercial collection')
+      getAppInstance().residentialPropertyCollection = new CommercialPropertiesCollection();
+    }
+
+    alert(getAppInstance().residentialPropertyCollection)
                 getAppInstance().residentialPropertyCollection.fetch({
     success: function(collection) { // the fetched collection!
 
