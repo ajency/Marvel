@@ -536,7 +536,24 @@ function checkIfInView(element){
         // $topval_home = $(window).height() - $('#after_widgets').offset().top - $('#after_widgets').height() - 43 - 47;
         // $('#after_widgets').css('top', $topval_home);
 
+
     });
+
+
+    //jQuery Readmore for services
+    function readmoreorless() {
+        $width = window.innerWidth ? window.innerWidth : $(window).width();
+        if ($width < 768 && $('div').hasClass('view_properties_rent')) {
+            $('.view_properties_rent .wpb_call_desc, .view_properties_resale .wpb_call_desc').readmore({
+                collapsedHeight: 73,
+                heightMargin: 22,
+                moreLink: '<a href="#">More</a>',
+                lessLink: '<a href="#">Less</a>'
+            });
+        } else {
+            $('.view_properties_rent .wpb_call_desc, .view_properties_resale .wpb_call_desc').readmore('destroy');
+        }
+    }
 
 
     function setEqualHeight(obj) {
@@ -568,6 +585,9 @@ function checkIfInView(element){
         //same height careers
         setEqualHeight($('.lisofwork .wpb_wrapper'));
 
+
+        readmoreorless();
+
     });
     $(window).resize(function() {
         //equal height amenities
@@ -581,6 +601,8 @@ function checkIfInView(element){
 
         //same height careers
         setEqualHeight($('.lisofwork .wpb_wrapper'));
+
+        readmoreorless();
 
 
         //set the height of map

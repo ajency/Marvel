@@ -3625,6 +3625,7 @@ ul.ui-tabs-nav {
   font-size: 13px;
   font-style: italic;
   padding: 0 17px;
+  white-space: normal;
 }
 .promise_btns .prk_service {
   width: 50%;
