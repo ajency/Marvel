@@ -582,7 +582,7 @@ var property_list_details = {'property_list_html':property_list_html,
 
 
 
-        if(city_selector.length>0 || jQuery('.spn_nearby_properties').find('.wpb_call_desc').length>0){
+        if(city_selector.length>0 || jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
          
              properties_selector.empty();
 
