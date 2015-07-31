@@ -168,6 +168,12 @@ function checkIfInView(element){
                 $('.home_search.popup').show();
             }
         });
+        $(document).on('click', '.proj-showinmob .filter-btn', function() {
+            $width = window.innerWidth ? window.innerWidth : $(window).width();
+            // if (!($(this).hasClass('popup')) && $width < 768) {
+                $('.home_search.popup').show();
+            // }
+        });
         $(document).on('click', '.home_search.popup .searc_head i', function() {
             $(this).parents('.popup').hide();
         });

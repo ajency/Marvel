@@ -36,6 +36,41 @@
 
 </head>
 <body <?php body_class('samba_theme'.$resp_class); ?>>
+
+<!--residential search popup-->
+<div class="home_search popup" style="display: none;">
+  <div class="searc_head">
+    Find your home
+    <i class="close-btn"></i>
+  </div>
+  <div class="hme_dd lo">
+    <select id="home_status2"  class="home_status">
+      <option value="" >Status</option>
+    </select>
+  </div>
+  <div class="hme_dd wc">
+    <select id="home_city2"  class="home_city">
+      <option value="" >City</option>
+    </select>
+  </div>
+  <div class="hme_dd lo">
+    <select id="home_location2"  class="home_location">
+      <option value="">Locality</option>
+    </select>
+  </div>
+  <div class="hme_dd ty">
+    <select id="home_type2"  class='home_type'>
+      <option value="Type">Type</option>
+    </select>
+  </div>
+  <div class="hme_dd lo">
+    <button class="home_btn_sea2 home_btn_search_properties" type="submit">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>
+<!--ends residential search popup-->
+
   <?php
       global $prk_back_css;
       echo $prk_back_css;

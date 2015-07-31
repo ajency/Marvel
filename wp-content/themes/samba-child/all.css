@@ -907,6 +907,12 @@ h6 {
 }
 @media screen and (max-width: 769px) {
   .top-dd-c {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .top-dd-c {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -1222,10 +1228,14 @@ h6 {
   opacity: 1;
   visibility: visible;
 }
+.single_p_w:hover .single_p_img .compare .comp_ico {
+  background: url(img/compare_ico_02.png) no-repeat center center;
+}
 .single_p_w .single_p_img {
   height: 192px;
   overflow: hidden;
   position: relative;
+  z-index: 0;
   background-size: cover;
   -moz-background-size: cover;
   background-repeat: no-repeat;
@@ -1246,12 +1256,9 @@ h6 {
 }
 .single_p_w .single_p_img .compare .comp_ico {
   float: right;
-  width: 25px;
-  height: 21px;
-  background: url(img/compare_list_ico.png) no-repeat center center;
-}
-.single_p_w .single_p_img .compare .comp_ico:hover {
-  background: url(img/compare_list_ico_hov.png) no-repeat center center;
+  width: 45px;
+  height: 30px;
+  background: url(img/compare_ico_01.png) no-repeat center center;
 }
 @media screen and (max-width: 767px) {
   .single_p_w .single_p_img .compare .comp_ico {
