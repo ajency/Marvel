@@ -290,11 +290,12 @@ function checkIfInView(element){
                 placesearchbar();
             }
             if ($('div').hasClass('owl-carousel') && $('div').hasClass('wpb_tab')) {
-                setInterval(function() {
+                // setInterval(function() {
                     $('.wpb_tab .owl-carousel .item img').each(function() {
-                        resizeimgs($(this).parent(), $(this));
+                        //resizeimgs($(this).parent(), $(this));
+                        $(this).addClass('widthadjust');
                     });
-                }, 0.5);
+                // }, 0.5);
             }
 
             if ($('div').hasClass('nothis') && !($('body').hasClass('single-residential-property')) && !($('body').hasClass('single-commercial-property'))) {
