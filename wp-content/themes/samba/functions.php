@@ -360,10 +360,43 @@ function add_custom_tax_property_amenities(){
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'stage_of_business' ),
+            'rewrite'           => array( 'slug' => 'amenity' ),
         );
 
-        register_taxonomy( 'property_amenity', array( 'residential-property','commercial-property' ), $args );
+        register_taxonomy( 'property_amenity', array( 'residential-property' ), $args );
+
+
+
+
+
+
+
+
+
+        $labels = array(
+            'name'              => _x( 'Amenities', 'taxonomy general name' ),
+            'singular_name'     => _x( 'Amenity', 'taxonomy singular name' ),
+            'search_items'      => __( 'Search Amenity'  ),
+            'all_items'         => __( 'All Amenities'  ),
+            'parent_item'       => __( 'Parent Amenity'  ),
+            'parent_item_colon' => __( 'Parent Amenity : '  ),
+            'edit_item'         => __( 'Edit Amenity' ),
+            'update_item'       => __( 'Update Amenity' ),
+            'add_new_item'      => __( 'Add New Amenity' ),
+            'new_item_name'     => __( 'New Amenity' ),
+            'menu_name'         => __( 'Amenities' ),
+        );
+
+        $args = array(
+            'hierarchical'      => true,
+            'labels'            => $labels,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
+            'rewrite'           => array( 'slug' => 'amenity' ),
+        );
+
+        register_taxonomy( 'commercial_amenity', array( 'commercial-property' ), $args );
 
 }
 
@@ -386,7 +419,10 @@ function myplugin_add_custom_box() {
     $screens = array( 'residential-property', 'commercial-property' );
     foreach ( $screens as $screen ) {
 
-    	$custom_fields[] = array('field'				=> 'property-plant-id',
+    		$custom_fields = array();
+    		$custom_field_address = array();
+
+    		$custom_fields[] = array('field'				=> 'property-plant-id',
 	    							  'metabox_title'		=> 'Plant ID',
 	    							  'element_type'		=> 'text',
 	    							  'option_value_prefix' => '',
@@ -705,14 +741,20 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
     	case 'property-neighbourhood'			:
 
+    							if($current_post_type=="residential-property"){
+    								$neighbourhood_option_meta_key = 'property-neighbourhood';
+    							}
+    							else if($current_post_type=="commercial-property"){
+    								$neighbourhood_option_meta_key = 'commercial-property-neighbourhood';
+    							}
 
-    							$property_neighbourhood = maybe_unserialize(get_option('property-neighbourhood'));
+    							$property_neighbourhood = maybe_unserialize(get_option($neighbourhood_option_meta_key));
+
 							    $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "property-neighbourhood", true)) ;
+
 								$edit_options_values = true;
 
-
 								generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_neighbourhood, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
-
 
 							    $property_field_options = maybe_unserialize(get_option($metabox['field']));
 
@@ -1565,7 +1607,7 @@ function add_new_custom_field_option() {
 
 
     $property_unit_types                = $property_unit_types_data['property_unit_types'];
-    $real_custom_field_option_name = $property_unit_types_data['real_property_unit_type_option_name'];
+    $real_custom_field_option_name 		= $property_unit_types_data['real_property_unit_type_option_name'];
 
     $add_new_value = false;
 
@@ -1743,7 +1785,11 @@ function add_new_custom_field_option() {
         else{
 
 
-        	//echo "\n\n <br/> <br/> ============================1003========================================";
+        	/* echo "\n\n <br/> <br/> ============================1003========================================";
+
+        	 var_dump($property_unit_types);
+
+        	 echo $real_custom_field_option_name; */
 
         	 $property_unit_types[] = $custom_field_option_val;
 
@@ -1781,6 +1827,12 @@ function get_properties_type_option_by_post_type($custom_field_option){
     else if($custom_field_option_name=="property-locality"){
     	$real_custom_field_option_name = 'property-locality';
 
+    }
+    else if($custom_field_option_name=="property-neighbourhood"){
+    	 if($post_type=="residential-property" )
+            $real_custom_field_option_name = "property-neighbourhood";
+        else if ($post_type=="commercial-property")
+            $real_custom_field_option_name = "commercial-property-neighbourhood";
     }
     else {
     	$real_custom_field_option_name = $custom_field_option_name;
