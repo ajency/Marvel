@@ -267,7 +267,7 @@ console.log('vl');
                     <div class="compare_f full-width">
                         <p class="foot_head">Looking for Help?</p>
                         <p>Its very easy to get overwhelmed with the unique propositions of Marvel properties. Let us help you in making up your mind.</p>
-                        <a href="#" class="wpb_button">Give Details</a>
+                        <a href="#" class="wpb_button popmake-give-details">Give Details</a>
                     </div>
             </div>
             <!--END Compare styles-->

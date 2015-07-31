@@ -954,6 +954,7 @@ h6 {
 }
 .top-dd select {
   padding: 5px 8px;
+  padding-right: 22px;
   border: 1px solid #cccccc;
   -webkit-appearance: none;
   -moz-appearance: none;

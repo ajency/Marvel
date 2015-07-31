@@ -929,7 +929,7 @@ color: rgb(255, 255, 255);
  	border-radius: 0;
 }
 .wpb_tab .wpb_content_element {
-    margin-bottom: 0;
+    margin-bottom: 28px;
 }
 /*@media only screen and (max-width: 836px) {
 	.wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav {
@@ -1382,6 +1382,17 @@ body .stwrapper.stwrapper5x {
     }
 }
 
+.top-dd.thr:after {
+    content: '...';
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    display: none;
+    background-color: #fff;
+    line-height: 29px;
+    padding: 0 7px;
+    padding-left: 0;
+}
 
 
 /*from theme backend*/
