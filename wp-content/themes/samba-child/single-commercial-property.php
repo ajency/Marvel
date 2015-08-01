@@ -129,6 +129,9 @@
                 <?php wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
                 <div class="clearfix"></div>
 
+                <div class="go_to_top_inpage sticky"></div>
+                <a class="enquiry_sideways sticky popmake-popup-property-page"><i></i>Enquire Now</a>
+
                 <div class="go_to_top_inpage"></div>
                 <!-- <a class="enquiry_sideways">
                   <i></i>
