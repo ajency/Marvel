@@ -821,4 +821,41 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
         jQuery('#field_serv_cont_buildingfloor').val(building_floor)
     })
 
+jQuery('.popmake-careers-apply-now').live('click',function(evt){
+
+
+        evt.preventDefault();        
+        var job_list_classes = jQuery(this).closest('li').attr('class');      
+
+        var jobtype_class_arr = []
+        job_list_classes_arr = job_list_classes.split(' ');
+
+        _.each(job_list_classes_arr,function(jobclass_vl,jobclass_ky){
+            if(jobclass_vl.indexOf('job-type')==0){
+                var jobtype_class = jobclass_vl;
+                jobtype_class_arr =  jobtype_class.split('-') 
+            }
+        })
+
+        var current_job_category ='';
+        var current_job_name ='';
+
+        console.log('jobtype_class_arr')
+        console.log(jobtype_class_arr)
+
+        if(_.size(jobtype_class_arr)==3)
+            current_job_category = jobtype_class_arr[2]; 
+
+        if(jQuery(this).closest('li').find('.job-name').length>0)
+            current_job_name  =  jQuery(this).closest('li').find('.job-name').html() 
+
+        
+        jQuery('#form_careers_applynow').find('.job-title-text').html(current_job_name);
+
+        jQuery('#form_careers_applynow').find('.job-category-text').html(' ('+current_job_category+')')
+
+ 
+    })
+
+
 });
