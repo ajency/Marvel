@@ -641,7 +641,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
     function show_nearby_properties(){
         console.log('show nearby properties')
 
-        if(jQuery('.spn_nearby_properties').find('.wpb_call_desc').length>0){
+        if(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
 
             console.log('window residential_properties')
             console.log(window.residential_properties)
