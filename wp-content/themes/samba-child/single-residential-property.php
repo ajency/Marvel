@@ -46,9 +46,18 @@
     }
   //NEVER SHOW SIDEBAR
   $show_sidebar=false;
+
+  $current_page_title = ''; 
+ Global $wp_query;
+ $current_page_id = $wp_query->get_queried_object_id();
+ $current_page_title= get_the_title($current_page_id);
+
+
 ?>
 <div id="centered_block" class="row">
 <div id="main_block" class="block_with_sections hideTitle page-<?php echo get_the_ID(); ?>">
+
+<input type="hidden" name="current_property_title" id="current_property_title" value="<?php echo $current_page_title; ?>"  />
     <div id="full_fi_c">
         <div class="full_fi_title">
             <p class="f_f_t">
