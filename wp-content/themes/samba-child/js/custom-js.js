@@ -854,6 +854,10 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
 
         jQuery('#form_careers_applynow').find('.job-category-text').html(' ('+current_job_category+')')
 
+        jQuery('#form_careers_applynow').find('#field_careers_hid_jobtitle').html(current_job_name);
+
+        jQuery('#form_careers_applynow').find('#field_careers_hid_jobcategory').html(current_job_category)
+
  
     })
 
