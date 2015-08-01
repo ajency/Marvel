@@ -885,4 +885,15 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
     })
 
 
+
+    if( jQuery('#form_frm_individual_project_contact').length>0 ){
+        
+        if(jQuery('#field_indi_hid_project_name').length>0){
+
+            var current_prperty_title = jQuery('#current_property_title').val();
+            jQuery('#field_indi_hid_project_name').val(current_prperty_title);
+        }
+    }
+
+
 });
