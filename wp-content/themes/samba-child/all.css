@@ -180,8 +180,8 @@ h6 {
   position: absolute;
   top: 0;
   left: 0;
-  height: 110%;
-  width: auto;
+  height: auto;
+  width: 120%;
   max-width: none;
 }
 .service .forent .partintro .introtext {
