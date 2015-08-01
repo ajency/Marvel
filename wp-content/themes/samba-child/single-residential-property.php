@@ -134,13 +134,13 @@
                 <div class="clearfix"></div>
 
                 <div class="go_to_top_inpage"></div>
-                <div class="go_to_top_inpage ab_amen"></div>
+                <!-- <div class="go_to_top_inpage ab_amen"></div>
                 <div class="go_to_top_inpage ab_spec"></div>
-                <div class="go_to_top_inpage ab_resi"></div>
+                <div class="go_to_top_inpage ab_resi"></div> -->
 
-                <a class="enquiry_sideways ab_amen2"><i></i>Enquire Now</a>
-                <a class="enquiry_sideways ab_spec2"><i></i>Enquire Now</a>
-                <a class="enquiry_sideways ab_resi2"><i></i>Enquire Now</a>
+                <!-- <a class="enquiry_sideways ab_amen2 popmake-popup-property-page"><i></i>Enquire Now</a>
+                <a class="enquiry_sideways ab_spec2 popmake-popup-property-page"><i></i>Enquire Now</a>
+                <a class="enquiry_sideways ab_resi2 popmake-popup-property-page"><i></i>Enquire Now</a> -->
 
                 <div class="share_indi"></div>
 

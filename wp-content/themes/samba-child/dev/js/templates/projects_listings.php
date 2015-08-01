@@ -2,13 +2,13 @@
 <div id="proj_list" class="project-list row">
 <div class="twelve columns">
 <%  var properties_count = _.size(propertiesdata);
-    
+
     var display_properties_count = '';
-    
+
     if(properties_count>0){
         display_properties_count = " ("+properties_count+") ";
     }
- 
+
 
 
     if(dropdown_city!='' && !_.isUndefined(dropdown_city) && !_.isNull(dropdown_city)){
@@ -17,13 +17,13 @@
     }
     else{
     %><h5>Residential Projects <%=display_properties_count%></h5>
-    <%        
+    <%
     }
- 
-    
+
+
  %>
- 
-    
+
+
 </div>
 <!--single project listing-->
 <%
@@ -85,7 +85,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
 
                 <div class="single_btm">
                     <div class="pull-left">
-                        <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
+                        <a href="#" class="btn_norm single_enq popmake-popup-property-list"><i class="fa fa-envelope-o"></i></a>
                         <!--<a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a>-->
                         <a class="btn_norm single_share">
                             <span class='st_sharethis' st_image="<%=featured_image %>"   st_url="<%=property_url %>" st_title="<%=property_title%>"  ></span>
@@ -120,7 +120,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
     <div class="last_one_t">
         <h4>Looking for more options?</h4>
         <p>Tell us your requirement and <br>we will let you know when there is a match.</p>
-        <a href="#" class="btn_norm single_know">
+        <a href="#" class="btn_norm single_know popmake-give-details">
             Give Details
         </a>
     </div>
