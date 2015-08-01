@@ -138,7 +138,13 @@ jQuery('.home_city').live('change',function(){
 
             if(selected_city==vl_cl.city_id){
 
-                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
+               var display_locality_name = vl_cl.name;
+                if(_.size(vl_cl.name)>14){
+                  display_locality_name =  display_locality_name.substr(0, 13)+'...';
+
+                }
+
+                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
 
             } 
        })
