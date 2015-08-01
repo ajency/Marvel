@@ -885,4 +885,32 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
     })
 
 
+
+
+    jQuery('.popmake-popup-property-page').live('click',function(evt){
+        evt.preventDefault(); 
+
+         if(jQuery('#form_frm_individual_proj_popup').length>0){
+
+            var current_prperty_title = jQuery('#current_property_title').val();
+            jQuery('#frm_individual_proj_popup').find('#field_individual_popup_project').val(current_prperty_title)
+         }
+        
+        
+
+    })
+
+
+
+
+    if( jQuery('#form_frm_individual_project_contact').length>0 ){
+        
+        if(jQuery('#field_indi_hid_project_name').length>0){
+
+            var current_prperty_title = jQuery('#current_property_title').val();
+            jQuery('#field_indi_hid_project_name').val(current_prperty_title);
+        }
+    }
+
+
 });

@@ -90,13 +90,15 @@ function get_main_property_type_by_unit_type_id($unit_type_id){
 }
 
 function get_res_property_meta_values($property_id){
-	  $property_sellablearea    = maybe_unserialize(get_post_meta($property_id, 'property-sellable_area',true));
-    $property_cities          = get_post_meta($property_id, 'property-city',true);
-    $property_status          = get_post_meta($property_id, 'property-status',true);
-    $property_locality        = get_post_meta($property_id, 'property-locality',true);
-    $property_neighbourhood   = maybe_unserialize(get_post_meta($property_id, 'property-neighbourhood',true));
-    $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'residential-property-unit-type',true));
-    $property_price           = get_post_meta($property_id, 'property-price',true);
+	  $property_sellablearea         = maybe_unserialize(get_post_meta($property_id, 'property-sellable_area',true));
+    $property_cities               = get_post_meta($property_id, 'property-city',true);
+    $property_status               = get_post_meta($property_id, 'property-status',true);
+    $property_locality             = get_post_meta($property_id, 'property-locality',true);
+    $property_neighbourhood        = maybe_unserialize(get_post_meta($property_id, 'property-neighbourhood',true));
+    $property_unit_type            = maybe_unserialize(get_post_meta($property_id, 'residential-property-unit-type',true));
+    $property_price                = get_post_meta($property_id, 'property-price',true);
+    $property_siteplan             = get_post_meta($property_id, 'custom_property-siteplan',true);
+    $property_display_unit_type    = get_post_meta($property_id, 'property-display-unit-type',true);
 
     $property_unit_type_updated    = array();
     $property_unit_type_penthouses = array();
@@ -204,16 +206,18 @@ function get_res_property_meta_values($property_id){
 
 
 
-    $residential_property_meta_data = array('property_city'          => $property_cities,
-                                             'property_status'       => $property_status,
-                                             'property_locaity'      => $property_locality,
-                                             'poperty_neighbourhood' => $property_neighbourhood,
-                                             'property_unit_type'		 => $sortedproperty_unit_types,
-                                             'property_sellablearea' => $property_sellablearea,
-                                             'map_address'	 		     => get_map_address_details($property_id),
-                                             'property_price' 		   => $property_price,
-                                             'property_city_name'    => $property_city_name,
-                                             'property_locality_name'=> $property_locality_name
+    $residential_property_meta_data = array('property_city'               => $property_cities,
+                                             'property_status'            => $property_status,
+                                             'property_locaity'           => $property_locality,
+                                             'poperty_neighbourhood'      => $property_neighbourhood,
+                                             'property_unit_type'		      => $sortedproperty_unit_types,
+                                             'property_sellablearea'      => $property_sellablearea,
+                                             'map_address'	 		          => get_map_address_details($property_id),
+                                             'property_price' 		        => $property_price,
+                                             'property_city_name'         => $property_city_name,
+                                             'property_locality_name'     => $property_locality_name,
+                                             'property_display_unit_type' => $property_display_unit_type,
+                                             'property_siteplan'          => $property_siteplan 
                                             );
 
     return $residential_property_meta_data;
