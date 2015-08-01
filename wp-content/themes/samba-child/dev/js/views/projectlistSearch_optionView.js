@@ -342,23 +342,38 @@
                             var iwOuter = jQuery(this);
                             var iwBackground = iwOuter.prev();
                             var acwi = window.innerWidth ? window.innerWidth : jQuery(window).width();
+                            console.log('actual screen width: ' + acwi);
                             // Remove the background shadow DIV
                             iwBackground.children(':nth-child(2)').css({'display' : 'none'});
                             // Remove the white background DIV
                             iwBackground.children(':nth-child(4)').css({'display' : 'none'});
                             // Moves the infowindow 115px to the right. because after
                             //applying styles and all, the arrow and close btn do not position properly
-                            iwOuter.parent().parent().css({left: '55px'});
-                            // Moves the shadow of the arrow 76px to the left margin
-                            if (acwi < 680) {
-                              iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 70px !important;'});
-                              // Moves the arrow 76px to the left margin
-                              iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 70px !important;'});
+                            if (acwi <= 680) {
+                              iwOuter.parent().parent().css({left: '108px'});
                             } else {
-                              iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
-                              // Moves the arrow 76px to the left margin
-                              iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+                              iwOuter.parent().parent().css({left: '128px'});
                             }
+                            // Moves the shadow of the arrow 76px to the left margin function
+                            function setarrowposition() {
+                              if (acwi < 680) {
+                                iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                                // Moves the arrow 76px to the left margin
+                                iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                              } else {
+                                iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                                // Moves the arrow 76px to the left margin
+                                iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 63px !important;'});
+                              }
+                            }
+                            jQuery('html, body').mousemove(function(e) {
+                              setarrowposition();
+                            });
+                            jQuery('html, body').click(function() {
+                              setarrowposition();
+                            });
+                            // Moves the shadow of the arrow 76px to the left margin
+                            setarrowposition();
                             // Changes the desired color for the tail outline.
                             // The outline of the tail is composed of two descendants of div which contains the tail.
                             // The .find('div').children() method refers to all the div which are direct descendants of the previous div.
@@ -446,6 +461,8 @@
 
 
               map.setCenter(marker.getPosition()); //Center align the Marker
+            self.offsetCenter(map,map.getCenter(),-0,-100)
+
 infowindow.open(map,marker);
 
 
@@ -525,7 +542,7 @@ infowindow.open(map,marker);
                                             '</p>   '+
                                             '<div class="map_btm">'+
                                             '    <div class="pull-left">'+
-                                            '       <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>'+
+                                            '       <a href="#" class="btn_norm single_enq popmake-popup-property-list"><i class="fa fa-envelope-o"></i></a>'+
                                             '      <!-- <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a> -->'+
                                             '       <a class="btn_norm single_share">'+
                                             '         <span class="st_sharethis" st_image="'+featured_img_thumbnail[0]+'"   st_url="'+properties[i].get('post_url')+'" st_title="'+properties[i].get('post_title')+'"  ></span>'+
@@ -741,7 +758,7 @@ setTimeout(function(){
 //console.log('LOADING SHARE BUTTON :-------------------------------------------')
 //console.log(jQuery('#projects_listings').html())
   var switchTo5x=true;
- stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+ stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
  stButtons.locateElements();
 
 },300)
@@ -892,6 +909,34 @@ setTimeout(function(){
 
               location.assign(RedirectUrl+search_opt) ;
 
+
+            },
+
+
+             offsetCenter:function(map,latlng,offsetx,offsety) {
+
+            // latlng is the apparent centre-point
+            // offsetx is the distance you want that point to move to the right, in pixels
+            // offsety is the distance you want that point to move upwards, in pixels
+            // offset can be negative
+
+            var scale = Math.pow(2, map.getZoom());
+            var nw = new google.maps.LatLng(
+                map.getBounds().getNorthEast().lat(),
+                map.getBounds().getSouthWest().lng()
+            );
+
+            var worldCoordinateCenter = map.getProjection().fromLatLngToPoint(latlng);
+            var pixelOffset = new google.maps.Point((offsetx/scale) || 0,(offsety/scale) ||0)
+
+            var worldCoordinateNewCenter = new google.maps.Point(
+                worldCoordinateCenter.x - pixelOffset.x,
+                worldCoordinateCenter.y + pixelOffset.y
+            );
+
+            var newCenter = map.getProjection().fromPointToLatLng(worldCoordinateNewCenter);
+
+            map.setCenter(newCenter);
 
             }
 

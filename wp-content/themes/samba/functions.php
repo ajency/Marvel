@@ -2628,3 +2628,27 @@ add_submenu_page( 'edit.php?post_type=commercial-property', 'Property Unit Type 
   
 }
 add_action('admin_menu', 'register_my_custom_submenu_page');
+
+
+
+
+
+//Load residential properties with default status as Ongoing for sidebar link
+function nav_items( $items, $menu, $args ) 
+{
+   /* if( is_admin() )
+        return $items; */
+    
+    foreach( $items as $item ) 
+    {
+        //if( 'residential' == strtolower($item->post_title)) 
+
+        $slug = basename( get_permalink($item->object_id) );
+        if($slug=='residential-properties'){
+        	$item->url .= '#/st/Ongoing';	
+        }         
+
+    }
+    return $items;
+}
+add_filter( 'wp_get_nav_menu_items','nav_items', 11, 3 );

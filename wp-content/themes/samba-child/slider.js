@@ -53,34 +53,23 @@ function checkIfInView(element){
                 });
                 //above amenities
                 if ($('div').hasClass('am_h')) {
-                    $amtop = $('.am_h').offset().top - 350 + 170;
-                    $('.ab_amen').css('top', $amtop);
-                    $('.ab_amen2').css('top', ($amtop - 33 - 20 - 64));
+                    $('.am_h').before('<div class="posrel"><a class="enquiry_sideways ams-top app-side popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage ams-top app-side"></div></div>');
                 } else if ($('.tab-section').length > 3) {
-                    $('.ab_amen').hide();
-                    $('.ab_amen2').hide();
-
-                    $spetop = $('.tab-section').eq(2).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 0;
-                    $('.ab_spec').css('top', $spetop);
-                    $('.ab_spec2').css('top', ($spetop - 33 - 20 - 64));
+                    $('.tab-section').eq(1).before('<div class="posrel"><a class="enquiry_sideways ams-top app-side popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage ams-top app-side"></div></div>');
                 } else {
                     $('.ab_amen').hide();
                     $('.ab_amen2').hide();
                 }
                 //in specifications
-                if ($('.tab-section').length > 2) {
-                    $spetop = $('.tab-section').eq(2).next().next().offset().top + $('.tab-section').eq(1).next().next().height() - 0; //was 46
-                    $('.ab_spec').css('top', $spetop);
-                    $('.ab_spec2').css('top', ($spetop - 33 - 20 - 64));
+                if ($('div').hasClass('am_h') && $('.tab-section').length > 2) {
+                    $('.tab-section').eq(3).before('<div class="posrel"><a class="enquiry_sideways app-side popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage app-side"></div></div>');
                 } else {
                     $('.ab_spec').hide();
                     $('.ab_spec2').hide();
                 }
                 //floorplans
                 if ($('div').hasClass('gallery_indi')) {
-                    $restop = $('.gallery_indi ').offset().top + 108 + 294; //+ $('.floorplans_tab').height() - 35 - 20;
-                    $('.ab_resi').css('top', $restop);
-                    $('.ab_resi2').css('top', ($restop - 33 - 20 - 64));
+                    $('.gallery_indi ').before('<div class="posrel"><a class="enquiry_sideways app-side gal-top popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage app-side gal-top"></div></div>');
                 } else {
                     $('.ab_resi').hide();
                     $('.ab_resi2').hide();
@@ -160,6 +149,12 @@ function checkIfInView(element){
             if (!($(this).hasClass('popup')) && $width < 768) {
                 $('.home_search.popup').show();
             }
+        });
+        $(document).on('click', '.proj-showinmob .filter-btn', function() {
+            $width = window.innerWidth ? window.innerWidth : $(window).width();
+            // if (!($(this).hasClass('popup')) && $width < 768) {
+                $('.home_search.popup').show();
+            // }
         });
         $(document).on('click', '.home_search.popup .searc_head i', function() {
             $(this).parents('.popup').hide();
@@ -241,27 +236,7 @@ function checkIfInView(element){
                 obj.removeClass('heightadjust');
             }
         }
-
-
-        //position absolute - acting as position fixed for bigger screens
-        // if ($('body').hasClass('page-template-project_list_new') && $(window).width() > 769) {
-        //     $acwidth = $(window).width() - $('#menu_section').width() - 100;
-        //     $('.top-dd-c').width($acwidth);
-        // } else if ($(window).width() <= 769) {
-        //     $('.top-dd-c').width('auto');
-        // }
-
         $(window).load(function() {
-            if ($('body').hasClass('page-template-floor_plans')) {
-                // $('#prk_ajax_container').append(
-                //     '<div class="go_to_top_inpage"></div>'
-                // );
-                // $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
-                // $('.go_to_top_inpage').css({
-                //     'top': $btmval,
-                //     'right': 0
-                // });
-            }
             if ($('body').hasClass('page-template-page-services')) {
                 $topval = $('#spn_services_div').offset().top - $('.go_to_top_inpage').height() + 25;
                 $('body').append('<div class="go_to_top_inpage serm"></div>');
@@ -280,6 +255,7 @@ function checkIfInView(element){
                 setInterval(function() {
                     $('.wpb_tab .owl-carousel .item img').each(function() {
                         resizeimgs($(this).parent(), $(this));
+                        // $(this).addClass('widthadjust');
                     });
                 }, 0.5);
             }
@@ -295,23 +271,7 @@ function checkIfInView(element){
                 });
             }
         });
-        if ($('body').hasClass('page-template-project_list_new')) {
-            // setInterval(function() {
-            //     if ($(window).width() > 769) {
-            //         $acwidth = $(window).width() - $('.mCustomScrollBox').width() - 100;
-            //         $('.top-dd-c').width($acwidth);
-            //     } else if ($(window).width() <= 769) {
-            //         $('.top-dd-c').width('auto');
-            //     }
-            // }, 0.5);
-        }
         $(window).resize(function() {
-            // if ($('body').hasClass('page-template-project_list_new') && $(window).width() > 769) {
-            //     $acwidth = $(window).width() - $('.mCustomScrollBox').width() - 100;
-            //     $('.top-dd-c').width($acwidth);
-            // } else if ($(window).width() <= 769) {
-            //     $('.top-dd-c').width('auto');
-            // }
 
             if ($('div').hasClass('nothis')) {
                 $('.nothis .owl-carousel .item img').each(function() {
@@ -323,13 +283,6 @@ function checkIfInView(element){
                     resizeimgs($(this).parent(), $(this));
                 });
             }
-            // if ($('body').hasClass('page-template-floor_plans')) {
-            //     $btmval = $('.floorplans_tab').offset().top + $('.floorplans_tab').height() - $('.go_to_top_inpage').height();
-            //     $('.go_to_top_inpage').css({
-            //         'top': $btmval,
-            //         'right': 0
-            //     });
-            // }
             if ($('body').hasClass('home')) {
                 placesearchbar();
             }
@@ -358,11 +311,13 @@ function checkIfInView(element){
             $('.owl-carousel .owl-item .item a').addClass('poppup2'); //was image-popup-no-margins
             $('.owl-carousel .owl-controls .owl-buttons .owl-prev').html('<i class="fa fa-chevron-left"></i>');
             $('.owl-carousel .owl-controls .owl-buttons .owl-next').html('<i class="fa fa-chevron-right"></i>');
-            $('.owl-wrapper').magnificPopup({
-                delegate: 'a',
-                type: 'iframe',
-                mainClass: 'mfp-fade'
-            });
+            //--------------------------------------------------------------------------
+            //-------don't remove this set of comments - required for testimonials popup
+            // $('.owl-wrapper').magnificPopup({
+            //     delegate: 'a',
+            //     type: 'iframe',
+            //     mainClass: 'mfp-fade'
+            // });
         }
         if ($('div').hasClass('cont_sp')) {
             $(document).on('click', '#ui-id-3', function(e) {
@@ -536,7 +491,24 @@ function checkIfInView(element){
         // $topval_home = $(window).height() - $('#after_widgets').offset().top - $('#after_widgets').height() - 43 - 47;
         // $('#after_widgets').css('top', $topval_home);
 
+
     });
+
+
+    //jQuery Readmore for services
+    function readmoreorless() {
+        $width = window.innerWidth ? window.innerWidth : $(window).width();
+        if ($width < 768 && $('div').hasClass('view_properties_rent')) {
+            $('.view_properties_rent .wpb_call_desc, .view_properties_resale .wpb_call_desc').readmore({
+                collapsedHeight: 73,
+                heightMargin: 22,
+                moreLink: '<a href="#">More</a>',
+                lessLink: '<a href="#">Less</a>'
+            });
+        } else {
+            $('.view_properties_rent .wpb_call_desc, .view_properties_resale .wpb_call_desc').readmore('destroy');
+        }
+    }
 
 
     function setEqualHeight(obj) {
@@ -568,6 +540,9 @@ function checkIfInView(element){
         //same height careers
         setEqualHeight($('.lisofwork .wpb_wrapper'));
 
+
+        readmoreorless();
+
     });
     $(window).resize(function() {
         //equal height amenities
@@ -581,6 +556,8 @@ function checkIfInView(element){
 
         //same height careers
         setEqualHeight($('.lisofwork .wpb_wrapper'));
+
+        readmoreorless();
 
 
         //set the height of map

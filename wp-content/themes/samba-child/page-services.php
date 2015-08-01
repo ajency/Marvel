@@ -97,10 +97,10 @@ Template Name: Page - Services
                 <!--Careers Bottom content-->
                 <div id="spn_services_div"></div>
                 <div class="go_to_top_inpage"></div>
-                <a class="enquiry_sideways">
+                <!-- <a class="enquiry_sideways">
                     <i></i>
                     Enquire Now
-                </a>
+                </a> -->
 
                 <div class="spacer-25"></div>
               <?php endwhile; /* End loop */ ?>

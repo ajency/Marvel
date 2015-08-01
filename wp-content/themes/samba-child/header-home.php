@@ -35,6 +35,11 @@
     Find your home
     <i class="close-btn"></i>
   </div>
+  <!-- <div class="hme_dd lo">
+    <select id="home_status2"  class="home_status">
+      <option value="" >Status</option>
+    </select>
+  </div> -->
   <div class="hme_dd wc">
     <select id="home_city2"  class="home_city">
       <option value="" >City</option>

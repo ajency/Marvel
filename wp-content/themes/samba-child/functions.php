@@ -82,14 +82,14 @@ function get_main_property_type_by_unit_type_id($unit_type_id){
 
         $property_type_option =  maybe_unserialize(get_option('residential-property-type'));
         $property_type_option_value = maybe_unserialize($property_type_option['property_types']);
- 
+
   //var_dump($property_type_option_value);
         foreach ($property_type_option_value as $key => $value) {
 
 
           if((int)$value['ID'] ==(int)$unit_type_id){
 
-          
+
             $property_type_details = array('property_type_name'         => $value['property_type'],
                                            'property_type_id'           => $value['ID'],
                                            'property_type_materialgroup'=> $value['material_group'],
@@ -123,7 +123,7 @@ function get_res_property_meta_values($property_id, $post_type){
 
     $property_unit_type_updated    = array();
     $property_unit_type_penthouses = array();
-    $property_unit_type_other      = array();    
+    $property_unit_type_other      = array();
 
     $property_meta_options = get_search_options($post_type);
 
@@ -146,7 +146,7 @@ function get_res_property_meta_values($property_id, $post_type){
       }
       }
      }
-    
+
 
 
     if(is_array($property_unit_type)){
@@ -161,9 +161,9 @@ function get_res_property_meta_values($property_id, $post_type){
        
        $property_unit_type_option_values = maybe_unserialize($property_unit_type_option['property_unit_types']);
 
-       //var_dump($property_unit_type_option_values);  
+       //var_dump($property_unit_type_option_values);
 
-       
+
 
 
        foreach ($property_unit_type as $key => $value) {
@@ -178,7 +178,7 @@ function get_res_property_meta_values($property_id, $post_type){
                     $value['no_bedrooms'] = $value_typeoption['number_bedrooms'] ;
 
                     $main_property_type = get_main_property_type_by_unit_type_id($value_typeoption['property_type_id']);
- 
+
 
                    $value = array_merge($value,$main_property_type);
                    $value['property_unit_type_display'] = $value['type_name']." ".$main_property_type['property_type_name'];
@@ -194,15 +194,15 @@ function get_res_property_meta_values($property_id, $post_type){
 
               }
 
-              
+
               if($value['layout_image']!=''){
 
                 $layout_image = wp_get_attachment_image_src($value['layout_image'],'full');
                 $layout_image_url = $layout_image[0];
                 $layout_image_filename =basename( get_attached_file( $value['layout_image'] ) );
 
-                $value['layout_image_data'] = array('ID'  => $value['layout_image'], 
-                                                    'url' => $layout_image_url, 
+                $value['layout_image_data'] = array('ID'  => $value['layout_image'],
+                                                    'url' => $layout_image_url,
                                                     'name'=> $layout_image_filename);
 
               }
@@ -213,25 +213,25 @@ function get_res_property_meta_values($property_id, $post_type){
                 $layout_pdf_url    = dirname( $parsed_pdf_file [ 'path' ] ) . '/' . rawurlencode( basename( $parsed_pdf_file[ 'path' ] ) );
                 $layout_pdf_filename =basename( get_attached_file( $value['layout_pdf'] ) );
 
-                $value['layout_pdf_data'] = array('ID'  => $value['layout_pdf'], 
-                                                  'url' => $layout_pdf_url, 
+                $value['layout_pdf_data'] = array('ID'  => $value['layout_pdf'],
+                                                  'url' => $layout_pdf_url,
                                                   'name'=> $layout_pdf_filename);
               }
 
-              $property_unit_type_updated[] = $value; 
+              $property_unit_type_updated[] = $value;
               /* if(stripos($value['type_name'], 'penthouse')!==false || stripos($value['type_name'], 'pent house')!==false ){
                  $property_unit_type_penthouses[] = $value;
               }
               else{
                 $property_unit_type_other[] = $value;
-              }*/  
-            
+              }*/
+
        }
 
     }
 
     $sortedproperty_unit_types = sort_multidimensional_array($property_unit_type_updated,'no_bedrooms');
-    
+
 
 
     $residential_property_meta_data = array('property_city'          => $property_cities,
@@ -309,10 +309,10 @@ function get_residential_properties_list($post_type){
 
         $room_data [ ] = $room->get_all_roomdata();
     }*/
-    
-      
+
+
         return $sel_properties;
-    
+
 }
 
 
@@ -410,17 +410,17 @@ function marvel_scripts_styles(){
 
      	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
       wp_enqueue_script('jquery_easing', get_stylesheet_directory_uri(). '/jquery.easing.1.3.js', array('jquery'), false, true);
-      
+
       wp_enqueue_script( 'imagesloaded_pkgd',  get_stylesheet_directory_uri() . '/imgfill/imagesloaded.pkgd.min.js', array('jquery'), false, true);
       wp_enqueue_script( 'jquery-imagefill',  get_stylesheet_directory_uri() . '/imgfill/jquery-imagefill.js', array('imagesloaded_pkgd'), false, true);
 
-
+      wp_enqueue_script( 'readmore',  get_stylesheet_directory_uri() . '/readmore.min.js', array('jquery'), false, true);
       wp_enqueue_script( 'slider',  get_stylesheet_directory_uri() . '/slider.js', array('jquery','imagesloaded_pkgd','jquery-imagefill'), false, true);
       wp_enqueue_script( 'collapsible',  get_stylesheet_directory_uri() . '/collapsible.js', array('jquery'), false, true);
       wp_enqueue_script( 'custom-js',  get_stylesheet_directory_uri() . '/js/custom-js.js', array('jquery'), false, true);
       wp_enqueue_script( 'underscore-js',  get_stylesheet_directory_uri() . '/dev/js/lib/underscore.min.js', array('jquery'), false, true);
-      
-      /* POP UP FORMIDABLE FIX 
+
+      /* POP UP FORMIDABLE FIX
       global $frm_settings;
       global $frm_vars;
       $version = FrmAppHelper::plugin_version();
@@ -455,7 +455,7 @@ function marvel_scripts_styles(){
 add_action('wp_enqueue_scripts', 'marvel_scripts_styles');
 
 
-  
+
 
 
 
@@ -472,11 +472,11 @@ add_action('wp_enqueue_scripts', 'marvel_scripts_styles');
 
 function sort_multidimensional_array($myArray,$sort_key){
 
- 
+
    usort($myArray, function($a, $b)  {
- 
+
     //echo '\n <br/> Compare '.$a[$sort_key].' with '. $b[$sort_key];
-    
+
 
     //return (float)$a['no_bedrooms'] - (float)$b['no_bedrooms'];
     if((float)$a['no_bedrooms'] > (float)$b['no_bedrooms'] )
