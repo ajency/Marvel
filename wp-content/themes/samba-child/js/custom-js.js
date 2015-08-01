@@ -885,7 +885,19 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
     })
 
 
+    if(jQuery('#current_property_title').length>0){
+        setTimeout(function(){
 
+          //console.log('LOADING SHARE BUTTON :-------------------------------------------')
+          //console.log(jQuery('#projects_listings').html())
+            var switchTo5x=true;
+           stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
+           stButtons.locateElements();
+
+          },300) 
+    }
+
+    
 
     jQuery('.popmake-popup-property-page').live('click',function(evt){
         evt.preventDefault(); 
