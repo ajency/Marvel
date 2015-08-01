@@ -120,6 +120,8 @@ jQuery('.home_city').live('change',function(){
   console.log('window.search_options.locality.localities........')
   console.log(window.search_options.locality.localities)
 
+  var selected_city = jQuery(this).val();
+
 
   var sorted_locality_options = [];
 
@@ -130,7 +132,11 @@ jQuery('.home_city').live('change',function(){
       _.each(sorted_locality_options,function(vl_cl,ky_cl){
             console.log(vl_cl);
             console.log('ky'+ky_cl)
-            if(jQuery('.home_city').val()==vl_cl.city_id){
+
+            console.log(':::::::::'+jQuery('.home_city').val()+'--------'+vl_cl.city_id)
+
+
+            if(selected_city==vl_cl.city_id){
 
                 jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
 

@@ -448,6 +448,8 @@
 
 
               map.setCenter(marker.getPosition()); //Center align the Marker
+            self.offsetCenter(map,map.getCenter(),-0,-100)
+
 infowindow.open(map,marker);
 
 
@@ -743,7 +745,7 @@ setTimeout(function(){
 //console.log('LOADING SHARE BUTTON :-------------------------------------------')
 //console.log(jQuery('#projects_listings').html())
   var switchTo5x=true;
- stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false});
+ stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
  stButtons.locateElements();
 
 },300)
@@ -894,6 +896,34 @@ setTimeout(function(){
 
               location.assign(RedirectUrl+search_opt) ;
 
+
+            },
+
+
+             offsetCenter:function(map,latlng,offsetx,offsety) {
+
+            // latlng is the apparent centre-point
+            // offsetx is the distance you want that point to move to the right, in pixels
+            // offsety is the distance you want that point to move upwards, in pixels
+            // offset can be negative
+
+            var scale = Math.pow(2, map.getZoom());
+            var nw = new google.maps.LatLng(
+                map.getBounds().getNorthEast().lat(),
+                map.getBounds().getSouthWest().lng()
+            );
+
+            var worldCoordinateCenter = map.getProjection().fromLatLngToPoint(latlng);
+            var pixelOffset = new google.maps.Point((offsetx/scale) || 0,(offsety/scale) ||0)
+
+            var worldCoordinateNewCenter = new google.maps.Point(
+                worldCoordinateCenter.x - pixelOffset.x,
+                worldCoordinateCenter.y + pixelOffset.y
+            );
+
+            var newCenter = map.getProjection().fromPointToLatLng(worldCoordinateNewCenter);
+
+            map.setCenter(newCenter);
 
             }
 
