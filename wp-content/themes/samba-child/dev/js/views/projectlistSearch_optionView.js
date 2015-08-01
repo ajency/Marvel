@@ -840,7 +840,13 @@ setTimeout(function(){
                             _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){
-                                    jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+vl_localities.name+"</option>")
+
+                                    var display_locality_name = vl_localities.name;
+                                    if(_.size(vl_localities.name)>14){
+                                      display_locality_name =  display_locality_name.substr(0, 13)+'...';
+
+                                    }
+                                    jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")
 
 
 

@@ -868,6 +868,20 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
         jQuery('#form_careers_applynow').find('#field_careers_hid_jobcategory').html(current_job_category)
 
  
+    }),
+
+    jQuery('.popmake-popup-property-list').live('click',function(evt){
+        evt.preventDefault(); 
+
+        if(jQuery(this).closest('.single_p_w').length>0){  // On REsidential properties listings page
+            var property_title = jQuery(this).closest('.single_p_w').attr('property-title'); 
+            
+            jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property_title)
+            jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)    
+        }
+        
+        
+
     })
 
 
