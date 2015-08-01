@@ -51,6 +51,7 @@ var featured_image = _.isUndefined(propertyvl.featured_image)? propertyvl.get('f
 var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'): propertyvl.post_url;
 var property_unit_type = _.isUndefined(propertyvl.property_unit_type)? propertyvl.get('property_unit_type'): propertyvl.property_unit_type;
 var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
+var property_display_unit_type = _.isUndefined(propertyvl.property_display_unit_type)? propertyvl.get('property_display_unit_type'): propertyvl.property_display_unit_type;
 
 var property_locality_name = _.isUndefined(propertyvl.property_locality_name)? propertyvl.get('property_locality_name'): propertyvl.property_locality_name;
 var property_city_name = _.isUndefined(propertyvl.property_city_name)? propertyvl.get('property_city_name'): propertyvl.property_city_name;
@@ -79,7 +80,7 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                         proptype_cnt++;
                     })
                     %>
-                    <%=current_property_unit_types%> </h6>
+                    <% /* current_property_unit_types */ %><%=property_display_unit_type %> </h6>
                     <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
                 </div>
 
