@@ -491,6 +491,7 @@ function checkIfInView(element){
         // $topval_home = $(window).height() - $('#after_widgets').offset().top - $('#after_widgets').height() - 43 - 47;
         // $('#after_widgets').css('top', $topval_home);
 
+        $('.child-footer').hide();
 
     });
 
