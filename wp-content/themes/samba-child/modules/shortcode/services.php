@@ -241,7 +241,7 @@ sort($uniq_no_of_bedrooms);
                                     <div class="wpb_wrapper img_hold">
                                         <div class="clearfix"></div>
                                         <div class="work_cont">
-                                            <img src="<?php echo $value_rent_resale['Image_File_Name']; ?>">
+                                            <img src="<?php echo site_url()."/wp-content/themes/samba-child/services-images/".$value_rent_resale['Image_File_Name']; ?>">
                                             <div class="forent_cap">Sample Flat</div>
                                         </div>
                                     </div>

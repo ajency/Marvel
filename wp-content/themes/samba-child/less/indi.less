@@ -1401,3 +1401,30 @@ ul.ui-tabs-nav {
         }
     }
 }
+
+
+//Sticky
+.sticky.go_to_top_inpage {
+    position: fixed;
+    bottom: 35px;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    .transition();
+    &.visigoth {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+.sticky.enquiry_sideways {
+    position: fixed;
+    bottom: 150px;
+    right: -65px;
+    opacity: 0;
+    visibility: hidden;
+    .transition();
+    &.visigoth {
+        opacity: 1;
+        visibility: visible;
+    }
+}
