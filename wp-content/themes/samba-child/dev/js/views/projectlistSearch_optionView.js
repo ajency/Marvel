@@ -740,63 +740,77 @@ infowindow.open(map,marker);
 
 
 
-setTimeout(function(){
+                  setTimeout(function(){
 
-//console.log('LOADING SHARE BUTTON :-------------------------------------------')
-//console.log(jQuery('#projects_listings').html())
-  var switchTo5x=true;
- stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
- stButtons.locateElements();
+                  //console.log('LOADING SHARE BUTTON :-------------------------------------------')
+                  //console.log(jQuery('#projects_listings').html())
+                    var switchTo5x=true;
+                   stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
+                   stButtons.locateElements();
 
-},300)
-
-
+                  },300) 
 
 
 
 
 
+                if(jQuery(".draggable").length>0){
+                    console.log('draggable')
+                    jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 120, left: 150 },
 
-        if(jQuery(".draggable").length>0){
-            console.log('draggable')
-            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 120, left: 150 },
-
-
-    start: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    },
-    stop: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    }
-
-
-        });
-        }
-        else{
-            console.log('no dragables')
-        }
-
-        /*this.mainView.make_div_dropable2(".drag_area")
+                        start: function(event, ui) {
+                            ui.helper.css({ height: 'auto', width: '300px' });
+                        },
+                        stop: function(event, ui) {
+                            ui.helper.css({ height: 'auto', width: '300px' });
+                        }
+                    });
+                }
+                else{
+                    console.log('no dragables')
+                }
 
 
 
 
+              if (jQuery('div').hasClass('project-list')) {
+               if (jQuery('div').hasClass('single_p_w')) {
+                   jQuery('.project-list.row .single_p_w').each(function() {
+                       //console.log('winscroll: ' + $(window).scrollTop() + ' this.offset: ' + $(this).offset().top);
+                       if (jQuery(window).scrollTop() < (jQuery(this).offset().top - 150) && jQuery(this).offset().top < (jQuery(window).scrollTop() + jQuery(window).height())) {
+                           console.log('adds class visi')
+                           jQuery(this).addClass('visigoth');
+                       } else {
+                           console.log('removes class visi')
+                           jQuery(this).removeClass('visigoth');
+                       }
+                   });
+               }
+              }
 
-        if(jQuery(".draggable").length>0){
-            console.log('draggable')
-            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
 
 
-         start: function(event, ui) {
-                ui.helper.css({ height: 'auto', width: '300px' });
-            },
-            stop: function(event, ui) {
-                ui.helper.css({ height: 'auto', width: '300px' });
-            }
+                /*this.mainView.make_div_dropable2(".drag_area")
 
 
-        });
-        } */
+
+
+
+                if(jQuery(".draggable").length>0){
+                    console.log('draggable')
+                    jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+
+
+                 start: function(event, ui) {
+                        ui.helper.css({ height: 'auto', width: '300px' });
+                    },
+                    stop: function(event, ui) {
+                        ui.helper.css({ height: 'auto', width: '300px' });
+                    }
+
+
+                });
+                } */
 
 
 
