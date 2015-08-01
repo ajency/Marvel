@@ -180,6 +180,8 @@
 
    display_map : function(){
 
+
+
     var self = this;
                 console.log('display map');;
 
@@ -208,8 +210,10 @@
                                    search_options['property_unit_type'] =  prop_type;
 
 
-
-                var res_collection = getAppInstance().commercialPropertyCollection  ;
+                if(self.post_type =='commercial-property')
+                    var res_collection = getAppInstance().commercialPropertyCollection  ;
+                 else  
+                  var res_collection = getAppInstance().residentialPropertyCollection  ;
 
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
@@ -677,9 +681,10 @@ infowindow.open(map,marker);
                                    search_options['property_unit_type'] =  prop_type;
 
 
-
-                var res_collection = getAppInstance().residentialPropertyCollection  ;
-
+                if(self.post_type =="commercial-property")                 
+                  var res_collection = getAppInstance().commercialPropertyCollection  ;
+                else 
+                  var res_collection = getAppInstance().residentialPropertyCollection  ;
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
 
