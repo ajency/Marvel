@@ -445,7 +445,7 @@ console.log(options) */
                                             '            <div class="wpb_wrapper img_hold">'+
                                             '                <div class="clearfix"></div>'+
                                             '                <div class="work_cont">'+
-                                            '                    <img src="'+servproperties_vl.Image_File_Name+'">'+
+                                            '                    <img src="'+site_url+"/wp-content/themes/samba-child/services-images/"+servproperties_vl.Image_File_Name+'">'+
                                             '                    <div class="forent_cap">Sample Flat</div>'+
                                             '                </div>'+
                                             '            </div>'+

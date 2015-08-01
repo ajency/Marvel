@@ -120,4 +120,8 @@ Template Name: Page - Services
     </div><!-- /#content -->
 </div><!-- #main_block -->
 </div>
+<script type="text/javascript" >
+  var site_url = "<?php echo site_url(); ?>"
+
+</script>
 <?php get_footer(); ?>
