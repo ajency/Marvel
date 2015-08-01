@@ -441,8 +441,10 @@ color: rgb(255, 255, 255);
 .vc_separator.smallline .vc_sep_holder .vc_sep_line {border-color: #D1D1D1;}
 .vc_separator.smallline {
     width: 100px;
-    margin: 40px auto;
-    margin-bottom: 34px;
+    /*margin: 40px auto;
+    margin-bottom: 34px;*/
+    margin: 20px auto;
+    margin-bottom: 52px;
 }
 
 .member_ul .six, .member_ul .three {
@@ -514,6 +516,7 @@ color: rgb(255, 255, 255);
 	color: #fff;
 }
 .colored .social_img_wrp {
+	margin-right: 0;
 	margin-bottom: 0;
 	float: none;
   	display: inline-block;
@@ -529,6 +532,8 @@ color: rgb(255, 255, 255);
 .prk_with_back.zocial.youtube:before 		{font-family: 'FontAwesome'; content: '\f16a';}
 .prk_with_back.zocial.googleplus:before 	{font-family: 'FontAwesome'; content: '\f0d4';}
 .prk_with_back.zocial.linkedin:before 		{font-family: 'FontAwesome'; content: '\f08c';}
+.prk_with_back.zocial.instagram:before 		{font-family: 'FontAwesome'; content: '\f16d';}
+.prk_with_back.zocial.pinterest:before 		{font-family: 'FontAwesome'; content: '\f0d2';}
 
 .child-footer > div > .widget-6 {
 	float: right;
@@ -770,6 +775,7 @@ color: rgb(255, 255, 255);
 }
 .wpb_call_to_action .wpb_call_desc {
 	color: #333;
+	text-align: justify;
 }
 .wpb_call_to_action .wpb_button_a span,
 .faq_search .sform_wrapper .icon-search {
@@ -929,6 +935,9 @@ color: rgb(255, 255, 255);
  	border-radius: 0;
 }
 .wpb_tab .wpb_content_element {
+    margin-bottom: 0;
+}
+.wpb_tab .wpb_content_element.vc_separator.smallline {
     margin-bottom: 28px;
 }
 /*@media only screen and (max-width: 836px) {
@@ -963,6 +972,21 @@ color: rgb(255, 255, 255);
 }
 
 
+.frm_style_formidable-style.with_frm_style .frm_form_field input,
+.frm_style_formidable-style.with_frm_style .frm_form_field textarea {
+	font-style: normal !important;
+	color: #999999 !important;
+}
+.frm_style_formidable-style.with_frm_style .frm_form_field input:active,
+.frm_style_formidable-style.with_frm_style .frm_form_field textarea:active,
+.frm_style_formidable-style.with_frm_style .frm_form_field input:focus,
+.frm_style_formidable-style.with_frm_style .frm_form_field textarea:focus,
+.frm_style_formidable-style.with_frm_style .frm_form_field select:active,
+.contact-cover.contact-inline .frm_form_field select:active,
+.frm_style_formidable-style.with_frm_style .frm_form_field select:focus,
+.contact-cover.contact-inline .frm_form_field select:focus {
+	color: #111 !important;
+}
 .contact-cover {
 	padding: 8px;
 }
@@ -970,8 +994,9 @@ color: rgb(255, 255, 255);
 	background-color: #EBEBEB;
 	margin-bottom: 15px;
 }
+.frm_style_formidable-style.with_frm_style .frm_form_field select,
 .contact-cover.contact-inline .frm_form_field select {
-	color: #111 !important;
+	color: #999 !important;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -1101,6 +1126,7 @@ color: rgb(255, 255, 255);
 .samba_bquote_wrapper .prk_blockquote .in_quote {
 	padding: 0;
 	color: #8c8c8c;
+	text-align: justify;
 }
 .samba_bquote_wrapper .prk_blockquote .prk_inner_tip, .samba_bquote_wrapper .prk_blockquote .tip_top_hide {display: none;}
 .samba_bquote_wrapper .pirenko_author.body_text_shadow {
@@ -1122,9 +1148,10 @@ color: rgb(255, 255, 255);
 	margin-top: 10px;
 }
 .nri_listy {
-	font-weight: 600;
+	font-weight: normal;
 	color: #808080;
     line-height: 28px;
+    font-size: 15px;
 }
 
 .nri_fullrow.prk_section.prk_full_width {
@@ -1275,6 +1302,7 @@ color: rgb(255, 255, 255);
 }
 .arconix-faq-content {
 /*    padding-left: 0;*/
+    text-align: justify;
 }
 .faq_head h4 {
     /*background: url(img/faq1.jpg) no-repeat left top 5px;*/
@@ -1496,6 +1524,9 @@ visibility:hidden;
 }
 .job_listings{
 border-top: none!important;
+}
+.job-description {
+	text-align: justify;
 }
 
 /*popup - popmake*/
