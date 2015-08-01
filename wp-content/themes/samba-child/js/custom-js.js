@@ -813,12 +813,21 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
 
     jQuery('.popmake-services-enquiry').live('click',function(){
 
-        var project_name    = jQuery(this).attr('project-name')
-        var building_floor  = jQuery(this).attr('building-floor')
-
+        var project_name    = jQuery(this).attr('project-name');
+        var building_floor  = jQuery(this).attr('building-floor');
+        var project_area    = jQuery(this).attr('project-area');
+        var project_rooms    = jQuery(this).attr('project-rooms');
 
         jQuery('#field_serv_cont_projectname').val(project_name);
         jQuery('#field_serv_cont_buildingfloor').val(building_floor)
+        jQuery('#field_serv_cont_type').val(project_rooms)
+        jQuery('#field_serv_cont_area').val(project_area)
+
+        jQuery('#form_frm_serv_contact').find('.serv-prj-title').html(project_name)
+        jQuery('#form_frm_serv_contact').find('.serv-prj-flr').html(building_floor)
+        jQuery('#form_frm_serv_contact').find('.serv-prj-type').html(project_rooms)
+        jQuery('#form_frm_serv_contact').find('.serv-prj-area').html(project_area)
+        
     })
 
 jQuery('.popmake-careers-apply-now').live('click',function(evt){
