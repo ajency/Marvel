@@ -175,7 +175,8 @@ function checkIfInView(element){
                 $('.home_search.popup').show();
             // }
         });
-        $(document).on('click', '.home_search.popup .searc_head i', function() {
+        $(document).on('click, touchstart', '.home_search.popup .searc_head i', function(e) {
+            e.preventDefault();
             $(this).parents('.popup').hide();
         });
 
@@ -258,8 +259,8 @@ function checkIfInView(element){
         $(window).load(function() {
             if ($('body').hasClass('home')) {
                 $hevp = window.innerHeight ? window.innerHeight : $(window).height();
-                resizeimgs($(window), $('.flexslider li img'));
                 $('.flexslider li').css('height', $hevp);
+                resizeimgs($(window), $('.flexslider li img'));
             }
             if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
                 $hevp = window.innerHeight ? window.innerHeight : $(window).height();

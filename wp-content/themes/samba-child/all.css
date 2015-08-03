@@ -424,6 +424,16 @@ h6 {
   margin-top: 0 !important;
   margin-left: -50% !important;
 }
+@media screen and (max-width: 769px) {
+  .flexslider li img {
+    height: 100% !important;
+    width: auto !important;
+    left: 50% !important;
+    margin-left: -50% !important;
+    top: 0 !important;
+    margin-top: 0 !important;
+  }
+}
 #full-screen-background-image {
   max-width: 200% !important;
   min-width: 100%;
