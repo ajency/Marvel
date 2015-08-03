@@ -1654,3 +1654,18 @@ border-top: none!important;
 		display: none;
 	}
 }
+
+* select::-ms-expand {
+    display: none !important;
+}
+.frm_style_formidable-style.with_frm_style .frm_message {
+	border-radius: 0;
+	padding: 8px 15px;
+	line-height: normal;
+	background: #fff;
+	border-color: rgba(116, 179, 15, 0.26);
+	color: #74b30f;
+}
+.frm_style_formidable-style.with_frm_style .frm_message p {
+	margin-bottom: 0;
+}
