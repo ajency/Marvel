@@ -101,6 +101,30 @@
                         }
 
 
+
+
+
+
+ 
+                         
+              if(jQuery('#dd_status').val().toLowerCase()=='completed'){
+                jQuery('.top-compar').hide();
+                jQuery('#projects_listings').addClass('completed_status_projects')
+              }
+              else{
+                jQuery('.top-compar').show();
+                jQuery('#projects_listings').removeClass('completed_status_projects')
+
+              }
+
+
+
+
+
+
+
+
+
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
                         getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
                         getAppInstance().residentialPropertyCollection.fetch({
@@ -882,6 +906,16 @@ infowindow.open(map,marker);
                 var prop_locality   = jQuery('#dd_locality').val();
                 var prop_type       = jQuery('#dd_type').val();
 
+
+              if(prop_status.toLowerCase()=='completed'){
+                jQuery('.top-compar').hide();
+                jQuery('#projects_listings').addClass('completed_status_projects')
+              }
+              else{
+                jQuery('.top-compar').show();
+                jQuery('#projects_listings').removeClass('completed_status_projects')
+
+              }
 
               if(!_.isUndefined(prop_status) && prop_status !='' )
                 search_opt = search_opt + '/st/'+prop_status;
