@@ -27,8 +27,8 @@
 }
 
 #full_fi_c img {
-    width: 100%;
     max-width: none;
+    width: 100%;
     height: auto;
     &.heightadjust {
         position: absolute;
@@ -36,12 +36,13 @@
         max-width: none;
         height: 100% !important;
         left: 50%;
+        margin-left: -50%;
         z-index: 1;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
+        // -webkit-transform: translateX(-50%);
+        // -moz-transform: translateX(-50%);
+        // -ms-transform: translateX(-50%);
+        // -o-transform: translateX(-50%);
+        // transform: translateX(-50%);
     }
 }
 .no-csstransforms #full_fi_c img.heightadjust {

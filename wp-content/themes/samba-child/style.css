@@ -302,6 +302,11 @@ color: rgb(255, 255, 255);
 	background-position: right 10px center;
 	background-repeat: no-repeat;
 }
+.home_search .hme_dd select:active,
+.home_search .hme_dd select:focus {
+	border-color: #66afe9;
+	box-shadow: 0 0 3px 0 #66afe9;
+}
 .home_search .hme_dd.wc select {
 	width: 135px;
 	padding-left: 30px;
@@ -1596,6 +1601,7 @@ border-top: none!important;
 /*New feedback corrections*/
 .my-mfp-zoom-in.mfp-ready.mfp-bg {opacity: 0.8 !important;}
 
+
 @media screen and (max-width: 769px) {
 	.admin-bar #prk_responsive_menu.at_top,
 	 #prk_responsive_menu.at_top {
@@ -1614,6 +1620,10 @@ border-top: none!important;
 	}
 	#prk_responsive_menu.at_top.nav-down {
 		top: 0 !important;
+	}
+
+	.my-mfp-zoom-in.mfp-ready .mfp-content {
+		margin-top: 35px;
 	}
 }
 
