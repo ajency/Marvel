@@ -165,6 +165,11 @@ h6 {
   padding-right: 0;
   position: absolute;
   overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  background-attachment: center center;
+  background-repeat: no-repeat;
 }
 .service .forent .partintro .img_hold .forent_cap {
   position: absolute;

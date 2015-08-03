@@ -10,18 +10,18 @@ function  services_properties_rent_resale(){
 
     $rent_cost_header = "Cost";
 
-    
-  
-     
- 
+
+
+
+
     $pids                    = array();
     $all_cities              = array();
     $all_areas               = array();
     $all_no_of_bedrooms      = array();
     $all_punecity_localities = array();
-    $all_punecity_bedrooms   = array(); 
+    $all_punecity_bedrooms   = array();
 
- 
+
     foreach ($res_get_rent_resale_data as $result_data) {
         $all_cities[]           = $result_data['City'];
         $all_areas[]            = $result_data['Area'];
@@ -47,7 +47,7 @@ function  services_properties_rent_resale(){
 
         if(strtolower($value_)=="pune")
             $pune_city_property_exists = true ;
-        
+
     }
 
 //$res = array_search(strtolower('Pune'), array_map('strtolower', $uniq_cities));
@@ -62,7 +62,7 @@ if($pune_city_property_exists==true){
 
     $qry_count_properties = " SELECT  count(DISTINCT Project_Name) as pune_city_cnt FROM ".$table_name."  WHERE City ='Pune' and type = 'resale'  ";
     $city_properties_cnt = $wpdb->get_var($qry_count_properties);
-}    
+}
 else {
 
 sort($uniq_areas);
@@ -74,7 +74,7 @@ sort($uniq_no_of_bedrooms);
     $qry_count_properties = " SELECT  count(DISTINCT Project_Name) as pune_city_cnt FROM ".$table_name."  WHERE   type = 'resale'  ";
     $city_properties_cnt = $wpdb->get_var($qry_count_properties);
 }
-    
+
 
 ?>
 
@@ -93,7 +93,7 @@ sort($uniq_no_of_bedrooms);
                      <span class="vc_sep_holder vc_sep_holder_l">
                         <span class="vc_sep_line"></span>
                     </span>
-                    <h4>Properties on Resale</h4> 
+                    <h4>Properties on Resale</h4>
                     <span class="vc_sep_holder vc_sep_holder_r">
                         <span class="vc_sep_line"></span>
                     </span>
@@ -221,7 +221,7 @@ sort($uniq_no_of_bedrooms);
                                                        <?php if($value_rent_resale['Rental_Value_Furnished']!=''){ ?> <big><?php echo $value_rent_resale['Rental_Value_Furnished']; ?></big><small> - Furnished</small><?php } ?>
                                                     </div>
                                                     <div class="set alrt">
-                                                        <a href="#" class="wpb_button enq_ico"><span project-name="<?php echo $current_project; ?>" project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"   
+                                                        <a href="#" class="wpb_button enq_ico"><span project-name="<?php echo $current_project; ?>" project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"
                                                             building-floor="<?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?>" class="wpb_button wpb_btn-inverse wpb_regularsize popmake-services-enquiry"></span></a>
                                                     </div>
                                                 </div>
@@ -238,10 +238,10 @@ sort($uniq_no_of_bedrooms);
                         <div class="prk_inner_block vc_row-fluid centered columns forent">
                             <div class="row partintro">
                                 <div class="vc_col-sm-12 wpb_column vc_column_container bgrey">
-                                    <div class="wpb_wrapper img_hold">
+                                    <div class="wpb_wrapper img_hold" style="background-image: url(<?php echo site_url()."/wp-content/themes/samba-child/services-images/".$value_rent_resale['Image_File_Name']; ?>);">
                                         <div class="clearfix"></div>
                                         <div class="work_cont">
-                                            <img src="<?php echo site_url()."/wp-content/themes/samba-child/services-images/".$value_rent_resale['Image_File_Name']; ?>">
+                                            <!-- <img src="<?php //echo site_url()."/wp-content/themes/samba-child/services-images/".$value_rent_resale['Image_File_Name']; ?>"> -->
                                             <div class="forent_cap">Sample Flat</div>
                                         </div>
                                     </div>
@@ -302,7 +302,7 @@ sort($uniq_no_of_bedrooms);
                                                        <?php if($value_rent_resale['Rental_Value_Furnished']!=''){ ?> <big><?php echo $value_rent_resale['Rental_Value_Furnished']; ?></big><small> - Furnished</small><?php } ?>
                                                     </div>
                                                     <div class="set alrt">
-                                                        <a href="#" class="wpb_button enq_ico"><span  project-name="<?php echo $current_project; ?>"  project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"   
+                                                        <a href="#" class="wpb_button enq_ico"><span  project-name="<?php echo $current_project; ?>"  project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"
                                                         building-floor="<?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?>"  class="wpb_button wpb_btn-inverse wpb_regularsize  popmake-services-enquiry"></span></a>
                                                     </div>
                                                 </div>
@@ -409,4 +409,4 @@ function get_services_properties_ajx(){
 add_action( 'wp_ajax_get_services_properties_ajx', 'get_services_properties_ajx' );
 add_action('wp_ajax_nopriv_get_services_properties_ajx', 'get_services_properties_ajx');
 
- 
+
