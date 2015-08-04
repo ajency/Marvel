@@ -37,17 +37,20 @@
 }
 
 .project-list.row .single_p_w {
-    position: relative;
+    // position: relative;
     opacity: 0;
-    visibility: hidden;
-    .transition();
-    &:nth-child(n) {right: -50px;}
-    &:nth-child(2n) {left: -50px;}
+    // .transition();
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    // &:nth-child(n) {margin-right: -50px; margin-left: 0;}
+    // &:nth-child(2n) {margin-left: -50px; margin-right: 0;}
     &.visigoth {
         opacity: 1;
-        visibility: visible;
-        &:nth-child(n) {right: 0;}
-        &:nth-child(2n) {left: 0;}
+        // &:nth-child(n) {margin-right: 0; margin-left: 0;}
+        // &:nth-child(2n) {margin-left: 0; margin-right: 0;}
     }
 }
 
@@ -95,7 +98,7 @@
         }
     }
     [class*="column"]+[class*="column"]:last-child {
-        float: left;
+        float: left !important;
     }
     .top-dd-c {
         background: @grey-bg;
@@ -761,5 +764,19 @@
         border-left-color: #afafaf;
         height: 33px;
         cursor: pointer;
+    }
+}
+
+//Form popup in list page
+.popmake .frm_forms.with_frm_style.frm_style_formidable-style .frm_form_fields .form-in-popup-has-width .frm_form_field.form-field {
+    width: 67%;
+    @media screen and (max-width: 769px) {
+        width: 100%;
+    }
+}
+.popmake.responsive {
+    @media screen and (max-width: 480px) {
+        width: 100%;
+        left: 0 !important;
     }
 }

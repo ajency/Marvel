@@ -377,6 +377,14 @@ function marvel_scripts_styles(){
 
     // if(is_page_template()== 'project_list_new.php'){
 
+  
+
+  $property = array();
+  if(is_single()){
+    $property['id'] = get_the_id();
+    $property['title'] = get_the_title();
+  }
+
      	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
       wp_enqueue_script('jquery_easing', get_stylesheet_directory_uri(). '/jquery.easing.1.3.js', array('jquery'), false, true);
 
@@ -387,15 +395,16 @@ function marvel_scripts_styles(){
       wp_enqueue_script( 'slider',  get_stylesheet_directory_uri() . '/slider.js', array('jquery','imagesloaded_pkgd','jquery-imagefill'), false, true);
       wp_enqueue_script( 'collapsible',  get_stylesheet_directory_uri() . '/collapsible.js', array('jquery'), false, true);
       wp_enqueue_script( 'custom-js',  get_stylesheet_directory_uri() . '/js/custom-js.js', array('jquery'), false, true);
+      wp_localize_script( 'custom-js', 'property', $property );
       wp_enqueue_script( 'underscore-js',  get_stylesheet_directory_uri() . '/dev/js/lib/underscore.min.js', array('jquery'), false, true);
 
-      /* POP UP FORMIDABLE FIX
+      //POP UP FORMIDABLE FIX
       global $frm_settings;
       global $frm_vars;
       $version = FrmAppHelper::plugin_version();
       wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
       wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
-      */
+      
 
 
 /*

@@ -137,6 +137,11 @@ h1, h2, h3, h4, h5, h6 {
                 padding-right: 0;
                 position: absolute;
                 overflow: hidden;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                background-size: cover;
+                background-attachment: center center;
+                background-repeat: no-repeat;
                 .forent_cap {
                     position: absolute;
                     bottom: 15px;
@@ -151,8 +156,8 @@ h1, h2, h3, h4, h5, h6 {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    height: 110%;
-                    width: auto;
+                    height: auto;
+                    width: 120%;
                     max-width: none;
                 }
             }
@@ -343,11 +348,51 @@ h1, h2, h3, h4, h5, h6 {
     width: auto !important;
 }
 .flexslider li img {
-    max-width: 220% !important;
-    min-width: 100%;
-    min-height: 100%;
+    // max-width: 220% !important;
+    // min-width: 100%;
+    // min-height: 100%;
+    // height: auto !important;
+    // margin-left: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    min-width: 0;
+    min-height: 0;
+    width: 100% !important;
     height: auto !important;
     margin-left: 0 !important;
+    margin-top: 0 !important;
+    position: absolute;
+    left: 0 !important;
+    top: 0 !important;
+    // top: 50% !important;
+    margin-left: 0 !important;
+    // margin-top: -40% !important;
+    // -webkit-transform: translateY(-50%);
+    // -moz-transform: translateY(-50%);
+    // -ms-transform: translateY(-50%);
+    // -o-transform: translateY(-50%);
+    // transform: translateY(-50%);
+    &.heightadjust {
+        height: 100% !important;
+        width: auto !important;
+        // left: 50% !important;
+        // top: 0 !important;
+        // margin-top: 0 !important;
+        // margin-left: -50% !important;
+        // -webkit-transform: translateX(-50%);
+        // -moz-transform: translateX(-50%);
+        // -ms-transform: translateX(-50%);
+        // -o-transform: translateX(-50%);
+        // transform: translateX(-50%);
+    }
+    @media screen and (max-width: 769px) {
+        height: 100% !important;
+        width: auto !important;
+        left: 50% !important;
+        margin-left: -50% !important;
+        top: 0 !important;
+        margin-top: 0 !important;
+    }
 }
 #full-screen-background-image {
     max-width: 200% !important;
@@ -399,6 +444,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #menu_section {
     width: 240px;
+    display: block;
     .nav-wrap .sf-menu>li {width: 240px;}
 }
 #prk_ajax_container {margin-left: 240px; left: 0 !important;}
@@ -583,6 +629,8 @@ h1, h2, h3, h4, h5, h6 {
         top: 15px;
         right: 15px;
         .spinner-icon {
+            border-top-color: #66afe9 !important;
+            border-left-color: #66afe9 !important;
             width: 20px;
             height: 20px;
             border: solid 2px transparent;
