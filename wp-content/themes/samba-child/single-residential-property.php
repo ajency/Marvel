@@ -46,9 +46,20 @@
     }
   //NEVER SHOW SIDEBAR
   $show_sidebar=false;
+
+ $current_page_title = ''; 
+ Global $wp_query;
+ $current_page_id = $wp_query->get_queried_object_id();
+ $current_page_title= get_the_title($current_page_id);
+ $current_property_url = site_url().'/ResidentialProperties/'. $current_page_title;
+ $current_property_featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($current_page_id), 'thumbnail'  );
+
+
 ?>
 <div id="centered_block" class="row">
 <div id="main_block" class="block_with_sections hideTitle page-<?php echo get_the_ID(); ?>">
+
+<input type="hidden" name="current_property_title" id="current_property_title" value="<?php echo $current_page_title; ?>"  />
     <div id="full_fi_c">
         <div class="full_fi_title">
             <p class="f_f_t">
@@ -133,6 +144,9 @@
                 <?php wp_link_pages(array('before' => '<nav class="pagination">', 'after' => '</nav>')); ?>
                 <div class="clearfix"></div>
 
+                <div class="go_to_top_inpage sticky"></div>
+                <a class="enquiry_sideways sticky popmake-popup-property-page"><i></i>Enquire Now</a>
+
                 <div class="go_to_top_inpage"></div>
                 <!-- <div class="go_to_top_inpage ab_amen"></div>
                 <div class="go_to_top_inpage ab_spec"></div>
@@ -142,7 +156,7 @@
                 <a class="enquiry_sideways ab_spec2 popmake-popup-property-page"><i></i>Enquire Now</a>
                 <a class="enquiry_sideways ab_resi2 popmake-popup-property-page"><i></i>Enquire Now</a> -->
 
-                <div class="share_indi"></div>
+                <div class="share_indi"><span class='st_sharethis' st_image="<?php echo $current_property_featured_image_thumbnail[0];?>"   st_url="<?php echo $current_property_url;?>" st_title="<?php echo $current_page_title;?>"  ></span></div>
 
                 </div>
               <?php endwhile; /* End loop */ ?>

@@ -419,6 +419,7 @@ function myplugin_add_custom_box() {
     $screens = array( 'residential-property', 'commercial-property' );
     foreach ( $screens as $screen ) {
 
+
     		$custom_fields = array();
     		$custom_field_address = array();
 
@@ -452,6 +453,17 @@ function myplugin_add_custom_box() {
 	    							  'class'				=>'',
 	    							  'priority'			=> 'default'
 	    							);
+
+	    	$custom_fields[] = array('field'				=> 'property-display-unit-type',
+	    							  'metabox_title'		=> 'Display Property Unit Type',
+	    							  'element_type'		=> 'text',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>'',
+	    							  'priority'			=> 'default'
+	    							);
+
+
 
 	    	$custom_fields[] = array('field'				=> 'property-city',
 	    							  'metabox_title'		=> 'City',
@@ -664,6 +676,15 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
                                 generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_plant_id, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
                                 break;
+        case 'property-display-unit-type':
+                                $property_display_unit_types = array();
+                                $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "property-display-unit-type", true));
+
+                                $edit_options_values = false;
+                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_plant_id, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+
+                                break;
+
 
     	case 'property-unit-type' :
     							if($current_post_type=="residential-property"){
@@ -806,7 +827,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
         case 'property-siteplan':
                                 $property_price = array();
-                                $current_property_meta_value =    get_post_meta($post->ID, "property-price", true);
+                                $current_property_meta_value =    get_post_meta($post->ID, "custom_property-siteplan", true);
                                 $edit_options_values = false ;
 
                                 generate_custom_field_element($post, 'file', $multiple_values, 'custom_'.$custom_field_type,  $property_price, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
@@ -2015,6 +2036,9 @@ function save_custom_meta_box($post_id, $post, $update)
 
 		$sel_property_plant_id = $_REQUEST["custom_property-plant-id"];
 
+		$sel_property_display_unit_type = $_REQUEST["custom_property-display-unit-type"];
+
+
 		$sel_property_unit_type = $_REQUEST["cust_prop_type_select"];
 		$sel_property_city = $_REQUEST["custom_property-city"];
 		$sel_property_status = $_REQUEST["custom_property-status"];
@@ -2422,6 +2446,7 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
         update_post_meta($post_id, "property-plant-id", $sel_property_plant_id);
+        update_post_meta($post_id, "property-display-unit-type", $sel_property_display_unit_type);
 		update_post_meta($post_id, "property-city", $sel_property_city);
 		update_post_meta($post_id, "property-status", $sel_property_status);
 		update_post_meta($post_id, "property-locality", $sel_property_locality);

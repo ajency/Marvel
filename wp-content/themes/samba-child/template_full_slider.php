@@ -138,7 +138,13 @@ jQuery('.home_city').live('change',function(){
 
             if(selected_city==vl_cl.city_id){
 
-                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
+               var display_locality_name = vl_cl.name;
+                if(_.size(vl_cl.name)>14){
+                  display_locality_name =  display_locality_name.substr(0, 13)+'...';
+
+                }
+
+                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
 
             } 
        })
@@ -168,7 +174,23 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
   }
 
 
-  window.location.href = search_url;
+
+  var width = window.innerWidth ? window.innerWidth : jQuery(window).width();
+
+  //console.log(jQuery(this).hasClass('popup')+'  ::::::::: '+width+'  ########  '+jQuery(this).hasClass('home_btn_sea'))
+  
+  if (!(jQuery(this).hasClass('popup')) ) {
+
+      if( (width >= 768 && jQuery(this).hasClass('home_btn_sea'))  || (width < 768 && jQuery(this).hasClass('home_btn_sea2')) ){
+            window.location.href = search_url;
+      }
+
+        
+  }
+
+   
+
+  
 
 
 })

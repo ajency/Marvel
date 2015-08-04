@@ -102,6 +102,30 @@
                         }
 
 
+
+
+
+
+ 
+                         
+              if(jQuery('#dd_status').val().toLowerCase()=='completed'){
+                jQuery('.top-compar').hide();
+                jQuery('#projects_listings').addClass('completed_status_projects')
+              }
+              else{
+                jQuery('.top-compar').show();
+                jQuery('#projects_listings').removeClass('completed_status_projects')
+
+              }
+
+
+
+
+
+
+
+
+
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
                       //alert(this.post_type) 
                        if(this.post_type=='residential-property') {
@@ -758,63 +782,77 @@ infowindow.open(map,marker);
 
 
 
-setTimeout(function(){
+                  setTimeout(function(){
 
-//console.log('LOADING SHARE BUTTON :-------------------------------------------')
-//console.log(jQuery('#projects_listings').html())
-  var switchTo5x=true;
- stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
- stButtons.locateElements();
+                  //console.log('LOADING SHARE BUTTON :-------------------------------------------')
+                  //console.log(jQuery('#projects_listings').html())
+                    var switchTo5x=true;
+                   stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
+                   stButtons.locateElements();
 
-},300)
-
-
+                  },300) 
 
 
 
 
 
+                if(jQuery(".draggable").length>0){
+                    console.log('draggable')
+                    jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 120, left: 150 },
 
-        if(jQuery(".draggable").length>0){
-            console.log('draggable')
-            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 120, left: 150 },
-
-
-    start: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    },
-    stop: function(event, ui) {
-        ui.helper.css({ height: 'auto', width: '300px' });
-    }
-
-
-        });
-        }
-        else{
-            console.log('no dragables')
-        }
-
-        /*this.mainView.make_div_dropable2(".drag_area")
+                        start: function(event, ui) {
+                            ui.helper.css({ height: 'auto', width: '300px' });
+                        },
+                        stop: function(event, ui) {
+                            ui.helper.css({ height: 'auto', width: '300px' });
+                        }
+                    });
+                }
+                else{
+                    console.log('no dragables')
+                }
 
 
 
 
+              if (jQuery('div').hasClass('project-list')) {
+               if (jQuery('div').hasClass('single_p_w')) {
+                   jQuery('.project-list.row .single_p_w').each(function() {
+                       //console.log('winscroll: ' + $(window).scrollTop() + ' this.offset: ' + $(this).offset().top);
+                       if (jQuery(window).scrollTop() < (jQuery(this).offset().top - 150) && jQuery(this).offset().top < (jQuery(window).scrollTop() + jQuery(window).height())) {
+                           console.log('adds class visi')
+                           jQuery(this).addClass('visigoth');
+                       } else {
+                           console.log('removes class visi')
+                           jQuery(this).removeClass('visigoth');
+                       }
+                   });
+               }
+              }
 
-        if(jQuery(".draggable").length>0){
-            console.log('draggable')
-            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
 
 
-         start: function(event, ui) {
-                ui.helper.css({ height: 'auto', width: '300px' });
-            },
-            stop: function(event, ui) {
-                ui.helper.css({ height: 'auto', width: '300px' });
-            }
+                /*this.mainView.make_div_dropable2(".drag_area")
 
 
-        });
-        } */
+
+
+
+                if(jQuery(".draggable").length>0){
+                    console.log('draggable')
+                    jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+
+
+                 start: function(event, ui) {
+                        ui.helper.css({ height: 'auto', width: '300px' });
+                    },
+                    stop: function(event, ui) {
+                        ui.helper.css({ height: 'auto', width: '300px' });
+                    }
+
+
+                });
+                } */
 
 
 
@@ -858,7 +896,13 @@ setTimeout(function(){
                             _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){
-                                    jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+vl_localities.name+"</option>")
+
+                                    var display_locality_name = vl_localities.name;
+                                    if(_.size(vl_localities.name)>14){
+                                      display_locality_name =  display_locality_name.substr(0, 13)+'...';
+
+                                    }
+                                    jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")
 
 
 
@@ -880,6 +924,16 @@ setTimeout(function(){
                 var prop_locality   = jQuery('#dd_locality').val();
                 var prop_type       = jQuery('#dd_type').val();
 
+
+              if(prop_status.toLowerCase()=='completed'){
+                jQuery('.top-compar').hide();
+                jQuery('#projects_listings').addClass('completed_status_projects')
+              }
+              else{
+                jQuery('.top-compar').show();
+                jQuery('#projects_listings').removeClass('completed_status_projects')
+
+              }
 
               if(!_.isUndefined(prop_status) && prop_status !='' )
                 search_opt = search_opt + '/st/'+prop_status;

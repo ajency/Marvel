@@ -29,13 +29,19 @@
             evt.preventDefault();
 
             var target_ele = jQuery(evt.target);
-             target_ele.closest('.drag_area').attr('property-id','') 
+
+            var property_id = target_ele.closest('.drag_area').attr('property-id');
+             
 
             //var prop_id = target_ele.closest('.drag_area').attr('property_id');
 
             target_ele.closest('.drag_area_block2').find('.btn_compare').attr('href','javascript:void(0)').addClass('disabled');
             
             target_ele.closest('.drag_area').html('Drag for Comparision').removeClass('after_drag')
+
+            jQuery('.single_p_w[property-id="'+property_id+'"]').find('.compare').remove();
+
+            target_ele.closest('.drag_area').attr('property-id','') 
  
            
 

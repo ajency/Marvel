@@ -36,6 +36,21 @@
     }
 }
 
+.project-list.row .single_p_w {
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+    .transition();
+    &:nth-child(n) {right: -50px;}
+    &:nth-child(2n) {left: -50px;}
+    &.visigoth {
+        opacity: 1;
+        visibility: visible;
+        &:nth-child(n) {right: 0;}
+        &:nth-child(2n) {left: 0;}
+    }
+}
+
 // .proj_list {
     @media screen and (max-width: 769px) {
         // padding-top: 50px;

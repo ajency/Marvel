@@ -445,7 +445,7 @@ console.log(options) */
                                             '            <div class="wpb_wrapper img_hold">'+
                                             '                <div class="clearfix"></div>'+
                                             '                <div class="work_cont">'+
-                                            '                    <img src="'+servproperties_vl.Image_File_Name+'">'+
+                                            '                    <img src="'+site_url+"/wp-content/themes/samba-child/services-images/"+servproperties_vl.Image_File_Name+'">'+
                                             '                    <div class="forent_cap">Sample Flat</div>'+
                                             '                </div>'+
                                             '            </div>'+
@@ -641,7 +641,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
     function show_nearby_properties(){
         console.log('show nearby properties')
 
-        if(jQuery('.spn_nearby_properties').find('.wpb_call_desc').length>0){
+        if(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
 
             console.log('window residential_properties')
             console.log(window.residential_properties)
@@ -813,12 +813,116 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
 
     jQuery('.popmake-services-enquiry').live('click',function(){
 
-        var project_name    = jQuery(this).attr('project-name')
-        var building_floor  = jQuery(this).attr('building-floor')
-
+        var project_name    = jQuery(this).attr('project-name');
+        var building_floor  = jQuery(this).attr('building-floor');
+        var project_area    = jQuery(this).attr('project-area');
+        var project_rooms    = jQuery(this).attr('project-rooms');
 
         jQuery('#field_serv_cont_projectname').val(project_name);
         jQuery('#field_serv_cont_buildingfloor').val(building_floor)
+        jQuery('#field_serv_cont_type').val(project_rooms)
+        jQuery('#field_serv_cont_area').val(project_area)
+
+        jQuery('#form_frm_serv_contact').find('.serv-prj-title').html(project_name)
+        jQuery('#form_frm_serv_contact').find('.serv-prj-flr').html(building_floor)
+        jQuery('#form_frm_serv_contact').find('.serv-prj-type').html(project_rooms)
+        jQuery('#form_frm_serv_contact').find('.serv-prj-area').html(project_area)
+        
     })
+
+jQuery('.popmake-careers-apply-now').live('click',function(evt){
+
+
+        evt.preventDefault();        
+        var job_list_classes = jQuery(this).closest('li').attr('class');      
+
+        var jobtype_class_arr = []
+        job_list_classes_arr = job_list_classes.split(' ');
+
+        _.each(job_list_classes_arr,function(jobclass_vl,jobclass_ky){
+            if(jobclass_vl.indexOf('job-type')==0){
+                var jobtype_class = jobclass_vl;
+                jobtype_class_arr =  jobtype_class.split('-') 
+            }
+        })
+
+        var current_job_category ='';
+        var current_job_name ='';
+
+        console.log('jobtype_class_arr')
+        console.log(jobtype_class_arr)
+
+        if(_.size(jobtype_class_arr)==3)
+            current_job_category = jobtype_class_arr[2]; 
+
+        if(jQuery(this).closest('li').find('.job-name').length>0)
+            current_job_name  =  jQuery(this).closest('li').find('.job-name').html() 
+
+        
+        jQuery('#form_careers_applynow').find('.job-title-text').html(current_job_name);
+
+        jQuery('#form_careers_applynow').find('.job-category-text').html(' ('+current_job_category+')')
+
+        jQuery('#form_careers_applynow').find('#field_careers_hid_jobtitle').html(current_job_name);
+
+        jQuery('#form_careers_applynow').find('#field_careers_hid_jobcategory').html(current_job_category)
+
+ 
+    }),
+
+    jQuery('.popmake-popup-property-list').live('click',function(evt){
+        evt.preventDefault(); 
+
+        if(jQuery(this).closest('.single_p_w').length>0){  // On REsidential properties listings page
+            var property_title = jQuery(this).closest('.single_p_w').attr('property-title'); 
+            
+            jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property_title)
+            jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)    
+        }
+        
+        
+
+    })
+
+
+    if(jQuery('#current_property_title').length>0){
+        setTimeout(function(){
+
+          //console.log('LOADING SHARE BUTTON :-------------------------------------------')
+          //console.log(jQuery('#projects_listings').html())
+            var switchTo5x=true;
+           stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
+           stButtons.locateElements();
+
+          },300) 
+    }
+
+    
+
+    jQuery('.popmake-popup-property-page').live('click',function(evt){
+        evt.preventDefault(); 
+
+         if(jQuery('#form_frm_individual_proj_popup').length>0){
+
+            var current_prperty_title = jQuery('#current_property_title').val();
+            jQuery('#frm_individual_proj_popup').find('#field_individual_popup_project').val(current_prperty_title)
+         }
+        
+        
+
+    })
+
+
+
+
+    if( jQuery('#form_frm_individual_project_contact').length>0 ){
+        
+        if(jQuery('#field_indi_hid_project_name').length>0){
+
+            var current_prperty_title = jQuery('#current_property_title').val();
+            jQuery('#field_indi_hid_project_name').val(current_prperty_title);
+        }
+    }
+
 
 });

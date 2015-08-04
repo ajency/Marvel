@@ -47,34 +47,44 @@ function checkIfInView(element){
 
         //Adding go to top btns in single property page
         $(window).load(function() {
-            if ($('div').hasClass('tab-section')) {
-                $('.tab-section').each(function() {
-                    console.log($(this).text().trim() + ': ' + $(this).offset().top);
+            if ($('div').hasClass('sticky')) {
+                $(window).on('scroll', function() {
+                    $stopperheight = $(document).height() - ($(window).height() * 2);
+                    if ($(window).scrollTop() > ($(window).height() / 2) && $(window).scrollTop() < $stopperheight) {
+                        $('.sticky.go_to_top_inpage').addClass('visigoth');
+                        $('.sticky.enquiry_sideways').addClass('visigoth');
+                    } else {
+                        $('.sticky.go_to_top_inpage').removeClass('visigoth');
+                        $('.sticky.enquiry_sideways').removeClass('visigoth');
+                    }
                 });
-                //above amenities
-                if ($('div').hasClass('am_h')) {
-                    $('.am_h').before('<div class="posrel"><a class="enquiry_sideways ams-top app-side popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage ams-top app-side"></div></div>');
-                } else if ($('.tab-section').length > 3) {
-                    $('.tab-section').eq(1).before('<div class="posrel"><a class="enquiry_sideways ams-top app-side popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage ams-top app-side"></div></div>');
-                } else {
-                    $('.ab_amen').hide();
-                    $('.ab_amen2').hide();
-                }
-                //in specifications
-                if ($('div').hasClass('am_h') && $('.tab-section').length > 2) {
-                    $('.tab-section').eq(3).before('<div class="posrel"><a class="enquiry_sideways app-side popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage app-side"></div></div>');
-                } else {
-                    $('.ab_spec').hide();
-                    $('.ab_spec2').hide();
-                }
-                //floorplans
-                if ($('div').hasClass('gallery_indi')) {
-                    $('.gallery_indi ').before('<div class="posrel"><a class="enquiry_sideways app-side gal-top popmake-popup-property-page"><i></i>Enquire Now</a><div class="go_to_top_inpage app-side gal-top"></div></div>');
-                } else {
-                    $('.ab_resi').hide();
-                    $('.ab_resi2').hide();
-                }
             }
+            // if ($('div').hasClass('project-list')) {
+            //     if ($('div').hasClass('single_p_w')) {
+            //         $('.project-list.row .single_p_w').each(function() {
+            //             $theval = ($(window).scrollTop() + $(window).height()) + 20;
+            //             if ($(window).scrollTop() < ($(this).offset().top + 50) && $(this).offset().top < $theval) {
+            //                 $(this).addClass('visigoth');
+            //             } else {
+            //                 $(this).removeClass('visigoth');
+            //             }
+            //         });
+            //     }
+            // }
+            $(window).on('scroll', function() {
+                if ($('div').hasClass('project-list')) {
+                    if ($('div').hasClass('single_p_w')) {
+                        $('.project-list.row .single_p_w').each(function() {
+                            $theval = ($(window).scrollTop() + $(window).height()) + 20;
+                            if ($(window).scrollTop() < ($(this).offset().top + 50) && $(this).offset().top < $theval) {
+                                $(this).addClass('visigoth');
+                            } else {
+                                $(this).removeClass('visigoth');
+                            }
+                        });
+                    }
+                }
+            });
         });
 
         //sliding menu code
@@ -491,6 +501,7 @@ function checkIfInView(element){
         // $topval_home = $(window).height() - $('#after_widgets').offset().top - $('#after_widgets').height() - 43 - 47;
         // $('#after_widgets').css('top', $topval_home);
 
+        $('.child-footer').hide();
 
     });
 

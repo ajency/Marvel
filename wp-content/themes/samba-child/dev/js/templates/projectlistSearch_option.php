@@ -9,21 +9,23 @@ var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selec
 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
 var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
 
+
 %>
     <div class="proj-showinmob">
         <a href="#" class="filter-btn"></a>
     </div>
     <div class="top-dd one">
         <select id="dd_status" name="dd_status" class='srchopt' >
-         <option value="">Status : All</option>
-         <option class="select-dash" disabled="disabled">----------------------------------</option>
+    <% /*    <option value="">Status : All</option> 
+         <option class="select-dash" disabled="disabled">----------------------------------</option> */ %>
         <%
         var sorted_status = [];
         if(_.size(data.status)>0){
 
-            var sorted_cities_options  = _.sortBy(data.status, function(obj){ return obj.toLowerCase() });
+            var sorted_status_options  = _.sortBy(data.status, function(obj){ /* return obj.toLowerCase() */ return obj.charCodeAt() * -1;  });
+ 
 
-            _.each(sorted_cities_options,function(vl,ky){
+            _.each(sorted_status_options,function(vl,ky){
             %><option value="<%=vl%>"  <% if(selectedStatus==vl){%> selected  <% }%>  ><%=vl%></option>
 
             <% })

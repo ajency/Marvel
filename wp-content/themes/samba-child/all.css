@@ -191,6 +191,7 @@ h6 {
 }
 .service .forent .partintro .introtext.wpb_wrapper {
   padding: 25px 35px;
+  text-align: justify;
 }
 .service .forent .partintro .introtext.wpb_wrapper a.proj_title {
   font-family: 'Cantarell', sans-serif;
@@ -673,6 +674,9 @@ h6 {
 .poppup2:hover {
   opacity: 0.8;
 }
+.poppup2 {
+  pointer-events: none;
+}
 .gallery.owl-carousel .poppup {
   margin: 3px;
 }
@@ -829,6 +833,32 @@ h6 {
   #proj_list {
     margin-top: 0 !important;
   }
+}
+.project-list.row .single_p_w {
+  position: relative;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -mstransition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.project-list.row .single_p_w:nth-child(n) {
+  right: -50px;
+}
+.project-list.row .single_p_w:nth-child(2n) {
+  left: -50px;
+}
+.project-list.row .single_p_w.visigoth {
+  opacity: 1;
+  visibility: visible;
+}
+.project-list.row .single_p_w.visigoth:nth-child(n) {
+  right: 0;
+}
+.project-list.row .single_p_w.visigoth:nth-child(2n) {
+  left: 0;
 }
 @media screen and (max-width: 769px) {
   .project-list.row .single_p_w,
@@ -1819,6 +1849,7 @@ h6 {
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block h5 {
   font-size: 18px;
   text-transform: uppercase;
+  line-height: 14px;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_text_column p {
   margin-bottom: 25px !important;
@@ -1897,6 +1928,7 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .archi_si h5 {
   margin-top: 0;
+  line-height: 14px;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .la_g .wpb_wrapper {
   width: 85%;
@@ -1931,7 +1963,7 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .vc_separator.section_ender {
   width: 60%;
-  margin: 49px auto 51px;
+  margin: 15px auto 51px;
   padding: 0;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .vc_separator.section_ender .vc_sep_holder {
@@ -3347,6 +3379,38 @@ ul.ui-tabs-nav {
     border-bottom: 1px solid #999;
   }
 }
+.sticky.go_to_top_inpage {
+  position: fixed;
+  bottom: 35px;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -mstransition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.sticky.go_to_top_inpage.visigoth {
+  opacity: 1;
+  visibility: visible;
+}
+.sticky.enquiry_sideways {
+  position: fixed;
+  bottom: 150px;
+  right: -65px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -mstransition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.sticky.enquiry_sideways.visigoth {
+  opacity: 1;
+  visibility: visible;
+}
 .compare .bd_headings_text_shadow {
   display: none;
 }
@@ -3551,6 +3615,50 @@ ul.ui-tabs-nav {
     font-size: 12px;
     line-height: 16px;
   }
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header a {
+  color: #fff;
+  padding: 10px 15px;
+  width: 220px;
+  margin: 0 auto;
+  background-color: #666;
+  border: 1px solid #555555;
+  text-transform: uppercase;
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header a:hover {
+  background-color: #505050;
+  border-color: #3f3f3f;
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header a:active {
+  background-color: #505050;
+  border-color: #3b3b3b;
+  box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.25);
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content.ui-accordion-content {
+  text-align: center;
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content.ui-accordion-content .wpb_wrapper {
+  width: 75%;
+  margin: 0 auto;
+}
+@media screen and (max-width: 769px) {
+  .marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content.ui-accordion-content .wpb_wrapper {
+    width: 100%;
+  }
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content.ui-accordion-content h5 {
+  margin-bottom: 12px;
+  margin-top: 15px;
+}
+.marvel-journey.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content.ui-accordion-content p {
+  margin-bottom: 25px;
+  font-size: 13px;
+  color: #333;
 }
 .popmake-title {
   font-family: 'Cantarell', sans-serif;
