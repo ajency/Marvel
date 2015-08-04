@@ -412,17 +412,12 @@ h6 {
   margin-top: 0 !important;
   position: absolute;
   left: 0 !important;
-  top: 50% !important;
+  top: 0 !important;
   margin-left: 0 !important;
-  margin-top: -40% !important;
 }
 .flexslider li img.heightadjust {
   height: 100% !important;
   width: auto !important;
-  left: 50% !important;
-  top: 0 !important;
-  margin-top: 0 !important;
-  margin-left: -50% !important;
 }
 @media screen and (max-width: 769px) {
   .flexslider li img {
