@@ -885,6 +885,15 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
     })
 
 
+    jQuery('.popmake-popup-property-page').live('click',function(evt){
+        evt.preventDefault();
+        jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property.title)
+        jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property.title)
+     })
+
+    
+
+
     if(jQuery('#current_property_title').length>0){
         setTimeout(function(){
 
