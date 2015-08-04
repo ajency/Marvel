@@ -449,7 +449,7 @@ color: rgb(255, 255, 255);
     /*margin: 40px auto;
     margin-bottom: 34px;*/
     margin: 20px auto;
-    margin-bottom: 52px;
+    margin-bottom: 40px; /*was 52*/
 }
 
 .member_ul .six, .member_ul .three {

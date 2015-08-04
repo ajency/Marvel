@@ -45,6 +45,21 @@ function checkIfInView(element){
     //all child js
     $(document).ready(function() {
 
+        //add more space above location
+        $('.vc_custom_heading').each(function () {
+            if ($(this).text().trim().toLowerCase() == 'location') {
+                $(this).prev('.vc_empty_space').height(35);
+                $(this).css('margin-bottom', 35);
+            }
+        });
+        $('.tab-section').each(function () {
+            if ($(this).text().trim().toLowerCase() == 'residences') {
+                if ($(this).next().hasClass('vc_empty_space')) {
+                    $(this).next('.vc_empty_space').hide();
+                }
+            }
+        });
+
         $(window).scroll(function() {
             //fix for the menu bar height in mobiles
             $wid = window.innerWidth ? window.innerWidth : $(window).width();
