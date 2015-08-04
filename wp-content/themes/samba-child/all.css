@@ -2341,7 +2341,7 @@ h6 {
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .formid_row .le_form_t {
   width: 50%;
   margin: 0 auto;
-  float: none;
+  float: none !important;
 }
 @media screen and (max-width: 769px) {
   #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .formid_row .le_form_t {
