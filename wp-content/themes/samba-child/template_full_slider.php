@@ -174,7 +174,23 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
   }
 
 
-  window.location.href = search_url;
+
+  var width = window.innerWidth ? window.innerWidth : jQuery(window).width();
+
+  //console.log(jQuery(this).hasClass('popup')+'  ::::::::: '+width+'  ########  '+jQuery(this).hasClass('home_btn_sea'))
+  
+  if (!(jQuery(this).hasClass('popup')) ) {
+
+      if( (width >= 768 && jQuery(this).hasClass('home_btn_sea'))  || (width < 768 && jQuery(this).hasClass('home_btn_sea2')) ){
+            window.location.href = search_url;
+      }
+
+        
+  }
+
+   
+
+  
 
 
 })

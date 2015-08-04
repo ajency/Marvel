@@ -64,7 +64,7 @@
     </select>
   </div>
   <div class="hme_dd lo">
-    <button class="home_btn_sea2 home_btn_search_properties" type="submit">
+    <button class="home_btn_sea2 home_btn_search_properties" type="button">
       <i class="fa fa-search"></i>
     </button>
   </div>
