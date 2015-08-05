@@ -32,16 +32,16 @@
 
             var property_id = target_ele.closest('.drag_area').attr('property-id');
              
-
+            target_ele.closest('.drag_area').attr('property-id','') 
             //var prop_id = target_ele.closest('.drag_area').attr('property_id');
 
             target_ele.closest('.drag_area_block2').find('.btn_compare').attr('href','javascript:void(0)').addClass('disabled');
             
             target_ele.closest('.drag_area').html('Drag for Comparision').removeClass('after_drag')
 
-            jQuery('.single_p_w[property-id="'+property_id+'"]').find('.compare').remove();
+         //   jQuery('.single_p_w[property-id="'+property_id+'"]').find('.compare').remove();
 
-            target_ele.closest('.drag_area').attr('property-id','') 
+            
  
            
 
@@ -51,13 +51,23 @@
 
               
  
-        console.log("drop");
+        console.log("Add property for comparison drop:--");
 
         //        console.log($(self).html())
 
         //      alert($(self).attr('property-title'))
         
         var dropped = jQuery(evt.target);
+
+        //Remove property from compare box if clicked again on add to compare icon
+        var existing_compare_property =  jQuery('.drag_area_block2').find('.drag_area[property-id="'+dropped.attr('property-id')+'"]') 
+        if (existing_compare_property.length>0) { 
+            existing_compare_property.html('Drag for Comparision').removeClass('after_drag');
+            existing_compare_property.attr('property-id','');
+
+            jQuery('.drag_area_block2').find('.btn_compare').attr('href','javascript:void(0)').addClass('disabled');
+            return;
+        }; //End Remove property from compare box if clicked again on add to compare icon
         
  
         if( jQuery('.drag_area_block2').find('.one').attr('property-id')=='' || _.isUndefined(jQuery('.drag_area_block2').find('.one').attr('property-id')) ){
@@ -69,7 +79,7 @@
 
             if(jQuery('.drag_area_block2').find('.one').attr('property-id')== dropped.attr('property-id')){
                 
-                //ui.draggable.animate(ui.draggable.data().origPosition,"fast");               
+                //ui.draggable.animate(ui.draggable.data().origPosition,"fast");      
                    
                     alert('Please Select two different projects to compare')
                     return;
@@ -102,7 +112,7 @@
 
         var prev_dropedon_prop_id =droppedOn.attr('property-id')
 
-        jQuery('.property_span_'+prev_dropedon_prop_id).find('.single_p_img').find('.compare').remove();
+      //  jQuery('.property_span_'+prev_dropedon_prop_id).find('.single_p_img').find('.compare').remove();
 
         droppedOn.attr('property-id',draggable_property_id)
 
@@ -152,7 +162,7 @@
 
             if(!_.isUndefined(prop1_id) ){
                 jQuery('.top-compar').find('.one').addClass('after_drag');
-                jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
+               // jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
 
             }
             else{
@@ -161,7 +171,7 @@
 
             if(!_.isUndefined(prop2_id) ){
                 jQuery('.top-compar').find('.two').addClass('after_drag');
-                jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
+               // jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
             }
             else{
                 jQuery('.top-compar').find('.two').removeClass('after_drag');
@@ -454,7 +464,7 @@ console.log( droppedOn_target.hasClass('two'))
 
                                     if(!_.isUndefined(prop1_id) ){
                                         jQuery('.top-compar').find('.one').addClass('after_drag');
-                                        jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
+                                      //  jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
 
                                     }
                                     else{
@@ -463,7 +473,7 @@ console.log( droppedOn_target.hasClass('two'))
 
                                     if(!_.isUndefined(prop2_id) ){
                                         jQuery('.top-compar').find('.two').addClass('after_drag');
-                                        jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
+                                      //  jQuery(compareico_html).insertBefore(dropped.closest('.single_p_w').find('.single_p_img').find('.single_p_hov_c'));
                                     }
                                     else{
                                         jQuery('.top-compar').find('.two').removeClass('after_drag');
