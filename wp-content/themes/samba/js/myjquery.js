@@ -196,7 +196,7 @@ jQuery(document).ready(function($) {
                                     var data=[];                  //the callback_handler
                                         if (response_data) {
                                             console.log('RESPONSE DATA ');
-                                            console.log(data)
+                                            console.log(response_data)
                                             var html_field_options = '';
 
                                             if(field_type=='property-city'){
@@ -229,22 +229,32 @@ jQuery(document).ready(function($) {
                                                 var data = response_data;
                                             }
 
-                                             var html_field_options = '';
-                                            for(var i=0;i<data.length;i++){
+                                            console.log('data');
+                                            console.log(data)
 
-                                               //var html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i]+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i]+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                             var html_field_options = '';                                            
+
+                                              var i =0;
+                                             _.each(data,function(data__v,data__k){
+
+                                            //var html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i]+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i]+"' field-name='"+field_type+"' >Delete</a> </div>";
                                                if(field_type=='property-city'){
-                                                    html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i].name+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i].ID+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                                    html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data__v.name+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data__v.ID+"' field-name='"+field_type+"' >Delete</a> </div>";
                                                  }
                                                  else if(field_type=='property-locality'){
-                                                   if(selected_city == data[i].city_id )
-                                                        html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i].name+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i].ID+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                                   if(selected_city == data__v.city_id )
+                                                        html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data__v.name+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data__v.ID+"' field-name='"+field_type+"' >Delete</a> </div>";
                                                  }
                                                  else{
-                                                    html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data[i]+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data[i]+"' field-name='"+field_type+"' >Delete</a> </div>";
+                                                    html_field_options = html_field_options +"<br/><div class='edit_option_row'>"+data__v+ " &nbsp; <a href='javascript:void(0)' class='delete_field_option' field-value= '"+data__v+"' field-name='"+field_type+"' >Delete</a> </div>";
                                                  }
+                                                 i = i + 1;
 
-                                            }
+                                             })   
+
+                                               
+
+                                            
 
                                             console.log('html_field_options')
                                             console.log(html_field_options);
@@ -349,6 +359,7 @@ jQuery(document).ready(function($) {
 
 
         $('#custom_property-city').live('change',function(){
+             
 
             var selected_city = $('#custom_property-city').val();
 
@@ -356,9 +367,13 @@ jQuery(document).ready(function($) {
 
             $('#custom_property-locality').append('<option value=""  >Select</option>');
 
+            var pdata = {'post_type':$('#post_type').val()}
+
 
             $.post(ajaxurl, {        //the server_url
-                action: "get_search_options",                 //the submit_data array
+                action: "get_search_options",
+                data:pdata
+                                 //the submit_data array
 
             }, function(data) {                   //the callback_handler
                 if (data) {

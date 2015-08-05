@@ -22,34 +22,38 @@ function get_search_options($post_type){
 
     if($post_type =="residential-property"){
 
-        $property_unit_type = maybe_unserialize(get_option('residential-property-unit-type',true));
+        $property_unit_type       = maybe_unserialize(get_option('residential-property-unit-type',true));
+        $property_cities          = maybe_unserialize(get_option('property-city',true));
+        $property_locality        = maybe_unserialize(get_option('property-locality',true));
+        $property_neighbourhood   = maybe_unserialize(get_option('property-neighbourhood',true));
+
+        $property_amenities       = get_terms( 'property_amenity', array(
+                                      'orderby'    => 'count',
+                                      'hide_empty' => 0,
+                                   ) );
 
     } 
     else if($post_type =="commercial-property"){
 
-        $property_unit_type = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        $property_cities        = maybe_unserialize(get_option('commercial-property-city',true));
+        $property_locality      = maybe_unserialize(get_option('commercial-property-locality',true));
+        $property_neighbourhood = array();
+        $property_amenities     = array();
     }
-
+ 
     
-    $property_cities = maybe_unserialize(get_option('property-city',true));
-    $property_status = maybe_unserialize(get_option('property-status',true));
-    $property_locality = maybe_unserialize(get_option('property-locality',true));
-    $property_neighbourhood = maybe_unserialize(get_option('property-neighbourhood',true));
-    $property_bedrooms = maybe_unserialize(get_option('property-no_of_bedrooms',true));
-    $property_citylocality = maybe_unserialize(get_option('property-citylocality',true));
-
-    $property_amenities = get_terms( 'property_amenity', array(
-    'orderby'    => 'count',
-    'hide_empty' => 0,
- ) );
+    $property_status = maybe_unserialize(get_option('property-status',true));    
+    /* $property_bedrooms = maybe_unserialize(get_option('property-no_of_bedrooms',true)); */
+    $property_citylocality = maybe_unserialize(get_option('property-citylocality',true));    
 
     $search_option_data = array( 'cities'        => $property_cities,
                                  'status'        => $property_status,
                                  'locality'      => $property_locality,
                                  'neighbourhood' => $property_neighbourhood,
-                                 'no_of_bedrooms'=> $property_bedrooms,
+                                 /* 'no_of_bedrooms'=> $property_bedrooms, */
                                  'type'          => maybe_unserialize($property_unit_type['property_unit_types']),
-                                 'citylocality'  => $property_citylocality,
+                                /* 'citylocality'  => $property_citylocality, */
                                  'amenities'     => $property_amenities
                                 );
 
@@ -62,7 +66,11 @@ function get_search_options($post_type){
 function get_search_options_ajx(){
 
 
-$post_type = $_REQUEST['post_type'];
+  if(is_null($_REQUEST['post_type']) || !isset($_REQUEST['post_type']))
+    $post_type = $_REQUEST['data']['post_type'];  
+  else
+  $post_type = $_REQUEST['post_type'];
+
 
 	$search_option_data =  get_search_options($post_type);
 

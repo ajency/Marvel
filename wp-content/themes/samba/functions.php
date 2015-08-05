@@ -782,7 +782,14 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     						    break;
 
     	case 'property-city'	:
-    							$property_city = maybe_unserialize(get_option('property-city'));
+    							if($current_post_type=="residential-property"){
+    								$property_city = maybe_unserialize(get_option('property-city'));    								
+    							}
+    							else{
+    								$property_city = maybe_unserialize(get_option('commercial-property-city'));  
+    							}
+
+
     							$current_property_meta_value =    get_post_meta($post->ID, "property-city", true);
 
 								if($property_city==false){
@@ -1822,8 +1829,13 @@ function add_new_custom_field_option() {
         	}
 
  
+        	if($post_type =='residential-property'){
+        		$return_result = update_option('property-city',maybe_serialize($new_property_unit_types_data));	
+        	}
+        	else{
+        		$return_result = update_option('commercial-property-city',maybe_serialize($new_property_unit_types_data));	
+        	}	
         	
-        	$return_result = update_option('property-city',maybe_serialize($new_property_unit_types_data));
 
         	$return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val, 'option_data' =>$new_city_data );
          //echo "\n\n <br/> <br/> ============================1001========================================";
@@ -1866,8 +1878,12 @@ function add_new_custom_field_option() {
         	}
 
  			
-        	
-        	$return_result = update_option('property-locality',maybe_serialize($new_property_unit_types_data));
+        	if($post_type =='residential-property'){
+        		$return_result = update_option('property-locality',maybe_serialize($new_property_unit_types_data));
+        	}
+        	else{
+        		$return_result = update_option('commercial-property-locality',maybe_serialize($new_property_unit_types_data));	
+        	}
 
         	$return_result_json = array('success'=>$return_result,'option_name'=>$custom_field_option_val, 'option_data' =>$new_locality_data );
         }
@@ -1911,10 +1927,17 @@ function get_properties_type_option_by_post_type($custom_field_option){
             $real_custom_field_option_name = "commercial-property-unit-type";
     }
     else if($custom_field_option_name=="property-city" ){
+    	if($post_type=="residential-property" )
     		$real_custom_field_option_name = 'property-city';
+    	else if ($post_type=="commercial-property")
+    		$real_custom_field_option_name = 'commercial-property-city';
+
     }
     else if($custom_field_option_name=="property-locality"){
-    	$real_custom_field_option_name = 'property-locality';
+    	if($post_type=="residential-property" )
+    		$real_custom_field_option_name = 'property-locality';
+    	else if ($post_type=="commercial-property")
+    		$real_custom_field_option_name = 'commercial-property-locality';
 
     }
     else if($custom_field_option_name=="property-neighbourhood"){
@@ -2004,6 +2027,9 @@ function delete_custom_field_option() {
     if($custom_field_option_name=="property-city"){
     	$existing_options_fields_values = $existing_fields_values['cities'];
     }
+    else if($custom_field_option_name=="property-locality"){
+    	$existing_options_fields_values = $existing_fields_values['localities'];
+    }
     else{
     	$existing_options_fields_values = $existing_fields_values;
     }
@@ -2020,21 +2046,28 @@ function delete_custom_field_option() {
     	}
     	else if($custom_field_option_name=="property-locality"){
 
-    		if($property_city==$f_k){
+    		/* echo " \n\n property_city:".$property_city." f_k:".$f_v['city_id'];
+    		echo " \n\n custom_field_option_value:".$custom_field_option_value." f_v[ID]:".$f_v['ID']; */
 
-    			if($key = array_search($custom_field_option_value, $f_v) !== false){
-	        		unset($f_v[$key])	;
-	        	}
+    		if($property_city==$f_v['city_id'] && $custom_field_option_value == $f_v['ID']){
 
-	            $new_field_data[$f_k] = $f_v ;
+    			
+
+    		//	if($key = array_search($custom_field_option_value, $f_v) !== false){
+	        //		unset($f_v[$key])	;
+	        //	}
+
+	           // $new_field_data[$f_k] = $f_v ;
 	            $delete_success = true;
 	        }
 	        else{
 
-	        	$new_field_data[$f_k] = $f_v ;
-	            $delete_success = true;
+	        	$new_field_data[$f_k] = $f_v ;	           
 
 	        }
+
+	      /*  var_dump($new_field_data);
+	        echo "\n\n ";*/
 
     	}
     	else {
@@ -2053,9 +2086,17 @@ function delete_custom_field_option() {
     	$new_options_field_data = array('max_property_city' => $existing_fields_values['max_property_city'],
     									'cities'			=> $new_field_data);
     }
+    else if($custom_field_option_name=="property-locality"){
+    	$new_options_field_data = array('max_property_locality' => $existing_fields_values['max_property_locality'],
+    									'localities'			=> $new_field_data);
+    }
     else{
     	$new_options_field_data = $new_field_data;
     }
+
+	/* echo ' \n\n\n real_property_unit_type_option_name'.$real_property_unit_type_option_name."  ";
+
+    var_dump($new_options_field_data);*/
 
     update_option($real_property_unit_type_option_name,$new_options_field_data);
 
