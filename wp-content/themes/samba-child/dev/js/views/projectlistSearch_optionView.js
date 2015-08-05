@@ -108,22 +108,23 @@
 
  
                          
-              if(jQuery('#dd_status').val().toLowerCase()=='completed'){
-                jQuery('.top-compar').hide();
-                jQuery('#projects_listings').addClass('completed_status_projects')
-              }
-              else{
-                jQuery('.top-compar').show();
-                jQuery('#projects_listings').removeClass('completed_status_projects')
+                      if(jQuery('#dd_status').val().toLowerCase()=='completed'){
+                        jQuery('.top-compar').hide();
+                        jQuery('#projects_listings').addClass('completed_status_projects')
+                      }
+                      else{
+                        jQuery('.top-compar').show();
+                        jQuery('#projects_listings').removeClass('completed_status_projects')
 
-              }
-
-
+                      }
 
 
 
 
 
+console.log('getAppInstance().residentialPropertyCollection:===================================')
+console.log(getAppInstance().residentialPropertyCollection)
+console.log(this.post_type)
 
 
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
@@ -131,18 +132,21 @@
                        if(this.post_type=='residential-property') {
                        // alert('residential collection')
                           getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+                          var propertyCollection = getAppInstance().residentialPropertyCollection;
                         }
                         else{
-
-
                        // alert('commercial collection')
-                          getAppInstance().residentialPropertyCollection = new CommercialPropertiesCollection();
+                          getAppInstance().commercialPropertyCollection = new CommercialPropertiesCollection();
+                          var propertyCollection = getAppInstance().commercialPropertyCollection  ;
                         }
+
+
                        
 
-                        getAppInstance().residentialPropertyCollection.fetch({
+                        propertyCollection.fetch({
                             success: function(collection) { // the fetched collection!
-
+console.log(' getAppInstance()residentialPropertyCollection')
+console.log( getAppInstance().residentialPropertyCollection)
 
                                  if(!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
                                      jQuery('.top_map').addClass('current');
@@ -705,10 +709,13 @@ infowindow.open(map,marker);
                                    search_options['property_unit_type'] =  prop_type;
 
 
-                if(self.post_type =="commercial-property")                 
-                  var res_collection = getAppInstance().commercialPropertyCollection  ;
-                else 
-                  var res_collection = getAppInstance().residentialPropertyCollection  ;
+                if(self.post_type =="commercial-property"){
+                    var res_collection = getAppInstance().commercialPropertyCollection  ;
+                }
+                else{
+                    var res_collection = getAppInstance().residentialPropertyCollection  ;
+                }
+                  
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
 
@@ -949,15 +956,21 @@ infowindow.open(map,marker);
                 search_opt = search_opt+'/type/'+prop_type;
 
               var evt_type =   typeof jQuery(evt.target).attr('href');
+              if(!_.isUndefined(getAppInstance().commercialPropertyCollection)){
+                var RedirectUrl = SITEURL+'/commercial-properties/';
+              }
+              else{
+                var RedirectUrl = SITEURL+'/residential-properties/';
+              }
 
               if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
 
-                var RedirectUrl = SITEURL+'/residential-properties/#' ;
+                  RedirectUrl = RedirectUrl + '#' ;
 
               }
               else if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){
 
-                var RedirectUrl = SITEURL+'/residential-properties/#map' ;
+                  RedirectUrl = RedirectUrl + '#map' ;
 
               }
 

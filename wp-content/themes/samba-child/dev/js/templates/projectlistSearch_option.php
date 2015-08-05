@@ -88,11 +88,11 @@ var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selec
             console.log(data);
             console.log(selected);
 
-             if(selectedCity!=''){
+             /* if(selectedCity!=''){
 
                 console.log('SELECTED OPTIONS CITY ');
                 console.log(data.citylocality.selectedCity);
-             }
+             } */
 
              %>
         </select>
