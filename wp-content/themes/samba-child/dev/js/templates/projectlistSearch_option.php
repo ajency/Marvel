@@ -9,6 +9,7 @@ var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selec
 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
 var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
 
+
 %>
     <div class="proj-showinmob">
         <a href="#" class="filter-btn"></a>
