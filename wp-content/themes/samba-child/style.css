@@ -282,6 +282,29 @@ color: rgb(255, 255, 255);
 	float: left;
 	position: relative;
 }
+.home_search .hme_dd .dk-select {
+	margin-right: 4px;
+	width: 125px;
+}
+.home_search .hme_dd .dk-select .dk-selected {
+	color: #333333;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	line-height: 23px;
+	padding: 4px 10px;
+	font-family: 'Cantarell', sans-serif;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-color: #eeebe6;
+	background-image: url(img/dd_arr_hme.png) !important;
+	background-position-x: 99%;
+	background-position-y: center;
+	background-position: right 10px center;
+	background-repeat: no-repeat;
+}
+.home_search .hme_dd .dk-select .dk-selected:after, .home_search .hme_dd .dk-select .dk-selected:before {display: none;}
 .home_search .hme_dd select {
 	color: #333333;
 	margin: 0;
@@ -1679,3 +1702,5 @@ border-top: none!important;
 .frm_style_formidable-style.with_frm_style .frm_message p {
 	margin-bottom: 0;
 }
+
+/*Dropkick styling*/

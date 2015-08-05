@@ -45,6 +45,10 @@ function checkIfInView(element){
     //all child js
     $(document).ready(function() {
 
+        // $("#home_location").dropkick({
+        //     mobile: true
+        // });
+
         //add more space above location
         $('.vc_custom_heading').each(function () {
             if ($(this).text().trim().toLowerCase() == 'location') {
