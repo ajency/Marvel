@@ -49,7 +49,8 @@ jQuery(document).ready(function(){
 jQuery.ajax(ajax_var.url,{
                         type: 'GET',
                         action:'get_search_options',
-                        data :{action:'get_search_options'},
+                        data :{'action':'get_search_options',
+                              'post_type':'residential-property'},
                         complete: function() {
 
                         },

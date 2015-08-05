@@ -13,7 +13,8 @@
                 'change .srchopt'   : 'searchPropertiesRoute',
                 'change #dd_city'   : 'load_locality_options',
                 'click .top_map'    : 'searchPropertiesRoute',
-                'click .top_list'   : 'searchPropertiesRoute'
+                'click .top_list'   : 'searchPropertiesRoute',
+                'change #home_city2': 'load_locality_options',
 
             },
 
@@ -55,6 +56,8 @@
 
                             getAppInstance().searchOptions = response ;
 
+                            window.search_options = response;
+
                             self.load_display_properties();
                         },
                         error: function(){
@@ -79,8 +82,95 @@
 
 
 
+            load_search_filter_values_mobile : function(searchOptions,selected){
+                
+                var selectedCity     = !_.isUndefined(selected.selectedCity)? selected.selectedCity : '' ;
+                var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selectedLocality : '' ;
+                var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
+                var selectedStatus   = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
 
-            load_display_properties :function function_name (argument) {
+
+
+                var sorted_status = [];
+                if(_.size(searchOptions.status)>0){
+
+                    var sorted_status_options  = _.sortBy(searchOptions.status, function(obj){ /* return obj.toLowerCase() */ return obj.charCodeAt() * -1;  });
+                    jQuery('#home_status2').empty();
+                    var status_html ='';
+                    var status_dropdown_selected = '';
+                    var home_status2_html='';
+                   
+                    _.each(sorted_status_options,function(vl,ky){
+
+                        if(selectedStatus==vl){
+                           status_dropdown_selected = ' selected ';
+                        }
+
+                        home_status2_html+='<option value="'+vl+'"  '+status_dropdown_selected+'  >'+vl+'</option>';
+                    })
+
+                    jQuery('#home_status2').html(home_status2_html);
+                }
+
+
+
+
+
+                var cities_options = _.isUndefined(searchOptions.cities.cities)?[]:searchOptions.cities.cities;
+
+                var sorted_cities_options = [];
+                var home_city2_html = ''
+                var city_dropdown_selected = '';
+                home_city2_html+='<option value="">City : All</option>';
+                home_city2_html+='<option class="select-dash" disabled="disabled">----------------------------------</option>';
+
+                if(_.size(cities_options)>0){
+                    var sorted_cities_options  = _.sortBy(cities_options, function(obj){ return obj.name.toLowerCase() });
+                    _.each(sorted_cities_options,function(vl,ky){
+
+                      if(selectedCity == vl.ID){
+                        city_dropdown_selected = ' selected ';
+                      }
+
+                    home_city2_html+='<option value="'+vl.ID+'"  '+city_dropdown_selected+' >'+vl.name+'</option>';
+
+                     })
+                }
+
+                 jQuery('#home_city2').html(home_city2_html);
+
+
+
+
+
+
+                 var sorted_type_options = [];
+                 var type_dropdown_selected = '';
+                 var home_type2_html = '';
+                 home_type2_html ='<option value="">Type : All</option>';
+                 home_type2_html+='<option class="select-dash" disabled="disabled">------------------------------</option>'; 
+                  if(_.size(searchOptions.type) > 0)
+                      var sorted_type_options  = _.sortBy(searchOptions.type, function(obj){ return obj.property_unit_type.toLowerCase() });
+
+                  _.each(sorted_type_options,function(vl,ky){
+
+                    if(selectedType==vl.ID) {
+                      type_dropdown_selected = ' selected';
+
+                    }
+                    home_type2_html+='<option value="'+vl.ID+'" '+type_dropdown_selected+'>'+vl.property_unit_type+'</option>';
+
+                   })
+
+                  jQuery('#home_type2').html(home_type2_html);
+
+
+                 
+
+
+            },
+
+            load_display_properties :function (argument) {
 
                         var self = this;
 
@@ -95,6 +185,8 @@
                         if(jQuery('#dd_status').length<=0){
                             var template = _.template(jQuery(self.template).html());
                             jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions, selected:seldata }));
+
+                            self.load_search_filter_values_mobile(getAppInstance().searchOptions, seldata);
                         }
                         else{
 
@@ -133,11 +225,14 @@ console.log(this.post_type)
                        // alert('residential collection')
                           getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
                           var propertyCollection = getAppInstance().residentialPropertyCollection;
+
+                          jQuery('#post_type').val('residential-property')
                         }
                         else{
                        // alert('commercial collection')
                           getAppInstance().commercialPropertyCollection = new CommercialPropertiesCollection();
                           var propertyCollection = getAppInstance().commercialPropertyCollection  ;
+                          jQuery('#post_type').val('commercial-property')
                         }
 
 
@@ -876,6 +971,7 @@ infowindow.open(map,marker);
             },
 
             load_locality_options : function(evt){
+              
 
                 var event_val = jQuery(evt.target).val();
 
@@ -900,6 +996,11 @@ infowindow.open(map,marker);
                             jQuery('#dd_locality').append("<option value=''>Locality : All</option>")
                             jQuery('#dd_locality').append("<option class='select-dash' disabled='disabled'>------------------------------</option>");
 
+
+                            jQuery('#home_location2').empty();
+                            jQuery('#home_location2').append("<option value=''>Locality : All</option>")
+                            jQuery('#home_location2').append("<option class='select-dash' disabled='disabled'>------------------------------</option>");
+
                             _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){
@@ -910,7 +1011,7 @@ infowindow.open(map,marker);
 
                                     }
                                     jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")
-
+                                    jQuery('#home_location2').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")
 
 
 

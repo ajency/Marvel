@@ -934,4 +934,118 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
     }
 
 
+
+
+
+
+
+
+
+
+
+jQuery('#home_city2').live('change',function(){
+
+
+  jQuery('.home_location').empty();
+  jQuery('.home_location').append('<option value="">Locality : All</option>');
+  jQuery('.home_location').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
+
+  console.log('window.search_options.locality.localities........')
+  console.log(window.search_options.locality.localities)
+
+  var selected_city = jQuery(this).val();
+
+
+  var sorted_locality_options = [];
+
+  if(_.size(window.search_options.locality.localities)>0){
+
+      var sorted_locality_options  = _.sortBy(window.search_options.locality.localities, function(obj){ return obj.name.toLowerCase() });               
+
+      _.each(sorted_locality_options,function(vl_cl,ky_cl){
+            console.log(vl_cl);
+            console.log('ky'+ky_cl)
+
+            console.log(':::::::::'+jQuery('.home_city').val()+'--------'+vl_cl.city_id)
+
+
+            if(selected_city==vl_cl.city_id){
+
+               var display_locality_name = vl_cl.name;
+                if(_.size(vl_cl.name)>14){
+                  display_locality_name =  display_locality_name.substr(0, 13)+'...';
+
+                }
+
+                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
+
+            } 
+       })
+  }
+
+})
+
+
+
+jQuery('.home_btn_search_properties').live('click',function(evt){
+
+    alert('sada')
+
+  evt.preventDefault();
+
+  if(jQuery('#post_type').val()=='commercial-property'){
+    var search_url = SITE_URL+'/residential-properties/';
+  }
+  else{
+    var search_url = SITE_URL+'/commercial-properties/';
+  }
+  search_url+='#/st/'+jQuery('.home_status').val();
+  //residential-properties/#/ct/blore/loc/mekri circle/type/1 BHK
+
+  if(jQuery('.home_city').val()!=''){
+    search_url= search_url + '/ct/'+jQuery('.home_city').val()
+  }
+
+
+  if(jQuery('.home_location').val()!=''){
+    search_url= search_url + '/loc/'+jQuery('.home_location').val()
+  }
+
+
+   if(jQuery('.home_type').val()!=''){
+    search_url= search_url + '/type/'+jQuery('.home_type').val()
+  }
+
+
+
+  var width = window.innerWidth ? window.innerWidth : jQuery(window).width();
+
+  //console.log(jQuery(this).hasClass('popup')+'  ::::::::: '+width+'  ########  '+jQuery(this).hasClass('home_btn_sea'))
+  
+  if (!(jQuery(this).hasClass('popup')) ) {
+
+      if( (width >= 768 && jQuery(this).hasClass('home_btn_sea'))  || (width < 768 && jQuery(this).hasClass('home_btn_sea2')) ){
+          //  window.location.href = search_url;
+
+            location.assign(search_url) ;
+      }
+
+        
+  }
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

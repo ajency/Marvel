@@ -27,7 +27,9 @@
     <link rel="shortcut icon" href="<?php echo $prk_samba_frontend_options['favicon']; ?>">
     <?php wp_head(); ?>
 
-<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript">var switchTo5x=true;
+var SITE_URL = '<?php echo site_url(); ?>'
+</script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false}); </script>
 <script type="text/javascript" >

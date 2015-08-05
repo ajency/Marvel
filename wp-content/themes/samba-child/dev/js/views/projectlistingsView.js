@@ -172,7 +172,7 @@
       getAppInstance().residentialPropertyCollection = new CommercialPropertiesCollection();
     }
 
-    alert(getAppInstance().residentialPropertyCollection)
+     
                 getAppInstance().residentialPropertyCollection.fetch({
     success: function(collection) { // the fetched collection!
 
