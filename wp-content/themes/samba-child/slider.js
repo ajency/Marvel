@@ -45,6 +45,30 @@ function checkIfInView(element){
     //all child js
     $(document).ready(function() {
 
+        //add more space above location
+        $('.vc_custom_heading').each(function () {
+            if ($(this).text().trim().toLowerCase() == 'location') {
+                $(this).prev('.vc_empty_space').height(35);
+                $(this).css('margin-bottom', 35);
+            }
+        });
+        $('.tab-section').each(function () {
+            if ($(this).text().trim().toLowerCase() == 'residences') {
+                if ($(this).next().hasClass('vc_empty_space')) {
+                    $(this).next('.vc_empty_space').hide();
+                }
+            }
+        });
+
+        $(window).scroll(function() {
+            //fix for the menu bar height in mobiles
+            $wid = window.innerWidth ? window.innerWidth : $(window).width();
+            $hei = window.innerHeight ? window.innerHeight : $(window).height();
+            if ($wid <= 768) {
+                $('#menu_section').height($hei);
+            }
+        });
+
         //Adding go to top btns in single property page
         $(window).load(function() {
             if ($('div').hasClass('sticky')) {
@@ -166,7 +190,8 @@ function checkIfInView(element){
                 $('.home_search.popup').show();
             // }
         });
-        $(document).on('click', '.home_search.popup .searc_head i', function() {
+        $(document).on('click, touchstart', '.home_search.popup .searc_head i', function(e) {
+            e.preventDefault();
             $(this).parents('.popup').hide();
         });
 
@@ -247,6 +272,16 @@ function checkIfInView(element){
             }
         }
         $(window).load(function() {
+            if ($('body').hasClass('home')) {
+                $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+                $('.flexslider li').css('height', $hevp);
+                resizeimgs($(window), $('.flexslider li img'));
+            }
+            if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
+                $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+                resizeimgs($('.full_fi_c'), $('.full_fi_c img'));
+            }
+
             if ($('body').hasClass('page-template-page-services')) {
                 $topval = $('#spn_services_div').offset().top - $('.go_to_top_inpage').height() + 25;
                 $('body').append('<div class="go_to_top_inpage serm"></div>');
@@ -282,6 +317,16 @@ function checkIfInView(element){
             }
         });
         $(window).resize(function() {
+
+            if ($('body').hasClass('home')) {
+                $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+                resizeimgs($(window), $('.flexslider li img'));
+                $('.flexslider li').css('height', $hevp);
+            }
+            if ($('body').hasClass('single-residential-property') || $('body').hasClass('single-commercial-property')) {
+                $hevp = window.innerHeight ? window.innerHeight : $(window).height();
+                resizeimgs($('.full_fi_c'), $('.full_fi_c img'));
+            }
 
             if ($('div').hasClass('nothis')) {
                 $('.nothis .owl-carousel .item img').each(function() {

@@ -364,39 +364,7 @@ function add_custom_tax_property_amenities(){
         );
 
         register_taxonomy( 'property_amenity', array( 'residential-property' ), $args );
-
-
-
-
-
-
-
-
-
-        $labels = array(
-            'name'              => _x( 'Amenities', 'taxonomy general name' ),
-            'singular_name'     => _x( 'Amenity', 'taxonomy singular name' ),
-            'search_items'      => __( 'Search Amenity'  ),
-            'all_items'         => __( 'All Amenities'  ),
-            'parent_item'       => __( 'Parent Amenity'  ),
-            'parent_item_colon' => __( 'Parent Amenity : '  ),
-            'edit_item'         => __( 'Edit Amenity' ),
-            'update_item'       => __( 'Update Amenity' ),
-            'add_new_item'      => __( 'Add New Amenity' ),
-            'new_item_name'     => __( 'New Amenity' ),
-            'menu_name'         => __( 'Amenities' ),
-        );
-
-        $args = array(
-            'hierarchical'      => true,
-            'labels'            => $labels,
-            'show_ui'           => true,
-            'show_admin_column' => true,
-            'query_var'         => true,
-            'rewrite'           => array( 'slug' => 'amenity' ),
-        );
-
-        register_taxonomy( 'commercial_amenity', array( 'commercial-property' ), $args );
+ 
 
 }
 
@@ -417,7 +385,7 @@ add_action( 'init', 'add_custom_tax_property_amenities', 0 );
 /* Adds a meta box to the post edit screen */
 function myplugin_add_custom_box() {
     $screens = array( 'residential-property', 'commercial-property' );
-    foreach ( $screens as $screen ) {
+    //foreach ( $screens as $screen ) {
 
 
     		$custom_fields = array();
@@ -497,33 +465,7 @@ function myplugin_add_custom_box() {
     							  	   'priority'			=> 'default'
     								 );
 
-       // if($screen=="residential-property") {
-
-	    	/* $custom_fields[] = array ( 'field'				 => 'property-no_of_bedrooms',
-	    							   'metabox_title'		 => 'No Of Bedrooms',
-	    							   'multiple_values' 	 => false,
-	    							   'element_type'		 => 'select',
-	    							   'option_value_prefix' => '',
-	    							   'option_value_postfix'=> '',
-	    							   'class'				 => '',
-	    							   'priority'			=> 'default'
-	    								 ); */
-
-
-
-
-
-    		/* $custom_fields[] = array ( 'field'				 => 'property-sellable_area',
-    							  	   'metabox_title'		 => 'Sellable Area',
-    							  	   'multiple_values' 	 => true,
-    							  	   'element_type'		 => 'text',
-    							  	   'option_value_prefix' => '',
-    							  	   'option_value_postfix'=> 'Sq ft',
-    							  	   'class'				 => 'allownumericwithdecimal',
-    							  	   'priority'			=> 'default'
-    								 ); */
-
-	    	//}
+       
 
 	    	$custom_fields[] = array('field'				=> 'property-neighbourhood',
 	    							  'metabox_title'		=> 'Neighbourhood',
@@ -548,24 +490,7 @@ function myplugin_add_custom_box() {
 
 
 
-	    	/*foreach($custom_fields as $custom_field){
-
-					add_meta_box (
-					            	$custom_field['field'].'_box_id',             // Unique ID
-					            	$custom_field['metabox_title'],               // Box title
-					            	'myplugin_inner_custom_box',   // Content callback
-					            	$screen ,                       // post type
-					            	'normal',
-					            	$custom_field['priority'],
-					            	array( 'custom_field_type'=>$custom_field['field'],
-					            	   		'multiple_values'=>$custom_field['multiple_values'],
-                                            'element_type'=>$custom_field['element_type'],
-                                            'custom_field_args'=>$custom_field
-                                            )
-					        );
-	    	}*/
-
-
+	    	
 
 	    	 $custom_field_address[] = array('field'            	=> 'property-address-details',
                                     'metabox_title'     	=> 'Property Address',
@@ -585,7 +510,7 @@ function myplugin_add_custom_box() {
 					            	'additional_properties_details_box_id',             // Unique ID
 					            	'Additional Property Details',               // Box title
 					            	'myplugin_inner_custom_box',   // Content callback
-					            	$screen ,                       // post type
+					            	'residential-property' ,                       // post type
 					            	'normal',
 					            	'default',
 					            	array(
@@ -597,7 +522,7 @@ function myplugin_add_custom_box() {
 					            	$custom_field_address[0]['field'].'_box_id',             // Unique ID
 					            	$custom_field_address[0]['metabox_title'],               // Box title
 					            	'myplugin_inner_custom_box',   // Content callback
-					            	$screen ,                       // post type
+					            	'residential-property' ,                       // post type
 					            	'normal',
 					            	'default',
 					            	array( 'custom_field_type'=>$custom_field_address[0]['field'],
@@ -613,7 +538,150 @@ function myplugin_add_custom_box() {
 
 
 
-    }
+
+	    	$custom_fields2[] = array('field'					=> 'property-plant-id',
+	    							  'metabox_title'		=> 'Plant ID',
+	    							  'element_type'		=> 'text',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>'',
+	    							  'priority'			=> 'default'
+	    							);
+
+	    	$custom_fields2[] = array('field'				=> 'property-unit-type',
+	    							  'metabox_title'		=> 'Property Unit Type',
+	    							  'multiple_values' 	=> true,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>'',
+	    							  'priority'			=> 'default'
+	    							);
+
+
+
+	    	$custom_fields2[] = array('field'				=> 'property-status',
+	    							  'metabox_title'		=> 'Status',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>'',
+	    							  'priority'			=> 'default'
+	    							);
+
+	    	$custom_fields2[] = array('field'				=> 'property-display-unit-type',
+	    							  'metabox_title'		=> 'Display Property Unit Type',
+	    							  'element_type'		=> 'text',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>'',
+	    							  'priority'			=> 'default'
+	    							);
+
+
+
+	    	$custom_fields2[] = array('field'				=> 'property-city',
+	    							  'metabox_title'		=> 'City',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>'',
+	    							  'priority'			=> 'default'
+	    							);
+
+	    	$custom_fields2[] = array('field'				=> 'property-locality',
+	    							  'metabox_title'		=> 'Locality',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'select',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=>'',
+	    							  'priority'			=> 'default'
+	    							);
+
+
+
+	    	$custom_fields2[] = array ( 'field'				 => 'property-price',
+    							  	   'metabox_title'		 => 'Price',
+    							  	   'multiple_values' 	 => false,
+    							  	   'element_type'		 => 'text',
+    							  	   'option_value_prefix' => ' INR',
+    							  	   'option_value_postfix'=> '',
+    							  	   'class'				 => '',
+    							  	   'priority'			=> 'default'
+    								 );
+
+       
+
+	    	
+
+	    	$custom_fields2[] = array('field'				=> 'property-siteplan',
+	    							  'metabox_title'		=> 'Site Plan',
+	    							  'multiple_values' 	=> false,
+	    							  'element_type'		=> 'file',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=> '',
+	    							  'priority'			=> 'default'
+	     							);
+
+
+
+
+	    	
+
+	    	 $custom_field_address2[] = array('field'            	=> 'property-address-details',
+                                    'metabox_title'     	=> 'Property Address',
+                                    'multiple_values'   	=> true,
+                                    'element_type'	    	=> 'custom_address_details_text',
+                                    'option_value_prefix' 	=> '',
+	    							'option_value_postfix' 	=> '',
+	    							'class'					=>'',
+	    							'priority'			=> 'default'
+                                    );
+
+
+
+
+
+	    	add_meta_box (
+					            	'additional_properties_details_box_id',             // Unique ID
+					            	'Additional Property Details',               // Box title
+					            	'myplugin_inner_custom_box',   // Content callback
+					            	'commercial-property' ,                       // post type
+					            	'normal',
+					            	'default',
+					            	array(
+                                            'custom_field_args'=>$custom_fields2
+                                            )
+					        );
+
+	    	add_meta_box (
+					            	$custom_field_address2[0]['field'].'_box_id',             // Unique ID
+					            	$custom_field_address2[0]['metabox_title'],               // Box title
+					            	'myplugin_inner_custom_box',   // Content callback
+					            	'commercial-property' ,                       // post type
+					            	'normal',
+					            	'default',
+					            	array( 'custom_field_type'=>$custom_field_address2[0]['field'],
+					            	   		'multiple_values'=>$custom_field_address2[0]['multiple_values'],
+                                            'element_type'=>$custom_field_address2[0]['element_type'],
+                                            'custom_field_args'=>$custom_field_address2
+                                            )
+					        );
+
+
+
+
+
+
+
+
+
+
+    //}
 }
 
 add_action( 'add_meta_boxes', 'myplugin_add_custom_box' );

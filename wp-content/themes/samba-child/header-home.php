@@ -91,7 +91,7 @@
           ?>
         </div>
 
-        <a href="#" class="head_enq_ico" id="">Enquiry</a>
+        <a href="#" class="head_enq_ico popmake-give-details" id="">Enquiry</a>
 
         <div id="back_to_top-collapsed">
           <div class="navicon-arrow-up-2"></div>

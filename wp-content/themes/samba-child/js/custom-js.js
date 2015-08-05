@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 
 
 	$('.ui-tabs-anchor').live("click",function(evt){
-    
+
 
         var current_tab_id_link = $(this).attr('href');
 
@@ -52,12 +52,12 @@ jQuery(document).ready(function($) {
 
    // $('.view_properties_resale').live("click",function(evt){
     $('.view_properties_resale .button_left a.wpb_button_a').live("click",function(evt){
- 
+
         event.preventDefault();
         $('html, body').animate({
             scrollTop: $('#spn_services_div').offset().top
         }, 50);
- 
+
         $('#services_project_type').val('resale');
 
         $('.services_dd_city').val('');
@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
 
     //$('.view_properties_rent').live("click",function(evt){
    $('.view_properties_rent .button_left a.wpb_button_a').live("click",function(evt){
-        
+
         event.preventDefault();
         $('html, body').animate({
             scrollTop: $('#spn_services_div').offset().top
@@ -98,7 +98,7 @@ jQuery(document).ready(function($) {
          var options = {'repopulate_city':true,
                         'repopulate_locality':  false,
                         'repopulate_bedrooms' : false
-                        
+
                         };
 
         fetch_servies_projects(options)
@@ -106,7 +106,7 @@ jQuery(document).ready(function($) {
         $('.serices_properties_heading').find('h5').html('RESIDENTIAL PROJECTS ON RENT    <span class="spn_title_city"></span> <span class="spn_title_property_cnt"></span>');
         $('.services_properties_h4').find('h4').html('Properties on Rent');
         $('.services_top_note').html('<p>Note: Minimum deposit of 10 months has to be given prior to taking flat for rent.</p>');
-        
+
 
      })
 
@@ -133,7 +133,7 @@ jQuery(document).ready(function($) {
        jQuery.post(ajax_var.url, {        //the server_url
             action: "get_services_properties_ajx",                 //the submit_data array
             data:my_data
-        }, function(data) { 
+        }, function(data) {
 
 
             console.log('get_services_properties_ajx data');
@@ -146,7 +146,7 @@ jQuery(document).ready(function($) {
             }
             else{
                 html_data = display_services_properties(data)
-               
+
 
 
 /*
@@ -160,7 +160,7 @@ var property_list_details = {'property_list_html':property_list_html,
                             var options = {'repopulate_city':true,
                         'repopulate_locality':  true,
                         'repopulate_bedrooms' : true
-                        
+
                         };
 */
 
@@ -173,10 +173,10 @@ console.log(options) */
                     $('.services_dd_city').append('<option value="">City</option>')
 
                     var sorted_city_list = _.sortBy(html_data.city_list);
-                   
+
                    // _.each(html_data.city_list,function(vl_city,ky_city){
-                    _.each(sorted_city_list,function(vl_city,ky_city){   
-                        var selected_pune =' '; 
+                    _.each(sorted_city_list,function(vl_city,ky_city){
+                        var selected_pune =' ';
                         if(vl_city=="Pune")
                             var selected_pune = ' selected ';
                         $('.services_dd_city').append('<option value="'+vl_city+'" '+selected_pune+' >'+vl_city+'</option>')
@@ -195,7 +195,7 @@ console.log(options) */
                     if(_.size(pune_properties)>0){
                         var no_of_projects = _.countBy(pune_properties, "Project_Name")
                         $('.spn_title_city').html(' IN PUNE ')
-                       
+
                     }
                     else{
                         var no_of_projects = _.countBy(data, "Project_Name")
@@ -233,7 +233,7 @@ console.log(options) */
                     $('.services_dd_locality').empty();
                     $('.services_dd_locality').append('<option value="">Locality</option>')
                     //_.each(html_data.area_list,function(vl_area,ky_area){
-                     _.each(sorted_area_list,function(vl_area,ky_area){   
+                     _.each(sorted_area_list,function(vl_area,ky_area){
                         $('.services_dd_locality').append('<option value="'+vl_area+'">'+vl_area+'</option>')
 
                     })
@@ -247,7 +247,7 @@ console.log(options) */
                     $('.services_dd_type').empty();
                     $('.services_dd_type').append('<option value="">No. of Bedrooms</option>')
                     //_.each(html_data.bedrooms_list,function(vl_bedroom,ky_bedroom){
-                    _.each(sorted_bedrooms,function(vl_bedroom,ky_bedroom){  
+                    _.each(sorted_bedrooms,function(vl_bedroom,ky_bedroom){
                         $('.services_dd_type').append('<option value="'+vl_bedroom+'">'+vl_bedroom+'</option>')
 
                     })
@@ -256,7 +256,7 @@ console.log(options) */
 
                  jQuery('#services_properties_listings').html(html_data.property_list_html);
 
-                
+
 
 
             }
@@ -270,7 +270,7 @@ console.log(options) */
                             }
             */
 
-            
+
 
                             /* if(data.success == true ){
                                  console.log(jQuery(self).closest('tr').html())
@@ -290,13 +290,13 @@ console.log(options) */
 
                             } */
 
-                    }) 
+                    })
 
     }
 
 
     $('.services_dd_city,.services_dd_locality,.services_dd_type').live("change",function(evt){
- 
+
             var  services_dd_city = false;
             var repopulate_locality = false;
             var repopulate_bedrooms = false;
@@ -305,24 +305,24 @@ console.log(options) */
         if($(this).hasClass('services_dd_city')){
 
             $('.services_dd_locality').val('');
-           $('.services_dd_type').val(''); 
-             
+           $('.services_dd_type').val('');
+
             repopulate_locality = true;
             repopulate_bedrooms = true;
 
         }
 
-        if($(this).hasClass('services_dd_locality')){           
-             
+        if($(this).hasClass('services_dd_locality')){
+
             repopulate_bedrooms = true;
 
-        } 
-        
+        }
+
 
          var options = {'repopulate_city':repopulate_city,
                         'repopulate_locality':  repopulate_locality,
                         'repopulate_bedrooms' : repopulate_bedrooms
-                        
+
                         };
 
         fetch_servies_projects(options);
@@ -367,7 +367,7 @@ console.log(options) */
                 bedrooms_list[bedrooms_list_cnt] = servproperties_vl.No_of_Bedrooms;
                 bedrooms_list_cnt = bedrooms_list_cnt+1;
             }
-             
+
 
 
                 console.log('servproperties_vl');
@@ -376,19 +376,19 @@ console.log(options) */
                 console.log('type match '+servproperties_vl.type+' : '+current_property_type);
 
                 if(current_project !='' &&  (current_project !=servproperties_vl.Project_Name) ){
-                    property_list_html = property_list_html +            
+                    property_list_html = property_list_html +
                     '                           </div>'+
                     '                        </div>'+
-                    '                    </div>'+    
+                    '                    </div>'+
                     '                </div>'+
                     '            </div>'+
                     '            <div class="clearfix"></div>'+
-                    '        </div>'  
-                         
+                    '        </div>'
+
                 }
                 if(current_project !='' &&  (current_project ==servproperties_vl.Project_Name) ){
                             //echo "<h3> CONTINUE MAIN PROJECT DIV</h3>";
-                             property_list_html = property_list_html +      
+                             property_list_html = property_list_html +
 
                                                 '<div class="top_inner t_i_body">'+
                                                 '    <div class="set">'+
@@ -401,11 +401,11 @@ console.log(options) */
                                                 '        <big>'+servproperties_vl.No_of_Rooms+'</big>'+
                                                 '    </div>'+
                                                 '    <div class="set rent">'
-                        if(servproperties_vl.Rental_Value_Unfurnished!='') {   
+                        if(servproperties_vl.Rental_Value_Unfurnished!='') {
                             property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Unfurnished+'</big><small> - Unfurnished</small>';
                         }
 
-                        if(servproperties_vl.Rental_Value_Furnished!=''){ 
+                        if(servproperties_vl.Rental_Value_Furnished!=''){
                             property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Furnished+'</big><small> - Furnished</small>';
                         }
                         property_list_html = property_list_html+
@@ -433,19 +433,19 @@ console.log(options) */
                                 var rent_resale_head = 'Rent (Rs./Month)';
                             }
                             else if($('#services_project_type').val()=="resale"){
-                                var rent_resale_head = 'Cost';   
+                                var rent_resale_head = 'Cost';
                             }
-                    
+
                         property_list_html = property_list_html+
-                 
+
 
                                             '<div class="prk_inner_block vc_row-fluid centered columns forent">'+
                                             '    <div class="row partintro">'+
                                             '        <div class="vc_col-sm-12 wpb_column vc_column_container bgrey">'+
-                                            '            <div class="wpb_wrapper img_hold">'+
+                                            '            <div class="wpb_wrapper img_hold" style="background-image: url('+site_url+"/wp-content/themes/samba-child/services-images/"+servproperties_vl.Image_File_Name+');">'+
                                             '                <div class="clearfix"></div>'+
                                             '                <div class="work_cont">'+
-                                            '                    <img src="'+site_url+"/wp-content/themes/samba-child/services-images/"+servproperties_vl.Image_File_Name+'">'+
+                                            //'                    <img src="'+site_url+"/wp-content/themes/samba-child/services-images/"+servproperties_vl.Image_File_Name+'">'+
                                             '                    <div class="forent_cap">Sample Flat</div>'+
                                             '                </div>'+
                                             '            </div>'+
@@ -487,7 +487,7 @@ console.log(options) */
                                             '                            <div class="set rent">'+
                                             '                                <small class="clr_lt">'+rent_resale_head+'</small>'+
                                             '                            </div>'+
-                                            '                            <div class="set">'+                                                                            
+                                            '                            <div class="set">'+
                                             '                            </div>'+
                                             '                        </div>'+
                                             '                        <div class="top_inner t_i_body">'+
@@ -501,22 +501,22 @@ console.log(options) */
                                             '                                <big>'+servproperties_vl.No_of_Rooms+'</big>'+
                                             '                            </div>'+
                                             '                            <div class="set rent">';
-                                                         if(servproperties_vl.Rental_Value_Unfurnished!='') {   
+                                                         if(servproperties_vl.Rental_Value_Unfurnished!='') {
                                                             property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Unfurnished+'</big><small> - Unfurnished</small>';
                                                         }
 
-                                                        if(servproperties_vl.Rental_Value_Furnished!=''){ 
+                                                        if(servproperties_vl.Rental_Value_Furnished!=''){
                                                             property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Furnished+'</big><small> - Furnished</small>';
-                                                        }                   
+                                                        }
                                                         property_list_html = property_list_html+
                                                                         '</div>'+
                                                                         '<div class="set alrt">'+
                                                                         '    <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
                                                                         '</div>'+
                                                                     '</div>';
-                                                
-                                               
-            
+
+
+
                     }
 
 
@@ -527,14 +527,14 @@ console.log(options) */
 
         }) //end _.each(services_properties,function(servproperties_vl,servproperties_ky){
 
-        property_list_html = property_list_html+ 
+        property_list_html = property_list_html+
                     '                            </div>'+
                     '                    </div>'+
-                    '                </div>'+    
+                    '                </div>'+
                     '            </div>'+
                     '        </div>'+
                     '        <div class="clearfix"></div>'+
-                    '    </div>'      
+                    '    </div>'
 var property_list_details = {'property_list_html':property_list_html,
                               'city_list':city_list,
                               'area_list':area_list,
@@ -547,7 +547,7 @@ var property_list_details = {'property_list_html':property_list_html,
     }
 
 
-	
+
 
     function get_spinner(){
 
@@ -555,7 +555,7 @@ var property_list_details = {'property_list_html':property_list_html,
                            '<div class="spinner">'+
                                '<div class="spinner-icon" style="border-top-color: rgb(10, 194, 210); border-left-color: rgb(10, 194, 210);"></div>'+
                            '</div>'+
-                       '</div>' 
+                       '</div>'
 
                        return spinner;
 
@@ -567,7 +567,7 @@ var property_list_details = {'property_list_html':property_list_html,
 
     /* Populate cities and Properties values on Fomidable form added on Contact page
     */
-    function get_formidable_contact_properties(tab_id){ 
+    function get_formidable_contact_properties(tab_id){
 
         if(!_.isUndefined(tab_id)){
 
@@ -584,7 +584,7 @@ console.log(' (.nri_fullrow.indi_pr.redsp ).find(.wpb_call_desc).length')
 console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
 
         if(city_selector.length>0 || jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
-         
+
              properties_selector.empty();
 
              if(_.size(window.residential_properties)>0){
@@ -596,24 +596,24 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
                     jQuery.post(ajax_var.url, {        //the server_url
                         action: "get_residential_properties_list_ajx",                 //the submit_data array
                         data:{}
-                        }, function(response) { 
+                        }, function(response) {
 
 
                             console.log('RESPONSE')
                             console.log(response);
                             if(response.code == 'OK' ){
-                                window.residential_properties =  response.data;  
-                                city_selector.empty();                            
+                                window.residential_properties =  response.data;
+                                city_selector.empty();
                                 show_cities_on_formidable_contact(city_selector)
                                 show_nearby_properties();
 
-                            }      
+                            }
                     })
 
              }
         }
 
-          
+
     }
 
 
@@ -702,7 +702,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
             })
 
 
- 
+
 
             console.log('THIS AREA : ')
             console.log(this_area)
@@ -712,7 +712,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
              var closer_properties ="";
 
             if(_.size(this_area)>0 || _.size(nearby_area) >0){
-               
+
                 closer_properties = "There " ;
                 var properties_txt = " properties ";
 
@@ -720,10 +720,10 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
 
                         if(_.size(this_area) == 1){
                             var properties_txt = ' property ';
-                            closer_properties = closer_properties + ' is ';          
+                            closer_properties = closer_properties + ' is ';
                         }
 
-                        closer_properties = closer_properties + _.size(this_area)+" "+properties_txt+" in this area ";                    
+                        closer_properties = closer_properties + _.size(this_area)+" "+properties_txt+" in this area ";
                     }
                     if(_.size(this_area)>0 && _.size(nearby_area) >0)
                         closer_properties = closer_properties + " and ";
@@ -732,19 +732,19 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
                         properties_txt = " properties ";
                         if(_.size(nearby_area) == 1){
                             var properties_txt = ' property ';
-                            closer_properties = closer_properties + ' is';          
+                            closer_properties = closer_properties + ' is';
                         }
 
 
-                        closer_properties = closer_properties + _.size(nearby_area)+" "+properties_txt+" nearby areas "; 
+                        closer_properties = closer_properties + _.size(nearby_area)+" "+properties_txt+" nearby areas ";
                     }
 
-               // jQuery('.spn_nearby_properties').find('.wpb_call_desc').html(closer_properties)   
+               // jQuery('.spn_nearby_properties').find('.wpb_call_desc').html(closer_properties)
 
 
-                jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html(closer_properties)   
+                jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html(closer_properties)
 
-            } 
+            }
 
         }
 
@@ -753,16 +753,16 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
     function show_cities_on_formidable_contact(city_selector){
 
          var uniq_cities = [];
-         var uniq_cities_cnt =0; 
+         var uniq_cities_cnt =0;
          city_selector.empty()
          city_selector.append("<option value='' >City</option>")
 
-         _.each(window.residential_properties,function(vl,ky){ 
+         _.each(window.residential_properties,function(vl,ky){
 
             if(_.indexOf(uniq_cities, vl.property_city)<0){
 
                 uniq_cities[uniq_cities_cnt] = vl.property_city;
-                
+
                 city_selector.append('<option value="'+vl.property_city_name+'" city_id="'+vl.property_city+'">'+vl.property_city_name+'</option>');
 
                 uniq_cities_cnt = uniq_cities_cnt + 1;
@@ -774,7 +774,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
     get_formidable_contact_properties();
 
     jQuery('.contact_form_tab_container li a').live('click',function(){
-         
+
         get_formidable_contact_properties($(this).attr('id'));
     })
 
@@ -788,18 +788,18 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
           project_selector.append('<option value="">Select the Project</option>')
 
           if(!_.isUndefined(window.residential_properties)){
-                _.each(window.residential_properties,function(prop_vl,prop_ky){   
+                _.each(window.residential_properties,function(prop_vl,prop_ky){
 
                     if(city_id == prop_vl.property_city){
 
-                        project_selector.append('<option value="'+prop_vl.post_title+'">'+prop_vl.post_title+'</option>'); 
+                        project_selector.append('<option value="'+prop_vl.post_title+'">'+prop_vl.post_title+'</option>');
 
-                    }                  
+                    }
 
               })
-  
+
           }
-          
+
             console.log(window.residential_properties);
 
     })
@@ -808,7 +808,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
     */
 
 
-    
+
 
 
     jQuery('.popmake-services-enquiry').live('click',function(){
@@ -827,14 +827,14 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
         jQuery('#form_frm_serv_contact').find('.serv-prj-flr').html(building_floor)
         jQuery('#form_frm_serv_contact').find('.serv-prj-type').html(project_rooms)
         jQuery('#form_frm_serv_contact').find('.serv-prj-area').html(project_area)
-        
+
     })
 
 jQuery('.popmake-careers-apply-now').live('click',function(evt){
 
 
-        evt.preventDefault();        
-        var job_list_classes = jQuery(this).closest('li').attr('class');      
+        evt.preventDefault();
+        var job_list_classes = jQuery(this).closest('li').attr('class');
 
         var jobtype_class_arr = []
         job_list_classes_arr = job_list_classes.split(' ');
@@ -842,7 +842,7 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
         _.each(job_list_classes_arr,function(jobclass_vl,jobclass_ky){
             if(jobclass_vl.indexOf('job-type')==0){
                 var jobtype_class = jobclass_vl;
-                jobtype_class_arr =  jobtype_class.split('-') 
+                jobtype_class_arr =  jobtype_class.split('-')
             }
         })
 
@@ -853,12 +853,12 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
         console.log(jobtype_class_arr)
 
         if(_.size(jobtype_class_arr)==3)
-            current_job_category = jobtype_class_arr[2]; 
+            current_job_category = jobtype_class_arr[2];
 
         if(jQuery(this).closest('li').find('.job-name').length>0)
-            current_job_name  =  jQuery(this).closest('li').find('.job-name').html() 
+            current_job_name  =  jQuery(this).closest('li').find('.job-name').html()
 
-        
+
         jQuery('#form_careers_applynow').find('.job-title-text').html(current_job_name);
 
         jQuery('#form_careers_applynow').find('.job-category-text').html(' ('+current_job_category+')')
@@ -867,22 +867,31 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
 
         jQuery('#form_careers_applynow').find('#field_careers_hid_jobcategory').html(current_job_category)
 
- 
+
     }),
 
     jQuery('.popmake-popup-property-list').live('click',function(evt){
-        evt.preventDefault(); 
+        evt.preventDefault();
 
         if(jQuery(this).closest('.single_p_w').length>0){  // On REsidential properties listings page
-            var property_title = jQuery(this).closest('.single_p_w').attr('property-title'); 
-            
+            var property_title = jQuery(this).closest('.single_p_w').attr('property-title');
+
             jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property_title)
-            jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)    
+            jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)
         }
-        
-        
+
+
 
     })
+
+
+    jQuery('.popmake-popup-property-page').live('click',function(evt){
+        evt.preventDefault();
+        jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property.title)
+        jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property.title)
+     })
+
+    
 
 
     if(jQuery('#current_property_title').length>0){
@@ -894,21 +903,21 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
            stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
            stButtons.locateElements();
 
-          },300) 
+          },300)
     }
 
-    
+
 
     jQuery('.popmake-popup-property-page').live('click',function(evt){
-        evt.preventDefault(); 
+        evt.preventDefault();
 
          if(jQuery('#form_frm_individual_proj_popup').length>0){
 
             var current_prperty_title = jQuery('#current_property_title').val();
             jQuery('#frm_individual_proj_popup').find('#field_individual_popup_project').val(current_prperty_title)
          }
-        
-        
+
+
 
     })
 
@@ -916,7 +925,7 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
 
 
     if( jQuery('#form_frm_individual_project_contact').length>0 ){
-        
+
         if(jQuery('#field_indi_hid_project_name').length>0){
 
             var current_prperty_title = jQuery('#current_property_title').val();
