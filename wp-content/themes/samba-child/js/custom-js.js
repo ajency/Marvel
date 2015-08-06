@@ -411,7 +411,7 @@ console.log(options) */
                         property_list_html = property_list_html+
                                                 '    </div>'+
                                                 '    <div class="set alrt">'+
-                                                '        <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
+                                                '        <a href="#" class="wpb_button enq_ico popmake-services-enquiry"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
                                                 '    </div>'+
                                                 '</div>';
                         }
@@ -430,10 +430,10 @@ console.log(options) */
                             //echo "<h1> New Project </h1>";
 
                             if($('#services_project_type').val()=="rent"){
-                                var rent_resale_head = 'Rent (Rs./Month)';
+                                var rent_resale_head = 'Rent (INR/Month)';
                             }
                             else if($('#services_project_type').val()=="resale"){
-                                var rent_resale_head = 'Cost';
+                                var rent_resale_head = 'Cost (INR)';
                             }
 
                         property_list_html = property_list_html+
@@ -511,7 +511,7 @@ console.log(options) */
                                                         property_list_html = property_list_html+
                                                                         '</div>'+
                                                                         '<div class="set alrt">'+
-                                                                        '    <a href="#" class="wpb_button enq_ico"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
+                                                                        '    <a href="#" class="wpb_button enq_ico popmake-services-enquiry"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
                                                                         '</div>'+
                                                                     '</div>';
 
@@ -891,7 +891,7 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
         jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property.title)
      })
 
-    
+
 
 
     if(jQuery('#current_property_title').length>0){
