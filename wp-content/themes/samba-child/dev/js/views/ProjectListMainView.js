@@ -3,7 +3,7 @@
  *
  */
 
- 
+
 
         var ProjectListMainView = Backbone.View.extend({
 
@@ -12,10 +12,10 @@
             template :' #projectlistMainTemplate',
             /*events : {
                 'click .btn_compare'    : 'show_compare2',
-                 
-            },*/ 
+
+            },*/
               events : {
-               
+
                 'click .add_to_compare'   : 'add_property_for_comparison4',
                 'click .remove_from_comp' : 'remove_comparison_property'
 
@@ -24,42 +24,42 @@
 
 
 
-        remove_comparison_property : function(evt){ 
+        remove_comparison_property : function(evt){
 
             evt.preventDefault();
 
             var target_ele = jQuery(evt.target);
 
             var property_id = target_ele.closest('.drag_area').attr('property-id');
-             
+
 
             //var prop_id = target_ele.closest('.drag_area').attr('property_id');
 
             target_ele.closest('.drag_area_block2').find('.btn_compare').attr('href','javascript:void(0)').addClass('disabled');
-            
+
             target_ele.closest('.drag_area').html('Drag for Comparision').removeClass('after_drag')
 
             jQuery('.single_p_w[property-id="'+property_id+'"]').find('.compare').remove();
 
-            target_ele.closest('.drag_area').attr('property-id','') 
- 
-           
+            target_ele.closest('.drag_area').attr('property-id','')
+
+
 
         },
 
         add_property_for_comparison4:function(evt){
 
-              
- 
+
+
         console.log("drop");
 
         //        console.log($(self).html())
 
         //      alert($(self).attr('property-title'))
-        
+
         var dropped = jQuery(evt.target);
-        
- 
+
+
         if( jQuery('.drag_area_block2').find('.one').attr('property-id')=='' || _.isUndefined(jQuery('.drag_area_block2').find('.one').attr('property-id')) ){
             var droppedOn = jQuery('.drag_area_block2').find('.one') ;
 
@@ -68,12 +68,12 @@
             var droppedOn = jQuery('.drag_area_block2').find('.two') ;
 
             if(jQuery('.drag_area_block2').find('.one').attr('property-id')== dropped.attr('property-id')){
-                
-                //ui.draggable.animate(ui.draggable.data().origPosition,"fast");               
-                   
+
+                //ui.draggable.animate(ui.draggable.data().origPosition,"fast");
+
                     alert('Please Select two different projects to compare')
                     return;
-        
+
             }
         }
 
@@ -84,12 +84,12 @@
         droppedOn.html('');
         /* commented on 8june2015 2_30pm
         jQuery(this).removeClass("border").removeClass("over");
-         var droppedOn = jQuery(this); 
+         var droppedOn = jQuery(this);
         jQuery(this).html('');
          */
 
-        
-        console.log('droppable.........................') 
+
+        console.log('droppable.........................')
 
         console.log(dropped)
         console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
@@ -121,14 +121,14 @@
 
 
         console.log(cmp_html);
-        //jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn); 
-        jQuery(cmp_html).appendTo(droppedOn); 
+        //jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn);
+        jQuery(cmp_html).appendTo(droppedOn);
 
 
          var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
          var prop2_id = jQuery('.top-compar').find('.two').attr('property-id');
 
-          
+
 
 
         // if(!_.isUndefined(prop1_id) || !_.isUndefined(prop1_id)){
@@ -142,9 +142,9 @@
                 ur = ur+'/'+prop2_id;
             else
                 ur = ur+'/'+0;
-            
+
             jQuery('.btn_compare').attr('href',ur);
-            
+
             var compareico_html = '<div class="compare">'+
                                             '<a href="#" class="comp_ico"></a>'+
                                         '</div>'
@@ -167,7 +167,7 @@
                 jQuery('.top-compar').find('.two').removeClass('after_drag');
             }
 
-           
+
 
          //}
 
@@ -177,8 +177,8 @@
                 jQuery('.btn_compare').addClass('disabled')
             }
             else{
-                 
-                
+
+
                 jQuery('.btn_compare').removeClass('disabled')
             }
 
@@ -192,9 +192,9 @@
             if(!_.isUndefined(options))
                 if(!_.isUndefined('options.mapview'))
                     this.mapview = options.mapview;
-                           
+
                  _.bindAll(this ,'render');
-              
+
                 this.render();
             },
 
@@ -203,13 +203,13 @@
                 jQuery('#main').html(this.show_loader());
 
                 var mainViewtemplate = _.template(jQuery(this.template).html());
-                //jQuery('.right_container').html(mainViewtemplate()); 
-                            jQuery('#main').html(mainViewtemplate()); 
+                //jQuery('.right_container').html(mainViewtemplate());
+                            jQuery('#main').html(mainViewtemplate());
                             this.make_div_dropable(".drag_area")
             },
 
             /*show_compare2:function(){
-                /* var  url = location.protocol + '//' + location.host + location.pathname; 
+                /* var  url = location.protocol + '//' + location.host + location.pathname;
                 alert(url); * /
 
                 var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
@@ -233,20 +233,20 @@
 
             /* make_div_dropable2 : function(dropable_el){
 
- 
-                     jQuery(dropable_el).droppable({ accept: ".draggable", 
+
+                     jQuery(dropable_el).droppable({ accept: ".draggable",
                        drop: function(event, ui) {
                                 // $(ui.draggable).clone().appendTo($(this));
                                 console.log("drop");
 
                         //        console.log(jQuery(self).html())
- 
+
                           //      alert(jQuery(self).attr('property-title'))
                                 jQuery(this).removeClass("border").removeClass("over");
                                 var dropped = ui.draggable;
                                 var droppedOn = jQuery(this);
                                 jQuery(this).html('');
-                                console.log('droppable.........................') 
+                                console.log('droppable.........................')
 
                                 console.log(dropped)
                                 console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
@@ -257,12 +257,12 @@
 
                                 var cmp_html = "<div ><b>"+draggable_property_title+"</b><br/>"+draggable_property_address+"</div>";
                                 console.log(cmp_html);
-                                //jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn); 
-                                jQuery(cmp_html).appendTo(droppedOn); 
+                                //jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn);
+                                jQuery(cmp_html).appendTo(droppedOn);
 
 
-                                
-                        }, 
+
+                        },
                         over: function(event, elem) {
 
                                 jQuery(this).addClass("over");
@@ -275,7 +275,7 @@
 
                                // console.log(jQuery(elem.target))
                                // jQuery(this.target).css({width:'50%; height:auto;'});
-                                
+
                         },
                         out: function(event, elem) {
                                 jQuery(self).removeClass("over");
@@ -287,19 +287,20 @@
 
              make_div_dropable : function(dropable_el){
 
- 
-                     jQuery(dropable_el).droppable({ accept: ".draggable", 
+
+                     jQuery(dropable_el).droppable({ accept: ".draggable",
                         hoverClass: "over",
+                        tolerance: "pointer",
                        drop: function(event, ui) {
                                 // $(ui.draggable).clone().appendTo($(this));
                                 console.log("drop");
 
                         //        console.log(jQuery(self).html())
- 
+
                           //      alert(jQuery(self).attr('property-title'))
-                                
+
                                 var dropped = ui.draggable;
-                                
+
 
                                /* if( jQuery(this).find('.one').attr('property-id')=='' || _.isUndefined(jQuery(this).find('.one').attr('property-id')) ){
                                     var droppedOn = jQuery(this).find('.one') ;
@@ -309,13 +310,13 @@
                                     var droppedOn = jQuery(this).find('.two') ;
 
                                     if(jQuery(this).find('.one').attr('property-id')== dropped.attr('property-id')){
-                                        
+
                                         //ui.draggable.animate(ui.draggable.data().origPosition,"fast");
-                                        
-                                           
+
+
                                             alert('Please Select two different projects to compare')
                                             return;
-                                
+
                                     }
                                 }*/
 var droppedOn = jQuery(this);
@@ -328,17 +329,17 @@ console.log('droppedOn_target:-----')
 console.log( droppedOn_target.hasClass('two'))
 
 //var dropped_target = jQuery(_.first(ui.draggable).target);
-                                 
+
 
                                 console.log('droppedOn:---------------------')
                                 console.log(droppedOn)
 
                                 console.log('Dropped---------------------------')
                                 console.log(dropped)
-                               
+
                                 /* commented on 8june2015 2_30pm
                                 jQuery(this).removeClass("border").removeClass("over");
-                                 var droppedOn = jQuery(this); 
+                                 var droppedOn = jQuery(this);
                                 jQuery(this).html('');
                                  */
 
@@ -348,23 +349,23 @@ console.log( droppedOn_target.hasClass('two'))
                                 if(droppedOn_target.hasClass('one')==true){
 
                                     var one_property_id = dropped_target.attr('property-id');
-                                    var second_property_id = jQuery('.drag_area_block2').find('.two').attr('property-id')  ; 
+                                    var second_property_id = jQuery('.drag_area_block2').find('.two').attr('property-id')  ;
 
                                     console.log('one_property_id:=========================')
                                     console.log(one_property_id);
                                     console.log('second_property_id:=========================')
                                     console.log(second_property_id);
                                     if(!_.isUndefined(one_property_id) &&  !_.isUndefined(second_property_id)){
-                                       
+
                                        if( parseInt(one_property_id) == parseInt(second_property_id) ){
                                                 alert('Please Select two different projects to compare')
                                                                             return;
-                                        } 
+                                        }
                                     }
 
-                                    
-                                    
-                                    
+
+
+
                                 }
                                 else if(droppedOn_target.hasClass('two')==true  ){
 
@@ -387,11 +388,11 @@ console.log( droppedOn_target.hasClass('two'))
                                 }
 
                                 droppedOn.removeClass("border").removeClass("over");
-                                droppedOn.html('');  
+                                droppedOn.html('');
 
 
-                                
-                                console.log('droppable.........................') 
+
+                                console.log('droppable.........................')
 
                                 console.log(dropped)
                                 console.log('-=-=-=-=-=-=-=-=-=-=-=-=-==-=-')
@@ -423,14 +424,14 @@ console.log( droppedOn_target.hasClass('two'))
 
 
                                 console.log(cmp_html);
-                                //jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn); 
-                                jQuery(cmp_html).appendTo(droppedOn); 
+                                //jQuery(dropped).clone().detach().css({top: 0,left: 0}).appendTo(droppedOn);
+                                jQuery(cmp_html).appendTo(droppedOn);
 
 
                                  var prop1_id = jQuery('.top-compar').find('.one').attr('property-id');
                                  var prop2_id = jQuery('.top-compar').find('.two').attr('property-id');
 
-                                  
+
 
 
                                 // if(!_.isUndefined(prop1_id) || !_.isUndefined(prop1_id)){
@@ -444,9 +445,9 @@ console.log( droppedOn_target.hasClass('two'))
                                         ur = ur+'/'+prop2_id;
                                     else
                                         ur = ur+'/'+0;
-                                    
+
                                     jQuery('.btn_compare').attr('href',ur);
-                                    
+
                                     var compareico_html = '<div class="compare">'+
                                                                     '<a href="#" class="comp_ico"></a>'+
                                                                 '</div>'
@@ -469,7 +470,7 @@ console.log( droppedOn_target.hasClass('two'))
                                         jQuery('.top-compar').find('.two').removeClass('after_drag');
                                     }
 
-                                   
+
 
                                  //}
 
@@ -479,16 +480,16 @@ console.log( droppedOn_target.hasClass('two'))
                                         jQuery('.btn_compare').addClass('disabled')
                                     }
                                     else{
-                                         
-                                        
+
+
                                         jQuery('.btn_compare').removeClass('disabled')
                                     }
 
 
 
 
-                                
-                        }, 
+
+                        },
                         over: function(event, elem) {
 
                                 //jQuery(this).addClass("over");
@@ -501,7 +502,7 @@ console.log( droppedOn_target.hasClass('two'))
 
                                // console.log(jQuery(elem.target))
                                // jQuery(this.target).css({width:'50%; height:auto;'});
-                                
+
                         },
                         out: function(event, elem) {
                                // jQuery(self).removeClass("over");
@@ -510,7 +511,7 @@ console.log( droppedOn_target.hasClass('two'))
 
 
             },
-             
+
 
 
         });
