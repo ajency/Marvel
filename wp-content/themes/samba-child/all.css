@@ -838,7 +838,7 @@ h6 {
   vertical-align: top;
 }
 .service .vc_col-sm-12 .top-note {
-  display: inline-block;
+  display: none;
   width: 30%;
   margin-left: 20px;
   vertical-align: top;
@@ -1075,8 +1075,33 @@ h6 {
   -o-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
+.project-list.row .single_p_w .single_p_img,
+.project-list.row .single_p_w .single_p_cap {
+  position: relative;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -mstransition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.project-list.row .single_p_w:nth-child(2n) .single_p_img,
+.project-list.row .single_p_w:nth-child(2n) .single_p_cap {
+  left: -25px;
+}
+.project-list.row .single_p_w:nth-child(n) .single_p_img,
+.project-list.row .single_p_w:nth-child(n) .single_p_cap {
+  right: -25px;
+}
 .project-list.row .single_p_w.visigoth {
   opacity: 1;
+}
+.project-list.row .single_p_w.visigoth:nth-child(2n) .single_p_img,
+.project-list.row .single_p_w.visigoth:nth-child(2n) .single_p_cap {
+  left: 0;
+}
+.project-list.row .single_p_w.visigoth:nth-child(n) .single_p_img,
+.project-list.row .single_p_w.visigoth:nth-child(n) .single_p_cap {
+  right: 0;
 }
 @media screen and (max-width: 769px) {
   .project-list.row .single_p_w,

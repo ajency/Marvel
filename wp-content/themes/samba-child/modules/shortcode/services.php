@@ -8,7 +8,7 @@ function  services_properties_rent_resale(){
     $qry_get_rent_resale_data = " SELECT * FROM ".$table_name." WHERE   type like 'resale' ORDER BY Project_Name   ";
     $res_get_rent_resale_data = $wpdb->get_results($qry_get_rent_resale_data,ARRAY_A);
 
-    $rent_cost_header = "Cost";
+    $rent_cost_header = "Cost (INR)";
 
 
 
@@ -278,7 +278,7 @@ sort($uniq_no_of_bedrooms);
                                                         <small class="clr_lt">Area (SQ.FT.)</small>
                                                     </div>
                                                     <div class="set">
-                                                        <small class="clr_lt">No. Of Rooms</small>
+                                                        <small class="clr_lt">Type</small>
                                                     </div>
                                                     <div class="set rent">
                                                         <small class="clr_lt"><?php echo $rent_cost_header ; ?></small>

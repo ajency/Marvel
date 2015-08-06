@@ -45,12 +45,32 @@
     -ms-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
-    // &:nth-child(n) {margin-right: -50px; margin-left: 0;}
-    // &:nth-child(2n) {margin-left: -50px; margin-right: 0;}
+    .single_p_img, .single_p_cap {
+        position: relative;
+        .transition();
+    }
+    &:nth-child(2n) {
+        .single_p_img, .single_p_cap {
+            left: -25px;
+        }
+    }
+    &:nth-child(n) {
+        .single_p_img, .single_p_cap {
+            right: -25px;
+        }
+    }
     &.visigoth {
         opacity: 1;
-        // &:nth-child(n) {margin-right: 0; margin-left: 0;}
-        // &:nth-child(2n) {margin-left: 0; margin-right: 0;}
+        &:nth-child(2n) {
+            .single_p_img, .single_p_cap {
+                left: 0;
+            }
+        }
+        &:nth-child(n) {
+            .single_p_img, .single_p_cap {
+                right: 0;
+            }
+        }
     }
 }
 

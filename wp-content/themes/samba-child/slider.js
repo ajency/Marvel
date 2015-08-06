@@ -45,6 +45,40 @@ function checkIfInView(element){
     //all child js
     $(document).ready(function() {
 
+        //careers stuff
+        if ($('div').hasClass('job_type')) {
+            $('.job_type a').each(function() {
+                $countdet = $(this).attr('href');
+                $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
+                if ($count > 1) {
+                    $(this).text($count + ' positions');
+                } else if ($count == 1) {
+                    $(this).text($count + ' position');
+                } else {
+                    $(this).text('-');
+                }
+            });
+            $('.job_type').click(function() {
+                $('html, body').animate({scrollTop: jQuery('.careers-scroll-down').offset().top}, 600);
+                $('.car_togglethis').addClass('hidden');
+                $locationdet = $(this).find('.wpb_text_column a').attr('href');
+                $('.car_' + $locationdet.slice(1)).removeClass('hidden');
+            });
+        }
+        //end careers stuff
+
+        function popupmake_scrollbarhide() {
+            $('.popmake').on('popmakeBeforeOpen', function () {
+              $('html, body').css('overflow', 'hidden');
+              $('html').css('height', $(window).height());
+            });
+            $('.popmake').on('popmakeAfterClose', function () {
+              $('html, body').css('overflow', 'visible');
+              $('html').css('height', 'auto');
+            });
+        }
+        popupmake_scrollbarhide();
+
         // $("#home_location").dropkick({
         //     mobile: true
         // });
@@ -106,8 +140,10 @@ function checkIfInView(element){
                             $theval = ($(window).scrollTop() + $(window).height()) + 20;
                             if ($(window).scrollTop() < ($(this).offset().top + 50) && $(this).offset().top < $theval) {
                                 $(this).addClass('visigoth');
-                            } else {
+                            } else if ($(this).offset().top > $theval) {
                                 $(this).removeClass('visigoth');
+                            } else {
+                                //$(this).removeClass('visigoth');
                             }
                         });
                     }
@@ -321,6 +357,7 @@ function checkIfInView(element){
             }
         });
         $(window).resize(function() {
+            popupmake_scrollbarhide();
 
             if ($('body').hasClass('home')) {
                 $hevp = window.innerHeight ? window.innerHeight : $(window).height();
