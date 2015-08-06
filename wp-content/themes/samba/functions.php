@@ -761,8 +761,11 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 							    }
 							    else{
 							        $property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
-							        $current_property_meta_value =    get_post_meta($post->ID, "commmercial-property-unit-type", true);
+							        $current_property_meta_value =    get_post_meta($post->ID, "commercial-property-unit-type", true);
+
 							    }
+
+							    
 
 							    $edit_options_values = false ;
 
