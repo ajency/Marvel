@@ -3,7 +3,7 @@
 		<div class="top-dd-c">
 
 	    </div>
-
+	    <% if(post_type=="residential-property") { %>
 	    <div class="drag_area_block2 top-compar">
 	     <div class="drag_area one"   >Drag for Comparision</div>
 		    <div class="drag_area two"    >Drag for Comparision</div>
@@ -11,8 +11,9 @@
 
 
 	    </div>
+	    <% } %>
 	    
-	    <div id="projects_listings"> 
+	    <div id="projects_listings" <% if(post_type=="commercial-property") { %>class="commercial-property-list" <% } %>> 
 
 			                
 	        

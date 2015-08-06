@@ -637,10 +637,11 @@ $('.del_prop_type_layout_img').live("click",function(evt){
             var attachment_id = $(this).attr('file-id');
             var file_type     = 'layout_image'
 
-            var my_data = { 'property_id'    : curr_property_id,
-                            'property_unit_type'  : property_unit_type,
-                            'attachment_id'  : attachment_id,
-                            'file_type'     : file_type
+            var my_data = { 'property_id'       : curr_property_id,
+                            'property_unit_type': property_unit_type,
+                            'attachment_id'     : attachment_id,
+                            'file_type'         : file_type,
+                            'post_type'         : $('#post_type').val()
                           }
 
             $.post(ajaxurl,{   //the server_url
@@ -745,10 +746,13 @@ $('.get_property_unit_type').live("click",function(evt){
 
     var  property_unit_type_row ='';
 
+    var p_data = {'post_type':$('#post_type').val() }
+
      if(_.isUndefined(window.property_unit_type_options)){
 
          $.post(ajaxurl, {        //the server_url
             action: "get_property_unit_type_option",                 //the submit_data array
+            data : p_data
         }, function(data) {
                             if(_.isArray(data)){
 

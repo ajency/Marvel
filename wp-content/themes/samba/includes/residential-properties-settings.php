@@ -425,8 +425,15 @@ add_action( 'wp_ajax_delete_property_unit_type', 'delete_property_unit_type' );
 function get_property_unit_type_option(){
 
 	global $wpdb;
+	if($_REQUEST['data']['post_type'] =='commercial-property'){
+		$current_property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
+	}
+	else{
+		$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
 
-	$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+	}
+
+	
 
 	if(isset($current_property_unit_types['property_unit_types'])){
 		wp_send_json(maybe_unserialize($current_property_unit_types['property_unit_types']));

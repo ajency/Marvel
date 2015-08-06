@@ -761,7 +761,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 							    }
 							    else{
 							        $property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
-							        $current_property_meta_value =    get_post_meta($post->ID, "residential-property-unit-type", true);
+							        $current_property_meta_value =    get_post_meta($post->ID, "commmercial-property-unit-type", true);
 							    }
 
 							    $edit_options_values = false ;
@@ -809,7 +809,15 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
     						    break;
 
     	case 'property-locality'			:
-    							$property_options_locality_data = maybe_unserialize(get_option('property-locality'));
+
+    							if($current_post_type=="residential-property"){
+    								$property_options_locality_data = maybe_unserialize(get_option('property-locality'));
+    							}
+    							else{
+    								$property_options_locality_data = maybe_unserialize(get_option('commercial-property-locality'));
+    							}
+
+
     							$property_options_locality = isset($property_options_locality_data['localities'])?$property_options_locality_data['localities']:array();
 
     							$current_property_meta_value =    get_post_meta($post->ID, "property-locality", true);
@@ -831,6 +839,8 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 
 								$edit_options_values = true;
 
+
+echo "Properties LOCALITY ID ".$current_property_meta_value;
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
@@ -2393,12 +2403,19 @@ function save_custom_meta_box($post_id, $post, $update)
 
 		$property_unit_types_data_value = array();
 
-		$current_property_unit_type = maybe_unserialize(get_post_meta($post_id,'residential-property-unit-type',true));
-
-
-
-
 		if($post->post_type=="residential-property"){
+			$current_property_unit_type = maybe_unserialize(get_post_meta($post_id,'residential-property-unit-type',true));
+		}
+		else if($post->post_type=="commercial-property"){
+			$current_property_unit_type = maybe_unserialize(get_post_meta($post_id,'comercial-property-unit-type',true));
+		}
+
+		
+
+
+
+
+		if($post->post_type=="residential-property" || $post->post_type=="commercial-property"){
 
 			if(!empty($sel_property_unit_type) && is_array($sel_property_unit_type)){
 
@@ -2539,7 +2556,13 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
 
-             update_post_meta($post_id, "residential-property-unit-type", maybe_serialize($property_unit_types_data_value));
+		             if($post->post_type=="commercial-property"){
+					            //update_post_meta($post_id, "commercial-property-unit-type", $sel_property_unit_type);
+						update_post_meta($post_id, "commercial-property-unit-type", maybe_serialize($property_unit_types_data_value));	
+					}
+					else  if($post->post_type=="residential-property"){
+						update_post_meta($post_id, "residential-property-unit-type", maybe_serialize($property_unit_types_data_value));	
+					}
             }
 
 
@@ -2547,9 +2570,9 @@ function save_custom_meta_box($post_id, $post, $update)
 
         }
 
-		if($post->post_type=="commercial-property"){
+		/* if($post->post_type=="commercial-property"){
             update_post_meta($post_id, "commercial-property-unit-type", $sel_property_unit_type);
-        }
+        } */
 
 
 
@@ -2693,10 +2716,21 @@ function delete_property_unit_type_layout_image_pdf_file() {
 	$property_unit_type 	= $_REQUEST['data']['property_unit_type'];
 	$custom_file_id 	= $_REQUEST['data']['attachment_id'];
 	$file_type 			= $_REQUEST['data']['file_type'];
+	$post_type 			= $_REQUEST['data']['post_type'];
 
 	$delete_success = false;
 
-	  $custom_file_field_value = maybe_unserialize( get_post_meta($property_id,'residential-property-unit-type',true) );
+	if($post_type=='residential-property'){
+		$property_unit_type_meta_key = 'residential-property-unit-type';
+		
+	}
+	else if($post_type=='commercial-property'){
+		$property_unit_type_meta_key = 'commercial-property-unit-type';
+		
+	}
+	$custom_file_field_value = maybe_unserialize( get_post_meta($property_id,$property_unit_type_meta_key,true) );		
+
+	  
 
 
 	  if($custom_file_field_value!=false and is_array($custom_file_field_value)){
@@ -2737,7 +2771,7 @@ function delete_property_unit_type_layout_image_pdf_file() {
 
 	  }
 
-	  update_post_meta($property_id,'residential-property-unit-type',true);
+	  update_post_meta($property_id,$property_unit_type_meta_key,true);
 
 
     wp_send_json($delete_success);

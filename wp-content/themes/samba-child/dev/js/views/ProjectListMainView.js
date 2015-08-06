@@ -204,7 +204,8 @@
 
                 var mainViewtemplate = _.template(jQuery(this.template).html());
                 //jQuery('.right_container').html(mainViewtemplate()); 
-                            jQuery('#main').html(mainViewtemplate()); 
+                var current_post_type = jQuery('#post_type').val();
+                            jQuery('#main').html(mainViewtemplate({post_type:current_post_type})); 
                             this.make_div_dropable(".drag_area")
             },
 
