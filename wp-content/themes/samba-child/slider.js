@@ -45,6 +45,50 @@ function checkIfInView(element){
     //all child js
     $(document).ready(function() {
 
+        $(window).load(function() {
+            //trying out custom dropdowns
+            // $("#dd_locality").chosen({disable_search_threshold: 450});
+            // $("#dd_locality").change(function() {
+            //     $("#dd_locality").trigger('chosen:updated');
+            // });
+            //dropdown elipsis
+            $('select').before('<div class="elips-cont"></div>');
+            $('.elips-cont').each(function() {
+                $(this).text($(this).next('select').find('option:selected').text());
+            });
+            $('select').each(function() {
+                $(this).change(function() {
+                    //$(this).prev('.elips-cont').text($("option:selected", this).text());
+                    $cont = $('.elips-cont').parent('div');
+
+                        setTimeout(function() {
+                            $('.elips-cont').each(function() {
+                                $par = $(this).parent('div');
+                                $(this).text($par.find('select').find('option:selected').text());
+                            });
+                        }, 0.1);
+
+                });
+            });
+            $(document).on('click', '.elips-cont', function() {
+                $(this).next('select').trigger('click');
+            });
+
+            if ($('div').hasClass('job_type')) {
+                $('.job_type a').each(function() {
+                    $countdet = $(this).attr('href');
+                    $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
+                    if ($count > 1) {
+                        $(this).text($count + ' positions');
+                    } else if ($count == 1) {
+                        $(this).text($count + ' position');
+                    } else {
+                        $(this).text('-');
+                    }
+                });
+            }
+        });
+
         //careers stuff
         if ($('div').hasClass('job_type')) {
             $('.job_type a').each(function() {

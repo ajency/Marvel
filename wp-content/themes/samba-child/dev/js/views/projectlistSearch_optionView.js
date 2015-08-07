@@ -881,7 +881,7 @@ infowindow.open(map,marker);
 
                                     var display_locality_name = vl_localities.name;
                                     if(_.size(vl_localities.name)>14){
-                                      display_locality_name =  display_locality_name.substr(0, 13)+'...';
+                                      //display_locality_name =  display_locality_name.substr(0, 13)+'...';
 
                                     }
                                     jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")

@@ -1214,6 +1214,7 @@ h6 {
   display: inline-block;
   width: 150px;
   margin-right: 3px;
+  position: relative;
 }
 @media screen and (max-width: 1199px) {
   .top-dd {
@@ -1240,6 +1241,14 @@ h6 {
   background-position: right 10px center;
   background-repeat: no-repeat;
   font-family: 'Open Sans', sans-serif;
+  background-color: transparent;
+  background-image: none;
+  position: relative;
+  z-index: 2;
+  color: transparent;
+}
+.top-dd select option {
+  color: #444;
 }
 .top-dd select:disabled {
   color: #ababab;

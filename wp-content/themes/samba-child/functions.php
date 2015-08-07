@@ -391,7 +391,7 @@ function marvel_scripts_styles(){
       wp_enqueue_script( 'imagesloaded_pkgd',  get_stylesheet_directory_uri() . '/imgfill/imagesloaded.pkgd.min.js', array('jquery'), false, true);
       wp_enqueue_script( 'jquery-imagefill',  get_stylesheet_directory_uri() . '/imgfill/jquery-imagefill.js', array('imagesloaded_pkgd'), false, true);
 
-      wp_enqueue_script( 'dropkick',  get_stylesheet_directory_uri() . '/js/dropkick.2.1.7.min.js', array('jquery'), false, true);
+      wp_enqueue_script( 'chosen',  get_stylesheet_directory_uri() . '/chosen/chosen.jquery.min.js', array('jquery'), false, true);
       wp_enqueue_script( 'readmore',  get_stylesheet_directory_uri() . '/readmore.min.js', array('jquery'), false, true);
       wp_enqueue_script( 'slider',  get_stylesheet_directory_uri() . '/slider.js', array('jquery','imagesloaded_pkgd','jquery-imagefill'), false, true);
       wp_enqueue_script( 'collapsible',  get_stylesheet_directory_uri() . '/collapsible.js', array('jquery'), false, true);
