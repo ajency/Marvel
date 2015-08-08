@@ -41,24 +41,37 @@ if(propertiesdata.length<=0){
 
 _.each(propertiesdata,function(propertyvl,propertyky){
 
-
-var property_id = _.isUndefined(propertyvl.id)? propertyvl.get('id'): propertyvl.id;
-var property_title = _.isUndefined(propertyvl.post_title)? propertyvl.get('post_title'): propertyvl.post_title;
-
-var property_city = _.isUndefined(propertyvl.property_city)? propertyvl.get('property_city'): propertyvl.property_city;
-var property_locality = _.isUndefined(propertyvl.property_locaity)? propertyvl.get('property_locaity'): propertyvl.property_locaity;
-var featured_image = _.isUndefined(propertyvl.featured_image)? propertyvl.get('featured_image'): propertyvl.featured_image;
-var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'): propertyvl.post_url;
-var property_unit_type = _.isUndefined(propertyvl.property_unit_type)? propertyvl.get('property_unit_type'): propertyvl.property_unit_type;
-var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
-var property_display_unit_type = _.isUndefined(propertyvl.property_display_unit_type)? propertyvl.get('property_display_unit_type'): propertyvl.property_display_unit_type;
-
-var property_locality_name = _.isUndefined(propertyvl.property_locality_name)? propertyvl.get('property_locality_name').trim(): propertyvl.property_locality_name.trim();
-var property_city_name = _.isUndefined(propertyvl.property_city_name)? propertyvl.get('property_city_name'): propertyvl.property_city_name;
+    
 
 
-var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea;
-    %>
+    var property_post_type = _.isUndefined(propertyvl.post_type)? propertyvl.get('post_type'): propertyvl.post_type;
+    var property_id = _.isUndefined(propertyvl.id)? propertyvl.get('id'): propertyvl.id;
+    var property_title = _.isUndefined(propertyvl.post_title)? propertyvl.get('post_title'): propertyvl.post_title;
+    var property_city = _.isUndefined(propertyvl.property_city)? propertyvl.get('property_city'): propertyvl.property_city;
+    var property_locality = _.isUndefined(propertyvl.property_locaity)? propertyvl.get('property_locaity'): propertyvl.property_locaity;
+    var featured_image = _.isUndefined(propertyvl.featured_image)? propertyvl.get('featured_image'): propertyvl.featured_image;
+    var property_url = _.isUndefined(propertyvl.post_url)? propertyvl.get('post_url'): propertyvl.post_url;
+    var property_unit_type = _.isUndefined(propertyvl.property_unit_type)? propertyvl.get('property_unit_type'): propertyvl.property_unit_type;
+    var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
+    var property_locality_name = _.isUndefined(propertyvl.property_locality_name)? propertyvl.get('property_locality_name').trim(): propertyvl.property_locality_name.trim();
+    var property_city_name = _.isUndefined(propertyvl.property_city_name)? propertyvl.get('property_city_name'): propertyvl.property_city_name;
+
+
+    if(property_post_type=='commercial-property'){
+
+        var property_office_spaces = _.isUndefined(propertyvl.property_office_spaces)? propertyvl.get('property_office_spaces'): propertyvl.property_office_spaces;
+        var property_retail_spaces = _.isUndefined(propertyvl.property_retail_spaces)? propertyvl.get('property_retail_spaces'): propertyvl.property_retail_spaces;
+    }
+    else if(property_post_type=='residential-property'){
+        var property_display_unit_type = _.isUndefined(propertyvl.property_display_unit_type)? propertyvl.get('property_display_unit_type'): propertyvl.property_display_unit_type;
+    }
+
+    console.log("propertyvl:------------------------------------------------------------");
+    console.log(propertyvl);
+
+/* var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea; */
+
+%>
 <div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
     <div class="single_p_img" style="background-image: url(<% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>);">
         <!--<img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">-->
@@ -80,7 +93,29 @@ var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? pro
                         proptype_cnt++;
                     })
                     %>
-                    <% /* current_property_unit_types */ %><%=property_display_unit_type %> </h6>
+                    <% 
+                    console.log('POST TYPE:---------------------')    
+                    console.log(propertyvl.post_type);
+
+
+                    if(property_post_type=='residential-property'){ 
+                        /* current_property_unit_types */ %><h6><%=property_display_unit_type %></h6>
+                    <% }    
+                    else if(property_post_type=='commercial-property'){ 
+                        console.log('SHOW OFFICE AND RETAIL SPACES -------------------------------------------------');
+                        console.log(property_office_spaces);
+
+
+                        %>
+                        <% if(!_.isUndefined(property_office_spaces)) { %>
+                                <% if(!_.isUndefined(property_office_spaces['min-area']) ) { %><h6>Office Spaces: <%=property_office_spaces['min-area']%> - <%=property_office_spaces['max-area']%> sq. ft.</h6> <% } %>                            
+                        <% } %> 
+                        <% if(!_.isUndefined(property_retail_spaces)) { %>
+                                <% if(!_.isUndefined(property_retail_spaces['min-area']) ) { %><h6>Retail Spaces: <%=property_retail_spaces['min-area']%> - <%=property_retail_spaces['max-area']%> sq. ft.</h6> <% } %> 
+                        <% } %> 
+                    <% } %>
+
+                    
                     <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
                 </div>
 
