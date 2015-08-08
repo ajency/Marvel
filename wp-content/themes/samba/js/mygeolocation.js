@@ -45,6 +45,56 @@ function geocodePosition(pos) {
     });
 }
 
+
+
+
+
+function codeLatLng() {
+  
+
+var latitude = document.getElementById('custom-address_lat').value;
+var longitude = document.getElementById('custom-address_lng').value;
+
+
+
+  var latlng = new google.maps.LatLng(latitude, longitude);
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+
+        var latlong = results[0]['geometry']['location'];        
+        update_address_fields_data(results[0]['address_components'],latlong,results[0].formatted_address)
+        
+
+
+
+        map.setZoom(11);
+        marker = new google.maps.Marker({
+          position: latlng,
+          map: map
+        });
+        infowindow.setContent(results[1].formatted_address);
+        infowindow.open(map, marker);
+
+        google.maps.event.addListener(marker, 'dragend', function() {
+                // updateMarkerStatus('Drag ended');
+                geocodePosition(marker.getPosition());
+            });
+
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
+
+
+
+
+
+
 function codeAddress() {
     var address = document.getElementById('address').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -153,4 +203,12 @@ function update_address_fields_data(addressComponents,latlong,formatted_address)
 jQuery(document).ready(function(){
     initialize();
     setTimeout(function(){codeAddress()},300)
+})
+
+ 
+
+
+jQuery('#custom-address_lat, #custom-address_lng').live('focusout',function(){
+      alert('s')
+    setTimeout(function(){codeLatLng()},300)
 })

@@ -537,6 +537,26 @@ function myplugin_add_custom_box() {
 
 
 
+	    	$custom_fields2[] = array('field'				=> 'office-spaces',
+	    							  'metabox_title'		=> 'Office Spaces',
+	    							  'multiple_values' 	=> true,
+	    							  'element_type'		=> 'text',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=> '',
+	    							  'priority'			=> 'default'
+	    							);
+
+
+	    	$custom_fields2[] = array('field'				=> 'retail-spaces',
+	    							  'metabox_title'		=> 'Retail Spaces',
+	    							  'multiple_values' 	=> true,
+	    							  'element_type'		=> 'text',
+	    							  'option_value_prefix' => '',
+	    							  'option_value_postfix'=> '',
+	    							  'class'				=> '',
+	    							  'priority'			=> 'default'
+	    							);
 
 
 	    	$custom_fields2[] = array('field'					=> 'property-plant-id',
@@ -554,7 +574,7 @@ function myplugin_add_custom_box() {
 	    							  'element_type'		=> 'select',
 	    							  'option_value_prefix' => '',
 	    							  'option_value_postfix'=> '',
-	    							  'class'				=>'',
+	    							  'class'				=> '',
 	    							  'priority'			=> 'default'
 	    							);
 
@@ -569,16 +589,7 @@ function myplugin_add_custom_box() {
 	    							  'class'				=>'',
 	    							  'priority'			=> 'default'
 	    							);
-
-	    	$custom_fields2[] = array('field'				=> 'property-display-unit-type',
-	    							  'metabox_title'		=> 'Display Property Unit Type',
-	    							  'element_type'		=> 'text',
-	    							  'option_value_prefix' => '',
-	    							  'option_value_postfix'=> '',
-	    							  'class'				=>'',
-	    							  'priority'			=> 'default'
-	    							);
-
+ 
 
 
 	    	$custom_fields2[] = array('field'				=> 'property-city',
@@ -749,7 +760,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
                                 $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "property-display-unit-type", true));
 
                                 $edit_options_values = false;
-                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_plant_id, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type, $property_display_unit_types, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
                                 break;
 
@@ -843,7 +854,7 @@ foreach($custom_fields as $custom_field_key => $custom_field_val)
 								$edit_options_values = true;
 
 
-echo "Properties LOCALITY ID ".$current_property_meta_value;
+//echo "Properties LOCALITY ID ".$current_property_meta_value;
 								generate_custom_field_element($post, 'select', $multiple_values, 'custom_'.$custom_field_type,  $property_locality, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
     						    break;
@@ -919,6 +930,37 @@ echo "Properties LOCALITY ID ".$current_property_meta_value;
                                 $edit_options_values = false ;
 
                                 generate_custom_field_element($post, 'file', $multiple_values, 'custom_'.$custom_field_type,  $property_price, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+
+                                break;
+
+
+        case 'office-spaces':
+                                $property_office_spaces_area = array('min-area' ,'max-area' );
+                                
+                                $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "office-spaces", true));
+                                
+                                if( ($current_property_meta_value==false) || (!is_array($current_property_meta_value)) ){
+                                	$current_property_meta_value = array('min-area'=>'','max-area'=>'');
+                                }
+
+                                $edit_options_values = false;
+
+                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_office_spaces_area, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
+
+                                break;
+
+         case 'retail-spaces':
+                                $property_retail_spaces_area = array('min-area' ,'max-area' );
+                                
+                                $current_property_meta_value =    maybe_unserialize(get_post_meta($post->ID, "retail-spaces", true));
+                                
+                                if( ($current_property_meta_value==false) || (!is_array($current_property_meta_value)) ){
+                                	$current_property_meta_value = array('min-area'=>'','max-area'=>'');
+                                }
+
+                                $edit_options_values = false;
+
+                                generate_custom_field_element($post, 'text', $multiple_values, 'custom_'.$custom_field_type,  $property_retail_spaces_area, $current_property_meta_value, $element_custom_field_args,$edit_options_values);
 
                                 break;
 
@@ -2153,21 +2195,21 @@ function save_custom_meta_box($post_id, $post, $update)
     if($slug != $post->post_type)
         return $post_id;
 	*/
-
+ 
 	if( ($post->post_type=="residential-property") || ($post->post_type=="commercial-property") ){
 
 		$sel_property_plant_id = $_REQUEST["custom_property-plant-id"];
 
-		$sel_property_display_unit_type = $_REQUEST["custom_property-display-unit-type"];
+		
 
 
 		$sel_property_unit_type = $_REQUEST["cust_prop_type_select"];
 		$sel_property_city = $_REQUEST["custom_property-city"];
 		$sel_property_status = $_REQUEST["custom_property-status"];
 		$sel_property_locality = $_REQUEST["custom_property-locality"];
-		$sel_property_neighbourhood = maybe_serialize($_REQUEST["custom_property-neighbourhood"]);
-        $sel_property_no_of_bedrooms = $_REQUEST['custom_property-no_of_bedrooms'];
-        $sel_property_sellable_area = $_REQUEST['custom_property-sellable_area'];
+		
+      //  $sel_property_no_of_bedrooms = $_REQUEST['custom_property-no_of_bedrooms'];
+        //$sel_property_sellable_area = $_REQUEST['custom_property-sellable_area'];
         $sel_property_price = $_REQUEST['custom_property-price'];
 
 
@@ -2179,6 +2221,31 @@ function save_custom_meta_box($post_id, $post, $update)
         $sel_property_address_lat = $_REQUEST['custom-address_lat'];
         $sel_property_address_lng = $_REQUEST['custom-address_lng'];
         $sel_property_address = $_REQUEST['address'];
+
+        
+		if($post->post_type=="commercial-property") {
+
+			if(isset($_REQUEST['custom_office-spaces'])){
+				$custom_office_spaces = $_REQUEST['custom_office-spaces']; 
+        	}	
+
+        	if(isset($_REQUEST['custom_retail-spaces'])){
+				$custom_retail_spaces = $_REQUEST['custom_retail-spaces']; 
+        	}	
+		}
+
+		if($post->post_type=="residential-property") {
+
+			if($_REQUEST["custom_property-display-unit-type"]){
+				$sel_property_display_unit_type = $_REQUEST["custom_property-display-unit-type"];
+			}
+
+			if($_REQUEST["custom_property-neighbourhood"]){
+				$sel_property_neighbourhood = maybe_serialize($_REQUEST["custom_property-neighbourhood"]);	
+			}
+			
+		}
+        
 
 
 
@@ -2581,12 +2648,23 @@ function save_custom_meta_box($post_id, $post, $update)
 
 
         update_post_meta($post_id, "property-plant-id", $sel_property_plant_id);
-        update_post_meta($post_id, "property-display-unit-type", $sel_property_display_unit_type);
+       
 		update_post_meta($post_id, "property-city", $sel_property_city);
 		update_post_meta($post_id, "property-status", $sel_property_status);
 		update_post_meta($post_id, "property-locality", $sel_property_locality);
-		update_post_meta($post_id, "property-neighbourhood", $sel_property_neighbourhood );
-        update_post_meta($post_id, "property-sellable_area", maybe_serialize($sel_property_sellable_area));
+		
+		if($post->post_type=="commercial-property") {
+
+			 update_post_meta($post_id, "office-spaces", $custom_office_spaces);
+			 update_post_meta($post_id, "retail-spaces", $custom_retail_spaces);
+
+		}
+		if($post->post_type=="residential-property") {
+				update_post_meta($post_id, "property-neighbourhood", $sel_property_neighbourhood );
+				update_post_meta($post_id, "property-display-unit-type", $sel_property_display_unit_type);
+		}
+		
+        //update_post_meta($post_id, "property-sellable_area", maybe_serialize($sel_property_sellable_area));
         update_post_meta($post_id, "property-price", $sel_property_price);
 
 
