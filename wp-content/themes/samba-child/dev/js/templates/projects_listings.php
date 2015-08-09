@@ -74,6 +74,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
 %>
 <div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
     <div class="single_p_img" style="background-image: url(<% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>);">
+        <div class="compare"><a class="comp_ico add_to_compare"  href="javascript:void(0)"   property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" ></a></div>
         <!--<img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">-->
             <div class="single_p_hov_c">
                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
