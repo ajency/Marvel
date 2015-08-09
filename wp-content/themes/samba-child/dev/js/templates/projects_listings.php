@@ -55,7 +55,11 @@ _.each(propertiesdata,function(propertyvl,propertyky){
     var property_price = _.isUndefined(propertyvl.property_price)? propertyvl.get('property_price'): propertyvl.property_price;
     var property_locality_name = _.isUndefined(propertyvl.property_locality_name)? propertyvl.get('property_locality_name').trim(): propertyvl.property_locality_name.trim();
     var property_city_name = _.isUndefined(propertyvl.property_city_name)? propertyvl.get('property_city_name'): propertyvl.property_city_name;
+    var property_status = _.isUndefined(propertyvl.property_status)? propertyvl.get('property_status'): propertyvl.property_status;
 
+    if(property_status=='Ongoing') { 
+        var draggable_class = " draggable ";
+    }
 
     if(property_post_type=='commercial-property'){
 
@@ -72,9 +76,11 @@ _.each(propertiesdata,function(propertyvl,propertyky){
 /* var property_sellablearea = _.isUndefined(propertyvl.property_sellablearea)? propertyvl.get('property_sellablearea'): propertyvl.property_sellablearea; */
 
 %>
-<div class="single_p_w six columns property_span_<%=property_id%> draggable"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
+<div class="single_p_w six columns property_span_<%=property_id%> <%=draggable_class%>"  property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
     <div class="single_p_img" style="background-image: url(<% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>);">
-        <div class="compare"><a class="comp_ico add_to_compare"  href="javascript:void(0)"   property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" ></a></div>
+     <% if(property_status=='Ongoing') { %> 
+       <div class="compare"><a class="comp_ico add_to_compare"  href="javascript:void(0)"   property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" ></a></div>
+     <% } %>  
         <!--<img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">-->
             <div class="single_p_hov_c">
                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
@@ -99,25 +105,32 @@ _.each(propertiesdata,function(propertyvl,propertyky){
                     console.log(propertyvl.post_type);
 
 
-                    if(property_post_type=='residential-property'){ 
-                        /* current_property_unit_types */ %><h6><%=property_display_unit_type %></h6>
-                    <% }    
-                    else if(property_post_type=='commercial-property'){ 
-                        console.log('SHOW OFFICE AND RETAIL SPACES -------------------------------------------------');
-                        console.log(property_office_spaces);
+                    if(property_status=='Ongoing'){
+
+                        if(property_post_type=='residential-property'){ 
+                            /* current_property_unit_types */ %><h6><%=property_display_unit_type %></h6>
+                        <% }    
+                        else if(property_post_type=='commercial-property'){ 
+                            console.log('SHOW OFFICE AND RETAIL SPACES -------------------------------------------------');
+                            console.log(property_office_spaces);
 
 
-                        %>
-                        <% if(!_.isUndefined(property_office_spaces)) { %>
-                                <% if(!_.isUndefined(property_office_spaces['min-area']) ) { %><h6>Office Spaces: <%=property_office_spaces['min-area']%> - <%=property_office_spaces['max-area']%> sq. ft.</h6> <% } %>                            
-                        <% } %> 
-                        <% if(!_.isUndefined(property_retail_spaces)) { %>
-                                <% if(!_.isUndefined(property_retail_spaces['min-area']) ) { %><h6>Retail Spaces: <%=property_retail_spaces['min-area']%> - <%=property_retail_spaces['max-area']%> sq. ft.</h6> <% } %> 
-                        <% } %> 
-                    <% } %>
+                            %>
+                            <% if(!_.isUndefined(property_office_spaces)) { %>
+                                    <% if(!_.isUndefined(property_office_spaces['min-area']) ) { %><h6>Office Spaces: <%=property_office_spaces['min-area']%> - <%=property_office_spaces['max-area']%> sq. ft.</h6> <% } %>                            
+                            <% } %> 
+                            <% if(!_.isUndefined(property_retail_spaces)) { %>
+                                    <% if(!_.isUndefined(property_retail_spaces['min-area']) ) { %><h6>Retail Spaces: <%=property_retail_spaces['min-area']%> - <%=property_retail_spaces['max-area']%> sq. ft.</h6> <% } %> 
+                            <% } %> 
+                        <% }                 
+                    %>
 
                     
                     <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
+                    <%
+                     }
+                    %>
+
                 </div>
 
                 <div class="single_btm">
