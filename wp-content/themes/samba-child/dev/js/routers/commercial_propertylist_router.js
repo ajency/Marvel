@@ -46,8 +46,7 @@
 						options['type'] = proptype;
 
 					 
-					options['post_type'] = 'commercial-property'
-
+					options['post_type'] = 'commercial-property'; 
  
 
 					if(_.isUndefined(getAppInstance().mainView)  || jQuery('#proj_list_main').length<=0 ){ 
@@ -94,10 +93,7 @@
 					if(!_.isUndefined(proptype))
 						options['type'] = proptype;
 
-					options['post_type'] = 'commercial-property'
-
-
-  
+					options['post_type'] = 'commercial-property' 
 					 
 					if(_.isUndefined(getAppInstance().mainView)  || jQuery('#proj_list_main').length<=0){
 
