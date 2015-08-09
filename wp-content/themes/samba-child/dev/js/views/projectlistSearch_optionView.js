@@ -197,8 +197,6 @@
 
 
 
-
- 
                          
                       if(jQuery('#dd_status').val().toLowerCase()=='completed'){
                         jQuery('.top-compar').hide();
@@ -207,6 +205,7 @@
                       else{
                         jQuery('.top-compar').show();
                         jQuery('#projects_listings').removeClass('completed_status_projects')
+
 
                       }
 
@@ -892,7 +891,7 @@ infowindow.open(map,marker);
                    stLight.options({publisher: "1423128c-ec17-415a-8eaf-4ba0d655a2d6", doNotHash: false, doNotCopy: false, hashAddressBar: false, onhover: false});
                    stButtons.locateElements();
 
-                  },300) 
+                  },300)
 
 
 
@@ -900,7 +899,7 @@ infowindow.open(map,marker);
 
                 if(jQuery(".draggable").length>0){
                     console.log('draggable')
-                    jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 120, left: 150 },
+                    jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 10, left: 10 },
 
                         start: function(event, ui) {
                             ui.helper.css({ height: 'auto', width: '300px' });
@@ -1007,7 +1006,7 @@ infowindow.open(map,marker);
 
                                     var display_locality_name = vl_localities.name;
                                     if(_.size(vl_localities.name)>14){
-                                      display_locality_name =  display_locality_name.substr(0, 13)+'...';
+                                      //display_locality_name =  display_locality_name.substr(0, 13)+'...';
 
                                     }
                                     jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")
