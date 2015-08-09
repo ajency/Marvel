@@ -15,6 +15,7 @@
                 'click .top_map'    : 'searchPropertiesRoute',
                 'click .top_list'   : 'searchPropertiesRoute',
                 'change #home_city2': 'load_locality_options',
+                
 
             },
 
@@ -42,7 +43,7 @@
 
                 }
 
-
+console.log(this.selectedStatus)
 
                 if(_.isUndefined(getAppInstance().searchOptions)){
                     jQuery.ajax(AJAXURL,{
@@ -859,7 +860,8 @@ infowindow.open(map,marker);
                 jQuery('#projects_listings').attr('style','')
 
 
-
+console.log('CHECKING SEARCH OPTIONS :______________________________ ')
+console.log(search_options)
 
 
                  //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
@@ -980,13 +982,22 @@ infowindow.open(map,marker);
                 var sorted_localities_options = [];
 
                 if(!_.isUndefined(getAppInstance().searchOptions['locality'].localities)){
-                    if(_.isArray(getAppInstance().searchOptions['locality'].localities) )
+                    //if(_.isArray(getAppInstance().searchOptions['locality'].localities) ){
+
                       localities_options = getAppInstance().searchOptions['locality'].localities;
+                  //  }
+                      
+                    
                 }
+
+                console.log('localities_options:---------------------------------------')
+                console.log(localities_options)
 
                 if(_.size(localities_options)>0){
                       sorted_localities_options = _.sortBy(localities_options, function(obj){ return obj.name.toLowerCase() });
                 }
+                console.log('sorted_localities_options:---------------------------------------')
+                console.log(sorted_localities_options)
 
                             console.log('event_val:---------------------------------------------')
                             console.log(event_val)
@@ -1024,12 +1035,21 @@ infowindow.open(map,marker);
 
               var self = this;
 
+
+              var evt_id = jQuery(evt.target).attr('id')
+/*
+              if(evt_id =='dd_city'){
+                self.load_locality_options(evt);
+              }
+*/
+
+
               var search_opt = '';
 
               var prop_status     = jQuery('#dd_status').val();
-                var prop_city       = jQuery('#dd_city').val();
-                var prop_locality   = jQuery('#dd_locality').val();
-                var prop_type       = jQuery('#dd_type').val();
+              var prop_city       = jQuery('#dd_city').val();
+              var prop_locality   = jQuery('#dd_locality').val();
+              var prop_type       = jQuery('#dd_type').val();
 
 
               if(prop_status.toLowerCase()=='completed'){
@@ -1074,6 +1094,11 @@ infowindow.open(map,marker);
 
               }
 
+             // alert('evt_id:'+evt_id)
+             jQuery(evt.target).closest('.top-dd').find('.elips-cont').html('jjj')
+
+           //    jQuery(evt.target).closest('.top-dd').find('.elips-cont').html(jQuery('#'+evt_id+' option:selected').text())
+
 
 
               console.log('REDIRECT URL :  '+RedirectUrl+search_opt)
@@ -1110,21 +1135,9 @@ infowindow.open(map,marker);
 
             map.setCenter(newCenter);
 
-            }
+            },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+             
 
 
 

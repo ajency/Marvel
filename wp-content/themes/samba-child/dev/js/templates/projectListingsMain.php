@@ -4,7 +4,7 @@
 
 	    </div>
 	    <input type="hidden" name="post_type" id="post_type" value="<%=post_type%>"  />
-	    <% alert(post_type);
+	    <%  
 	     if(post_type=="residential-property") { %>
 	    <div class="drag_area_block2 top-compar">
 	     <div class="drag_area one"   >Drag for Comparision</div>

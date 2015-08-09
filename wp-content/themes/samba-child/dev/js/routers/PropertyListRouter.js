@@ -30,7 +30,7 @@
 
 				index : function(pstatus,city,locality,proptype){ 
 
-		
+		//alert('router'+pstatus)
 					var options = [];
 
 					if(!_.isUndefined(pstatus))

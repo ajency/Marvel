@@ -10,6 +10,9 @@ var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedT
 var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
 
 
+console.log('SELECTED STATUS :--------------------------------------');
+console.log(selectedStatus);
+
 %>
     <div class="proj-showinmob">
         <a href="#" class="filter-btn"></a>

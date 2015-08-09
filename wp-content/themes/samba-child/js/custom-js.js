@@ -950,6 +950,14 @@ jQuery('#home_city2').live('change',function(){
   jQuery('.home_location').append('<option value="">Locality : All</option>');
   jQuery('.home_location').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
 
+
+
+   var main_search_bar = jQuery('.top-dd-c')
+   main_search_bar.find('#dd_locality').empty();
+   main_search_bar.find('#dd_locality').append('<option value="">Locality : All</option>');
+   main_search_bar.find('#dd_locality').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
+
+
   console.log('window.search_options.locality.localities........')
   console.log(window.search_options.locality.localities)
 
@@ -978,6 +986,7 @@ jQuery('#home_city2').live('change',function(){
                 }
 
                 jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
+                main_search_bar.find('#dd_locality').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
 
             } 
        })
@@ -989,17 +998,24 @@ jQuery('#home_city2').live('change',function(){
 
 jQuery('.home_btn_search_properties').live('click',function(evt){
 
-    alert('sada')
+    alert('sada'+jQuery('#post_type').val())
 
   evt.preventDefault();
 
   if(jQuery('#post_type').val()=='commercial-property'){
-    var search_url = SITE_URL+'/residential-properties/';
-  }
-  else{
     var search_url = SITE_URL+'/commercial-properties/';
   }
-  search_url+='#/st/'+jQuery('.home_status').val();
+  else{
+    var search_url = SITE_URL+'/residential-properties/';
+  }
+
+  if(_.isUndefined(jQuery('.home_status').val())  || jQuery('.home_status').val() =='' ){
+    var status_value ="Ongoing";
+  }
+  else{
+    var status_value = jQuery('.home_status').val(); 
+  }
+  search_url+='#/st/'+status_value;
   //residential-properties/#/ct/blore/loc/mekri circle/type/1 BHK
 
   if(jQuery('.home_city').val()!=''){
@@ -1025,9 +1041,29 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
   if (!(jQuery(this).hasClass('popup')) ) {
 
       if( (width >= 768 && jQuery(this).hasClass('home_btn_sea'))  || (width < 768 && jQuery(this).hasClass('home_btn_sea2')) ){
+         
+
+                var popup_parent_class = jQuery(this).closest('.home_search')
+
+                var main_search_bar = jQuery('.top-dd-c')
+                main_search_bar.find('#dd_status').val(''+popup_parent_class.find('#home_status2').val());               
+
+
+                main_search_bar.find('#dd_city').val(popup_parent_class.find('#home_city2').val());
+                main_search_bar.find('#dd_locality').val(popup_parent_class.find('#home_location2').val());
+                main_search_bar.find('#dd_type').val(popup_parent_class.find('#home_type2').val());
+
+
+
           //  window.location.href = search_url;
 
-            location.assign(search_url) ;
+            //location.assign(search_url) ;
+            //location.href = search_url  ;
+
+            //window.location.assign(search_url) ;
+            window.location.href = search_url  ;
+
+            jQuery(this).closest('.home_search').hide();            
       }
 
         

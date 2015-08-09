@@ -1,4 +1,10 @@
 <script type="text/templte" id="spn_propertieslistings">
+<% if(jQuery('#post_type').val() =="commercial-property" ){
+    var listings_page_title = "Commercial Projects ";
+}
+else{
+    var listings_page_title = "Residential Projects ";
+} %>
 <div id="proj_list" class="project-list row">
 <div class="twelve columns">
 <%  var properties_count = _.size(propertiesdata);
@@ -12,11 +18,11 @@
 
 
     if(dropdown_city!='' && !_.isUndefined(dropdown_city) && !_.isNull(dropdown_city)){
-%><h5>Residential Projects in <%=dropdown_city_name %> <%=display_properties_count%></h5>
+%><h5><%=listings_page_title%> in <%=dropdown_city_name %> <%=display_properties_count%></h5>
 <%
     }
     else{
-    %><h5>Residential Projects <%=display_properties_count%></h5>
+    %><h5><%=listings_page_title%> <%=display_properties_count%></h5>
     <%
     }
 
