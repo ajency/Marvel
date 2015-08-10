@@ -107,16 +107,19 @@ function checkIfInView(element){
             loadingcontinforms();
             if ($('div').hasClass('frm_submit')) {
                 $('.frm_style_formidable-style.with_frm_style .frm_submit input[type=submit]').click(function() {
+                    var timecount = 0;
                     var timerset = setInterval(function() {
+                        timecount += 1;
                         if ($(this).parent().parent().find('div').find('div').hasClass('elips-cont')) {
-                            clearInterval(timerset);
-                            console.log('submitting form again and again');
-                            return;
+                            if (timecount > 20) {
+                                clearInterval(timerset);
+                            }
+                            console.log('run again');
                         } else {
                             loadingcontinforms();
                             console.log('contentloaded');
                         }
-                    }, 0.3);
+                    }, 1000);
                 });
             }
 
