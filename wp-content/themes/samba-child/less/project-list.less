@@ -393,6 +393,11 @@
             margin: 0;
             margin-bottom: 27px;
             &:hover {
+                .single_p_img {
+                    .compare .comp_ico {
+                        display: block;
+                    }
+                }
                 .single_p_img .single_p_hov_c {
                     opacity: 1;
                     visibility: visible;
@@ -400,6 +405,13 @@
                 .single_p_img .compare {
                     .comp_ico {
                         background: url(img/compare_ico_02.png) no-repeat center center;
+                    }
+                }
+            }
+            &.added_for_compare {
+                .single_p_img {
+                    .compare .comp_ico {
+                        display: block;
                     }
                 }
             }
@@ -429,6 +441,7 @@
                         width: 45px;
                         height: 30px;
                         background: url(img/compare_ico_01.png) no-repeat center center;
+                        display: none;
                         &:hover {
                             //background: url(img/compare_list_ico_hov.png) no-repeat center center;
                         }
