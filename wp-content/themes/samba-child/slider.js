@@ -110,10 +110,8 @@ function checkIfInView(element){
                     var timecount = 0;
                     var timerset = setInterval(function() {
                         timecount += 1;
-                        if ($(this).parent().parent().find('div').find('div').hasClass('elips-cont')) {
-                            if (timecount > 20) {
-                                clearInterval(timerset);
-                            }
+                        if (timecount > 20) {
+                            clearInterval(timerset);
                             console.log('run again');
                         } else {
                             loadingcontinforms();
