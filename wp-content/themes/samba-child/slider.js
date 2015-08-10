@@ -97,7 +97,7 @@ function checkIfInView(element){
                     });
                 }, 0.1);
             }
-            var stuff=setInterval(function() {
+            var stuff = setInterval(function() {
                 if ($('.frm_message').is(':visible')) {
                     setTimeout(function(){jQuery('.frm_message').hide('slow')}, 5000);
                     clearInterval(stuff);
@@ -110,6 +110,7 @@ function checkIfInView(element){
                     var timerset = setInterval(function() {
                         if ($(this).parent().parent().find('div').find('div').hasClass('elips-cont')) {
                             clearInterval(timerset);
+                            return;
                         } else {
                             loadingcontinforms();
                         }
