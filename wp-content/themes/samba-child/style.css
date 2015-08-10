@@ -1775,3 +1775,12 @@ border-top: none!important;
     color: #444444;
     line-height: 19px;
 }
+
+/*Completed projects*/
+.completed_status_projects #proj_list {
+    margin-top: 100px !important;
+}
+.completed_status_projects #proj_list .single_p_info,
+.completed_status_projects #proj_list .single_enq {
+	display: none !important;
+}

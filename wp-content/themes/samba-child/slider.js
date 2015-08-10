@@ -52,24 +52,27 @@ function checkIfInView(element){
             //     $("#dd_locality").trigger('chosen:updated');
             // });
             //dropdown elipsis
-            $('select').before('<div class="elips-cont"></div>');
-            $('.elips-cont').each(function() {
-                $(this).text($(this).next('select').find('option:selected').text());
-            });
-            $('select').each(function() {
-                $(this).change(function() {
+            setTimeout(function() {
+                $('select').before('<div class="elips-cont"></div>');
+                $('.elips-cont').each(function() {
+                    $(this).text($(this).next('select').find('option:selected').text());
+                });
+                $('select').each(function() {
+                    $(this).change(function() {
                     //$(this).prev('.elips-cont').text($("option:selected", this).text());
                     $cont = $('.elips-cont').parent('div');
 
-                        setTimeout(function() {
-                            $('.elips-cont').each(function() {
-                                $par = $(this).parent('div');
-                                $(this).text($par.find('select').find('option:selected').text());
-                            });
-                        }, 0.1);
+                    setTimeout(function() {
+                        $('.elips-cont').each(function() {
+                            $par = $(this).parent('div');
+                            $(this).text($par.find('select').find('option:selected').text());
+                        });
+                    }, 0.7);
 
                 });
-            });
+                });
+            }, 0.1);
+
             $(document).on('click', '.elips-cont', function() {
                 $(this).next('select').trigger('click');
             });
