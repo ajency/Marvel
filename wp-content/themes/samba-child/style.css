@@ -1003,11 +1003,11 @@ color: rgb(255, 255, 255);
 }*/
 
 .give-details-form .contact-cover {
-	width: 65%;
+	/*width: 65%;*/
 }
 @media screen and (max-width: 767px) {
 	.give-details-form .contact-cover {
-		width: 65%;
+		/*width: 65%;*/
 	}
 }
 .give-details-form .contact-cover:after {
@@ -1789,7 +1789,7 @@ border-top: none!important;
     background-position-y: center;
     background-position: right 10px center;
     background-repeat: no-repeat;
-    font-size: 13px;
+    font-size: 14px;
     border: 1px solid #cccccc;
     border-right: 0;
     color: #444444;
@@ -1798,8 +1798,31 @@ border-top: none!important;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.home_search .elips-cont {
+	font-size: 13px;
+}
+.frm_form_field.form-field .elips-cont {
+    line-height: 25px !important;
+}
 .popmake-content .frm_form_field.frm_first_two_thirds {
 	width: 100% !important;
+}
+.popmake-content .frm_form_field.frm_third,
+ .popmake-content .frm_form_field.frm_first_fourth {
+	width: 49% !important;
+	float: left;
+	margin-right: 9px;
+}
+.popmake-content .frm_form_field.frm_third:nth-of-type(2n) {
+	margin-right: 0;
+	float: right;
+}
+
+/*smaller than 1023 position fixed to be pos abs*/
+@media screen and (max-width: 1023px) {
+	.popmake.fixed {
+		position: absolute !important;
+	}
 }
 
 /*Completed projects*/
@@ -1812,4 +1835,9 @@ border-top: none!important;
 .completed_status_projects .gm-style-iw .single_enq,
 .completed_status_projects .gm-style-iw .single_compare {
 	display: none !important;
+}
+
+.frm_style_formidable-style.with_frm_style .frm_error {
+	position: absolute;
+	color: #C51B18 !important;
 }
