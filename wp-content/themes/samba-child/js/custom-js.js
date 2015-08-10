@@ -1004,8 +1004,7 @@ jQuery('#home_city2').live('change',function(){
 
 jQuery('.home_btn_search_properties').live('click',function(evt){
 
-    alert('sada'+jQuery('#post_type').val())
-
+   
   evt.preventDefault();
 
   if(jQuery('#post_type').val()=='commercial-property'){
