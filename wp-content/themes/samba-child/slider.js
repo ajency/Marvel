@@ -110,9 +110,11 @@ function checkIfInView(element){
                     var timerset = setInterval(function() {
                         if ($(this).parent().parent().find('div').find('div').hasClass('elips-cont')) {
                             clearInterval(timerset);
+                            console.log('submitting form again and again');
                             return;
                         } else {
                             loadingcontinforms();
+                            console.log('contentloaded');
                         }
                     }, 0.3);
                 });
