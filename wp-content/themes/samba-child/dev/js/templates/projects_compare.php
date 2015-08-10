@@ -86,7 +86,7 @@ console.log('vl');
                                             </div>
                                             <div class="single_btm">
                                                 <div class="pull-left">
-                                                    <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
+                                                    <a href="#" class="btn_norm single_enq popmake-popup-property-list"><i class="fa fa-envelope-o"></i></a>
                                                    <!--  <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a> -->
                                                     <a class="btn_norm single_share">
                                                         <span class='st_sharethis' st_image="<%=f_prop.get('featured_image') %>"   st_url="<%=f_prop.get('post_url') %>" st_title="<%=f_prop.get('post_title')%>"  ></span>
@@ -121,7 +121,7 @@ console.log('vl');
                                             </div>
                                             <div class="single_btm">
                                                 <div class="pull-left">
-                                                    <a href="#" class="btn_norm single_enq"><i class="fa fa-envelope-o"></i></a>
+                                                    <a href="#" class="btn_norm single_enq popmake-popup-property-list"><i class="fa fa-envelope-o"></i></a>
                                                     <!-- <a href="#" class="btn_norm single_share"><i class="fa fa-share-alt"></i></a> -->
                                                     <a class="btn_norm single_share">
                                                         <span class='st_sharethis' st_image="<%=s_prop.get('featured_image') %>"   st_url="<%=s_prop.get('post_url') %>" st_title="<%=s_prop.get('post_title')%>"  ></span>

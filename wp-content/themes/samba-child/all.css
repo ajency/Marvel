@@ -373,7 +373,7 @@ h6 {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  background-attachment: center center;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 .service .forent .partintro .img_hold .forent_cap {
@@ -416,6 +416,10 @@ h6 {
 }
 .service .forent .partintro .introtext.wpb_wrapper a.proj_title span.title {
   font-weight: bold;
+}
+.service .forent .partintro .work_cont {
+  max-height: 200px;
+  overflow: hidden;
 }
 @media screen and (max-width: 992px) {
   .service .forent .partintro .img_hold {
