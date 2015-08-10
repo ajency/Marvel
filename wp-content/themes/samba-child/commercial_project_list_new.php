@@ -110,7 +110,7 @@ Template Name: Page - Commercial Projects List New
 
 <?php 
 require_once(ABSPATH."/wp-content/themes/samba-child/modules/commonJs.php") ;
-require_once(ABSPATH."wp-content/themes/samba-child/modules/projectList/commercialprojectlistJS.php") ?>
+require_once(ABSPATH."wp-content/themes/samba-child/modules/projectList/commercial_list_js.php") ?>
 <script type="text/javascript" src = "<?php echo site_url(); ?>/wp-content/themes/samba-child/dev/js/commercial-projectlist_app.js"></script>
 
 
