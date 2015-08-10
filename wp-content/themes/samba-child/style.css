@@ -1794,6 +1794,12 @@ border-top: none!important;
     border-right: 0;
     color: #444444;
     line-height: 19px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.popmake-content .frm_form_field.frm_first_two_thirds {
+	width: 100% !important;
 }
 
 /*Completed projects*/

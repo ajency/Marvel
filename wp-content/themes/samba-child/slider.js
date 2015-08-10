@@ -62,8 +62,8 @@ function checkIfInView(element){
         ,"Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)"
         ,"Yemen","Zambia","Zimbabwe"];
             $htmlcount = '';
-            for ($country in $countries) {
-                $htmlcount += '<option value="'+ $country +'">'+ $country +'</option>';
+            for (var i = 0; i < $countries.length; i++) {
+                $htmlcount += '<option value="'+ $countries[i] +'">'+ $countries[i] +'</option>';
             }
             if ($('div').hasClass('hascountry-list')) {
                 $('.hascountry-list').find('select').each(function() {
