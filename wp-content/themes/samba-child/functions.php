@@ -310,7 +310,13 @@ function get_residential_properties_list($post_type){
   $new_res_prop->post_title                =  $res_property->post_title ;
   $new_res_prop->guid                      =  $res_property->guid ;
   $new_res_prop->post_author               =  $res_property->post_author ;
-  $new_res_prop->post_url                  =  site_url().'/ResidentialProperties/'.$res_property->post_name;
+  if($res_property->post_type=="residential-property"){
+    $new_res_prop->post_url                  =  site_url().'/ResidentialProperties/'.$res_property->post_name;  
+  }
+  else if($res_property->post_type=="commercial-property"){
+    $new_res_prop->post_url                  =  site_url().'/Commercial-Property/'.$res_property->post_name;  
+  }
+  
   //$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
   $new_res_prop->featured_image            = $property_featured_image;
   $new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
