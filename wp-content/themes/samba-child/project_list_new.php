@@ -110,7 +110,7 @@ Template Name: Page - Resi Projects List New
 
 <?php 
 require_once(ABSPATH."/wp-content/themes/samba-child/modules/commonJs.php") ;
-require_once(ABSPATH."/wp-content/themes/samba-child/modules/projectList/projectlistJs.php") ?>
+require_once(ABSPATH."wp-content/themes/samba-child/modules/projectList/projectlistJs.php") ?>
 <script type="text/javascript" src = "<?php echo site_url(); ?>/wp-content/themes/samba-child/dev/js/projectlist_app.js"></script>
 
 
