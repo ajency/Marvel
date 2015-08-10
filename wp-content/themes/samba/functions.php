@@ -2895,7 +2895,11 @@ function nav_items( $items, $menu, $args )
         $slug = basename( get_permalink($item->object_id) );
         if($slug=='residential-properties'){
         	$item->url .= '#/st/Ongoing';	
+        }  
+        else if($slug=='commercial-properties'){
+        	$item->url .= '#/st/Ongoing';	
         }         
+
 
     }
     return $items;
