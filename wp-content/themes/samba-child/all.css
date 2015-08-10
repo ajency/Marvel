@@ -2634,6 +2634,7 @@ h6 {
   background-position-y: center;
   background-position: right 10px center;
   background-repeat: no-repeat;
+  height: 37px !important;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .sec_int {
   font-size: 14px;
