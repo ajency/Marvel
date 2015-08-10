@@ -1523,11 +1523,11 @@ color: #909E9D;
     border: 0 !important;
 }
 .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_section:nth-child(1) {
-	border-top: 1px solid #cccccc !important;
+	border-top: 1px solid #D8D8D8 !important;
 }
 .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_section {
-	border-top: 0 solid #cccccc !important;
-	border-bottom: 1px solid #cccccc !important;
+	border-top: 0 solid #D8D8D8 !important;
+	border-bottom: 1px solid #D8D8D8 !important;
 }
 .wpb_accordion_content{
 background:none;
@@ -1810,7 +1810,7 @@ border-top: none!important;
 	font-size: 13px;
 }
 .frm_form_field.form-field .elips-cont {
-    line-height: 25px !important;
+    line-height: 20px !important;
 }
 .popmake-content .frm_form_field.frm_first_two_thirds {
 	width: 100% !important;
