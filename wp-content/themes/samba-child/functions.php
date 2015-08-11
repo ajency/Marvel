@@ -311,10 +311,10 @@ function get_residential_properties_list($post_type){
   $new_res_prop->guid                      =  $res_property->guid ;
   $new_res_prop->post_author               =  $res_property->post_author ;
   if($res_property->post_type=="residential-property"){
-    $new_res_prop->post_url                  =  site_url().'/ResidentialProperties/'.$res_property->post_name;  
+    $new_res_prop->post_url                  =  site_url().'/residential-properties/'.$res_property->post_name;  
   }
   else if($res_property->post_type=="commercial-property"){
-    $new_res_prop->post_url                  =  site_url().'/Commercial-Property/'.$res_property->post_name;  
+    $new_res_prop->post_url                  =  site_url().'/commercial-properties/'.$res_property->post_name;  
   }
   
   //$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
@@ -466,11 +466,12 @@ function marvel_scripts_styles(){
       wp_enqueue_script( 'underscore-js',  get_stylesheet_directory_uri() . '/dev/js/lib/underscore.min.js', array('jquery'), false, true);
 
       // //POP UP FORMIDABLE FIX
-      // global $frm_settings;
-      // global $frm_vars;
-      // $version = FrmAppHelper::plugin_version();
-      // wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
-      // wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
+      /* global $frm_settings;
+       global $frm_vars;
+       $version = FrmAppHelper::plugin_version();
+       wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
+       wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
+      */ 
 
 
 

@@ -40,7 +40,7 @@ var SITE_URL = '<?php echo site_url(); ?>'
 <body <?php body_class('samba_theme'.$resp_class); ?>>
 
 <!--residential search popup-->
-<div class="home_search popup search_propperty_block" style="display: none;">
+<div class="home_search popup" style="display: none;">
   <div class="searc_head">
     Find your home
     <i class="close-btn"></i>
@@ -119,7 +119,34 @@ var SITE_URL = '<?php echo site_url(); ?>'
                 </a>
             </div>
             <div class="clearfix"></div>
-        <?php if( get_post_type(get_the_ID()) == 'residential-property' || get_post_type(get_the_ID()) == 'commercial-property'){  ?>
+        <?php 
+        if(is_post_type_archive('residential-property') || is_post_type_archive('commercial-property')){
+
+        ?>
+
+        <div class="opened_menu twelve">
+            <nav id="nav-main" class="nav-collapse collapse" role="navigation">
+                <div class="nav-wrap">
+                      <?php
+                          if ( has_nav_menu( 'top_right_navigation' ) )
+                          {
+                            if (is_page('about') || is_page('brand-promise')){
+                              wp_nav_menu(array('menu'=>'aboutmenu', 'theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker));
+                              echo "about page";
+                            } else {
+                              wp_nav_menu(array('theme_location' => 'top_right_navigation', 'menu_class' => 'sf-menu sf-vertical','link_after' => '','walker' => new rc_scm_walker));
+                            }
+                        }
+
+                      ?>
+               </div>
+            </nav>
+        </div>
+      <?php 
+
+
+        } 
+        else if( get_post_type(get_the_ID()) == 'residential-property' || get_post_type(get_the_ID()) == 'commercial-property'){  ?>
           <div class="opened_menu twelve menu-sing">
             <nav id="nav-main" class="nav-collapse collapse" role="navigation">
                 <div class="nav-wrap">

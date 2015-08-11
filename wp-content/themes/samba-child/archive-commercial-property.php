@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Page - No-Resi Projects List New
+Template Name: Page - Commercial Projects List New
 */
 ?>
 <?php 
@@ -54,7 +54,7 @@ Template Name: Page - No-Resi Projects List New
 <div id="centered_block" class="row">
 <div id="main_block" class="block_with_sections mapView page-<?php echo get_the_ID(); ?>">
     <?php
-      echo prk_output_featured_image(get_the_ID());
+      //echo prk_output_featured_image(get_the_ID());
       if ($show_title==true)
       {
           prk_output_title($data);
@@ -89,7 +89,7 @@ Template Name: Page - No-Resi Projects List New
         var THEMEURL = '<?php echo get_parent_template_directory_uri(); ?>';
         var SITEURL = '<?php echo site_url(); ?>';
         var AJAXURL = '<?php echo admin_url('admin-ajax.php'); ?>';
-        <?php /* var SITEDATA 	= <?php  $impruwSiteModel = new SiteModel(get_current_blog_id()); echo json_encode($impruwSiteModel->get_site_profile());  ?>;
+        <?php /* var SITEDATA   = <?php  $impruwSiteModel = new SiteModel(get_current_blog_id()); echo json_encode($impruwSiteModel->get_site_profile());  ?>;
         var USERDATA = <?php $impruwUserModel = new ImpruwUser(get_current_user_id());
                             echo json_encode($impruwUserModel->get_user_basic_info()); */ ?>;
         var SITEID = {'id':<?php echo get_current_blog_id(); ?>}
@@ -110,8 +110,8 @@ Template Name: Page - No-Resi Projects List New
 
 <?php 
 require_once(ABSPATH."/wp-content/themes/samba-child/modules/commonJs.php") ;
-require_once(ABSPATH."wp-content/themes/samba-child/modules/projectList/projectlistJs.php") ?>
-<script type="text/javascript" src = "<?php echo site_url(); ?>/wp-content/themes/samba-child/dev/js/projectlist_app.js"></script>
+require_once(ABSPATH."wp-content/themes/samba-child/modules/projectList/commercial_list_js.php") ?>
+<script type="text/javascript" src = "<?php echo site_url(); ?>/wp-content/themes/samba-child/dev/js/commercial-projectlist_app.js"></script>
 
 
 

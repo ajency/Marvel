@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Page - Commercial Projects List New
+Template Name: Page - No-Commercial Projects List New
 */
 ?>
 <?php 
