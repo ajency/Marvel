@@ -1850,6 +1850,6 @@ border-top: none!important;
 	position: absolute;
 	color: #C51B18 !important;
 }
-.page-template-commercial_project_list_new #proj_list {
+.post-type-archive-commercial-property #proj_list {
 	margin-top: 100px !important;
 }

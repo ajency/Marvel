@@ -77,7 +77,12 @@ function checkIfInView(element){
                 // });
                 //dropdown elipsis
                 setTimeout(function() {
-                    $('select').before('<div class="elips-cont"></div>');
+                    $('select').each(function() {
+                        if (!($(this).prev('div').hasClass('elips-cont'))) {
+                            $(this).before('<div class="elips-cont"></div>');
+                        }
+                    });
+
                     $('.elips-cont').each(function() {
                         $(this).text($(this).next('select').find('option:selected').text());
                     });
@@ -93,7 +98,7 @@ function checkIfInView(element){
                             });
                         }, 0.7);
 
-                    });
+                        });
                     });
                 }, 0.1);
             }
