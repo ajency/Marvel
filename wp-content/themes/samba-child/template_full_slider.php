@@ -223,7 +223,7 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
            <div class="clearfix"></div>
             </div>
 
-            <div class="home_search adjustcenter">
+            <div class="home_search adjustcenter search_propperty_block">
               <div class="showin767">
                 <input type="text" class="taptoview" placeholder="Find your home">
               </div>

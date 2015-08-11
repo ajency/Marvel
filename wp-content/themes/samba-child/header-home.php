@@ -30,7 +30,7 @@
 <body <?php body_class('samba_theme'.$resp_class); ?>>
 
 <!--home search popup-->
-<div class="home_search popup" style="display: none;">
+<div class="home_search popup search_propperty_block" style="display: none;">
   <div class="searc_head">
     Find your home
     <i class="close-btn"></i>

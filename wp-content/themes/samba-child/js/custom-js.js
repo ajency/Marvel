@@ -1014,7 +1014,13 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
     var search_url = SITE_URL+'/residential-properties/';
   }
 
-  if(_.isUndefined(jQuery('.home_status').val())  || jQuery('.home_status').val() =='' ){
+
+  var status_el = jQuery(this).closest('.search_propperty_block').find('.home_status')
+  var city_el = jQuery(this).closest('.search_propperty_block').find('.home_city')
+  var locality_el = jQuery(this).closest('.search_propperty_block').find('.home_location')
+  var type_el = jQuery(this).closest('.search_propperty_block').find('.home_type')
+
+  if(_.isUndefined(status_el.val())  || status_el.val() =='' ){
     var status_value ="Ongoing";
   }
   else{
@@ -1023,18 +1029,18 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
   search_url+='#/st/'+status_value;
   //residential-properties/#/ct/blore/loc/mekri circle/type/1 BHK
 
-  if(jQuery('.home_city').val()!=''){
-    search_url= search_url + '/ct/'+jQuery('.home_city').val()
+  if(city_el.val()!=''){
+    search_url= search_url + '/ct/'+  city_el.val()
   }
 
 
-  if(jQuery('.home_location').val()!=''){
-    search_url= search_url + '/loc/'+jQuery('.home_location').val()
+  if(locality_el.val()!=''){
+    search_url= search_url + '/loc/'+ locality_el.val()
   }
 
 
-   if(jQuery('.home_type').val()!=''){
-    search_url= search_url + '/type/'+jQuery('.home_type').val()
+   if(type_el.val()!=''){
+    search_url= search_url + '/type/'+type_el.val()
   }
 
 

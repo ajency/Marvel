@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Page - No-Resi Projects List New
+Template Name: Page - Residential Projects List New
 */
 ?>
 <?php 
@@ -54,7 +54,7 @@ Template Name: Page - No-Resi Projects List New
 <div id="centered_block" class="row">
 <div id="main_block" class="block_with_sections mapView page-<?php echo get_the_ID(); ?>">
     <?php
-      echo prk_output_featured_image(get_the_ID());
+      //echo prk_output_featured_image(get_the_ID());
       if ($show_title==true)
       {
           prk_output_title($data);
