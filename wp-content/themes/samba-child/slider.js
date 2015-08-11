@@ -157,7 +157,7 @@ function checkIfInView(element){
                         $(this).text('-');
                     }
                 });
-            }, 5000);
+            }, 10000);
 
             $('.job_type').click(function() {
                 $('html, body').animate({scrollTop: jQuery('.careers-scroll-down').offset().top}, 600);
