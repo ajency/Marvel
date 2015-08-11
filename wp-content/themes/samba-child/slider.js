@@ -111,7 +111,7 @@ function checkIfInView(element){
                     var timecount = 0;
                     timerset = setInterval(function() {
                         timecount += 1;
-                        if (timecount > 20) {
+                        if (timecount > 10) {
                             clearInterval(timerset);
                             console.log('run again');
                         } else {
