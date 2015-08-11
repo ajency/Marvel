@@ -1800,7 +1800,7 @@ border-top: none!important;
     font-size: 14px;
     border: 1px solid #cccccc;
     border-right: 0;
-    color: #444444;
+    color: #999999;
     line-height: 19px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1808,6 +1808,7 @@ border-top: none!important;
 }
 .home_search .elips-cont {
 	font-size: 13px;
+	color: #444444;
 }
 .frm_form_field.form-field .elips-cont {
     line-height: 20px !important;
@@ -1849,6 +1850,6 @@ border-top: none!important;
 	position: absolute;
 	color: #C51B18 !important;
 }
-.page-template-commercial_project_list_new #proj_list {
+.post-type-archive-commercial-property #proj_list {
 	margin-top: 100px !important;
 }

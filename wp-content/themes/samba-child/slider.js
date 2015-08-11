@@ -77,7 +77,12 @@ function checkIfInView(element){
                 // });
                 //dropdown elipsis
                 setTimeout(function() {
-                    $('select').before('<div class="elips-cont"></div>');
+                    $('select').each(function() {
+                        if (!($(this).prev('div').hasClass('elips-cont'))) {
+                            $(this).before('<div class="elips-cont"></div>');
+                        }
+                    });
+
                     $('.elips-cont').each(function() {
                         $(this).text($(this).next('select').find('option:selected').text());
                     });
@@ -93,7 +98,7 @@ function checkIfInView(element){
                             });
                         }, 0.7);
 
-                    });
+                        });
                     });
                 }, 0.1);
             }
@@ -111,7 +116,7 @@ function checkIfInView(element){
                     var timecount = 0;
                     timerset = setInterval(function() {
                         timecount += 1;
-                        if (timecount > 20) {
+                        if (timecount > 10) {
                             clearInterval(timerset);
                             console.log('run again');
                         } else {
@@ -143,17 +148,22 @@ function checkIfInView(element){
 
         //careers stuff
         if ($('div').hasClass('job_type')) {
-            $('.job_type a').each(function() {
-                $countdet = $(this).attr('href');
-                $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
-                if ($count > 1) {
-                    $(this).text($count + ' positions');
-                } else if ($count == 1) {
-                    $(this).text($count + ' position');
-                } else {
-                    $(this).text('-');
-                }
-            });
+            setTimeout(function() {
+                $('.job_type a').each(function() {
+                    $countdet = $(this).attr('href');
+                    if ($('.car_' + $countdet.slice(1)).find('.job_listings li').text().trim().toLowerCase() !== 'there are no listings matching your search.') {
+                        $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
+                        if ($count > 1) {
+                            $(this).text($count + ' positions');
+                        } else if ($count == 1) {
+                            $(this).text($count + ' position');
+                        }
+                    } else {
+                        $(this).text('-');
+                    }
+                });
+            }, 10000);
+
             $('.job_type').click(function() {
                 $('html, body').animate({scrollTop: jQuery('.careers-scroll-down').offset().top}, 600);
                 $('.car_togglethis').addClass('hidden');
