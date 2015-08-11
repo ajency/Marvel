@@ -143,17 +143,22 @@ function checkIfInView(element){
 
         //careers stuff
         if ($('div').hasClass('job_type')) {
-            $('.job_type a').each(function() {
-                $countdet = $(this).attr('href');
-                $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
-                if ($count > 1) {
-                    $(this).text($count + ' positions');
-                } else if ($count == 1) {
-                    $(this).text($count + ' position');
-                } else {
-                    $(this).text('-');
-                }
-            });
+            setTimeout(function() {
+                $('.job_type a').each(function() {
+                    $countdet = $(this).attr('href');
+                    if ($('.car_' + $countdet.slice(1)).find('.job_listings li').text().trim().toLowerCase() !== 'there are no listings matching your search.') {
+                        $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
+                        if ($count > 1) {
+                            $(this).text($count + ' positions');
+                        } else if ($count == 1) {
+                            $(this).text($count + ' position');
+                        }
+                    } else {
+                        $(this).text('-');
+                    }
+                });
+            }, 2);
+
             $('.job_type').click(function() {
                 $('html, body').animate({scrollTop: jQuery('.careers-scroll-down').offset().top}, 600);
                 $('.car_togglethis').addClass('hidden');
