@@ -411,7 +411,13 @@ console.log(options) */
                         property_list_html = property_list_html+
                                                 '    </div>'+
                                                 '    <div class="set alrt">'+
-                                                '        <a href="#" class="wpb_button enq_ico popmake-services-enquiry"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
+                                                '        <a href="javascript:void(0);" class="wpb_button enq_ico">'+
+                                                '           <span project-name="'+servproperties_vl.Project_Name+'" project-area="'+servproperties_vl.Area_Sq_ft+'" '+
+                                                '               project-rooms="'+servproperties_vl.No_of_Rooms+'" rent-resale-type="'+servproperties_vl.type+'"  '+
+                                                '               building-floor="'+servproperties_vl.Building+' '+servproperties_vl.Floor+'" '+
+                                                '               class="wpb_button wpb_btn-inverse wpb_regularsize popmake-services-enquiry"> '+
+                                                '           </span>'+                                                
+                                                '        </a>'+
                                                 '    </div>'+
                                                 '</div>';
                         }
@@ -813,20 +819,24 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
 
     jQuery('.popmake-services-enquiry').live('click',function(){
 
-        var project_name    = jQuery(this).attr('project-name');
-        var building_floor  = jQuery(this).attr('building-floor');
-        var project_area    = jQuery(this).attr('project-area');
-        var project_rooms    = jQuery(this).attr('project-rooms');
+        var project_name        = jQuery(this).attr('project-name');
+        var building_floor      = jQuery(this).attr('building-floor');
+        var project_area        = jQuery(this).attr('project-area');
+        var project_rooms       = jQuery(this).attr('project-rooms');
+        var project_rent_resale = jQuery(this).attr('rent-resale-type');
 
         jQuery('#field_serv_cont_projectname').val(project_name);
         jQuery('#field_serv_cont_buildingfloor').val(building_floor)
         jQuery('#field_serv_cont_type').val(project_rooms)
         jQuery('#field_serv_cont_area').val(project_area)
+        jQuery('#field_serv_cont_rentresale').val(project_rent_resale)
+
 
         jQuery('#form_frm_serv_contact').find('.serv-prj-title').html(project_name)
         jQuery('#form_frm_serv_contact').find('.serv-prj-flr').html(building_floor)
         jQuery('#form_frm_serv_contact').find('.serv-prj-type').html(project_rooms)
         jQuery('#form_frm_serv_contact').find('.serv-prj-area').html(project_area)
+        
 
     })
 
