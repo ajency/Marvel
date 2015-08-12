@@ -288,10 +288,12 @@ function get_residential_properties_list($post_type){
   global $wpdb;
     $sel_properties = array();
     $residential_properties = get_posts( array(
-        'post_type' => $post_type,
-        'post_status' => 'publish',
-        'posts_per_page' => -1
-    ) );
+                                          'post_type'       => $post_type,
+                                          'post_status'     => 'publish',
+                                          'posts_per_page'  => -1,
+                                          'order'           => 'ASC',
+                                          'orderby'         => 'menu_order'
+                                      ) );
 
   $new_res_prop = new stdClass();
     foreach (  $residential_properties as $res_property ) {
@@ -310,6 +312,7 @@ function get_residential_properties_list($post_type){
   $new_res_prop->post_title                =  $res_property->post_title ;
   $new_res_prop->guid                      =  $res_property->guid ;
   $new_res_prop->post_author               =  $res_property->post_author ;
+  $new_res_prop->menu_order                =  $res_property->menu_order ;
   if($res_property->post_type=="residential-property"){
     $new_res_prop->post_url                  =  site_url().'/residential-properties/'.$res_property->post_name;  
   }
