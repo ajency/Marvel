@@ -157,7 +157,7 @@ jQuery('.home_city').live('change',function(){
 jQuery('.home_btn_search_properties').live('click',function(evt){
 
   evt.preventDefault();
-  var search_url = SITE_URL+'/residential-properties/#/st/Ongoing';
+  var search_url = SITE_URL+'/residential-properties/#/st/ongoing';
   //residential-properties/#/ct/blore/loc/mekri circle/type/1 BHK
 
   if(jQuery('.home_city').val()!=''){

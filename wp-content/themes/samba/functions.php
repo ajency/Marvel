@@ -2893,12 +2893,12 @@ function nav_items( $items, $menu, $args )
         //if( 'residential' == strtolower($item->post_title)) 
 
         $slug = basename( get_permalink($item->object_id) );
-        if($slug=='residential-properties'){
-        	$item->url .= '#/st/Ongoing';	
+        /* if($slug=='residential-properties'){
+        	$item->url .= '#/st/ongoing';	
         }  
         else if($slug=='commercial-properties'){
-        	$item->url .= '#/st/Ongoing';	
-        }         
+        	$item->url .= '#/st/ongoing';	
+        } */       
 
 
     }

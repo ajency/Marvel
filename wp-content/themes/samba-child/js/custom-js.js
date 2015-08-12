@@ -595,7 +595,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
              else{
                     jQuery.post(ajax_var.url, {        //the server_url
                         action: "get_residential_properties_list_ajx",                 //the submit_data array
-                        data:{}
+                        post_type:jQuery('#current_post_type').val()
                         }, function(response) {
 
 
@@ -1021,7 +1021,7 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
   var type_el = jQuery(this).closest('.search_propperty_block').find('.home_type')
 
   if(_.isUndefined(status_el.val())  || status_el.val() =='' ){
-    var status_value ="Ongoing";
+    var status_value ="ongoing";
   }
   else{
     var status_value = jQuery('.home_status').val();

@@ -21,9 +21,9 @@
 
 					'compare/:id/:sid'	    								: 'compare_properties', 
 
-					'map(/)(st/:pstatus)(/)(ct/:city)(/)(loc/:locality)(/)(type/:proptype)' :'mapview' ,					 
+					'map(/)(st/:pstatus)(/)(city/:city)(/)(loc/:locality)(/)(type/:proptype)' :'mapview' ,					 
 
-					'(/)(st/:pstatus)(/)(ct/:city)(/)(loc/:locality)(/)(type/:proptype)'	: "index" /* /#/ct/blore/loc/udmi/type/1BHK */
+					'(/)(st/:pstatus)(/)(city/:city)(/)(loc/:locality)(/)(type/:proptype)'	: "index" /* /#/ct/blore/loc/udmi/type/1BHK */
 
 				
 				},
@@ -35,6 +35,8 @@
 
 					if(!_.isUndefined(pstatus))
 						options['pstatus'] = pstatus;
+					else if(_.isUndefined(pstatus))
+						options['pstatus'] = 'ongoing';
 
 					if(!_.isUndefined(city))
 						options['city'] = city;

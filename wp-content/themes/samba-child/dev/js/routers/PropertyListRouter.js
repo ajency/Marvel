@@ -21,14 +21,14 @@
 
 					'compare/:id/:sid'	    								: 'compare_properties', 
 
-					'map(/)(st/:pstatus)(/)(ct/:city)(/)(loc/:locality)(/)(type/:proptype)' :'mapview' ,					 
+					'map(/)(st/:pstatus)(/)(city/:city)(/)(loc/:locality)(/)(type/:proptype)(/)(near/:near)' :'mapview' ,					 
 
-					'(/)(st/:pstatus)(/)(ct/:city)(/)(loc/:locality)(/)(type/:proptype)'	: "index" /* /#/ct/blore/loc/udmi/type/1BHK */
+					'(/)(st/:pstatus)(/)(city/:city)(/)(loc/:locality)(/)(type/:proptype)(/)(near/:near)'	: "index" /* /#/ct/blore/loc/udmi/type/1BHK */
 
 				
 				},
 
-				index : function(pstatus,city,locality,proptype){ 
+				index : function(pstatus,city,locality,proptype,near){ 
 
 		//alert('router'+pstatus)
 					var options = [];
@@ -44,6 +44,9 @@
 
 					if(!_.isUndefined(proptype))
 						options['type'] = proptype;
+
+					if(!_.isUndefined(near))
+						options['near'] = near;
 
 					options['post_type'] = 'residential-property';
 					 
@@ -76,7 +79,7 @@
 						var propCompareView = new ProjectsCompareView({pid:id, psid:sid})
 				},
 
-				mapview : function(pstatus,city,locality,proptype){
+				mapview : function(pstatus,city,locality,proptype,near){
 
 					var options = [];
 

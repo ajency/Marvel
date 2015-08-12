@@ -312,7 +312,7 @@ function get_residential_properties_list($post_type){
   $new_res_prop->post_title                =  $res_property->post_title ;
   $new_res_prop->guid                      =  $res_property->guid ;
   $new_res_prop->post_author               =  $res_property->post_author ;
-  $new_res_prop->menu_order                =  $res_property->menu_order ;
+  $new_res_prop->menu_order                =  ($res_property->menu_order==0?9000:$res_property->menu_order) ;
   if($res_property->post_type=="residential-property"){
     $new_res_prop->post_url                  =  site_url().'/residential-properties/'.$res_property->post_name;  
   }

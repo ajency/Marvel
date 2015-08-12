@@ -64,7 +64,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
     var property_status = _.isUndefined(propertyvl.property_status)? propertyvl.get('property_status'): propertyvl.property_status;
     var property_menu_order = _.isUndefined(propertyvl.menu_order)? propertyvl.get('menu_order'): propertyvl.menu_order;
 
-    if(property_status=='Ongoing') { 
+    if(property_status.toLowerCase()=='ongoing') { 
         var draggable_class = " draggable ";
     }
 
@@ -85,7 +85,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
 %>
 <div class="single_p_w six columns property_span_<%=property_id%> <%=draggable_class%>" property-menuorder = "<%=property_menu_order%>" property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
     <div class="single_p_img" style="background-image: url(<% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>);">
-     <% if(property_status=='Ongoing') { %> 
+     <% if(property_status.toLowerCase()=='ongoing') { %> 
        <div class="compare"><a class="comp_ico add_to_compare"  href="javascript:void(0)"   property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" ></a></div>
      <% } %>  
         <!--<img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">-->
@@ -112,7 +112,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
                     console.log(propertyvl.post_type);
 
 
-                    if(property_status=='Ongoing'){
+                    if(property_status.toLowerCase()=='ongoing'){
 
                         if(property_post_type=='residential-property'){ 
                             /* current_property_unit_types */ %><h6><%=property_display_unit_type %></h6>

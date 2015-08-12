@@ -40,6 +40,8 @@
                   this.selectedLocality = args.locality;
                   this.selectedType     = args.type;
                   this.post_type        = args.post_type;
+                  if(!_.isUndefined(args.near))
+                    this.near             = args.near;
 
                 }
 
@@ -377,6 +379,7 @@ console.log( getAppInstance().residentialPropertyCollection)
                     })
                     search_collections = sel_search_collections;
                   }
+
 
 
 
@@ -781,6 +784,8 @@ infowindow.open(map,marker);
                 var prop_locality   = self.selectedLocality;
                 var prop_type       = self.selectedType;
                 var prop_status     = self.selectedStatus;
+                if(!_.isUndefined(self.near))
+                  var prop_near       = self.near;
 
 
                 var prop_status     = jQuery('#dd_status').val();
@@ -863,6 +868,16 @@ infowindow.open(map,marker);
 console.log('CHECKING SEARCH OPTIONS :______________________________ ')
 console.log(search_options)
 
+
+                if(!_.isUndefined(prop_near)){
+                  alert(prop_near+': prop_near')
+                  search_collections = self.show_nearby_properties(prop_near,search_collections)  
+                }
+                
+
+                if(_.size(search_collections)>0){
+                      search_collections = _.sortBy(search_collections, function(obj){ return parseInt(obj.menu_order) });
+                }
 
                  //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
                     if( !_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true) {
@@ -1066,7 +1081,7 @@ console.log(search_options)
                 search_opt = search_opt + '/st/'+prop_status;
 
               if(!_.isUndefined(prop_city) && prop_city !='' )
-                search_opt = search_opt + '/ct/'+prop_city;
+                search_opt = search_opt + '/city/'+prop_city;
 
 
               if(!_.isUndefined(prop_locality) && prop_locality!='')
@@ -1136,6 +1151,88 @@ console.log(search_options)
             map.setCenter(newCenter);
 
             },
+
+
+  rad : function(x) {
+              return x * Math.PI / 180;
+            },
+
+     getDistance : function(p1, p2) {
+      var R = 6378137; // Earth’s mean radius in meter
+      var dLat = this.rad(p2.lat - p1.lat);
+      var dLong = this.rad(p2.lng - p1.lng);
+      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(this.rad(p1.lat)) * Math.cos(this.rad(p2.lat)) *
+        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = R * c;
+      return d; // returns the distance in meter
+    },
+
+
+            show_nearby_properties : function(near,search_collections){
+        console.log('show nearby properties')
+        console.log(_.where(search_collections,{id:parseInt(near)}))
+ 
+            console.log('near Post ID :'+near)
+
+var self = this;
+          
+
+
+            var current_property = _.first( _.where(search_collections,{id:parseInt(near) }) )            
+
+            var current_property_map_address  = _.first(current_property.get('map_address'));
+
+            var current_property_map_lat =   current_property_map_address.lat;
+
+            var current_property_map_lng =   current_property_map_address.lng;
+
+
+           
+            var this_area_cnt = 0;
+            var nearby_area_cnt = 0;
+            var nearby_area = [];
+            var this_area = [];
+
+
+            _.each(search_collections,function(resprop_v,resprop_k){
+
+                var property_map_address  = _.first(resprop_v.map_address);
+
+                var distance = self.getDistance(current_property_map_address,property_map_address);
+
+               /* if(parseFloat(distance)  <=2000 && distance != 0 ){
+                    this_area[this_area_cnt] = resprop_v ;
+                    this_area_cnt = this_area_cnt + 1;
+                }
+                else if(parseFloat(distance)  >2000 && parseFloat(distance)  <5000 ){
+                    nearby_area[nearby_area_cnt] = resprop_v ;
+                    nearby_area_cnt = nearby_area_cnt + 1;
+                }*/
+
+
+                if( (parseFloat(distance)  <=2000 && distance != 0 ) || (parseFloat(distance)  >2000 && parseFloat(distance)  <5000 ) ){
+                    this_area[this_area_cnt] = resprop_v ;
+                    this_area_cnt = this_area_cnt + 1;
+                }
+             
+
+                console.log("ID :"+resprop_v.id+"  || Distance : "+distance)
+            })
+
+
+
+
+            console.log('THIS AREA : ')
+            console.log(this_area)
+           // console.log('NEARBY AREA : ')
+           // console.log(nearby_area)
+
+            
+            return this_area;
+
+        }
 
              
 

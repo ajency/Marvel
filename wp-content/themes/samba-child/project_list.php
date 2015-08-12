@@ -80,7 +80,7 @@ $show_sidebar=false;
                 <div class="top-dd-c">
                     <div class="top-dd one">
                         <select id="dd_status">
-                            <option>Ongoing</option>
+                            <option>ongoing</option>
                             <option>Upcoming</option>
                         </select>
                     </div>
