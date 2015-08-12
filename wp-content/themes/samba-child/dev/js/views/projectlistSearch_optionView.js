@@ -1217,7 +1217,8 @@ console.log('###########################################')
                 }*/
 
 
-                if( (parseFloat(distance)  <=2000 && distance != 0 ) || (parseFloat(distance)  >2000 && parseFloat(distance)  <5000 ) ){
+
+                if( (resprop_v.id!=current_property.get('id')) && ((parseFloat(distance)  <=2000 && distance == 0 ) || (parseFloat(distance)  >2000 && parseFloat(distance)  <5000 ) ) ){
                     this_area[this_area_cnt] = resprop_v ;
                     this_area_cnt = this_area_cnt + 1;
                 }
