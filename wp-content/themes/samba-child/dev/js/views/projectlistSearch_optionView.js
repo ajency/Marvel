@@ -1198,7 +1198,12 @@ var self = this;
 
             _.each(search_collections,function(resprop_v,resprop_k){
 
-                var property_map_address  = _.first(resprop_v.map_address);
+
+console.log('SHOWING NEARBY PROPERTIES');
+console.log(resprop_v.get('id'))
+console.log(_.first(resprop_v.get('map_address')));
+console.log('###########################################')
+                var property_map_address  = _.first(resprop_v.get('map_address'));
 
                 var distance = self.getDistance(current_property_map_address,property_map_address);
 
