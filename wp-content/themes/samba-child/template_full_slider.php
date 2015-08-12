@@ -95,7 +95,7 @@ jQuery.ajax(ajax_var.url,{
             
                               for(var i=0;i<_.size(sorted_type_options);i++){
 
-                                jQuery('.home_type').append('<option value="'+sorted_type_options[i].ID+'">'+sorted_type_options[i].property_unit_type+'</option>')
+                                jQuery('.home_type').append('<option value="'+sorted_type_options[i].ID+'">'+sorted_type_options[i].property_unit_type+' '+sorted_type_options[i].property_type_name+'</option>')
 
                               } 
                             }
