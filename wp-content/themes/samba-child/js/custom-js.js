@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
    // $('.view_properties_resale').live("click",function(evt){
     $('.view_properties_resale .button_left a.wpb_button_a').live("click",function(evt){
 
-        event.preventDefault();
+        evt.preventDefault();
         $('html, body').animate({
             scrollTop: $('#spn_services_div').offset().top
         }, 50);
@@ -83,7 +83,7 @@ jQuery(document).ready(function($) {
     //$('.view_properties_rent').live("click",function(evt){
    $('.view_properties_rent .button_left a.wpb_button_a').live("click",function(evt){
 
-        event.preventDefault();
+        evt.preventDefault();
         $('html, body').animate({
             scrollTop: $('#spn_services_div').offset().top
         }, 50);
