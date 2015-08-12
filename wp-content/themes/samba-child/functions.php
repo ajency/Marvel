@@ -20,6 +20,8 @@ function get_map_address_details($property_id){
 
 function get_search_options($post_type){
 
+    $property_unit_types = array();
+
     if($post_type =="residential-property"){
 
         $property_unit_types_meta_serialized       = maybe_unserialize(get_option('residential-property-unit-type',true));
@@ -28,18 +30,20 @@ function get_search_options($post_type){
         $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
         $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
 
-        
-        foreach ($property_types_meta as $property_types_key => $property_types_value) {
-              $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
-        } 
+        if(is_array($property_types_meta)){
+          foreach ($property_types_meta as $property_types_key => $property_types_value) {
+                $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+          } 
+        }
 
          
+        if(is_array($property_unit_types_meta)){
+          foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
 
-        foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
-
-           $current_property_type_id =  $unit_type_value['property_type_id'];
-           $unit_type_value['property_type_name'] = $property_types[$current_property_type_id]; 
-           $property_unit_types[] =       $unit_type_value ;       
+             $current_property_type_id =  $unit_type_value['property_type_id'];
+             $unit_type_value['property_type_name'] = $property_types[$current_property_type_id]; 
+             $property_unit_types[] =       $unit_type_value ;       
+          }
         }
         
 
@@ -64,16 +68,23 @@ function get_search_options($post_type){
         $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
         $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
         $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
-        foreach ($property_types_meta as $property_types_key => $property_types_value) {
-              $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
-        } 
+        
 
-        foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+        if(is_array($property_types_meta)){
+          foreach ($property_types_meta as $property_types_key => $property_types_value) {
+              $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+          }  
+        }
+         
+        if(is_array($property_unit_types_meta)){
+          foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
 
            $current_property_type_id =  $unit_type_value['property_type_id'];
            $unit_type_value['property_type_name'] = $property_types[$current_property_type_id]; 
            $property_unit_types[] =       $unit_type_value ;       
+          }  
         }
+        
 
 
 
