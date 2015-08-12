@@ -161,7 +161,7 @@ console.log(this.selectedStatus)
                       type_dropdown_selected = ' selected';
 
                     }
-                    home_type2_html+='<option value="'+vl.ID+'" '+type_dropdown_selected+'>'+vl.property_unit_type+'</option>';
+                    home_type2_html+='<option value="'+vl.ID+'" '+type_dropdown_selected+'>'+vl.property_unit_type+' '+vl.property_type_name+'</option>';
 
                    })
 

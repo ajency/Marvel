@@ -22,7 +22,30 @@ function get_search_options($post_type){
 
     if($post_type =="residential-property"){
 
-        $property_unit_type       = maybe_unserialize(get_option('residential-property-unit-type',true));
+        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('residential-property-unit-type',true));
+        $property_types_meta_serialized            =   maybe_unserialize(get_option('residential-property-type',true));
+        
+        $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+        $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
+
+        
+        foreach ($property_types_meta as $property_types_key => $property_types_value) {
+              $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+        } 
+
+         
+
+        foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+           $current_property_type_id =  $unit_type_value['property_type_id'];
+           $unit_type_value['property_type_name'] = $property_types[$current_property_type_id]; 
+           $property_unit_types[] =       $unit_type_value ;       
+        }
+        
+
+
+        
+
         $property_cities          = maybe_unserialize(get_option('property-city',true));
         $property_locality        = maybe_unserialize(get_option('property-locality',true));
         $property_neighbourhood   = maybe_unserialize(get_option('property-neighbourhood',true));
@@ -36,6 +59,27 @@ function get_search_options($post_type){
     else if($post_type =="commercial-property"){
 
         $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+
+        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
+        $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
+        $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
+        $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+        foreach ($property_types_meta as $property_types_key => $property_types_value) {
+              $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+        } 
+
+        foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+           $current_property_type_id =  $unit_type_value['property_type_id'];
+           $unit_type_value['property_type_name'] = $property_types[$current_property_type_id]; 
+           $property_unit_types[] =       $unit_type_value ;       
+        }
+
+
+
+
+
+
         $property_cities        = maybe_unserialize(get_option('commercial-property-city',true));
         $property_locality      = maybe_unserialize(get_option('commercial-property-locality',true));
         $property_neighbourhood = array();
@@ -52,7 +96,7 @@ function get_search_options($post_type){
                                  'locality'      => $property_locality,
                                  'neighbourhood' => $property_neighbourhood,
                                  /* 'no_of_bedrooms'=> $property_bedrooms, */
-                                 'type'          => maybe_unserialize($property_unit_type['property_unit_types']),
+                                 'type'          => $property_unit_types,
                                 /* 'citylocality'  => $property_citylocality, */
                                  'amenities'     => $property_amenities
                                 );

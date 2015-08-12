@@ -221,8 +221,8 @@ sort($uniq_no_of_bedrooms);
                                                        <?php if($value_rent_resale['Rental_Value_Furnished']!=''){ ?> <big><?php echo $value_rent_resale['Rental_Value_Furnished']; ?></big><small> - Furnished</small><?php } ?>
                                                     </div>
                                                     <div class="set alrt">
-                                                        <a href="#" class="wpb_button enq_ico"><span project-name="<?php echo $current_project; ?>" project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"
-                                                            building-floor="<?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?>" class="wpb_button wpb_btn-inverse wpb_regularsize popmake-services-enquiry"></span></a>
+                                                        <a href="javascript:void(0)" class="wpb_button enq_ico"><span project-name="<?php echo $current_project; ?>" project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"
+                                                                rent-resale-type="<?php echo $value_rent_resale['type'] ?>"  building-floor="<?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?>" class="wpb_button wpb_btn-inverse wpb_regularsize popmake-services-enquiry"></span></a>
                                                     </div>
                                                 </div>
                             <?php
@@ -302,8 +302,8 @@ sort($uniq_no_of_bedrooms);
                                                        <?php if($value_rent_resale['Rental_Value_Furnished']!=''){ ?> <big><?php echo $value_rent_resale['Rental_Value_Furnished']; ?></big><small> - Furnished</small><?php } ?>
                                                     </div>
                                                     <div class="set alrt">
-                                                        <a href="#" class="wpb_button enq_ico"><span  project-name="<?php echo $current_project; ?>"  project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"
-                                                        building-floor="<?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?>"  class="wpb_button wpb_btn-inverse wpb_regularsize  popmake-services-enquiry"></span></a>
+                                                        <a href="javascript:void(0)" class="wpb_button enq_ico"><span  project-name="<?php echo $current_project; ?>"  project-area="<?php echo $value_rent_resale['Area_Sq_ft']; ?>"   project-rooms="<?php echo $value_rent_resale['No_of_Rooms']; ?>"
+                                                           rent-resale-type="<?php echo $value_rent_resale['type'] ?>"  building-floor="<?php echo $value_rent_resale['Building']; ?> <?php echo $value_rent_resale['Floor']; ?>"  class="wpb_button wpb_btn-inverse wpb_regularsize  popmake-services-enquiry"></span></a>
                                                     </div>
                                                 </div>
 

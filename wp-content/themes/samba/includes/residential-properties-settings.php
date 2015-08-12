@@ -21,6 +21,8 @@ if( ! class_exists( 'WP_List_Table' ) ) {
 
 class My_Example_List_Table extends WP_List_Table {
 
+	public $post_type;
+
    /* var $example_data = array(
             array( 'ID' => 1,'property_unit_type' => '1 BHK', 'number_bedrooms' => '1',
                    'action' => 'Edit' ),
@@ -36,7 +38,8 @@ class My_Example_List_Table extends WP_List_Table {
                   'action' => 'Edit' )
         ); */
     function __construct(){
-    global $status, $page, $post_type;
+    /* global $status, $page, $post_type; */
+    global $status, $page;
 
         parent::__construct( array(
             'singular'  => __( 'Property Unit Type', 'mylisttable' ),     //singular name of the listed records
@@ -546,9 +549,11 @@ if( ! class_exists( 'WP_List_Table' ) ) {
 
 class My_Example_List_Table extends WP_List_Table {
 
-  
+  	public $post_type;
+
     function __construct(){
-    global $status, $page, $post_type;
+     global $status, $page;	
+    /* global $status, $page, $post_type; */
 
         parent::__construct( array(
             'singular'  => __( 'Property Type', 'mylisttable' ),     //singular name of the listed records

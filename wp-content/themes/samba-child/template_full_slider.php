@@ -95,7 +95,7 @@ jQuery.ajax(ajax_var.url,{
             
                               for(var i=0;i<_.size(sorted_type_options);i++){
 
-                                jQuery('.home_type').append('<option value="'+sorted_type_options[i].ID+'">'+sorted_type_options[i].property_unit_type+'</option>')
+                                jQuery('.home_type').append('<option value="'+sorted_type_options[i].ID+'">'+sorted_type_options[i].property_unit_type+' '+sorted_type_options[i].property_type_name+'</option>')
 
                               } 
                             }
@@ -140,10 +140,10 @@ jQuery('.home_city').live('change',function(){
             if(selected_city==vl_cl.city_id){
 
                var display_locality_name = vl_cl.name;
-                if(_.size(vl_cl.name)>14){
+                /*if(_.size(vl_cl.name)>14){
                   display_locality_name =  display_locality_name.substr(0, 13)+'...';
 
-                }
+                }*/
 
                 jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
 
