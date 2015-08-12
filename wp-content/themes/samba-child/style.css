@@ -173,6 +173,8 @@ color: rgb(255, 255, 255);
   	/*display: none;*/
     padding-top: 3px;
     font-family: 'Cantarell', 'Open Sans';
+
+    display: none;
 }
 .child-footer .footer_in {
     padding-top: 3px;
