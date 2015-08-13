@@ -110,6 +110,9 @@ function checkIfInView(element){
                 }
             }, 0.3);
             loadingcontinforms();
+            $(document).on('click', '.back_btn', function() {
+                loadingcontinforms();
+            });
             if ($('div').hasClass('frm_submit')) {
                 var timerset;
                 $('.frm_style_formidable-style.with_frm_style .frm_submit input[type=submit]').click(function() {
