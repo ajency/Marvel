@@ -51,11 +51,25 @@
  Global $wp_query;
  $current_page_id = $wp_query->get_queried_object_id();
  $current_page_title= get_the_title($current_page_id);
- $current_property_url = site_url().'/ResidentialProperties/'. $current_page_title;
+ $current_property_url = site_url().'/commercial-properties/'. $current_page_title;
  $current_property_featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($current_page_id), 'thumbnail'  );
 
+$all_commercial_properties = get_residential_properties_list('commercial-property');
+ 
+
+foreach ($all_commercial_properties as $key_property => $value_property) {
+  
+  $commercial_properties[] = array('project_name'=>$value_property->post_title,
+                                    'project_city'=>$value_property->property_city_name,
+                                   );
+}
+
+$json_commercial_properties = json_encode($commercial_properties) ;
 
 ?>
+<script type="text/javascript">
+  var properties_list  =<?php echo $json_commercial_properties;?>;
+</script>
 <div id="centered_block" class="row">
 <div id="main_block" class="block_with_sections hideTitle page-<?php echo get_the_ID(); ?>">
 <input type="hidden" name="current_property_title" id="current_property_title" value="<?php echo $current_page_title; ?>"  />

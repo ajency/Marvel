@@ -1130,6 +1130,64 @@ jQuery('#interval_id_auto_popup').val(autopopup_individual_page_id)
 
 
 
+/* Populate city and project list on footer popup on single residential and commercial residential property*/
+jQuery('#field_ky_contact1city').live('click',function(evt){
+        
+        
+        var selectedcity = jQuery('#form_contact2').find("#field_ky_contact1city").val();
+        
+        var selected_projects = _.where(properties_list,{project_city:selectedcity})
+        
+        var all_projects = _.pluck(selected_projects,'project_name')
+        
+        console.log('all_projects')
+        console.log(all_projects)
+                    
+        jQuery('#form_contact2').find("#field_ky_contact1projects").empty()
+        jQuery('#form_contact2').find("#field_ky_contact1projects").html("<option value=''>Projects</option>")
+        
+        _.each(all_projects,function(project_vl,project_ky){
+            jQuery('#form_contact2').find("#field_ky_contact1projects").append("<option value='"+project_vl+"'>"+project_vl+"</option>")
+        })
+                    
+                    
+    })
+
+
+    jQuery('.popmake-01-enquiry-footer-popup').live('click',function(evt){
+        console.log('\n\n\n\PROHECT LIST TO POPULATE ON FORMDABLE')
+        _.each(properties_list,function(proj__v,proj__k){
+            console.log(proj__v)
+
+        })
+        
+        if(jQuery('#form_contact2').length>0){
+            
+                
+            
+                var all_cities = _.pluck(properties_list,'project_city')
+                var uniq_cities = _.uniq(all_cities);
+                
+                console.log('UNIQ Cities')
+                console.log(uniq_cities);
+                
+                
+                jQuery('#form_contact2').find("#field_ky_contact1city").empty()
+                jQuery('#form_contact2').find("#field_ky_contact1city").html("<option value=''>City</option>")
+                
+                _.each(uniq_cities,function(city_vl,city_ky){
+                    jQuery('#form_contact2').find("#field_ky_contact1city").append("<option value='"+city_vl+"'>"+city_vl+"</option>")
+                })
+                 
+                
+        
+        }
+        
+        
+
+    })
+
+/* End Populate city and project list on footer popup on singel and commercial residential property*/
 
 
 });
