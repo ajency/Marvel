@@ -46,9 +46,21 @@
     }
   //NEVER SHOW SIDEBAR
   $show_sidebar=false;
+
+   $current_page_title = ''; 
+ Global $wp_query;
+ $current_page_id = $wp_query->get_queried_object_id();
+ $current_page_title= get_the_title($current_page_id);
+ $current_property_url = site_url().'/ResidentialProperties/'. $current_page_title;
+ $current_property_featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($current_page_id), 'thumbnail'  );
+
+
 ?>
 <div id="centered_block" class="row">
 <div id="main_block" class="block_with_sections hideTitle page-<?php echo get_the_ID(); ?>">
+<input type="hidden" name="current_property_title" id="current_property_title" value="<?php echo $current_page_title; ?>"  />
+<input type="hidden" name="interval_id_auto_popup"  id="interval_id_auto_popup" value="" />
+
     <div id="full_fi_c">
         <div class="full_fi_title">
             <p class="f_f_t">

@@ -1095,7 +1095,34 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
 
 
+function show_project_title_on_autopopup_individual_page(){
+    
+var autopopup_individual_page_id;
+    autopopup_individual_page_id = window.setInterval(function(){
+  /// call your function here
+  console.log('check FORMMMMMMMMMMM')
+         if(jQuery('#form_frm_individual_proj_popup').length>0){
 
+                    var current_prperty_title = jQuery('#current_property_title').val();
+                    jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(current_prperty_title)
+                    jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(current_prperty_title)
+                    console.log('remoced FORM INTERVAL')
+console.log('current_prperty_title :'+current_prperty_title)
+                    window.clearInterval(jQuery('#interval_id_auto_popup').val());
+                     
+        }
+
+
+
+    }, 2000);
+   return autopopup_individual_page_id
+
+    
+}
+
+
+var autopopup_individual_page_id = show_project_title_on_autopopup_individual_page() 
+jQuery('#interval_id_auto_popup').val(autopopup_individual_page_id)
 
 
 
