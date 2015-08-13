@@ -111,7 +111,9 @@ function checkIfInView(element){
             }, 0.3);
             loadingcontinforms();
             $(document).on('click', '.back_btn', function() {
-                loadingcontinforms();
+                setTimeout(function() {
+                    loadingcontinforms();
+                }, 50);
             });
             if ($('div').hasClass('frm_submit')) {
                 var timerset;
