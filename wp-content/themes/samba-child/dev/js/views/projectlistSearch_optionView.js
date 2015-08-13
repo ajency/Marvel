@@ -860,9 +860,11 @@ infowindow.open(map,marker);
                 jQuery('#projects_listings').attr('style','')
 
 
-console.log('CHECKING SEARCH OPTIONS :______________________________ ')
-console.log(search_options)
-
+                if(_.size(search_collections)>0){
+                      search_collections = _.sortBy(search_collections, function(obj){ return parseInt(obj.get('menu_order')) });
+                }
+                console.log('SORTED BY MENU ORDER')
+                console.log(search_collections)
 
                  //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
                     if( !_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true) {
