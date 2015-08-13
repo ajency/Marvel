@@ -47,7 +47,7 @@ if(propertiesdata.length<=0){
 
 _.each(propertiesdata,function(propertyvl,propertyky){
 
-    
+
 
 
     var property_post_type = _.isUndefined(propertyvl.post_type)? propertyvl.get('post_type'): propertyvl.post_type;
@@ -64,7 +64,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
     var property_status = _.isUndefined(propertyvl.property_status)? propertyvl.get('property_status'): propertyvl.property_status;
     var property_menu_order = _.isUndefined(propertyvl.menu_order)? propertyvl.get('menu_order'): propertyvl.menu_order;
 
-    if(property_status=='Ongoing') { 
+    if(property_status=='Ongoing') {
         var draggable_class = " draggable ";
     }
 
@@ -85,9 +85,9 @@ _.each(propertiesdata,function(propertyvl,propertyky){
 %>
 <div class="single_p_w six columns property_span_<%=property_id%> <%=draggable_class%>" property-menuorder = "<%=property_menu_order%>" property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" >
     <div class="single_p_img" style="background-image: url(<% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>);">
-     <% if(property_status=='Ongoing') { %> 
+     <% if(property_status=='Ongoing') { %>
        <div class="compare"><a class="comp_ico add_to_compare"  href="javascript:void(0)"   property-id="<%=property_id%>" property-title = '<%=property_title%>' property-address="<%=property_locality_name%><%= _.isEmpty(property_locality_name)?'':', '%><%=property_city_name%>" ></a></div>
-     <% } %>  
+     <% } %>
         <!--<img src=" <% if(featured_image!=false) { %><%=featured_image%><% } else { %>http://loremflickr.com/1000/1000/building<% } %>">-->
             <div class="single_p_hov_c">
                 <div class="single_p_likes single_top"><i class="fa fa-heart"></i> 30</div>
@@ -107,32 +107,32 @@ _.each(propertiesdata,function(propertyvl,propertyky){
                         proptype_cnt++;
                     })
                     %>
-                    <% 
-                    console.log('POST TYPE:---------------------')    
+                    <%
+                    console.log('POST TYPE:---------------------')
                     console.log(propertyvl.post_type);
 
 
                     if(property_status=='Ongoing'){
 
-                        if(property_post_type=='residential-property'){ 
+                        if(property_post_type=='residential-property'){
                             /* current_property_unit_types */ %><h6><%=property_display_unit_type %></h6>
-                        <% }    
-                        else if(property_post_type=='commercial-property'){ 
+                        <% }
+                        else if(property_post_type=='commercial-property'){
                             console.log('SHOW OFFICE AND RETAIL SPACES -------------------------------------------------');
                             console.log(property_office_spaces);
 
 
                             %>
                             <% if(!_.isUndefined(property_office_spaces)) { %>
-                                    <% if(!_.isUndefined(property_office_spaces['min-area']) ) { %><h6>Office Spaces: <%=property_office_spaces['min-area']%> - <%=property_office_spaces['max-area']%> sq. ft.</h6> <% } %>                            
-                            <% } %> 
+                                    <% if(!_.isUndefined(property_office_spaces['min-area']) ) { %><h6>Office Spaces: <%=property_office_spaces['min-area']%> - <%=property_office_spaces['max-area']%> sq. ft.</h6> <% } %>
+                            <% } %>
                             <% if(!_.isUndefined(property_retail_spaces)) { %>
-                                    <% if(!_.isUndefined(property_retail_spaces['min-area']) ) { %><h6>Retail Spaces: <%=property_retail_spaces['min-area']%> - <%=property_retail_spaces['max-area']%> sq. ft.</h6> <% } %> 
-                            <% } %> 
-                        <% }                 
+                                    <% if(!_.isUndefined(property_retail_spaces['min-area']) ) { %><h6>Retail Spaces: <%=property_retail_spaces['min-area']%> - <%=property_retail_spaces['max-area']%> sq. ft.</h6> <% } %>
+                            <% } %>
+                        <% }
                     %>
 
-                    
+
                     <h6><%= _.isEmpty(property_price)?'':'INR '+property_price /* INR 2.2 CR + */ %></h6>
                     <%
                      }
@@ -162,7 +162,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
                     <span class="single_p_title"><%=property_title%></span>
                     <% if(property_locality!='' ) { %><span class="single_p_light">|</span>
 
-                        <span class="single_p_location"><%=property_locality_name%> <%= _.isUndefined(property_city_name)?'':', '+property_city_name%></span>
+                        <span class="single_p_location"><%=property_locality_name%><%= _.isUndefined(property_city_name)?'':', '+property_city_name%></span>
                     <% }
                     if(dropdown_city=='') { %>
                     <!--<%= _.isUndefined(property_city_name)?'':property_city_name%>-->
