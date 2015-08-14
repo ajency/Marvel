@@ -456,6 +456,21 @@ color: rgb(255, 255, 255);
 		width: 100%;
 	}
 
+	.home_search.popup .hme_dd select, .home_search.popup .hme_dd.wc select {
+		background-color: transparent;
+		background-image: none !important;
+		color: transparent;
+	}
+	.home_search.popup .hme_dd .elips-cont, .home_search.popup .hme_dd.wc .elips-cont {
+		width: 100%;
+		line-height: 28px;
+		padding-left: 14px;
+		background-color: #fff;
+	}
+	.home_search.popup .hme_dd.wc .elips-cont {
+		padding-left: 35px;
+	}
+
 
 }
 
