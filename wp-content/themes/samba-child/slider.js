@@ -47,20 +47,22 @@ function checkIfInView(element){
 
         $(window).load(function() {
 
-            if (jQuery('h6').hasClass('ofcspace')) {
-                jQuery('.ofcspace').each(function() {
-                    if (jQuery(this).text().trim().toLowerCase() == 'office spaces:  -  sq. ft.') {
-                        jQuery(this).text('');
-                    }
-                });
-            }
-            if (jQuery('h6').hasClass('retspace')) {
-                jQuery('.retspace').each(function() {
-                    if (jQuery(this).text().trim().toLowerCase() == 'retail spaces:  -  sq. ft.') {
-                        jQuery(this).text('');
-                    }
-                });
-            }
+            setTimeout(function() {
+                if (jQuery('h6').hasClass('ofcspace')) {
+                    jQuery('.ofcspace').each(function() {
+                        if (jQuery(this).text().trim().toLowerCase() == 'office spaces:  -  sq. ft.') {
+                            jQuery(this).text('');
+                        }
+                    });
+                }
+                if (jQuery('h6').hasClass('retspace')) {
+                    jQuery('.retspace').each(function() {
+                        if (jQuery(this).text().trim().toLowerCase() == 'retail spaces:  -  sq. ft.') {
+                            jQuery(this).text('');
+                        }
+                    });
+                }
+            }, 500);
 
             function loadingcontinforms() {
                 $countries = ["Your Country","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
