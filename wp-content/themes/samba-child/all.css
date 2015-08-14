@@ -1251,6 +1251,11 @@ h6 {
   z-index: 2;
   color: transparent;
 }
+.top-dd select:active,
+.top-dd select:focus {
+  box-shadow: 0 0 3px #66afe9;
+  border-color: #66afe9;
+}
 .top-dd select option {
   color: #444;
 }
