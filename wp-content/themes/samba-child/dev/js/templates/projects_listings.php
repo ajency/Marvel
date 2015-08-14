@@ -124,10 +124,10 @@ _.each(propertiesdata,function(propertyvl,propertyky){
 
                             %>
                             <% if(!_.isUndefined(property_office_spaces)) { %>
-                                    <% if(!_.isUndefined(property_office_spaces['min-area']) ) { %><h6>Office Spaces: <%=property_office_spaces['min-area']%> - <%=property_office_spaces['max-area']%> sq. ft.</h6> <% } %>
+                                    <% if(!_.isUndefined(property_office_spaces['min-area']) ) { %><h6 class="ofcspace">Office Spaces: <%=property_office_spaces['min-area']%> - <%=property_office_spaces['max-area']%> Sq. Ft.</h6> <% } %>
                             <% } %>
                             <% if(!_.isUndefined(property_retail_spaces)) { %>
-                                    <% if(!_.isUndefined(property_retail_spaces['min-area']) ) { %><h6>Retail Spaces: <%=property_retail_spaces['min-area']%> - <%=property_retail_spaces['max-area']%> sq. ft.</h6> <% } %>
+                                    <% if(!_.isUndefined(property_retail_spaces['min-area']) ) { %><h6 class="retspace">Retail Spaces: <%=property_retail_spaces['min-area']%> - <%=property_retail_spaces['max-area']%> Sq. Ft.</h6> <% } %>
                             <% } %>
                         <% }
                     %>

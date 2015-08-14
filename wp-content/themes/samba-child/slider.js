@@ -46,6 +46,22 @@ function checkIfInView(element){
     $(document).ready(function() {
 
         $(window).load(function() {
+
+            if (jQuery('h6').hasClass('ofcspace')) {
+                jQuery('.ofcspace').each(function() {
+                    if (jQuery(this).text().trim().toLowerCase() == 'office spaces:  -  sq. ft.') {
+                        jQuery(this).text('');
+                    }
+                });
+            }
+            if (jQuery('h6').hasClass('retspace')) {
+                jQuery('.retspace').each(function() {
+                    if (jQuery(this).text().trim().toLowerCase() == 'retail spaces:  -  sq. ft.') {
+                        jQuery(this).text('');
+                    }
+                });
+            }
+
             function loadingcontinforms() {
                 $countries = ["Your Country","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
                 ,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands"

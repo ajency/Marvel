@@ -207,8 +207,8 @@ console.log('vl');
 
                                 %>
 
-                                <td><%= f_min_area+' to '+f_max_area+' SQ. FT.'  %></td>
-                                <td><%= s_min_area+' to '+s_max_area+' SQ. FT.'  %></td>
+                                <td><%= f_min_area+' to '+f_max_area+' Sq. Ft.'  %></td>
+                                <td><%= s_min_area+' to '+s_max_area+' Sq. Ft.'  %></td>
                             </tr>
 
                             <tr class="head-row">

@@ -1844,7 +1844,9 @@ border-top: none!important;
 .completed_status_projects #proj_list .single_enq,
 .completed_status_projects .gm-style-iw .single_p_info,
 .completed_status_projects .gm-style-iw .single_enq,
-.completed_status_projects .gm-style-iw .single_compare {
+.completed_status_projects .gm-style-iw .single_compare,
+.completed_status_projects .gm-style-iw p.map_excerpt,
+.completed_status_projects .gm-style-iw p.map_p_cost {
 	display: none !important;
 }
 

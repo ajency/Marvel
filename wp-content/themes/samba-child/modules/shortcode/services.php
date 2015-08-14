@@ -275,7 +275,7 @@ sort($uniq_no_of_bedrooms);
                                                         <small class="clr_lt">Building | Floor</small>
                                                     </div>
                                                     <div class="set">
-                                                        <small class="clr_lt">Area (SQ.FT.)</small>
+                                                        <small class="clr_lt">Area (Sq. Ft.)</small>
                                                     </div>
                                                     <div class="set">
                                                         <small class="clr_lt">Type</small>

@@ -416,7 +416,7 @@ console.log(options) */
                                                 '               project-rooms="'+servproperties_vl.No_of_Rooms+'" rent-resale-type="'+servproperties_vl.type+'"  '+
                                                 '               building-floor="'+servproperties_vl.Building+' '+servproperties_vl.Floor+'" '+
                                                 '               class="wpb_button wpb_btn-inverse wpb_regularsize popmake-services-enquiry"> '+
-                                                '           </span>'+                                                
+                                                '           </span>'+
                                                 '        </a>'+
                                                 '    </div>'+
                                                 '</div>';
@@ -485,7 +485,7 @@ console.log(options) */
                                             '                                <small class="clr_lt">Building | Floor</small>'+
                                             '                            </div>'+
                                             '                            <div class="set">'+
-                                            '                                <small class="clr_lt">Area (SQ.FT.)</small>'+
+                                            '                                <small class="clr_lt">Area (Sq. Ft.)</small>'+
                                             '                            </div>'+
                                             '                            <div class="set">'+
                                             '                                <small class="clr_lt">No. Of Rooms</small>'+
@@ -836,7 +836,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
         jQuery('#form_frm_serv_contact').find('.serv-prj-flr').html(building_floor)
         jQuery('#form_frm_serv_contact').find('.serv-prj-type').html(project_rooms)
         jQuery('#form_frm_serv_contact').find('.serv-prj-area').html(project_area)
-        
+
 
     })
 
@@ -1096,7 +1096,7 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
 
 function show_project_title_on_autopopup_individual_page(){
-    
+
 var autopopup_individual_page_id;
     autopopup_individual_page_id = window.setInterval(function(){
   /// call your function here
@@ -1109,7 +1109,7 @@ var autopopup_individual_page_id;
                     console.log('remoced FORM INTERVAL')
 console.log('current_prperty_title :'+current_prperty_title)
                     window.clearInterval(jQuery('#interval_id_auto_popup').val());
-                     
+
         }
 
 
@@ -1117,11 +1117,11 @@ console.log('current_prperty_title :'+current_prperty_title)
     }, 2000);
    return autopopup_individual_page_id
 
-    
+
 }
 
 
-var autopopup_individual_page_id = show_project_title_on_autopopup_individual_page() 
+var autopopup_individual_page_id = show_project_title_on_autopopup_individual_page()
 jQuery('#interval_id_auto_popup').val(autopopup_individual_page_id)
 
 
@@ -1132,25 +1132,25 @@ jQuery('#interval_id_auto_popup').val(autopopup_individual_page_id)
 
 /* Populate city and project list on footer popup on single residential and commercial residential property*/
 jQuery('#field_ky_contact1city').live('click',function(evt){
-        
-        
+
+
         var selectedcity = jQuery('#form_contact2').find("#field_ky_contact1city").val();
-        
+
         var selected_projects = _.where(properties_list,{project_city:selectedcity})
-        
+
         var all_projects = _.pluck(selected_projects,'project_name')
-        
+
         console.log('all_projects')
         console.log(all_projects)
-                    
+
         jQuery('#form_contact2').find("#field_ky_contact1projects").empty()
         jQuery('#form_contact2').find("#field_ky_contact1projects").html("<option value=''>Projects</option>")
-        
+
         _.each(all_projects,function(project_vl,project_ky){
             jQuery('#form_contact2').find("#field_ky_contact1projects").append("<option value='"+project_vl+"'>"+project_vl+"</option>")
         })
-                    
-                    
+
+
     })
 
 
@@ -1160,30 +1160,30 @@ jQuery('#field_ky_contact1city').live('click',function(evt){
             console.log(proj__v)
 
         })
-        
+
         if(jQuery('#form_contact2').length>0){
-            
-                
-            
+
+
+
                 var all_cities = _.pluck(properties_list,'project_city')
                 var uniq_cities = _.uniq(all_cities);
-                
+
                 console.log('UNIQ Cities')
                 console.log(uniq_cities);
-                
-                
+
+
                 jQuery('#form_contact2').find("#field_ky_contact1city").empty()
                 jQuery('#form_contact2').find("#field_ky_contact1city").html("<option value=''>City</option>")
-                
+
                 _.each(uniq_cities,function(city_vl,city_ky){
                     jQuery('#form_contact2').find("#field_ky_contact1city").append("<option value='"+city_vl+"'>"+city_vl+"</option>")
                 })
-                 
-                
-        
+
+
+
         }
-        
-        
+
+
 
     })
 
