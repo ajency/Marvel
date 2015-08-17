@@ -15,7 +15,7 @@
                 'click .top_map'    : 'searchPropertiesRoute',
                 'click .top_list'   : 'searchPropertiesRoute',
                 'change #home_city2': 'load_locality_options',
-                
+
 
             },
 
@@ -84,7 +84,7 @@ console.log(this.selectedStatus)
 
 
             load_search_filter_values_mobile : function(searchOptions,selected){
-                
+
                 var selectedCity     = !_.isUndefined(selected.selectedCity)? selected.selectedCity : '' ;
                 var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selectedLocality : '' ;
                 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
@@ -100,7 +100,7 @@ console.log(this.selectedStatus)
                     var status_html ='';
                     var status_dropdown_selected = '';
                     var home_status2_html='';
-                   
+
                     _.each(sorted_status_options,function(vl,ky){
 
                         if(selectedStatus==vl){
@@ -149,7 +149,7 @@ console.log(this.selectedStatus)
                  var type_dropdown_selected = '';
                  var home_type2_html = '';
                  home_type2_html ='<option value="">Type : All</option>';
-                 home_type2_html+='<option class="select-dash" disabled="disabled">------------------------------</option>'; 
+                 home_type2_html+='<option class="select-dash" disabled="disabled">------------------------------</option>';
                   if(_.size(searchOptions.type) > 0)
                       var sorted_type_options  = _.sortBy(searchOptions.type, function(obj){ return obj.property_unit_type.toLowerCase() });
 
@@ -166,7 +166,7 @@ console.log(this.selectedStatus)
                   jQuery('#home_type2').html(home_type2_html);
 
 
-                 
+
 
 
             },
@@ -198,7 +198,7 @@ console.log(this.selectedStatus)
 
 
 
-                         
+
                       if(jQuery('#dd_status').val().toLowerCase()=='completed'){
                         jQuery('.top-compar').hide();
                         jQuery('#projects_listings').addClass('completed_status_projects')
@@ -220,7 +220,7 @@ console.log(this.post_type)
 
 
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
-                      //alert(this.post_type) 
+                      //alert(this.post_type)
                        if(this.post_type=='residential-property') {
                        // alert('residential collection')
                           getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
@@ -236,7 +236,7 @@ console.log(this.post_type)
                         }
 
 
-                       
+
 
                         propertyCollection.fetch({
                             success: function(collection) { // the fetched collection!
@@ -335,7 +335,7 @@ console.log( getAppInstance().residentialPropertyCollection)
 
                 if(self.post_type =='commercial-property')
                     var res_collection = getAppInstance().commercialPropertyCollection  ;
-                 else  
+                 else
                   var res_collection = getAppInstance().residentialPropertyCollection  ;
 
                  // var search_collections = res_collection.where({ property_status: prop_status});
@@ -643,7 +643,7 @@ infowindow.open(map,marker);
                                             '<a href="'+properties[i].get('post_url')+'" class="map_p_title">'+
                                                 '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
                                                 '<span class="single_p_light">|</span>'+
-                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+' ';
+                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+', ';
 
                           if(jQuery('#dd_city').val()==''){
                               popup_content = popup_content + properties[i].get('property_city_name');
@@ -810,7 +810,7 @@ infowindow.open(map,marker);
                 else{
                     var res_collection = getAppInstance().residentialPropertyCollection  ;
                 }
-                  
+
                  // var search_collections = res_collection.where({ property_status: prop_status});
 
 
@@ -974,7 +974,7 @@ infowindow.open(map,marker);
             },
 
             load_locality_options : function(evt){
-              
+
 
                 var event_val = jQuery(evt.target).val();
 
@@ -988,8 +988,8 @@ infowindow.open(map,marker);
 
                       localities_options = getAppInstance().searchOptions['locality'].localities;
                   //  }
-                      
-                    
+
+
                 }
 
                 console.log('localities_options:---------------------------------------')
@@ -1139,7 +1139,7 @@ infowindow.open(map,marker);
 
             },
 
-             
+
 
 
 

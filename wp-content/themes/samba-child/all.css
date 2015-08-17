@@ -1252,7 +1252,7 @@ h6 {
   background-image: none;
   position: relative;
   z-index: 2;
-  color: transparent;
+  color: rgba(0, 0, 0, 0);
 }
 .top-dd select:active,
 .top-dd select:focus {

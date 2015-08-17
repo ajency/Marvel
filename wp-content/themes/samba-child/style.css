@@ -10,7 +10,7 @@ Template:       samba
 @import url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 @import url(http://fonts.googleapis.com/css?family=Cantarell:400,700,400italic,700italic);
 @import url("../samba/style.css");
-@import url(chosen/chosen.min.css);
+/*@import url(chosen/chosen.min.css);*/
 /*imports the less compiled*/
 @import url("all.css");
 
@@ -331,7 +331,7 @@ color: rgb(255, 255, 255);
 	background-image: none !important;
 	position: relative;
 	z-index: 2;
-	color: transparent;
+	color: rgba(0, 0, 0, 0);
 }
 .home_search .hme_dd select option {
 	color: #444;
@@ -459,7 +459,7 @@ color: rgb(255, 255, 255);
 	.home_search.popup .hme_dd select, .home_search.popup .hme_dd.wc select {
 		background-color: transparent;
 		background-image: none !important;
-		color: transparent;
+		color: rgba(0, 0, 0, 0);
 	}
 	.home_search.popup .hme_dd .elips-cont, .home_search.popup .hme_dd.wc .elips-cont {
 		width: 100%;
@@ -1078,13 +1078,13 @@ color: rgb(255, 255, 255);
 	background-image: none !important;
 	position: relative !important;
 	z-index: 2 !important;
-	color: transparent !important;
+	color: rgba(0, 0, 0, 0) !important;
 }
 .frm_style_formidable-style.with_frm_style .frm_form_field select:active,
 .contact-cover.contact-inline .frm_form_field select:active,
 .frm_style_formidable-style.with_frm_style .frm_form_field select:focus,
 .contact-cover.contact-inline .frm_form_field select:focus {
-	color: transparent !important;
+	color: rgba(0, 0, 0, 0) !important;
 }
 .frm_style_formidable-style.with_frm_style .frm_form_field select option,
 .contact-cover.contact-inline .frm_form_field select option {

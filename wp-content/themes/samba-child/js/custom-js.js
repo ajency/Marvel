@@ -488,7 +488,7 @@ console.log(options) */
                                             '                                <small class="clr_lt">Area (Sq. Ft.)</small>'+
                                             '                            </div>'+
                                             '                            <div class="set">'+
-                                            '                                <small class="clr_lt">No. Of Rooms</small>'+
+                                            '                                <small class="clr_lt">Type</small>'+
                                             '                            </div>'+
                                             '                            <div class="set rent">'+
                                             '                                <small class="clr_lt">'+rent_resale_head+'</small>'+
