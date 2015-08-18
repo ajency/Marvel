@@ -1942,11 +1942,14 @@ h6 {
 .draggable * {
   cursor: move;
 }
-.draggable.gm-style-iw {
+.draggable.gm-style-iw,
+.draggable.gm-style-iw * {
   cursor: auto;
 }
 .completed_status_projects .draggable,
-.post-type-archive-commercial-property .draggable {
+.post-type-archive-commercial-property .draggable,
+.completed_status_projects .draggable *,
+.post-type-archive-commercial-property .draggable * {
   cursor: auto;
 }
 .map_btm a.single_share {
