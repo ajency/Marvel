@@ -1861,7 +1861,8 @@ border-top: none!important;
 .completed_status_projects .gm-style-iw .single_enq,
 .completed_status_projects .gm-style-iw .single_compare,
 .completed_status_projects .gm-style-iw p.map_excerpt,
-.completed_status_projects .gm-style-iw p.map_p_cost {
+.completed_status_projects .gm-style-iw p.map_p_cost,
+.post-type-archive-commercial-property .gm-style-iw .single_compare {
 	display: none !important;
 }
 
