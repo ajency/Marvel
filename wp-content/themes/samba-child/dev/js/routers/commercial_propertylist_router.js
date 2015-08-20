@@ -63,7 +63,7 @@
 
 					var searchOptionView = new searchOptionsView(options)
 					
-					console.log('check options.....')
+					console.log('ROUTER check options.........')
 					console.log(options)
 
 				},
