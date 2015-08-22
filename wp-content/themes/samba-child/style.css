@@ -1882,3 +1882,18 @@ border-top: none!important;
 		margin-top: 0 !important;
 	}
 }
+
+
+
+/*services animation*/
+.forent .row {
+	opacity: 0;
+	-webkit-transition: all 0.9s;
+	-moz-transition: all 0.9s;
+	-ms-transition: all 0.9s;
+	-o-transition: all 0.9s;
+	transition: all 0.9s;
+}
+.forent .row.fade-in {
+	opacity: 1;
+}

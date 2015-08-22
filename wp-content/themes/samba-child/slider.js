@@ -277,6 +277,32 @@ function checkIfInView(element){
                         });
                     }
                 }
+                // if ($('div').hasClass('indi_prj_page')) {
+                    if ($('div').hasClass('wpb_animate_when_almost_visible')) {
+                        $('.wpb_animate_when_almost_visible').each(function() {
+                            $theval = ($(window).scrollTop() + $(window).height()) + 20;
+                            if ($(window).scrollTop() < ($(this).offset().top + 50) && $(this).offset().top < $theval) {
+                                $(this).addClass('wpb_start_animation');
+                            } else if ($(this).offset().top > $theval) {
+                                $(this).removeClass('wpb_start_animation');
+                            } else {
+                                //$(this).removeClass('visigoth');
+                            }
+                        });
+                    }
+                // }
+                if ($('div').hasClass('list_forent')) {
+                    $('.list_forent, .partintro').each(function() {
+                        $theval = ($(window).scrollTop() + $(window).height()) + 20;
+                        if ($(window).scrollTop() < ($(this).offset().top + 50) && $(this).offset().top < $theval) {
+                            $(this).addClass('fade-in');
+                        } else if ($(this).offset().top > $theval) {
+                            $(this).removeClass('fade-in');
+                        } else {
+                                //$(this).removeClass('visigoth');
+                            }
+                        });
+                }
             });
         });
 
