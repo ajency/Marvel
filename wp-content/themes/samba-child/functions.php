@@ -604,7 +604,19 @@ function sort_multidimensional_array($myArray,$sort_key){
 
 
 
+//Fix to load popup maker form on residential  & commercial Listings Page 
+function popup28579_load_on_arvhices( $is_loadable, $popup_id ) {
 
-
+  // If its standard arvhice for posts.
+  /* if($popup_id  == 782 && is_archive()) {
+    return true;
+  } */
+  
+  // If its CPT archive for post type 'portfolio'
+  if($popup_id == 3291 && (is_post_type_archive( 'residential-property' )  ||  is_post_type_archive( 'commercial-property' )  )     ) {
+    return true;
+  }
+}
+add_filter('popmake_popup_is_loadable', 'popup28579_load_on_arvhices', 10, 2);
 
 
