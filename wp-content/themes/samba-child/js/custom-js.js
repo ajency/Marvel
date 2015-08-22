@@ -836,6 +836,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
         jQuery('#form_frm_serv_contact').find('.serv-prj-flr').html(building_floor)
         jQuery('#form_frm_serv_contact').find('.serv-prj-type').html(project_rooms)
         jQuery('#form_frm_serv_contact').find('.serv-prj-area').html(project_area)
+        jQuery('#form_frm_serv_contact').find('.serv-prj-rent-resale').html(project_rent_resale)
 
 
     })

@@ -191,7 +191,28 @@ console.log(this.selectedStatus)
                         }
                         else{
 
+                            if(_.isUndefined(self.selectedStatus))
+                              jQuery('#dd_status').val('Ongoing');                         
+                            else
+                              jQuery('#dd_status').val(self.selectedStatus);
+                            
+                            if(_.isUndefined(self.selectedStatus))
+                              jQuery('#dd_city').val('');                          
+                            else
+                              jQuery('#dd_city').val(self.selectedCity); 
 
+
+                            if(_.isUndefined(self.selectedLocality))
+                              jQuery('#dd_locality').val('');                        
+                            else
+                              jQuery('#dd_locality').val(self.selectedLocality);
+
+
+                            if(_.isUndefined(self.selectedType))
+                              jQuery('#dd_type').val('');                  
+                            else
+                              jQuery('#dd_type').val(self.selectedType);                  
+                          
                         }
 
 
