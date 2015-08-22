@@ -73,7 +73,7 @@ console.log('vl');
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <th></th>
-                                <th class="with_img single_p_w">
+                                <th class="with_img single_p_w"    property-menuorder = "<%=f_prop.get('menu_order')%>" property-id="<%=pid%>" property-title = "<%=f_prop.get('post_title') %>" property-address="<%=f_prop.get('property_locality_name') %><%= _.isEmpty(f_prop.get('property_city_name'))?'':', '+f_prop.get('property_city_name')%>" >
                                     <div class="co_img_c single_p_img" style="background-image: url(<%=f_prop.get('featured_image') %>);">
                                         <!--<img src="<%=f_prop.get('featured_image') %>" alt="" class="compare_fi">-->
                                         <div class="single_p_hov_c">
@@ -108,7 +108,7 @@ console.log('vl');
                                         </p>
                                     </div>
                                 </th>
-                                <th class="with_img single_p_w">
+                                <th class="with_img single_p_w"    property-menuorder = "<%=s_prop.get('menu_order')%>" property-id="<%=psid%>" property-title = "<%=s_prop.get('post_title') %>" property-address="<%=s_prop.get('property_locality_name') %><%= _.isEmpty(s_prop.get('property_city_name'))?'':', '+s_prop.get('property_city_name')%>" >
                                     <div class="co_img_c single_p_img" style="background-image: url(<%=s_prop.get('featured_image') %>);">
                                         <!--<img src="<%=s_prop.get('featured_image') %>" alt="" class="compare_fi">-->
                                         <div class="single_p_hov_c">

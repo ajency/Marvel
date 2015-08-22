@@ -1121,9 +1121,11 @@ console.log('current_prperty_title :'+current_prperty_title)
 
 }
 
+if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
+   var autopopup_individual_page_id = show_project_title_on_autopopup_individual_page()
+    jQuery('#interval_id_auto_popup').val(autopopup_individual_page_id) 
+}
 
-var autopopup_individual_page_id = show_project_title_on_autopopup_individual_page()
-jQuery('#interval_id_auto_popup').val(autopopup_individual_page_id)
 
 
 
