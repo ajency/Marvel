@@ -50,9 +50,10 @@ $cur_property_id = $wp_query->get_queried_object_id();
 
 //$property_unit_type_option_values = $property_unit_type_option['property_unit_types'];
 
+$cur_post_type = get_post_type($cur_property_id);
 
 
-$property_data = get_res_property_meta_values($cur_property_id);
+$property_data = get_res_property_meta_values($cur_property_id,$cur_post_type);
 
 
 
