@@ -208,7 +208,8 @@ console.log('LOADING SHARE BUTTON  LISTINGSSSSSSSSS:----------------------------
       //  self.make_div_dropable(".drag_area")       
         
 
-        if(jQuery(".draggable").length>0){
+        if(jQuery(".draggable").length>0 && self.searchView.post_type=="residential-property"){
+
             console.log('draggable')
             jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
 

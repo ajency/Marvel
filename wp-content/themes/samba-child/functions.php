@@ -342,13 +342,27 @@ function get_res_property_meta_values($property_id, $post_type){
 function get_residential_properties_list($post_type){
   global $wpdb;
     $sel_properties = array();
-    $residential_properties = get_posts( array(
+    
+
+    if($post_type=="both"){
+      $residential_properties = get_posts( array(
+                                          'post_type'       => array('residential-property','commercial-property'),
+                                          'post_status'     => 'publish',
+                                          'posts_per_page'  => -1,
+                                          'order'           => 'ASC',
+                                          'orderby'         => 'menu_order'
+                                      ) );
+    }
+    else{
+      $residential_properties = get_posts( array(
                                           'post_type'       => $post_type,
                                           'post_status'     => 'publish',
                                           'posts_per_page'  => -1,
                                           'order'           => 'ASC',
                                           'orderby'         => 'menu_order'
                                       ) );
+    }
+    
 
   $new_res_prop = new stdClass();
     foreach (  $residential_properties as $res_property ) {
@@ -467,7 +481,13 @@ function get_residential_properties_list_ajx() {
 
         $room_data [ ] = $room->get_all_roomdata();
     }*/
-$post_type = $_REQUEST['post_type'];
+    if(isset($_REQUEST['post_type'])){
+      $post_type = $_REQUEST['post_type'];
+    }
+    else{
+      $post_type = $_REQUEST['data']['post_type'];  
+    }
+    
 
 
 

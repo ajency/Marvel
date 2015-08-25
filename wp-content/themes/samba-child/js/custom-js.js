@@ -601,7 +601,7 @@ console.log(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length)
              else{
                     jQuery.post(ajax_var.url, {        //the server_url
                         action: "get_residential_properties_list_ajx",                 //the submit_data array
-                        data:{}
+                        data:{post_type:'both'}
                         }, function(response) {
 
 
@@ -1102,7 +1102,7 @@ var autopopup_individual_page_id;
     autopopup_individual_page_id = window.setInterval(function(){
   /// call your function here
   console.log('check FORMMMMMMMMMMM')
-         if(jQuery('#form_frm_individual_proj_popup').length>0){
+         if(jQuery('#form_frm_individual_proj_popup').length>0 && jQuery('#current_property_title').length>0){
 
                     var current_prperty_title = jQuery('#current_property_title').val();
                     jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(current_prperty_title)
@@ -1191,6 +1191,53 @@ jQuery('#field_ky_contact1city').live('click',function(evt){
     })
 
 /* End Populate city and project list on footer popup on singel and commercial residential property*/
+
+
+function get_cities_properties(args){
+
+    var nearby_properties = (!_.isUndefined(args.nearby_properties)? args.nearby_properties : false );
+    var show_cities_formidable_contact  = (!_.isUndefined(args.show_cities_formidable_contact)? args.show_cities_formidable_contact : false );
+
+    if(!_.isUndefined(window.all_properties)){
+        jQuery.post(ajax_var.url, {        //the server_url
+                        action: "get_residential_properties_list_ajx",                 //the submit_data array
+                        data:{post_type:'both'}
+                        }, function(response) {
+
+
+                            console.log('RESPONSE')
+                            console.log(response);
+                            if(response.code == 'OK' ){
+                                window.all_properties =  response.data;
+
+                                if(nearby_properties==true){
+                                      show_nearby_properties();      
+                                }
+                                if(show_cities_formidable_contact==true){
+                                    show_cities_on_formidable_contact(city_selector)    
+                                }                                
+                                
+                            }
+                                
+
+                        }
+                    })
+    }
+    else{
+
+        if(nearby_properties==true){
+              show_nearby_properties();      
+        }
+        if(show_cities_formidable_contact==true){
+            show_cities_on_formidable_contact(city_selector)    
+        }  
+
+    }
+                    
+}
+
+
+
 
 
 });
