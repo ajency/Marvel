@@ -794,10 +794,10 @@ function frmThemeOverride_frmAfterSubmit(e,f,b,a) {
     console.log('e: ' + e);
     var formid = jQuery(a).find('input[name="form_id"]').val();
     console.log('id ' + formid);
-    if(typeof(formid) == 'number'){
+    //if(typeof(formid) == 'number'){
         console.log('form ' + formid + ' has been submitted');
         afterformidablesubmit();
-    }
+    //}
 }
 function afterformidablesubmit() {
     loadingcontinforms();
