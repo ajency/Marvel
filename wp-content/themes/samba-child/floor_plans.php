@@ -873,7 +873,7 @@ $show_sidebar=false;
 
     <?php get_footer(); ?>
 
-    <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/tabslider/jquery.sliderTabs.min.js"></script>
+    <!--<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/tabslider/jquery.sliderTabs.min.js"></script>-->
     <script type="text/javascript">
         // var slider = jQuery("div.tabby").sliderTabs({
         //   mouseheel: false,

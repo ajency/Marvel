@@ -425,28 +425,6 @@ function checkIfInView(element){
             }
         });
 
-        // responsive-table test2
-        var scroll = $('.tabul_hold').width();
-            var $item = $('div.tabul_hold'), //Cache your DOM selector
-                visible = 2, //Set the number of items that will be visible
-                index = 0, //Starting index
-                endIndex = ( $item.length / visible ) - 1; //End index
-
-            $('.tabular_c .right').click(function(){
-                if(index < endIndex ){
-                  index++;
-                  $item.animate({'left':'-=' +scroll+ 'px'});
-                }
-            });
-
-            $('.tabular_c .left').click(function(){
-                if(index > 0){
-                  index--;
-                  $item.animate({'left':'+=' +scroll+ 'px'});
-                }
-            });
-        // responsive-table test2
-
         function placesearchbar() {
             $wid = window.innerWidth ? window.innerWidth : $(window).width();
             if ($wid > 769) {
@@ -746,8 +724,53 @@ function checkIfInView(element){
                 $(this).addClass('curr');
                 $(this).find('span').addClass('white')
             }
+
+            setTimeout(function() {
+                scroll = $('.tabul_hold').width();
+                console.log('amount to scroll: ' + scroll);
+            }, 0.1);
+
             jQuery.fn.myFunction();
         });
+        // responsive-table test2
+        var scroll;
+        // $(document).on('click', 'ava_tog', function() {
+        //     scroll = $('.tabul_hold').width();
+        //     console.log('amount to scroll: ' + scroll);
+        // });
+        // var $item = $('div.tabul_hold'), //Cache your DOM selector
+        //     visible = 2, //Set the number of items that will be visible
+        //     index = 0, //Starting index
+        //     endIndex = ( $item.length / visible ) - 1; //End index
+
+        //     $('.tabular_c .right').click(function(){
+        //         if(index < endIndex ){
+        //           index++;
+        //           $item.animate({'left':'-=' +scroll+ 'px'});
+        //       }
+        //   });
+
+        //     $('.tabular_c .left').click(function(){
+        //         if(index > 0){
+        //           index--;
+        //           $item.animate({'left':'+=' +scroll+ 'px'});
+        //       }
+        //   });
+        // responsive-table test2
+
+        if ($('div').hasClass('table-holder')) {
+            $(".table-holder").owlCarousel({
+              items : 3,
+              itemsDesktop : [1280,3],
+              itemsTablet : [1110,2],
+              itemsMobile : [560, 1],
+              pagination : false,
+              navigation : true,
+              navigationText : ['<div class="left"><i class="fa fa-chevron-left"></i></div>','<div class="right"><i class="fa fa-chevron-right"></i></div>'],
+              rewindNav : false
+            });
+        }
+
 
 
         // //top value for left sidebar content in home page
@@ -845,29 +868,29 @@ function checkIfInView(element){
 // table
 jQuery.fn.myFunction = function testfun()
 {
-var vwidth;
-var tcwidth=parseInt(jQuery('.table-cover').width());
+// var vwidth;
+// var tcwidth=parseInt(jQuery('.table-cover').width());
 
-if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
-    {
-        vwidth = parseInt(jQuery('.table-cover').width())/3;
-    }
-    else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
-    {
-        vwidth = parseInt(jQuery('.table-cover').width())/2;
-    }
+// if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
+//     {
+//         vwidth = parseInt(jQuery('.table-cover').width())/3;
+//     }
+//     else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
+//     {
+//         vwidth = parseInt(jQuery('.table-cover').width())/2;
+//     }
 
-    else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
-    {
+//     else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
+//     {
 
-        vwidth = parseInt(jQuery('.table-cover').width())/2;
-    }
-    else if(parseInt(jQuery(window).width()) <= 559)
-    {
+//         vwidth = parseInt(jQuery('.table-cover').width())/2;
+//     }
+//     else if(parseInt(jQuery(window).width()) <= 559)
+//     {
 
-        vwidth = parseInt(jQuery('.table-cover').width());
-    }
-    jQuery('.tabul_hold').css('width', vwidth);
+//         vwidth = parseInt(jQuery('.table-cover').width());
+//     }
+//     jQuery('.tabul_hold').css('width', vwidth);
 }
 
 jQuery(window).resize(function() {
