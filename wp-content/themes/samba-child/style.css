@@ -1898,3 +1898,13 @@ border-top: none!important;
 .forent .row.fade-in {
 	opacity: 1;
 }
+
+
+
+.frm_style_formidable-style.with_frm_style .frm_submit input:disabled {
+    background-color: #ccc !important;
+    cursor: default;
+}
+.frm_style_formidable-style.with_frm_style .frm_submit input:disabled::hover {
+    background-color: #ccc !important;
+}
