@@ -1473,3 +1473,28 @@ ul.ui-tabs-nav {
         visibility: visible;
     }
 }
+
+//floor plans - tab to slider
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel {
+    margin-top: 0;
+    // padding: 0 23px;
+    .owl-buttons {
+        top: 0;
+        .owl-prev, .owl-next {
+            margin: 0;
+            height: 50px;
+            line-height: 52px;
+            padding: 0 7px;
+            opacity: 0.5;
+            &.disabled {
+                opacity: 0.1;
+            }
+        }
+        .owl-prev {
+            left: 0;
+        }
+        .owl-next {
+            right: 0;
+        }
+    }
+}

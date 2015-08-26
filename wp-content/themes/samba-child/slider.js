@@ -771,6 +771,77 @@ function checkIfInView(element){
             });
         }
 
+        //getting the number of tabs
+        function tabbyfloorplans() {
+            $tabs = $('.floorplans_tab ul.wpb_tabs_nav li').length;
+            if ($(window).width() > 1280) {
+                if ($tabs >= 8) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            } else if ($(window).width() <= 1200 && $(window).width() > 1110) {
+                if ($tabs >= 7) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            } else if ($(window).width() <= 1110 && $(window).width() > 560) {
+                if ($tabs >= 5) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            } else if ($(window).width() <= 550) {
+                if ($tabs >= 3) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            }
+        }
+        function runowl() {
+            $(".floorplans_tab ul.wpb_tabs_nav").owlCarousel({
+                  items : 8,
+                  itemsDesktop : [1280, 7],
+                  itemsTablet : [1110, 5],
+                  itemsMobile : [560, 3],
+                  pagination : false,
+                  navigation : true,
+                  navigationText : ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>'],
+                  rewindNav : false
+              });
+                $(".floorplans_tab ul.wpb_tabs_nav li").eq(0).addClass('ui-tabs-active ui-state-active');
+                $('#tab-siteplan').show();
+                $(".floorplans_tab ul.wpb_tabs_nav li a").click(function(e) {
+                    e.preventDefault();
+                    $(".floorplans_tab ul.wpb_tabs_nav li").removeClass('ui-tabs-active ui-state-active');
+                    $(this).parent().addClass('ui-tabs-active ui-state-active');
+                    $('div.wpb_tab').hide();
+                    $($(this).attr('href')).show();
+                });
+        }
+        if ($('div').hasClass('floorplans_tab')) {
+            tabbyfloorplans();
+        }
+        $(window).resize(function() {
+            if ($('div').hasClass('floorplans_tab')) {
+                tabbyfloorplans();
+            }
+        });
+
 
 
         // //top value for left sidebar content in home page
