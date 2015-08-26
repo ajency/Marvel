@@ -1085,6 +1085,7 @@ color: rgb(255, 255, 255);
 .frm_style_formidable-style.with_frm_style .frm_form_field select:focus,
 .contact-cover.contact-inline .frm_form_field select:focus {
 	color: rgba(0, 0, 0, 0) !important;
+	background-color: transparent !important;
 }
 .frm_style_formidable-style.with_frm_style .frm_form_field select option,
 .contact-cover.contact-inline .frm_form_field select option {
@@ -1896,4 +1897,14 @@ border-top: none!important;
 }
 .forent .row.fade-in {
 	opacity: 1;
+}
+
+
+
+.frm_style_formidable-style.with_frm_style .frm_submit input:disabled {
+    background-color: #ccc !important;
+    cursor: default;
+}
+.frm_style_formidable-style.with_frm_style .frm_submit input:disabled::hover {
+    background-color: #ccc !important;
 }

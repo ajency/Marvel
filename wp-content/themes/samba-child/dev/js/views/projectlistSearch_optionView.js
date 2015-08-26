@@ -922,8 +922,8 @@ infowindow.open(map,marker);
 
 
 
+//                if(jQuery(".draggable").length>0){
                 if(jQuery(".draggable").length>0 && self.post_type=="residential-property"){
-
 
                     console.log('draggable')
                     jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 10, left: 10 },

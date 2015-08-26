@@ -514,12 +514,27 @@ console.log(options) */
                                                         if(servproperties_vl.Rental_Value_Furnished!=''){
                                                             property_list_html = property_list_html+'<big>'+servproperties_vl.Rental_Value_Furnished+'</big><small> - Furnished</small>';
                                                         }
-                                                        property_list_html = property_list_html+
+                                                        /* property_list_html = property_list_html+
                                                                         '</div>'+
                                                                         '<div class="set alrt">'+
                                                                         '    <a href="#" class="wpb_button enq_ico popmake-services-enquiry"><span class="wpb_button wpb_btn-inverse wpb_regularsize"></span></a>'+
                                                                         '</div>'+
                                                                     '</div>';
+                                                       */
+
+
+                                                         property_list_html = property_list_html+
+                                                                            '    </div>'+
+                                                                            '    <div class="set alrt">'+
+                                                                            '        <a href="javascript:void(0);" class="wpb_button enq_ico">'+
+                                                                            '           <span project-name="'+servproperties_vl.Project_Name+'" project-area="'+servproperties_vl.Area_Sq_ft+'" '+
+                                                                            '               project-rooms="'+servproperties_vl.No_of_Rooms+'" rent-resale-type="'+servproperties_vl.type+'"  '+
+                                                                            '               building-floor="'+servproperties_vl.Building+' '+servproperties_vl.Floor+'" '+
+                                                                            '               class="wpb_button wpb_btn-inverse wpb_regularsize popmake-services-enquiry"> '+
+                                                                            '           </span>'+
+                                                                            '        </a>'+
+                                                                            '    </div>'+
+                                                                            '</div>';
 
 
 
