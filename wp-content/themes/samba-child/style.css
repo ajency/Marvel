@@ -333,7 +333,8 @@ color: rgb(255, 255, 255);
 	z-index: 2;
 	color: rgba(0, 0, 0, 0);
 }
-.home_search .hme_dd select option {
+.home_search .hme_dd select option,
+.home_search .hme_dd select optgroup {
 	color: #444;
 }
 .home_search .hme_dd .elips-cont {
@@ -1088,7 +1089,9 @@ color: rgb(255, 255, 255);
 	background-color: transparent !important;
 }
 .frm_style_formidable-style.with_frm_style .frm_form_field select option,
-.contact-cover.contact-inline .frm_form_field select option {
+.contact-cover.contact-inline .frm_form_field select option,
+.frm_style_formidable-style.with_frm_style .frm_form_field select optgroup,
+.contact-cover.contact-inline .frm_form_field select optgroup {
 	color: #444;
 }
 .frm_style_formidable-style.with_frm_style .form-field {

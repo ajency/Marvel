@@ -1259,7 +1259,8 @@ h6 {
   box-shadow: 0 0 3px #66afe9;
   border-color: #66afe9;
 }
-.top-dd select option {
+.top-dd select option,
+.top-dd select optgroup {
   color: #444;
 }
 .top-dd select:disabled {
