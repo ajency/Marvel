@@ -379,7 +379,7 @@ function checkIfInView(element){
                 $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
                 if (!($(this).hasClass('blue_bg'))) {
                     $('.popup_tab_data').css({
-                        top: (event.pageY - 30),
+                        top: (event.pageY),
                         left: (event.pageX - $('#menu_section').width() - 125)
                     }).show();
 
@@ -745,7 +745,7 @@ function checkIfInView(element){
                 console.log('amount to scroll: ' + scroll);
             }, 0.1);
 
-            jQuery.fn.myFunction();
+            //jQuery.fn.myFunction();
         });
         // responsive-table test2
         var scroll;
