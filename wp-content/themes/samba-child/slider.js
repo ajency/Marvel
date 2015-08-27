@@ -48,53 +48,6 @@ function checkIfInView(element){
         $(window).load(function() {
 
             setTimeout(function() {
-                if (jQuery('h6').hasClass('ofcspace')) {
-                    jQuery('.ofcspace').each(function() {
-                        if (jQuery(this).text().trim().toLowerCase() == 'office spaces:  -  sq. ft.') {
-                            jQuery(this).text('');
-                        }
-                    });
-                }
-                if (jQuery('h6').hasClass('retspace')) {
-                    jQuery('.retspace').each(function() {
-                        if (jQuery(this).text().trim().toLowerCase() == 'retail spaces:  -  sq. ft.') {
-                            jQuery(this).text('');
-                        }
-                    });
-                }
-            }, 500);
-
-            function loadingcontinforms() {
-                $countries = ["Your Country","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
-                ,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands"
-                ,"Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica"
-                ,"Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea"
-                ,"Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana"
-                ,"Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India"
-                ,"Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia"
-                ,"Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania"
-                ,"Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia"
-                ,"New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal"
-                ,"Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles"
-                ,"Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan"
-                ,"Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia"
-                ,"Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
-                $htmlcount = '';
-                for (var i = 0; i < $countries.length; i++) {
-                    $htmlcount += '<option value="'+ $countries[i] +'">'+ $countries[i] +'</option>';
-                }
-                if ($('div').hasClass('hascountry-list')) {
-                    $('.hascountry-list').find('select').each(function() {
-                        $(this).html($htmlcount)
-                    });
-                }
-                //trying out custom dropdowns
-                // $("#dd_locality").chosen({disable_search_threshold: 450});
-                // $("#dd_locality").change(function() {
-                //     $("#dd_locality").trigger('chosen:updated');
-                // });
-                //dropdown elipsis
-                setTimeout(function() {
                     $('select').each(function() {
                         if (!($(this).prev('div').hasClass('elips-cont'))) {
                             $(this).before('<div class="elips-cont"></div>');
@@ -119,36 +72,95 @@ function checkIfInView(element){
                         });
                     });
                 }, 0.1);
-            }
-            var stuff = setInterval(function() {
-                if ($('.frm_message').is(':visible')) {
-                    setTimeout(function(){jQuery('.frm_message').hide('slow')}, 5000);
-                    clearInterval(stuff);
-                } else {
-                }
-            }, 0.3);
-            loadingcontinforms();
-            $(document).on('click', '.back_btn', function() {
-                setTimeout(function() {
-                    loadingcontinforms();
-                }, 50);
-            });
-            if ($('div').hasClass('frm_submit')) {
-                var timerset;
-                $('.frm_style_formidable-style.with_frm_style .frm_submit input[type=submit]').click(function() {
-                    var timecount = 0;
-                    timerset = setInterval(function() {
-                        timecount += 1;
-                        if (timecount > 10) {
-                            clearInterval(timerset);
-                            console.log('run again');
-                        } else {
-                            loadingcontinforms();
-                            console.log('contentloaded');
-                        }
-                    }, 1000);
-                });
-            }
+
+            // function loadingcontinforms() {
+            //     $countries = ["Your Country","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
+            //     ,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands"
+            //     ,"Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica"
+            //     ,"Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea"
+            //     ,"Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana"
+            //     ,"Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India"
+            //     ,"Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia"
+            //     ,"Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania"
+            //     ,"Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia"
+            //     ,"New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal"
+            //     ,"Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles"
+            //     ,"Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan"
+            //     ,"Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia"
+            //     ,"Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+            //     $htmlcount = '';
+            //     for (var i = 0; i < $countries.length; i++) {
+            //         $htmlcount += '<option value="'+ $countries[i] +'">'+ $countries[i] +'</option>';
+            //     }
+            //     if ($('div').hasClass('hascountry-list')) {
+            //         $('.hascountry-list').find('select').each(function() {
+            //             $(this).html($htmlcount)
+            //         });
+            //     }
+            //     //trying out custom dropdowns
+            //     // $("#dd_locality").chosen({disable_search_threshold: 450});
+            //     // $("#dd_locality").change(function() {
+            //     //     $("#dd_locality").trigger('chosen:updated');
+            //     // });
+            //     //dropdown elipsis
+            //     setTimeout(function() {
+            //         $('select').each(function() {
+            //             if (!($(this).prev('div').hasClass('elips-cont'))) {
+            //                 $(this).before('<div class="elips-cont"></div>');
+            //             }
+            //         });
+
+            //         $('.elips-cont').each(function() {
+            //             $(this).text($(this).next('select').find('option:selected').text());
+            //         });
+            //         $('select').each(function() {
+            //             $(this).change(function() {
+            //             //$(this).prev('.elips-cont').text($("option:selected", this).text());
+            //             $cont = $('.elips-cont').parent('div');
+
+            //             setTimeout(function() {
+            //                 $('.elips-cont').each(function() {
+            //                     $par = $(this).parent('div');
+            //                     $(this).text($par.find('select').find('option:selected').text());
+            //                 });
+            //             }, 0.7);
+
+            //             });
+            //         });
+            //     }, 0.1);
+            // }
+            // var stuff = setInterval(function() {
+            //     if ($('.frm_message').is(':visible')) {
+            //         setTimeout(function(){jQuery('.frm_message').hide('slow')}, 5000);
+            //         clearInterval(stuff);
+            //     } else {
+            //     }
+            // }, 0.3);
+            // loadingcontinforms();
+            // $(document).on('click', '.back_btn', function() {
+            //     setTimeout(function() {
+            //         loadingcontinforms();
+            //     }, 50);
+            // });
+
+
+
+            // if ($('div').hasClass('frm_submit')) {
+            //     var timerset;
+            //     $('.frm_style_formidable-style.with_frm_style .frm_submit input[type=submit]').click(function() {
+            //         var timecount = 0;
+            //         timerset = setInterval(function() {
+            //             timecount += 1;
+            //             if (timecount > 10) {
+            //                 clearInterval(timerset);
+            //                 console.log('run again');
+            //             } else {
+            //                 loadingcontinforms();
+            //                 console.log('contentloaded');
+            //             }
+            //         }, 1000);
+            //     });
+            // }
 
             $(document).on('click', '.elips-cont', function() {
                 $(this).next('select').trigger('click');
@@ -412,28 +424,6 @@ function checkIfInView(element){
                 }
             }
         });
-
-        // responsive-table test2
-        var scroll = $('.tabul_hold').width();
-            var $item = $('div.tabul_hold'), //Cache your DOM selector
-                visible = 2, //Set the number of items that will be visible
-                index = 0, //Starting index
-                endIndex = ( $item.length / visible ) - 1; //End index
-
-            $('.tabular_c .right').click(function(){
-                if(index < endIndex ){
-                  index++;
-                  $item.animate({'left':'-=' +scroll+ 'px'});
-                }
-            });
-
-            $('.tabular_c .left').click(function(){
-                if(index > 0){
-                  index--;
-                  $item.animate({'left':'+=' +scroll+ 'px'});
-                }
-            });
-        // responsive-table test2
 
         function placesearchbar() {
             $wid = window.innerWidth ? window.innerWidth : $(window).width();
@@ -734,8 +724,124 @@ function checkIfInView(element){
                 $(this).addClass('curr');
                 $(this).find('span').addClass('white')
             }
+
+            setTimeout(function() {
+                scroll = $('.tabul_hold').width();
+                console.log('amount to scroll: ' + scroll);
+            }, 0.1);
+
             jQuery.fn.myFunction();
         });
+        // responsive-table test2
+        var scroll;
+        // $(document).on('click', 'ava_tog', function() {
+        //     scroll = $('.tabul_hold').width();
+        //     console.log('amount to scroll: ' + scroll);
+        // });
+        // var $item = $('div.tabul_hold'), //Cache your DOM selector
+        //     visible = 2, //Set the number of items that will be visible
+        //     index = 0, //Starting index
+        //     endIndex = ( $item.length / visible ) - 1; //End index
+
+        //     $('.tabular_c .right').click(function(){
+        //         if(index < endIndex ){
+        //           index++;
+        //           $item.animate({'left':'-=' +scroll+ 'px'});
+        //       }
+        //   });
+
+        //     $('.tabular_c .left').click(function(){
+        //         if(index > 0){
+        //           index--;
+        //           $item.animate({'left':'+=' +scroll+ 'px'});
+        //       }
+        //   });
+        // responsive-table test2
+
+        if ($('div').hasClass('table-holder')) {
+            $(".table-holder").owlCarousel({
+              items : 3,
+              itemsDesktop : [1280,3],
+              itemsTablet : [1110,2],
+              itemsMobile : [560, 1],
+              pagination : false,
+              navigation : true,
+              navigationText : ['<div class="left"><i class="fa fa-chevron-left"></i></div>','<div class="right"><i class="fa fa-chevron-right"></i></div>'],
+              rewindNav : false
+            });
+        }
+
+        //getting the number of tabs
+        function tabbyfloorplans() {
+            $tabs = $('.floorplans_tab ul.wpb_tabs_nav li').length;
+            if ($(window).width() > 1280) {
+                if ($tabs >= 8) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            } else if ($(window).width() <= 1200 && $(window).width() > 1110) {
+                if ($tabs >= 7) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            } else if ($(window).width() <= 1110 && $(window).width() > 560) {
+                if ($tabs >= 5) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            } else if ($(window).width() <= 550) {
+                if ($tabs >= 3) {
+                    console.log($tabs + ' is greater than 9');
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css({
+                        'display': 'block'
+                    });
+                    runowl();
+                }
+            }
+        }
+        function runowl() {
+            $(".floorplans_tab ul.wpb_tabs_nav").owlCarousel({
+                  items : 8,
+                  itemsDesktop : [1280, 7],
+                  itemsTablet : [1110, 5],
+                  itemsMobile : [560, 3],
+                  pagination : false,
+                  navigation : true,
+                  navigationText : ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>'],
+                  rewindNav : false
+              });
+                $(".floorplans_tab ul.wpb_tabs_nav li").eq(0).addClass('ui-tabs-active ui-state-active');
+                $('#tab-siteplan').show();
+                $(".floorplans_tab ul.wpb_tabs_nav li a").click(function(e) {
+                    e.preventDefault();
+                    $(".floorplans_tab ul.wpb_tabs_nav li").removeClass('ui-tabs-active ui-state-active');
+                    $(this).parent().addClass('ui-tabs-active ui-state-active');
+                    $('div.wpb_tab').hide();
+                    $($(this).attr('href')).show();
+                });
+        }
+        if ($('div').hasClass('floorplans_tab')) {
+            tabbyfloorplans();
+        }
+        $(window).resize(function() {
+            if ($('div').hasClass('floorplans_tab')) {
+                tabbyfloorplans();
+            }
+        });
+
 
 
         // //top value for left sidebar content in home page
@@ -833,26 +939,120 @@ function checkIfInView(element){
 // table
 /*jQuery.fn.myFunction = function testfun()
 {
-var vwidth;
-var tcwidth=parseInt(jQuery('.table-cover').width());
+// var vwidth;
+// var tcwidth=parseInt(jQuery('.table-cover').width());
 
-if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
-    {
-        vwidth = parseInt(jQuery('.table-cover').width())/3;
+// if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
+//     {
+//         vwidth = parseInt(jQuery('.table-cover').width())/3;
+//     }
+//     else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
+//     {
+//         vwidth = parseInt(jQuery('.table-cover').width())/2;
+//     }
+
+//     else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
+//     {
+
+//         vwidth = parseInt(jQuery('.table-cover').width())/2;
+//     }
+//     else if(parseInt(jQuery(window).width()) <= 559)
+//     {
+
+//         vwidth = parseInt(jQuery('.table-cover').width());
+//     }
+//     jQuery('.tabul_hold').css('width', vwidth);
+}
+
+jQuery(window).resize(function() {
+        jQuery.fn.myFunction();
+    });
+jQuery(window).load(function() {
+        jQuery.fn.myFunction();
+    });
+
+
+
+
+/* =======================================================
+ * =======================================================
+ * ======== FORMIDABLE - ON FORM SUBMIT RUN THIS =========
+ * =======================================================
+ * ======================================================= */
+
+function frmThemeOverride_frmAfterSubmit(e,f,b,a) {
+    console.log('formidable form details:');
+    console.log('a: ' + a);
+    console.log('f: ' + f);
+    console.log('e: ' + e);
+    var formid = jQuery(a).find('input[name="form_id"]').val();
+    console.log('id ' + formid);
+    //if(typeof(formid) == 'number'){
+        console.log('form ' + formid + ' has been submitted');
+        afterformidablesubmit();
+    //}
+}
+function afterformidablesubmit() {
+    loadingcontinforms();
+}
+
+function loadingcontinforms() {
+    var countries = ["Your Country","Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
+    ,"Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands"
+    ,"Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica"
+    ,"Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea"
+    ,"Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana"
+    ,"Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India"
+    ,"Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia"
+    ,"Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania"
+    ,"Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia"
+    ,"New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal"
+    ,"Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles"
+    ,"Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan"
+    ,"Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia"
+    ,"Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+    var htmlcount = '';
+    for (var i = 0; i < countries.length; i++) {
+        htmlcount += '<option value="'+ countries[i] +'">'+ countries[i] +'</option>';
     }
-    else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
-    {
-        vwidth = parseInt(jQuery('.table-cover').width())/2;
+    if (jQuery('div').hasClass('hascountry-list')) {
+        jQuery('.hascountry-list').find('select').each(function() {
+            jQuery(this).html(htmlcount)
+        });
     }
+            //trying out custom dropdowns
+            // jQuery("#dd_locality").chosen({disable_search_threshold: 450});
+            // jQuery("#dd_locality").change(function() {
+            //     jQuery("#dd_locality").trigger('chosen:updated');
+            // });
+            //dropdown elipsis
+            setTimeout(function() {
+                jQuery('select').each(function() {
+                    if (!(jQuery(this).prev('div').hasClass('elips-cont'))) {
+                        jQuery(this).before('<div class="elips-cont"></div>');
+                    }
+                });
 
-    else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
-    {
+                jQuery('.elips-cont').each(function() {
+                    jQuery(this).text(jQuery(this).next('select').find('option:selected').text());
+                });
+                jQuery('select').each(function() {
+                    jQuery(this).change(function() {
+                    //jQuery(this).prev('.elips-cont').text(jQuery("option:selected", this).text());
+                    var cont = jQuery('.elips-cont').parent('div');
 
-        vwidth = parseInt(jQuery('.table-cover').width())/2;
-    }
-    else if(parseInt(jQuery(window).width()) <= 559)
-    {
+                    setTimeout(function() {
+                        jQuery('.elips-cont').each(function() {
+                            var par = jQuery(this).parent('div');
+                            jQuery(this).text(par.find('select').find('option:selected').text());
+                        });
+                    }, 0.7);
 
+                });
+                });
+            }, 0.1);
+
+<<<<<<< HEAD
         vwidth = parseInt(jQuery('.table-cover').width());
     }
     jQuery('.tabul_hold').css('width', vwidth);
@@ -903,7 +1103,21 @@ if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) 
 
 jQuery(window).resize(function() {
         jQuery.fn.myFunction();
+
+    var stuff = setInterval(function() {
+        if (jQuery('.frm_message').is(':visible')) {
+            setTimeout(function(){jQuery('.frm_message').hide('slow')}, 5000);
+            clearInterval(stuff);
+        } else {
+        }
+    }, 0.3);
+}
+jQuery(document).ready(function() {
+    loadingcontinforms();
+    jQuery(document).on('click', '.back_btn', function() {
+        setTimeout(function() {
+            loadingcontinforms();
+        }, 50);
+
     });
-jQuery(window).load(function() {
-        jQuery.fn.myFunction();
-    });
+});

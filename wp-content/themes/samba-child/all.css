@@ -1259,7 +1259,8 @@ h6 {
   box-shadow: 0 0 3px #66afe9;
   border-color: #66afe9;
 }
-.top-dd select option {
+.top-dd select option,
+.top-dd select optgroup {
   color: #444;
 }
 .top-dd select:disabled {
@@ -2807,6 +2808,9 @@ h6 {
   text-transform: none;
   color: #999;
 }
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .table-holder.owl-carousel.owl-theme {
+  margin-top: 0;
+}
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c {
   position: relative;
   width: 100%;
@@ -2814,11 +2818,12 @@ h6 {
   margin-top: 15px;
   margin-bottom: 30px;
   padding-left: 8px;
-  padding-right: 8px;
+  padding-right: 4px;
   border-top: 7px solid #d3d3d3;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .left,
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .right {
+  display: none;
   width: 23px;
   height: 77px;
   line-height: 77px;
@@ -2840,6 +2845,46 @@ h6 {
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .left.active:hover,
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .right.active:hover {
   opacity: 0.8;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons {
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  margin: 0;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-prev,
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-next {
+  background-color: transparent;
+  top: 0;
+  margin: 0;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-prev {
+  left: 0;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-prev.disabled {
+  pointer-events: none;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-prev.disabled .left {
+  opacity: 0.1;
+  pointer-events: none;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-next {
+  right: 0;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-next.disabled {
+  pointer-events: none;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .owl-next.disabled .right {
+  opacity: 0.1;
+  pointer-events: none;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .left,
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .owl-buttons .right {
+  display: block;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 1;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .left {
   left: 8px;
@@ -3706,6 +3751,30 @@ ul.ui-tabs-nav {
 .sticky.enquiry_sideways.visigoth {
   opacity: 1;
   visibility: visible;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel {
+  margin-top: 0;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel .owl-buttons {
+  top: 0;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel .owl-buttons .owl-prev,
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel .owl-buttons .owl-next {
+  margin: 0;
+  height: 50px;
+  line-height: 52px;
+  padding: 0 7px;
+  opacity: 0.5;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel .owl-buttons .owl-prev.disabled,
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel .owl-buttons .owl-next.disabled {
+  opacity: 0.1;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel .owl-buttons .owl-prev {
+  left: 0;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .wpb_tabs_nav.owl-carousel .owl-buttons .owl-next {
+  right: 0;
 }
 .compare .bd_headings_text_shadow {
   display: none;
