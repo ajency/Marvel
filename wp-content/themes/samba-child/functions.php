@@ -342,13 +342,27 @@ function get_res_property_meta_values($property_id, $post_type){
 function get_residential_properties_list($post_type){
   global $wpdb;
     $sel_properties = array();
-    $residential_properties = get_posts( array(
+    
+
+    if($post_type=="both"){
+      $residential_properties = get_posts( array(
+                                          'post_type'       => array('residential-property','commercial-property'),
+                                          'post_status'     => 'publish',
+                                          'posts_per_page'  => -1,
+                                          'order'           => 'ASC',
+                                          'orderby'         => 'menu_order'
+                                      ) );
+    }
+    else{
+      $residential_properties = get_posts( array(
                                           'post_type'       => $post_type,
                                           'post_status'     => 'publish',
                                           'posts_per_page'  => -1,
                                           'order'           => 'ASC',
                                           'orderby'         => 'menu_order'
                                       ) );
+    }
+    
 
   $new_res_prop = new stdClass();
     foreach (  $residential_properties as $res_property ) {
@@ -467,7 +481,13 @@ function get_residential_properties_list_ajx() {
 
         $room_data [ ] = $room->get_all_roomdata();
     }*/
-$post_type = $_REQUEST['post_type'];
+    if(isset($_REQUEST['post_type'])){
+      $post_type = $_REQUEST['post_type'];
+    }
+    else{
+      $post_type = $_REQUEST['data']['post_type'];  
+    }
+    
 
 
 
@@ -525,12 +545,12 @@ function marvel_scripts_styles(){
       wp_enqueue_script( 'underscore-js',  get_stylesheet_directory_uri() . '/dev/js/lib/underscore.min.js', array('jquery'), false, true);
 
       // //POP UP FORMIDABLE FIX
-      /* global $frm_settings;
+      global $frm_settings;
        global $frm_vars;
        $version = FrmAppHelper::plugin_version();
        wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
        wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
-      */
+      
 
 
 
@@ -623,3 +643,44 @@ function popup28579_load_on_arvhices( $is_loadable, $popup_id ) {
 add_filter('popmake_popup_is_loadable', 'popup28579_load_on_arvhices', 10, 2);
 
 
+
+
+
+
+function add_query_vars($aVars) {
+$aVars[] = "status";
+$aVars[] = "city";
+$aVars[] = "locality";
+$aVars[] = "type";
+return $aVars;
+}
+ 
+// hook add_query_vars function into query_vars
+add_filter('query_vars', 'add_query_vars');
+
+
+/*function add_rewrite_rules($aRules) {
+$aNewRules = array('residential-properties/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]&locality=$matches[3]&type=$matches[4]');
+$aRules = $aNewRules + $aRules;
+return $aRules;
+}
+ 
+// hook add_rewrite_rules function into rewrite_rules_array
+add_filter('rewrite_rules_array', 'add_rewrite_rules');
+*/
+
+
+function properties_custom_rewrite_rules( $existing_rules ) {
+  $new_rules = array(
+    'residential-properties/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]&locality=$matches[3]&type=$matches[4]',
+
+    'residential-properties/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]&locality=$matches[3]',
+
+    'residential-properties/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]',
+
+    'residential-properties/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]'
+  );
+  $existing_rules = $new_rules + $existing_rules;
+  return $existing_rules;
+}
+//add_filter('rewrite_rules_array', 'properties_custom_rewrite_rules');

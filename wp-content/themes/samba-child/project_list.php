@@ -51,6 +51,10 @@ if ($childs=='weirdostf')
   //NEVER SHOW SIDEBAR
 $show_sidebar=false;
 ?>
+
+
+
+
 <div id="centered_block" class="row">
     <div id="main_block" class="block_with_sections mapView page-<?php echo get_the_ID(); ?>">
         <?php

@@ -97,6 +97,24 @@ Template Name: Page - No-Resi Projects List New
         var _WPNONCE = '<?php echo wp_create_nonce('media-form'); ?>';
         var JSVERSION = '<?php echo JSVERSION; ?>';
 
+
+        
+        <?php if(isset($wp_query->query_vars['status'])) { ?>
+          var queryStatus = '<?php echo urldecode($wp_query->query_vars["status"]); ?>';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['city'])) { ?>
+          var queryCity = '<?php echo urldecode($wp_query->query_vars["city"]); ?>';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['locality'])) { ?>
+          var queryLocality = '<?php echo urldecode($wp_query->query_vars["locality"]); ?>';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['type'])) { ?>
+          var queryType = '<?php echo urldecode($wp_query->query_vars["type"]); ?>';
+        <?php } ?>
+
     </script>
     
  
@@ -106,6 +124,8 @@ Template Name: Page - No-Resi Projects List New
 
     </script>
 */ ?>
+
+
  
 
 <?php 
