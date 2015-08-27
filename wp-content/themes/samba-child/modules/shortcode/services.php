@@ -410,3 +410,313 @@ add_action( 'wp_ajax_get_services_properties_ajx', 'get_services_properties_ajx'
 add_action('wp_ajax_nopriv_get_services_properties_ajx', 'get_services_properties_ajx');
 
 
+
+
+
+
+
+
+
+
+
+
+
+function sap_availability_table_shortcode(){
+global $post, $wpdb;
+
+$plant_id = get_post_meta($post->ID,'property-plant-id',true);
+
+    $table_name = $wpdb->prefix.'sap_inventory';
+    $property_query = " SELECT * FROM ".$table_name." WHERE plant=".$plant_id."";
+    $data = $wpdb->get_results($property_query,ARRAY_A);
+    
+
+    $tabs = array();
+
+    $areas = array();
+
+    $buildings = array();
+
+    $flats = array();
+        
+    foreach($data as $record){
+       
+       //Generating Tabs data
+         if (!array_key_exists($record['mkt_group_desc'],$tabs)){
+            $tabs[$record['mkt_group_desc']] = array();
+         }
+
+         if (!in_array($record['mkt_material_type_desc'], $tabs[$record['mkt_group_desc']])) {
+         array_push($tabs[$record['mkt_group_desc']],$record['mkt_material_type_desc']);
+         }
+
+
+         //Generating Areas data
+         if (!array_key_exists($record['mkt_group_desc'],$areas)){
+            $areas[$record['mkt_group_desc']] = array();
+         }
+
+         if (!array_key_exists($record['mkt_material_type_desc'],$areas[$record['mkt_group_desc']])) {
+          $areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = array();
+         }
+
+
+         if (!in_array($record['total_saleable_area'], $areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
+         array_push($areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']],$record['total_saleable_area']);
+         }
+
+
+         //Generating Buildings data
+         if (!array_key_exists($record['mkt_group_desc'],$buildings)){
+            $buildings[$record['mkt_group_desc']] = array();
+         }
+
+         if (!array_key_exists($record['mkt_material_type_desc'],$buildings[$record['mkt_group_desc']])) {
+          $buildings[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = array();
+         }
+
+         if (!in_array($record['building_no'], $buildings[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
+         array_push($buildings[$record['mkt_group_desc']][$record['mkt_material_type_desc']],$record['building_no']);
+         }
+
+
+         //Generating Flats data
+         if (!array_key_exists($record['mkt_group_desc'],$flats)){
+            $flats[$record['mkt_group_desc']] = array();
+         }
+
+         if (!array_key_exists($record['mkt_material_type_desc'],$flats[$record['mkt_group_desc']])) {
+          $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = array();
+         }
+
+         if (!array_key_exists($record['building_no'], $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
+         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']] = array();
+         }
+
+         if (!array_key_exists($record['flat_no'], $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']])) {
+         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']][$record['flat_no']] = array('area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
+         }
+    }
+
+
+
+    /*echo "<pre>";
+    print_r($flats);
+    echo "</pre>";*/
+
+$html = '<div id="content">';
+$html .= '<div id="main" role="main" class="main_with_sections with_title">';
+$html .= '<div class="vc_row">';
+$html .= '<div class="vc_column">';
+$html .= '<div class="wpb_tabs wpb_content_element floorplans_tab" data-interval="0">';
+$html .= '<div class="tabb y wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix ui-widget ui-widget-content ui-corner-all">';
+
+
+/****************
+***************Tabs***************
+**************/
+$html .= '<ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">';
+
+if(array_key_exists('R1',$tabs)){
+    asort($tabs['R1']);
+    foreach($tabs['R1'] as $key=>$value){
+        $html .= '<li><a href="#tab-R1'.str_replace(".","",$value).'">'.$value.' BHK</a></li>';
+    }
+}
+
+if(array_key_exists('R4',$tabs)){
+    asort($tabs['R4']);
+    foreach($tabs['R4'] as $key=>$value){
+        $html .= '<li><a href="#tab-R4'.str_replace(".","",$value).'">'.$value.' BHK PENTHOUSE</a></li>';
+    }
+}
+
+if(array_key_exists('R2',$tabs)){
+    asort($tabs['R2']);
+    foreach($tabs['R2'] as $key=>$value){
+        $html .= '<li><a href="#tab-R2'.str_replace(".","",$value).'">'.$value.' VILLA</a></li>';
+    }
+}
+
+if(array_key_exists('R3',$tabs)){
+    asort($tabs['R3']);
+    foreach($tabs['R3'] as $key=>$value){
+        $html .= '<li><a href="#tab-R3'.str_replace(".","",$value).'">'.$value.' GARDEN FLAT</a></li>';
+    }
+}
+
+$html .= '</ul>';
+
+
+/****************
+***************Layout and Availability head***************
+**************/
+
+foreach($tabs as $tabkey=>$tabvalue){
+    foreach($tabvalue as $key=>$value){
+        $tab_id = $tabkey.str_replace(".","",$value);
+        $min_area = min($areas[$tabkey][$value]);
+        $max_area = max($areas[$tabkey][$value]);
+
+        if($min_area == $max_area){
+        $area = $min_area.' sq. ft';
+        }else{
+           $area = $min_area.' sq. ft. to '.$max_area.' sq. ft.';  
+        }
+
+        switch ($tabkey) {
+            case "R2":
+            $type = 'Villa';
+            break;
+            case "R3":
+            $type = 'Garden Flat';
+            break;
+            case "R4":
+            $type = 'Penthouse';
+            break;
+            default:
+            $type = '';
+        }
+
+        $html .= '<div id="tab-'.$tab_id.'" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide ui-widget-content vc_clearfix">';
+
+        $html .= '<div class="wpb_text_column wpb_content_element ">
+                                    <div class="wpb_wrapper">
+                                        <p style="text-align: center;">
+                                            Typical floor plan of a '.$value.' BHK '.$type.' &#8211; '.$area.'
+                                            <a class="wpb_button_a download_prj" title="Download" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg" download>
+                                                <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
+                                            </a>
+                                        </p>
+                                        <p class="btncol">
+                                            <a class="wpb_button_a ava_tog curr" title="2D Layout" href="#lay_'.$tab_id.'"><span class="wpb_button  wpb_btn-inverse tog white">2D Layout</span></a>
+                                            <a class="wpb_button_a ava_tog" title="Availability" href="#ava_'.$tab_id.'"><span class="wpb_button  wpb_btn-inverse tog">Availability</span></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div id="lay_'.$tab_id.'" class="inner-panels wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center current">
+                                    <div class="wpb_wrapper">
+                                        <a class="image-popup-no-margins boxed_shadow" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg" target="_self">
+                                            <img width="700" height="561" src="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg" alt="layout" />
+                                        </a>
+                                    </div>
+                                </div>';
+        $html .='<div id="ava_'.$tab_id.'" class="inner-panels avatab wpb_content_element wpb_animate_when_almost_visible wpb_bottom-to-top vc_align_center">';
+        $html .='<div class="wpb_wrapper">';
+                                        
+        $html .='<div class="top_head">
+                     <div class="pull-left">
+                        <span class="box white_bg"></span>
+                        <span class="text">Available</span>
+                        <span class="box blue_bg"></span>
+                        <span class="text">Sold</span>
+                    </div>
+                    <div class="pull-right">
+                        <h6>Click on the available flat to request a hold.</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>';
+
+        $html .= '<div class="tabular_c" style="">';
+        
+        $html .= '<div class="left" style="display: none;">
+                    <i class="fa fa-chevron-left"></i>
+                </div>
+                <div class="right active" style="display: none;">
+                    <i class="fa fa-chevron-right"></i>
+                </div>';
+
+        
+        
+    $html .= '<div class="clearfix"></div>';
+
+    $html .= '<div class="table-cover">';
+            $html .= '<div class="tabular_c" style="margin-top: 0; border-top: 0;">';                                   
+                    $html .= '<div class="left">
+                                <i class="fa fa-chevron-left"></i>
+                             </div>
+                             <div class="right active">
+                                <i class="fa fa-chevron-right"></i>
+                            </div>';
+
+                $html .= ' <div class="table-holder">';
+
+
+                foreach($flats[$tabkey][$value] as $building_key=>$building_value){
+                    $html .= '<div class="tabul_hold">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th colspan="2">'.$building_key.'-Flat No. (Sq.Ft.)</th>
+                                                        </tr>';
+
+                                                        
+                                                        $counter = 0;
+                                                        $total = count($building_value)-1;
+                                                                                                                
+                                                        foreach($building_value as $flat=>$flat_data) {
+                                                            if($flat_data['status'] == 'Unsold'){
+                                                                $style = 'class="opened"';
+                                                            }else if($flat_data['status'] == 'Hold'){
+                                                                $style = 'class="pink_bg"';
+                                                            }else{
+                                                               $style = 'class="blue_bg"'; 
+                                                            } nn
+
+                                                        if ($counter%2 == 0) {
+                                                            $html .= '<tr><td '.$style.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
+                                                            if(($counter>0) && ($counter == $total)){
+                                                            $html .= '<td class="blue_bg">&nbsp;</td>';
+                                                            }
+                                                        } else { 
+                                                            $html .= '<td '.$style.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td></tr>';
+                                                        }
+                                                        $counter++;
+                                                        }
+                                                        
+                                                        
+
+                                                    $html .= '</table>
+                            </div>';
+
+                }
+
+
+                $html .= '</div>';
+
+            $html .= '</div>';    
+    $html .= '</div>';            
+
+
+        $html .= '</div>';
+
+        $html .= '</div>';
+        $html .= '</div>';
+
+        $html .= '</div>';
+    }
+}
+
+
+$html .= '</div>';
+$html .= '</div>';
+$html .= '</div>';
+$html .= '</div>';
+$html .= '</div>';
+$html .= '</div>';
+
+
+return $html;
+}
+add_shortcode('sap-availability-table', 'sap_availability_table_shortcode');
+
+
+
+
+
+
+
+
+
+
+
