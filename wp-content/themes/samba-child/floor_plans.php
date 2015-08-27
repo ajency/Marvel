@@ -89,17 +89,17 @@ $show_sidebar=false;
                     </div> -->
 
                     <div class="wpb_tabs wpb_content_element floorplans_tab" data-interval="0">
-                        <div class="tabby wpb_wrapper wpb_ tour_tabs_wrapper u i-tabs vc_clearfix">
-                            <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix">
+                        <div class="tabb y wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearfix ui-widget ui-widget-content ui-corner-all">
+                            <ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
                                 <li><a href="#tab-siteplan" class="standout">SITE PLAN</a></li>
                                 <li><a href="#tab-3bhk">4.5 BHK</a></li>
                                 <li><a href="#tab-3_5bhk">3.5 BHK</a></li>
-                                <li><a href="#tab-4_5bhk">4.5 BHK</a></li>
+                                <!-- <li><a href="#tab-4_5bhk">4.5 BHK</a></li>
                                 <li><a href="#tab-5_5bhk">5.5 BHK</a></li>
-                                <li><a href="#tab-6_5bhk">6.5 BHK</a></li>
+                                <li><a href="#tab-6_5bhk">6.5 BHK</a></li> -->
                             </ul>
 
-                            <div id="tab-siteplan" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                            <div id="tab-siteplan" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom">
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
@@ -120,7 +120,7 @@ $show_sidebar=false;
                                 </div>
                             </div>
 
-                            <div id="tab-3bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                            <div id="tab-3bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide ui-widget-content vc_clearfix">
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
@@ -159,7 +159,7 @@ $show_sidebar=false;
                                             <div class="clearfix"></div>
                                         </div>
 
-                                        <div class="tabular_c">
+                                        <div class="tabular_c" style="">
                                             <div class="left" style="display: none;">
                                                 <i class="fa fa-chevron-left"></i>
                                             </div>
@@ -401,7 +401,7 @@ $show_sidebar=false;
                                             <!-- table-testing -->
                                             <div class="clearfix"></div>
                                             <div class="table-cover">
-                                                <div class="tabular_c">
+                                                <div class="tabular_c" style="margin-top: 0; border-top: 0;">
                                                 <div class="left">
                                                     <i class="fa fa-chevron-left"></i>
                                                 </div>
@@ -523,7 +523,7 @@ $show_sidebar=false;
                                 </div>
                             </div>
 
-                            <div id="tab-3_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                            <div id="tab-3_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide ui-widget-content vc_clearfix">
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
@@ -762,7 +762,7 @@ $show_sidebar=false;
                                 </div>
                             </div>
 
-                            <div id="tab-4_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
+                           <!--  <div id="tab-4_5bhk" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix">
                                 <div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
@@ -811,7 +811,7 @@ $show_sidebar=false;
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -873,12 +873,12 @@ $show_sidebar=false;
 
     <?php get_footer(); ?>
 
-    <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/tabslider/jquery.sliderTabs.min.js"></script>
+    <!--<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/tabslider/jquery.sliderTabs.min.js"></script>-->
     <script type="text/javascript">
-        var slider = jQuery("div.tabby").sliderTabs({
-          mouseheel: false,
-          //panelArrows: false,
-          width: null,
-          tabHeight: 43
-        });
+        // var slider = jQuery("div.tabby").sliderTabs({
+        //   mouseheel: false,
+        //   //panelArrows: false,
+        //   width: null,
+        //   tabHeight: 43
+        // });
     </script>
