@@ -373,17 +373,32 @@ function checkIfInView(element){
         });
 
         //remove this line later
-        $('#prk_ajax_container .tabular.inner .tab_col .text_in').click(function() {
-            $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
-            console.log(!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened')));
-            console.log($(this).parent('.tab_col').attr('class'));
+        //table popup
+        if ($('body *').hasClass('tabul_hold')) {
+            $('#prk_ajax_container .tabul_hold tr td').click(function(event) {
+                $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
+                if (!($(this).hasClass('blue_bg'))) {
+                    $('.popup_tab_data').css({
+                        top: (event.pageY - 30),
+                        left: (event.pageX - $('#menu_section').width() - 125)
+                    }).show();
 
-            if (!($(this).parent().hasClass('blue_bg')) && !($(this).parent().hasClass('opened'))) {
-                $(this).parent().addClass('opened');
-            } else {
-                $('#prk_ajax_container .tabular.inner .tab_col').removeClass('opened');
-            }
-        });
+                } else {
+                    $('.popup_tab_data').css({
+                        top: 0,
+                        left: 0
+                    }).hide();
+                }
+                $(this).addClass('opened');
+            });
+            $(document).mouseup(function (e) {
+                $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
+                 var popup = $('.popup_tab_data');
+                 if (!$('#prk_ajax_container .tabul_hold tr td').is(e.target) && !popup.is(e.target) && popup.has(e.target).length == 0) {
+                     popup.hide();
+                 }
+             });
+        }
 
         $(document).on('click', '.home_search', function() {
             $width = window.innerWidth ? window.innerWidth : $(window).width();
