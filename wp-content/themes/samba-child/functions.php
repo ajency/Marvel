@@ -545,12 +545,12 @@ function marvel_scripts_styles(){
       wp_enqueue_script( 'underscore-js',  get_stylesheet_directory_uri() . '/dev/js/lib/underscore.min.js', array('jquery'), false, true);
 
       // //POP UP FORMIDABLE FIX
-      /* global $frm_settings;
+      global $frm_settings;
        global $frm_vars;
        $version = FrmAppHelper::plugin_version();
        wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
        wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
-      */
+      
 
 
 
