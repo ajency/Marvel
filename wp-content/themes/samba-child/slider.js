@@ -1067,6 +1067,14 @@ function loadingcontinforms() {
                 });
             }, 0.1);
 
+    var stuff = setInterval(function() {
+        if (jQuery('.frm_message').is(':visible')) {
+            setTimeout(function(){jQuery('.frm_message').hide('slow')}, 5000);
+            clearInterval(stuff);
+        } else {
+        }
+    }, 0.3);
+
 // <<<<<<< HEAD
 //         vwidth = parseInt(jQuery('.table-cover').width());
 //     }
@@ -1077,15 +1085,7 @@ function loadingcontinforms() {
 
 jQuery(window).resize(function() {
         //jQuery.fn.myFunction();
-
-    var stuff = setInterval(function() {
-        if (jQuery('.frm_message').is(':visible')) {
-            setTimeout(function(){jQuery('.frm_message').hide('slow')}, 5000);
-            clearInterval(stuff);
-        } else {
-        }
-    }, 0.3);
-}
+});
 jQuery(document).ready(function() {
     loadingcontinforms();
     jQuery(document).on('click', '.back_btn', function() {
@@ -1098,35 +1098,35 @@ jQuery(document).ready(function() {
 
 
 
-jQuery.fn.myFunction = function testfun()
-{
+// jQuery.fn.myFunction = function testfun()
+// {
 
-jQuery('.table-cover').each(function(index) {
+// jQuery('.table-cover').each(function(index) {
 
-var vwidth;
-var tcwidth=parseInt(jQuery(this).width());
+// var vwidth;
+// var tcwidth=parseInt(jQuery(this).width());
 
-if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
-    {
-        vwidth = parseInt(jQuery(this).width())/3;
-    }
-    else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
-    {
-        vwidth = parseInt(jQuery(this).width())/2;
-    }
+// if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
+//     {
+//         vwidth = parseInt(jQuery(this).width())/3;
+//     }
+//     else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
+//     {
+//         vwidth = parseInt(jQuery(this).width())/2;
+//     }
 
-    else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
-    {
+//     else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
+//     {
 
-        vwidth = parseInt(jQuery(this).width())/2;
-    }
-    else if(parseInt(jQuery(window).width()) <= 559)
-    {
+//         vwidth = parseInt(jQuery(this).width())/2;
+//     }
+//     else if(parseInt(jQuery(window).width()) <= 559)
+//     {
 
-        vwidth = parseInt(jQuery(this).width());
-    }
-    //jQuery('.tabul_hold').css('width', vwidth);
-    jQuery(this).find('.tabul_hold').css('width', vwidth);
+//         vwidth = parseInt(jQuery(this).width());
+//     }
+//     //jQuery('.tabul_hold').css('width', vwidth);
+//     jQuery(this).find('.tabul_hold').css('width', vwidth);
 
-    });
-}
+//     });
+// }
