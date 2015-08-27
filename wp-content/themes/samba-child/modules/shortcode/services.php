@@ -661,7 +661,7 @@ foreach($tabs as $tabkey=>$tabvalue){
                                                                 $style = 'class="pink_bg"';
                                                             }else{
                                                                $style = 'class="blue_bg"'; 
-                                                            } nn
+                                                            }
 
                                                         if ($counter%2 == 0) {
                                                             $html .= '<tr><td '.$style.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
