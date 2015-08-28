@@ -547,9 +547,13 @@ function marvel_scripts_styles(){
       // //POP UP FORMIDABLE FIX
       global $frm_settings;
        global $frm_vars;
-       $version = FrmAppHelper::plugin_version();
-       wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
-       wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
+       
+       if (class_exists('FrmAppHelper')) {
+        $version = FrmAppHelper::plugin_version();
+        wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
+        wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
+      }
+       
       
 
 

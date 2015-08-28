@@ -379,7 +379,7 @@ function checkIfInView(element){
                 $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
                 if (!($(this).hasClass('blue_bg'))) {
                     $('.popup_tab_data').css({
-                        top: (event.pageY),
+                        top: (event.pageY - 30),
                         left: (event.pageX - $('#menu_section').width() - 125)
                     }).show();
 
@@ -745,7 +745,7 @@ function checkIfInView(element){
                 console.log('amount to scroll: ' + scroll);
             }, 0.1);
 
-            //jQuery.fn.myFunction();
+            jQuery.fn.myFunction();
         });
         // responsive-table test2
         var scroll;
@@ -1067,12 +1067,8 @@ function loadingcontinforms() {
                 });
             }, 0.1);
 
-
-        vwidth = parseInt(jQuery('.table-cover').width());
     }
-    jQuery('.tabul_hold').css('width', vwidth);
-}
-
+    
 
 
 
@@ -1126,12 +1122,7 @@ jQuery(window).resize(function() {
         } else {
         }
     }, 0.3);
-
-}
-
-
-
-
+});
 jQuery(document).ready(function() {
     loadingcontinforms();
     jQuery(document).on('click', '.back_btn', function() {
@@ -1141,38 +1132,3 @@ jQuery(document).ready(function() {
 
     });
 });
-
-
-
-// jQuery.fn.myFunction = function testfun()
-// {
-
-// jQuery('.table-cover').each(function(index) {
-
-// var vwidth;
-// var tcwidth=parseInt(jQuery(this).width());
-
-// if(parseInt(jQuery(window).width()) <= 1476 && parseInt(jQuery(window).width()) >= 1110)
-//     {
-//         vwidth = parseInt(jQuery(this).width())/3;
-//     }
-//     else if(parseInt(jQuery(window).width()) <= 1110 && parseInt(jQuery(window).width()) >= 768)
-//     {
-//         vwidth = parseInt(jQuery(this).width())/2;
-//     }
-
-//     else if(parseInt(jQuery(window).width()) <= 768 && parseInt(jQuery(window).width()) >= 560)
-//     {
-
-//         vwidth = parseInt(jQuery(this).width())/2;
-//     }
-//     else if(parseInt(jQuery(window).width()) <= 559)
-//     {
-
-//         vwidth = parseInt(jQuery(this).width());
-//     }
-//     //jQuery('.tabul_hold').css('width', vwidth);
-//     jQuery(this).find('.tabul_hold').css('width', vwidth);
-
-//     });
-// }
