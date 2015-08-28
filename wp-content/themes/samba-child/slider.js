@@ -407,7 +407,7 @@ function checkIfInView(element){
                     var plantId = $(this).attr('data-plantId');
                     var building = $(this).attr('data-building');
                     var flatNo = $(this).attr('data-flatNo');
-                    
+
                     var popup_data = '<div class="pull-left left_d">Flat Area</div>';
                         popup_data += '<div class="pull-left right_d">'+flatArea+'</div>';
                         popup_data += '<div class="clearfix"></div>';
@@ -1172,5 +1172,31 @@ jQuery(document).ready(function() {
             loadingcontinforms();
         }, 50);
 
+    });
+    jQuery(document).on('click, mousemove', function() {
+        setTimeout(function() {
+            jQuery('select').each(function() {
+                if (!(jQuery(this).prev('div').hasClass('elips-cont'))) {
+                    jQuery(this).before('<div class="elips-cont"></div>');
+                }
+            });
+            jQuery('.elips-cont').each(function() {
+                jQuery(this).text(jQuery(this).next('select').find('option:selected').text());
+            });
+        }, 0.3);
+    });
+    jQuery('select').each(function() {
+        jQuery(this).change(function() {
+            //jQuery(this).prev('.elips-cont').text(jQuery("option:selected", this).text());
+            var cont = jQuery('.elips-cont').parent('div');
+
+            setTimeout(function() {
+                jQuery('.elips-cont').each(function() {
+                    var par = jQuery(this).parent('div');
+                    jQuery(this).text(par.find('select').find('option:selected').text());
+                });
+            }, 0.7);
+
+        });
     });
 });
