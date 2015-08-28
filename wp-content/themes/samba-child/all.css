@@ -2801,6 +2801,9 @@ h6 {
 .top_head .box.blue_bg {
   border-color: #d2d2d2;
 }
+.top_head .box.hold_bg {
+  border-color: #F0EAE6;
+}
 .top_head .text {
   margin-right: 16px;
   color: #999;
@@ -3095,6 +3098,10 @@ h6 {
 }
 .blue_bg {
   background: #daeaec;
+  color: #666666;
+}
+.hold_bg {
+  background: #F0EAE6;
   color: #666666;
 }
 .inner-panels {
