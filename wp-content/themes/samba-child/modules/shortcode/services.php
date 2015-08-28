@@ -656,20 +656,23 @@ foreach($tabs as $tabkey=>$tabvalue){
                                                                                                                 
                                                         foreach($building_value as $flat=>$flat_data) {
                                                             if($flat_data['status'] == 'Unsold'){
-                                                                $style = 'class="opened"';
+                                                                $popdata = 'data-plantId="'.$plant_id.'" data-building="'.$building_key.'" data-flatNo="'.$flat.'" data-flatArea="'.$flat_data['area'].'" data-terraceArea="'.$flat_data['terrace_area'].'" data-sellableArea="'.$flat_data['total_saleable_area'].'" data-flootPlan="'.$flat_data['floor_plan'].'"';
+                                                                $col = '<td '.$popdata.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
                                                             }else if($flat_data['status'] == 'Hold'){
-                                                                $style = 'class="pink_bg"';
+                                                                $col = '<td class="pink_bg">'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
                                                             }else{
-                                                               $style = 'class="blue_bg"'; 
-                                                            }
+                                                               $col = '<td class="blue_bg">'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
+                                                             }
+
+                                                            
 
                                                         if ($counter%2 == 0) {
-                                                            $html .= '<tr><td '.$style.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
+                                                            $html .= '<tr>'.$col;
                                                             if(($counter>0) && ($counter == $total)){
                                                             $html .= '<td class="blue_bg">&nbsp;</td>';
                                                             }
                                                         } else { 
-                                                            $html .= '<td '.$style.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td></tr>';
+                                                            $html .= $col.'</tr>';
                                                         }
                                                         $counter++;
                                                         }
@@ -698,12 +701,22 @@ foreach($tabs as $tabkey=>$tabvalue){
 }
 
 
+$html .= '<div class="popup_tab_data"></div>';
+
+
+$html .= '</div>';
+$html .= '</div>';
+
+
+
+
+
+
 $html .= '</div>';
 $html .= '</div>';
 $html .= '</div>';
 $html .= '</div>';
-$html .= '</div>';
-$html .= '</div>';
+
 
 
 return $html;
