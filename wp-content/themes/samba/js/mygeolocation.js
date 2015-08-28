@@ -209,6 +209,6 @@ jQuery(document).ready(function(){
 
 
 jQuery('#custom-address_lat, #custom-address_lng').live('focusout',function(){
-      alert('s')
+      
     setTimeout(function(){codeLatLng()},300)
 })
