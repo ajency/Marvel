@@ -598,10 +598,26 @@ $show_sidebar=false;
                                     </div>
                                 </div>
                             </div> -->
+
+                            <div class="popup_tab_data">
+                                <div class="pull-left left_d">Flat Area</div>
+                                <div class="pull-left right_d">3,950</div>
+                                <div class="clearfix"></div>
+                                <div class="pull-left left_d">Terrace Area</div>
+                                <div class="pull-left right_d">350</div>
+                                <div class="clearfix"></div>
+                                <div class="pull-left left_d">Total Sellable Area</div>
+                                <div class="pull-left right_d">4,300</div>
+                                <div class="clearfix"></div>
+                                <div class="btncol">
+                                    <a class="wpb_button_a image-popup-no-margins" title="2D Layout" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg"><span style="padding: 8px 13px; font-size: 13px;" class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>
+                                    <a class="wpb_button_a" title="Availability" href="#"><span style="padding: 7px 13px; font-size: 13px;" class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="popup_tab_data">
+                    <!-- <div class="popup_tab_data">
                         <div class="pull-left left_d">Flat Area</div>
                         <div class="pull-left right_d">3,950</div>
                         <div class="clearfix"></div>
@@ -615,7 +631,7 @@ $show_sidebar=false;
                             <a class="wpb_button_a image-popup-no-margins" title="2D Layout" href="http://marvel.ajency.in/wp-content/uploads/2015/05/Aries-4.5BHK-4045-SQ.FT_.1.jpg"><span style="padding: 8px 13px; font-size: 13px;" class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>
                             <a class="wpb_button_a" title="Availability" href="#"><span style="padding: 7px 13px; font-size: 13px;" class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="go_to_top_inpage"></div>
                     <a class="enquiry_sideways">

@@ -378,18 +378,31 @@ function checkIfInView(element){
             $('#prk_ajax_container .tabul_hold tr td').click(function(event) {
                 $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
                 if (!($(this).hasClass('blue_bg'))) {
+                    $partop = $(this).parents('.tabb.y.ui-tabs').offset().top;
+                    if ($(window).width() > 769) {
+                        $left = $('#menu_section').width();
+                    } else {
+                        $left = 0;
+                    }
+                    $(window).resize(function() {
+                        if ($(window).width() > 769) {
+                            $left = $('#menu_section').width();
+                        } else {
+                            $left = 0;
+                        }
+                    });
                     $('.popup_tab_data').css({
-                        top: (event.pageY - 30),
-                        left: (event.pageX - $('#menu_section').width() - 125)
+                        top: (event.pageY + 10 - $partop),
+                        left: (event.pageX - $left - 165)
                     }).show();
 
+                    $(this).addClass('opened');
                 } else {
                     $('.popup_tab_data').css({
                         top: 0,
                         left: 0
                     }).hide();
                 }
-                $(this).addClass('opened');
             });
             $(document).mouseup(function (e) {
                 $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
@@ -1068,7 +1081,7 @@ function loadingcontinforms() {
             }, 0.1);
 
     }
-    
+
 
 
 

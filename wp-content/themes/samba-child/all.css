@@ -2545,6 +2545,7 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .owl-carousel {
   margin-top: 20px;
+  margin-bottom: 33px;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .owl-carousel .owl-controls {
   top: 0;
@@ -3000,6 +3001,7 @@ h6 {
   padding-top: 10px;
   color: #333333;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  font-size: 13px;
 }
 .popup_tab_data:before {
   content: '';
@@ -3086,10 +3088,6 @@ h6 {
 }
 .blue_bg {
   background: #daeaec;
-  color: #666666;
-}
-.pink_bg {
-  background: #F2E9EB;
   color: #666666;
 }
 .inner-panels {
