@@ -1067,11 +1067,11 @@ function loadingcontinforms() {
                 });
             }, 0.1);
 
-<<<<<<< HEAD
+
         vwidth = parseInt(jQuery('.table-cover').width());
     }
     jQuery('.tabul_hold').css('width', vwidth);
-}*/
+}
 
 
 
