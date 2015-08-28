@@ -1643,7 +1643,7 @@ border-top: none!important;
 	overflow: hidden;
 }
 .popmake>.popmake-close:after {
-	content: '×';
+	content: '\00D7';
 	text-indent: 0 !important;
 	font-size: 32px;
 	font-family: Arial;
@@ -1725,7 +1725,15 @@ border-top: none!important;
 .frm_style_formidable-style.with_frm_style input[type=text], .frm_style_formidable-style.with_frm_style input[type=password], .frm_style_formidable-style.with_frm_style input[type=email], .frm_style_formidable-style.with_frm_style input[type=number], .frm_style_formidable-style.with_frm_style input[type=url], .frm_style_formidable-style.with_frm_style input[type=tel], .frm_style_formidable-style.with_frm_style input[type=phone], .frm_style_formidable-style.with_frm_style input[type=search], .frm_style_formidable-style.with_frm_style select, .frm_style_formidable-style.with_frm_style textarea, .frm_form_fields_style, .frm_style_formidable-style.with_frm_style .frm_scroll_box .frm_opt_container, .frm_form_fields_active_style, .frm_form_fields_error_style, .frm_style_formidable-style.with_frm_style .chosen-container-multi .chosen-choices, .frm_style_formidable-style.with_frm_style .chosen-container-single .chosen-single {
 	box-shadow: inset 0 0 0 rgba(0,0,0,0);
 }
-
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button,
+.frm_style_formidable-style.with_frm_style input[type=number]::-webkit-inner-spin-button,
+.frm_style_formidable-style.with_frm_style input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
 
 .enquiry_sideways.app-side {
 	position: absolute;
@@ -1911,3 +1919,15 @@ border-top: none!important;
 .frm_style_formidable-style.with_frm_style .frm_submit input:disabled::hover {
     background-color: #ccc !important;
 }
+
+
+.post-type-archive-commercial-property .single_p_w .single_p_img .compare .comp_ico {
+    display: none !important;
+}
+.single-commercial-property .full_fi_title {
+    display: none !important;
+}
+.prk_with_back.zocial.icon {
+    border-radius: 0;
+}
+
