@@ -1846,14 +1846,30 @@ input[type=number]::-webkit-outer-spin-button,
 	width: 100% !important;
 }
 .popmake-content .frm_form_field.frm_third,
- .popmake-content .frm_form_field.frm_first_fourth {
+.popmake-content .frm_form_field.frm_first_fourth {
 	width: 49% !important;
-	float: left;
-	margin-right: 9px;
+	float: right;
+	/*margin-right: 9px;*/
 }
-.popmake-content .frm_form_field.frm_third:nth-of-type(2n) {
+.frm_form_field.frm_third:nth-child(2n),
+.popmake-content .frm_form_field.frm_first_fourth:nth-child(2n) {
+    float: left !important;
+}
+/*.popmake-content .frm_form_field.frm_third:nth-of-type(2n) {
 	margin-right: 0;
 	float: right;
+}*/
+@media screen and (max-width: 767px) {
+	.popmake-content .frm_form_field.frm_third,
+	.popmake-content .frm_form_field.frm_first_fourth {
+		width: 100% !important;
+		float: left !important;
+		/*margin-right: 9px;*/
+	}
+	.frm_form_field.frm_third:nth-child(2n),
+	.popmake-content .frm_form_field.frm_first_fourth:nth-child(2n) {
+	    float: left !important;
+	}
 }
 
 /*smaller than 1023 position fixed to be pos abs*/

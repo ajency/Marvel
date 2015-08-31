@@ -652,7 +652,7 @@ add_filter('popmake_popup_is_loadable', 'popup28579_load_on_arvhices', 10, 2);
 
 
 function add_query_vars($aVars) {
-$aVars[] = "status";
+//$aVars[] = "status";
 $aVars[] = "city";
 $aVars[] = "locality";
 $aVars[] = "type";
@@ -663,28 +663,35 @@ return $aVars;
 add_filter('query_vars', 'add_query_vars');
 
 
-/*function add_rewrite_rules($aRules) {
-$aNewRules = array('residential-properties/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]&locality=$matches[3]&type=$matches[4]');
-$aRules = $aNewRules + $aRules;
-return $aRules;
-}
- 
-// hook add_rewrite_rules function into rewrite_rules_array
-add_filter('rewrite_rules_array', 'add_rewrite_rules');
-*/
 
 
 function properties_custom_rewrite_rules( $existing_rules ) {
   $new_rules = array(
-    'residential-properties/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]&locality=$matches[3]&type=$matches[4]',
+    'residential-properties/ongoing/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&city=$matches[1]&locality=$matches[2]&type=$matches[3]',
+    'residential-properties/completed/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&city=$matches[1]&locality=$matches[2]&type=$matches[3]',
 
-    'residential-properties/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]&locality=$matches[3]',
+    'residential-properties/ongoing/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&city=$matches[1]&locality=$matches[2]',
+    'residential-properties/completed/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&city=$matches[1]&locality=$matches[2]',
 
-    'residential-properties/([^/]+)/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]&city=$matches[2]',
+    'residential-properties/ongoing/([^/]+)/?$' => 'index.php?pagename=residential-properties&city=$matches[1]',
+    'residential-properties/completed/([^/]+)/?$' => 'index.php?pagename=residential-properties&city=$matches[1]',
 
-    'residential-properties/([^/]+)/?$' => 'index.php?pagename=residential-properties&status=$matches[1]'
+    'residential-properties/ongoing/?$' => 'index.php?pagename=residential-properties',
+    'residential-properties/completed/?$' => 'index.php?pagename=residential-properties'
   );
-  $existing_rules = $new_rules + $existing_rules;
-  return $existing_rules;
+
+   $existing_rules = $new_rules + $existing_rules;
+ 
+   return $existing_rules;
 }
-//add_filter('rewrite_rules_array', 'properties_custom_rewrite_rules');
+add_filter('rewrite_rules_array', 'properties_custom_rewrite_rules');
+
+
+
+
+
+
+
+
+
+
