@@ -377,7 +377,7 @@ function checkIfInView(element){
         if ($('body *').hasClass('tabul_hold')) {
             $('#prk_ajax_container .tabul_hold tr td').click(function(event) {
                 $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
-                if (!($(this).hasClass('blue_bg'))) {
+                if (!($(this).hasClass('blue_bg')) && !($(this).hasClass('hold_bg'))) {
 
 
                     $partop = $(this).parents('.tabb.y.ui-tabs').offset().top;
