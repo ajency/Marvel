@@ -637,7 +637,7 @@ function popup28579_load_on_arvhices( $is_loadable, $popup_id ) {
   } */
   
   // If its CPT archive for post type 'portfolio'
-  if($popup_id == 3291 && (is_post_type_archive( 'residential-property' )  ||  is_post_type_archive( 'commercial-property' )  )     ) {
+  if( ($popup_id == 3291 || $popup_id == 3293 || $popup_id == 847) && (is_post_type_archive( 'residential-property' )  ||  is_post_type_archive( 'commercial-property' )  )     ) {
     return true;
    
   }
