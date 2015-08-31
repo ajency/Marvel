@@ -1227,6 +1227,8 @@ if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
                 console.log('ALL Commercial PROPERTIES')
                 console.log(commercial_properties)
 
+                jQuery('.formidable_contact_form').find("#field_ky_contact1city").append('<option value="">Select</option>');
+
 
                  if(_.size(residential_properties)>0){
 
@@ -1239,8 +1241,7 @@ if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
                     })                    
 
                     residential_properties_options = residential_properties_options + '</optgroup>';
-                    //alert(residential_properties_options)
-
+                    
                     jQuery('.formidable_contact_form').find("#field_ky_contact1city").append(residential_properties_options);
 
                 } 
@@ -1255,8 +1256,7 @@ if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
                         commercial_properties_options+= "<option  post_type='commercial-property' value='"+city_vl+"'>"+city_vl+"</option>" ; 
                     })                    
 
-                    commercial_properties_options = commercial_properties_options + '</optgroup>';
-                    //alert(residential_properties_options)
+                    commercial_properties_options = commercial_properties_options + '</optgroup>';                     
 
                     jQuery('.formidable_contact_form').find("#field_ky_contact1city").append(commercial_properties_options);
 
