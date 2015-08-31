@@ -98,9 +98,11 @@ Template Name: Page - No-Resi Projects List New
         var JSVERSION = '<?php echo JSVERSION; ?>';
 
 
-        
-        <?php if(isset($wp_query->query_vars['status'])) { ?>
-          var queryStatus = '<?php echo urldecode($wp_query->query_vars["status"]); ?>';
+
+        <?php if (in_array("ongoing", explode("/",$_SERVER['REQUEST_URI']))){ ?>
+          var queryStatus = 'ongoing';
+        <?php }else if(in_array("completed", explode("/",$_SERVER['REQUEST_URI']))){ ?>
+          var queryStatus = 'completed';
         <?php } ?>
 
         <?php if(isset($wp_query->query_vars['city'])) { ?>
@@ -126,7 +128,6 @@ Template Name: Page - No-Resi Projects List New
 */ ?>
 
 
- 
 
 <?php 
 require_once(ABSPATH."/wp-content/themes/samba-child/modules/commonJs.php") ;
