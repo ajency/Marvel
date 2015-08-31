@@ -29,21 +29,47 @@
                 _.bindAll(this ,'render','searchProperties','display_map');
                /*  _.bindAll(this ,'renderForm'); */
 
-               console.log('SEARCH OPTIONS:-----')
-               console.log(args);
+               //console.log('SEARCH OPTIONS:-----')
+               //console.log(args);
 
 
                 if(!_.isUndefined(args)){
 
-                  this.selectedStatus   = args.pstatus;
-                  this.selectedCity     = args.city;
-                  this.selectedLocality = args.locality;
+                  if(typeof queryStatus !== "undefined"){
+                    this.selectedStatus   = queryStatus.replace(/^[a-z]/, function(m){ return m.toUpperCase() });
+                  }
+                  
+                  if(typeof queryCity !== "undefined" ){
+                    if(queryCity != 'city_all'){
+                      this.selectedCity     = queryCity;
+                      this.selectedCityId = jQuery('#dd_city option:selected').val();
+                      console.log("GOT IT: "+this.selectedCityId);
+
+                    }else{
+                      this.selectedCity = '';
+                    }                    
+                  }else{
+                    this.selectedCity = '';
+                  }
+
+                  if(typeof queryLocality !== "undefined" ){
+                    if(queryLocality != 'locality_all'){
+                      this.selectedLocality     = queryLocality;
+                    }else{
+                      this.selectedLocality = '';
+                    }                    
+                  }else{
+                    this.selectedLocality = '';
+                  }
+
+                  
+                  
                   this.selectedType     = args.type;
                   this.post_type        = args.post_type;
 
                 }
 
-console.log(this.selectedStatus)
+//console.log(this.selectedStatus)
 
                 if(_.isUndefined(getAppInstance().searchOptions)){
                     jQuery.ajax(AJAXURL,{
@@ -236,9 +262,9 @@ console.log(this.selectedStatus)
 
 
 
-console.log('getAppInstance().residentialPropertyCollection:===================================')
-console.log(getAppInstance().residentialPropertyCollection)
-console.log(this.post_type)
+//console.log('getAppInstance().residentialPropertyCollection:===================================')
+//console.log(getAppInstance().residentialPropertyCollection)
+//console.log(this.post_type)
 
 
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
@@ -262,8 +288,8 @@ console.log(this.post_type)
 
                         propertyCollection.fetch({
                             success: function(collection) { // the fetched collection!
-console.log(' getAppInstance()residentialPropertyCollection')
-console.log( getAppInstance().residentialPropertyCollection)
+//console.log(' getAppInstance()residentialPropertyCollection')
+//console.log( getAppInstance().residentialPropertyCollection)
 
                                  if(!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
                                      jQuery('.top_map').addClass('current');
@@ -281,7 +307,7 @@ console.log( getAppInstance().residentialPropertyCollection)
                                     if(_.isUndefined(getAppInstance().projectlistView ))
                                         getAppInstance().projectlistView = new projectsListingsView(self);
                                     else{
-                                      console.log('self.searchProperties() :-------------------------------------1');
+                                      //console.log('self.searchProperties() :-------------------------------------1');
                                         self.searchProperties()
                                       }
                                 }
@@ -309,7 +335,7 @@ console.log( getAppInstance().residentialPropertyCollection)
                                     if(_.isUndefined(getAppInstance().projectlistView ))
                                         getAppInstance().projectlistView = new projectsListingsView(self);
                                     else{
-                                      console.log('self.searchProperties() :-------------------------------------2')
+                                      //console.log('self.searchProperties() :-------------------------------------2')
                                       self.searchProperties()
                                     }
 
@@ -328,7 +354,7 @@ console.log( getAppInstance().residentialPropertyCollection)
 
 
     var self = this;
-                console.log('display map');;
+                //console.log('display map');;
 
                 jQuery('.top_map').addClass('current');
                 jQuery('.top_list').removeClass('current')
@@ -384,8 +410,8 @@ console.log( getAppInstance().residentialPropertyCollection)
 
                 if( prop_type!='' && !_.isNull(prop_type)){
 
-                     console.log('MAP PROPERTY is not NULL & NOt Empty:------------------- SEARCH COLLECTIONS ')
-                     console.log(search_collections)
+                     //console.log('MAP PROPERTY is not NULL & NOt Empty:------------------- SEARCH COLLECTIONS ')
+                     //console.log(search_collections)
 
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
@@ -406,8 +432,8 @@ console.log( getAppInstance().residentialPropertyCollection)
 
 
                 var properties = search_collections;
-                console.log('properties:----------map')
-                console.log(properties)
+                //console.log('properties:----------map')
+                //console.log(properties)
 
                 var marker_image = SITEURL+'/wp-content/themes/samba-child/img/map_pin_norm.png';
                 var marker_image2 = SITEURL+'/wp-content/themes/samba-child/img/map_pin_selected.png';
@@ -491,7 +517,7 @@ console.log( getAppInstance().residentialPropertyCollection)
                             var iwOuter = jQuery(this);
                             var iwBackground = iwOuter.prev();
                             var acwi = window.innerWidth ? window.innerWidth : jQuery(window).width();
-                            console.log('actual screen width: ' + acwi);
+                            //console.log('actual screen width: ' + acwi);
                             // Remove the background shadow DIV
                             iwBackground.children(':nth-child(2)').css({'display' : 'none'});
                             // Remove the white background DIV
@@ -751,7 +777,7 @@ infowindow.open(map,marker);
 
             make_div_draggable : function(){
               if(jQuery(".draggable").length>0){
-                                console.log('draggable')
+                                //console.log('draggable')
                                 jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",appendTo: 'body', containment: 'parent',scroll: false,iframeFix: true,zIndex: 1000,
 
 
@@ -765,7 +791,7 @@ infowindow.open(map,marker);
                             });
                         }
                         else{
-                            console.log('no dragables')
+                            //console.log('no dragables')
                         }
             },
 
@@ -777,8 +803,8 @@ infowindow.open(map,marker);
              */
             render : function(evt) {
 
-                console.log('render getAppInstance().searchOptions');
-                console.log(getAppInstance().searchOptions)
+                //console.log('render getAppInstance().searchOptions');
+                //console.log(getAppInstance().searchOptions)
 
                  var self =this;
 
@@ -856,7 +882,7 @@ infowindow.open(map,marker);
 
                   if( prop_type!='' && !_.isNull(prop_type)){
 
-                     console.log(search_collections)
+                     //console.log(search_collections)
 
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
@@ -885,8 +911,8 @@ infowindow.open(map,marker);
                 if(_.size(search_collections)>0){
                       search_collections = _.sortBy(search_collections, function(obj){ return parseInt(obj.get('menu_order')) });
                 }
-                console.log('SORTED BY MENU ORDER')
-                console.log(search_collections)
+                //console.log('SORTED BY MENU ORDER')
+                //console.log(search_collections)
 
                  //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
                     if( !_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true) {
@@ -926,7 +952,7 @@ infowindow.open(map,marker);
 //                if(jQuery(".draggable").length>0){
                 if(jQuery(".draggable").length>0 && self.post_type=="residential-property"){
 
-                    console.log('draggable')
+                    //console.log('draggable')
                     jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone", cursorAt: { top: 10, left: 10 },
 
                         start: function(event, ui) {
@@ -938,7 +964,7 @@ infowindow.open(map,marker);
                     });
                 }
                 else{
-                    console.log('no dragables')
+                    //console.log('no dragables')
                 }
 
 
@@ -949,10 +975,10 @@ infowindow.open(map,marker);
                    jQuery('.project-list.row .single_p_w').each(function() {
                        //console.log('winscroll: ' + $(window).scrollTop() + ' this.offset: ' + $(this).offset().top);
                        if (jQuery(window).scrollTop() < (jQuery(this).offset().top - 150) && jQuery(this).offset().top < (jQuery(window).scrollTop() + jQuery(window).height())) {
-                           console.log('adds class visi')
+                           //console.log('adds class visi')
                            jQuery(this).addClass('visigoth');
                        } else {
-                           console.log('removes class visi')
+                           //console.log('removes class visi')
                            jQuery(this).removeClass('visigoth');
                        }
                    });
@@ -1000,10 +1026,14 @@ infowindow.open(map,marker);
             load_locality_options : function(evt){
 
 
-                var event_val = jQuery(evt.target).val();
+                //var event_val = jQuery(evt.target).val();
+                //var event_val = jQuery('option:selected',"#dd_city").attr('data-id');
+                var event_val = 2;
+                
 
-                console.log('load_locality_options')
-                console.log(getAppInstance().searchOptions)
+                
+                //console.log('load_locality_options')
+                //console.log(getAppInstance().searchOptions)
                 var localities_options = [];
                 var sorted_localities_options = [];
 
@@ -1016,17 +1046,17 @@ infowindow.open(map,marker);
 
                 }
 
-                console.log('localities_options:---------------------------------------')
-                console.log(localities_options)
+                //console.log('localities_options:---------------------------------------')
+                //console.log(localities_options)
 
                 if(_.size(localities_options)>0){
                       sorted_localities_options = _.sortBy(localities_options, function(obj){ return obj.name.toLowerCase() });
                 }
-                console.log('sorted_localities_options:---------------------------------------')
-                console.log(sorted_localities_options)
+                //console.log('sorted_localities_options:---------------------------------------')
+                //console.log(sorted_localities_options)
 
-                            console.log('event_val:---------------------------------------------')
-                            console.log(event_val)
+                            //console.log('event_val:---------------------------------------------')
+                            //console.log(event_val)
 
                             jQuery('#dd_locality').empty();
                             jQuery('#dd_locality').append("<option value=''>Locality : All</option>")
@@ -1039,19 +1069,16 @@ infowindow.open(map,marker);
 
                             _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
-                               if(parseInt(vl_localities.city_id)==parseInt(event_val)){
+                               //if(parseInt(vl_localities.city_id)==parseInt(event_val)){
 
                                     var display_locality_name = vl_localities.name;
-                                    if(_.size(vl_localities.name)>14){
-                                      //display_locality_name =  display_locality_name.substr(0, 13)+'...';
-
-                                    }
-                                    jQuery('#dd_locality').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")
-                                    jQuery('#home_location2').append("<option value='"+vl_localities.ID+"'>"+display_locality_name+"</option>")
+                                    
+                                    jQuery('#dd_locality').append("<option value='"+vl_localities.name+"'>"+display_locality_name+"</option>")
+                                    jQuery('#home_location2').append("<option value='"+vl_localities.name+"'>"+display_locality_name+"</option>")
 
 
 
-                                }
+                                //}
                             })
 
             },
@@ -1072,13 +1099,13 @@ infowindow.open(map,marker);
 
               var search_opt = '';
 
-              var prop_status     = jQuery('#dd_status').val();
+              var prop_status     = jQuery('#dd_status').val().toLowerCase();
               var prop_city       = jQuery('#dd_city').val();
-              var prop_locality   = jQuery('#dd_locality').val();
+              var prop_locality   = jQuery('#dd_locality').val()
               var prop_type       = jQuery('#dd_type').val();
 
 
-              if(prop_status.toLowerCase()=='completed'){
+              if(prop_status=='completed'){
                 jQuery('.top-compar').hide();
                 jQuery('#projects_listings').addClass('completed_status_projects')
               }
@@ -1089,17 +1116,17 @@ infowindow.open(map,marker);
               }
 
               if(!_.isUndefined(prop_status) && prop_status !='' )
-                search_opt = search_opt + '/st/'+prop_status;
+                search_opt = search_opt + '/'+prop_status;
 
               if(!_.isUndefined(prop_city) && prop_city !='' )
-                search_opt = search_opt + '/ct/'+prop_city;
+                search_opt = search_opt + '/'+prop_city;
 
 
               if(!_.isUndefined(prop_locality) && prop_locality!='')
-                search_opt = search_opt+'/loc/'+prop_locality;
+                search_opt = search_opt+'/'+prop_locality;
 
               if(!_.isUndefined(prop_type) && prop_type!='')
-                search_opt = search_opt+'/type/'+prop_type;
+                search_opt = search_opt+'/'+prop_type;
 
               var evt_type =   typeof jQuery(evt.target).attr('href');
               if(!_.isUndefined(getAppInstance().commercialPropertyCollection)){
@@ -1111,7 +1138,7 @@ infowindow.open(map,marker);
 
               if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
 
-                  RedirectUrl = RedirectUrl + '#' ;
+                  RedirectUrl = RedirectUrl;
 
               }
               else if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){
@@ -1127,7 +1154,7 @@ infowindow.open(map,marker);
 
 
 
-              console.log('REDIRECT URL :  '+RedirectUrl+search_opt)
+              //console.log('REDIRECT URL :  '+RedirectUrl+search_opt)
 
 
               location.assign(RedirectUrl+search_opt) ;

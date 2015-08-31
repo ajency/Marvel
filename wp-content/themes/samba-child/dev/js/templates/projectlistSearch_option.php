@@ -55,7 +55,7 @@ console.log(selectedStatus);
 
                 _.each(sorted_cities_options,function(vl,ky){
 
-                %><option value="<%=vl.ID%>"   <% if(selectedCity == vl.ID) {%> selected <% }%> ><%=vl.name%></option>
+                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name) {%> selected <% }%> ><%=vl.name%></option>
 
                 <% })
                 }
@@ -78,9 +78,11 @@ console.log(selectedStatus);
                     var sorted_locality_options  = _.sortBy(locality_options, function(obj){ return obj.name.toLowerCase() });
 
                     _.each(locality_options,function(vl__locality,ky__locality){
-                        if(selectedCity == vl__locality.city_id) {
+                        var selected_city_id = jQuery('#dd_city option:selected').data('id');
+                        
+                        if(selected_city_id == vl__locality.city_id) {
 
-                        %><option value="<%=vl__locality.ID%>"  <% if(vl__locality.ID==selectedLocality) { %> selected <% } %>><%=vl__locality.name%></option>
+                        %><option value="<%=vl__locality.name%>"  <% if(vl__locality.name==selectedLocality) { %> selected <% } %>><%=vl__locality.name%></option>
                         <% }
 
 
