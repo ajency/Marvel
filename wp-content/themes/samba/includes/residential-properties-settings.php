@@ -930,7 +930,8 @@ add_action( 'wp_ajax_save_property_type', 'save_property_type' );
 function delete_property_type(){
 
 	$property_type_id = $_REQUEST['data']['type_id'];
-	$post_type 		  = $_REQUEST['current_post_type'];
+	$post_type 		  = isset($_REQUEST['current_post_type'])?$_REQUEST['current_post_type']:$_REQUEST['data']['post_type'];
+
 
 	if($post_type=="residential-property"){
 		$meta_key = 'residential-property-type' ; 		
@@ -940,7 +941,7 @@ function delete_property_type(){
 	}
 
 	$current_property_types = maybe_unserialize(get_option($meta_key));
-	
+	 
 
 	$found_del_type = false ;
 
