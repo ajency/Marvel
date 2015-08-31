@@ -2801,6 +2801,9 @@ h6 {
 .top_head .box.blue_bg {
   border-color: #d2d2d2;
 }
+.top_head .box.hold_bg {
+  border-color: #F0EAE6;
+}
 .top_head .text {
   margin-right: 16px;
   color: #999;
@@ -3036,7 +3039,7 @@ h6 {
   float: right;
 }
 .popup_tab_data .btncol {
-  margin-top: 8px;
+  margin-top: 3px;
 }
 .popup_tab_data .btncol a.wpb_button_a {
   display: inline-block;
@@ -3045,7 +3048,9 @@ h6 {
 .popup_tab_data .btncol a.wpb_button_a span {
   font-size: 13px;
   margin-bottom: 0;
-  padding: 8px 13px;
+  padding: 8px 13px !important;
+  height: 36px !important;
+  line-height: 18px !important;
 }
 .popup_tab_data .btncol a.wpb_button_a span.left_b {
   margin-right: 4px;
@@ -3093,6 +3098,10 @@ h6 {
 }
 .blue_bg {
   background: #daeaec;
+  color: #666666;
+}
+.hold_bg {
+  background: #F0EAE6;
   color: #666666;
 }
 .inner-panels {

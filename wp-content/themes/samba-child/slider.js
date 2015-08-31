@@ -378,6 +378,8 @@ function checkIfInView(element){
             $('#prk_ajax_container .tabul_hold tr td').click(function(event) {
                 $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
                 if (!($(this).hasClass('blue_bg'))) {
+
+
                     $partop = $(this).parents('.tabb.y.ui-tabs').offset().top;
                     if ($(window).width() > 769) {
                         $left = $('#menu_section').width();
@@ -397,6 +399,33 @@ function checkIfInView(element){
                     }).show();
 
                     $(this).addClass('opened');
+
+                    var flatArea = $(this).attr('data-flatArea');
+                    var terraceArea = $(this).attr('data-terraceArea');
+                    var sellableArea = $(this).attr('data-sellableArea');
+                    var floorPlan = $(this).attr('data-floorPlan');
+                    var plantId = $(this).attr('data-plantId');
+                    var building = $(this).attr('data-building');
+                    var flatNo = $(this).attr('data-flatNo');
+
+                    var popup_data = '<div class="pull-left left_d">Flat Area</div>';
+                        popup_data += '<div class="pull-left right_d">'+flatArea+'</div>';
+                        popup_data += '<div class="clearfix"></div>';
+                        popup_data += '<div class="pull-left left_d">Terrace Area</div>';
+                        popup_data += '<div class="pull-left right_d">'+terraceArea+'</div>';
+                        popup_data += '<div class="clearfix"></div>';
+                        popup_data += '<div class="pull-left left_d">Total Sellable Area</div>';
+                        popup_data += '<div class="pull-left right_d">'+sellableArea+'</div>';
+                        popup_data += '<div class="clearfix"></div>';
+                        popup_data += '<div class="btncol">';
+                            popup_data += '<a class="wpb_button_a image-popup-no-margins" title="2D Layout" href="'+floorPlan+'.jpg"><span style="padding: 8px 13px; font-size: 13px;" class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>';
+                            popup_data += '<a class="wpb_button_a" title="Availability" href="#"><span style="padding: 7px 13px; font-size: 13px;" class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>';
+                        popup_data += '</div>';
+
+                    $('.popup_tab_data').empty();
+                    $('.popup_tab_data').html(popup_data);
+
+
                 } else {
                     $('.popup_tab_data').css({
                         top: 0,
@@ -1143,5 +1172,31 @@ jQuery(document).ready(function() {
             loadingcontinforms();
         }, 50);
 
+    });
+    jQuery(document).on('click, mousemove', function() {
+        setTimeout(function() {
+            jQuery('select').each(function() {
+                if (!(jQuery(this).prev('div').hasClass('elips-cont'))) {
+                    jQuery(this).before('<div class="elips-cont"></div>');
+                }
+            });
+            jQuery('.elips-cont').each(function() {
+                jQuery(this).text(jQuery(this).next('select').find('option:selected').text());
+            });
+        }, 0.3);
+    });
+    jQuery('select').each(function() {
+        jQuery(this).change(function() {
+            //jQuery(this).prev('.elips-cont').text(jQuery("option:selected", this).text());
+            var cont = jQuery('.elips-cont').parent('div');
+
+            setTimeout(function() {
+                jQuery('.elips-cont').each(function() {
+                    var par = jQuery(this).parent('div');
+                    jQuery(this).text(par.find('select').find('option:selected').text());
+                });
+            }, 0.7);
+
+        });
     });
 });
