@@ -66,6 +66,7 @@ foreach ($all_residential_properties as $key_property => $value_property) {
 }
 
 $json_residential_properties = json_encode($residential_properties) ;
+$current_post_type           =  get_post_type();
 
 ?>
 <script type="text/javascript">
@@ -75,7 +76,8 @@ $json_residential_properties = json_encode($residential_properties) ;
 <div id="main_block" class="block_with_sections hideTitle page-<?php echo get_the_ID(); ?>">
 
 <input type="hidden" name="current_property_title" id="current_property_title" value="<?php echo $current_page_title; ?>"  />
-<input type="hidden" name="interval_id_auto_popup"  id="interval_id_auto_popup" value="" />
+<input type="hidden" name="interval_id_auto_popup"  id="interval_id_auto_popup" value="<?php echo $current_post_type;?>" />
+<input type="hidden" name="current_post_type"  id="current_post_type" value="<?php echo $current_post_type ; ?>" />
     <div id="full_fi_c">
         <div class="full_fi_title">
             <p class="f_f_t">

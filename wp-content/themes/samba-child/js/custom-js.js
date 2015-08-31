@@ -659,17 +659,17 @@ console.log(options) */
 
 
 
-    function show_nearby_properties(){
+    function show_nearby_properties(post_type){
         console.log('show nearby properties')
 
         if(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
 
-            console.log('window residential_properties')
-            console.log(window.residential_properties)
+            console.log('window All properties')
+            console.log(window.all_properties)
             console.log('Post ID :'+jQuery('#post_id').val())
 
 
-            var current_property = _.first( _.where(window.residential_properties,{id:parseInt(jQuery('#post_id').val()) }) )
+            var current_property = _.first( _.where(window.all_properties,{id:parseInt(jQuery('#post_id').val()) }) )
             console.log('current_property')
             console.log(current_property)
 
@@ -698,24 +698,31 @@ console.log(options) */
             });
 
             */
-            var this_area_cnt = 0;
+            var this_area_cnt   = 0;
             var nearby_area_cnt = 0;
-            var nearby_area = [];
-            var this_area = [];
+            var nearby_area     = [];
+            var this_area       = [];
+            var this_area_id    = [];
+            var nearby_area_ids = [];
 
 
-            _.each(window.residential_properties,function(resprop_v,resprop_k){
+            var post_type_properties = _.where(window.all_properties,{property_status:'Ongoing',post_type:post_type} )
+
+            _.each(post_type_properties,function(resprop_v,resprop_k){
 
                 var property_map_address  = _.first(resprop_v.map_address);
 
                 var distance = getDistance(current_property_map_address,property_map_address);
 
                 if(parseFloat(distance)  <=2000 && distance != 0 ){
-                    this_area[this_area_cnt] = resprop_v ;
+                    
+                    this_area[this_area_cnt]    = resprop_v ;
+                    this_area_id[this_area_cnt] = resprop_v.id
                     this_area_cnt = this_area_cnt + 1;
                 }
                 else if(parseFloat(distance)  >2000 && parseFloat(distance)  <5000 ){
-                    nearby_area[nearby_area_cnt] = resprop_v ;
+                    nearby_area[nearby_area_cnt]      = resprop_v ;
+                    nearby_area_ids[nearby_area_cnt]  = resprop_v.id ;
                     nearby_area_cnt = nearby_area_cnt + 1;
                 }
 
@@ -733,6 +740,9 @@ console.log(options) */
              var closer_properties ="";
 
             if(_.size(this_area)>0 || _.size(nearby_area) >0){
+
+                var all_near_closer_properties = this_area_id.join() + nearby_area_ids.join() ;
+
 
                 closer_properties = "There " ;
                 var properties_txt = " properties ";
@@ -764,6 +774,10 @@ console.log(options) */
 
 
                 jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html(closer_properties)
+                jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_content_element')
+                    .find('.wpb_button_a')
+                    .attr('href',SITE_URL+'/residential-properties/ongoing/city_all/locality_all/type_all/'+all_near_closer_properties);
+
 
             }
 
@@ -1271,16 +1285,26 @@ if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
 
 
 
-get_cities_properties({show_cities_formidable_contact:true}) 
+var cities_args = {};
+
+cities_args['show_cities_formidable_contact'] = true
+
+
+if(jQuery('#current_post_type').length>0){
+    cities_args['post_type'] = jQuery('#current_post_type').val();
+    cities_args['nearby_properties'] = true;
+}
+
+get_cities_properties(cities_args) 
 
 
 function get_cities_properties(args){
 
+
     var nearby_properties = (!_.isUndefined(args.nearby_properties)? args.nearby_properties : false );
     var show_cities_formidable_contact  = (!_.isUndefined(args.show_cities_formidable_contact)? args.show_cities_formidable_contact : false );
 
-
-      var my_data = { 'post_type' :'both'
+    var my_data = { 'post_type' :'both'
                      }
 
     if(_.isUndefined(window.all_properties)){
@@ -1295,9 +1319,9 @@ function get_cities_properties(args){
                             if(response.code == 'OK' ){
                                 window.all_properties =  response.data;
 
-                              /*  if(nearby_properties==true){
-                                      show_nearby_properties();      
-                                }*/
+                                if(nearby_properties==true){
+                                      show_nearby_properties(args.post_type);      
+                                } 
                                 if(show_cities_formidable_contact==true){
                                     populate_properties_cities_on_contact()    
                                 }                                
@@ -1311,7 +1335,7 @@ function get_cities_properties(args){
     else{
 
         if(nearby_properties==true){
-              show_nearby_properties();      
+              show_nearby_properties(args.post_type);      
         }
         if(show_cities_formidable_contact==true){
             populate_properties_cities_on_contact()    
