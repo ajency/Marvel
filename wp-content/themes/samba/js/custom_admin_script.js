@@ -19,7 +19,8 @@ if (delete_response !== true) {
     var self = this; 
     var del_type_id = jQuery(this).attr('type_id');  
 
-     var my_data = { 'type_id'  : del_type_id ,
+     var my_data = { 'type_id'    : del_type_id ,
+                     'post_type' : jQuery('#current_post_type').val() 
                    }
 
 

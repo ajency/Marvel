@@ -1346,6 +1346,60 @@ function get_cities_properties(args){
 }
 
 
+jQuery('#field_givedetails_city').live("click",function(evt){
+
+    var localities  = window.search_options.locality.localities;
+
+    var selected_city_id =  jQuery('option:selected', this).attr('attr_cityid');
+
+    jQuery('#field_givedetails_locality').empty();
+    jQuery('#field_givedetails_locality').append('<option value="">Select</option>')
+
+    _.each(localities,function(options_vl,options_ky){
+
+        if(options_vl.city_id == selected_city_id ){
+            jQuery('#field_givedetails_locality').append('<option value="'+options_vl.name+'">'+options_vl.name+'</option>')
+        }        
+    })
+
+
+})
+
+jQuery('.popmake-give-details').live("click",function(evt){
+
+    console.log('*#*#*#*#*#*##*#*#*#*#*#*#*#*#*#*#**#*#*#*##*#*#*#*#*')
+    console.log(window.search_options );
+
+    var cities      = window.search_options.cities.cities ;
+    var localities  = window.search_options.locality.localities;
+    var types       = window.search_options.type;
+
+    jQuery('#form_frm_givedetails').find('#field_givedetails_city').empty();
+    jQuery('#form_frm_givedetails').find('#field_givedetails_locality').empty();
+
+    jQuery('#form_frm_givedetails').find('#field_givedetails_city').append('<option value="" attr_cityid="" >Select</option>');
+
+    _.each(cities,function(options_vl,options_ky){
+
+        jQuery('#form_frm_givedetails').find('#field_givedetails_city').append('<option  attr_cityid="'+options_vl.ID+'"  value="'+options_vl.name+'">'+options_vl.name+'</option>');
+
+    })
+
+
+    var display_type = "";
+    jQuery('#form_frm_givedetails').find('#field_givedetails_type').empty(); 
+
+    jQuery('#form_frm_givedetails').find('#field_givedetails_type').append('<option value=""   >Select</option>');
+
+    _.each(types,function(options_typesvl,options_typesky){
+
+        display_type = options_typesvl.property_unit_type+' '+options_typesvl.property_type_name ;
+
+        jQuery('#form_frm_givedetails').find('#field_givedetails_type').append('<option   value="'+display_type+'">'+display_type+'</option>');
+
+    })
+
+})
 
 
 

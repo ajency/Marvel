@@ -442,7 +442,18 @@ add_action( 'wp_ajax_save_property_unit_type', 'save_property_unit_type' );
 function delete_property_unit_type(){
 
 	$property_unit_type_id = $_REQUEST['data']['type_id'];
-	$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+	$property_post_type    = $_REQUEST['data']['post_type'];
+
+
+	if($property_post_type=='residential-property'){
+
+		$unit_type_meta_key =  'residential-property-unit-type';
+	}
+	else{
+		$unit_type_meta_key =  'commercial-property-unit-type';
+	}
+
+	$current_property_unit_types = maybe_unserialize(get_option($unit_type_meta_key));
 
 	$found_del_type = false ;
 
@@ -460,7 +471,7 @@ function delete_property_unit_type(){
 	$updated_new_property_unit_types =  array('max_property_unit_types' => $current_property_unit_types['max_property_unit_types'],
 									 'property_unit_types'	  => $updated_property_unit_types);
 
-	update_option('residential-property-unit-type',maybe_serialize($updated_new_property_unit_types));
+	update_option($unit_type_meta_key,maybe_serialize($updated_new_property_unit_types));
 
 	wp_send_json(array('success'=>true,'types'=>$updated_property_unit_types ));
 }
