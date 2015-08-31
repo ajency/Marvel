@@ -1004,8 +1004,8 @@ function get_custom_address_elements_html($address_field_data){
         	<div class="admin_button">
         		<input type="button" value="Geocode" class="button button-primary button-large" onclick="codeAddress()">
         	</div>
-        </div>
     </div>
+    
 
     <div class="set_admin_input">
     	<div class="admin_label">

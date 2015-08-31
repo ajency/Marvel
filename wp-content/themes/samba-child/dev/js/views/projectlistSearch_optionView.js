@@ -188,27 +188,28 @@ console.log(this.selectedStatus)
                             jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions, selected:seldata }));
 
                             self.load_search_filter_values_mobile(getAppInstance().searchOptions, seldata);
+                            
                         }
                         else{
-
-                            if(_.isUndefined(self.selectedStatus))
+                          
+                            if(_.isUndefined(self.selectedStatus) || _.isNull(self.selectedStatus) )
                               jQuery('#dd_status').val('Ongoing');                         
                             else
                               jQuery('#dd_status').val(self.selectedStatus);
                             
-                            if(_.isUndefined(self.selectedStatus))
+                            if(_.isUndefined(self.selectedCity) || _.isNull(self.selectedCity) )
                               jQuery('#dd_city').val('');                          
                             else
                               jQuery('#dd_city').val(self.selectedCity); 
 
 
-                            if(_.isUndefined(self.selectedLocality))
+                            if(_.isUndefined(self.selectedLocality) || _.isNull(self.selectedLocality) )
                               jQuery('#dd_locality').val('');                        
                             else
                               jQuery('#dd_locality').val(self.selectedLocality);
 
 
-                            if(_.isUndefined(self.selectedType))
+                            if(_.isUndefined(self.selectedType) || _.isNull(self.selectedType) )
                               jQuery('#dd_type').val('');                  
                             else
                               jQuery('#dd_type').val(self.selectedType);                  
