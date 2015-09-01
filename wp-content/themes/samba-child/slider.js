@@ -834,7 +834,7 @@ function checkIfInView(element){
             if ($(window).width() > 1280) {
                 if ($tabs >= 8) {
                     console.log($tabs + ' is greater than 9');
-                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50).css('margin-bottom', 0);
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
@@ -847,6 +847,9 @@ function checkIfInView(element){
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
+                    $('.floorplans_tab ul.wpb_tabs_nav li').each(function() {
+                        $(this).css('width', $(this).width());
+                    });
                     runowl();
                 }
             } else if ($(window).width() <= 1110 && $(window).width() > 560) {
@@ -856,6 +859,7 @@ function checkIfInView(element){
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css('width', 'auto');
                     runowl();
                 }
             } else if ($(window).width() <= 550) {
@@ -865,17 +869,20 @@ function checkIfInView(element){
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
+                    $('.floorplans_tab ul.wpb_tabs_nav li').css('width', 'auto');
                     runowl();
                 }
             }
         }
         function runowl() {
             $(".floorplans_tab ul.wpb_tabs_nav").owlCarousel({
-                  items : 8,
-                  itemsDesktop : [1280, 7],
-                  itemsTablet : [1110, 5],
-                  itemsMobile : [560, 3],
+                  items : 6,
+                  // itemsDesktop : [1280, 5],
+                  // itemsTablet : [1110, 4],
+                  // itemsMobile : [560, 3],
+                  itemsCustom : [[0, 1], [360, 2], [480, 3], [560, 4], [1110, 5], [1280, 6]],
                   pagination : false,
+                  autoWidth : true,
                   navigation : true,
                   navigationText : ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>'],
                   rewindNav : false
@@ -888,6 +895,7 @@ function checkIfInView(element){
                     $(this).parent().addClass('ui-tabs-active ui-state-active');
                     $('div.wpb_tab').hide();
                     $($(this).attr('href')).show();
+                    $($(this).attr('href')).find('.ava_tog').eq(0).trigger('click');
                 });
         }
         if ($('div').hasClass('floorplans_tab')) {
