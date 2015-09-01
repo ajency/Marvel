@@ -212,10 +212,12 @@ function checkIfInView(element){
             $('.popmake').on('popmakeBeforeOpen', function () {
               $('html, body').css('overflow', 'hidden');
               $('html').css('height', $(window).height());
+              $('body').addClass('posrel');
             });
             $('.popmake').on('popmakeAfterClose', function () {
               $('html, body').css('overflow', 'visible');
               $('html').css('height', 'auto');
+              $('body').removeClass('posrel');
             });
         }
         popupmake_scrollbarhide();
