@@ -690,6 +690,62 @@ add_filter('rewrite_rules_array', 'properties_custom_rewrite_rules');
 
 
 
+function get_sap_data(){
+  global $post, $wpdb;
+
+  /*if(!is_singular( array( 'residential-property', 'commercial-property' ) )){
+    return;
+  }*/
+
+  $plant_id = get_post_meta($post->ID,'property-plant-id',true);
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $property_query = " SELECT * FROM ".$table_name." WHERE plant=".$plant_id."";
+  $sap_data = $wpdb->get_results($property_query,ARRAY_A);
+  return $sap_data;
+ }
+
+
+ function get_flat_type($code){
+  switch ($code) {
+    case "R1":
+        $type = 'Flat';
+        break;
+    case "R2":
+        $type = 'Duplex Flat';
+        break;
+    case "R3":
+        $type = 'Garden Flat';
+        break;
+    case "R4":
+        $type = 'Penthouse';
+        break;
+    case "R5":
+        $type = 'Villa';
+        break;
+    case "O1":
+        $type = 'Non IT Office Space';
+        break;
+    case "O2":
+        $type = 'Showroom';
+        break;
+    case "O3":
+        $type = 'Retailspace';
+        break;
+    case "Co":
+        $type = 'Commercial Spaces';
+        break;
+    default:
+        $type = 'Flat';
+}
+return $type;
+ }
+
+
+
+
+
+
+
 
 
 
