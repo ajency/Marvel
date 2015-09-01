@@ -1947,3 +1947,12 @@ input[type=number]::-webkit-outer-spin-button,
     border-radius: 0;
 }
 
+
+.top_head .box.hold_bg {
+    background-color: #F0E9E2;
+}
+.hold_bg {
+    background: #F0E9E2;
+    color: #666666;
+}
+
