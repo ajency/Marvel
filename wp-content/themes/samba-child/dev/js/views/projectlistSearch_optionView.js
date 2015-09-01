@@ -62,9 +62,19 @@
                     this.selectedLocality = '';
                   }
 
+                  if(typeof queryType !== "undefined" ){
+                    if(queryType != 'type_all'){
+                      this.selectedType     = queryType;
+                    }else{
+                      this.selectedType = '';
+                    }                    
+                  }else{
+                    this.selectedType = '';
+                  }
+
                   
                   
-                  this.selectedType     = args.type;
+                  //this.selectedType     = args.type;
                   this.post_type        = args.post_type;
 
                 }
@@ -871,18 +881,16 @@ infowindow.open(map,marker);
                 var search_collections = res_collection.models;
 
 
-                delete search_options['property_unit_type'] ;
+
+                /*delete search_options['property_unit_type'] ;
 
                 if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
                     var search_collections = res_collection.where(search_options )
-
 
                   var sel_search_collections = {};
                   var cnt_sel_search_collection = 0;
 
                   if( prop_type!='' && !_.isNull(prop_type)){
-
-                     //console.log(search_collections)
 
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
@@ -895,16 +903,11 @@ infowindow.open(map,marker);
                       }
                     })
                     search_collections = sel_search_collections;
-                  }
+                  }*/
 
-                /* var projectListingsTemplate2 = _.template(jQuery('#spn_propertieslistings').html());
 
-                                                jQuery('#proj_list').html(projectListingsTemplate2({propertiesdata : search_collections}));
-                */
 
-                /*var template2 = _.template(jQuery('#spn_propertieslistings').html(), {propertiesdata : search_collections});
-                console.log(template2);
-                jQuery("#proj_list").html(template2);*/
+                
                 jQuery('#projects_listings').attr('style','')
 
 
@@ -1025,10 +1028,12 @@ infowindow.open(map,marker);
 
             load_locality_options : function(evt){
 
+              var event_val = jQuery('option:selected', jQuery(evt.target)).attr('data-cityid');
+
 
                 //var event_val = jQuery(evt.target).val();
-                //var event_val = jQuery('option:selected',"#dd_city").attr('data-id');
-                var event_val = 2;
+                
+                
                 
 
                 
@@ -1069,7 +1074,7 @@ infowindow.open(map,marker);
 
                             _.each(sorted_localities_options, function(vl_localities,ky_localities){
 
-                               //if(parseInt(vl_localities.city_id)==parseInt(event_val)){
+                               if(parseInt(vl_localities.city_id)==parseInt(event_val)){
 
                                     var display_locality_name = vl_localities.name;
                                     
@@ -1078,7 +1083,7 @@ infowindow.open(map,marker);
 
 
 
-                                //}
+                                }
                             })
 
             },

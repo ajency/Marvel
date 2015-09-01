@@ -8,7 +8,7 @@ var selectedCity     = !_.isUndefined(selected.selectedCity)? selected.selectedC
 var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selectedLocality : '' ;
 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
 var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
-
+var selected_city_id ;
 
 console.log('SELECTED STATUS :--------------------------------------');
 console.log(selectedStatus);
@@ -55,6 +55,13 @@ console.log(selectedStatus);
 
                 _.each(sorted_cities_options,function(vl,ky){
 
+                    if(selectedCity == vl.name){
+
+
+                        selected_city_id = vl.ID;
+
+                    }
+
                 %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name) {%> selected <% }%> ><%=vl.name%></option>
 
                 <% })
@@ -69,7 +76,9 @@ console.log(selectedStatus);
          <option value="">Locality : All</option>
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
-            /* commented on 21june2015 _.each(data.citylocality,function(vl,ky){ */
+           
+             
+
                  var locality_options = _.isUndefined(data.locality.localities)?[]:data.locality.localities;
 
                 var sorted_locality_options = [];
@@ -78,7 +87,6 @@ console.log(selectedStatus);
                     var sorted_locality_options  = _.sortBy(locality_options, function(obj){ return obj.name.toLowerCase() });
 
                     _.each(locality_options,function(vl__locality,ky__locality){
-                        var selected_city_id = jQuery('#dd_city option:selected').data('id');
                         
                         if(selected_city_id == vl__locality.city_id) {
 
@@ -116,7 +124,7 @@ console.log(selectedStatus);
                 var sorted_type_options  = _.sortBy(data.type, function(obj){ return obj.property_unit_type.toLowerCase() });
 
             _.each(sorted_type_options,function(vl,ky){
-            %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_unit_type%> <%=vl.property_type_name%></option>
+            %><option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type) { %> selected <% } %>><%=vl.property_unit_type%> <%=vl.property_type_name%></option>
 
             <% }) %>
         </select>
