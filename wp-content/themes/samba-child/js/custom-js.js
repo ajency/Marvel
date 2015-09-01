@@ -465,7 +465,14 @@ console.log(options) */
                                             '                    <a href="#" class="proj_title">'+
                                             '                        <span class="title">'+servproperties_vl.Project_Name+'</span>'+
                                             '                        <span class="divi">|</span>'+
-                                            '                        <span class="loca">'+servproperties_vl.Area+'</span>'+
+                                            '                        <span class="loca">'+servproperties_vl.Area
+
+if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
+                    property_list_html +=", "+servproperties_vl.City
+}
+
+
+                    property_list_html +=   '</span>'+
                                             '                    </a>'+
                                             '                    <p class="excerpt">'+
                                                                     servproperties_vl.Flat_Description+
@@ -538,7 +545,8 @@ console.log(options) */
 
 
 
-                    }
+                   
+}
 
 
 

@@ -103,7 +103,12 @@ console.log('vl');
                                             <a href="#">
                                                 <span class="single_p_title">Marvel <%=f_prop.get('post_title')%></span>
                                                 <span class="single_p_light">|</span>
-                                                <span class="single_p_location"><%=f_prop.get('property_locality_name') %>  </span>
+                                                <span class="single_p_location"><%=f_prop.get('property_locality_name') %><% 
+                                                if(!_.isUndefined(f_prop.get('property_city_name')) && f_prop.get('property_city_name')!=''){
+                                                  %>, <%=f_prop.get('property_city_name') %>  
+                                                <% }
+                                                %>       
+                                                </span>
                                             </a>
                                         </p>
                                     </div>
@@ -138,7 +143,11 @@ console.log('vl');
                                             <a href="#">
                                                 <span class="single_p_title">Marvel <%=s_prop.get('post_title') %></span>
                                                 <span class="single_p_light">|</span>
-                                                <span class="single_p_location"><%=s_prop.get('property_locality_name') %>  </span>
+                                                <span class="single_p_location"><%=s_prop.get('property_locality_name') %><% 
+                                                if(!_.isUndefined(s_prop.get('property_city_name')) && s_prop.get('property_city_name')!=''){
+                                                  %>, <%=s_prop.get('property_city_name') %>  
+                                                <% }
+                                                %> </span>                                                 
                                             </a>
                                         </p>
                                     </div>

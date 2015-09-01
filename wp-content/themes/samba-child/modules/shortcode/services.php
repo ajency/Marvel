@@ -255,7 +255,12 @@ sort($uniq_no_of_bedrooms);
                                             <a href="#" class="proj_title">
                                                 <span class="title"><?php echo $value_rent_resale['Project_Name']; ?></span>
                                                 <span class="divi">|</span>
-                                                <span class="loca"><?php echo $value_rent_resale['Area']; ?></span>
+                                                <span class="loca"><?php 
+
+                                                echo $value_rent_resale['Area']; 
+                                                    if(isset($value_rent_resale['City']) && $value_rent_resale['City']!='')
+                                                    echo ", ".$value_rent_resale['City']; ?>
+                                                </span>
                                             </a>
                                             <p class="excerpt">
                                                 <?php echo $value_rent_resale['Flat_Description']; ?>
