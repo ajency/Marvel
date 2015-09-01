@@ -465,7 +465,14 @@ console.log(options) */
                                             '                    <a href="#" class="proj_title">'+
                                             '                        <span class="title">'+servproperties_vl.Project_Name+'</span>'+
                                             '                        <span class="divi">|</span>'+
-                                            '                        <span class="loca">'+servproperties_vl.Area+'</span>'+
+                                            '                        <span class="loca">'+servproperties_vl.Area
+
+if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
+                    property_list_html +=", "+servproperties_vl.City
+}
+
+
+                    property_list_html +=   '</span>'+
                                             '                    </a>'+
                                             '                    <p class="excerpt">'+
                                                                     servproperties_vl.Flat_Description+
@@ -538,7 +545,8 @@ console.log(options) */
 
 
 
-                    }
+                   
+}
 
 
 
@@ -955,7 +963,11 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
     }),
 
     jQuery('.popmake-popup-property-list').live('click',function(evt){
+        
         evt.preventDefault();
+
+        jQuery('.popmake-popup-property-list').removeClass('formidable_active');
+        jQuery(evt.target).addClass('formidable_active')
 
         if(jQuery(this).closest('.single_p_w').length>0){  // On REsidential properties listings page
             var property_title = jQuery(this).closest('.single_p_w').attr('property-title');
@@ -1241,7 +1253,7 @@ if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
                 console.log('ALL Commercial PROPERTIES')
                 console.log(commercial_properties)
 
-                jQuery('.formidable_contact_form').find("#field_ky_contact1city").append('<option value="">Select</option>');
+                jQuery('.formidable_contact_form').find("#field_ky_contact1city").append('<option value="">City</option>');
 
 
                  if(_.size(residential_properties)>0){
@@ -1352,13 +1364,15 @@ jQuery('#field_givedetails_city').live("click",function(evt){
 
     var selected_city_id =  jQuery('option:selected', this).attr('attr_cityid');
 
-    jQuery('#field_givedetails_locality').empty();
-    jQuery('#field_givedetails_locality').append('<option value="">Select</option>')
+    var current_form = jQuery(evt.target).closest('.frm_givedetails');
+
+    current_form.find('#field_givedetails_locality').empty();
+    current_form.find('#field_givedetails_locality').append('<option value="">Locality</option>')
 
     _.each(localities,function(options_vl,options_ky){
 
         if(options_vl.city_id == selected_city_id ){
-            jQuery('#field_givedetails_locality').append('<option value="'+options_vl.name+'">'+options_vl.name+'</option>')
+            current_form.find('#field_givedetails_locality').append('<option value="'+options_vl.name+'">'+options_vl.name+'</option>')
         }        
     })
 
@@ -1374,28 +1388,28 @@ jQuery('.popmake-give-details').live("click",function(evt){
     var localities  = window.search_options.locality.localities;
     var types       = window.search_options.type;
 
-    jQuery('#form_frm_givedetails').find('#field_givedetails_city').empty();
-    jQuery('#form_frm_givedetails').find('#field_givedetails_locality').empty();
+    jQuery('.frm_givedetails').find('#field_givedetails_city').empty();
+    jQuery('.frm_givedetails').find('#field_givedetails_locality').empty();
 
-    jQuery('#form_frm_givedetails').find('#field_givedetails_city').append('<option value="" attr_cityid="" >Select</option>');
-
+    jQuery('.frm_givedetails').find('#field_givedetails_city').append('<option value="" attr_cityid="" >City</option>');
+    jQuery('.frm_givedetails').find('#field_givedetails_locality').append('<option value="" attr_cityid="" >Locality</option>');
     _.each(cities,function(options_vl,options_ky){
 
-        jQuery('#form_frm_givedetails').find('#field_givedetails_city').append('<option  attr_cityid="'+options_vl.ID+'"  value="'+options_vl.name+'">'+options_vl.name+'</option>');
+        jQuery('.frm_givedetails').find('#field_givedetails_city').append('<option  attr_cityid="'+options_vl.ID+'"  value="'+options_vl.name+'">'+options_vl.name+'</option>');
 
     })
 
 
     var display_type = "";
-    jQuery('#form_frm_givedetails').find('#field_givedetails_type').empty(); 
+    jQuery('.frm_givedetails').find('#field_givedetails_type').empty(); 
 
-    jQuery('#form_frm_givedetails').find('#field_givedetails_type').append('<option value=""   >Select</option>');
+    jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option value=""   >Type</option>');
 
     _.each(types,function(options_typesvl,options_typesky){
 
         display_type = options_typesvl.property_unit_type+' '+options_typesvl.property_type_name ;
 
-        jQuery('#form_frm_givedetails').find('#field_givedetails_type').append('<option   value="'+display_type+'">'+display_type+'</option>');
+        jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option   value="'+display_type+'">'+display_type+'</option>');
 
     })
 

@@ -212,10 +212,12 @@ function checkIfInView(element){
             $('.popmake').on('popmakeBeforeOpen', function () {
               $('html, body').css('overflow', 'hidden');
               $('html').css('height', $(window).height());
+              $('body').addClass('posrel');
             });
             $('.popmake').on('popmakeAfterClose', function () {
               $('html, body').css('overflow', 'visible');
               $('html').css('height', 'auto');
+              $('body').removeClass('posrel');
             });
         }
         popupmake_scrollbarhide();
@@ -953,7 +955,7 @@ function checkIfInView(element){
         setEqualHeight($('.se_o_6 .wpb_wrapper .prk_service'));
 
         //same height downloads
-        setEqualHeight($('.do_3 .wpb_wrapper'));
+        setEqualHeight($('.do_3 > .row > .wpb_column > .wpb_wrapper'));
 
         //same height careers
         setEqualHeight($('.lisofwork .wpb_wrapper'));
@@ -1050,10 +1052,42 @@ function frmThemeOverride_frmAfterSubmit(e,f,b,a) {
     //if(typeof(formid) == 'number'){
         console.log('form ' + formid + ' has been submitted');
         afterformidablesubmit();
+        reload_form_value_on_submit_on_listingspage(form_id);
     //}
 }
 function afterformidablesubmit() {
     loadingcontinforms();
+}
+
+function reload_form_value_on_submit_on_listingspage(form_id){
+
+     if(form_id == 15){
+     var element = jQuery('.formidable_active');
+
+
+    /* console.log('AFTER FORM SUBMISSION VALUE:----')
+    console.log(jQuery('.popmake-popup-property-list formidable_active').length)
+    console.log(jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val())
+    */
+     setTimeout(function(){
+
+         if(element.closest('.single_p_w').length>0){  // On REsidential properties listings page
+                var property_title = element.closest('.single_p_w').attr('property-title');
+
+                jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property_title)
+                jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)
+            }
+            else if(element.closest('.map_info_c').length>0){  // On REsidential properties listings page
+                var property_title = element.closest('.map_info_c').attr('property-title');
+
+                jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property_title)
+                jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)
+            }
+
+
+        console.log(jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val())
+        },3000)
+    }
 }
 
 function loadingcontinforms() {

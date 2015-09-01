@@ -76,7 +76,8 @@
 
 
 
-
+                var f_prop = {};
+                var s_prop = {};
 
                 if(_.isUndefined(getAppInstance().searchOptions)){
 
@@ -97,9 +98,35 @@
                                 getAppInstance().searchOptions = response ;                               
                                
                                 var projectListingsTemplate = _.template(jQuery(self.template).html());
-                                                            
-                                jQuery('#main').html(projectListingsTemplate({pid:self.pid,psid:self.psid,propertiesdata : getAppInstance().residentialPropertyCollection.models, searchOptions:getAppInstance().searchOptions}));
-                                 
+
+                                console.log("**********************"+self.pid+' : '+self.psid)
+
+
+                                _.each(getAppInstance().residentialPropertyCollection.models,function(vl,ky){
+
+                                    if(parseInt(vl.get('id'))==parseInt(self.pid)) 
+                                        f_prop = vl;                                      
+                                    if(parseInt(vl.get('id'))==parseInt(self.psid))
+                                        s_prop = vl;
+
+                                });  
+
+
+
+
+
+                                jQuery('#main').html(projectListingsTemplate({pid:self.pid,
+                                                                              psid:self.psid,
+                                                                              propertiesdata : getAppInstance().residentialPropertyCollection.models,
+                                                                              searchOptions:getAppInstance().searchOptions,
+                                                                              f_prop:f_prop, 
+                                                                              s_prop:s_prop,
+                                                                             }));                                 
+
+                                  
+
+                                self.load_compare_give_details_fomidable_details(f_prop,s_prop)
+
 
                                 setTimeout(function(){
 
@@ -123,8 +150,27 @@
 
 
                     var projectListingsTemplate = _.template(jQuery(self.template).html());
+
+
+                    _.each(getAppInstance().residentialPropertyCollection.models,function(vl,ky){
+
+                                    if(parseInt(vl.get('id'))==parseInt(self.pid)) 
+                                        f_prop = vl;                                      
+                                    if(parseInt(vl.get('id'))==parseInt(self.psid))
+                                        s_prop = vl;
+
+                                });  
+                    console.log("################"+self.pid+' : '+self.psid)
+
                                                             
-                    jQuery('#main').html(projectListingsTemplate({pid:self.pid,psid:self.psid,propertiesdata : getAppInstance().residentialPropertyCollection.models,searchOptions:getAppInstance().searchOptions}));
+                    jQuery('#main').html(projectListingsTemplate({pid:self.pid,
+                                                                  psid:self.psid,
+                                                                  propertiesdata : getAppInstance().residentialPropertyCollection.models,
+                                                                  searchOptions:getAppInstance().searchOptions,
+                                                                  f_prop:f_prop, 
+                                                                  s_prop:s_prop,}));
+                    
+                    self.load_compare_give_details_fomidable_details(f_prop,s_prop)
 
                     setTimeout(function(){
 
@@ -151,6 +197,18 @@
 
                  
 
+            },
+
+            load_compare_give_details_fomidable_details : function(f_prop,s_prop){
+                if(jQuery('#form_frm_compare').length >0 ){
+
+                    jQuery('#form_frm_compare').find('#field_frmcomp_project1').val(f_prop.get('post_title'));
+                    jQuery('#form_frm_compare').find('#field_frmcomp_project2').val(s_prop.get('post_title'));
+
+                    jQuery('#form_frm_compare').find('.sign-prop-title-1').html(f_prop.get('post_title'));
+                    jQuery('#form_frm_compare').find('.sign-prop-title-2').html(s_prop.get('post_title'));
+
+                }
             }
 
             /* make_div_dropable2 : function(dropable_el){
