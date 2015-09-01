@@ -216,8 +216,8 @@ console.log('vl');
 
                                 %>
 
-                                <td><%= f_min_area+' to '+f_max_area+' Sq. Ft.'  %></td>
-                                <td><%= s_min_area+' to '+s_max_area+' Sq. Ft.'  %></td>
+                                <td><% if(!_.isUndefined(f_min_area) && f_min_area!='' && f_max_area!='') { %><%= f_min_area+' to '+f_max_area+' Sq. Ft.'  %><% } else { %> - <% } %></td>
+                                <td><% if(!_.isUndefined(s_min_area) && s_min_area!='' && s_max_area!='' ) { %><%= s_min_area+' to '+s_max_area+' Sq. Ft.'  %><% } else { %><% } %></td>
                             </tr>
 
                             <tr class="head-row">
