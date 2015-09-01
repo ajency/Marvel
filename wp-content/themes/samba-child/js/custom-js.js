@@ -1253,7 +1253,7 @@ if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
                 console.log('ALL Commercial PROPERTIES')
                 console.log(commercial_properties)
 
-                jQuery('.formidable_contact_form').find("#field_ky_contact1city").append('<option value="">Select</option>');
+                jQuery('.formidable_contact_form').find("#field_ky_contact1city").append('<option value="">City</option>');
 
 
                  if(_.size(residential_properties)>0){
