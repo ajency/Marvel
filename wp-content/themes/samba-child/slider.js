@@ -847,9 +847,6 @@ function checkIfInView(element){
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
-                    $('.floorplans_tab ul.wpb_tabs_nav li').each(function() {
-                        $(this).css('width', $(this).width());
-                    });
                     runowl();
                 }
             } else if ($(window).width() <= 1110 && $(window).width() > 560) {
@@ -859,7 +856,6 @@ function checkIfInView(element){
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
-                    $('.floorplans_tab ul.wpb_tabs_nav li').css('width', 'auto');
                     runowl();
                 }
             } else if ($(window).width() <= 550) {
@@ -869,7 +865,6 @@ function checkIfInView(element){
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
-                    $('.floorplans_tab ul.wpb_tabs_nav li').css('width', 'auto');
                     runowl();
                 }
             }
