@@ -20,7 +20,7 @@ var f_prop_neighbourhood, s_prop_neighbourhood;
 
 
 //var neighbourhood_options = searchOptions.
-console.log('propertiesdata length');
+/* console.log('propertiesdata length');
 console.log(propertiesdata.length);
 
 _.each(propertiesdata,function(vl,ky){
@@ -44,7 +44,7 @@ console.log('vl');
  console.log(s_prop);
     }
 
-});
+}); */
 
  console.log('f_prop');
  console.log(f_prop);
@@ -278,7 +278,7 @@ console.log('vl');
                     <div class="compare_f full-width">
                         <p class="foot_head">Looking for Help?</p>
                         <p>Its very easy to get overwhelmed with the unique propositions of Marvel properties. Let us help you in making up your mind.</p>
-                        <a href="#" class="wpb_button popmake-give-details">Give Details</a>
+                        <a href="#" class="wpb_button popmake-looking-for-help-compare">Give Details</a>
                     </div>
             </div>
             <!--END Compare styles-->
