@@ -955,7 +955,11 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
     }),
 
     jQuery('.popmake-popup-property-list').live('click',function(evt){
+        
         evt.preventDefault();
+
+        jQuery('.popmake-popup-property-list').removeClass('formidable_active');
+        jQuery(evt.target).addClass('formidable_active')
 
         if(jQuery(this).closest('.single_p_w').length>0){  // On REsidential properties listings page
             var property_title = jQuery(this).closest('.single_p_w').attr('property-title');
