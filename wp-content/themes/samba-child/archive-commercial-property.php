@@ -96,6 +96,7 @@ Template Name: Page - Commercial Projects List New
         var UPLOADURL = '<?php echo admin_url('async-upload.php'); ?>';
         var _WPNONCE = '<?php echo wp_create_nonce('media-form'); ?>';
         var JSVERSION = '<?php echo JSVERSION; ?>';
+        var Current_property_type = 'commercial-property';
 
     </script>
     

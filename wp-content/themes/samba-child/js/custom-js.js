@@ -1407,7 +1407,12 @@ jQuery('.popmake-give-details').live("click",function(evt){
 
     _.each(types,function(options_typesvl,options_typesky){
 
-        display_type = options_typesvl.property_unit_type+' '+options_typesvl.property_type_name ;
+        display_type = options_typesvl.property_unit_type;
+
+        if(Current_property_type=="residential-property"){
+            display_type+=' '+options_typesvl.property_type_name ;    
+        }
+        
 
         jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option   value="'+display_type+'">'+display_type+'</option>');
 

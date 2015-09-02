@@ -66,7 +66,7 @@ function get_search_options($post_type){
 
         $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-type',true));
         $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
-        $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
+        $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
         $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
 
 
@@ -75,6 +75,8 @@ function get_search_options($post_type){
               $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
           }
         }
+
+
 
         if(is_array($property_unit_types_meta)){
           foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {

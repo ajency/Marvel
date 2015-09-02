@@ -109,8 +109,12 @@ console.log(this.selectedStatus)
 
               _.each(types,function(options_typesvl,options_typesky){
 
-                  display_type = options_typesvl.property_unit_type+' '+options_typesvl.property_type_name ;
+                  display_type = options_typesvl.property_unit_type;
+                  if(post_type=="residential-property"){
+                    
+                      display_type+=' '+options_typesvl.property_type_name ;
 
+                  }
                   jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option   value="'+display_type+'">'+display_type+'</option>');
 
               })
@@ -225,7 +229,7 @@ console.log(this.selectedStatus)
 
                         if(jQuery('#dd_status').length<=0){
                             var template = _.template(jQuery(self.template).html());
-                            jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions, selected:seldata }));
+                            jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions, selected:seldata, post_type:self.post_type }));
 
                             self.load_search_filter_values_mobile(getAppInstance().searchOptions, seldata);
                             

@@ -96,6 +96,7 @@ Template Name: Page - Residential Projects List New
         var UPLOADURL = '<?php echo admin_url('async-upload.php'); ?>';
         var _WPNONCE = '<?php echo wp_create_nonce('media-form'); ?>';
         var JSVERSION = '<?php echo JSVERSION; ?>';
+        var Current_property_type = 'residential-property';
 
     </script>
     
