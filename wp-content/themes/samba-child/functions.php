@@ -390,7 +390,27 @@ function get_residential_properties_list($post_type,$propertylist_args){
 
                 if(isset($propertylist_args['city'])){
 
-                   $current_cities = $properties_optionsmeta['cities']['cities'] 
+                   $current_cities = $properties_optionsmeta['cities']['cities'] ;
+
+                    foreach ($current_cities as $citieskey => $citiesvalue) {
+
+                      if(strtolower($citiesvalue['name']) == strtolower($propertylist_args['city']) )
+                        $current_city_id = $citiesvalue['ID'] ;                   
+
+                    }  
+
+                    $propmeta_query[] = array(
+                     'key' => 'property-city',
+                     'value' => $current_city_id,
+                     'compare' => '=' 
+                    ) ;
+                } 
+
+
+
+                if(isset($propertylist_args['locality'])){
+
+                   $current_cities = $properties_optionsmeta['localities']['localities'] ;
 
                     foreach ($current_cities as $citieskey => $citiesvalue) {
 
@@ -403,25 +423,14 @@ function get_residential_properties_list($post_type,$propertylist_args){
                      'key' => 'property-city',
                      'value' => $current_city_id,
                      'compare' => '=',
-                    )
-                }
+                    ) ;
+                } 
 
 
 
+                
 
-                if(isset($propertylist_args['status'])){ 
-
-                    $propmeta_query[] = array(
-                     'key' => 'property-status',
-                     'value' => $propertylist_args['status'],
-                     'compare' => '=',
-                    )
-                }
-
-
-
-
-            }
+             
 
 
 
@@ -430,6 +439,17 @@ function get_residential_properties_list($post_type,$propertylist_args){
 
           
         }
+
+
+
+        if(isset($propertylist_args['status'])){ 
+
+                    $propmeta_query[] = array(
+                     'key' => 'property-status',
+                     'value' => $propertylist_args['status'],
+                     'compare' => '=',
+                    );
+        } 
       
 
 
