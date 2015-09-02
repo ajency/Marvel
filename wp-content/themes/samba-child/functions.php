@@ -62,11 +62,11 @@ function get_search_options($post_type){
     }
     else if($post_type =="commercial-property"){
 
-       // $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
 
-        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
         $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
-        $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
+        $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
         $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
 
 
@@ -75,8 +75,6 @@ function get_search_options($post_type){
               $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
           }
         }
-
-
 
         if(is_array($property_unit_types_meta)){
           foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
@@ -741,6 +739,216 @@ function get_sap_data(){
 }
 return $type;
  }
+
+
+
+
+function flatten($array, $index) {
+     $return = array();
+
+     if (is_array($array)) {
+        foreach ($array as $row) {
+             $return[] = $row[$index];
+        }
+     }
+
+     return $return;
+}
+
+
+
+function sizeImage($thisImage,$pageW,$pageH,$fixedMargin,$threshold) {
+   
+   list($thisW,$thisH) = getimagesize($thisImage);
+    
+    if($thisW<=$pageW && $thisH<=$pageH){
+       // DO NOT RESIZE IMAGE, JUST CENTER IT HORIZONTALLY
+        $newLeftMargin = centerMe($thisW,$pageW);
+        $leftMargin = $newLeftMargin;
+      return array('leftMargin' => $leftMargin, 'width' => $thisW);
+    } else {
+        $thisThreshold = $thisW / $thisH;
+      if($thisThreshold>=$threshold) {
+         $width = $pageW;
+         $leftMargin = $fixedMargin;
+      } else {
+         $thisMultiplier = $pageH / $thisH;
+         $width = $thisW * $thisMultiplier;
+         $width = round($width, 0, PHP_ROUND_HALF_DOWN);
+         // CENTER ON PAGE IF NOT FULL WIDTH
+         $newLeftMargin = centerMe($width,$pageW);
+         $leftMargin = $newLeftMargin;
+      }
+      return array('leftMargin' => $leftMargin, 'width' => $width);
+   }
+}
+
+
+
+function centerMe($thisWidth,$pageW){
+   $newMargin = ($pageW - $thisWidth) / 2;
+   $newMargin = round($newMargin, 0, PHP_ROUND_HALF_DOWN);
+   return $newMargin;
+}
+
+
+
+
+
+ function download_floor_plan(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) || $_GET['action']!='download_plan'){
+    return;
+  }
+
+  if(!isset($_GET['prop_id']) || !isset($_GET['plant_id']) || !isset($_GET['m_group']) || !isset($_GET['m_type'])){
+    return;
+  }
+  require_once('fpdf/fpdf.php');
+
+  $upload_dir = wp_upload_dir();
+  $path = $upload_dir['basedir'].'/floor-plans';
+  wp_mkdir_p( $path );
+
+  $mkt_group_desc = $_GET['m_group'];
+  $mkt_material_type_desc = $_GET['m_type'];
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+  $plans = flatten($plans, 'specific_floor_plan');
+  array_unique($plans);
+
+  $property = get_post($_GET['prop_id']);
+
+  $title = $property->post_title;
+  $plan_type = $mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc);
+  $filename = 'Floor_Plans_'.$mkt_material_type_desc.'_BHK_'.get_flat_type($mkt_group_desc).'_'.$title.'.pdf';
+
+$pdf = new FPDF('P','pt','Letter');
+$pdf->SetTitle($title,1);
+$pdf->SetAuthor('Ajency',1);
+$pdf->SetSubject('Floor Plans - '.$plan_type,1);
+$pdf->SetCompression(1);
+
+// LETTER size pages
+// UNIT IS POINTS, 72 PTS = 1 INCH
+$pageW = 612 - 36; // 8.5 inches wide with .25 margin left and right
+$pageH = 792 - 36; // 11 inches tall with .25 margin top and bottom
+$fixedMargin = 18; // .25 inch
+$threshold = $pageW / $pageH;
+
+foreach ($plans as $value) {
+   $currentImage = $path.'/'.$value.'.jpg';
+   if(file_exists($currentImage)){
+   $reSized = sizeImage($currentImage,$pageW,$pageH,$fixedMargin,$threshold);
+   $width = $reSized['width'];
+   $leftMargin = $reSized['leftMargin'];
+   $pdf->AddPage();
+   $pdf->Image($currentImage,$leftMargin,18,$width);
+   }
+} 
+ 
+
+$pdf->Output($filename,'D');
+//$pdf->Output();
+}
+
+add_action('template_redirect','download_floor_plan');
+
+
+
+
+
+
+
+
+function download_all_floor_plan(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) || $_GET['action']!='download_all_plan'){
+    return;
+  }
+
+  if(!isset($_GET['prop_id']) || !isset($_GET['plant_id'])){
+    return;
+  }
+  require_once('fpdf/fpdf.php');
+
+  $upload_dir = wp_upload_dir();
+  $path = $upload_dir['basedir'].'/floor-plans';
+  wp_mkdir_p( $path );
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']."";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+  $plans = flatten($plans, 'specific_floor_plan');
+  array_unique($plans);
+
+  $property = get_post($_GET['prop_id']);
+
+  $title = $property->post_title;
+  $filename = 'Floor_Plans_'.$title.'.pdf';
+
+$pdf = new FPDF('P','pt','Letter');
+$pdf->SetTitle($title,1);
+$pdf->SetAuthor('Ajency',1);
+$pdf->SetSubject('Floor Plans',1);
+$pdf->SetCompression(1);
+
+// LETTER size pages
+// UNIT IS POINTS, 72 PTS = 1 INCH
+$pageW = 612 - 36; // 8.5 inches wide with .25 margin left and right
+$pageH = 792 - 36; // 11 inches tall with .25 margin top and bottom
+$fixedMargin = 18; // .25 inch
+$threshold = $pageW / $pageH;
+
+foreach ($plans as $value) {
+   $currentImage = $path.'/'.$value.'.jpg';
+   if(file_exists($currentImage)){
+   $reSized = sizeImage($currentImage,$pageW,$pageH,$fixedMargin,$threshold);
+   $width = $reSized['width'];
+   $leftMargin = $reSized['leftMargin'];
+   $pdf->AddPage();
+   $pdf->Image($currentImage,$leftMargin,18,$width);
+   }
+} 
+ 
+
+$pdf->Output($filename,'D');
+//$pdf->Output();
+}
+
+add_action('template_redirect','download_all_floor_plan');
+
+
+
+
+
+
+
+
+
+function download_availability_pdf(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) || $_GET['action']!='download_plan'){
+    return;
+  }
+
+  if(!isset($_GET['prop_id']) || !isset($_GET['plant_id']) || !isset($_GET['m_group']) || !isset($_GET['m_type'])){
+    return;
+  }
+
+}
+
+add_action('template_redirect','download_availability_pdf');
 
 
 
