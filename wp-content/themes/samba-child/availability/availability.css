@@ -149,6 +149,8 @@ body, html {
 img.marvelogo {
 	height: 160px;
 	float: right;
+	margin-bottom: 25px;
+	margin-top: 25px;
 	/*position: absolute;
 	right: 1cm;
 	bottom: 1cm;*/
