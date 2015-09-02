@@ -955,30 +955,32 @@ function download_availability_pdf(){
 
   $html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style><page>';
   $html .= '<div class="full-wrap">
-      <div class="header">
-        <div class="project_name inbl">
-          <h1>Albero</h1>
-          <h4>Availability</h4>
-        </div>
-        <div class="legend inbl">
-          <div class="set set1">
-            <div class="color white"></div>
-            <p class="info">WHITE = AVAILABLE</p>
-          </div>
-          <div class="set set2">
-            <div class="color blue"></div>
-            <p class="info">BLUE = SOLD</p>
-          </div>
-          <div class="set set3">
-            <div class="color green"></div>
-            <p class="info">GREEN = HOLD</p>
-          </div>
-          <div class="set updatedon">
-            <div class="color transparent"></div>
-            <p class="info">UPDATED ON <span class="updated">9th MARCH 15</span></p>
-          </div>
-        </div>
-      </div>
+      <table class="header">
+        <tr>
+          <td class="project_name inbl" style="vertical-align: top;">
+            <h1>Albero</h1>
+            <h4>Availability</h4>
+          </td>
+          <td class="legend inbl" style="vertical-align: top;">
+            <div class="set set1">
+              <div class="color white"></div>
+              <p class="info">WHITE = AVAILABLE</p>
+            </div>
+            <div class="set set2">
+              <div class="color blue"></div>
+              <p class="info">BLUE = SOLD</p>
+            </div>
+            <div class="set set3">
+              <div class="color green"></div>
+              <p class="info">GREEN = HOLD</p>
+            </div>
+            <div class="set updatedon">
+              <div class="color transparent"></div>
+              <p class="info">UPDATED ON <span class="updated">9th MARCH 15</span></p>
+            </div>
+          </td>
+        </tr>
+      </table>
       <!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
       <table class="ava_table fiveorless" cellpadding="0" cellspacing="0">
         <tr>
@@ -1031,7 +1033,7 @@ function download_availability_pdf(){
         </tr>
       </table>
 
-      <!--<img src="marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">-->
+      <img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
     </div>';
   $html .= '</page>';
 
