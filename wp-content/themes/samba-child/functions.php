@@ -953,7 +953,7 @@ function download_availability_pdf(){
   $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
   $plans = $wpdb->get_results($plan_query,ARRAY_A);
 
-  $html = '<style>'.file_get_contents(get_stylesheet_directory().'/pdfstyle.css').'</style><page>';
+  $html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style><page>';
   $html .= '<div class="full-wrap">
       <div class="header">
         <div class="project_name inbl">
