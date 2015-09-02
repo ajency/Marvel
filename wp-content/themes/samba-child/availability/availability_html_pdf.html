@@ -5,35 +5,39 @@
 		<link rel="stylesheet" href="availability.css">
 	</head>
 	<body>
-		<div class="full-wrap">
-			<table class="header">
+		<div class="full-wrap" style="width: 100%;">
+			<table class="header" style="width: 100%;">
 				<tr>
-					<td class="project_name inbl" style="vertical-align: top;">
+					<td class="project_name inbl" style="vertical-align: top; width: 30%;">
 						<h1>Albero</h1>
 						<h4>Availability</h4>
 					</td>
-					<td class="legend inbl" style="vertical-align: top;">
-						<div class="set set1">
-							<div class="color white"></div>
-							<p class="info">WHITE = AVAILABLE</p>
-						</div>
-						<div class="set set2">
-							<div class="color blue"></div>
-							<p class="info">BLUE = SOLD</p>
-						</div>
-						<div class="set set3">
-							<div class="color green"></div>
-							<p class="info">GREEN = HOLD</p>
-						</div>
-						<div class="set updatedon">
-							<div class="color transparent"></div>
-							<p class="info">UPDATED ON <span class="updated">9th MARCH '15</span></p>
-						</div>
+					<td class="legend inbl" style="vertical-align: top; width: 70%;">
+						<table align="right">
+							<tr>
+								<td class="set set1" style="width: 175px;">
+									<div class="color white"></div>
+									<p class="info">WHITE = AVAILABLE</p>
+								</td>
+								<td class="set set2" style="width: 175px;">
+									<div class="color blue" style="background-color: #d5effc; border-color: #d5effc;"></div>
+									<p class="info">BLUE = SOLD</p>
+								</td>
+								<td class="set set3" style="width: 175px;">
+									<div class="color green" style="background-color: #d0e5af; border-color: #d0e5af;"></div>
+									<p class="info">GREEN = HOLD</p>
+								</td>
+								<td class="set updatedon" style="width: 170px; text-align: right;">
+									<div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>
+									<p class="info">UPDATED ON <span class="updated">9th MARCH \'15</span></p>
+								</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
 			</table>
-			<!--Add the class 'fiveorless' if no. of columns is 5 or less than 5-->
-			<table class="ava_table fiveorless" cellpadding="0" cellspacing="0">
+			<!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
+			<table class="ava_table fiveorless" style="width: 100%;" cellpadding="0" cellspacing="0">
 				<tr>
 					<!-- here the colspan value has to equal the number of columns -->
 					<th colspan="5" class="table-head">
@@ -41,11 +45,11 @@
 					</th>
 				</tr>
 				<tr>
-					<th>A</th>
-					<th>A</th>
-					<th>B</th>
-					<th>B</th>
-					<th>C</th>
+					<th style="width: 150px;">A</th>
+					<th style="width: 150px;">A</th>
+					<th style="width: 150px;">B</th>
+					<th style="width: 150px;">B</th>
+					<th style="width: 150px;">C</th>
 				</tr>
 				<tr>
 					<td class="colorblue">A101 (1300)</td>
@@ -84,7 +88,7 @@
 				</tr>
 			</table>
 
-			<img src="marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
+			<img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
 		</div>
 	</body>
 </html>

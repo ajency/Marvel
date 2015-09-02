@@ -342,7 +342,7 @@ function get_res_property_meta_values($property_id, $post_type){
 function get_residential_properties_list($post_type){
   global $wpdb;
     $sel_properties = array();
-    
+
 
     if($post_type=="both"){
       $residential_properties = get_posts( array(
@@ -362,7 +362,7 @@ function get_residential_properties_list($post_type){
                                           'orderby'         => 'menu_order'
                                       ) );
     }
-    
+
 
   $new_res_prop = new stdClass();
     foreach (  $residential_properties as $res_property ) {
@@ -485,9 +485,9 @@ function get_residential_properties_list_ajx() {
       $post_type = $_REQUEST['post_type'];
     }
     else{
-      $post_type = $_REQUEST['data']['post_type'];  
+      $post_type = $_REQUEST['data']['post_type'];
     }
-    
+
 
 
 
@@ -547,14 +547,14 @@ function marvel_scripts_styles(){
       // //POP UP FORMIDABLE FIX
       global $frm_settings;
        global $frm_vars;
-       
+
        if (class_exists('FrmAppHelper')) {
         $version = FrmAppHelper::plugin_version();
         wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
         wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
       }
-       
-      
+
+
 
 
 
@@ -628,18 +628,18 @@ function sort_multidimensional_array($myArray,$sort_key){
 
 
 
-//Fix to load popup maker form on residential  & commercial Listings Page 
+//Fix to load popup maker form on residential  & commercial Listings Page
 function popup28579_load_on_arvhices( $is_loadable, $popup_id ) {
 
   // If its standard arvhice for posts.
   /* if($popup_id  == 782 && is_archive()) {
     return true;
   } */
-  
+
   // If its CPT archive for post type 'portfolio'
   if( ($popup_id == 3291 || $popup_id == 3293 ||  $popup_id == 725 || $popup_id == 847) && (is_post_type_archive( 'residential-property' )  ||  is_post_type_archive( 'commercial-property' )  )     ) {
     return true;
-   
+
   }
   else
     return $is_loadable;
@@ -658,7 +658,7 @@ $aVars[] = "locality";
 $aVars[] = "type";
 return $aVars;
 }
- 
+
 // hook add_query_vars function into query_vars
 add_filter('query_vars', 'add_query_vars');
 
@@ -681,7 +681,7 @@ function properties_custom_rewrite_rules( $existing_rules ) {
   );
 
    $existing_rules = $new_rules + $existing_rules;
- 
+
    return $existing_rules;
 }
 add_filter('rewrite_rules_array', 'properties_custom_rewrite_rules');
@@ -758,9 +758,9 @@ function flatten($array, $index) {
 
 
 function sizeImage($thisImage,$pageW,$pageH,$fixedMargin,$threshold) {
-   
+
    list($thisW,$thisH) = getimagesize($thisImage);
-    
+
     if($thisW<=$pageW && $thisH<=$pageH){
        // DO NOT RESIZE IMAGE, JUST CENTER IT HORIZONTALLY
         $newLeftMargin = centerMe($thisW,$pageW);
@@ -850,8 +850,8 @@ foreach ($plans as $value) {
    $pdf->AddPage();
    $pdf->Image($currentImage,$leftMargin,18,$width);
    }
-} 
- 
+}
+
 
 $pdf->Output($filename,'D');
 //$pdf->Output();
@@ -917,8 +917,8 @@ foreach ($plans as $value) {
    $pdf->AddPage();
    $pdf->Image($currentImage,$leftMargin,18,$width);
    }
-} 
- 
+}
+
 
 $pdf->Output($filename,'D');
 //$pdf->Output();
@@ -954,35 +954,39 @@ function download_availability_pdf(){
   $plans = $wpdb->get_results($plan_query,ARRAY_A);
 
   $html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style><page>';
-  $html .= '<div class="full-wrap">
-      <table class="header">
+  $html .= '<div class="full-wrap" style="width: 100%;">
+      <table class="header" style="width: 100%;">
         <tr>
-          <td class="project_name inbl" style="vertical-align: top;">
+          <td class="project_name inbl" style="vertical-align: top; width: 30%;">
             <h1>Albero</h1>
             <h4>Availability</h4>
           </td>
-          <td class="legend inbl" style="vertical-align: top;">
-            <div class="set set1">
-              <div class="color white"></div>
-              <p class="info">WHITE = AVAILABLE</p>
-            </div>
-            <div class="set set2">
-              <div class="color blue"></div>
-              <p class="info">BLUE = SOLD</p>
-            </div>
-            <div class="set set3">
-              <div class="color green"></div>
-              <p class="info">GREEN = HOLD</p>
-            </div>
-            <div class="set updatedon">
-              <div class="color transparent"></div>
-              <p class="info">UPDATED ON <span class="updated">9th MARCH 15</span></p>
-            </div>
+          <td class="legend inbl" style="vertical-align: top; width: 70%;">
+            <table align="right">
+              <tr>
+                <td class="set set1" style="width: 175px;">
+                  <div class="color white"></div>
+                  <p class="info">WHITE = AVAILABLE</p>
+                </td>
+                <td class="set set2" style="width: 175px;">
+                  <div class="color blue" style="background-color: #d5effc; border-color: #d5effc;"></div>
+                  <p class="info">BLUE = SOLD</p>
+                </td>
+                <td class="set set3" style="width: 175px;">
+                  <div class="color green" style="background-color: #d0e5af; border-color: #d0e5af;"></div>
+                  <p class="info">GREEN = HOLD</p>
+                </td>
+                <td class="set updatedon" style="width: 170px; text-align: right;">
+                  <div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>
+                  <p class="info">UPDATED ON <span class="updated">9th MARCH \'15</span></p>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
       </table>
       <!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
-      <table class="ava_table fiveorless" cellpadding="0" cellspacing="0">
+      <table class="ava_table fiveorless" style="width: 100%;" cellpadding="0" cellspacing="0">
         <tr>
           <!-- here the colspan value has to equal the number of columns -->
           <th colspan="5" class="table-head">
@@ -990,11 +994,11 @@ function download_availability_pdf(){
           </th>
         </tr>
         <tr>
-          <th>A</th>
-          <th>A</th>
-          <th>B</th>
-          <th>B</th>
-          <th>C</th>
+          <th style="width: 150px;">A</th>
+          <th style="width: 150px;">A</th>
+          <th style="width: 150px;">B</th>
+          <th style="width: 150px;">B</th>
+          <th style="width: 150px;">C</th>
         </tr>
         <tr>
           <td class="colorblue">A101 (1300)</td>
@@ -1042,7 +1046,7 @@ function download_availability_pdf(){
 
   try
     {
-        $html2pdf = new HTML2PDF('P', 'A4');
+        $html2pdf = new HTML2PDF('L', 'A4');
         $html2pdf->setDefaultFont('Arial');
         $html2pdf->writeHTML($html);
         $html2pdf->Output('availability.pdf');
