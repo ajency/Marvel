@@ -742,6 +742,32 @@ return $type;
 
 
 
+ function download_floor_plan(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) && $_GET['action']!='download_plan'){
+    return;
+  }
+
+  if(!isset($_GET['plant_id']) || !isset($_GET['m_group']) || !isset($_GET['m_type'])){
+    return;
+  }
+
+  $mkt_group_desc = $_GET['m_group'];
+  $mkt_material_type_desc = $_GET['m_type'];
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+  //print_r($plans);
+
+ }
+ add_action('template_redirect','download_floor_plan');
+
+
+
 
 
 
