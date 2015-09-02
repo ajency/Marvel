@@ -339,9 +339,24 @@ function get_res_property_meta_values($property_id, $post_type){
 
 
 
-function get_residential_properties_list($post_type){
-  global $wpdb;
+function get_residential_properties_list($post_type,$propertylist_args){
+
+    global $wpdb;
     $sel_properties = array();
+
+
+
+
+    
+
+
+    /* 'meta_query' => array(
+         array(
+             'key' => '_wp_page_template',
+             'value' => array('page-frontpage.php', 'page-frontpage2.php'),
+             'compare' => 'IN',
+         )
+    ), */
     
 
     if($post_type=="both"){
@@ -350,16 +365,82 @@ function get_residential_properties_list($post_type){
                                           'post_status'     => 'publish',
                                           'posts_per_page'  => -1,
                                           'order'           => 'ASC',
-                                          'orderby'         => 'menu_order'
+                                          'orderby'         => 'menu_order',
+                                          'meta_query'      => $propmeta_query
                                       ) );
     }
     else{
+
+
+
+       $properties_optionsmeta = get_search_options($post_type) ; 
+
+
+       /*
+          $propmeta_query[] = array(
+           'key' => 'property-city',
+           'value' => array('page-frontpage.php', 'page-frontpage2.php'),
+           'compare' => 'IN',
+          )
+
+       */
+
+
+            if($post_type=="residential-property"){
+
+                if(isset($propertylist_args['city'])){
+
+                   $current_cities = $properties_optionsmeta['cities']['cities'] 
+
+                    foreach ($current_cities as $citieskey => $citiesvalue) {
+
+                      if(strtolower($citiesvalue['name']) == strtolower($propertylist_args['city']) )
+                        $current_city_id = $citiesvalue['ID'] ;                   
+
+                    }  
+
+                    $propmeta_query[] = array(
+                     'key' => 'property-city',
+                     'value' => $current_city_id,
+                     'compare' => '=',
+                    )
+                }
+
+
+
+
+                if(isset($propertylist_args['status'])){ 
+
+                    $propmeta_query[] = array(
+                     'key' => 'property-status',
+                     'value' => $propertylist_args['status'],
+                     'compare' => '=',
+                    )
+                }
+
+
+
+
+            }
+
+
+
+        }
+        else if($post_type=="commercial-property"){ 
+
+          
+        }
+      
+
+
       $residential_properties = get_posts( array(
                                           'post_type'       => $post_type,
                                           'post_status'     => 'publish',
                                           'posts_per_page'  => -1,
                                           'order'           => 'ASC',
-                                          'orderby'         => 'menu_order'
+                                          'orderby'         => 'menu_order',
+                                          'meta_query'      => $propmeta_query
+
                                       ) );
     }
     
@@ -490,8 +571,24 @@ function get_residential_properties_list_ajx() {
     
 
 
+    $propertylist_args = array();
 
-    $sel_properties = get_residential_properties_list($post_type);
+    if(is_array($_REQUEST['status']))
+      $propertylist_args['status'] = $_REQUEST['status'] ;
+
+    if(is_array($_REQUEST['city']))
+      $propertylist_args['city'] = $_REQUEST['city'] ; 
+
+    if(is_array($_REQUEST['locality']))
+      $propertylist_args['locality'] = $_REQUEST['locality'] ; 
+
+    if(is_array($_REQUEST['type']))
+      $propertylist_args['type'] = $_REQUEST['type'] ; 
+
+
+
+
+    $sel_properties = get_residential_properties_list($post_type,$propertylist_args);
     wp_send_json( array(
         'code' => 'OK',
         'data' => $sel_properties

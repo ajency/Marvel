@@ -97,6 +97,25 @@ Template Name: Page - Commercial Projects List New
         var _WPNONCE = '<?php echo wp_create_nonce('media-form'); ?>';
         var JSVERSION = '<?php echo JSVERSION; ?>';
 
+
+         <?php if (in_array("ongoing", explode("/",$_SERVER['REQUEST_URI']))){ ?>
+          var queryStatus = 'ongoing';
+        <?php }else if(in_array("completed", explode("/",$_SERVER['REQUEST_URI']))){ ?>
+          var queryStatus = 'completed';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['city'])) { ?>
+          var queryCity = '<?php echo urldecode($wp_query->query_vars["city"]); ?>';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['locality'])) { ?>
+          var queryLocality = '<?php echo urldecode($wp_query->query_vars["locality"]); ?>';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['type'])) { ?>
+          var queryType = '<?php echo urldecode($wp_query->query_vars["type"]); ?>';
+        <?php } ?>
+
     </script>
     
  

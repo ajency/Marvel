@@ -279,16 +279,37 @@
 
                         if(_.isUndefined(getAppInstance().residentialPropertyCollection ) || getAppInstance().residentialPropertyCollection.length <0){
                       //alert(this.post_type)
-                       if(this.post_type=='residential-property') {
-                       // alert('residential collection')
-                          getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
+
+                        var properties_collection_params = {};
+
+                        if(typeof queryStatus != "undefined")
+                          properties_collection_params['status'] = queryStatus;
+                          
+                        if(typeof queryCity != "undefined")
+                          properties_collection_params['city'] = queryCity;
+                          
+                        if(typeof queryLocality != "undefined")
+                          properties_collection_params['locality'] = queryLocality;
+                          
+                        if(typeof queryType != "undefined" )
+                          properties_collection_params['type'] = queryType ;
+                        
+
+
+                        console.log('***************properties_collection_params***************')
+                        
+                        if(this.post_type=='residential-property') {
+
+                          // alert('residential collection')
+  
+                          getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection(properties_collection_params);
                           var propertyCollection = getAppInstance().residentialPropertyCollection;
 
                           jQuery('#post_type').val('residential-property')
                         }
                         else{
                        // alert('commercial collection')
-                          getAppInstance().commercialPropertyCollection = new CommercialPropertiesCollection();
+                          getAppInstance().commercialPropertyCollection = new CommercialPropertiesCollection(properties_collection_params);
                           var propertyCollection = getAppInstance().commercialPropertyCollection  ;
                           jQuery('#post_type').val('commercial-property')
                         }
