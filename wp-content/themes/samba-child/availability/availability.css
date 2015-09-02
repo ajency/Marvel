@@ -11,7 +11,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	font-family: 'Open Sans';
+	/*font-family: 'Open Sans';*/
 }
 /*
 Actual page styling starts here!

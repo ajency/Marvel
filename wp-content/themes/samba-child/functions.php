@@ -938,13 +938,117 @@ function download_availability_pdf(){
 
   global $wpdb;
 
-  if(!isset($_GET['action']) || $_GET['action']!='download_plan'){
+  if(!isset($_GET['action']) || $_GET['action']!='download_availability'){
     return;
   }
 
   if(!isset($_GET['prop_id']) || !isset($_GET['plant_id']) || !isset($_GET['m_group']) || !isset($_GET['m_type'])){
     return;
   }
+
+  $mkt_group_desc = $_GET['m_group'];
+  $mkt_material_type_desc = $_GET['m_type'];
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+  $html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style><page>';
+  $html .= '<div class="full-wrap">
+      <div class="header">
+        <div class="project_name inbl">
+          <h1>Albero</h1>
+          <h4>Availability</h4>
+        </div>
+        <div class="legend inbl">
+          <div class="set set1">
+            <div class="color white"></div>
+            <p class="info">WHITE = AVAILABLE</p>
+          </div>
+          <div class="set set2">
+            <div class="color blue"></div>
+            <p class="info">BLUE = SOLD</p>
+          </div>
+          <div class="set set3">
+            <div class="color green"></div>
+            <p class="info">GREEN = HOLD</p>
+          </div>
+          <div class="set updatedon">
+            <div class="color transparent"></div>
+            <p class="info">UPDATED ON <span class="updated">9th MARCH 15</span></p>
+          </div>
+        </div>
+      </div>
+      <!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
+      <table class="ava_table fiveorless" cellpadding="0" cellspacing="0">
+        <tr>
+          <!-- here the colspan value has to equal the number of columns -->
+          <th colspan="5" class="table-head">
+            3 BHK
+          </th>
+        </tr>
+        <tr>
+          <th>A</th>
+          <th>A</th>
+          <th>B</th>
+          <th>B</th>
+          <th>C</th>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorblue">A102 (1300)</td>
+          <td class="colorblue">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorgreen">A101 (1300)</td>
+          <td class="colorblue">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td class="colorblue">C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="">A102 (1300)</td>
+          <td class="colorblue">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td class="colorblue">C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorblue">A102 (1300)</td>
+          <td class="colorblue">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td class="colorblue">C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+      </table>
+
+      <!--<img src="marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">-->
+    </div>';
+  $html .= '</page>';
+
+
+  require_once('html2pdf/html2pdf.class.php');
+
+  try
+    {
+        $html2pdf = new HTML2PDF('P', 'A4');
+        $html2pdf->setDefaultFont('Arial');
+        $html2pdf->writeHTML($html);
+        $html2pdf->Output('availability.pdf');
+    }
+    catch(HTML2PDF_exception $e) {
+        echo $e;
+        exit;
+    }
 
 }
 
