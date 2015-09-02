@@ -256,7 +256,7 @@ console.log(options) */
 
                  jQuery('#services_properties_listings').html(html_data.property_list_html);
 
-
+                 jQuery(window).trigger('scroll');
 
 
             }
