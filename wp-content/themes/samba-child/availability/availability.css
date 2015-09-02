@@ -38,8 +38,8 @@ body, html {
 	vertical-align: top;*/
 }
 .header .project_name {
-	width: 25%;
-	float: left;
+	/*width: 25%;*/
+	/*float: left;*/
 }
 .header .project_name h1 {
 	margin: 0;
@@ -61,7 +61,7 @@ body, html {
 }
 .header .legend {
 	text-align: right;
-	float: right;
+	/*float: right;*/
 }
 .header .legend .set {
 	display: inline-block;
