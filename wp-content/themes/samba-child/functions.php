@@ -62,11 +62,11 @@ function get_search_options($post_type){
     }
     else if($post_type =="commercial-property"){
 
-       // $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
 
-        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
         $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
-        $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
+        $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
         $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
 
 
@@ -75,8 +75,6 @@ function get_search_options($post_type){
               $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
           }
         }
-
-
 
         if(is_array($property_unit_types_meta)){
           foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
@@ -491,7 +489,7 @@ function get_residential_properties_list($post_type,$propertylist_args){
 
 
     }
-    
+
 
   $new_res_prop = new stdClass();
     foreach (  $residential_properties as $res_property ) {
@@ -614,9 +612,9 @@ function get_residential_properties_list_ajx() {
       $post_type = $_REQUEST['post_type'];
     }
     else{
-      $post_type = $_REQUEST['data']['post_type'];  
+      $post_type = $_REQUEST['data']['post_type'];
     }
-    
+
 
 
     $propertylist_args = array();
@@ -694,14 +692,14 @@ function marvel_scripts_styles(){
       // //POP UP FORMIDABLE FIX
       global $frm_settings;
        global $frm_vars;
-       
+
        if (class_exists('FrmAppHelper')) {
         $version = FrmAppHelper::plugin_version();
         wp_register_script('formidable',plugins_url() . '/formidable/js/formidable.min.js', array('jquery'), $version, true);
         wp_enqueue_script('formidable-js', plugins_url() . '/formidable/js/formidable.min.js', array( 'jquery'), false, true);
       }
-       
-      
+
+
 
 
 
@@ -775,18 +773,18 @@ function sort_multidimensional_array($myArray,$sort_key){
 
 
 
-//Fix to load popup maker form on residential  & commercial Listings Page 
+//Fix to load popup maker form on residential  & commercial Listings Page
 function popup28579_load_on_arvhices( $is_loadable, $popup_id ) {
 
   // If its standard arvhice for posts.
   /* if($popup_id  == 782 && is_archive()) {
     return true;
   } */
-  
+
   // If its CPT archive for post type 'portfolio'
   if( ($popup_id == 3291 || $popup_id == 3293 ||  $popup_id == 725 || $popup_id == 847) && (is_post_type_archive( 'residential-property' )  ||  is_post_type_archive( 'commercial-property' )  )     ) {
     return true;
-   
+
   }
   else
     return $is_loadable;
@@ -805,7 +803,7 @@ $aVars[] = "locality";
 $aVars[] = "type";
 return $aVars;
 }
- 
+
 // hook add_query_vars function into query_vars
 add_filter('query_vars', 'add_query_vars');
 
@@ -843,7 +841,7 @@ function properties_custom_rewrite_rules( $existing_rules ) {
   );
 
    $existing_rules = $new_rules + $existing_rules;
- 
+
    return $existing_rules;
 }
 add_filter('rewrite_rules_array', 'properties_custom_rewrite_rules');
@@ -870,7 +868,7 @@ function get_sap_data(){
  function get_flat_type($code){
   switch ($code) {
     case "R1":
-        $type = 'Flat';
+        $type = '';
         break;
     case "R2":
         $type = 'Duplex Flat';
@@ -897,10 +895,456 @@ function get_sap_data(){
         $type = 'Commercial Spaces';
         break;
     default:
-        $type = 'Flat';
+        $type = '';
 }
 return $type;
  }
+
+
+
+
+function flatten($array, $index) {
+     $return = array();
+
+     if (is_array($array)) {
+        foreach ($array as $row) {
+             $return[] = $row[$index];
+        }
+     }
+
+     return $return;
+}
+
+
+
+function sizeImage($thisImage,$pageW,$pageH,$fixedMargin,$threshold) {
+
+   list($thisW,$thisH) = getimagesize($thisImage);
+
+    if($thisW<=$pageW && $thisH<=$pageH){
+       // DO NOT RESIZE IMAGE, JUST CENTER IT HORIZONTALLY
+        $newLeftMargin = centerMe($thisW,$pageW);
+        $leftMargin = $newLeftMargin;
+      return array('leftMargin' => $leftMargin, 'width' => $thisW);
+    } else {
+        $thisThreshold = $thisW / $thisH;
+      if($thisThreshold>=$threshold) {
+         $width = $pageW;
+         $leftMargin = $fixedMargin;
+      } else {
+         $thisMultiplier = $pageH / $thisH;
+         $width = $thisW * $thisMultiplier;
+         $width = round($width, 0, PHP_ROUND_HALF_DOWN);
+         // CENTER ON PAGE IF NOT FULL WIDTH
+         $newLeftMargin = centerMe($width,$pageW);
+         $leftMargin = $newLeftMargin;
+      }
+      return array('leftMargin' => $leftMargin, 'width' => $width);
+   }
+}
+
+
+
+function centerMe($thisWidth,$pageW){
+   $newMargin = ($pageW - $thisWidth) / 2;
+   $newMargin = round($newMargin, 0, PHP_ROUND_HALF_DOWN);
+   return $newMargin;
+}
+
+
+
+
+
+ function download_floor_plan(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) || $_GET['action']!='download_plan'){
+    return;
+  }
+
+  if(!isset($_GET['prop_id']) || !isset($_GET['plant_id']) || !isset($_GET['m_group']) || !isset($_GET['m_type'])){
+    return;
+  }
+  require_once('fpdf/fpdf.php');
+
+  $upload_dir = wp_upload_dir();
+  $path = $upload_dir['basedir'].'/floor-plans';
+  wp_mkdir_p( $path );
+
+  $mkt_group_desc = $_GET['m_group'];
+  $mkt_material_type_desc = $_GET['m_type'];
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+  $plans = flatten($plans, 'specific_floor_plan');
+  array_unique($plans);
+
+  $property = get_post($_GET['prop_id']);
+
+  $title = $property->post_title;
+  $plan_type = $mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc);
+  $filename = 'Floor_Plans_'.$mkt_material_type_desc.'_BHK_'.get_flat_type($mkt_group_desc).'_'.$title.'.pdf';
+
+$pdf = new FPDF('P','pt','Letter');
+$pdf->SetTitle($title,1);
+$pdf->SetAuthor('Ajency',1);
+$pdf->SetSubject('Floor Plans - '.$plan_type,1);
+$pdf->SetCompression(1);
+
+// LETTER size pages
+// UNIT IS POINTS, 72 PTS = 1 INCH
+$pageW = 612 - 36; // 8.5 inches wide with .25 margin left and right
+$pageH = 792 - 36; // 11 inches tall with .25 margin top and bottom
+$fixedMargin = 18; // .25 inch
+$threshold = $pageW / $pageH;
+
+foreach ($plans as $value) {
+   $currentImage = $path.'/'.$value.'.jpg';
+   if(file_exists($currentImage)){
+   $reSized = sizeImage($currentImage,$pageW,$pageH,$fixedMargin,$threshold);
+   $width = $reSized['width'];
+   $leftMargin = $reSized['leftMargin'];
+   $pdf->AddPage();
+   $pdf->Image($currentImage,$leftMargin,18,$width);
+   }
+}
+
+
+$pdf->Output($filename,'D');
+//$pdf->Output();
+}
+
+add_action('template_redirect','download_floor_plan');
+
+
+
+
+
+
+
+
+function download_all_floor_plan(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) || $_GET['action']!='download_all_plan'){
+    return;
+  }
+
+  if(!isset($_GET['prop_id']) || !isset($_GET['plant_id'])){
+    return;
+  }
+  require_once('fpdf/fpdf.php');
+
+  $upload_dir = wp_upload_dir();
+  $path = $upload_dir['basedir'].'/floor-plans';
+  wp_mkdir_p( $path );
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']."";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+  $plans = flatten($plans, 'specific_floor_plan');
+  array_unique($plans);
+
+  $property = get_post($_GET['prop_id']);
+
+  $title = $property->post_title;
+  $filename = 'Floor_Plans_'.$title.'.pdf';
+
+$pdf = new FPDF('P','pt','Letter');
+$pdf->SetTitle($title,1);
+$pdf->SetAuthor('Ajency',1);
+$pdf->SetSubject('Floor Plans',1);
+$pdf->SetCompression(1);
+
+// LETTER size pages
+// UNIT IS POINTS, 72 PTS = 1 INCH
+$pageW = 612 - 36; // 8.5 inches wide with .25 margin left and right
+$pageH = 792 - 36; // 11 inches tall with .25 margin top and bottom
+$fixedMargin = 18; // .25 inch
+$threshold = $pageW / $pageH;
+
+foreach ($plans as $value) {
+   $currentImage = $path.'/'.$value.'.jpg';
+   if(file_exists($currentImage)){
+   $reSized = sizeImage($currentImage,$pageW,$pageH,$fixedMargin,$threshold);
+   $width = $reSized['width'];
+   $leftMargin = $reSized['leftMargin'];
+   $pdf->AddPage();
+   $pdf->Image($currentImage,$leftMargin,18,$width);
+   }
+}
+
+
+$pdf->Output($filename,'D');
+//$pdf->Output();
+}
+
+add_action('template_redirect','download_all_floor_plan');
+
+
+
+
+
+
+function partition( $list, $p ) {
+    $listlen = count( $list );
+    $partlen = floor( $listlen / $p );
+    $partrem = $listlen % $p;
+    $partition = array();
+    $mark = 0;
+    for ($px = 0; $px < $p; $px++) {
+        $incr = ($px < $partrem) ? $partlen + 1 : $partlen;
+        $partition[$px] = array_slice( $list, $mark, $incr );
+        $mark += $incr;
+    }
+    return $partition;
+}
+
+
+
+
+
+
+
+function download_availability_pdf(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) || $_GET['action']!='download_availability'){
+    return;
+  }
+
+  if(!isset($_GET['prop_id']) || !isset($_GET['plant_id']) || !isset($_GET['m_group']) || !isset($_GET['m_type'])){
+    return;
+  }
+
+  $property = get_post($_GET['prop_id']);
+
+  $title = $property->post_title;
+
+  $mkt_group_desc = $_GET['m_group'];
+  $mkt_material_type_desc = $_GET['m_type'];
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT * FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+    $flats = array();
+        
+    foreach($plans as $record){
+
+      //Generating Flats data
+         if (!array_key_exists($record['building_no'],$flats)){
+            $flats[$record['building_no']] = array();
+         }
+
+         if (!array_key_exists($record['flat_no'], $flats[$record['building_no']])) {
+         $flats[$record['building_no']][$record['flat_no']] = array('area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
+         }
+    }
+
+
+
+$dataTest = array('a','b','c','d','e','f','g','h','i','j','k','l','m'); // test data
+ 
+// split data into 2 chunks
+$splitData = array_chunk( $dataTest, 5); 
+
+/*echo "<pre>";
+  print_r($splitData);
+  echo "</pre>";*/
+
+  
+$max_row = max(array_map('count', $splitData));
+
+  $table = "<table>";
+
+  for($i=0;$i<$max_row;$i++){
+    $table .= "<tr>";
+
+    for($p=0;$p<3;$p++){
+      $table .= "<td>".$splitData[$p][$i]."</td>";
+    }
+
+    $table .= "</tr>";
+  }
+
+  $table .= "</table>";
+
+  //echo $table;
+
+
+
+
+  $html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style><page>';
+  $html .= '<div class="full-wrap" style="width: 100%;">
+      <table class="header" style="width: 100%;">
+        <tr>
+          <td class="project_name inbl" style="vertical-align: top; width: 30%;">
+            <h1>'.$title.'</h1>
+            <h4>Availability</h4>
+          </td>
+          <td class="legend inbl" style="vertical-align: top; width: 69%;">
+            <table align="right">
+              <tr>
+                <td class="set set1" style="width: 125px;">
+                  <div class="color white"></div>
+                  <p class="info">WHITE = AVAILABLE</p>
+                </td>
+                <td class="set set2" style="width: 125px;">
+                  <div class="color blue" style="background-color: #d5effc; border-color: #d5effc;"></div>
+                  <p class="info">BLUE = SOLD</p>
+                </td>
+                <td class="set set3" style="width: 125px;">
+                  <div class="color green" style="background-color: #d0e5af; border-color: #d0e5af;"></div>
+                  <p class="info">GREEN = HOLD</p>
+                </td>
+
+                <td class="set updatedon" style="width: 120px; text-align: right;">
+                  <!--<div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>-->
+                  <p class="info">UPDATED ON<br><span class="updated">'.date("jS F 'y").'</span></p>
+                </td>
+                
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
+      <table class="ava_table fiveorless" style="width: 100%;" cellpadding="0" cellspacing="0">
+        <tr>
+          <!-- here the colspan value has to equal the number of columns -->
+          <th colspan="5" class="table-head">
+            '.$mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc).'
+          </th>
+        </tr>
+        <tr>
+          <th style="width: 90px;">A</th>
+          <th style="width: 90px;">A</th>
+          <th style="width: 90px;">B</th>
+          <th style="width: 90px;">B</th>
+          <th style="width: 90px;">C</th>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorblue">A102 (1300)</td>
+          <td class="colorblue">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorgreen">A101 (1300)</td>
+          <td class="colorblue">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td class="colorblue">C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="">A102 (1300)</td>
+          <td class="colorblue">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td class="colorblue">C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorblue">A102 (1300)</td>
+          <td class="colorblue">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td class="colorblue">C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+      </table>
+
+      <img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
+    </div>';
+  $html .= '</page>';
+
+
+  require_once('html2pdf/html2pdf.class.php');
+
+  try
+    {
+        $html2pdf = new HTML2PDF('P', 'A4');
+        $html2pdf->setDefaultFont('Arial');
+        $html2pdf->writeHTML($html);
+        $html2pdf->Output('availability.pdf');
+    }
+    catch(HTML2PDF_exception $e) {
+        echo $e;
+        exit;
+    }
+
+}
+
+add_action('template_redirect','download_availability_pdf');
 
 
 

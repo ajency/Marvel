@@ -435,6 +435,10 @@ global $post, $wpdb;
     $property_query = " SELECT * FROM ".$table_name." WHERE plant=".$plant_id."";
     $data = $wpdb->get_results($property_query,ARRAY_A);*/
     $data = get_sap_data();
+
+    $upload_dir = wp_upload_dir();
+    $plan_url = $upload_dir['baseurl'].'/floor-plans/';
+    $plan_path = $upload_dir['basedir'].'/floor-plans/';
     
 
     $tabs = array();
@@ -565,6 +569,41 @@ if(array_key_exists('R3',$tabs)){
     }
 }
 
+if(array_key_exists('R5',$tabs)){
+    asort($tabs['R5']);
+    foreach($tabs['R5'] as $key=>$value){
+        $html .= '<li><a href="#tab-R5'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('R5').'</a></li>';
+    }
+}
+
+if(array_key_exists('O1',$tabs)){
+    asort($tabs['O1']);
+    foreach($tabs['O1'] as $key=>$value){
+        $html .= '<li><a href="#tab-O1'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('O1').'</a></li>';
+    }
+}
+
+if(array_key_exists('O2',$tabs)){
+    asort($tabs['O2']);
+    foreach($tabs['O2'] as $key=>$value){
+        $html .= '<li><a href="#tab-O2'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('O2').'</a></li>';
+    }
+}
+
+if(array_key_exists('O3',$tabs)){
+    asort($tabs['O3']);
+    foreach($tabs['O3'] as $key=>$value){
+        $html .= '<li><a href="#tab-O3'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('O3').'</a></li>';
+    }
+}
+
+if(array_key_exists('Co',$tabs)){
+    asort($tabs['Co']);
+    foreach($tabs['Co'] as $key=>$value){
+        $html .= '<li><a href="#tab-Co'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('Co').'</a></li>';
+    }
+}
+
 $html .= '</ul>';
 
 
@@ -607,12 +646,19 @@ foreach($tabs as $tabkey=>$tabvalue){
         $tab_id = $tabkey.str_replace(".","",$value);
         $min_area = min($areas[$tabkey][$value]);
         $max_area = max($areas[$tabkey][$value]);
-        $common_floor_plan = $plans[$tabkey][$value].'.jpg';
-
-        if (@getimagesize($common_floor_plan)) {
-            $common_plan = $common_floor_plan;
+        $common_floor_plan = $plan_url.$plans[$tabkey][$value];
+        $common_floor_plan_path = $plan_path.$plans[$tabkey][$value];
+          
+        if(file_exists($common_floor_plan_path.'.jpg')){
+            $common_plan = $common_floor_plan.'.jpg';
         }else{
            $common_plan = get_stylesheet_directory_uri().'/img/image-not-found_smaller.jpg';
+        }
+
+        if(file_exists($common_floor_plan_path.'.pdf')){
+            $common_plan_pdf = $common_floor_plan.'.pdf';
+        }else{
+           $common_plan_pdf = get_stylesheet_directory_uri().'/img/image-not-found_smaller.jpg';
         }
 
         if($min_area == $max_area){
@@ -628,7 +674,7 @@ foreach($tabs as $tabkey=>$tabvalue){
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
                                             Typical floor plan of a '.$value.' BHK '.get_flat_type($tabkey).' &#8211; '.$area.'
-                                            <a class="wpb_button_a download_prj" title="Download" href="'.$common_plan.'" download>
+                                            <a class="wpb_button_a download_prj" title="Download" href="'.$common_plan_pdf.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
                                         </p>
@@ -701,8 +747,11 @@ foreach($tabs as $tabkey=>$tabvalue){
                                                         $total = count($building_value)-1;
                                                                                                                 
                                                         foreach($building_value as $flat=>$flat_data) {
+
+                                                            $specific_floor_plan = $plan_url.$flat_data['floor_plan'].'.jpg';
+
                                                             if($flat_data['status'] == 'Unsold'){
-                                                                $popdata = 'data-plantId="'.$plant_id.'" data-building="'.$building_key.'" data-flatNo="'.$flat.'" data-flatArea="'.$flat_data['area'].'" data-terraceArea="'.$flat_data['terrace_area'].'" data-sellableArea="'.$flat_data['total_saleable_area'].'" data-floorPlan="'.$flat_data['floor_plan'].'"';
+                                                                $popdata = 'data-plantId="'.$plant_id.'" data-building="'.$building_key.'" data-flatNo="'.$flat.'" data-flatArea="'.$flat_data['area'].'" data-terraceArea="'.$flat_data['terrace_area'].'" data-sellableArea="'.$flat_data['total_saleable_area'].'" data-floorPlan="'.$specific_floor_plan.'"';
                                                                 $col = '<td '.$popdata.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
                                                             }else if($flat_data['status'] == 'Hold'){
                                                                 $col = '<td class="hold_bg">'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
@@ -780,19 +829,13 @@ add_shortcode('sap-availability-table', 'sap_availability_table_shortcode');
 function sap_floor_plans_download_shortcode(){
 global $post;
 
+$plant_id = get_post_meta($post->ID,'property-plant-id',true);
+
 $data = get_sap_data();
     
 
     $tabs = array();
-
-    $areas = array();
-
-    $plans = array();
-
-    $buildings = array();
-
-    $flats = array();
-        
+         
     foreach($data as $record){
        
        //Generating Tabs data
@@ -803,97 +846,72 @@ $data = get_sap_data();
          if (!in_array($record['mkt_material_type_desc'], $tabs[$record['mkt_group_desc']])) {
          array_push($tabs[$record['mkt_group_desc']],$record['mkt_material_type_desc']);
          }
-
-
-         //Generating Areas data
-         if (!array_key_exists($record['mkt_group_desc'],$areas)){
-            $areas[$record['mkt_group_desc']] = array();
-         }
-
-         if (!array_key_exists($record['mkt_material_type_desc'],$areas[$record['mkt_group_desc']])) {
-          $areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = array();
-         }
-
-
-         if (!in_array($record['total_saleable_area'], $areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
-         array_push($areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']],$record['total_saleable_area']);
-         }
-
-
-
-         //Generating Plans data
-         if (!array_key_exists($record['mkt_group_desc'],$plans)){
-            $plans[$record['mkt_group_desc']] = array();
-         }
-
-         if (!array_key_exists($record['mkt_material_type_desc'],$plans[$record['mkt_group_desc']])) {
-          $plans[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = $record['common_floor_plan'];
-         }
-
-
-         //Generating Buildings data
-         if (!array_key_exists($record['mkt_group_desc'],$buildings)){
-            $buildings[$record['mkt_group_desc']] = array();
-         }
-
-         if (!array_key_exists($record['mkt_material_type_desc'],$buildings[$record['mkt_group_desc']])) {
-          $buildings[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = array();
-         }
-
-         if (!in_array($record['building_no'], $buildings[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
-         array_push($buildings[$record['mkt_group_desc']][$record['mkt_material_type_desc']],$record['building_no']);
-         }
-
-
-         //Generating Flats data
-         if (!array_key_exists($record['mkt_group_desc'],$flats)){
-            $flats[$record['mkt_group_desc']] = array();
-         }
-
-         if (!array_key_exists($record['mkt_material_type_desc'],$flats[$record['mkt_group_desc']])) {
-          $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = array();
-         }
-
-         if (!array_key_exists($record['building_no'], $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
-         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']] = array();
-         }
-
-         if (!array_key_exists($record['flat_no'], $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']])) {
-         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']][$record['flat_no']] = array('area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
-         }
     }
 
 
-$html = '<a class="wpb_button_a" title="All" href="http://www.marvelrealtors.com/download/1705/">
-<span class="wpb_button  wpb_wpb_button wpb_regularsize">All</span>
-</a>';
+$html = '<a class="wpb_button_a" title="All" href="'.get_site_url().'/?action=download_all_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'" target="_blank"><span class="wpb_button  wpb_wpb_button wpb_regularsize">All</span></a>';
 
 
 if(array_key_exists('R1',$tabs)){
     asort($tabs['R1']);
     foreach($tabs['R1'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href=""><span class="wpb_button  wpb_btn-inverse wpb_regularsize half left">'.$value.' BHK</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize half left">'.$value.' BHK</span></a>';
     }
 }
 
 if(array_key_exists('R4',$tabs)){
     asort($tabs['R4']);
     foreach($tabs['R4'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="http://www.marvelrealtors.com/download/1716/"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R4').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R4').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R4&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R4').'</span></a>';
     }
 }
 
 if(array_key_exists('R2',$tabs)){
     asort($tabs['R2']);
     foreach($tabs['R2'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="http://www.marvelrealtors.com/download/1716/"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R2').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R2').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R2').'</span></a>';
     }
 }
 
 if(array_key_exists('R3',$tabs)){
     asort($tabs['R3']);
     foreach($tabs['R3'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="http://www.marvelrealtors.com/download/1716/"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R3').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R3').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R3').'</span></a>';
+    }
+}
+
+if(array_key_exists('R5',$tabs)){
+    asort($tabs['R5']);
+    foreach($tabs['R5'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R5').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R5&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R5').'</span></a>';
+    }
+}
+
+if(array_key_exists('O1',$tabs)){
+    asort($tabs['O1']);
+    foreach($tabs['O1'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O1').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O1').'</span></a>';
+    }
+}
+
+if(array_key_exists('O2',$tabs)){
+    asort($tabs['O2']);
+    foreach($tabs['O2'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O2').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O2').'</span></a>';
+    }
+}
+
+if(array_key_exists('O3',$tabs)){
+    asort($tabs['O3']);
+    foreach($tabs['O3'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O3').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O3').'</span></a>';
+    }
+}
+
+if(array_key_exists('Co',$tabs)){
+    asort($tabs['Co']);
+    foreach($tabs['Co'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('Co').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=Co&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('Co').'</span></a>';
     }
 }
 
@@ -901,6 +919,119 @@ if(array_key_exists('R3',$tabs)){
 return $html;
 }
 add_shortcode('floor-plans-table', 'sap_floor_plans_download_shortcode');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function sap_availability_pdf_shortcode(){
+global $post;
+
+$plant_id = get_post_meta($post->ID,'property-plant-id',true);
+
+$data = get_sap_data();
+
+    $tabs = array();
+         
+    foreach($data as $record){
+       
+       //Generating Tabs data
+         if (!array_key_exists($record['mkt_group_desc'],$tabs)){
+            $tabs[$record['mkt_group_desc']] = array();
+         }
+
+         if (!in_array($record['mkt_material_type_desc'], $tabs[$record['mkt_group_desc']])) {
+         array_push($tabs[$record['mkt_group_desc']],$record['mkt_material_type_desc']);
+         }
+    }
+
+
+$html = '<a class="wpb_button_a" title="All" href="'.get_site_url().'/?action=download_all_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'" target="_blank"><span class="wpb_button  wpb_wpb_button wpb_regularsize">All</span></a>';
+
+
+if(array_key_exists('R1',$tabs)){
+    asort($tabs['R1']);
+    foreach($tabs['R1'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize half left">'.$value.' BHK</span></a>';
+    }
+}
+
+if(array_key_exists('R4',$tabs)){
+    asort($tabs['R4']);
+    foreach($tabs['R4'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R4').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R4&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R4').'</span></a>';
+    }
+}
+
+if(array_key_exists('R2',$tabs)){
+    asort($tabs['R2']);
+    foreach($tabs['R2'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R2').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R2').'</span></a>';
+    }
+}
+
+if(array_key_exists('R3',$tabs)){
+    asort($tabs['R3']);
+    foreach($tabs['R3'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R3').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R3').'</span></a>';
+    }
+}
+
+if(array_key_exists('R5',$tabs)){
+    asort($tabs['R5']);
+    foreach($tabs['R5'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R5').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R5&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R5').'</span></a>';
+    }
+}
+
+if(array_key_exists('O1',$tabs)){
+    asort($tabs['O1']);
+    foreach($tabs['O1'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O1').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O1').'</span></a>';
+    }
+}
+
+if(array_key_exists('O2',$tabs)){
+    asort($tabs['O2']);
+    foreach($tabs['O2'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O2').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O2').'</span></a>';
+    }
+}
+
+if(array_key_exists('O3',$tabs)){
+    asort($tabs['O3']);
+    foreach($tabs['O3'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O3').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O3').'</span></a>';
+    }
+}
+
+if(array_key_exists('Co',$tabs)){
+    asort($tabs['Co']);
+    foreach($tabs['Co'] as $key=>$value){
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('Co').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=Co&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('Co').'</span></a>';
+    }
+}
+
+
+return $html;
+}
+
+add_shortcode('availability-download-table', 'sap_availability_pdf_shortcode');
 
 
 

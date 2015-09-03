@@ -420,7 +420,7 @@ function checkIfInView(element){
                         popup_data += '<div class="pull-left right_d">'+sellableArea+'</div>';
                         popup_data += '<div class="clearfix"></div>';
                         popup_data += '<div class="btncol">';
-                            popup_data += '<a class="wpb_button_a" title="2D Layout" href="'+floorPlan+'.jpg" target="_blank"><span style="padding: 8px 13px; font-size: 13px;" class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>';
+                            popup_data += '<a class="wpb_button_a" title="2D Layout" href="'+floorPlan+'" target="_blank"><span style="padding: 8px 13px; font-size: 13px;" class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>';
                             popup_data += '<a class="wpb_button_a popmake-availability-hold-popup" title="Availability" href="#"><span style="padding: 7px 13px; font-size: 13px;" class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>';
                         popup_data += '</div>';
 
