@@ -237,8 +237,8 @@ console.log('LOADING SHARE BUTTON  LISTINGSSSSSSSSS:----------------------------
     }
 } );  */
                 console.log('resi coll');
-                console.log(getAppInstance().residentialPropertyCollection.length);
-                console.log(getAppInstance().residentialPropertyCollection);
+             //   console.log(getAppInstance().residentialPropertyCollection.length);
+             //   console.log(getAppInstance().residentialPropertyCollection);
                                 
 
                

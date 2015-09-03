@@ -98,7 +98,6 @@ Template Name: Page - Commercial Projects List New
         var JSVERSION = '<?php echo JSVERSION; ?>';
         var Current_property_type = 'commercial-property';
 
-
          <?php if (in_array("ongoing", explode("/",$_SERVER['REQUEST_URI']))){ ?>
           var queryStatus = 'ongoing';
         <?php }else if(in_array("completed", explode("/",$_SERVER['REQUEST_URI']))){ ?>
@@ -116,6 +115,7 @@ Template Name: Page - Commercial Projects List New
         <?php if(isset($wp_query->query_vars['type'])) { ?>
           var queryType = '<?php echo urldecode($wp_query->query_vars["type"]); ?>';
         <?php } ?>
+        
 
     </script>
     

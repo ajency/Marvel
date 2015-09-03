@@ -1188,9 +1188,43 @@ infowindow.open(map,marker);
                 jQuery('#projects_listings').removeClass('completed_status_projects')
 
               }
+ 
 
-              if(!_.isUndefined(prop_status) && prop_status !='' )
-                search_opt = search_opt + '/'+prop_status;
+              
+              var current_selected_status     = (_.isUndefined(prop_status) || (prop_status=='') )?'ongoing':prop_status;
+              var current_selected_city       = (_.isUndefined(prop_city) || (prop_city=="") )?'cityall':prop_city;
+              var current_selected_locality   = (_.isUndefined(prop_locality) || (prop_locality=='') ) ?'localityall':prop_locality;
+              var current_selected_type       = (_.isUndefined(prop_type) || (prop_type=='') )?'typeall':prop_type; 
+             // var current_selected_nearby     = _.isUndefined(options.nearby)?'':options.nearby; 
+
+ 
+
+              
+
+                /* if(current_selected_nearby!=''){
+                    url_link+= '&status='+this.status+'&city='+this.city+'&locality='+this.locality+'&type='+this.type+'&nearby='+this.nearby;
+                }
+                else */
+                if(current_selected_type!='typeall'){
+                    search_opt+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality+'/'+current_selected_type;
+
+                }
+                else if(current_selected_locality!='localityall'){
+                    search_opt+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality;
+
+                }
+                else if(current_selected_city!='cityall'){
+                    search_opt+= '/'+current_selected_status+'/'+current_selected_city ;
+
+                }                
+                else {
+                    search_opt+= '/'+current_selected_status
+                }
+
+
+
+              /* URL CORRECTIONS commented on 3sep2015 if(!_.isUndefined(prop_status) && prop_status !='' )
+                search_opt = search_opt + '/'+prop_status;              
 
               if(!_.isUndefined(prop_city) && prop_city !='' )
                 search_opt = search_opt + '/'+prop_city;
@@ -1201,6 +1235,9 @@ infowindow.open(map,marker);
 
               if(!_.isUndefined(prop_type) && prop_type!='')
                 search_opt = search_opt+'/'+prop_type;
+              */
+
+
 
               var evt_type =   typeof jQuery(evt.target).attr('href');
               if(!_.isUndefined(getAppInstance().commercialPropertyCollection)){

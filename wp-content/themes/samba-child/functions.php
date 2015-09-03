@@ -250,7 +250,12 @@ function get_res_property_meta_values($property_id, $post_type){
 
 
                    $value = array_merge($value,$main_property_type);
-                   $value['property_unit_type_display'] = $value['type_name']." ".$main_property_type['property_type_name'];
+                   if($post_type=="residential-property"){
+                      $value['property_unit_type_display'] = $value['type_name']." ".$main_property_type['property_type_name'];
+                    }
+                    else if($post_type=="commercial-property"){ 
+                     $value['property_unit_type_display'] = $value['type_name']; 
+                    }
 
                    /* echo "\n\n\n FETCHD TYPE ";
                    var_dump($main_property_type);
@@ -819,7 +824,22 @@ function properties_custom_rewrite_rules( $existing_rules ) {
     'residential-properties/completed/([^/]+)/?$' => 'index.php?pagename=residential-properties&city=$matches[1]',
 
     'residential-properties/ongoing/?$' => 'index.php?pagename=residential-properties',
-    'residential-properties/completed/?$' => 'index.php?pagename=residential-properties'
+    'residential-properties/completed/?$' => 'index.php?pagename=residential-properties',
+
+
+
+
+    'commercial-properties/ongoing/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=commercial-properties&city=$matches[1]&locality=$matches[2]&type=$matches[3]',
+    'commercial-properties/completed/([^/]+)/([^/]+)/([^/]+)/?$' => 'index.php?pagename=commercial-properties&city=$matches[1]&locality=$matches[2]&type=$matches[3]',
+
+    'commercial-properties/ongoing/([^/]+)/([^/]+)/?$' => 'index.php?pagename=commercial-properties&city=$matches[1]&locality=$matches[2]',
+    'commercial-properties/completed/([^/]+)/([^/]+)/?$' => 'index.php?pagename=commercial-properties&city=$matches[1]&locality=$matches[2]',
+
+    'commercial-properties/ongoing/([^/]+)/?$' => 'index.php?pagename=commercial-properties&city=$matches[1]',
+    'commercial-properties/completed/([^/]+)/?$' => 'index.php?pagename=commercial-properties&city=$matches[1]',
+
+    'commercial-properties/ongoing/?$' => 'index.php?pagename=commercial-properties',
+    'commercial-properties/completed/?$' => 'index.php?pagename=commercial-properties'
   );
 
    $existing_rules = $new_rules + $existing_rules;
