@@ -241,7 +241,26 @@ console.log('LOADING SHARE BUTTON  LISTINGSSSSSSSSS:----------------------------
              //   console.log(getAppInstance().residentialPropertyCollection);
                                 
 
-               
+               if(jQuery(".draggable").length>0 && self.searchView.post_type=="residential-property"){
+
+            console.log('draggable')
+            jQuery(".draggable").draggable({ cursor: "crosshair",  revert:"invalid",helper:"clone",
+
+
+            start: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            },
+            stop: function(event, ui) {
+                ui.helper.css({ height: 'auto', width: '300px' });
+            }
+
+
+        });
+        }
+        else{
+            console.log('no dragables')
+        }
+
 
                 return this;
             },

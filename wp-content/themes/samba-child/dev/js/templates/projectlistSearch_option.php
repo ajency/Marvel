@@ -147,8 +147,19 @@ console.log(sorted_type_options);
         <button type="button" class="btn_norm sea"><i class="fa fa-search"></i></button>
     </div>
     <div class="pull-right top-view">
-        <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
-        <a href="#map" class="top_map"><i class="fa fa-map-marker"></i></a>
+        <%         
+
+        if(_.isUndefined(queryMap) || _.isNull(queryMap)  || queryMap==false || queryMap==''){ 
+                var listings_active_class = " current " ;
+                var maplistings_active_class = "  " ;
+            }
+            else{
+                var listings_active_class = " " ;
+                var maplistings_active_class = " current " ;
+            }
+         %>
+        <a href="javascript:void(0)" class="top_list <%=listings_active_class %>"><i class="fa fa-th-large"></i></a>
+        <a href="javascript:void(0)" class="top_map <%=maplistings_active_class %>"><i class="fa fa-map-marker"></i></a>
     </div>
 
 <?php /*

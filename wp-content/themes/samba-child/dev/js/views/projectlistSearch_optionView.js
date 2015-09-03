@@ -367,6 +367,7 @@
 //console.log( getAppInstance().residentialPropertyCollection)
 
                                  if(!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
+                                     
                                      jQuery('.top_map').addClass('current');
 
                                     jQuery('.top_list').removeClass('current')
@@ -424,13 +425,13 @@
 
 
 
-   display_map : function(){
+   display_map : function(search_collections){
 
 
 
     var self = this;
                 //console.log('display map');;
-
+/*
                 jQuery('.top_map').addClass('current');
                 jQuery('.top_list').removeClass('current')
 
@@ -468,7 +469,7 @@
                                         'property_city':prop_city,
                                         'property_locaity': prop_locality,
                                         'property_unit_type':prop_type
-                                          }) */
+                                          }) * /
 
                 var search_collections = res_collection.models;
 
@@ -501,7 +502,7 @@
                     search_collections = sel_search_collections;
                   }
 
-
+*/
 
 
 
@@ -893,14 +894,13 @@ infowindow.open(map,marker);
                 return this;
             },
 
-            searchProperties: function(evt){
 
+
+            filter_properties: function(){
 
                 var self = this ;
 
-
-
-                var prop_city       = self.selectedCity;
+              var prop_city       = self.selectedCity;
                 var prop_locality   = self.selectedLocality;
                 var prop_type       = self.selectedType;
                 var prop_status     = self.selectedStatus;
@@ -943,6 +943,10 @@ infowindow.open(map,marker);
                                         'property_unit_type':prop_type
                                           }) */
 
+                console.log('res_collection :===================================================');
+                console.log(res_collection);
+
+
                 var search_collections = res_collection.models;
 
 
@@ -974,8 +978,15 @@ infowindow.open(map,marker);
                     search_collections = sel_search_collections;
                   }
 
+                  return search_collections;
+
+            },
+
+            searchProperties: function(evt){
 
 
+                var self = this ;
+                var search_collections = self.filter_properties();
                 
                 jQuery('#projects_listings').attr('style','')
 
@@ -986,14 +997,14 @@ infowindow.open(map,marker);
                 //console.log('SORTED BY MENU ORDER')
                 //console.log(search_collections)
 
-                 //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
-                    if( !_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true) {
+              //if( (!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true)  || (jQuery(evt.target).hasClass('top_list')==false && jQuery('.top_map').hasClass('current'))     ||  (jQuery(evt.target).hasClass('top_map') ) ){
+               if(queryMap==true ) {
                     jQuery('.top_map').addClass('current');
-                    jQuery('.top_map').removeClass('current')
-                    this.display_map();
+                    jQuery('.top_list').removeClass('current')
+                    this.display_map(search_collections);
                 }
                // if(jQuery(evt.target).hasClass('top_list') || (jQuery(evt.target).hasClass('top_map') ==false && jQuery('.top_map').hasClass('current') == false)){
-                if( _.isUndefined(getAppInstance().mainView.mapview) || getAppInstance().mainView.mapview==false) {
+                else {/* if( _.isUndefined(getAppInstance().mainView.mapview) || getAppInstance().mainView.mapview==false) { */
                     jQuery('.top_list').addClass('current');
                     jQuery('.top_map').removeClass('current')
 
@@ -1246,20 +1257,36 @@ infowindow.open(map,marker);
               else{
                 var RedirectUrl = SITEURL+'/residential-properties/';
               }
+ 
 
-              if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
+            if(!_.isUndefined(jQuery(evt.target)) ) {
+              if( jQuery(evt.target).hasClass('top_list')){
+                RedirectUrl = RedirectUrl+search_opt;
+              }
+              else{
+                RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
+              }
 
-                  RedirectUrl = RedirectUrl;
+            }
+            else{
+              if(_.isUndefined(queryMap) || _.isNull(queryMap)  || queryMap==false || queryMap==''   ){           
+
+                  RedirectUrl = RedirectUrl+search_opt;
 
               }
-              else if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){
+              else {/* if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){ */
 
-                  RedirectUrl = RedirectUrl + '#map' ;
+                  RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
 
               }
+            }
+
+
+              //if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
+              
 
              // alert('evt_id:'+evt_id)
-             jQuery(evt.target).closest('.top-dd').find('.elips-cont').html('jjj')
+             //jQuery(evt.target).closest('.top-dd').find('.elips-cont').html('jjj')
 
            //    jQuery(evt.target).closest('.top-dd').find('.elips-cont').html(jQuery('#'+evt_id+' option:selected').text())
 
@@ -1268,7 +1295,7 @@ infowindow.open(map,marker);
               //console.log('REDIRECT URL :  '+RedirectUrl+search_opt)
 
 
-              location.assign(RedirectUrl+search_opt) ;
+              location.assign(RedirectUrl) ;
 
 
             },

@@ -117,6 +117,18 @@ Template Name: Page - Residential Projects List New
         <?php } ?>
 
 
+        <?php 
+        if(isset($_GET['map']) && !is_null($_GET['map']) ) {          
+        ?>var queryMap = <?php echo $_GET['map'] ?>;
+        <?php
+        }
+        else{ ?>
+          var queryMap ='';
+        <?php }
+        ?>
+
+
+
     </script>
     
  

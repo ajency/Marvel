@@ -115,7 +115,15 @@ Template Name: Page - Commercial Projects List New
         <?php if(isset($wp_query->query_vars['type'])) { ?>
           var queryType = '<?php echo urldecode($wp_query->query_vars["type"]); ?>';
         <?php } ?>
-        
+         <?php 
+        if(isset($_GET['map']) && !is_null($_GET['map']) ) {          
+        ?>var queryMap = <?php echo $_GET['map'] ?>;
+        <?php
+        }
+        else{ ?>
+          var queryMap ='';
+        <?php }
+        ?>
 
     </script>
     
