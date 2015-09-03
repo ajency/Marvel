@@ -1286,9 +1286,8 @@ infowindow.open(map,marker);
 
               }
 
-            }
-           
-alert(RedirectUrl)
+            }           
+
 
               //if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
               
