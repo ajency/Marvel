@@ -123,6 +123,10 @@ body, html {
 	border-collapse: collapse;
 	margin-top: 25px;
 }
+.ava_table .ava_table_in {
+	width: 100%;
+	border-collapse: collapse;
+}
 .ava_table.fiveorless {
 	width: auto;
 }

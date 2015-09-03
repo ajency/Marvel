@@ -957,7 +957,7 @@ function download_availability_pdf(){
   $plans = $wpdb->get_results($plan_query,ARRAY_A);
 
     $flats = array();
-        
+
     foreach($plans as $record){
 
       //Generating Flats data
@@ -1024,7 +1024,7 @@ function download_availability_pdf(){
         </tr>
       </table>';
 
-      
+
 $html .= '<table class="ava_table fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
 $html .= '<tr><th colspan="'.$total_rec.'" class="table-head">'.$mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc).'</th></tr>';
 $html .= '<tr>';
@@ -1038,12 +1038,12 @@ foreach($chunks as $keyy => $csm)
 
 $columns = count($chunks);
 $html .= '<td>';
-  $html .= '<table class="ava_table fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
+  $html .= '<table class="ava_table_in fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
 
   for($i=0;$i<$max_row;$i++){
 
     $html .= '<tr>';
-    
+
     foreach($chunks as $chunk){
 
       if(($i==0)){
@@ -1064,7 +1064,7 @@ $html .= '<td>';
           $html .= '<td>&nbsp;</td>';
         }
       }
-      
+
     }
 
     $html .= '</tr>';
@@ -1150,7 +1150,7 @@ $html .= '</table>';
           <td class="colorblue">B102 (1300)</td>
           <td>C101 (1300)</td>
         </tr>
-                
+
         <tr>
           <td class="colorblue">A101 (1300)</td>
           <td class="colorgreen">A102 (1300)</td>
