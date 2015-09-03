@@ -931,26 +931,6 @@ add_action('template_redirect','download_all_floor_plan');
 
 
 
-function partition( $list, $p ) {
-    $listlen = count( $list );
-    $partlen = floor( $listlen / $p );
-    $partrem = $listlen % $p;
-    $partition = array();
-    $mark = 0;
-    for ($px = 0; $px < $p; $px++) {
-        $incr = ($px < $partrem) ? $partlen + 1 : $partlen;
-        $partition[$px] = array_slice( $list, $mark, $incr );
-        $mark += $incr;
-    }
-    return $partition;
-}
-
-
-
-
-
-
-
 function download_availability_pdf(){
 
   global $wpdb;
@@ -970,6 +950,8 @@ function download_availability_pdf(){
   $mkt_group_desc = $_GET['m_group'];
   $mkt_material_type_desc = $_GET['m_type'];
 
+  $max_row = 25;
+
   $table_name = $wpdb->prefix.'sap_inventory';
   $plan_query = " SELECT * FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
   $plans = $wpdb->get_results($plan_query,ARRAY_A);
@@ -984,40 +966,26 @@ function download_availability_pdf(){
          }
 
          if (!array_key_exists($record['flat_no'], $flats[$record['building_no']])) {
-         $flats[$record['building_no']][$record['flat_no']] = array('area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
+         $flats[$record['building_no']][$record['flat_no']] = array('flat'=>$record['flat_no'],'area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
          }
     }
 
 
-
-$dataTest = array('a','b','c','d','e','f','g','h','i','j','k','l','m'); // test data
- 
-// split data into 2 chunks
-$splitData = array_chunk( $dataTest, 5); 
+    $total_columns = array();
+    foreach($flats as $building=>$flt){
+      $split_records = array_chunk( $flats[$building], $max_row);
+      foreach($split_records as $keyyy => $csmm)
+      {
+        array_unshift($split_records[$keyyy], 'head');
+      }
+      $col = count($split_records);
+      $total_columns[] = $col;
+    }
+    $total_rec = array_sum($total_columns);
 
 /*echo "<pre>";
-  print_r($splitData);
+  print_r($chunkss);
   echo "</pre>";*/
-
-  
-$max_row = max(array_map('count', $splitData));
-
-  $table = "<table>";
-
-  for($i=0;$i<$max_row;$i++){
-    $table .= "<tr>";
-
-    for($p=0;$p<3;$p++){
-      $table .= "<td>".$splitData[$p][$i]."</td>";
-    }
-
-    $table .= "</tr>";
-  }
-
-  $table .= "</table>";
-
-  //echo $table;
-
 
 
 
@@ -1049,13 +1017,69 @@ $max_row = max(array_map('count', $splitData));
                   <!--<div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>-->
                   <p class="info">UPDATED ON<br><span class="updated">'.date("jS F 'y").'</span></p>
                 </td>
-                
+
               </tr>
             </table>
           </td>
         </tr>
-      </table>
-      <!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
+      </table>';
+
+      
+$html .= '<table class="ava_table fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
+$html .= '<tr><th colspan="'.$total_rec.'" class="table-head">'.$mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc).'</th></tr>';
+$html .= '<tr>';
+foreach($flats as $key=>$val){
+
+$chunks = array_chunk( $flats[$key], $max_row);
+foreach($chunks as $keyy => $csm)
+ {
+  array_unshift($chunks[$keyy], $key);
+ }
+
+$columns = count($chunks);
+$html .= '<td>';
+  $html .= '<table class="ava_table fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
+
+  for($i=0;$i<$max_row;$i++){
+
+    $html .= '<tr>';
+    
+    foreach($chunks as $chunk){
+
+      if(($i==0)){
+        $html .= '<th style="width: 90px;">'.$key.'</th>';
+      }else{
+
+        if($chunk[$i]['status'] == 'Unsold'){
+          $tdclass = '';
+        }else if($chunk[$i]['status'] == 'Hold'){
+          $tdclass = 'colorgreen';
+        }else{
+          $tdclass = 'colorblue';
+        }
+
+        if($chunk[$i]['flat'] != ''){
+          $html .= '<td class="'.$tdclass.'">'.$key.$chunk[$i]['flat'].' ('.$chunk[$i]['area'].')</td>';
+        }else{
+          $html .= '<td>&nbsp;</td>';
+        }
+      }
+      
+    }
+
+    $html .= '</tr>';
+  }
+
+  $html .= '</table>';
+
+   $html .= '</td>';
+}
+$html .= '</tr>';
+$html .= '</table>';
+
+
+
+      /*$htmll .= '<!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
       <table class="ava_table fiveorless" style="width: 100%;" cellpadding="0" cellspacing="0">
         <tr>
           <!-- here the colspan value has to equal the number of columns -->
@@ -1126,6 +1150,7 @@ $max_row = max(array_map('count', $splitData));
           <td class="colorblue">B102 (1300)</td>
           <td>C101 (1300)</td>
         </tr>
+                
         <tr>
           <td class="colorblue">A101 (1300)</td>
           <td class="colorgreen">A102 (1300)</td>
@@ -1147,23 +1172,11 @@ $max_row = max(array_map('count', $splitData));
           <td class="colorblue">B102 (1300)</td>
           <td>C101 (1300)</td>
         </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-      </table>
 
-      <img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
+      </table>';*/
+
+
+      $html .= '<img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
     </div>';
   $html .= '</page>';
 
