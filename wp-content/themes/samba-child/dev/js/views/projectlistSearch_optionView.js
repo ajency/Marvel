@@ -1252,23 +1252,29 @@ infowindow.open(map,marker);
 
               var evt_type =   typeof jQuery(evt.target).attr('href');
               if(!_.isUndefined(getAppInstance().commercialPropertyCollection)){
-                var RedirectUrl = SITEURL+'/commercial-properties/';
+                var RedirectUrl = SITEURL+'/commercial-properties';
               }
               else{
-                var RedirectUrl = SITEURL+'/residential-properties/';
+                var RedirectUrl = SITEURL+'/residential-properties';
               }
  
 
-            if(!_.isUndefined(jQuery(evt.target)) ) {
-              if( jQuery(evt.target).hasClass('top_list')){
-                RedirectUrl = RedirectUrl+search_opt;
-              }
-              else{
-                RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
-              }
+            
+            
+              
+
+
+              if(!_.isUndefined(jQuery(evt.target))  && jQuery(evt.target).hasClass('srchopt') == false ) {
+                if( jQuery(evt.target).hasClass('top_list')    ){
+                  RedirectUrl = RedirectUrl+search_opt;
+                }
+                else if( jQuery(evt.target).hasClass('top_map') ) {
+                  RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
+                }
 
             }
             else{
+
               if(_.isUndefined(queryMap) || _.isNull(queryMap)  || queryMap==false || queryMap==''   ){           
 
                   RedirectUrl = RedirectUrl+search_opt;
@@ -1279,8 +1285,10 @@ infowindow.open(map,marker);
                   RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
 
               }
-            }
 
+            }
+           
+alert(RedirectUrl)
 
               //if( (evt_type == 'undefined' &&  jQuery('.top_list').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_list') )  ){
               
