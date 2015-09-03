@@ -128,7 +128,8 @@
                 var self = this;
 
                 jQuery('#projects_listings').html(self.show_loader());
-
+                
+                self.searchView.searchProperties();
                  
 /*
 
@@ -162,7 +163,7 @@
    console.log('LISTING VIEW OPTIONS :--------------------------------------------------------------------');
    console.log(self)
 
-    if(self.searchView.post_type=='residential-property') {
+    /* commented on 3sep2015 if(self.searchView.post_type=='residential-property') {
             getAppInstance().residentialPropertyCollection = new ResidentialPropertiesCollection();
     }
     else{
@@ -173,7 +174,7 @@
     }
 
      
-                getAppInstance().residentialPropertyCollection.fetch({
+getAppInstance().residentialPropertyCollection.fetch({
     success: function(collection) { // the fetched collection!
 
         console.log('success fetched:-----');
@@ -234,7 +235,7 @@ console.log('LOADING SHARE BUTTON  LISTINGSSSSSSSSS:----------------------------
 
 
     }
-} );
+} );  */
                 console.log('resi coll');
                 console.log(getAppInstance().residentialPropertyCollection.length);
                 console.log(getAppInstance().residentialPropertyCollection);

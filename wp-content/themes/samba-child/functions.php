@@ -345,11 +345,7 @@ function get_residential_properties_list($post_type,$propertylist_args){
 
     global $wpdb;
     $sel_properties = array();
-
-
-
-
-    
+    $propmeta_query = array();
 
 
     /* 'meta_query' => array(
@@ -388,62 +384,6 @@ function get_residential_properties_list($post_type,$propertylist_args){
        */
 
 
-            if($post_type=="residential-property"){
-
-                if(isset($propertylist_args['city'])){
-
-                   $current_cities = $properties_optionsmeta['cities']['cities'] ;
-
-                    foreach ($current_cities as $citieskey => $citiesvalue) {
-
-                      if(strtolower($citiesvalue['name']) == strtolower($propertylist_args['city']) )
-                        $current_city_id = $citiesvalue['ID'] ;                   
-
-                    }  
-
-                    $propmeta_query[] = array(
-                     'key' => 'property-city',
-                     'value' => $current_city_id,
-                     'compare' => '=' 
-                    ) ;
-                } 
-
-
-
-                if(isset($propertylist_args['locality'])){
-
-                   $current_cities = $properties_optionsmeta['localities']['localities'] ;
-
-                    foreach ($current_cities as $citieskey => $citiesvalue) {
-
-                      if(strtolower($citiesvalue['name']) == strtolower($propertylist_args['city']) )
-                        $current_city_id = $citiesvalue['ID'] ;                   
-
-                    }  
-
-                    $propmeta_query[] = array(
-                     'key' => 'property-city',
-                     'value' => $current_city_id,
-                     'compare' => '=',
-                    ) ;
-                } 
-
-
-
-                
-
-             
-
-
-
-        }
-        else if($post_type=="commercial-property"){ 
-
-          
-        }
-
-
-
         if(isset($propertylist_args['status'])){ 
 
                     $propmeta_query[] = array(
@@ -452,7 +392,56 @@ function get_residential_properties_list($post_type,$propertylist_args){
                      'compare' => '=',
                     );
         } 
-      
+
+
+        if(isset($propertylist_args['city'])){
+
+            if($propertylist_args['city']!='all'){
+
+               $current_cities = $properties_optionsmeta['cities']['cities'] ;
+
+               foreach ($current_cities as $citieskey => $citiesvalue) {
+
+                  if(strtolower($citiesvalue['name']) == strtolower($propertylist_args['city']) )
+                    $current_city_id = $citiesvalue['ID'] ;                   
+
+                  }  
+
+                  $propmeta_query[] = array(
+                  'key' => 'property-city',
+                  'value' => $current_city_id,
+                  'compare' => '=' 
+                  ) ;
+            }
+        } 
+
+
+
+        if(isset($propertylist_args['locality'])){
+
+          if($propertylist_args['locality']!="all"){
+
+            $current_localities = $properties_optionsmeta['locality']['localities'] ;
+            foreach ($current_localities as $localitykey => $localityvalue) {
+
+              if(strtolower($localityvalue['name']) == strtolower(($propertylist_args['locality']) ) )
+                $current_locality_id = $localityvalue['ID'] ;                   
+
+            }  
+
+            $propmeta_query[] = array(
+             'key' => 'property-locality',
+             'value' => $current_locality_id,
+             'compare' => '=',
+            ) ;
+
+          }
+            
+        } 
+
+ 
+
+ //var_dump($propmeta_query);
 
 
       $residential_properties = get_posts( array(
@@ -464,6 +453,38 @@ function get_residential_properties_list($post_type,$propertylist_args){
                                           'meta_query'      => $propmeta_query
 
                                       ) );
+
+
+
+           /* if(isset($propertylist_args['type'])){
+
+               $current_unit_types = $properties_optionsmeta['type'] ;
+
+                foreach ($current_unit_types as $unit_typekey => $unit_typevalue) {
+
+                  if(strtolower($unit_typevalue['property_unit_type']) == strtolower(($propertylist_args['type']) )
+                    $current_unit_type_id = $unit_typevalue['ID'] ;                   
+
+                }  
+
+                if($post_type=="residential-property"){
+
+                  foreach ($residential_properties as $propertykey => $propertyvalue) {
+
+                    $property_unit_types = get_post_meta($propertyvalue->id,'residential-property-unit-type',true);
+                    for
+                    
+                  }
+
+                }
+                else if($post_type=="commercial-property"){ 
+
+                  
+                }
+                 
+            }  */
+
+
     }
     
 
@@ -595,20 +616,22 @@ function get_residential_properties_list_ajx() {
 
     $propertylist_args = array();
 
-    if(is_array($_REQUEST['status']))
+    if(isset($_REQUEST['status']))
       $propertylist_args['status'] = $_REQUEST['status'] ;
 
-    if(is_array($_REQUEST['city']))
+    if(isset($_REQUEST['city']))
       $propertylist_args['city'] = $_REQUEST['city'] ; 
 
-    if(is_array($_REQUEST['locality']))
+    if(isset($_REQUEST['locality']))
       $propertylist_args['locality'] = $_REQUEST['locality'] ; 
 
-    if(is_array($_REQUEST['type']))
+    if(isset($_REQUEST['type']))
       $propertylist_args['type'] = $_REQUEST['type'] ; 
 
 
+/*var_dump($_REQUEST);
 
+echo "----------------------------------";*/
 
     $sel_properties = get_residential_properties_list($post_type,$propertylist_args);
     wp_send_json( array(

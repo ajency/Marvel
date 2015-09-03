@@ -947,20 +947,24 @@ infowindow.open(map,marker);
 
 
 
-                /*delete search_options['property_unit_type'] ;
+                delete search_options['property_unit_type'] ;
 
-                if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
+                /* if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
                     var search_collections = res_collection.where(search_options )
+                */    
 
                   var sel_search_collections = {};
                   var cnt_sel_search_collection = 0;
 
-                  if( prop_type!='' && !_.isNull(prop_type)){
+
+
+                  //if( queryType!='' && !_.isNull(queryType)){
+                    if(typeof queryType !== "undefined" ){
 
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
 
-                       var exists_by_type = _.where(vl_searchres.get('property_unit_type'),{type:prop_type})
+                       var exists_by_type = _.where(vl_searchres.get('property_unit_type'),{property_unit_type_display:queryType})
                       if(exists_by_type.length>0){
                         sel_search_collections[cnt_sel_search_collection] = vl_searchres;
 
@@ -968,7 +972,7 @@ infowindow.open(map,marker);
                       }
                     })
                     search_collections = sel_search_collections;
-                  }*/
+                  }
 
 
 
