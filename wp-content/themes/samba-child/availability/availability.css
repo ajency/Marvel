@@ -50,16 +50,16 @@ body, html {
 	text-transform: uppercase;
 	color: #373435;
 	font-weight: normal;
-	font-size: 32pt;
-	line-height: 23pt;
-    margin-bottom: 13px;
+	font-size: 22pt;
+	line-height: 18pt;
+    margin-bottom: 8px;
 }
 .header .project_name h4 {
 	margin: 0;
 	padding: 0;
 	text-transform: uppercase;
 	color: #96989a;
-	font-size: 20pt;
+	font-size: 14pt;
 	font-weight: normal;
 }
 .header .legend {
@@ -72,7 +72,7 @@ body, html {
 	vertical-align: top;
 	width: 135px;
     margin-left: 12px;
-	font-size: 10pt;
+	font-size: 7.5pt;
 	/*text-transform: uppercase;*/
 	text-align: left;
 	vertical-align: top;
@@ -101,9 +101,9 @@ body, html {
 	border-color: transparent;
 }
 .header .legend .set p.info {
-	margin-top: 0.2cm;
+	margin-top: 5px;
 	margin-bottom: 0;
-	font-size: 9pt;
+	font-size: 8pt;
 	font-weight: 600;
 	color: #96989a;
 }
@@ -138,15 +138,15 @@ body, html {
 	border-top: 1px solid #727376;
 	border: 1px solid #727376;
 	border-spacing: 0;
-	height: 29px;
+	height: 20px;
 	vertical-align: middle;
 	color: #373435;
 	text-align: center;
-	font-size: 10pt;
+	font-size: 8pt;
 }
 .ava_table th {
 	font-weight: bold;
-	font-size: 11.5pt;
+	font-size: 9pt;
 }
 .ava_table tr {
 	border-bottom: 1px solid #727376;
@@ -154,7 +154,7 @@ body, html {
 }
 
 img.marvelogo {
-	height: 160px;
+	height: 120px;
 	float: right;
 	margin-bottom: 25px;
 	margin-top: 25px;

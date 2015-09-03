@@ -961,24 +961,24 @@ function download_availability_pdf(){
             <h1>Albero</h1>
             <h4>Availability</h4>
           </td>
-          <td class="legend inbl" style="vertical-align: top; width: 70%;">
+          <td class="legend inbl" style="vertical-align: top; width: 69%;">
             <table align="right">
               <tr>
-                <td class="set set1" style="width: 175px;">
+                <td class="set set1" style="width: 125px;">
                   <div class="color white"></div>
                   <p class="info">WHITE = AVAILABLE</p>
                 </td>
-                <td class="set set2" style="width: 175px;">
+                <td class="set set2" style="width: 125px;">
                   <div class="color blue" style="background-color: #d5effc; border-color: #d5effc;"></div>
                   <p class="info">BLUE = SOLD</p>
                 </td>
-                <td class="set set3" style="width: 175px;">
+                <td class="set set3" style="width: 125px;">
                   <div class="color green" style="background-color: #d0e5af; border-color: #d0e5af;"></div>
                   <p class="info">GREEN = HOLD</p>
                 </td>
-                <td class="set updatedon" style="width: 170px; text-align: right;">
-                  <div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>
-                  <p class="info">UPDATED ON <span class="updated">9th MARCH \'15</span></p>
+                <td class="set updatedon" style="width: 120px; text-align: right;">
+                  <!--<div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>-->
+                  <p class="info">UPDATED ON<br><span class="updated">9th MARCH \'15</span></p>
                 </td>
               </tr>
             </table>
@@ -994,11 +994,11 @@ function download_availability_pdf(){
           </th>
         </tr>
         <tr>
-          <th style="width: 150px;">A</th>
-          <th style="width: 150px;">A</th>
-          <th style="width: 150px;">B</th>
-          <th style="width: 150px;">B</th>
-          <th style="width: 150px;">C</th>
+          <th style="width: 90px;">A</th>
+          <th style="width: 90px;">A</th>
+          <th style="width: 90px;">B</th>
+          <th style="width: 90px;">B</th>
+          <th style="width: 90px;">C</th>
         </tr>
         <tr>
           <td class="colorblue">A101 (1300)</td>
@@ -1046,7 +1046,7 @@ function download_availability_pdf(){
 
   try
     {
-        $html2pdf = new HTML2PDF('L', 'A4');
+        $html2pdf = new HTML2PDF('P', 'A4');
         $html2pdf->setDefaultFont('Arial');
         $html2pdf->writeHTML($html);
         $html2pdf->Output('availability.pdf');
