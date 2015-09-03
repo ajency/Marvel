@@ -708,7 +708,7 @@ function get_sap_data(){
  function get_flat_type($code){
   switch ($code) {
     case "R1":
-        $type = 'Flat';
+        $type = '';
         break;
     case "R2":
         $type = 'Duplex Flat';
@@ -735,7 +735,7 @@ function get_sap_data(){
         $type = 'Commercial Spaces';
         break;
     default:
-        $type = 'Flat';
+        $type = '';
 }
 return $type;
  }
@@ -931,6 +931,23 @@ add_action('template_redirect','download_all_floor_plan');
 
 
 
+function partition( $list, $p ) {
+    $listlen = count( $list );
+    $partlen = floor( $listlen / $p );
+    $partrem = $listlen % $p;
+    $partition = array();
+    $mark = 0;
+    for ($px = 0; $px < $p; $px++) {
+        $incr = ($px < $partrem) ? $partlen + 1 : $partlen;
+        $partition[$px] = array_slice( $list, $mark, $incr );
+        $mark += $incr;
+    }
+    return $partition;
+}
+
+
+
+
 
 
 
@@ -946,19 +963,70 @@ function download_availability_pdf(){
     return;
   }
 
+  $property = get_post($_GET['prop_id']);
+
+  $title = $property->post_title;
+
   $mkt_group_desc = $_GET['m_group'];
   $mkt_material_type_desc = $_GET['m_type'];
 
   $table_name = $wpdb->prefix.'sap_inventory';
-  $plan_query = " SELECT specific_floor_plan FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
+  $plan_query = " SELECT * FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
   $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+    $flats = array();
+        
+    foreach($plans as $record){
+
+      //Generating Flats data
+         if (!array_key_exists($record['building_no'],$flats)){
+            $flats[$record['building_no']] = array();
+         }
+
+         if (!array_key_exists($record['flat_no'], $flats[$record['building_no']])) {
+         $flats[$record['building_no']][$record['flat_no']] = array('area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
+         }
+    }
+
+
+
+$dataTest = array('a','b','c','d','e','f','g','h','i','j','k','l','m'); // test data
+ 
+// split data into 2 chunks
+$splitData = array_chunk( $dataTest, 5); 
+
+/*echo "<pre>";
+  print_r($splitData);
+  echo "</pre>";*/
+
+  
+$max_row = max(array_map('count', $splitData));
+
+  $table = "<table>";
+
+  for($i=0;$i<$max_row;$i++){
+    $table .= "<tr>";
+
+    for($p=0;$p<3;$p++){
+      $table .= "<td>".$splitData[$p][$i]."</td>";
+    }
+
+    $table .= "</tr>";
+  }
+
+  $table .= "</table>";
+
+  //echo $table;
+
+
+
 
   $html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style><page>';
   $html .= '<div class="full-wrap" style="width: 100%;">
       <table class="header" style="width: 100%;">
         <tr>
           <td class="project_name inbl" style="vertical-align: top; width: 30%;">
-            <h1>Albero</h1>
+            <h1>'.$title.'</h1>
             <h4>Availability</h4>
           </td>
           <td class="legend inbl" style="vertical-align: top; width: 70%;">
@@ -978,7 +1046,7 @@ function download_availability_pdf(){
                 </td>
                 <td class="set updatedon" style="width: 170px; text-align: right;">
                   <div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>
-                  <p class="info">UPDATED ON <span class="updated">9th MARCH \'15</span></p>
+                  <p class="info">UPDATED ON <span class="updated">'.date("jS F 'y").'</span></p>
                 </td>
               </tr>
             </table>
@@ -990,7 +1058,7 @@ function download_availability_pdf(){
         <tr>
           <!-- here the colspan value has to equal the number of columns -->
           <th colspan="5" class="table-head">
-            3 BHK
+            '.$mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc).'
           </th>
         </tr>
         <tr>
@@ -1027,6 +1095,62 @@ function download_availability_pdf(){
           <td class="colorblue">B101 (1300)</td>
           <td class="colorblue">B102 (1300)</td>
           <td class="colorblue">C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
+        </tr>
+        <tr>
+          <td class="colorblue">A101 (1300)</td>
+          <td class="colorgreen">A102 (1300)</td>
+          <td class="colorgreen">B101 (1300)</td>
+          <td class="colorblue">B102 (1300)</td>
+          <td>C101 (1300)</td>
         </tr>
         <tr>
           <td class="colorblue">A101 (1300)</td>
