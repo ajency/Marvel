@@ -95,6 +95,8 @@
 
                             window.search_options = response;
 
+                            self.load_give_details_form_values()
+
                             self.load_display_properties();
                         },
                         error: function(){
@@ -110,6 +112,48 @@
 
 
 
+
+            },
+
+
+            load_give_details_form_values: function(){
+
+
+              console.log('*#*#*#*#*#*##*#*#*#*#*#*#*#*#*#*#**#*#*#*##*#*#*#*#*')
+              console.log(window.search_options );
+
+              var cities      = window.search_options.cities.cities ;
+              var localities  = window.search_options.locality.localities;
+              var types       = window.search_options.type;
+
+              jQuery('.frm_givedetails').find('#field_givedetails_city').empty();
+              jQuery('.frm_givedetails').find('#field_givedetails_locality').empty();
+
+              jQuery('.frm_givedetails').find('#field_givedetails_city').append('<option value="" attr_cityid="" >City</option>');
+              jQuery('.frm_givedetails').find('#field_givedetails_locality').append('<option value="" attr_cityid="" >Locality</option>');
+              _.each(cities,function(options_vl,options_ky){
+
+                  jQuery('.frm_givedetails').find('#field_givedetails_city').append('<option  attr_cityid="'+options_vl.ID+'"  value="'+options_vl.name+'">'+options_vl.name+'</option>');
+
+              })
+
+
+              var display_type = "";
+              jQuery('.frm_givedetails').find('#field_givedetails_type').empty(); 
+
+              jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option value=""   >Type</option>');
+
+              _.each(types,function(options_typesvl,options_typesky){
+
+                  display_type = options_typesvl.property_unit_type;
+                  if(post_type=="residential-property"){
+                    
+                      display_type+=' '+options_typesvl.property_type_name ;
+
+                  }
+                  jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option   value="'+display_type+'">'+display_type+'</option>');
+
+              })
 
             },
 
@@ -221,7 +265,7 @@
 
                         if(jQuery('#dd_status').length<=0){
                             var template = _.template(jQuery(self.template).html());
-                            jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions, selected:seldata }));
+                            jQuery('.top-dd-c').html(template({data : getAppInstance().searchOptions, selected:seldata, post_type:self.post_type }));
 
                             self.load_search_filter_values_mobile(getAppInstance().searchOptions, seldata);
                             

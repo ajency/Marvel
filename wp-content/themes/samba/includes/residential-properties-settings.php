@@ -53,10 +53,21 @@ class My_Example_List_Table extends WP_List_Table {
   function column_default( $item, $column_name ) {
     switch( $column_name ) {
         case 'property_unit_type':
-						$actions = array(
-						            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type="'.$item['material_type'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-						            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
-						        );
+
+        						if($this->post_type == "residential-property"){
+									$actions = array(
+									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type="'.$item['material_type'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+									            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+									        );
+								}
+								else{
+
+									$actions = array(
+									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type="'.$item['material_type'].'"  property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+									            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
+									        );
+
+								}
 
 						  return sprintf('%1$s %2$s', "<span class='spn_property_unit_type'>".$item['property_unit_type']."</span>", $this->row_actions($actions) );
 
@@ -99,7 +110,9 @@ class My_Example_List_Table extends WP_List_Table {
     }
   }
 
-function get_columns(){
+function get_columns($pd_post_type){
+
+	if($pd_post_type == "residential-property"){
         $columns = array(
             'property_unit_type' => __( 'Property Unit Type', 'mylisttable' ),
             'material_type'    => __( 'Material Type', 'mylisttable' ),
@@ -108,10 +121,22 @@ function get_columns(){
 
             //'action'      => __( 'Action', 'mylisttable' )
         );
+       }
+       else{
+	       	$columns = array(
+	            'property_unit_type' => __( 'Property Unit Type', 'mylisttable' ),
+	            'material_type'    => __( 'Material Type', 'mylisttable' ),	            
+	            'property_type'    => __( 'Property Type', 'mylisttable' )
+
+	            //'action'      => __( 'Action', 'mylisttable' )
+	        );
+
+       }
          return $columns;
+       
     }
 function prepare_items($args) {
-  $columns  = $this->get_columns();
+  $columns  = $this->get_columns($args['post_type']);
   $this->post_type = $args['post_type'];
   $hidden   = array();
   $sortable = array();
@@ -120,9 +145,9 @@ function prepare_items($args) {
 }
 
 function get_data(){
-echo "--";
+/* echo "--";
 var_dump($this->post_type);
-echo "**";
+echo "**"; */
 
 	global $wpdb;
 
@@ -160,12 +185,25 @@ echo "**";
 
 
 function get_sortable_columns() {
-  $sortable_columns = array(
-    'property_unit_type'  => array('property_unit_type',true),
-    'number_bedrooms' => array('number_bedrooms',false),
-    'property_type' => array('property_type',false),
-    // 'action'   => array('actoin',false)
-  );
+
+
+	if($this->post_type == "residential-property"){
+		  $sortable_columns = array(
+		    'property_unit_type'  => array('property_unit_type',true),
+		    'number_bedrooms' => array('number_bedrooms',false),
+		    'property_type' => array('property_type',false),
+		    // 'action'   => array('actoin',false)
+		  );
+	}
+	else{
+
+		 $sortable_columns = array(
+		    'property_unit_type'  => array('property_unit_type',true),		    
+		    'property_type' => array('property_type',false),
+		    // 'action'   => array('actoin',false)
+		  );
+
+	}
   return $sortable_columns;
 }
 
@@ -238,15 +276,18 @@ function get_sortable_columns() {
 								<label for="tag-name">Material Type</label>
 								<input name="material-type" id="material-type" type="text" value="" size="40" aria-required="true">
 								<p><!-- The name is how it appears on your site. --></p>
-							</div>
-							<div class="form-field term-slug-wrap">
+							</div>';
+		if($_REQUEST['post_type']=="residential-property"){					
+						echo'<div class="form-field term-slug-wrap">
 								<label for="tag-slug">Number Of Bedrooms</label>
 								<input name="new-property-bedrooms" id="new-property-bedrooms" class="allownumericwithdecimal"  type="text" value="" size="40" >
 								<p><!-- The “slug” is the URL-friendly version of the name.
 								It is usually all lowercase and contains only letters, numbers, and hyphens. --></p>
-							</div>
+							</div>';
+		}
 
-							<div class="form-field term-slug-wrap">
+
+		echo'				<div class="form-field term-slug-wrap">
 								<label for="tag-slug">Property Types</label>
 								<select name="new-prop-type" id="new-prop-type">
 									<option value="">Select</option>';
@@ -321,8 +362,10 @@ function save_property_unit_type(){
 	}
 
 	$current_property_unit_types = maybe_unserialize(get_option($meta_key));
-
-	$new_property_unit_type['number_bedrooms'] 		= $num_bedrooms;
+	
+	if($post_type =="residential-property"){
+		$new_property_unit_type['number_bedrooms'] 		= $num_bedrooms;
+	}
 	$new_property_unit_type['property_unit_type'] 	= $property_unit_type;
 	$new_property_unit_type['material_type'] 	= $material_type;
 	$new_property_unit_type['property_type_id'] 	= $new_prop_type;
@@ -399,7 +442,18 @@ add_action( 'wp_ajax_save_property_unit_type', 'save_property_unit_type' );
 function delete_property_unit_type(){
 
 	$property_unit_type_id = $_REQUEST['data']['type_id'];
-	$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+	$property_post_type    = $_REQUEST['data']['post_type'];
+
+
+	if($property_post_type=='residential-property'){
+
+		$unit_type_meta_key =  'residential-property-unit-type';
+	}
+	else{
+		$unit_type_meta_key =  'commercial-property-unit-type';
+	}
+
+	$current_property_unit_types = maybe_unserialize(get_option($unit_type_meta_key));
 
 	$found_del_type = false ;
 
@@ -417,7 +471,7 @@ function delete_property_unit_type(){
 	$updated_new_property_unit_types =  array('max_property_unit_types' => $current_property_unit_types['max_property_unit_types'],
 									 'property_unit_types'	  => $updated_property_unit_types);
 
-	update_option('residential-property-unit-type',maybe_serialize($updated_new_property_unit_types));
+	update_option($unit_type_meta_key,maybe_serialize($updated_new_property_unit_types));
 
 	wp_send_json(array('success'=>true,'types'=>$updated_property_unit_types ));
 }
@@ -887,7 +941,8 @@ add_action( 'wp_ajax_save_property_type', 'save_property_type' );
 function delete_property_type(){
 
 	$property_type_id = $_REQUEST['data']['type_id'];
-	$post_type 		  = $_REQUEST['current_post_type'];
+	$post_type 		  = isset($_REQUEST['current_post_type'])?$_REQUEST['current_post_type']:$_REQUEST['data']['post_type'];
+
 
 	if($post_type=="residential-property"){
 		$meta_key = 'residential-property-type' ; 		
@@ -897,7 +952,7 @@ function delete_property_type(){
 	}
 
 	$current_property_types = maybe_unserialize(get_option($meta_key));
-	
+	 
 
 	$found_del_type = false ;
 

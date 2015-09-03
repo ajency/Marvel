@@ -124,7 +124,8 @@ console.log(selectedStatus);
                 var sorted_type_options  = _.sortBy(data.type, function(obj){ return obj.property_unit_type.toLowerCase() });
 
             _.each(sorted_type_options,function(vl,ky){
-            %><option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type) { %> selected <% } %>><%=vl.property_unit_type%> <%=vl.property_type_name%></option>
+            %><option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type) { %> selected <% } %>><%=vl.property_unit_type%> <%= (post_type=='residential-property')?vl.property_type_name:'' %></option>
+
 
             <% }) %>
         </select>

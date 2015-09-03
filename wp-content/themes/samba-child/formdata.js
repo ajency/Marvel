@@ -1,7 +1,7 @@
 (function($) {
     jQuery(window).load(function() {
 
-        function frmThemeOverride_frmAfterSubmit(e,f,b,a) {
+       /*  function frmThemeOverride_frmAfterSubmit(e,f,b,a) {
             console.log('formidable form details:');
             console.log('a: ' + a);
             console.log('f: ' + f);
@@ -12,7 +12,7 @@
                 console.log('form ' + formid + ' has been submitted');
                 afterformidablesubmit();
             }
-        }
+        } */
         function afterformidablesubmit() {
             loadingcontinforms();
         }

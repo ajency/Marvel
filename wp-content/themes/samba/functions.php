@@ -2794,7 +2794,7 @@ add_action( 'wp_ajax_delete_property_siteplan_image_pdf_file', 'delete_property_
 function delete_property_unit_type_layout_image_pdf_file() {
 
 	$property_id   		= $_REQUEST['data']['property_id'];
-	$property_unit_type 	= $_REQUEST['data']['property_unit_type'];
+	$property_unit_type = $_REQUEST['data']['property_unit_type'];
 	$custom_file_id 	= $_REQUEST['data']['attachment_id'];
 	$file_type 			= $_REQUEST['data']['file_type'];
 	$post_type 			= $_REQUEST['data']['post_type'];

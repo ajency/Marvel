@@ -212,10 +212,12 @@ function checkIfInView(element){
             $('.popmake').on('popmakeBeforeOpen', function () {
               $('html, body').css('overflow', 'hidden');
               $('html').css('height', $(window).height());
+              $('body').addClass('posrel');
             });
             $('.popmake').on('popmakeAfterClose', function () {
               $('html, body').css('overflow', 'visible');
               $('html').css('height', 'auto');
+              $('body').removeClass('posrel');
             });
         }
         popupmake_scrollbarhide();
@@ -377,7 +379,7 @@ function checkIfInView(element){
         if ($('body *').hasClass('tabul_hold')) {
             $('#prk_ajax_container .tabul_hold tr td').click(function(event) {
                 $('#prk_ajax_container .tabul_hold tr td').removeClass('opened');
-                if (!($(this).hasClass('blue_bg'))) {
+                if (!($(this).hasClass('blue_bg')) && !($(this).hasClass('hold_bg'))) {
 
 
                     $partop = $(this).parents('.tabb.y.ui-tabs').offset().top;
@@ -418,8 +420,8 @@ function checkIfInView(element){
                         popup_data += '<div class="pull-left right_d">'+sellableArea+'</div>';
                         popup_data += '<div class="clearfix"></div>';
                         popup_data += '<div class="btncol">';
-                            popup_data += '<a class="wpb_button_a image-popup-no-margins" title="2D Layout" href="'+floorPlan+'.jpg"><span style="padding: 8px 13px; font-size: 13px;" class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>';
-                            popup_data += '<a class="wpb_button_a" title="Availability" href="#"><span style="padding: 7px 13px; font-size: 13px;" class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>';
+                            popup_data += '<a class="wpb_button_a" title="2D Layout" href="'+floorPlan+'.jpg" target="_blank"><span style="padding: 8px 13px; font-size: 13px;" class="wpb_button left_b wpb_btn-inverse wpb_btn-small">View Plan</span></a>';
+                            popup_data += '<a class="wpb_button_a popmake-availability-hold-popup" title="Availability" href="#"><span style="padding: 7px 13px; font-size: 13px;" class="wpb_button  wpb_btn-inverse" style="  padding: 7px 13px;">Request Hold</span></a>';
                         popup_data += '</div>';
 
                     $('.popup_tab_data').empty();
@@ -834,7 +836,7 @@ function checkIfInView(element){
             if ($(window).width() > 1280) {
                 if ($tabs >= 8) {
                     console.log($tabs + ' is greater than 9');
-                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50);
+                    $('.floorplans_tab ul.wpb_tabs_nav').css('display', 'block').css('height', 50).css('margin-bottom', 0);
                     $('.floorplans_tab ul.wpb_tabs_nav li').css({
                         'display': 'block'
                     });
@@ -871,11 +873,13 @@ function checkIfInView(element){
         }
         function runowl() {
             $(".floorplans_tab ul.wpb_tabs_nav").owlCarousel({
-                  items : 8,
-                  itemsDesktop : [1280, 7],
-                  itemsTablet : [1110, 5],
-                  itemsMobile : [560, 3],
+                  items : 6,
+                  // itemsDesktop : [1280, 5],
+                  // itemsTablet : [1110, 4],
+                  // itemsMobile : [560, 3],
+                  itemsCustom : [[0, 1], [360, 2], [480, 3], [560, 4], [1110, 5], [1280, 6]],
                   pagination : false,
+                  autoWidth : true,
                   navigation : true,
                   navigationText : ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>'],
                   rewindNav : false
@@ -888,6 +892,7 @@ function checkIfInView(element){
                     $(this).parent().addClass('ui-tabs-active ui-state-active');
                     $('div.wpb_tab').hide();
                     $($(this).attr('href')).show();
+                    $($(this).attr('href')).find('.ava_tog').eq(0).trigger('click');
                 });
         }
         if ($('div').hasClass('floorplans_tab')) {
@@ -950,7 +955,7 @@ function checkIfInView(element){
         setEqualHeight($('.se_o_6 .wpb_wrapper .prk_service'));
 
         //same height downloads
-        setEqualHeight($('.do_3 .wpb_wrapper'));
+        setEqualHeight($('.do_3 > .row > .wpb_column > .wpb_wrapper'));
 
         //same height careers
         setEqualHeight($('.lisofwork .wpb_wrapper'));
@@ -1047,10 +1052,42 @@ function frmThemeOverride_frmAfterSubmit(e,f,b,a) {
     //if(typeof(formid) == 'number'){
         console.log('form ' + formid + ' has been submitted');
         afterformidablesubmit();
+        reload_form_value_on_submit_on_listingspage(form_id);
     //}
 }
 function afterformidablesubmit() {
     loadingcontinforms();
+}
+
+function reload_form_value_on_submit_on_listingspage(form_id){
+
+     if(form_id == 15){
+     var element = jQuery('.formidable_active');
+
+
+    /* console.log('AFTER FORM SUBMISSION VALUE:----')
+    console.log(jQuery('.popmake-popup-property-list formidable_active').length)
+    console.log(jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val())
+    */
+     setTimeout(function(){
+
+         if(element.closest('.single_p_w').length>0){  // On REsidential properties listings page
+                var property_title = element.closest('.single_p_w').attr('property-title');
+
+                jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property_title)
+                jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)
+            }
+            else if(element.closest('.map_info_c').length>0){  // On REsidential properties listings page
+                var property_title = element.closest('.map_info_c').attr('property-title');
+
+                jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(property_title)
+                jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(property_title)
+            }
+
+
+        console.log(jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val())
+        },3000)
+    }
 }
 
 function loadingcontinforms() {

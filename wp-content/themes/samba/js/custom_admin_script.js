@@ -19,7 +19,8 @@ if (delete_response !== true) {
     var self = this; 
     var del_type_id = jQuery(this).attr('type_id');  
 
-     var my_data = { 'type_id'  : del_type_id ,
+     var my_data = { 'type_id'    : del_type_id ,
+                     'post_type' : jQuery('#current_post_type').val() 
                    }
 
 
@@ -123,6 +124,7 @@ jQuery('.save_property_unit_type').live("click",function(){
          var material_type      = jQuery('#material-type').val();
          var prop_type_id       = jQuery('#new-prop-type').val();
          var post_type          = jQuery('#current_post_type').val();
+         var return_validation  = false;
 
          
          jQuery(self).parent().find('.spinner').css('display','inline-block');
@@ -130,24 +132,30 @@ jQuery('.save_property_unit_type').live("click",function(){
 
          if(property_unit_type==''){
             alert('Please enter property unit type')
-            return
+            var return_validation = true
 
          }
          if(material_type==''){
             alert('Please enter material type')
-            return
+            var return_validation = true
 
          }
-         if(num_bedrooms==''){ 
+         if(num_bedrooms=='' && post_type=='residential-property'){ 
             alert('Please enter number of bedrooms')
-            return
+            var return_validation = true
 
          }
 
           if(prop_type_id==''){ 
             alert('Please select property type')
-            return
+             var return_validation = true
 
+         }
+
+         if(return_validation == true){
+            jQuery(self).parent().find('.spinner').css('display','none');
+            jQuery(self).prop('disabled',false)
+            return ;
          }
 
 
@@ -206,10 +214,16 @@ jQuery('.save_property_unit_type').live("click",function(){
                                                 +'            </span>'
                                                 +'        </div>'
                                                 +'    </td><td class="material_type column-material_type">'+material_type
-                                                +'    </td>'
-                                                +'    <td class="number_bedrooms column-number_bedrooms">'+num_bedrooms
-                                                +'    </td>'
-                                                +'    <td class="property_type column-property_type">'+new_prop_type_name+'</td>'
+                                                +'    </td>';
+
+                         if(post_type=="residential-property"){
+                            property_unit_type_row =  property_unit_type_row +
+                                                '    <td class="number_bedrooms column-number_bedrooms">'+num_bedrooms
+                                                +'    </td>' ;
+                         }
+                                               
+                         property_unit_type_row =  property_unit_type_row +
+                                                '    <td class="property_type column-property_type">'+new_prop_type_name+'</td>'
                                                 +'</tr>';
 
                         jQuery('table.propertyunittypes tbody').append(property_unit_type_row);
@@ -229,14 +243,17 @@ jQuery('.save_property_unit_type').live("click",function(){
                         
                          
 
-                        edit_element.attr('type_name',property_unit_type)
-                                    .attr('bedrooms',num_bedrooms)
+                        edit_element.attr('type_name',property_unit_type)                                    
                                     .attr('property_type_id',prop_type_id)
                                     .attr('material_type',material_type)
                                     .closest('tr').find('td:last').html(new_prop_type_name)
                                     .closest('tr').find('td.material_type').html(material_type)
                                     .closest('tr').find('.spn_property_unit_type').html(property_unit_type)
                                     .closest('tr').find( "td:nth-last-child(2)" ).html(num_bedrooms);
+
+                        if(post_type=="residential-property"){
+                            edit_element.attr('bedrooms',num_bedrooms)
+                         }
 
                         delete_element.attr('type_name',property_unit_type)            
 
