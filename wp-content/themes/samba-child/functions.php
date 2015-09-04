@@ -851,7 +851,11 @@ add_filter('rewrite_rules_array', 'properties_custom_rewrite_rules');
 
 
 function get_sap_data(){
-  global $post, $wpdb;
+  global $wpdb;
+
+  $queried_object = get_queried_object();
+
+  $post = get_post($queried_object->ID);
 
   /*if(!is_singular( array( 'residential-property', 'commercial-property' ) )){
     return;
@@ -1526,7 +1530,6 @@ $html .= '</table>';
 }
 
 add_action('template_redirect','download_all_availability_pdf');
-
 
 
 

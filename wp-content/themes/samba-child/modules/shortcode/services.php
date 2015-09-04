@@ -427,7 +427,11 @@ add_action('wp_ajax_nopriv_get_services_properties_ajx', 'get_services_propertie
 
 
 function sap_availability_table_shortcode(){
-global $post, $wpdb;
+global $wpdb;
+
+$queried_object = get_queried_object();
+
+$post = get_post($queried_object->ID);
 
 /*$plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
@@ -827,7 +831,11 @@ add_shortcode('sap-availability-table', 'sap_availability_table_shortcode');
 
 
 function sap_floor_plans_download_shortcode(){
-global $post;
+//global $post;
+
+$queried_object = get_queried_object();
+
+$post = get_post($queried_object->ID);
 
 $plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
@@ -952,7 +960,9 @@ add_shortcode('floor-plans-table', 'sap_floor_plans_download_shortcode');
 
 
 function sap_availability_pdf_shortcode(){
-global $post;
+$queried_object = get_queried_object();
+
+$post = get_post($queried_object->ID);
 
 $plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
