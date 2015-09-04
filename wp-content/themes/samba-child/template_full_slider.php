@@ -77,7 +77,7 @@ jQuery.ajax(ajax_var.url,{
                                     console.log(vl_cl);
                                     console.log('ky'+ky_cl)
 
-                                     jQuery('.home_city').append('<option value="'+vl_cl.ID+'">'+vl_cl.name+'</option>')
+                                     jQuery('.home_city').append('<option value="'+vl_cl.name+'">'+vl_cl.name+'</option>')
 
                                })
                             }
@@ -95,7 +95,7 @@ jQuery.ajax(ajax_var.url,{
             
                               for(var i=0;i<_.size(sorted_type_options);i++){
 
-                                jQuery('.home_type').append('<option value="'+sorted_type_options[i].ID+'">'+sorted_type_options[i].property_unit_type+' '+sorted_type_options[i].property_type_name+'</option>')
+                                jQuery('.home_type').append('<option value="'+sorted_type_options[i].property_unit_type+' '+sorted_type_options[i].property_type_name+'">'+sorted_type_options[i].property_unit_type+' '+sorted_type_options[i].property_type_name+'</option>')
 
                               } 
                             }
@@ -145,7 +145,7 @@ jQuery('.home_city').live('change',function(){
 
                 }*/
 
-                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
+                jQuery('.home_location').append('<option value="'+display_locality_name+'">'+display_locality_name+'</option>')
 
             } 
        })
@@ -157,7 +157,7 @@ jQuery('.home_city').live('change',function(){
 jQuery('.home_btn_search_properties').live('click',function(evt){
 
   evt.preventDefault();
-  var search_url = SITE_URL+'/residential-properties/#/st/Ongoing';
+  /* var search_url = SITE_URL+'/residential-properties/#/st/Ongoing';
   //residential-properties/#/ct/blore/loc/mekri circle/type/1 BHK
 
   if(jQuery('.home_city').val()!=''){
@@ -173,6 +173,54 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
    if(jQuery('.home_type').val()!=''){
     search_url= search_url + '/type/'+jQuery('.home_type').val()
   }
+
+
+  */
+
+
+
+
+
+
+
+
+
+  var search_url = SITE_URL+'/residential-properties/ongoing/';
+  
+ 
+  var city_el = jQuery(this).closest('.search_propperty_block').find('.home_city')
+  var locality_el = jQuery(this).closest('.search_propperty_block').find('.home_location')
+  var type_el = jQuery(this).closest('.search_propperty_block').find('.home_type')
+
+  
+
+
+
+
+
+  
+  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'cityall':city_el.val();
+  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'localityall':locality_el.val();
+  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'typeall':type_el.val(); 
+               
+
+
+
+  if(current_selected_type!='typeall'){
+      search_url+= current_selected_city+'/'+current_selected_locality+'/'+current_selected_type;
+
+  }
+  else if(current_selected_locality!='localityall'){
+       search_url+= current_selected_city+'/'+current_selected_locality;
+  }
+  else if(current_selected_city!='cityall'){
+      search_url+= '/'+current_selected_city ;
+
+   }                
+    
+
+
+
 
 
 

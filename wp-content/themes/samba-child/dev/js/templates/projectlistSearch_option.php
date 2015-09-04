@@ -8,7 +8,7 @@ var selectedCity     = !_.isUndefined(selected.selectedCity)? selected.selectedC
 var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selectedLocality : '' ;
 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
 var selectedStatus     = !_.isUndefined(selected.selectedStatus)? selected.selectedStatus : '' ;
-
+var selected_city_id ;
 
 console.log('SELECTED STATUS :--------------------------------------');
 console.log(selectedStatus);
@@ -55,7 +55,14 @@ console.log(selectedStatus);
 
                 _.each(sorted_cities_options,function(vl,ky){
 
-                %><option value="<%=vl.ID%>"   <% if(selectedCity == vl.ID) {%> selected <% }%> ><%=vl.name%></option>
+                    if(selectedCity == vl.name){
+
+
+                        selected_city_id = vl.ID;
+
+                    }
+
+                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name) {%> selected <% }%> ><%=vl.name%></option>
 
                 <% })
                 }
@@ -69,7 +76,9 @@ console.log(selectedStatus);
          <option value="">Locality : All</option>
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
-            /* commented on 21june2015 _.each(data.citylocality,function(vl,ky){ */
+           
+             
+
                  var locality_options = _.isUndefined(data.locality.localities)?[]:data.locality.localities;
 
                 var sorted_locality_options = [];
@@ -78,9 +87,10 @@ console.log(selectedStatus);
                     var sorted_locality_options  = _.sortBy(locality_options, function(obj){ return obj.name.toLowerCase() });
 
                     _.each(locality_options,function(vl__locality,ky__locality){
-                        if(selectedCity == vl__locality.city_id) {
+                        
+                        if(selected_city_id == vl__locality.city_id) {
 
-                        %><option value="<%=vl__locality.ID%>"  <% if(vl__locality.ID==selectedLocality) { %> selected <% } %>><%=vl__locality.name%></option>
+                        %><option value="<%=vl__locality.name%>"  <% if(vl__locality.name==selectedLocality) { %> selected <% } %>><%=vl__locality.name%></option>
                         <% }
 
 
@@ -113,8 +123,22 @@ console.log(selectedStatus);
             if(_.size(data.type) > 0)
                 var sorted_type_options  = _.sortBy(data.type, function(obj){ return obj.property_unit_type.toLowerCase() });
 
+console.log('sorted_type_options:------------------------------------------------------');
+console.log(sorted_type_options);
+
             _.each(sorted_type_options,function(vl,ky){
-            %><option value="<%=vl.ID%>" <% if(selectedType==vl.ID) { %> selected <% } %>><%=vl.property_unit_type%> <%= (post_type=='residential-property')?vl.property_type_name:'' %></option>
+
+                if(post_type=='residential-property'){
+                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==vl.property_unit_type+' '+vl.property_type_name) { %> selected <% } %>><%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
+                <%    
+                }
+                else{
+                %>
+                <option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type) { %> selected <% } %>><%=vl.property_unit_type%></option>
+                <%    
+                }
+                %>
+
 
             <% }) %>
         </select>
@@ -123,8 +147,19 @@ console.log(selectedStatus);
         <button type="button" class="btn_norm sea"><i class="fa fa-search"></i></button>
     </div>
     <div class="pull-right top-view">
-        <a href="#" class="top_list current"><i class="fa fa-th-large"></i></a>
-        <a href="#map" class="top_map"><i class="fa fa-map-marker"></i></a>
+        <%         
+
+        if(_.isUndefined(queryMap) || _.isNull(queryMap)  || queryMap==false || queryMap==''){ 
+                var listings_active_class = " current " ;
+                var maplistings_active_class = "  " ;
+            }
+            else{
+                var listings_active_class = " " ;
+                var maplistings_active_class = " current " ;
+            }
+         %>
+        <a href="javascript:void(0)" class="top_list <%=listings_active_class %>"><i class="fa fa-th-large"></i></a>
+        <a href="javascript:void(0)" class="top_map <%=maplistings_active_class %>"><i class="fa fa-map-marker"></i></a>
     </div>
 
 <?php /*

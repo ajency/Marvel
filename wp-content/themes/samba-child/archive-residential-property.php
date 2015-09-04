@@ -98,6 +98,37 @@ Template Name: Page - Residential Projects List New
         var JSVERSION = '<?php echo JSVERSION; ?>';
         var Current_property_type = 'residential-property';
 
+         <?php if (in_array("ongoing", explode("/",$_SERVER['REQUEST_URI']))){ ?>
+          var queryStatus = 'ongoing';
+        <?php }else if(in_array("completed", explode("/",$_SERVER['REQUEST_URI']))){ ?>
+          var queryStatus = 'completed';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['city'])) { ?>
+          var queryCity = '<?php echo urldecode($wp_query->query_vars["city"]); ?>';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['locality'])) { ?>
+          var queryLocality = '<?php echo urldecode($wp_query->query_vars["locality"]); ?>';
+        <?php } ?>
+
+        <?php if(isset($wp_query->query_vars['type'])) { ?>
+          var queryType = '<?php echo urldecode($wp_query->query_vars["type"]); ?>';
+        <?php } ?>
+
+
+        <?php 
+        if(isset($_GET['map']) && !is_null($_GET['map']) ) {          
+        ?>var queryMap = <?php echo $_GET['map'] ?>;
+        <?php
+        }
+        else{ ?>
+          var queryMap ='';
+        <?php }
+        ?>
+
+
+
     </script>
     
  
