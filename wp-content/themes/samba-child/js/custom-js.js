@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
 	$('.btm_unit_type_btn').live("click",function(evt){
 
 		var tab_link = $(this).attr('tab-link')
-		console.log(' tab link '+tab_link)
+		/* --  console.log(' tab link '+tab_link) */
 		$(this).closest('.floorplans_tab').find('.ui-tabs-nav').find('a[href="'+tab_link+'"]').click();
 
 		/* console.log('clicking tab manually')
@@ -136,8 +136,8 @@ jQuery(document).ready(function($) {
         }, function(data) {
 
 
-            console.log('get_services_properties_ajx data');
-            console.log(data)
+            /* -- console.log('get_services_properties_ajx data');
+            console.log(data) */
             var html=''
 
             if(data==false){
@@ -260,7 +260,7 @@ console.log(options) */
 
 
             }
-            console.log(html);
+            /* -- console.log(html); */
 
             /* var property_list_details = {'property_list_html':property_list_html,
                               'city_list':city_list,
@@ -370,10 +370,10 @@ console.log(options) */
 
 
 
-                console.log('servproperties_vl');
-                console.log(servproperties_vl)
+                /* -- console.log('servproperties_vl');
+                console.log(servproperties_vl) */
                             if(servproperties_vl.type == current_property_type){
-                console.log('type match '+servproperties_vl.type+' : '+current_property_type);
+                /* -- console.log('type match '+servproperties_vl.type+' : '+current_property_type); */
 
                 if(current_project !='' &&  (current_project !=servproperties_vl.Project_Name) ){
                     property_list_html = property_list_html +
@@ -671,7 +671,7 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
         console.log('show nearby properties')
 
         jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html('');
-        
+
 
         if(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
 
@@ -823,8 +823,8 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
             var city_post_type_based_properties = _.where(window.all_properties,{post_type:selected_post_type,property_city_name:selected_city});               
 
 
-                console.log('city_post_type_based_properties :-----------');
-                console.log(city_post_type_based_properties)                
+               /* --  console.log('city_post_type_based_properties :-----------');
+                console.log(city_post_type_based_properties)             */    
 
 
                  if(_.size(city_post_type_based_properties)>0){
@@ -944,8 +944,8 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
         var current_job_category ='';
         var current_job_name ='';
 
-        console.log('jobtype_class_arr')
-        console.log(jobtype_class_arr)
+        /* -- console.log('jobtype_class_arr')
+        console.log(jobtype_class_arr) */
 
         if(_.size(jobtype_class_arr)==3)
             current_job_category = jobtype_class_arr[2];
@@ -1065,8 +1065,8 @@ jQuery('#home_city2, #home_city').live('change',function(){
    main_search_bar.find('#dd_locality').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
 
 
-  console.log('window.search_options.locality.localities........')
-  console.log(window.search_options.locality.localities)
+ /* --  console.log('window.search_options.locality.localities........')
+  console.log(window.search_options.locality.localities) */
 
   // commented on 4sep2015 url change var selected_city = jQuery(this).val();
 
@@ -1079,11 +1079,11 @@ jQuery('#home_city2, #home_city').live('change',function(){
       var sorted_locality_options  = _.sortBy(window.search_options.locality.localities, function(obj){ return obj.name.toLowerCase() });
 
       _.each(sorted_locality_options,function(vl_cl,ky_cl){
-            console.log(vl_cl);
+            /* -- console.log(vl_cl);
             console.log('ky'+ky_cl)
 
             console.log(':::::::::'+jQuery('.home_city').val()+'--------'+vl_cl.city_id)
-
+            */
 
             if(selected_city==vl_cl.city_id){
 
@@ -1230,14 +1230,14 @@ function show_project_title_on_autopopup_individual_page(){
 var autopopup_individual_page_id;
     autopopup_individual_page_id = window.setInterval(function(){
         /// call your function here
-        console.log('check FORMMMMMMMMMMM')
+        /* --  console.log('check FORMMMMMMMMMMM') */
          if(jQuery('#form_frm_individual_proj_popup').length>0 && jQuery('#current_property_title').length>0){
 
                     var current_prperty_title = jQuery('#current_property_title').val();
                     jQuery('#form_frm_individual_proj_popup').find('#field_individual_popup_project').val(current_prperty_title)
                     jQuery('#form_frm_individual_proj_popup').find('.sign-prop-title').html(current_prperty_title)
-                    console.log('remoced FORM INTERVAL')
-                    console.log('current_prperty_title :'+current_prperty_title)
+                    /* -- console.log('remoced FORM INTERVAL')
+                    console.log('current_prperty_title :'+current_prperty_title) */
                     window.clearInterval(jQuery('#interval_id_auto_popup').val());
 
         }
