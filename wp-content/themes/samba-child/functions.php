@@ -344,7 +344,7 @@ function get_res_property_meta_values($property_id, $post_type){
 
 
 
-function get_residential_properties_list($post_type,$propertylist_args){
+function get_residential_properties_list($post_type,$propertylist_args=array()){
 
     global $wpdb;
     $sel_properties = array();

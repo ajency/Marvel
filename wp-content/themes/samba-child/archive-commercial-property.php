@@ -125,6 +125,17 @@ Template Name: Page - Commercial Projects List New
         <?php }
         ?>
 
+
+        <?php 
+        if(isset($_GET['near']) && !is_null($_GET['near']) ) {          
+        ?>var queryNear = <?php echo $_GET['near'] ?>;
+        <?php
+        }
+        else{ ?>
+          var queryNear ='';
+        <?php }
+        ?>
+
     </script>
     
  
