@@ -108,11 +108,12 @@ Template Name: Page - No-Commercial Projects List New
 */ ?>
  
 
-<?php 
+<?php /* commented on 2sep2015 
 require_once(ABSPATH."/wp-content/themes/samba-child/modules/commonJs.php") ;
 require_once(ABSPATH."wp-content/themes/samba-child/modules/projectList/commercial_list_js.php") ?>
 <script type="text/javascript" src = "<?php echo site_url(); ?>/wp-content/themes/samba-child/dev/js/commercial-projectlist_app.js"></script>
-
+*/
+?>
 
 
 <?php get_footer(); ?>

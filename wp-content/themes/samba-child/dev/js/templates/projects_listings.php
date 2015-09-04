@@ -64,7 +64,7 @@ _.each(propertiesdata,function(propertyvl,propertyky){
     var property_status = _.isUndefined(propertyvl.property_status)? propertyvl.get('property_status'): propertyvl.property_status;
     var property_menu_order = _.isUndefined(propertyvl.menu_order)? propertyvl.get('menu_order'): propertyvl.menu_order;
 
-    if(property_status=='Ongoing') {
+    if(property_status=='ongoing') {
         var draggable_class = " draggable ";
     }
 

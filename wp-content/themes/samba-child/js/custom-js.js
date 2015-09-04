@@ -1103,11 +1103,12 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
   evt.preventDefault();
 
+
   if(jQuery('#post_type').val()=='commercial-property'){
-    var search_url = SITE_URL+'/commercial-properties/';
+    var search_url = SITE_URL+'/commercial-properties';
   }
   else{
-    var search_url = SITE_URL+'/residential-properties/';
+    var search_url = SITE_URL+'/residential-properties';
   }
 
 
@@ -1116,6 +1117,43 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
   var locality_el = jQuery(this).closest('.search_propperty_block').find('.home_location')
   var type_el = jQuery(this).closest('.search_propperty_block').find('.home_type')
 
+  
+
+
+
+
+
+  var current_selected_status     = (_.isUndefined(status_el.val()) || (status_el.val()=='') )?'ongoing':status_el.val();
+  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'cityall':city_el.val();
+  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'localityall':locality_el.val();
+  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'typeall':type_el.val(); 
+               
+
+  if(current_selected_type!='typeall'){
+      search_url+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality+'/'+current_selected_type;
+
+  }
+  else if(current_selected_locality!='localityall'){
+       search_url+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality;
+  }
+  else if(current_selected_city!='cityall'){
+      search_url+= '/'+current_selected_status+'/'+current_selected_city ;
+
+   }                
+   else {
+      search_url+= '/'+current_selected_status
+   }
+
+    var width = window.innerWidth ? window.innerWidth : jQuery(window).width();
+   if (!(jQuery(this).hasClass('popup')) ) {
+
+      if( (width >= 768 && jQuery(this).hasClass('home_btn_sea'))  || (width < 768 && jQuery(this).hasClass('home_btn_sea2')) ){
+       
+           window.location.href = search_url  
+        }
+    }
+
+/* commented on 3sep2015 Rewrite URL UPDATE
   if(_.isUndefined(status_el.val())  || status_el.val() =='' ){
     var status_value ="Ongoing";
   }
@@ -1174,7 +1212,7 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
       }
 
 
-  }
+  } */
 
 
 })
@@ -1419,6 +1457,36 @@ jQuery('.popmake-give-details').live("click",function(evt){
     })
 
 })
+
+
+
+
+
+get_campaign_params()
+
+function get_campaign_params() {
+
+  console.log('get_campaign_params:------------------------------- START');
+
+  var query = decodeURIComponent(window.location.search.substring(1));
+  console.log(query)
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    jQuery('#field_'+pair[0]).val(pair[1])   
+
+    for(var j=1;j<10;j++){
+        jQuery('.frm-show-form').find('#field_'+pair[0]+j).val(pair[1])
+    }
+
+
+    console.log(pair[0]+" : "+pair[1])
+  } 
+    console.log('get_campaign_params:------------------------------- END ');
+
+    jQuery('.campaign_frm_loading').html('')      
+    jQuery('.btn_submit_compaign').prop('disabled',false)  
+}
 
 
 
