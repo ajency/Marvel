@@ -64,7 +64,7 @@ jQuery.ajax(ajax_var.url,{
 
                            jQuery('.home_city').empty();
 
-                           jQuery('.home_city').append('<option value="">City : All</option>')
+                           jQuery('.home_city').append('<option value="" data-cityid="" >City : All</option>')
                            jQuery('.home_city').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
 
 
@@ -77,7 +77,7 @@ jQuery.ajax(ajax_var.url,{
                                     console.log(vl_cl);
                                     console.log('ky'+ky_cl)
 
-                                     jQuery('.home_city').append('<option value="'+vl_cl.name+'">'+vl_cl.name+'</option>')
+                                     jQuery('.home_city').append('<option value="'+vl_cl.name+'" data-cityid="'+vl_cl.ID+'" >'+vl_cl.name+'</option>')
 
                                })
                             }

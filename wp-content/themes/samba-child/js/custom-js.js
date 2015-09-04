@@ -670,6 +670,9 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
     function show_nearby_properties(post_type){
         console.log('show nearby properties')
 
+        jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html('');
+        
+
         if(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
 
             console.log('window All properties')
@@ -714,7 +717,7 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
             var nearby_area_ids = [];
 
 
-            var post_type_properties = _.where(window.all_properties,{property_status:'Ongoing',post_type:post_type} )
+            var post_type_properties = _.where(window.all_properties,{property_status:'ongoing',post_type:post_type} )
 
             _.each(post_type_properties,function(resprop_v,resprop_k){
 
@@ -1045,7 +1048,9 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
 
 
 
-jQuery('#home_city2').live('change',function(){
+jQuery('#home_city2, #home_city').live('change',function(){
+
+
 
 
   jQuery('.home_location').empty();
@@ -1063,8 +1068,9 @@ jQuery('#home_city2').live('change',function(){
   console.log('window.search_options.locality.localities........')
   console.log(window.search_options.locality.localities)
 
-  var selected_city = jQuery(this).val();
+  // commented on 4sep2015 url change var selected_city = jQuery(this).val();
 
+  var selected_city = jQuery('option:selected', this).attr('data-cityid');
 
   var sorted_locality_options = [];
 
@@ -1087,8 +1093,8 @@ jQuery('#home_city2').live('change',function(){
 
                 }
 
-                jQuery('.home_location').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
-                main_search_bar.find('#dd_locality').append('<option value="'+vl_cl.ID+'">'+display_locality_name+'</option>')
+                jQuery('.home_location').append('<option value="'+display_locality_name+'">'+display_locality_name+'</option>')
+                main_search_bar.find('#dd_locality').append('<option value="'+display_locality_name+'">'+display_locality_name+'</option>')
 
             }
        })
