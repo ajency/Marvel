@@ -784,10 +784,20 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
                // jQuery('.spn_nearby_properties').find('.wpb_call_desc').html(closer_properties)
 
 
+
+                var explore_url = "";
+
+                if(jQuery('#current_post_type').val() == 'residential-property'){
+                    explore_url = SITE_URL + "/residential-properties/ongoing/?near="+all_near_closer_properties;
+                }
+                else if(jQuery('#current_post_type').val() == 'residential-property'){
+                    explore_url = SITE_URL + "/commercial-properties/ongoing/?near="+all_near_closer_properties;
+                }
+
                 jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html(closer_properties)
                 jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_content_element')
                     .find('.wpb_button_a')
-                    .attr('href',SITE_URL+'/residential-properties/ongoing/city_all/locality_all/type_all/'+all_near_closer_properties);
+                    .attr('href',explore_url);
 
 
             }
@@ -1490,8 +1500,13 @@ function get_campaign_params() {
   } 
     console.log('get_campaign_params:------------------------------- END ');
 
-    jQuery('.campaign_frm_loading').html('')      
-    jQuery('.btn_submit_compaign').prop('disabled',false)  
+
+    jQuery('.frm-show-form').find('.campaign_frm_loading').html('');
+    jQuery('.frm-show-form').find('.frm_submit').find('input').prop('disabled',false);
+
+
+    /* jQuery('.campaign_frm_loading').html('')      
+    jQuery('.btn_submit_compaign').prop('disabled',false)   */
 }
 
 
