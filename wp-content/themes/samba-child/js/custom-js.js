@@ -714,7 +714,7 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
             var nearby_area_ids = [];
 
 
-            var post_type_properties = _.where(window.all_properties,{property_status:'Ongoing',post_type:post_type} )
+            var post_type_properties = _.where(window.all_properties,{property_status:'ongoing',post_type:post_type} )
 
             _.each(post_type_properties,function(resprop_v,resprop_k){
 
