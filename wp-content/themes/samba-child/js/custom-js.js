@@ -670,6 +670,9 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
     function show_nearby_properties(post_type){
         console.log('show nearby properties')
 
+        jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html('');
+        
+
         if(jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').length>0){
 
             console.log('window All properties')
