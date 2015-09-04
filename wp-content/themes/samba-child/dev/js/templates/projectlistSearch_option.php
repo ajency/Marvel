@@ -27,9 +27,9 @@ console.log(selectedStatus);
 
             var sorted_status_options  = _.sortBy(data.status, function(obj){ /* return obj.toLowerCase() */ return obj.charCodeAt() * -1;  });
  
-
             _.each(sorted_status_options,function(vl,ky){
-            %><option value="<%=vl%>"  <% if(selectedStatus==vl){%> selected  <% }%>  ><%=vl%></option>
+                
+            %><option value="<%=vl%>"  <% if(selectedStatus.toLowerCase()==vl.toLowerCase()){%> selected  <% }%>  ><%=vl%></option>
 
             <% })
         }
