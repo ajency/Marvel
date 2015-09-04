@@ -1460,4 +1460,34 @@ jQuery('.popmake-give-details').live("click",function(evt){
 
 
 
+
+
+get_campaign_params()
+
+function get_campaign_params() {
+
+  console.log('get_campaign_params:------------------------------- START');
+
+  var query = decodeURIComponent(window.location.search.substring(1));
+  console.log(query)
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    jQuery('#field_'+pair[0]).val(pair[1])   
+
+    for(var j=1;j<10;j++){
+        jQuery('.frm-show-form').find('#field_'+pair[0]+j).val(pair[1])
+    }
+
+
+    console.log(pair[0]+" : "+pair[1])
+  } 
+    console.log('get_campaign_params:------------------------------- END ');
+
+    jQuery('.campaign_frm_loading').html('')      
+    jQuery('.btn_submit_compaign').prop('disabled',false)  
+}
+
+
+
 });
