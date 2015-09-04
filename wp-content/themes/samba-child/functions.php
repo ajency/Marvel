@@ -1090,6 +1090,35 @@ add_action('template_redirect','download_all_floor_plan');
 
 
 
+function get_pdf_max_row_count($flats){
+  $rec = array();
+  foreach($flats as $bld=>$flt){
+    $rec[] = count($flt)+8;
+  }
+  $max_row = $max_row = ceil(array_sum($rec));
+
+  if(count($flats)<=1){
+    if(array_sum($rec)>$max_row){
+      $max_row = ceil(array_sum($rec)/8)+8;
+    }else{
+      $max_row = ceil(array_sum($rec)/8);
+    }
+
+  }else{
+    $max_row = ceil(array_sum($rec)/8)+8;
+  }
+
+  if($max_row>27){
+    $max_row = 27;
+  }
+
+  return $max_row;
+}
+
+
+
+
+
 
 function download_availability_pdf(){
 
@@ -1110,7 +1139,9 @@ function download_availability_pdf(){
   $mkt_group_desc = $_GET['m_group'];
   $mkt_material_type_desc = $_GET['m_type'];
 
-  $max_row = 25;
+  $filename = 'Availability_'.$mkt_material_type_desc.'_BHK_'.get_flat_type($mkt_group_desc).'_'.$title.'.pdf';
+
+  //$max_row = 25;
 
   $table_name = $wpdb->prefix.'sap_inventory';
   $plan_query = " SELECT * FROM ".$table_name." WHERE plant=".$_GET['plant_id']." AND mkt_group_desc='".$mkt_group_desc."' AND mkt_material_type_desc='".$mkt_material_type_desc."'";
@@ -1130,6 +1161,8 @@ function download_availability_pdf(){
          }
     }
 
+    $max_row = get_pdf_max_row_count($flats);
+
 
     $total_columns = array();
     foreach($flats as $building=>$flt){
@@ -1140,13 +1173,17 @@ function download_availability_pdf(){
       }
       $col = count($split_records);
       $total_columns[] = $col;
+
+      /*echo "<pre>";
+      print_r($split_records);
+      echo "</pre>";*/
+
     }
     $total_rec = array_sum($total_columns);
 
-/*echo "<pre>";
-  print_r($chunkss);
-  echo "</pre>";*/
 
+    /*$numbers = $total_rec/8;
+    $max_row = ceil($numbers);*/
 
 
   $html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style><page>';
@@ -1196,6 +1233,219 @@ foreach($chunks as $keyy => $csm)
   array_unshift($chunks[$keyy], $key);
  }
 
+
+ /*echo "<pre>";
+      print_r($chunks);
+      echo "</pre>";*/
+
+$columns = count($chunks);
+$html .= '<td>';
+  $html .= '<table class="ava_table_in fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
+
+  for($i=0;$i<$max_row+1;$i++){
+
+    $html .= '<tr>';
+
+    foreach($chunks as $chunk){
+
+      if(($i==0)){
+        $html .= '<th style="width: 90px;">'.$key.'</th>';
+      }else{
+
+        if($chunk[$i]['status'] == 'Unsold'){
+          $tdclass = '';
+        }else if($chunk[$i]['status'] == 'Hold'){
+          $tdclass = 'colorgreen';
+        }else{
+          $tdclass = 'colorblue';
+        }
+
+        if($chunk[$i]['flat'] != ''){
+          $html .= '<td class="'.$tdclass.'">'.$key.$chunk[$i]['flat'].' ('.$chunk[$i]['area'].')</td>';
+        }else{
+          $html .= '<td>&nbsp;</td>';
+        }
+      }
+
+    }
+
+    $html .= '</tr>';
+  }
+
+  $html .= '</table>';
+
+   $html .= '</td>';
+}
+$html .= '</tr>';
+$html .= '</table>';
+
+      $html .= '</div>';
+
+      $html .= '<page_footer><img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo"></page_footer>';
+
+  $html .= '</page>';
+
+
+  require_once('html2pdf/html2pdf.class.php');
+
+  try
+    {
+        $html2pdf = new HTML2PDF('P', 'A4');
+        $html2pdf->setDefaultFont('Arial');
+        $html2pdf->writeHTML($html);
+        $html2pdf->Output($filename,'D');
+    }
+    catch(HTML2PDF_exception $e) {
+        echo $e;
+        exit;
+    }
+
+}
+
+add_action('template_redirect','download_availability_pdf');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function download_all_availability_pdf(){
+
+  global $wpdb;
+
+  if(!isset($_GET['action']) || $_GET['action']!='download_all_availability'){
+    return;
+  }
+
+  if(!isset($_GET['prop_id']) || !isset($_GET['plant_id'])){
+    return;
+  }
+
+  $property = get_post($_GET['prop_id']);
+
+  $title = $property->post_title;
+
+  $filename = 'Availability_'.$title.'.pdf';
+
+  
+
+  //$max_row = 25;
+
+  $table_name = $wpdb->prefix.'sap_inventory';
+  $plan_query = " SELECT * FROM ".$table_name." WHERE plant=".$_GET['plant_id']."";
+  $plans = $wpdb->get_results($plan_query,ARRAY_A);
+
+    $flats = array();
+
+    foreach($plans as $record){
+
+      //Generating Flats data
+         if (!array_key_exists($record['mkt_group_desc'],$flats)){
+            $flats[$record['mkt_group_desc']] = array();
+         }
+
+         if (!array_key_exists($record['mkt_material_type_desc'],$flats[$record['mkt_group_desc']])) {
+          $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']] = array();
+         }
+
+         if (!array_key_exists($record['building_no'], $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
+         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']] = array();
+         }
+
+         if (!array_key_exists($record['flat_no'], $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']])) {
+         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']][$record['flat_no']] = array('flat'=>$record['flat_no'],'area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
+         }
+    }
+
+
+  /*echo "<pre>";
+  print_r($flats);
+  echo "</pre>";*/
+
+$html = '<style>'.file_get_contents(get_stylesheet_directory().'/availability/availability.css').'</style>';
+  foreach($flats as $type=>$desc){
+
+    
+    
+    foreach($desc as $bl=>$fl){
+
+      $max_row = get_pdf_max_row_count($fl);
+
+    $total_columns = array();
+    foreach($fl as $building=>$flt){
+      $split_records = array_chunk( $fl[$building], $max_row);
+      foreach($split_records as $keyyy => $csmm)
+      {
+        array_unshift($split_records[$keyyy], 'head');
+      }
+      $col = count($split_records);
+      $total_columns[] = $col;
+    }
+    $total_rec = array_sum($total_columns);    
+
+
+    $html .= '<page>';
+  $html .= '<div class="full-wrap" style="width: 100%;">
+      <table class="header" style="width: 100%;">
+        <tr>
+          <td class="project_name inbl" style="vertical-align: top; width: 30%;">
+            <h1>'.$title.'</h1>
+            <h4>Availability</h4>
+          </td>
+          <td class="legend inbl" style="vertical-align: top; width: 69%;">
+            <table align="right">
+              <tr>
+                <td class="set set1" style="width: 125px;">
+                  <div class="color white"></div>
+                  <p class="info">WHITE = AVAILABLE</p>
+                </td>
+                <td class="set set2" style="width: 125px;">
+                  <div class="color blue" style="background-color: #d5effc; border-color: #d5effc;"></div>
+                  <p class="info">BLUE = SOLD</p>
+                </td>
+                <td class="set set3" style="width: 125px;">
+                  <div class="color green" style="background-color: #d0e5af; border-color: #d0e5af;"></div>
+                  <p class="info">GREEN = HOLD</p>
+                </td>
+
+                <td class="set updatedon" style="width: 120px; text-align: right;">
+                  <!--<div class="color transparent" style="background-color: transparent; border-color: transparent;"></div>-->
+                  <p class="info">UPDATED ON<br><span class="updated">'.date("jS F 'y").'</span></p>
+                </td>
+
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>';
+
+
+
+     $html .= '<table class="ava_table fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
+    $html .= '<tr><th colspan="'.$total_rec.'" class="table-head">'.$bl.' BHK '.get_flat_type($type).'</th></tr>';
+$html .= '<tr>';
+foreach($fl as $key=>$val){
+
+$chunks = array_chunk( $fl[$key], $max_row);
+foreach($chunks as $keyy => $csm)
+ {
+  array_unshift($chunks[$keyy], $key);
+ }
+
 $columns = count($chunks);
 $html .= '<td>';
   $html .= '<table class="ava_table_in fiveorless" style="width: 100%; border-collapse: collapse" cellpadding="0" cellspacing="0">';
@@ -1235,110 +1485,26 @@ $html .= '<td>';
    $html .= '</td>';
 }
 $html .= '</tr>';
-$html .= '</table>';
+$html .= '</table>'; 
 
 
 
-      /*$htmll .= '<!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
-      <table class="ava_table fiveorless" style="width: 100%;" cellpadding="0" cellspacing="0">
-        <tr>
-          <!-- here the colspan value has to equal the number of columns -->
-          <th colspan="5" class="table-head">
-            '.$mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc).'
-          </th>
-        </tr>
-        <tr>
-          <th style="width: 90px;">A</th>
-          <th style="width: 90px;">A</th>
-          <th style="width: 90px;">B</th>
-          <th style="width: 90px;">B</th>
-          <th style="width: 90px;">C</th>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorblue">A102 (1300)</td>
-          <td class="colorblue">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorgreen">A101 (1300)</td>
-          <td class="colorblue">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td class="colorblue">C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="">A102 (1300)</td>
-          <td class="colorblue">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td class="colorblue">C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorblue">A102 (1300)</td>
-          <td class="colorblue">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td class="colorblue">C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
 
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
+      $html .= '</div>';
 
-      </table>';*/
+      $html .= '<page_footer><img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo"></page_footer>';
+
+      $html .= '</page>';
 
 
-      $html .= '<img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
-    </div>';
-  $html .= '</page>';
+
+    
+
+    }
+
+    
+  }
+  
 
 
   require_once('html2pdf/html2pdf.class.php');
@@ -1348,16 +1514,18 @@ $html .= '</table>';
         $html2pdf = new HTML2PDF('P', 'A4');
         $html2pdf->setDefaultFont('Arial');
         $html2pdf->writeHTML($html);
-        $html2pdf->Output('availability.pdf');
+        $html2pdf->Output($filename,'D');
     }
     catch(HTML2PDF_exception $e) {
         echo $e;
         exit;
     }
 
+
+
 }
 
-add_action('template_redirect','download_availability_pdf');
+add_action('template_redirect','download_all_availability_pdf');
 
 
 
