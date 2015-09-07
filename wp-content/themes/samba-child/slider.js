@@ -200,6 +200,10 @@ function checkIfInView(element){
             }, 10000);
 
             $('.job_type').click(function() {
+                //add remove this class
+                $('.job_type').removeClass('current');
+                $(this).addClass('current');
+
                 $('html, body').animate({scrollTop: jQuery('.careers-scroll-down').offset().top}, 600);
                 $('.car_togglethis').addClass('hidden');
                 $locationdet = $(this).find('.wpb_text_column a').attr('href');
