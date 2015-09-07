@@ -129,6 +129,19 @@ Template Name: Page - Residential Projects List New
 
 
 
+
+        <?php 
+        if(isset($_GET['near']) && !is_null($_GET['near']) ) {          
+        ?>var queryNear = "<?php echo $_GET['near'] ?>"
+        <?php
+        }
+        else{ ?>
+          var queryNear ='';
+        <?php }
+        ?>
+
+
+
     </script>
     
  

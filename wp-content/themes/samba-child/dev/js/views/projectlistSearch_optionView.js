@@ -337,6 +337,10 @@
                           
                         if(typeof queryType != "undefined" )
                           properties_collection_params['type'] = queryType ;
+
+
+                         if(typeof queryNear != "undefined" )
+                          properties_collection_params['nearby'] = queryNear ;
                         
 
 

@@ -36,7 +36,7 @@
                 url_link = AJAXURL + '?action=get_residential_properties_list_ajx&post_type=residential-property';
 
                 if(this.nearby!=''){
-                    url_link+= '&status='+this.status+'&city='+this.city+'&locality='+this.locality+'&type='+this.type+'&nearby='+this.nearby;
+                    url_link+= '&status='+this.status+'&city='+this.city+'&locality='+this.locality+'&type='+this.type+'&near='+this.nearby;
                 }
                 else if(this.type!='all'){
                     url_link+= '&status='+this.status+'&city='+this.city+'&locality='+this.locality+'&type='+this.type;

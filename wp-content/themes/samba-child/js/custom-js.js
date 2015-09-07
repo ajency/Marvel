@@ -668,7 +668,7 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
 
 
     function show_nearby_properties(post_type){
-        console.log('show nearby properties')
+        console.log('show nearby properties')       
 
         jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html('');
 
@@ -790,7 +790,7 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
                 if(jQuery('#current_post_type').val() == 'residential-property'){
                     explore_url = SITE_URL + "/residential-properties/ongoing/?near="+all_near_closer_properties;
                 }
-                else if(jQuery('#current_post_type').val() == 'residential-property'){
+                else if(jQuery('#current_post_type').val() == 'commercial-property'){
                     explore_url = SITE_URL + "/commercial-properties/ongoing/?near="+all_near_closer_properties;
                 }
 

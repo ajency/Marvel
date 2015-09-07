@@ -396,6 +396,8 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
                     );
         } 
 
+         
+
 
         if(isset($propertylist_args['city'])){
 
@@ -446,8 +448,22 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
 
  //var_dump($propmeta_query);
 
+        if(isset($propertylist_args['near'])){ 
 
-      $residential_properties = get_posts( array(
+                   $residential_properties = get_posts( array(
+                                          'post_type'       => $post_type,
+                                          'post_status'     => 'publish',
+                                          'posts_per_page'  => -1,
+                                          'post__in'        => explode(',',$propertylist_args['near']),
+                                          'order'           => 'ASC',
+                                          'orderby'         => 'menu_order',
+                                          'meta_query'      => $propmeta_query
+
+                                      ) );
+        } 
+        else{
+
+          $residential_properties = get_posts( array(
                                           'post_type'       => $post_type,
                                           'post_status'     => 'publish',
                                           'posts_per_page'  => -1,
@@ -456,6 +472,12 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
                                           'meta_query'      => $propmeta_query
 
                                       ) );
+
+
+        }
+
+
+      
 
 
 
@@ -631,6 +653,8 @@ function get_residential_properties_list_ajx() {
     if(isset($_REQUEST['type']))
       $propertylist_args['type'] = $_REQUEST['type'] ; 
 
+ if(isset($_REQUEST['near']))
+      $propertylist_args['near'] = $_REQUEST['near'] ; 
 
 /*var_dump($_REQUEST);
 
