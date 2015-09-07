@@ -1213,7 +1213,8 @@ infowindow.open(map,marker);
              // var current_selected_nearby     = _.isUndefined(options.nearby)?'':options.nearby; 
 
  
-
+              if(typeof queryNear != "undefined" )
+                    var nearby_properties = queryNear ;
               
 
                 /* if(current_selected_nearby!=''){
@@ -1271,9 +1272,18 @@ infowindow.open(map,marker);
               if(!_.isUndefined(jQuery(evt.target))  && jQuery(evt.target).hasClass('srchopt') == false ) {
                 if( jQuery(evt.target).hasClass('top_list')    ){
                   RedirectUrl = RedirectUrl+search_opt;
+
+                  if(!_.isUndefined(nearby_properties)){
+                    RedirectUrl = RedirectUrl+'/?near='+nearby_properties;
+                  }
+
                 }
                 else if( jQuery(evt.target).hasClass('top_map') ) {
                   RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
+
+                  if(!_.isUndefined(nearby_properties)){
+                    RedirectUrl = RedirectUrl+'&near='+nearby_properties;
+                  }
                 }
 
             }
@@ -1283,10 +1293,18 @@ infowindow.open(map,marker);
 
                   RedirectUrl = RedirectUrl+search_opt;
 
+                  if(!_.isUndefined(nearby_properties)){
+                    RedirectUrl = RedirectUrl+'/?near='+nearby_properties;
+                  }
+
               }
               else {/* if( (evt_type == 'undefined' &&  jQuery('.top_map').hasClass('current') ) || ( jQuery(evt.target).hasClass('top_map') )  ){ */
 
                   RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
+
+                  if(!_.isUndefined(nearby_properties)){
+                    RedirectUrl = RedirectUrl+'&near='+nearby_properties;
+                  }
 
               }
 
