@@ -1302,7 +1302,7 @@ infowindow.open(map,marker);
                   if(!_.isUndefined(nearby_properties)){
                     if(nearby_properties!='')
                       RedirectUrl = RedirectUrl+'/?near='+nearby_properties;
-                    }
+                    
                   }
 
               }
