@@ -1300,7 +1300,9 @@ infowindow.open(map,marker);
                   RedirectUrl = RedirectUrl+search_opt;
 
                   if(!_.isUndefined(nearby_properties)){
-                    RedirectUrl = RedirectUrl+'/?near='+nearby_properties;
+                    if(nearby_properties!='')
+                      RedirectUrl = RedirectUrl+'/?near='+nearby_properties;
+                    }
                   }
 
               }
@@ -1309,7 +1311,8 @@ infowindow.open(map,marker);
                   RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
 
                   if(!_.isUndefined(nearby_properties)){
-                    RedirectUrl = RedirectUrl+'&near='+nearby_properties;
+                      if(nearby_properties!='')
+                        RedirectUrl = RedirectUrl+'&near='+nearby_properties;
                   }
 
               }
