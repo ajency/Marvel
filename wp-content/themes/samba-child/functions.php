@@ -1077,110 +1077,10 @@ $html .= '<td>';
 $html .= '</tr>';
 $html .= '</table>';
 
-
-
-      /*$htmll .= '<!--Add the class "fiveorless" if no. of columns is 5 or less than 5-->
-      <table class="ava_table fiveorless" style="width: 100%;" cellpadding="0" cellspacing="0">
-        <tr>
-          <!-- here the colspan value has to equal the number of columns -->
-          <th colspan="5" class="table-head">
-            '.$mkt_material_type_desc.' BHK '.get_flat_type($mkt_group_desc).'
-          </th>
-        </tr>
-        <tr>
-          <th style="width: 90px;">A</th>
-          <th style="width: 90px;">A</th>
-          <th style="width: 90px;">B</th>
-          <th style="width: 90px;">B</th>
-          <th style="width: 90px;">C</th>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorblue">A102 (1300)</td>
-          <td class="colorblue">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorgreen">A101 (1300)</td>
-          <td class="colorblue">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td class="colorblue">C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="">A102 (1300)</td>
-          <td class="colorblue">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td class="colorblue">C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorblue">A102 (1300)</td>
-          <td class="colorblue">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td class="colorblue">C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-        <tr>
-          <td class="colorblue">A101 (1300)</td>
-          <td class="colorgreen">A102 (1300)</td>
-          <td class="colorgreen">B101 (1300)</td>
-          <td class="colorblue">B102 (1300)</td>
-          <td>C101 (1300)</td>
-        </tr>
-
-      </table>';*/
-
       $html .= '</div>';
 
       $html .= '<page_footer><img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo"></page_footer>';
 
-      //$html .= '<img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo">
-    
   $html .= '</page>';
 
 
@@ -1191,7 +1091,7 @@ $html .= '</table>';
         $html2pdf = new HTML2PDF('P', 'A4');
         $html2pdf->setDefaultFont('Arial');
         $html2pdf->writeHTML($html);
-        $html2pdf->Output('availability.pdf');
+        $html2pdf->Output('availability.pdf','D');
     }
     catch(HTML2PDF_exception $e) {
         echo $e;
