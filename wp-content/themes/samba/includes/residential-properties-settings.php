@@ -479,27 +479,152 @@ add_action( 'wp_ajax_delete_property_unit_type', 'delete_property_unit_type' );
 
 
 
-function get_property_unit_type_option(){
 
+
+
+
+
+
+function get_property_unit_type_option_data($post_type){
+
+
+ 
 	global $wpdb;
-	if($_REQUEST['data']['post_type'] =='commercial-property'){
-		$current_property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
+	if($post_type =='commercial-property'){
+		//$current_property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
+		// $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+
+        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
+        $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
+        $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+
+
+
+
+        if(is_array($property_types_meta)){
+          foreach ($property_types_meta as $property_types_key => $property_types_value) {
+              $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+          }
+        }
+
+        if(is_array($property_unit_types_meta)){
+          foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+           $current_property_type_id =  $unit_type_value['property_type_id'];
+           $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
+           $property_unit_types[] =       $unit_type_value ;
+          }
+        }
 	}
 	else{
-		$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+		//$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+
+		$property_unit_types_meta_serialized       = maybe_unserialize(get_option('residential-property-unit-type',true));
+        $property_types_meta_serialized            =   maybe_unserialize(get_option('residential-property-type',true));
+
+        $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+        $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
+
+        if(is_array($property_types_meta)){
+          foreach ($property_types_meta as $property_types_key => $property_types_value) {
+                $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+          }
+        }
+
+
+        if(is_array($property_unit_types_meta)){
+          foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+             $current_property_type_id =  $unit_type_value['property_type_id'];
+             $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
+             $property_unit_types[] =       $unit_type_value ;
+          }
+        }
 
 	}
+
+	 
+
+	return $property_unit_types;
+}
+
+
+
+
+
+function get_property_unit_type_option(){
+
+	global $wpdb;/*
+	if($_REQUEST['data']['post_type'] =='commercial-property'){
+		//$current_property_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
+		 $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+
+        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
+        $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
+        $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
+        $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+
+
+        if(is_array($property_types_meta)){
+          foreach ($property_types_meta as $property_types_key => $property_types_value) {
+              $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+          }
+        }
+
+        if(is_array($property_unit_types_meta)){
+          foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+           $current_property_type_id =  $unit_type_value['property_type_id'];
+           $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
+           $property_unit_types[] =       $unit_type_value ;
+          }
+        }
+	}
+	else{
+		//$current_property_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+
+		$property_unit_types_meta_serialized       = maybe_unserialize(get_option('residential-property-unit-type',true));
+        $property_types_meta_serialized            =   maybe_unserialize(get_option('residential-property-type',true));
+
+        $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+        $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
+
+        if(is_array($property_types_meta)){
+          foreach ($property_types_meta as $property_types_key => $property_types_value) {
+                $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+          }
+        }
+
+
+        if(is_array($property_unit_types_meta)){
+          foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+             $current_property_type_id =  $unit_type_value['property_type_id'];
+             $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
+             $property_unit_types[] =       $unit_type_value ;
+          }
+        }
+
+	} */
+
 
 	
 
-	if(isset($current_property_unit_types['property_unit_types'])){
+	/* if(isset($current_property_unit_types['property_unit_types'])){
 		wp_send_json(maybe_unserialize($current_property_unit_types['property_unit_types']));
 	}
 	else{
 		wp_send_json(array() );
+	} */
+	$property_unit_types = get_property_unit_type_option_data($_REQUEST['data']['post_type']);
+
+	if(isset($property_unit_types)){
+		wp_send_json(maybe_unserialize($property_unit_types));
 	}
-
-
+	else{
+		wp_send_json(array() );
+	}
 
 }
 add_action( 'wp_ajax_get_property_unit_type_option', 'get_property_unit_type_option' );
