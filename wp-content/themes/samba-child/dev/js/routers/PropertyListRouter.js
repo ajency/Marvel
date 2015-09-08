@@ -47,16 +47,23 @@
 
 					options['post_type'] = 'residential-property';
 					 
-
+					/* if(_.isUndefined(queryMap) || _.isNull(queryMap)  || queryMap==false || queryMap==''){ 
+					 	queryMap_vw = false ;					 	
+					 }	
+					 else{
+					 	queryMap_vw = true ;	
+					 }
+					 options['mapview'] =  queryMap_vw;
+					 alert(options['mapview'])
+*/
 					if(_.isUndefined(getAppInstance().mainView)  || jQuery('#proj_list_main').length<=0 ){ 
-
-						options['mapview'] =  false;
+ 	
 						getAppInstance().mainView = new ProjectListMainView(options);
 					 
 					}
 					else{
 
-						getAppInstance().mainView.mapview =false; 
+						getAppInstance().mainView.mapview =queryMap_vw; 
 					}
                     
 

@@ -200,6 +200,10 @@ function checkIfInView(element){
             }, 10000);
 
             $('.job_type').click(function() {
+                //add remove this class
+                $('.job_type').removeClass('current');
+                $(this).addClass('current');
+
                 $('html, body').animate({scrollTop: jQuery('.careers-scroll-down').offset().top}, 600);
                 $('.car_togglethis').addClass('hidden');
                 $locationdet = $(this).find('.wpb_text_column a').attr('href');
@@ -1052,14 +1056,49 @@ function frmThemeOverride_frmAfterSubmit(e,f,b,a) {
     //if(typeof(formid) == 'number'){
         console.log('form ' + formid + ' has been submitted');
         afterformidablesubmit();
-        reload_form_value_on_submit_on_listingspage(form_id);
+        reload_form_value_on_submit_on_listingspage(formid);
+        repopulate_campaign_params()
     //}
 }
 function afterformidablesubmit() {
     loadingcontinforms();
 }
 
+function repopulate_campaign_params() {
+
+  console.log('get_campaign_params:------------------------------- START');
+
+  var query = decodeURIComponent(window.location.search.substring(1));
+  console.log(query)
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    jQuery('#field_'+pair[0]).val(pair[1])   
+
+    for(var j=1;j<10;j++){
+        jQuery('.frm-show-form').find('#field_'+pair[0]+j).val(pair[1])
+    }
+
+
+    console.log(pair[0]+" : "+pair[1])
+  } 
+    console.log('get_campaign_params:------------------------------- END ');
+
+
+    jQuery('.frm-show-form').find('.campaign_frm_loading').html('');
+    jQuery('.frm-show-form').find('.frm_submit').find('input').prop('disabled',false);
+
+
+    /* jQuery('.campaign_frm_loading').html('')      
+    jQuery('.btn_submit_compaign').prop('disabled',false)   */
+}
+
 function reload_form_value_on_submit_on_listingspage(form_id){
+
+
+    // on ajax form submission clear the form loading message and enable submit button
+    jQuery('.frm-show-form').find('.campaign_frm_loading').html('');
+    jQuery('.frm-show-form').find('.frm_submit').find('input').prop('disabled',false);
 
      if(form_id == 15){
      var element = jQuery('.formidable_active');

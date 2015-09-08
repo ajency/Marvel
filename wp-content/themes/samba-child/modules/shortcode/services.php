@@ -427,7 +427,11 @@ add_action('wp_ajax_nopriv_get_services_properties_ajx', 'get_services_propertie
 
 
 function sap_availability_table_shortcode(){
-global $post, $wpdb;
+global $wpdb;
+
+$queried_object = get_queried_object();
+
+$post = get_post($queried_object->ID);
 
 /*$plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
@@ -827,7 +831,11 @@ add_shortcode('sap-availability-table', 'sap_availability_table_shortcode');
 
 
 function sap_floor_plans_download_shortcode(){
-global $post;
+//global $post;
+
+$queried_object = get_queried_object();
+
+$post = get_post($queried_object->ID);
 
 $plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
@@ -855,7 +863,19 @@ $html = '<a class="wpb_button_a" title="All" href="'.get_site_url().'/?action=do
 if(array_key_exists('R1',$tabs)){
     asort($tabs['R1']);
     foreach($tabs['R1'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize half left">'.$value.' BHK</span></a>';
+
+        $index = $key+1;
+        if((count($tabs['R1']) == $index) && ($index % 2 != 0)){
+            $btn_class = '';
+        }else{
+            if ($index % 2 == 0) {
+                $btn_class = 'half right';
+            }else{
+             $btn_class = 'half left'; 
+            }
+        }
+
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize '.$btn_class.'">'.$value.' BHK</span></a>';
     }
 }
 
@@ -940,7 +960,9 @@ add_shortcode('floor-plans-table', 'sap_floor_plans_download_shortcode');
 
 
 function sap_availability_pdf_shortcode(){
-global $post;
+$queried_object = get_queried_object();
+
+$post = get_post($queried_object->ID);
 
 $plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
@@ -967,7 +989,18 @@ $html = '<a class="wpb_button_a" title="All" href="'.get_site_url().'/?action=do
 if(array_key_exists('R1',$tabs)){
     asort($tabs['R1']);
     foreach($tabs['R1'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize half left">'.$value.' BHK</span></a>';
+        $index = $key+1;
+        if((count($tabs['R1']) == $index) && ($index % 2 != 0)){
+            $btn_class = '';
+        }else{
+            if ($index % 2 == 0) {
+                $btn_class = 'half right';
+            }else{
+             $btn_class = 'half left'; 
+            }
+        }
+
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize '.$btn_class.'">'.$value.' BHK</span></a>';
     }
 }
 
@@ -1032,14 +1065,3 @@ return $html;
 }
 
 add_shortcode('availability-download-table', 'sap_availability_pdf_shortcode');
-
-
-
-
-
-
-
-
-
-
-
