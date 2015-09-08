@@ -28,8 +28,10 @@ console.log(selectedStatus);
             var sorted_status_options  = _.sortBy(data.status, function(obj){ /* return obj.toLowerCase() */ return obj.charCodeAt() * -1;  });
  
             _.each(sorted_status_options,function(vl,ky){
+
+                var display_status = vl.charAt(0).toUpperCase() + vl.slice(1);
                 
-            %><option value="<%=vl%>"  <% if(selectedStatus.toLowerCase()==vl.toLowerCase()){%> selected  <% }%>  ><%=vl%></option>
+            %><option value="<%=vl%>"  <% if(selectedStatus.toLowerCase()==vl.toLowerCase()){%> selected  <% }%>  ><%=display_status%></option>
 
             <% })
         }
@@ -62,7 +64,9 @@ console.log(selectedStatus);
 
                     }
 
-                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name) {%> selected <% }%> ><%=vl.name%></option>
+                    var display_city = vl.name.charAt(0).toUpperCase() + vl.name.slice(1);
+
+                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name) {%> selected <% }%> ><%=display_city%></option>
 
                 <% })
                 }
@@ -90,7 +94,9 @@ console.log(selectedStatus);
                         
                         if(selected_city_id == vl__locality.city_id) {
 
-                        %><option value="<%=vl__locality.name%>"  <% if(vl__locality.name==selectedLocality) { %> selected <% } %>><%=vl__locality.name%></option>
+                            var display_locality = vl__locality.name.charAt(0).toUpperCase() + vl__locality.name.slice(1);
+
+                        %><option value="<%=vl__locality.name%>"  <% if(vl__locality.name==selectedLocality) { %> selected <% } %>><%=display_locality%></option>
                         <% }
 
 
@@ -129,12 +135,15 @@ console.log(sorted_type_options);
             _.each(sorted_type_options,function(vl,ky){
 
                 if(post_type=='residential-property'){
-                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==vl.property_unit_type+' '+vl.property_type_name) { %> selected <% } %>><%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
+
+                    var display_unit_type = vl.property_unit_type.charAt(0).toUpperCase() + vl.property_unit_type.slice(1);
+
+                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==vl.property_unit_type+' '+vl.property_type_name) { %> selected <% } %>><%=display_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
                 <%    
                 }
                 else{
                 %>
-                <option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type) { %> selected <% } %>><%=vl.property_unit_type%></option>
+                <option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type) { %> selected <% } %>><%=display_unit_type%></option>
                 <%    
                 }
                 %>

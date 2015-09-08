@@ -1160,7 +1160,7 @@ infowindow.open(map,marker);
 
                                if(parseInt(vl_localities.city_id)==parseInt(event_val)){
 
-                                    var display_locality_name = vl_localities.name;
+                                    var display_locality_name = capitalizeFirstLetter(vl_localities.name);
                                     
                                     jQuery('#dd_locality').append("<option value='"+vl_localities.name+"'>"+display_locality_name+"</option>")
                                     jQuery('#home_location2').append("<option value='"+vl_localities.name+"'>"+display_locality_name+"</option>")
@@ -1172,6 +1172,10 @@ infowindow.open(map,marker);
 
             },
 
+
+            capitalizeFirstLetter: function(string) {
+              return string.charAt(0).toUpperCase() + string.slice(1);
+            },
 
             searchPropertiesRoute:function(evt){
 
@@ -1274,7 +1278,8 @@ infowindow.open(map,marker);
                   RedirectUrl = RedirectUrl+search_opt;
 
                   if(!_.isUndefined(nearby_properties)){
-                    RedirectUrl = RedirectUrl+'/?near='+nearby_properties;
+                    if(nearby_properties!='')
+                      RedirectUrl = RedirectUrl+'/?near='+nearby_properties;
                   }
 
                 }
@@ -1282,7 +1287,8 @@ infowindow.open(map,marker);
                   RedirectUrl = RedirectUrl + search_opt + '/?map=true' ;
 
                   if(!_.isUndefined(nearby_properties)){
-                    RedirectUrl = RedirectUrl+'&near='+nearby_properties;
+                    if(nearby_properties!='')
+                      RedirectUrl = RedirectUrl+'&near='+nearby_properties;
                   }
                 }
 
