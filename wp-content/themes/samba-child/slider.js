@@ -1065,6 +1065,11 @@ function afterformidablesubmit() {
 
 function reload_form_value_on_submit_on_listingspage(form_id){
 
+
+    // on ajax form submission clear the form loading message and enable submit button
+    jQuery('.frm-show-form').find('.campaign_frm_loading').html('');
+    jQuery('.frm-show-form').find('.frm_submit').find('input').prop('disabled',false);
+
      if(form_id == 15){
      var element = jQuery('.formidable_active');
 
