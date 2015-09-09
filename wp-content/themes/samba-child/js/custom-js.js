@@ -1167,19 +1167,19 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
 
   var current_selected_status     = (_.isUndefined(status_el.val()) || (status_el.val()=='') )?'ongoing':status_el.val();
-  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'cityall':city_el.val();
-  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'localityall':locality_el.val();
-  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'typeall':type_el.val(); 
+  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'city-all':city_el.val();
+  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'locality-all':locality_el.val();
+  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'type-all':type_el.val(); 
                
 
-  if(current_selected_type!='typeall'){
+  if(current_selected_type!='type-all'){
       search_url+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality+'/'+current_selected_type;
 
   }
-  else if(current_selected_locality!='localityall'){
+  else if(current_selected_locality!='locality-all'){
        search_url+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality;
   }
-  else if(current_selected_city!='cityall'){
+  else if(current_selected_city!='city-all'){
       search_url+= '/'+current_selected_status+'/'+current_selected_city ;
 
    }                
