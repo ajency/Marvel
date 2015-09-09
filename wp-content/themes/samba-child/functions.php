@@ -16,6 +16,63 @@ function get_map_address_details($property_id){
 
 
 
+function get_property_unit_types_options_data($post_type){
+
+
+      if($post_type =="residential-property"){
+
+              $property_unit_types_meta_serialized       = maybe_unserialize(get_option('residential-property-unit-type',true));
+              $property_types_meta_serialized            =   maybe_unserialize(get_option('residential-property-type',true));
+
+              $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+              $property_types_meta = maybe_unserialize($property_types_meta_serialized['property_types']);
+
+              if(is_array($property_types_meta)){
+                foreach ($property_types_meta as $property_types_key => $property_types_value) {
+                      $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+                }
+              }
+
+
+              if(is_array($property_unit_types_meta)){
+                foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+                   $current_property_type_id =  $unit_type_value['property_type_id'];
+                   $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
+                   $property_unit_types[] =       $unit_type_value ;
+                }
+              }
+      }
+      else if($post_type =="commercial-property"){
+
+              $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+
+              $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
+              $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
+              $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
+              $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
+
+
+              if(is_array($property_types_meta)){
+                foreach ($property_types_meta as $property_types_key => $property_types_value) {
+                    $property_types[$property_types_value['ID']] = $property_types_value['property_type'];
+                }
+              }
+
+              if(is_array($property_unit_types_meta)){
+                foreach ($property_unit_types_meta as $unit_type_key => $unit_type_value) {
+
+                 $current_property_type_id =  $unit_type_value['property_type_id'];
+                 $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
+                 $property_unit_types[] =       $unit_type_value ;
+                }
+              }
+      }
+
+      return $property_unit_types;
+
+
+}
 
 
 function get_search_options($post_type){
@@ -24,7 +81,7 @@ function get_search_options($post_type){
 
     if($post_type =="residential-property"){
 
-        $property_unit_types_meta_serialized       = maybe_unserialize(get_option('residential-property-unit-type',true));
+        /* commented on 9sep2015 $property_unit_types_meta_serialized       = maybe_unserialize(get_option('residential-property-unit-type',true));
         $property_types_meta_serialized            =   maybe_unserialize(get_option('residential-property-type',true));
 
         $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
@@ -44,10 +101,10 @@ function get_search_options($post_type){
              $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
              $property_unit_types[] =       $unit_type_value ;
           }
-        }
+        } */
 
 
-
+        $property_unit_types = get_property_unit_types_options_data($post_type);
 
 
         $property_cities          = maybe_unserialize(get_option('property-city',true));
@@ -62,7 +119,7 @@ function get_search_options($post_type){
     }
     else if($post_type =="commercial-property"){
 
-        $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+        /* $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
 
         $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
         $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
@@ -84,10 +141,9 @@ function get_search_options($post_type){
            $property_unit_types[] =       $unit_type_value ;
           }
         }
+         */
 
-
-
-
+         $property_unit_types = get_property_unit_types_options_data($post_type);
 
 
 
@@ -402,12 +458,14 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
         if(isset($propertylist_args['city'])){
 
             if($propertylist_args['city']!='all'){
+               
+               $propertylist_args['city'] = format_filter_text($propertylist_args['city']);
 
                $current_cities = $properties_optionsmeta['cities']['cities'] ;
 
                foreach ($current_cities as $citieskey => $citiesvalue) {
 
-                  if(strtolower($citiesvalue['name']) == strtolower($propertylist_args['city']) )
+                  if(format_filter_text($citiesvalue['name']) == $propertylist_args['city'] )
                     $current_city_id = $citiesvalue['ID'] ;                   
 
                   }  
@@ -426,10 +484,12 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
 
           if($propertylist_args['locality']!="all"){
 
+            $propertylist_args['locality'] = format_filter_text($propertylist_args['locality']);
+
             $current_localities = $properties_optionsmeta['locality']['localities'] ;
             foreach ($current_localities as $localitykey => $localityvalue) {
 
-              if(strtolower($localityvalue['name']) == strtolower(($propertylist_args['locality']) ) )
+              if(format_filter_text($localityvalue['name']) == $propertylist_args['locality'] )
                 $current_locality_id = $localityvalue['ID'] ;                   
 
             }  
@@ -513,7 +573,35 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
     }
 
 
-  $new_res_prop = new stdClass();
+
+    if(isset($_REQUEST['type'])){
+
+      $property_unit_types_options =  get_property_unit_types_options_data($post_type);
+
+    /*  echo "<br/><br/>TYPE : ".$_REQUEST['type'];
+      var_dump($property_unit_types_options);
+      echo "<br/><br/>";*/
+
+      //get the unit type id by passed unit type slug
+      foreach ($property_unit_types_options as $unit_type_options_key => $unit_type_options_value) {
+            if($post_type=="residential-property"){
+              $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']." ".$unit_type_options_value['property_type_name']);
+            }
+            else{
+             $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']);
+            }
+
+            if($unit_type_option_slug==$_REQUEST['type']){
+              $pd_unit_type_option_id = $unit_type_options_value['ID'];
+            }
+     
+      }
+    }
+
+
+
+
+    $new_res_prop = new stdClass();
     foreach (  $residential_properties as $res_property ) {
 
 
@@ -523,31 +611,51 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
     $image_url = wp_get_attachment_image_src($image_id,'medium', true);
     $property_featured_image = $image_url[0];
 
-  $new_res_prop->id                        =  $res_property->ID ;
-  $new_res_prop->post_date                 =  $res_property->post_date ;
-  $new_res_prop->post_excerpt              =  $res_property->post_excerpt ;
-  $new_res_prop->post_parent               =  $res_property->post_parent ;
-  $new_res_prop->post_title                =  $res_property->post_title ;
-  $new_res_prop->guid                      =  $res_property->guid ;
-  $new_res_prop->post_author               =  $res_property->post_author ;
+    $new_res_prop->id                        =  $res_property->ID ;
+    $new_res_prop->post_date                 =  $res_property->post_date ;
+    $new_res_prop->post_excerpt              =  $res_property->post_excerpt ;
+    $new_res_prop->post_parent               =  $res_property->post_parent ;
+    $new_res_prop->post_title                =  $res_property->post_title ;
+    $new_res_prop->guid                      =  $res_property->guid ;
+    $new_res_prop->post_author               =  $res_property->post_author ;
 
-  $new_res_prop->menu_order                =  ($res_property->menu_order==0?9000:$res_property->menu_order) ;
-  if($res_property->post_type=="residential-property"){
-    $new_res_prop->post_url                  =  site_url().'/residential-properties/'.$res_property->post_name;
-  }
-  else if($res_property->post_type=="commercial-property"){
-    $new_res_prop->post_url                  =  site_url().'/commercial-properties/'.$res_property->post_name;
-  }
+    $new_res_prop->menu_order                =  ($res_property->menu_order==0?9000:$res_property->menu_order) ;
+    if($res_property->post_type=="residential-property"){
+      $new_res_prop->post_url                  =  site_url().'/residential-properties/'.$res_property->post_name;
+    }
+    else if($res_property->post_type=="commercial-property"){
+      $new_res_prop->post_url                  =  site_url().'/commercial-properties/'.$res_property->post_name;
+    }
 
-  //$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
-  $new_res_prop->featured_image            = $property_featured_image;
-  $new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
-  $new_res_prop->amenities                 =  $property_amenities;
+    //$new_res_prop->featured_image            = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
+    $new_res_prop->featured_image            = $property_featured_image;
+    $new_res_prop->featured_image_thumbnail  = wp_get_attachment_image_src( get_post_thumbnail_id($res_property->ID), 'thumbnail'  );
+    $new_res_prop->amenities                 =  $property_amenities;
 
-  $new_res_prop->post_type                 =  $res_property->post_type ;
+    $new_res_prop->post_type                 =  $res_property->post_type ;
 
-  $property_meta_value =  get_res_property_meta_values($res_property->ID,$res_property->post_type);
-  $sel_properties[] =  (object)array_merge((array)$new_res_prop,$property_meta_value) ;
+    $property_meta_value =  get_res_property_meta_values($res_property->ID,$res_property->post_type);
+
+ 
+    if(isset($_REQUEST['type'])){
+
+      if(isset($pd_unit_type_option_id) && (is_array($property_meta_value['property_unit_type'])) ){
+
+
+          foreach ($property_meta_value['property_unit_type'] as $current_prop_unit_type_key => $current_prop_unit_type_value) {
+            if($current_prop_unit_type_value['type'] == $pd_unit_type_option_id ){
+              $sel_properties[] =  (object)array_merge((array)$new_res_prop,$property_meta_value) ;
+            }
+          }
+      }        
+
+    }
+    else{
+      $sel_properties[] =  (object)array_merge((array)$new_res_prop,$property_meta_value) ;  
+    }
+
+
+    
 
     /*$res_property->id = $res_property->ID;
     $res_property->featured_image = wp_get_attachment_url( get_post_thumbnail_id($res_property->ID) );
@@ -570,6 +678,12 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
 
         return $sel_properties;
 
+}
+
+
+function format_filter_text($filter_text=""){
+
+    return str_replace(' ','-',strtolower($filter_text));
 }
 
 
@@ -642,16 +756,16 @@ function get_residential_properties_list_ajx() {
     $propertylist_args = array();
 
     if(isset($_REQUEST['status']))
-      $propertylist_args['status'] = strtolower($_REQUEST['status']) ;
+      $propertylist_args['status'] = $_REQUEST['status'] ; 
 
     if(isset($_REQUEST['city']))
-      $propertylist_args['city'] = strtolower($_REQUEST['city']) ; 
+      $propertylist_args['city'] = $_REQUEST['city'] ; 
 
     if(isset($_REQUEST['locality']))
-      $propertylist_args['locality'] = strtolower($_REQUEST['locality']) ; 
+      $propertylist_args['locality'] = $_REQUEST['locality']; 
 
     if(isset($_REQUEST['type']))
-      $propertylist_args['type'] = strtolower($_REQUEST['type']) ; 
+      $propertylist_args['type'] = $_REQUEST['type'] ; 
 
  if(isset($_REQUEST['near']))
       $propertylist_args['near'] = $_REQUEST['near'] ; 

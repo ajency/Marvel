@@ -138,6 +138,8 @@ console.log(sorted_type_options);
 
                     var display_unit_type = vl.property_unit_type.charAt(0).toUpperCase() + vl.property_unit_type.slice(1);
                     var current_unit_type_name = vl.property_unit_type.toLowerCase()+' '+vl.property_type_name.toLowerCase() ;
+
+                    
                 %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==current_unit_type_name) { %> selected <% } %>><%=display_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
                 <%    
                 }

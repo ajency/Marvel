@@ -918,6 +918,8 @@ infowindow.open(map,marker);
                 var search_options  = {};
 
 
+
+                /*
                 if(prop_status!='')
                    search_options['property_status'] =  prop_status;
 
@@ -929,7 +931,7 @@ infowindow.open(map,marker);
 
                  if(prop_type!='')
                                    search_options['property_unit_type'] =  prop_type;
-
+                 */
 
                 if(self.post_type =="commercial-property"){
                     var res_collection = getAppInstance().commercialPropertyCollection  ;
@@ -954,20 +956,20 @@ infowindow.open(map,marker);
                 var search_collections = res_collection.models;
 
 
-
+                /*
                 delete search_options['property_unit_type'] ;
 
-                /* if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
+                 if( (prop_status!='') || (prop_city!='') || (prop_locality!='') )
                     var search_collections = res_collection.where(search_options )
-                */    
+                 
 
                   var sel_search_collections = {};
-                  var cnt_sel_search_collection = 0;
+                  var cnt_sel_search_collection = 0;*/   
 
 
 
                   //if( queryType!='' && !_.isNull(queryType)){
-                    if(typeof queryType !== "undefined" ){
+                 /*   if(typeof queryType !== "undefined" ){
 
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
@@ -980,7 +982,7 @@ infowindow.open(map,marker);
                       }
                     })
                     search_collections = sel_search_collections;
-                  }
+                  }*/
 
                   return search_collections;
 
@@ -1210,10 +1212,10 @@ infowindow.open(map,marker);
  
 
               
-              var current_selected_status     = (_.isUndefined(prop_status) || (prop_status=='') )?'ongoing':prop_status.toLowerCase();
-              var current_selected_city       = (_.isUndefined(prop_city) || (prop_city=="") )?'city-all':prop_city.toLowerCase();
-              var current_selected_locality   = (_.isUndefined(prop_locality) || (prop_locality=='') ) ?'locality-all':prop_locality.toLowerCase();
-              var current_selected_type       = (_.isUndefined(prop_type) || (prop_type=='') )?'type-all':prop_type.toLowerCase(); 
+              var current_selected_status     = (_.isUndefined(prop_status) || (prop_status=='') )?'ongoing':self.format_filter_text(prop_status);
+              var current_selected_city       = (_.isUndefined(prop_city) || (prop_city=="") )?'city-all':self.format_filter_text(prop_city);
+              var current_selected_locality   = (_.isUndefined(prop_locality) || (prop_locality=='') ) ?'locality-all':self.format_filter_text(prop_locality);
+              var current_selected_type       = (_.isUndefined(prop_type) || (prop_type=='') )?'type-all':self.format_filter_text(prop_type); 
              // var current_selected_nearby     = _.isUndefined(options.nearby)?'':options.nearby; 
 
  
@@ -1365,6 +1367,11 @@ infowindow.open(map,marker);
             map.setCenter(newCenter);
 
             },
+
+            format_filter_text:function(filter_text){
+              var formated_filter_text = filter_text.replace(/ /g , "-").toLowerCase();
+              return formated_filter_text;
+            }
 
 
 
