@@ -57,7 +57,9 @@ console.log(selectedStatus);
 
                 _.each(sorted_cities_options,function(vl,ky){
 
-                    if(selectedCity == vl.name.toLowerCase()){
+                    var current_city_slug = vl.name.replace(/ /g , "-").toLowerCase()
+
+                    if(selectedCity == current_city_slug){
 
 
                         selected_city_id = vl.ID;
@@ -66,7 +68,7 @@ console.log(selectedStatus);
 
                     var display_city = vl.name.charAt(0).toUpperCase() + vl.name.slice(1);
 
-                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name.toLowerCase()) {%> selected <% }%> ><%=display_city%></option>
+                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == current_city_slug) {%> selected <% }%> ><%=display_city%></option>
 
                 <% })
                 }
@@ -94,9 +96,11 @@ console.log(selectedStatus);
                         
                         if(selected_city_id == vl__locality.city_id) {
 
+                            var current_locality_slug = vl__locality.name.replace(/ /g , "-").toLowerCase()
+
                             var display_locality = vl__locality.name.charAt(0).toUpperCase() + vl__locality.name.slice(1);
 
-                        %><option value="<%=vl__locality.name%>"  <% if(vl__locality.name.toLowerCase()==selectedLocality) { %> selected <% } %>><%=display_locality%></option>
+                        %><option value="<%=vl__locality.name%>"  <% if(current_locality_slug==selectedLocality) { %> selected <% } %>><%=display_locality%></option>
                         <% }
 
 
@@ -139,13 +143,18 @@ console.log(sorted_type_options);
                     var display_unit_type = vl.property_unit_type.charAt(0).toUpperCase() + vl.property_unit_type.slice(1);
                     var current_unit_type_name = vl.property_unit_type.toLowerCase()+' '+vl.property_type_name.toLowerCase() ;
 
+
+                    var current_unit_type_slug = current_unit_type_name.replace(/ /g , "-").toLowerCase()
+
                     
-                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==current_unit_type_name) { %> selected <% } %>><%=display_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
+                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
                 <%    
                 }
                 else{
+
+                    var current_unit_type_slug = vl.property_unit_type.replace(/ /g , "-").toLowerCase()
                 %>
-                <option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type.toUpperCase()) { %> selected <% } %>><%=display_unit_type%></option>
+                <option value="<%=vl.property_unit_type%>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%></option>
                 <%    
                 }
                 %>
