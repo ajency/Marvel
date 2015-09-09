@@ -1555,3 +1555,4 @@ $html .= '</table>';
 
 add_action('template_redirect','download_all_availability_pdf');
 
+
