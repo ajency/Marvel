@@ -1282,14 +1282,37 @@ jQuery(document).ready(function() {
 
 
 
+jQuery(document).ready(function() {
 
-window.addEventListener("load", pageFullyLoaded, false);
+    //var autoPopElement1 = jQuery("#popmake-2358");
+    var autoPopElement1 = jQuery("#popmake-3272");
 
-function pageFullyLoaded(e) {
-    displaypop = setTimeout(displayPopupPageLoad, 3000);
-}
+    window.addEventListener("load", pageFullyLoaded, false);
 
-function displayPopupPageLoad(){
-    var elem = document.getElementById('popmake-3272');
-    elem.style.display = 'block';
-}
+    function pageFullyLoaded(e) {
+        displaypop = setTimeout(displayPopupPageLoad, 3000);
+    }
+
+    function displayPopupPageLoad(){
+
+        autoPopElement1.show();
+
+        autoPopElement1.css({
+            background: "#FFFFFF", 
+            padding: "50px"
+        });
+
+        jQuery("#popmake-overlay").show();
+    }
+
+    jQuery(document).on('click', '.popmake-close', function() {
+        autoPopElement1.hide();
+        jQuery("#popmake-overlay").hide();
+    });
+
+    jQuery(document).on('click', '#popmake-overlay', function() {
+        autoPopElement1.hide();
+        jQuery("#popmake-overlay").hide();
+    });
+
+});
