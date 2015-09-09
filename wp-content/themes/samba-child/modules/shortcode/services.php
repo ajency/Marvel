@@ -1065,14 +1065,3 @@ return $html;
 }
 
 add_shortcode('availability-download-table', 'sap_availability_pdf_shortcode');
-
-
-
-
-
-
-
-
-
-
-
