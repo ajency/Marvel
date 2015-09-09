@@ -1282,7 +1282,7 @@ jQuery(document).ready(function() {
 
 
 
-document.addEventListener("DOMContentLoaded", theDomHasLoaded, false);
+
 window.addEventListener("load", pageFullyLoaded, false);
 
 function pageFullyLoaded(e) {
