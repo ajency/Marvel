@@ -725,7 +725,7 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
 
                 var distance = getDistance(current_property_map_address,property_map_address);
 
-                if(parseFloat(distance)  <=2000 && distance != 0 ){
+                if(parseFloat(distance)  <=2000 && jQuery('#post_id').val()!=resprop_v.id ){
                     
                     this_area[this_area_cnt]    = resprop_v ;
                     this_area_id[this_area_cnt] = resprop_v.id
@@ -758,13 +758,16 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
 
 
                 closer_properties = "There " ;
-                var properties_txt = " properties ";
+                var properties_txt = " Marvel properties ";
 
                     if(_.size(this_area)>0){
 
                         if(_.size(this_area) == 1){
-                            var properties_txt = ' property ';
+                            var properties_txt = ' Marvel property ';
                             closer_properties = closer_properties + ' is ';
+                        }
+                        else{
+                            closer_properties = closer_properties + ' are ';
                         }
 
                         closer_properties = closer_properties + _.size(this_area)+" "+properties_txt+" in this area ";
@@ -773,14 +776,27 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
                         closer_properties = closer_properties + " and ";
                     if( _.size(nearby_area) >0) {
 
-                        properties_txt = " properties ";
-                        if(_.size(nearby_area) == 1){
-                            var properties_txt = ' property ';
-                            closer_properties = closer_properties + ' is';
+                       
+
+                        if(_.size(this_area)<=0){
+                           properties_txt = " Marvel properties ";
+
+                           if(_.size(nearby_area) == 1){
+                                var properties_txt = ' Marvel property ';
+                                closer_properties = closer_properties + ' is ';
+                            }
+                            else{
+
+                                closer_properties = closer_properties + ' are ';
+                            } 
                         }
+                        else{
+                            properties_txt =""
+                        }
+                        
 
 
-                        closer_properties = closer_properties + _.size(nearby_area)+" "+properties_txt+" nearby areas ";
+                        closer_properties = closer_properties + _.size(nearby_area)+" "+properties_txt+" in nearby areas ";
                     }
 
                // jQuery('.spn_nearby_properties').find('.wpb_call_desc').html(closer_properties)
@@ -796,12 +812,21 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
                     explore_url = SITE_URL + "/commercial-properties/ongoing/?near="+all_near_closer_properties;
                 }
 
+ 
+ 
+
                 jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html(closer_properties)
                 jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_content_element')
                     .find('.wpb_button_a')
                     .attr('href',explore_url);
 
 
+            }
+            else{
+                jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_call_desc').html('There are no properties in this or nearby areas')
+                jQuery('.nri_fullrow.indi_pr.redsp' ).find('.wpb_content_element')
+                    .find('.wpb_button_a')
+                    .hide()
             }
 
         }
