@@ -57,7 +57,7 @@ console.log(selectedStatus);
 
                 _.each(sorted_cities_options,function(vl,ky){
 
-                    if(selectedCity == vl.name){
+                    if(selectedCity == vl.name.toLowerCase()){
 
 
                         selected_city_id = vl.ID;
@@ -66,7 +66,7 @@ console.log(selectedStatus);
 
                     var display_city = vl.name.charAt(0).toUpperCase() + vl.name.slice(1);
 
-                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name) {%> selected <% }%> ><%=display_city%></option>
+                %><option value="<%=vl.name%>" data-cityid="<%=vl.ID%>"  <% if(selectedCity == vl.name.toLowerCase()) {%> selected <% }%> ><%=display_city%></option>
 
                 <% })
                 }
@@ -96,7 +96,7 @@ console.log(selectedStatus);
 
                             var display_locality = vl__locality.name.charAt(0).toUpperCase() + vl__locality.name.slice(1);
 
-                        %><option value="<%=vl__locality.name%>"  <% if(vl__locality.name==selectedLocality) { %> selected <% } %>><%=display_locality%></option>
+                        %><option value="<%=vl__locality.name%>"  <% if(vl__locality.name.toLowerCase()==selectedLocality) { %> selected <% } %>><%=display_locality%></option>
                         <% }
 
 
@@ -137,13 +137,13 @@ console.log(sorted_type_options);
                 if(post_type=='residential-property'){
 
                     var display_unit_type = vl.property_unit_type.charAt(0).toUpperCase() + vl.property_unit_type.slice(1);
-
-                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==vl.property_unit_type+' '+vl.property_type_name) { %> selected <% } %>><%=display_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
+                    var current_unit_type_name = vl.property_unit_type.toLowerCase()+' '+vl.property_type_name.toLowerCase() ;
+                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==current_unit_type_name) { %> selected <% } %>><%=display_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
                 <%    
                 }
                 else{
                 %>
-                <option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type) { %> selected <% } %>><%=display_unit_type%></option>
+                <option value="<%=vl.property_unit_type%>" <% if(selectedType==vl.property_unit_type.toUpperCase()) { %> selected <% } %>><%=display_unit_type%></option>
                 <%    
                 }
                 %>

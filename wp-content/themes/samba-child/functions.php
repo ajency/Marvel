@@ -642,16 +642,16 @@ function get_residential_properties_list_ajx() {
     $propertylist_args = array();
 
     if(isset($_REQUEST['status']))
-      $propertylist_args['status'] = $_REQUEST['status'] ;
+      $propertylist_args['status'] = strtolower($_REQUEST['status']) ;
 
     if(isset($_REQUEST['city']))
-      $propertylist_args['city'] = $_REQUEST['city'] ; 
+      $propertylist_args['city'] = strtolower($_REQUEST['city']) ; 
 
     if(isset($_REQUEST['locality']))
-      $propertylist_args['locality'] = $_REQUEST['locality'] ; 
+      $propertylist_args['locality'] = strtolower($_REQUEST['locality']) ; 
 
     if(isset($_REQUEST['type']))
-      $propertylist_args['type'] = $_REQUEST['type'] ; 
+      $propertylist_args['type'] = strtolower($_REQUEST['type']) ; 
 
  if(isset($_REQUEST['near']))
       $propertylist_args['near'] = $_REQUEST['near'] ; 

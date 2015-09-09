@@ -1210,10 +1210,10 @@ infowindow.open(map,marker);
  
 
               
-              var current_selected_status     = (_.isUndefined(prop_status) || (prop_status=='') )?'ongoing':prop_status;
-              var current_selected_city       = (_.isUndefined(prop_city) || (prop_city=="") )?'cityall':prop_city;
-              var current_selected_locality   = (_.isUndefined(prop_locality) || (prop_locality=='') ) ?'localityall':prop_locality;
-              var current_selected_type       = (_.isUndefined(prop_type) || (prop_type=='') )?'typeall':prop_type; 
+              var current_selected_status     = (_.isUndefined(prop_status) || (prop_status=='') )?'ongoing':prop_status.toLowerCase();
+              var current_selected_city       = (_.isUndefined(prop_city) || (prop_city=="") )?'city-all':prop_city.toLowerCase();
+              var current_selected_locality   = (_.isUndefined(prop_locality) || (prop_locality=='') ) ?'locality-all':prop_locality.toLowerCase();
+              var current_selected_type       = (_.isUndefined(prop_type) || (prop_type=='') )?'type-all':prop_type.toLowerCase(); 
              // var current_selected_nearby     = _.isUndefined(options.nearby)?'':options.nearby; 
 
  
@@ -1225,15 +1225,15 @@ infowindow.open(map,marker);
                     url_link+= '&status='+this.status+'&city='+this.city+'&locality='+this.locality+'&type='+this.type+'&nearby='+this.nearby;
                 }
                 else */
-                if(current_selected_type!='typeall'){
+                if(current_selected_type!='type-all'){
                     search_opt+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality+'/'+current_selected_type;
 
                 }
-                else if(current_selected_locality!='localityall'){
+                else if(current_selected_locality!='locality-all'){
                     search_opt+= '/'+current_selected_status+'/'+current_selected_city+'/'+current_selected_locality;
 
                 }
-                else if(current_selected_city!='cityall'){
+                else if(current_selected_city!='city-all'){
                     search_opt+= '/'+current_selected_status+'/'+current_selected_city ;
 
                 }                
