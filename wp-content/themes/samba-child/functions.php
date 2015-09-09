@@ -1309,7 +1309,7 @@ $html .= '</table>';
 
       $html .= '</div>';
 
-      $html .= '<page_footer><img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo"></page_footer>';
+      //$html .= '<page_footer><img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo"></page_footer>';
 
   $html .= '</page>';
 
@@ -1520,7 +1520,7 @@ $html .= '</table>';
 
       $html .= '</div>';
 
-      $html .= '<page_footer><img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo"></page_footer>';
+      //$html .= '<page_footer><img src="'.get_stylesheet_directory_uri().'/availability/marvelLogo_withtag.png" alt="Marvel Logo" class="marvelogo"></page_footer>';
 
       $html .= '</page>';
 
@@ -1554,14 +1554,5 @@ $html .= '</table>';
 }
 
 add_action('template_redirect','download_all_availability_pdf');
-
-
-
-
-
-
-
-
-
 
 
