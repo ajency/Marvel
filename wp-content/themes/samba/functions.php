@@ -1120,7 +1120,17 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 		case 'select' :
 
 
+		 
+
+						
+
 						if($custom_field_type=='property-unit-type'){
+
+							$current_post_type = $post->post_type ;
+
+							$property_unit_types1 = get_property_unit_type_option_data($current_post_type);
+
+
 							echo '<span class="prefix_te">'.$element_prefix_label.'</span>';
 
 							echo '<span class="cust-prop-type-table">';
@@ -1144,14 +1154,27 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 								    		 <span class="adm_property_unit_type_span_first">
 								    		 	<select name="cust_prop_type_select[]" class="cust-prop-type-select">
 								          			<option value="" >Select</option>';
-								          			foreach ($custom_field_options_values['property_unit_types'] as $k_cust_type_option_values => $v__cust_type_option_values) {
+								          			// commented on 8sep2015foreach ($custom_field_options_values['property_unit_types'] as $k_cust_type_option_values => $v__cust_type_option_values) {
+
+													foreach ($property_unit_types1 as $k_cust_type_option_values => $v__cust_type_option_values) {
+								          			
 
 								          				$is_current_type_selected ='';
 								          				if($value_selected_type['type'] == $v__cust_type_option_values['ID']){
 								          					$is_current_type_selected =' selected ';
 								          				}
 
-								          				echo '<option value="'.$v__cust_type_option_values['ID'].'"   '.$is_current_type_selected.'>'.$v__cust_type_option_values['property_unit_type'].'</option>';
+								          				var_dump($v__cust_type_option_values);
+
+								          				if($current_post_type=="residential-property"){
+								          					echo '<option value="'.$v__cust_type_option_values['ID'].'"   '.$is_current_type_selected.'>'.$v__cust_type_option_values['property_unit_type'].' '.$v__cust_type_option_values['property_type_name'].'</option>';
+
+								          				}
+								          				else{
+								          					echo '<option value="'.$v__cust_type_option_values['ID'].'"   '.$is_current_type_selected.'>'.$v__cust_type_option_values['property_unit_type'].'</option>';
+								          				}
+
+								          				
 								          			}
 
 

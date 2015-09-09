@@ -757,7 +757,7 @@ $('.get_property_unit_type').live("click",function(evt){
                             if(_.isArray(data)){
 
                                 window.property_unit_type_options = data ;
-                                property_unit_type_row =  generate_options_html();
+                                property_unit_type_row =  generate_options_html($('#post_type').val());
                                 $('.cust-prop-type-table').prepend(property_unit_type_row)
 
 
@@ -779,14 +779,27 @@ $('.get_property_unit_type').live("click",function(evt){
 
 })
 
-function generate_options_html(){
+function generate_options_html(post_type){
 
 
     var html = "<span class='adm_property_unit_type_row'>"
                +" <span class='adm_property_unit_type_span_first'> <select name='cust_prop_type_select[]' class='cust-prop-type-select'>";
          html = html + '<option value="" >Select</option>';
+
+
+         console.log('))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))');
     _.each(window.property_unit_type_options,function(vl,ky){
+
+console.log(vl)
+
+    if(post_type=="residential-property"){
+        html = html + '<option value="'+vl.ID+'" >'+vl.property_unit_type+' '+vl.property_type_name+'</option>';
+    }
+    else{
         html = html + '<option value="'+vl.ID+'" >'+vl.property_unit_type+'</option>';
+    }
+
+        
 
     })
 

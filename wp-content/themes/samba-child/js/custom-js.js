@@ -752,7 +752,9 @@ if(!_.isUndefined(servproperties_vl.City) && servproperties_vl.City!="" ){
 
             if(_.size(this_area)>0 || _.size(nearby_area) >0){
 
-                var all_near_closer_properties = this_area_id.join() + nearby_area_ids.join() ;
+                var all_near_closer_properties_arr = this_area_id.concat(nearby_area_ids) ;
+
+                var all_near_closer_properties = all_near_closer_properties_arr.join();
 
 
                 closer_properties = "There " ;
