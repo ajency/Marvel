@@ -173,8 +173,8 @@ console.log('vl');
                                 var f_max_area = _.size(f_max_area_arr)>0?_.max(f_max_area_arr):'';
                                 var f_min_area = _.size(f_min_area_arr)>0?_.min(f_min_area_arr):'';
 
-                                var s_max_area_arr = _.max(_.pluck(s_prop.get('property_unit_type'),'max_area'));
-                                var s_min_area_arr = _.min(_.pluck(s_prop.get('property_unit_type'),'min_area'));
+                                var s_max_area_arr = _.pluck(s_prop.get('property_unit_type'),'max_area');
+                                var s_min_area_arr = _.pluck(s_prop.get('property_unit_type'),'min_area');
 
                                 var s_max_area = _.size(s_max_area_arr)>0?_.max(s_max_area_arr):'';
                                 var s_min_area = _.size(s_min_area_arr)>0?_.min(s_min_area_arr):'';
