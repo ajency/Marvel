@@ -1369,6 +1369,9 @@ infowindow.open(map,marker);
             },
 
             format_filter_text:function(filter_text){
+
+              filter_text = filter_text.trim();
+              
               var formated_filter_text = filter_text.replace(/ /g , "-").toLowerCase();
               return formated_filter_text;
             }

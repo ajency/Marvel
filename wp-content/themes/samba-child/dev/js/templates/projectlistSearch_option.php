@@ -57,7 +57,9 @@ console.log(selectedStatus);
 
                 _.each(sorted_cities_options,function(vl,ky){
 
-                    var current_city_slug = vl.name.replace(/ /g , "-").toLowerCase()
+                    var current_city_name = vl.name.trim();
+
+                    var current_city_slug = current_city_name.replace(/ /g , "-").toLowerCase()
 
                     if(selectedCity == current_city_slug){
 
@@ -96,7 +98,9 @@ console.log(selectedStatus);
                         
                         if(selected_city_id == vl__locality.city_id) {
 
-                            var current_locality_slug = vl__locality.name.replace(/ /g , "-").toLowerCase()
+                            var current_locality_name = vl__locality.name.trim();
+
+                            var current_locality_slug = current_locality_name.replace(/ /g , "-").toLowerCase()
 
                             var display_locality = vl__locality.name.charAt(0).toUpperCase() + vl__locality.name.slice(1);
 
@@ -143,7 +147,7 @@ console.log(sorted_type_options);
                     var display_unit_type = vl.property_unit_type.charAt(0).toUpperCase() + vl.property_unit_type.slice(1);
                     var current_unit_type_name = vl.property_unit_type.toLowerCase()+' '+vl.property_type_name.toLowerCase() ;
 
-
+                    current_unit_type_name = current_unit_type_name.trim();
                     var current_unit_type_slug = current_unit_type_name.replace(/ /g , "-").toLowerCase()
 
                     
@@ -152,7 +156,9 @@ console.log(sorted_type_options);
                 }
                 else{
 
-                    var current_unit_type_slug = vl.property_unit_type.replace(/ /g , "-").toLowerCase()
+                    var current_unit_type_name = vl.property_unit_type.trim();
+
+                    var current_unit_type_slug = current_unit_type_name.replace(/ /g , "-").toLowerCase()
                 %>
                 <option value="<%=vl.property_unit_type%>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%></option>
                 <%    
