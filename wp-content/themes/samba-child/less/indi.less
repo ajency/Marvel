@@ -837,6 +837,17 @@
         position: relative;
         width: 100%;
         overflow: hidden;
+        table {
+            border-color: #C9C9C9;
+            border: 1px solid #B6B6B6;
+            border-top: 0;
+            tr td {
+                cursor: pointer;
+                &.hold_bg, &.blue_bg {
+                    cursor: default;
+                }
+            }
+        }
     }
     .tabular {
         width: 100%;
