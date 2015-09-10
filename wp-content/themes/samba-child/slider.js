@@ -1303,6 +1303,9 @@ jQuery(document).ready(function() {
         });
 
         jQuery("#popmake-overlay").show();
+        /*jQuery("#popmake-overlay").css({
+            background: "rgba(10, 10, 10, 0.65098)"
+        });*/
     }
 
     jQuery(document).on('click', '.popmake-close', function() {
