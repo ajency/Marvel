@@ -199,9 +199,9 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
 
   
-  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'city-all':city_el.val();
-  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'locality-all':locality_el.val();
-  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'type-all':type_el.val(); 
+  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'city-all':format_filter_text2(city_el.val());
+  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'locality-all':format_filter_text2(locality_el.val());
+  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'type-all':format_filter_text2(type_el.val()); 
                
 
 
@@ -239,6 +239,14 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
    
 
+
+function format_filter_text2(filter_text){
+
+              filter_text = filter_text.trim();
+              
+              var formated_filter_text = filter_text.replace(/ /g , "-").toLowerCase();
+              return formated_filter_text;
+}
   
 
 

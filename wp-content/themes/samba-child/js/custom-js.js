@@ -1166,10 +1166,10 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
 
 
-  var current_selected_status     = (_.isUndefined(status_el.val()) || (status_el.val()=='') )?'ongoing':status_el.val();
-  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'city-all':city_el.val();
-  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'locality-all':locality_el.val();
-  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'type-all':type_el.val(); 
+  var current_selected_status     = (_.isUndefined(status_el.val()) || (status_el.val()=='') )?'ongoing':format_filter_text1(status_el.val());
+  var current_selected_city       = (_.isUndefined(city_el.val()) || (city_el.val()=="") )?'city-all':format_filter_text1(city_el.val());
+  var current_selected_locality   = (_.isUndefined(locality_el.val()) || (locality_el.val()=='') ) ?'locality-all':format_filter_text1(locality_el.val());
+  var current_selected_type       = (_.isUndefined(type_el.val()) || (type_el.val()=='') )?'type-all':format_filter_text1(type_el.val()); 
                
 
   if(current_selected_type!='type-all'){
@@ -1259,6 +1259,15 @@ jQuery('.home_btn_search_properties').live('click',function(evt){
 
 
 })
+
+
+function format_filter_text1(filter_text){
+
+              filter_text = filter_text.trim();
+              
+              var formated_filter_text = filter_text.replace(/ /g , "-").toLowerCase();
+              return formated_filter_text;
+}
 
 
 
@@ -1541,6 +1550,9 @@ function get_campaign_params() {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
+
 
 
 
