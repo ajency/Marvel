@@ -1651,3 +1651,156 @@ function format_filter_text($filter_text=""){
     $filter_text = trim($filter_text);
     return str_replace(' ','-',strtolower($filter_text));
 }
+
+
+
+
+
+function get_unique_property_types($project_type){
+global $wpdb;
+$table_name = $wpdb->prefix.'sap_inventory';
+//$property_type_query = " SELECT material_group_desc,mkt_group_desc FROM ".$table_name." WHERE project_type='".$project_type."' GROUP BY material_group";
+ $property_type_query = " SELECT material_group_desc,mkt_group_desc,project_type FROM ".$table_name." GROUP BY material_group HAVING project_type='".$project_type."'";
+ $sap_data_type = $wpdb->get_results($property_type_query,ARRAY_A);
+
+  $property_types = array();
+  foreach($sap_data_type as $key=>$property){
+  	$property_types[] = array(
+  		'property_type' => $property['material_group_desc'],
+  		'material_group' => $property['material_group_desc'],
+  		'mkt_group_desc' => $property['mkt_group_desc'],
+  		'ID' => $key+1
+  	);
+  }
+  return $property_types;
+}
+
+
+
+function get_unique_property_unit_types($project_type){
+	global $wpdb;
+	$table_name = $wpdb->prefix.'sap_inventory';
+	//$property_query = " SELECT DISTINCT material_group_desc,material_type,mkt_group_desc,mkt_material_type_desc FROM ".$table_name." WHERE project_type='Residential' GROUP BY material_type,mkt_material_type_desc";
+	$property_query = " SELECT DISTINCT material_group_desc,material_type,mkt_group_desc,mkt_material_type_desc,project_type FROM ".$table_name." GROUP BY material_type,mkt_material_type_desc HAVING project_type='".$project_type."'";
+	$sap_data = $wpdb->get_results($property_query,ARRAY_A);
+	return $sap_data;
+}
+
+
+function get_sap_property_type_id($code,$project){
+if($project == 'residential'){
+$type_options = maybe_unserialize(get_option('residential-property-type'));
+}else{
+$type_options = array();
+}
+
+$types = $type_options['property_types'];
+$key = array_search($code, array_column($types, 'mkt_group_desc'));
+return $types[$key]['ID'];
+}
+
+
+
+
+
+
+
+
+function update_residentials_property_type(){
+  global $wpdb;
+
+  $type_options = maybe_unserialize(get_option('residential-property-type')); 
+  if(!$type_options || count($type_options)<=0){
+
+  	$property_types = get_unique_property_types('Residential');
+
+  	$last = end($property_types);
+
+  	$property_type_options = array(
+  		'max_property_types' => $last['ID'],
+  		'property_types' => $property_types
+  		);
+
+  	update_option( 'residential-property-type', maybe_serialize($property_type_options));
+  }
+
+
+
+$prop_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+if(!$prop_unit_types || count($prop_unit_types)<=0){
+  $unit_types = get_unique_property_unit_types('Residential');
+$property_unit_types = array();
+foreach($unit_types as $key=>$type){
+
+if(is_numeric($type['mkt_material_type_desc'])){
+	$bedroom = round($type['mkt_material_type_desc']);
+	$property_unit_type = $type['mkt_material_type_desc'].' BHK';
+}else{
+	$bedroom = '';
+	$property_unit_type = $type['material_type'];
+}
+
+$property_unit_types[] = array(
+	'number_bedrooms' => $bedroom,
+	'property_unit_type' => $property_unit_type,
+	'material_type' => $type['material_type'],
+	'material_type_desc' => $type['mkt_material_type_desc'],
+	'mkt_group_desc' => $type['mkt_group_desc'],
+	'mkt_material_type_desc' => $type['mkt_material_type_desc'],
+	'property_type_id' => get_sap_property_type_id($type['mkt_group_desc'],'residential'),
+	'ID' => $key+1
+	);
+}
+
+$last_unit = end($property_unit_types);
+
+$residential_property_unit_type = array(
+	'max_property_unit_types' => $last_unit['ID'],
+	'property_unit_types' => $property_unit_types
+	);
+
+update_option( 'residential-property-unit-type', maybe_serialize($residential_property_unit_type));
+}
+
+
+
+
+ }
+
+ add_action('init','update_residentials_property_type');
+
+
+
+
+
+
+
+
+
+
+
+
+
+ function generate_property_unit_types_residential(){
+  global $wpdb, $post;
+
+  /*if(!is_singular( array( 'residential-property', 'commercial-property' ) )){
+    return;
+  }*/
+
+  $queried_object = get_queried_object();
+
+  $post = get_post($queried_object->ID);
+
+  $plant_id = get_post_meta($post->ID,'property-plant-id',true);
+  $table_name = $wpdb->prefix.'sap_inventory';
+  //$property_query = " SELECT * FROM ".$table_name." WHERE plant=".$plant_id."";
+  $property_query = " SELECT DISTINCT material_group_desc,material_type,mkt_group_desc,mkt_material_type_desc,plant FROM ".$table_name." GROUP BY mkt_material_type_desc HAVING plant='".$plant_id."'";
+  $sap_data = $wpdb->get_results($property_query,ARRAY_A);
+  
+  echo "<pre>";
+  print_r($sap_data);
+  echo "</pre>";
+ }
+
+//add_action('template_redirect', 'generate_property_unit_types_residential');

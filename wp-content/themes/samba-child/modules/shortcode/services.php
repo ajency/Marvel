@@ -433,9 +433,9 @@ $queried_object = get_queried_object();
 
 $post = get_post($queried_object->ID);
 
-/*$plant_id = get_post_meta($post->ID,'property-plant-id',true);
+$plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
-    $table_name = $wpdb->prefix.'sap_inventory';
+   /* $table_name = $wpdb->prefix.'sap_inventory';
     $property_query = " SELECT * FROM ".$table_name." WHERE plant=".$plant_id."";
     $data = $wpdb->get_results($property_query,ARRAY_A);*/
     $data = get_sap_data();
