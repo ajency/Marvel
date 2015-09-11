@@ -56,14 +56,14 @@ class My_Example_List_Table extends WP_List_Table {
 
         						if($this->post_type == "residential-property"){
 									$actions = array(
-									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type="'.$item['material_type'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type_desc="'.$item['material_type_desc'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
 									            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 									        );
 								}
 								else{
 
 									$actions = array(
-									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type="'.$item['material_type'].'"  property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type_desc="'.$item['material_type_desc'].'"  property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
 									            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 									        );
 
@@ -77,9 +77,9 @@ class My_Example_List_Table extends WP_List_Table {
         //case 'action':
             return $item[ $column_name ];
 
-        case 'material_type':
+        case 'material_type_desc':
         //case 'action':
-            return $item['material_type'];
+            return $item['material_type_desc'];
 
         case 'property_type':
 
@@ -114,8 +114,8 @@ function get_columns($pd_post_type){
 
 	if($pd_post_type == "residential-property"){
         $columns = array(
+        	'material_type_desc'    => __( 'Material Type Desc.', 'mylisttable' ),
             'property_unit_type' => __( 'Property Unit Type', 'mylisttable' ),
-            'material_type'    => __( 'Material Type', 'mylisttable' ),
             'number_bedrooms'    => __( 'No Of Bedrooms', 'mylisttable' ),
             'property_type'    => __( 'Property Type', 'mylisttable' )
 
@@ -125,7 +125,7 @@ function get_columns($pd_post_type){
        else{
 	       	$columns = array(
 	            'property_unit_type' => __( 'Property Unit Type', 'mylisttable' ),
-	            'material_type'    => __( 'Material Type', 'mylisttable' ),	            
+	            'material_type_desc'    => __( 'Material Type', 'mylisttable' ),	            
 	            'property_type'    => __( 'Property Type', 'mylisttable' )
 
 	            //'action'      => __( 'Action', 'mylisttable' )
@@ -349,7 +349,7 @@ function save_property_unit_type(){
 	
 	$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
 	$property_unit_type = $_REQUEST['data']['property_unit_type'];
-	$material_type = $_REQUEST['data']['material_type'];
+	$material_type_desc = $_REQUEST['data']['material_type_desc'];
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
 	$new_prop_type 		= $_REQUEST['data']['prop_type_id'];
 	$post_type 			= $_REQUEST['data']['post_type'];
@@ -367,7 +367,7 @@ function save_property_unit_type(){
 		$new_property_unit_type['number_bedrooms'] 		= $num_bedrooms;
 	}
 	$new_property_unit_type['property_unit_type'] 	= $property_unit_type;
-	$new_property_unit_type['material_type'] 	= $material_type;
+	$new_property_unit_type['material_type_desc'] 	= $material_type_desc;
 	$new_property_unit_type['property_type_id'] 	= $new_prop_type;
 
 	if($property_edit_id!=''){
