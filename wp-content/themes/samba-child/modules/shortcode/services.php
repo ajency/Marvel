@@ -859,9 +859,10 @@ $html = '<a class="wpb_button_a" title="All" href="'.get_site_url().'/?action=do
 
 if(array_key_exists('R1',$tabs)){
     asort($tabs['R1']);
+    $index  = 1;
     foreach($tabs['R1'] as $key=>$value){
 
-        $index = $key+1;
+        //$index = $key+1;
         if((count($tabs['R1']) == $index) && ($index % 2 != 0)){
             $btn_class = '';
         }else{
@@ -873,7 +874,9 @@ if(array_key_exists('R1',$tabs)){
         }
 
         $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize '.$btn_class.'">'.$value.' BHK</span></a>';
+    $index++;
     }
+    
 }
 
 if(array_key_exists('R4',$tabs)){
@@ -985,8 +988,9 @@ $html = '<a class="wpb_button_a" title="All" href="'.get_site_url().'/?action=do
 
 if(array_key_exists('R1',$tabs)){
     asort($tabs['R1']);
+    $index  = 1;
     foreach($tabs['R1'] as $key=>$value){
-        $index = $key+1;
+        //$index = $key+1;
         if((count($tabs['R1']) == $index) && ($index % 2 != 0)){
             $btn_class = '';
         }else{
@@ -998,6 +1002,7 @@ if(array_key_exists('R1',$tabs)){
         }
 
         $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize '.$btn_class.'">'.$value.' BHK</span></a>';
+    $index++;
     }
 }
 
