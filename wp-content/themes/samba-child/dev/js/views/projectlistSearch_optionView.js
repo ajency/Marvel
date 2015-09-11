@@ -442,59 +442,70 @@
        var city_lat;
        var city_long 
 
-
-      if(city=="" || (city.trim().toLowerCase() =="pune") ) {
-                city_lat = 18.52043;
-                city_long = 73.85674;
-
-                 maplatlong_center = {'lat'  : city_lat,
-                                      'long' : city_long
-                                     }
-
-                self.display_map(search_collections,maplatlong_center)               
-      }
-      else{ 
-
-              geocoder = new google.maps.Geocoder();
-
-              geocoder.geocode( { 'address': city}, function(results, status) {       
-
-                  
-                  if (status == google.maps.GeocoderStatus.OK) {             
-                       latlong = results[0]['geometry']['location'];
-                    
-                      console.log('latlong1:-----------------------------********************')
-                      console.log(latlong)
-
-                      var citylatlong_cnt = 0;
-
-                      _.each(latlong,function(citylatlong_vl,citylatlong_ky){
-
-                        console.log(citylatlong_vl);
-                          if(citylatlong_cnt==0){
-                              city_lat = citylatlong_vl;
-                              
-                          }
-                          else if(citylatlong_cnt==1){
-                              city_long = citylatlong_vl;
-                          }
-
-                          citylatlong_cnt++
-
-                      })                       
-                  }
-
-                  maplatlong_center = {'lat'  : city_lat,
-                                      'long' : city_long
-                                     }
-
-                  self.display_map(search_collections,maplatlong_center)     
+       if(_.size(search_collections)<=0){
+        self.display_map(search_collections,maplatlong_center) 
+       }
+       else{
 
 
 
+              if(city=="" || (city.trim().toLowerCase() =="pune") ) {
+                      city_lat = 18.52043;
+                      city_long = 73.85674;
 
-              }) 
-      }
+                       maplatlong_center = {'lat'  : city_lat,
+                                            'long' : city_long
+                                           }
+
+                      self.display_map(search_collections,maplatlong_center)               
+            }
+            else{ 
+
+                    geocoder = new google.maps.Geocoder();
+
+                    geocoder.geocode( { 'address': city}, function(results, status) {       
+
+                        
+                        if (status == google.maps.GeocoderStatus.OK) {             
+                             latlong = results[0]['geometry']['location'];
+                          
+                            console.log('latlong1:-----------------------------********************')
+                            console.log(latlong)
+
+                            var citylatlong_cnt = 0;
+
+                            _.each(latlong,function(citylatlong_vl,citylatlong_ky){
+
+                              console.log(citylatlong_vl);
+                                if(citylatlong_cnt==0){
+                                    city_lat = citylatlong_vl;
+                                    
+                                }
+                                else if(citylatlong_cnt==1){
+                                    city_long = citylatlong_vl;
+                                }
+
+                                citylatlong_cnt++
+
+                            })                       
+                        }
+
+                        maplatlong_center = {'lat'  : city_lat,
+                                            'long' : city_long
+                                           }
+
+                        self.display_map(search_collections,maplatlong_center)     
+
+
+
+
+                    }) 
+            }
+
+       }
+
+
+      
 
       
        
