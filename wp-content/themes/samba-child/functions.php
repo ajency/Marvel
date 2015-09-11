@@ -560,7 +560,7 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
 
 
 
-    if(isset($_REQUEST['type'])){
+    if(isset($_REQUEST['type']) && ($_REQUEST['type']!="all") ){
       $property_unit_types_options =  get_property_unit_types_options_data($post_type);
     /*  echo "<br/><br/>TYPE : ".$_REQUEST['type'];
       var_dump($property_unit_types_options);
@@ -619,7 +619,7 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
 
   $property_meta_value =  get_res_property_meta_values($res_property->ID,$res_property->post_type);
  
-    if(isset($_REQUEST['type'])){
+    if(isset($_REQUEST['type']) && ($_REQUEST['type']!="all") ){
       if(isset($pd_unit_type_option_id) && (is_array($property_meta_value['property_unit_type'])) ){
           foreach ($property_meta_value['property_unit_type'] as $current_prop_unit_type_key => $current_prop_unit_type_value) {
             if($current_prop_unit_type_value['type'] == $pd_unit_type_option_id ){
