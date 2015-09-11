@@ -1180,37 +1180,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 								    echo '		</select>
 								    		 </span>
-								             <span class="cust-prop-type-layout adm_property_unit_type_span" >';
-
-										    $cur_prop_layout_img_url ="";
-										    $cur_prop_layout_img_filename ="";
-
-										    if($value_selected_type['layout_image']!='' ){
-
-										    	$layout_image = wp_get_attachment_image_src($value_selected_type['layout_image']);
-										    	$cur_prop_layout_img_url = $layout_image[0];
-										    	$cur_prop_layout_img_filename =basename( get_attached_file( $value_selected_type['layout_image'] ) );
-
-
-										    }
-										    if($cur_prop_layout_img_url!='' && $cur_prop_layout_img_url != false){
-										    	echo '<span class="layout_pdf_link_span" type-id="'.$value_selected_type['type'].'" >
-										    			<a href="'.$cur_prop_layout_img_url.'"  target="_blank" >'.$cur_prop_layout_img_filename.'</a>
-										    			<span class="del_prop_type_layout_img"  file-id="'.$value_selected_type['layout_image'].'" property-id="'.$post->ID.'"    type-id="'.$value_selected_type['type'].'" > X </span>
-										    		  </span>
-										    		 ';
-										    }
-										    else{
-										    	echo '<label class="forjpg"><i class="fa fa-image"></i> </label>
-										    		  <input type="file"  class="cust-prop-type-layout-file" accept=".png,.jpg,.gif,.bmp"
-										    			name = "cust-prop-type-layout-file_'.$value_selected_type['type'].'"
-										    			id ="cust-prop-type-layout-file_'.$value_selected_type['type'].'"  />';
-										    }
-
-
-
-
-								    echo '  </span>
+								             
 								             <span class="cust-prop-type-pdf adm_property_unit_type_span" > ';
 
 
@@ -1219,33 +1189,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 								      		$cur_prop_layout_pdf_url ="";
 										    $cur_prop_layout_pdf_filename ="";
 //echo 'pdf id : '.$value_selected_type['layout_pdf'];
-										    if($value_selected_type['layout_pdf']!='' ){
-
-										    	// $layout_pdf = wp_get_attachment_image_src($value_selected_type['layout_pdf']);
-
-										    	//var_dump($layout_pdf);
-										    	//$cur_prop_layout_pdf_url = $layout_pdf[0];
-
-
-
-										    	$parsed_pdf_file = parse_url( wp_get_attachment_url( $value_selected_type['layout_pdf'] ) );
-												$cur_prop_layout_pdf_url    = dirname( $parsed_pdf_file [ 'path' ] ) . '/' . rawurlencode( basename( $parsed_pdf_file[ 'path' ] ) );
-										    	$cur_prop_layout_pdf_filename =basename( get_attached_file( $value_selected_type['layout_pdf'] ) );
-
-										    }
-										    if($cur_prop_layout_pdf_url!='' && $cur_prop_layout_pdf_url != false){
-										    	echo '<span class="layout_img_link_span" type-id="'.$value_selected_type['type'].'" >
-										    			<a href="'.$cur_prop_layout_pdf_url.'" target="_blank" >'.$cur_prop_layout_pdf_filename.'</a>
-										    		    <span class="del_prop_type_layout_pdf"  file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'" >X</span>
-										    		  </span>';
-										    }
-										    else{
-										    	echo '<label class="forpdf"><i class="fa fa-file-pdf-o"></i> </label>
-										    		  <input type="file"  class="cust-prop-type-layout-pdf"  accept=".pdf"
-										    				name="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
-										    				id="cust-prop-type-layout-pdf_'.$value_selected_type['type'].'"
-										    			/>';
-										    }
+										    
 
 										    echo '<label class="">Min. area </label>
 										    		  <input type="text"  class="cust-prop-type-unit_type_minarea" 
@@ -1264,7 +1208,7 @@ function generate_custom_field_element($post, $element_type, $multiple_values, $
 
 
 								    echo'	</span>
-								    		<span class="cust-prop-type-pdf adm_property_unit_type_span" > <button type="button" value="Delete" class="del_property_unit_type_row button button-delete button-large"   file-id="'.$value_selected_type['layout_pdf'].'"  property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'"  ><i class="fa fa-trash"></i></button> </span>
+								    		<span class="cust-prop-type-pdf adm_property_unit_type_span" > <button type="button" value="Delete" class="del_property_unit_type_row button button-delete button-large" property-id="'.$post->ID.'"  type-id="'.$value_selected_type['type'].'"  ><i class="fa fa-trash"></i></button> </span>
 								          </span>' ;
 
 							}

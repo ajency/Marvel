@@ -579,7 +579,38 @@ jQuery('.save_property_type').live("click",function(){
         jQuery(document).ready(function(){
 
         //allow_integer_input_values('#new-property-bedrooms'); 
-        allow_float_input_values('#new-property-bedrooms'); 
+        allow_float_input_values('#new-property-bedrooms');
+
+
+
+
+        jQuery(document).on('click', '#generate_unit_types', function() {
+            
+            var property_id = jQuery(this).attr('data-postId');
+                        
+            var data = {
+                'action': 'generatePropertyUnits',
+                'property_id': property_id
+            };
+
+            jQuery('#unit_load_loader').show();
+
+            jQuery.post(ajaxurl, data, function(response) {
+               var property_units = JSON.parse(response);
+               if(property_units.status == 'true'){
+                jQuery('#unit_type_list').empty();
+                jQuery('#unit_type_list').html(property_units.units);
+                jQuery('#generate_unit_types').html('Regenerate Units');
+               }else{
+                alert('No unit type found for this property!');
+               }
+               jQuery('#unit_load_loader').hide();
+            });
+        });
+
+
+
+
 
         })
 
