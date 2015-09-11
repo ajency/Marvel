@@ -377,6 +377,7 @@
                                     jQuery('.top_list').removeClass('current')
 
                                     self.display_map();
+                                    console.log('DISPLAY MAP:-----------------------------------------------------2 ')
                                 }
                                 else{
 
@@ -407,6 +408,7 @@
                                      jQuery('.top_map').addClass('current');
 
                                     jQuery('.top_map').removeClass('current')
+                                    console.log('DISPLAY MAP-------------------------------------------------------------------3')
                                     self.display_map();
                                 }
 
@@ -429,9 +431,93 @@
 
 
 
-   display_map : function(search_collections){
+    get_lat_long_by_address(search_collections,city){
+
+      
+
+      var maplatlong_center = {};
+
+      var self = this ;
+
+       var city_lat;
+       var city_long 
+
+       if(_.size(search_collections)<=0){
+        self.display_map(search_collections,maplatlong_center) 
+       }
+       else{
 
 
+
+              if(city=="" || (city.trim().toLowerCase() =="pune") ) {
+                      city_lat = 18.52043;
+                      city_long = 73.85674;
+
+                       maplatlong_center = {'lat'  : city_lat,
+                                            'long' : city_long
+                                           }
+
+                      self.display_map(search_collections,maplatlong_center)               
+            }
+            else{ 
+
+                    geocoder = new google.maps.Geocoder();
+
+                    geocoder.geocode( { 'address': city}, function(results, status) {       
+
+                        
+                        if (status == google.maps.GeocoderStatus.OK) {             
+                             latlong = results[0]['geometry']['location'];
+                          
+                            console.log('latlong1:-----------------------------********************')
+                            console.log(latlong)
+
+                            var citylatlong_cnt = 0;
+
+                            _.each(latlong,function(citylatlong_vl,citylatlong_ky){
+
+                              console.log(citylatlong_vl);
+                                if(citylatlong_cnt==0){
+                                    city_lat = citylatlong_vl;
+                                    
+                                }
+                                else if(citylatlong_cnt==1){
+                                    city_long = citylatlong_vl;
+                                }
+
+                                citylatlong_cnt++
+
+                            })                       
+                        }
+
+                        maplatlong_center = {'lat'  : city_lat,
+                                            'long' : city_long
+                                           }
+
+                        self.display_map(search_collections,maplatlong_center)     
+
+
+
+
+                    }) 
+            }
+
+       }
+
+
+      
+
+      
+       
+       
+  },
+
+
+
+   display_map : function(search_collections,maplatlong_center){
+
+console.log('maplatlong_center : --------------------#####################')
+console.log(maplatlong_center)
 
     var self = this;
                 //console.log('display map');;
@@ -528,7 +614,7 @@
 
                      var map = new google.maps.Map(document.getElementById('projects_listings'), {
                                 zoom:11,
-                                center: new google.maps.LatLng(18.52043, 73.85674),
+                                center: new google.maps.LatLng(maplatlong_center['lat'], maplatlong_center['long']),
                                 mapTypeId: google.maps.MapTypeId.ROADMAP
 
                             });
@@ -771,11 +857,15 @@ infowindow.open(map,marker);
                                             '<a href="'+properties[i].get('post_url')+'" class="map_p_title">'+
                                                 '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
                                                 '<span class="single_p_light">|</span>'+
-                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+', ';
+                                                '<span class="single_p_location">'+properties[i].get('property_locality_name');
 
-                          if(jQuery('#dd_city').val()==''){
+                         
+                              if(properties[i].get('property_locality_name')!=""){
+                                popup_content = popup_content +', ' ; 
+                              }
+
                               popup_content = popup_content + properties[i].get('property_city_name');
-                           }
+                           
                               popup_content = popup_content + '</span>'+
 
 
@@ -1010,7 +1100,7 @@ infowindow.open(map,marker);
                if(queryMap==true ) {
                     jQuery('.top_map').addClass('current');
                     jQuery('.top_list').removeClass('current')
-                    this.display_map(search_collections);
+                    this.get_lat_long_by_address(search_collections,jQuery('#dd_city').val());
                 }
                // if(jQuery(evt.target).hasClass('top_list') || (jQuery(evt.target).hasClass('top_map') ==false && jQuery('.top_map').hasClass('current') == false)){
                 else {/* if( _.isUndefined(getAppInstance().mainView.mapview) || getAppInstance().mainView.mapview==false) { */
