@@ -1070,6 +1070,17 @@ color: rgb(255, 255, 255);
 .contact-cover.contact-inline .frm_form_field select:focus {
 	color: #111 !important;
 }
+input[type=number],
+.frm_style_formidable-style.with_frm_style .frm_form_field input[type=number] {
+	color: #444;
+}
+
+input[type=number]:active,
+input[type=number]:focus,
+.frm_style_formidable-style.with_frm_style .frm_form_field input[type=number]:active,
+.frm_style_formidable-style.with_frm_style .frm_form_field input[type=number]:focus {
+	color: #111 !important;
+}
 .contact-cover {
 	padding: 8px;
 }
