@@ -868,13 +868,16 @@ infowindow.open(map,marker);
                                             '</a>'+
                                             '<p class="map_excerpt">';
 
-                      var individial_proptype_cnt  = 0;
+                    /*  var individial_proptype_cnt  = 0;
                                             _.each(properties[i].get('property_unit_type'),function(proptype_vl1,proptype_ky1){
                                                if(individial_proptype_cnt>0)
                                                 popup_content+= ', ';
                                               popup_content+= proptype_vl1.type_name;
                                               individial_proptype_cnt++;
-                                            })
+                                            }) */
+
+                    if(!_.isUndefined(properties[i].get('property_display_unit_type')))
+                      popup_content+=properties[i].get('property_display_unit_type')
 
                     popup_content = popup_content +
                                             '</p>'+

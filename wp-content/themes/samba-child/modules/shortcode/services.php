@@ -433,9 +433,9 @@ $queried_object = get_queried_object();
 
 $post = get_post($queried_object->ID);
 
-/*$plant_id = get_post_meta($post->ID,'property-plant-id',true);
+$plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
-    $table_name = $wpdb->prefix.'sap_inventory';
+    /*$table_name = $wpdb->prefix.'sap_inventory';
     $property_query = " SELECT * FROM ".$table_name." WHERE plant=".$plant_id."";
     $data = $wpdb->get_results($property_query,ARRAY_A);*/
     $data = get_sap_data();
@@ -521,7 +521,7 @@ $post = get_post($queried_object->ID);
          }
 
          if (!array_key_exists($record['flat_no'], $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']])) {
-         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']][$record['flat_no']] = array('area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
+         $flats[$record['mkt_group_desc']][$record['mkt_material_type_desc']][$record['building_no']][$record['flat_no']] = array('area'=>$record['act_area'],'terrace_area'=>$record['terrace_area'],'saleable_area'=>$record['saleable_area'],'total_saleable_area'=>$record['total_saleable_area'],'floor_plan'=>$record['specific_floor_plan'],'status'=>$record['status_desc']);
          }
     }
 
@@ -755,9 +755,9 @@ foreach($tabs as $tabkey=>$tabvalue){
                                                             $specific_floor_plan = $plan_url.$flat_data['floor_plan'].'.jpg';
 
                                                             if($flat_data['status'] == 'Unsold'){
-                                                                $popdata = 'data-plantId="'.$plant_id.'" data-building="'.$building_key.'" data-flatNo="'.$flat.'" data-flatArea="'.$flat_data['area'].'" data-terraceArea="'.$flat_data['terrace_area'].'" data-sellableArea="'.$flat_data['total_saleable_area'].'" data-floorPlan="'.$specific_floor_plan.'"';
+                                                                $popdata = 'data-plantId="'.$plant_id.'" data-building="'.$building_key.'" data-flatNo="'.$flat.'" data-flatArea="'.$flat_data['saleable_area'].'" data-terraceArea="'.$flat_data['terrace_area'].'" data-sellableArea="'.$flat_data['total_saleable_area'].'" data-floorPlan="'.$specific_floor_plan.'"';
                                                                 $col = '<td '.$popdata.'>'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
-                                                            }else if($flat_data['status'] == 'Hold'){
+                                                            }else if(($flat_data['status'] == 'Hold') || ($flat_data['status'] == 'Land_Owner') || ($flat_data['status'] == 'Management')){
                                                                 $col = '<td class="hold_bg">'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';
                                                             }else{
                                                                $col = '<td class="blue_bg">'.$building_key.' '.$flat.' ('.$flat_data['total_saleable_area'].')</td>';

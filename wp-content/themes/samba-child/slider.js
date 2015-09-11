@@ -214,14 +214,14 @@ function checkIfInView(element){
 
         function popupmake_scrollbarhide() {
             $('.popmake').on('popmakeBeforeOpen', function () {
-              $('html, body').css('overflow', 'hidden');
-              $('html').css('height', $(window).height());
-              $('body').addClass('posrel');
+              // $('html, body').css('overflow', 'hidden');
+              // $('html').css('height', $(window).height());
+              // $('body').addClass('posrel');
             });
             $('.popmake').on('popmakeAfterClose', function () {
-              $('html, body').css('overflow', 'visible');
-              $('html').css('height', 'auto');
-              $('body').removeClass('posrel');
+              // $('html, body').css('overflow', 'visible');
+              // $('html').css('height', 'auto');
+              // $('body').removeClass('posrel');
             });
         }
         popupmake_scrollbarhide();
@@ -1073,7 +1073,7 @@ function repopulate_campaign_params() {
   var vars = query.split("&");
   for (var i=0;i<vars.length;i++) {
     var pair = vars[i].split("=");
-    jQuery('#field_'+pair[0]).val(pair[1])   
+    jQuery('#field_'+pair[0]).val(pair[1])
 
     for(var j=1;j<10;j++){
         jQuery('.frm-show-form').find('#field_'+pair[0]+j).val(pair[1])
@@ -1081,7 +1081,7 @@ function repopulate_campaign_params() {
 
 
     console.log(pair[0]+" : "+pair[1])
-  } 
+  }
     console.log('get_campaign_params:------------------------------- END ');
 
 
@@ -1089,7 +1089,7 @@ function repopulate_campaign_params() {
     jQuery('.frm-show-form').find('.frm_submit').find('input').prop('disabled',false);
 
 
-    /* jQuery('.campaign_frm_loading').html('')      
+    /* jQuery('.campaign_frm_loading').html('')
     jQuery('.btn_submit_compaign').prop('disabled',false)   */
 }
 
@@ -1298,7 +1298,7 @@ jQuery(document).ready(function() {
         autoPopElement1.show();
 
         autoPopElement1.css({
-            background: "#FFFFFF", 
+            background: "#FFFFFF",
             padding: "50px"
         });
 

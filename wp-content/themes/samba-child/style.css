@@ -1751,6 +1751,10 @@ input[type=number]::-webkit-outer-spin-button,
     appearance: none;
     margin: 0;
 }
+input[type=number],
+.frm_style_formidable-style.with_frm_style input[type=number] {
+    -moz-appearance:textfield;
+}
 
 .enquiry_sideways.app-side {
 	position: absolute;
