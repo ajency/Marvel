@@ -1822,24 +1822,28 @@ h6 {
   -moz-osx-font-smoothing: grayscale;
   text-shadow: none;
   text-rendering: optimizeLegibility;
+  display: block;
+  line-height: 17px;
+  margin-bottom: 7px;
+  margin-top: 3px;
 }
 .map_info_c .map_info span {
   transition: all 0.5s;
 }
 .map_info_c .map_info .single_p_title {
   font-weight: bold;
-  margin-right: 5px;
+  margin-right: 4px;
 }
 .map_info_c .map_info .single_p_light {
   color: #c5c5c5;
 }
 .map_info_c .map_info .single_p_location {
-  margin-left: 5px;
+  margin-left: 2px;
 }
 .map_info_c .map_info .map_excerpt {
   margin-bottom: -1px;
-  line-height: 17px;
-  margin-top: 2px;
+  line-height: 15px;
+  margin-top: 4px;
   font-size: 12px;
 }
 .map_info_c .map_info p {
