@@ -1846,7 +1846,6 @@ function get_unit_type_by_desc_group($group,$key){
 
   function generate_property_unit_types_residential($plant_id){
     global $wpdb;
-
     
     $table_name = $wpdb->prefix.'sap_inventory';
     $property_query = " SELECT * FROM ".$table_name." WHERE plant='".$plant_id."'";
@@ -1874,8 +1873,8 @@ function get_unit_type_by_desc_group($group,$key){
 
  }
 
- /*$unit_meta = maybe_unserialize(get_post_meta('926','residential-property-unit-type', true));
- $prop_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));*/
+ /*$unit_meta = maybe_unserialize(get_post_meta('926','residential-property-unit-type', true));*/
+ $prop_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
 
  $property_unit_types = array();
  foreach ($areas as $group=>$types){
@@ -1892,9 +1891,8 @@ function get_unit_type_by_desc_group($group,$key){
 }
 
 return $property_unit_types;
-}
 
-//add_action('template_redirect', 'generate_property_unit_types_residential');
+}
 
 
 
@@ -1931,7 +1929,7 @@ function property_unit_types_metabox($post) {
       foreach ($unit_meta as $unit){
         $key = array_search($unit['type'], array_column($units, 'ID'));
         $type = array_search($units[$key]['property_type_id'], array_column($groups, 'ID'));
-        $html .= '<li>'.$units[$key]['material_type'].' - '.$groups[$type]['property_type'].'</li>';
+        $html .= '<li>'.$units[$key]['property_unit_type'].' - '.$groups[$type]['property_type'].'</li>';
       }
       $html .= '</ul>';
 
@@ -1970,7 +1968,7 @@ if(count($property_units)>0){
   foreach ($property_units as $unit){
     $key = array_search($unit['type'], array_column($units, 'ID'));
     $type = array_search($units[$key]['property_type_id'], array_column($groups, 'ID'));
-    $dt .= '<li>'.$units[$key]['material_type'].' - '.$groups[$type]['property_type'].'</li>';
+    $dt .= '<li>'.$units[$key]['property_unit_type'].' - '.$groups[$type]['property_type'].'</li>';
   }
   $response = array('status'=>'true', 'units'=>$dt);
 }else{
@@ -1979,3 +1977,4 @@ if(count($property_units)>0){
   echo json_encode($response);
   wp_die();
 }
+
