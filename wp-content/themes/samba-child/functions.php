@@ -2,7 +2,7 @@
 
 require_once('floor-plans-tab.php');
 require_once('modules/shortcode/services.php');
-
+require_once('modules/shortcode/general.php');
 function get_map_address_details($property_id){
 
 	global $wpdb;
