@@ -1554,12 +1554,14 @@ function capitalizeFirstLetter(string) {
 
 
 
-jQuery('.popmake-availability-hold-popup').live('click',function(){
+jQuery('.popmake-availability-hold-popup').live('click',function(evt){
 
-        var project_name        = jQuery('#current_property_title').val(); 
+         var project_name    = jQuery('#current_property_title').val(); 
+        var building        = jQuery(this).attr('popbuilding');
+        var flatno        = jQuery(this).attr('popflatno');
 
         jQuery('#field_tellmore_project').val(project_name);
-
+        jQuery('#field_tellmore_flat').val(building+' '+flatno);
         jQuery('#form_frm_tellmore').find('.sign-prop-title').html(project_name)
          
 
