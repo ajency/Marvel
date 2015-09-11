@@ -377,7 +377,7 @@
                                     jQuery('.top_list').removeClass('current')
 
                                     self.display_map();
-                                    alert('DISPLAY MAP ')
+                                    console.log('DISPLAY MAP:-----------------------------------------------------2 ')
                                 }
                                 else{
 
@@ -408,7 +408,7 @@
                                      jQuery('.top_map').addClass('current');
 
                                     jQuery('.top_map').removeClass('current')
-                                    alert('DISPLAY MAP2')
+                                    console.log('DISPLAY MAP-------------------------------------------------------------------3')
                                     self.display_map();
                                 }
 
@@ -857,11 +857,15 @@ infowindow.open(map,marker);
                                             '<a href="'+properties[i].get('post_url')+'" class="map_p_title">'+
                                                 '<span class="single_p_title">'+properties[i].get('post_title')+'</span>'+
                                                 '<span class="single_p_light">|</span>'+
-                                                '<span class="single_p_location">'+properties[i].get('property_locality_name')+', ';
+                                                '<span class="single_p_location">'+properties[i].get('property_locality_name');
 
-                          if(jQuery('#dd_city').val()==''){
+                         
+                              if(properties[i].get('property_locality_name')!=""){
+                                popup_content = popup_content +', ' ; 
+                              }
+
                               popup_content = popup_content + properties[i].get('property_city_name');
-                           }
+                           
                               popup_content = popup_content + '</span>'+
 
 
