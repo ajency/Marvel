@@ -1611,6 +1611,7 @@ margin-bottom:0!important;
   padding:15px!important;
   background: #F3F3F3;
   text-align: center;
+  cursor: pointer;
 }
 .job_type p{
   margin-bottom: 10px;

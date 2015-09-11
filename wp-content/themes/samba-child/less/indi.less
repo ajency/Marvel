@@ -843,9 +843,15 @@
             border-top: 0;
             tr td {
                 cursor: pointer;
+                background-clip: padding-box;
+                border-color: #C9C9C9;
                 &.hold_bg, &.blue_bg {
                     cursor: default;
                 }
+            }
+            tr th {
+                border-color: #C9C9C9;
+                background-clip: padding-box;
             }
         }
     }

@@ -181,23 +181,29 @@ function checkIfInView(element){
             }
         });
 
+
+        function careercounter() {
+            $('.job_type a').each(function() {
+                $countdet = $(this).attr('href');
+                if ($('.car_' + $countdet.slice(1)).find('.job_listings li').text().trim().toLowerCase() !== 'there are no listings matching your search.') {
+                    $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
+                    if ($count > 1) {
+                        $(this).text($count + ' positions');
+                    } else if ($count == 1) {
+                        $(this).text($count + ' position');
+                    }
+                } else {
+                    $(this).text('-');
+                }
+            });
+        }
         //careers stuff
         if ($('div').hasClass('job_type')) {
-            setTimeout(function() {
-                $('.job_type a').each(function() {
-                    $countdet = $(this).attr('href');
-                    if ($('.car_' + $countdet.slice(1)).find('.job_listings li').text().trim().toLowerCase() !== 'there are no listings matching your search.') {
-                        $count = $('.car_' + $countdet.slice(1)).find('.job_listings li').length;
-                        if ($count > 1) {
-                            $(this).text($count + ' positions');
-                        } else if ($count == 1) {
-                            $(this).text($count + ' position');
-                        }
-                    } else {
-                        $(this).text('-');
-                    }
-                });
-            }, 10000);
+            careercounter();
+
+            $(window).scroll(function() {
+                careercounter();
+            });
 
             $('.job_type').click(function() {
                 //add remove this class

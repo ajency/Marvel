@@ -2907,10 +2907,16 @@ h6 {
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .tabul_hold table tr td {
   cursor: pointer;
+  background-clip: padding-box;
+  border-color: #C9C9C9;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .tabul_hold table tr td.hold_bg,
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .tabul_hold table tr td.blue_bg {
   cursor: default;
+}
+#prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .tabul_hold table tr th {
+  border-color: #C9C9C9;
+  background-clip: padding-box;
 }
 #prk_ajax_container .indi_prj_page.columns.centered.prk_inner_block .tabular_c .tabular {
   width: 100%;
