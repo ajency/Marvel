@@ -45,7 +45,7 @@ console.log(selectedStatus);
          <option class="select-dash" disabled="disabled">----------------------------------</option>
             <%
              /* commented on 21june2015    _.each(data.citylocality,function(vl,ky){ */
-            console.log('data.city');
+            /*console.log('data.city');
             console.log(data);
             var cities_options = _.isUndefined(data.cities.cities)?[]:data.cities.cities;
 
@@ -74,7 +74,7 @@ console.log(selectedStatus);
 
                 <% })
                 }
-
+*/
              %>
 
         </select>
@@ -85,7 +85,7 @@ console.log(selectedStatus);
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
            
-             
+             /*
 
                  var locality_options = _.isUndefined(data.locality.localities)?[]:data.locality.localities;
 
@@ -137,8 +137,8 @@ console.log(selectedStatus);
             if(_.size(data.type) > 0)
                 var sorted_type_options  = _.sortBy(data.type, function(obj){ return obj.property_unit_type.toLowerCase() });
 
-console.log('sorted_type_options:------------------------------------------------------');
-console.log(sorted_type_options);
+            console.log('sorted_type_options:------------------------------------------------------');
+            console.log(sorted_type_options);
 
             _.each(sorted_type_options,function(vl,ky){
 

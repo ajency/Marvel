@@ -370,6 +370,9 @@
 //console.log(' getAppInstance()residentialPropertyCollection')
 //console.log( getAppInstance().residentialPropertyCollection)
 
+                                self.populate_filter_values_by_properties(collection);
+
+
                                  if(!_.isUndefined(getAppInstance().mainView.mapview) && getAppInstance().mainView.mapview==true){
                                      
                                      jQuery('.top_map').addClass('current');
@@ -1467,7 +1470,276 @@ infowindow.open(map,marker);
               
               var formated_filter_text = filter_text.replace(/ /g , "-").toLowerCase();
               return formated_filter_text;
-            }
+            },
+
+
+
+            populate_filter_values_by_properties:function(propertyCollection){
+
+              var self = this ;
+
+
+              this.selectedStatus
+              this.selectedCity
+              this.selectedLocality
+
+              this.selectedType
+
+              var city_drop_downs_values = [];
+              var city_drop_downs_values_cnt = 0;
+              var sorted_cities_options = [];
+              var add_to_cities_options = true ;
+
+
+              var locality_drop_down_values = [];
+              var locality_drop_downs_values_cnt = 0;
+              var sorted_locality_options = [];
+              var add_to_locality_options = true ;
+
+
+              var type_drop_down_values = [];
+              var type_drop_downs_values_cnt = 0;
+              var sorted_type_options = [];
+              var add_to_types_options = true ;
+              
+
+
+/* 
+city -> dependant on type 
+locality -> city, type 
+type -> dependant on city, locality
+
+*/
+
+              
+
+console.log('99999999999999999999999999999propertyCollection');
+              console.log(propertyCollection)
+
+              _.each(propertyCollection.models,function(property_vl,property_ky){
+
+                  
+                    city_drop_downs_values[city_drop_downs_values_cnt] =  {'city_id':property_vl.get('property_city'),
+                                                                         'city_name':property_vl.get('property_city_name'),
+                                                                         };
+                    city_drop_downs_values_cnt++;                   
+
+ 
+                    if(self.selectedCity!='' && self.selectedCity!='all' && !_.isUndefined(self.selectedCity) ){
+                        if(self.selectedCity == self.format_filter_text(property_vl.get('property_city_name') ) ){
+                          add_to_locality_options = true ;
+                          add_to_types_options    = true ;
+                          
+                        }
+                        else{
+                          add_to_locality_options = false ;
+                          add_to_types_options    = false ;
+                          
+
+                        }
+                    }
+                    else{
+                      add_to_locality_options = true;
+                      add_to_types_options    = true;
+                      
+                    } 
+   
+
+
+                  if(add_to_locality_options == true ){
+                    locality_drop_down_values[locality_drop_downs_values_cnt] =  {'locality_id':property_vl.get('property_locaity'),
+                                                                                  'locality_name':property_vl.get('property_locality_name'),
+                                                                                 };
+                    locality_drop_downs_values_cnt++;
+                  }
+
+
+
+
+                  if(self.selectedLocality!=''  && self.selectedLocality!='all' && !_.isUndefined(self.selectedLocality) ){
+                    if(self.selectedLocality == self.format_filter_text(property_vl.get('property_locality_name') ) ){
+                      add_to_types_options    = true;
+                      
+                    }
+                    else{
+                      add_to_types_options    = false;
+                      
+                    }
+                  }
+                  else{ 
+                    
+                      add_to_types_options    = true;
+                    }
+
+                
+                //  if(add_to_types_options ==true){
+                   //type_drop_down_values =  type_drop_down_values _.values(_.extend(_.indexBy(type_drop_down_values, 'type'), _.indexBy(property_vl.property_unit_type, 'type')))
+                   self.mergeByProperty(type_drop_down_values, property_vl.get('property_unit_type'), 'type');
+                 // }
+
+
+              })
+
+
+               sorted_cities_options   = _.sortBy(city_drop_downs_values, function(obj){ return obj.city_name.toLowerCase() });
+               sorted_locality_options = _.sortBy(locality_drop_down_values, function(obj){ return obj.locality_name.toLowerCase() });
+              
+
+
+              console.log('##############*********1*********#################');
+              console.log('type_drop_down_values');
+              console.log(type_drop_down_values);
+              //get city and status values 
+
+
+
+              console.log('sorted_cities_options \n');
+              console.log(sorted_cities_options);
+
+              console.log('sorted_locality_options');
+              console.log(sorted_locality_options);
+
+
+              console.log('##############*******2***********#################');
+
+
+
+              jQuery('#dd_city').empty()
+              jQuery('#dd_city').append('<option value="">City : All</option>'+
+              '<option class="select-dash" disabled="disabled">------------------------------</option>')
+
+              _.each(sorted_cities_options,function(citoptions_vl,citoptions_ky){
+
+                  if(citoptions_vl.locality_id!=''){
+
+                    
+                    if(self.selectedCity == self.format_filter_text(citoptions_vl.city_name))
+                      var city_dropdown_selected = " selected ";
+                    else 
+                      var city_dropdown_selected = " ";
+                    jQuery('#dd_city').append('<option '+ city_dropdown_selected +' value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')
+                  }
+
+
+              })
+               jQuery('#dd_city').append('</select')
+
+
+              jQuery('#dd_locality').empty()
+              jQuery('#dd_locality').append('<option value="">Locality : All</option>'+
+              '<option class="select-dash" disabled="disabled">------------------------------</option>')
+
+              _.each(sorted_locality_options,function(locoptions_vl,locoptions_ky){
+
+                  if(locoptions_vl.locality_id!=''){
+
+                     if(self.selectedLocality == self.format_filter_text(locoptions_vl.locality_name))
+                      var locality_dropdown_selected = " selected ";
+                    else 
+                      var locality_dropdown_selected = " ";
+
+
+                    jQuery('#dd_locality').append('<option '+locality_dropdown_selected+'value="'+locoptions_vl.locality_name+'">'+locoptions_vl.locality_name+'</option>')
+                  }
+
+
+              })
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* if(self.post_type=='residential-property'){
+
+                  
+                    var current_unit_type_name = vl.property_unit_type.toLowerCase()+' '+vl.property_type_name.toLowerCase() ;
+
+                    current_unit_type_name = current_unit_type_name.trim();
+                    var current_unit_type_slug = current_unit_type_name.replace(/ /g , "-").toLowerCase()
+
+                    
+                %><option value="<%=vl.property_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%><%= (post_type=='residential-property')?' '+vl.property_type_name:'' %></option>
+                <%    
+                }
+                else{
+
+                    var current_unit_type_name = vl.property_unit_type.trim();
+
+                    var current_unit_type_slug = current_unit_type_name.replace(/ /g , "-").toLowerCase()
+                %>
+                <option value="<%=vl.property_unit_type%>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%></option>
+                <%    
+                }
+                %> */
+
+
+              jQuery('#dd_type').empty()
+              jQuery('#dd_type').append('<option value="">Type : All</option>'+
+              '<option class="select-dash" disabled="disabled">------------------------------</option>')
+ 
+              _.each(type_drop_down_values,function(typeoptions_vl,typeoptions_ky){
+ 
+                   if(typeoptions_vl.locality_id!=''){
+
+
+
+                    if(self.selectedType == self.format_filter_text(typeoptions_vl.property_unit_type_display))
+                      var selected_type_dropdown = " selected ";
+                    else
+                      var selected_type_dropdown = ' ';
+                  
+                    jQuery('#dd_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.property_unit_type_display+'">'+typeoptions_vl.property_unit_type_display+'</option>')
+
+
+                  }
+
+
+              })
+                
+
+
+
+
+            },
+
+
+
+
+            mergeByProperty : function(arr1, arr2, prop) {
+
+              console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+              _.each(arr2, function(arr2obj) {
+                  var arr1obj = _.find(arr1, function(arr1obj) {
+                      return arr1obj[prop] === arr2obj[prop];
+                  });
+                   
+                  //If the object already exist extend it with the new values from arr2, otherwise just add the new object to arr1
+
+                  console.log(arr1);
+                  console.log(arr1obj)
+                  arr1obj ? _.extend(arr1obj, arr2obj) : arr1.push(arr2obj);
+              });
+          }
+
+
 
 
 
