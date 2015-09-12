@@ -1386,6 +1386,144 @@ if(!(_.isUndefined(jQuery('#current_property_title').val())) ){
 /* End Populate city and project list on footer popup on singel and commercial residential property*/
 
 
+function populate_homepage_search_types(){
+
+    var type_drop_down_values = [];
+    var type_drop_downs_values_cnt = 0;
+    var sorted_type_options = [];
+    var add_to_types_options = true ; 
+
+    jQuery('#dd_type').append('<option value="">Type : All</option>'+
+              '<option class="select-dash" disabled="disabled">------------------------------</option>')
+ 
+              _.each(type_drop_down_values,function(typeoptions_vl,typeoptions_ky){
+ 
+                   if(typeoptions_vl.locality_id!=''){
+
+
+
+                    if(self.selectedType == self.format_filter_text(typeoptions_vl.property_unit_type_display))
+                      var selected_type_dropdown = " selected ";
+                    else
+                      var selected_type_dropdown = ' ';
+                  
+                    jQuery('#dd_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.property_unit_type_display+'">'+typeoptions_vl.property_unit_type_display+'</option>')
+
+
+                  }
+
+
+              })
+}
+
+
+function populate_homepage_search_locality(){
+    var locality_drop_down_values = [];
+    var locality_drop_downs_values_cnt = 0;
+    var sorted_locality_options = [];
+    var add_to_locality_options = true ;
+
+    var dropdown_selected_city = jQuery('.home_city')
+
+    _.each(propertyCollection.models,function(property_vl,property_ky){
+
+
+        if(self.selectedCity!='' && self.selectedCity!='all' && !_.isUndefined(self.selectedCity) ){
+                        if(self.selectedCity == self.format_filter_text(property_vl.get('property_city_name') ) ){
+                          add_to_locality_options = true ;
+                          add_to_types_options    = true ;
+                          
+                        }
+                        else{
+                          add_to_locality_options = false ;
+                          add_to_types_options    = false ; 
+                        }
+                    }
+                    else{
+                      add_to_locality_options = true;
+                      add_to_types_options    = true;
+                      
+                    }
+
+
+
+                    if(add_to_locality_options == true ){
+                    locality_drop_down_values[locality_drop_downs_values_cnt] =  {'locality_id':property_vl.get('property_locaity'),
+                                                                                  'locality_name':property_vl.get('property_locality_name'),
+                                                                                 };
+                    locality_drop_downs_values_cnt++;
+                  } 
+
+    })
+
+sorted_locality_options = _.sortBy(locality_drop_down_values, function(obj){ return obj.locality_name.toLowerCase() });
+
+
+ jQuery('#dd_locality').empty()
+              jQuery('#dd_locality').append('<option value="">Locality : All</option>'+
+              '<option class="select-dash" disabled="disabled">------------------------------</option>')
+
+              _.each(sorted_locality_options,function(locoptions_vl,locoptions_ky){
+
+                  if(locoptions_vl.locality_id!=''){
+
+                     if(self.selectedLocality == self.format_filter_text(locoptions_vl.locality_name))
+                      var locality_dropdown_selected = " selected ";
+                    else 
+                      var locality_dropdown_selected = " ";
+
+
+                    jQuery('#dd_locality').append('<option '+locality_dropdown_selected+'value="'+locoptions_vl.locality_name+'">'+locoptions_vl.locality_name+'</option>')
+                  }
+
+
+              })
+
+
+}
+
+
+function populate_homepage_search_drop_downs(propertyCollection){
+              
+              var self = this ;
+
+              var city_drop_downs_values = [];
+              var city_drop_downs_values_cnt = 0;
+              var sorted_cities_options = [];
+              var add_to_cities_options = true ;
+
+              _.each(propertyCollection,function(property_vl,property_ky){
+
+
+                  console.log(property_vl)
+                    city_drop_downs_values[city_drop_downs_values_cnt] =  {'city_id':property_vl.property_city,
+                                                                         'city_name':property_vl.property_city_name,
+                                                                         };
+                    city_drop_downs_values_cnt++;
+
+              })
+
+              var uniq_drop_down_cities = _.uniq(city_drop_downs_values,function(item){return JSON.stringify(item);})
+
+              sorted_cities_options   = _.sortBy(uniq_drop_down_cities, function(obj){ return obj.city_name.toLowerCase() });
+               
+
+              jQuery('.home_city').empty()
+              jQuery('.home_city').append('<option value="">City : All</option>'+
+              '<option class="select-dash" disabled="disabled">------------------------------</option>')
+
+              _.each(sorted_cities_options,function(citoptions_vl,citoptions_ky){
+
+                  if(citoptions_vl.locality_id!=''){
+                   
+                    jQuery('.home_city').append('<option  value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')
+                  }
+
+
+              })
+               
+  
+}
 
 var cities_args = {};
 
@@ -1397,6 +1535,10 @@ if(jQuery('#current_post_type').length>0){
     cities_args['nearby_properties'] = true;
 }
 
+if(jQuery('#home_city').length>0){
+    cities_args['home_page_search'] = true;
+}
+
 get_cities_properties(cities_args) 
 
 
@@ -1405,6 +1547,10 @@ function get_cities_properties(args){
 
     var nearby_properties = (!_.isUndefined(args.nearby_properties)? args.nearby_properties : false );
     var show_cities_formidable_contact  = (!_.isUndefined(args.show_cities_formidable_contact)? args.show_cities_formidable_contact : false );
+    var show_homepage_filters  = (!_.isUndefined(args.home_page_search)? args.home_page_search : false );
+
+
+
 
     var my_data = { 'post_type' :'both'
                      }
@@ -1426,7 +1572,12 @@ function get_cities_properties(args){
                                 } 
                                 if(show_cities_formidable_contact==true){
                                     populate_properties_cities_on_contact()    
-                                }                                
+                                } 
+                                if(show_homepage_filters == true){
+                                    var ongoing_residential_properties = _.where(window.all_properties,{property_status:'ongoing',post_type:'residential-property'} );
+  
+                                    populate_homepage_search_drop_downs(ongoing_residential_properties);
+                                }
                                 
                             }
                                 

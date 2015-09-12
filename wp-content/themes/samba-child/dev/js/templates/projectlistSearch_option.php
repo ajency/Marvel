@@ -130,7 +130,7 @@ console.log(selectedStatus);
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
 
-            console.log('SORT POTIONS :---------------------')  ;
+           /* console.log('SORT POTIONS :---------------------')  ;
             console.log(_.size(data.type));
 
             var sorted_type_options = [];
@@ -166,7 +166,7 @@ console.log(selectedStatus);
                 %>
 
 
-            <% }) %>
+            <% })  */ %>
         </select>
     </div>
     <div class="top-sea">

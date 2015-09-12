@@ -732,14 +732,16 @@ function get_residential_properties_list_ajx() {
     if(isset($_REQUEST['status']))
       $propertylist_args['status'] = $_REQUEST['status'] ;
 
-    if(isset($_REQUEST['city']))
+    /*if(isset($_REQUEST['city']))
       $propertylist_args['city'] = $_REQUEST['city'] ; 
 
     if(isset($_REQUEST['locality']))
       $propertylist_args['locality'] = $_REQUEST['locality'] ; 
 
     if(isset($_REQUEST['type']))
-      $propertylist_args['type'] = $_REQUEST['type'] ; 
+      $propertylist_args['type'] = $_REQUEST['type'] ; */
+
+      
 
  if(isset($_REQUEST['near']))
       $propertylist_args['near'] = $_REQUEST['near'] ; 
