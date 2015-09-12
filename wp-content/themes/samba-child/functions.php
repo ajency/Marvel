@@ -1659,16 +1659,22 @@ function format_filter_text($filter_text=""){
 function get_unique_property_types($project_type){
 global $wpdb;
 $table_name = $wpdb->prefix.'sap_inventory';
-//$property_type_query = " SELECT material_group_desc,mkt_group_desc FROM ".$table_name." WHERE project_type='".$project_type."' GROUP BY material_group";
  $property_type_query = " SELECT material_group_desc,mkt_group_desc,project_type FROM ".$table_name." GROUP BY material_group HAVING project_type='".$project_type."'";
  $sap_data_type = $wpdb->get_results($property_type_query,ARRAY_A);
 
-  $property_types = array();
+ $property_types = array();
   foreach($sap_data_type as $key=>$property){
+
+    if($project_type == 'Residential'){
+      $group_code = $property['mkt_group_desc'];
+    }else{
+      $group_code = $property['material_group_desc'];
+    }
+
   	$property_types[] = array(
   		'property_type' => $property['material_group_desc'],
   		//'material_group' => $property['material_group_desc'],
-  		'mkt_group_desc' => $property['mkt_group_desc'],
+  		'mkt_group_desc' => $group_code,
   		'ID' => $key+1
   	);
   }
@@ -1832,10 +1838,18 @@ function multidimensional_search($parents, $searched) {
 
 
 
-function get_unit_type_by_desc_group($group,$key){
-  $prop_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
-  $units = $prop_unit_types['property_unit_types'];
-  $type = multidimensional_search($units, array('mkt_group_desc'=>$group, 'mkt_material_type_desc'=>$key));
+function get_unit_type_by_desc_group($group,$key,$property_type){
+  if($property_type == 'residential'){
+    $prop_unit_types = maybe_unserialize(get_option('residential-property-unit-type'));
+    $units = $prop_unit_types['property_unit_types'];
+    $type = multidimensional_search($units, array('mkt_group_desc'=>$group, 'mkt_material_type_desc'=>$key));
+  }else{
+    $prop_types = maybe_unserialize(get_option('commercial-property-type'));
+    $units = $prop_types['property_types'];
+    $type = multidimensional_search($units, array('mkt_group_desc'=>$group)); 
+  }
+  
+  
   return $units[$type]['ID'];
   }
 
@@ -1848,7 +1862,7 @@ function get_unit_type_by_desc_group($group,$key){
     global $wpdb;
     
     $table_name = $wpdb->prefix.'sap_inventory';
-    $property_query = " SELECT * FROM ".$table_name." WHERE plant='".$plant_id."'";
+    $property_query = " SELECT * FROM ".$table_name." WHERE plant='".$plant_id."' AND project_type='Residential'";
     $data = $wpdb->get_results($property_query,ARRAY_A);
 
 
@@ -1867,7 +1881,7 @@ function get_unit_type_by_desc_group($group,$key){
 
 
       if (!in_array($record['total_saleable_area'], $areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']])) {
-       array_push($areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']],$record['total_saleable_area']);
+       array_push($areas[$record['mkt_group_desc']][$record['mkt_material_type_desc']],str_replace( ',', '', $record['total_saleable_area'] ));
      }
    }
 
@@ -1880,7 +1894,7 @@ function get_unit_type_by_desc_group($group,$key){
  foreach ($areas as $group=>$types){
 
   foreach ($types as $key=>$value){
-    $type = get_unit_type_by_desc_group($group,$key);
+    $type = get_unit_type_by_desc_group($group,$key,'residential');
     $property_unit_types[] = array(
       'type' =>$type,
       'min_area' => min($value),
@@ -1900,12 +1914,12 @@ return $property_unit_types;
 
 
 
-function add_unit_types_metabox (){
-   add_meta_box('property_unit_types', __('Unit Types'),  'property_unit_types_metabox', 'residential-property', 'side', 'high');
+function add_unit_types_metabox_residential (){
+   add_meta_box('property_unit_types', __('Unit Types'),  'property_unit_types_metabox_residential', 'residential-property', 'side', 'high');
 }
-add_action('admin_init', 'add_unit_types_metabox');
+add_action('admin_init', 'add_unit_types_metabox_residential');
 
-function property_unit_types_metabox($post) {
+function property_unit_types_metabox_residential($post) {
   if( $post->post_modified_gmt != $post->post_date_gmt ){
 
     $plant_id = get_post_meta($post->ID,'property-plant-id',true);
@@ -1947,6 +1961,59 @@ function property_unit_types_metabox($post) {
 
 
 
+
+function add_unit_types_metabox_commercial (){
+   add_meta_box('property_unit_types', __('Property Types'),  'property_unit_types_metabox_commercial', 'commercial-property', 'side', 'high');
+}
+add_action('admin_init', 'add_unit_types_metabox_commercial');
+
+function property_unit_types_metabox_commercial($post) {
+  if( $post->post_modified_gmt != $post->post_date_gmt ){
+
+    $plant_id = get_post_meta($post->ID,'property-plant-id',true);
+
+    if(!$plant_id){
+      echo '<h4>Plant ID is missing!!!</h4>';
+      return;
+    }
+
+    
+    $type_options = maybe_unserialize(get_option('commercial-property-type'));
+    $groups = $type_options['property_types'];
+
+
+    $html = '';
+    $type_meta = maybe_unserialize(get_post_meta($post->ID,'commercial-property-type', true));
+    if($type_meta && count($type_meta)>0){
+      $html .= '<ul id="unit_type_list">';
+      foreach ($type_meta as $unit){
+        $type_key = array_search($unit['type'], array_column($groups, 'ID'));
+        $html .= '<li>'.$groups[$type_key]['property_type'].'</li>';
+      }
+      $html .= '</ul>';
+
+      $html .= '<a class="button button-default button-large" id="generate_types_commercial" data-postId="'.$post->ID.'">Regenerate Types</a><img id="unit_load_loader" style="display:none; margin:06px 0px 0px 05px;" src="'.get_stylesheet_directory_uri().'/img/loader.gif">';
+    }else{
+      $html .= '<ul id="unit_type_list"></ul>';
+      $html .= '<a class="button button-default button-large" id="generate_types_commercial" data-postId="'.$post->ID.'">Generate Types</a><img id="unit_load_loader" style="display:none; margin:06px 0px 0px 05px;" src="'.get_stylesheet_directory_uri().'/img/loader.gif">';
+    }
+    echo $html;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 add_action( 'wp_ajax_generatePropertyUnits', 'generate_property_units_aj' );
 
 function generate_property_units_aj() {
@@ -1978,3 +2045,135 @@ if(count($property_units)>0){
   wp_die();
 }
 
+
+
+
+
+
+
+
+add_action( 'wp_ajax_generatePropertyUnitsCommercial', 'generate_property_units_aj_commercial' );
+
+function generate_property_units_aj_commercial() {
+  $plant_id = get_post_meta($_POST['property_id'],'property-plant-id',true);
+  $property_units = generate_property_unit_types_commercial($plant_id);
+  
+
+if(count($property_units)>0){
+  update_post_meta($_POST['property_id'],'commercial-property-type', maybe_serialize($property_units));
+
+  $type_options = maybe_unserialize(get_option('commercial-property-type'));
+  $groups = $type_options['property_types'];
+
+
+  $dt = '';
+  foreach ($property_units as $unit){
+    $type_key = array_search($unit['type'], array_column($groups, 'ID'));
+    $dt .= '<li>'.$groups[$type_key]['property_type'].'</li>';
+  }
+  $response = array('status'=>'true', 'units'=>$dt);
+}else{
+  $response = array('status'=>'false');
+}
+  echo json_encode($response);
+  wp_die();
+}
+
+
+
+
+
+
+function array_flatten($array) {
+    $return = array();
+    foreach ($array as $key => $value) {
+        if (is_array($value)){
+            $return = array_merge($return, array_flatten($value));
+        } else {
+            $return[$key] = $value;
+        }
+    }
+
+    return $return;
+}
+
+
+
+
+
+
+function generate_property_unit_types_commercial($plant_id){
+    global $wpdb;
+    
+    $table_name = $wpdb->prefix.'sap_inventory';
+    $property_query = " SELECT * FROM ".$table_name." WHERE plant='".$plant_id."' AND project_type='Commercial'";
+    $data = $wpdb->get_results($property_query,ARRAY_A);
+
+
+    $areas = array();
+    foreach($data as $record){
+
+     if (!array_key_exists($record['material_group_desc'],$areas)){
+      $areas[$record['material_group_desc']] = array();
+    }
+
+    if (!array_key_exists($record['mkt_material_type_desc'],$areas[$record['material_group_desc']])) {
+      $areas[$record['material_group_desc']][$record['mkt_material_type_desc']] = array();
+    }
+
+
+      if (!in_array($record['total_saleable_area'], $areas[$record['material_group_desc']][$record['mkt_material_type_desc']])) {
+      array_push($areas[$record['material_group_desc']][$record['mkt_material_type_desc']],str_replace( ',', '', $record['total_saleable_area'] ));
+      }
+
+    }
+
+ 
+ $prop_unit_types = maybe_unserialize(get_option('commercial-property-unit-type'));
+
+ $property_unit_types = array();
+ foreach ($areas as $group=>$types){
+  
+    $type = get_unit_type_by_desc_group($group,$types,'commercial');
+
+    $min_max = array_flatten($types);
+    $property_unit_types[] = array(
+      'type' =>$type,
+      'min_area' => min($min_max),
+      'max_area' => max($min_max)
+      );
+ 
+}
+
+return $property_unit_types;
+}
+
+
+
+
+
+
+
+
+
+
+function update_commercial_property_type(){
+  global $wpdb;
+
+  $type_options = maybe_unserialize(get_option('commercial-property-type')); 
+  if(!$type_options || count($type_options)<=0){
+
+    $property_types = get_unique_property_types('Commercial');
+
+    $last = end($property_types);
+
+    $property_type_options = array(
+      'max_property_types' => $last['ID'],
+      'property_types' => $property_types
+      );
+    update_option( 'commercial-property-type', maybe_serialize($property_type_options));
+  }
+
+}
+
+add_action('init','update_commercial_property_type');
