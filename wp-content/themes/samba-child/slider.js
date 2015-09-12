@@ -1303,7 +1303,10 @@ jQuery(document).ready(function() {
     var autoPopElement1 = jQuery("#popmake-3272");
     var autoPopElement2 = jQuery("#popmake-3293");
 
+
+    if (autoPopElement1.length || autoPopElement2.length) {
     window.addEventListener("load", pageFullyLoaded, false);
+    }
 
     function pageFullyLoaded(e) {
         displaypop = setTimeout(displayPopupPageLoad, 30000);
