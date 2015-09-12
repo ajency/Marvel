@@ -197,7 +197,7 @@ function get_main_property_type_by_unit_type_id($unit_type_id){
 
             $property_type_details = array('property_type_name'         => $value['property_type'],
                                            'property_type_id'           => $value['ID'],
-                                           'property_type_materialgroup'=> $value['material_group'],
+                                           //'property_type_materialgroup'=> $value['material_group'],
                                            );
           }
         }
@@ -1667,7 +1667,7 @@ $table_name = $wpdb->prefix.'sap_inventory';
   foreach($sap_data_type as $key=>$property){
   	$property_types[] = array(
   		'property_type' => $property['material_group_desc'],
-  		'material_group' => $property['material_group_desc'],
+  		//'material_group' => $property['material_group_desc'],
   		'mkt_group_desc' => $property['mkt_group_desc'],
   		'ID' => $key+1
   	);
