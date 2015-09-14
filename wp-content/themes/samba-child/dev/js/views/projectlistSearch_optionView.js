@@ -431,7 +431,7 @@
 
 
 
-    get_lat_long_by_address(search_collections,city){
+    get_lat_long_by_address : function(search_collections,city){
 
       
 
