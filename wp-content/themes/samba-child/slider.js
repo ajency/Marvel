@@ -313,12 +313,16 @@ function checkIfInView(element){
             if (st > lastScrollTop && st > navbarHeight){
                 // Scroll Down
                 $('#prk_responsive_menu').removeClass('nav-down').addClass('nav-up');
-                $('#st-container').removeClass('nav-down').addClass('nav-up');
+                if ($('body').hasClass('landscape') || $('body').hasClass('portrait')) {
+                    $('#st-container').removeClass('nav-down').addClass('nav-up');
+                }
             } else {
                 // Scroll Up
                 if(st + $(window).height() < $(document).height()) {
                     $('#prk_responsive_menu').removeClass('nav-up').addClass('nav-down');
-                    $('#st-container').removeClass('nav-up').addClass('nav-down');
+                    if ($('body').hasClass('landscape') || $('body').hasClass('portrait')) {
+                        $('#st-container').removeClass('nav-up').addClass('nav-down');
+                    }
                 }
             }
 

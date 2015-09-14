@@ -2040,3 +2040,31 @@ input[type=number],
 }
 
 .home_search.adjustcenter.search_propperty_block {display: none;}
+
+
+
+/* AUTOPOPUP STYLING */
+/*this is the residential autopoup id*/
+#popmake-3293 {}
+/*this is the residential details autopoup id*/
+#popmake-3272 {}
+
+.popmake.responsive.size-small {
+	padding: 25px !important;
+}
+.popmake.responsive.size-small .popmake-content p {
+	color: #8C8C8C !important;
+}
+.popmake.responsive.size-small .popmake-title {
+	color: rgb(0, 0, 0) !important;
+    line-height: 36px !important;
+    font-size: 18px !important;
+    font-family: Cantarell !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-align: left !important;
+    text-shadow: rgba(2, 2, 2, 0.227451) 0px 0px 0px !important;
+}
+#popmake-overlay {
+	background-color: rgba(10, 10, 10, 0.65098) !important;
+}
