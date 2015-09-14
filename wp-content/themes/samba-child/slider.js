@@ -1282,7 +1282,7 @@ jQuery(document).ready(function() {
     }
 
     function pageFullyLoaded(e) {
-        displaypop = setTimeout(displayPopupPageLoad, 3000);
+        displaypop = setTimeout(displayPopupPageLoad, 30000);
     }
 
     function displayPopupPageLoad(){
