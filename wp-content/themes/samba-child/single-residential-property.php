@@ -115,7 +115,22 @@ $current_post_type           =  get_post_type();
 
 
                 echo $display_project_types_wt_sep.$project_type_seperator.ucfirst(get_the_title()).$location_seperator.ucfirst($project_locality)." ".ucfirst($project_city);
-               */ ?>Marvel Sample Apartment
+               */
+
+              global $post;
+
+              $thumbnail_id    = get_post_thumbnail_id($post->ID);
+              $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+
+             
+              if ($thumbnail_image && isset($thumbnail_image[0])) {
+                echo '<p class="f_f_t">'.$thumbnail_image[0]->post_title.'</p>';
+              }
+              /* else{
+                echo "Marvel Sample Apartment";
+              } */
+
+            ?>
             </p>
         </div>
         <a href="#" class="go_d_see"></a>

@@ -79,9 +79,9 @@ $current_post_type          = get_post_type();
 <input type="hidden" name="current_post_type"  id="current_post_type" value="<?php echo $current_post_type ; ?>" />
     <div id="full_fi_c">
         <div class="full_fi_title">
-            <p class="f_f_t">
+            
                 <?php
-                $project_locality = get_post_meta(get_the_ID(),'property-locality',true);
+                /*$project_locality = get_post_meta(get_the_ID(),'property-locality',true);
                 $project_city = get_post_meta(get_the_ID(),'property-city',true);
                 $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-unit-type',true));
 
@@ -111,8 +111,24 @@ $current_post_type          = get_post_type();
 
 
                 echo $display_project_types_wt_sep.$project_type_seperator.ucfirst(get_the_title()).$location_seperator.ucfirst($project_locality)." ".ucfirst($project_city);
+                */
+
+
+                global $post;
+
+                $thumbnail_id    = get_post_thumbnail_id($post->ID);
+                $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+
+               
+                if ($thumbnail_image && isset($thumbnail_image[0])) {
+                  echo '<p class="f_f_t">'.$thumbnail_image[0]->post_title.'</p>';
+                }
+                /* else{
+                  echo "Marvel Sample Apartment";
+                } */
+
                 ?>
-            </p>
+            
         </div>
         <a href="#" class="go_d_see"></a>
     <?php
