@@ -871,7 +871,6 @@ function checkIfInView(element){
                   rewindNav : false
               });
                 $(".floorplans_tab ul.wpb_tabs_nav li").eq(0).addClass('ui-tabs-active ui-state-active');
-                $('#tab-siteplan').show();
                 $(".floorplans_tab ul.wpb_tabs_nav li a").click(function(e) {
                     e.preventDefault();
                     $(".floorplans_tab ul.wpb_tabs_nav li").removeClass('ui-tabs-active ui-state-active');
@@ -881,6 +880,7 @@ function checkIfInView(element){
                     $($(this).attr('href')).find('.ava_tog').eq(0).trigger('click');
                 });
         }
+        $('#tab-siteplan').show();
         if ($('div').hasClass('floorplans_tab')) {
             tabbyfloorplans();
         }
