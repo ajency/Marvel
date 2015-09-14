@@ -231,7 +231,12 @@
                  home_type2_html ='<option value="">Type : All</option>';
                  home_type2_html+='<option class="select-dash" disabled="disabled">------------------------------</option>';
                   if(_.size(searchOptions.type) > 0)
+                    if(this.post_type=="residential-property"){
                       var sorted_type_options  = _.sortBy(searchOptions.type, function(obj){ return obj.property_unit_type.toLowerCase() });
+                    }
+                    else{
+                      var sorted_type_options  = _.sortBy(searchOptions.type, function(obj){ return obj.property_type.toLowerCase() }); 
+                    }
 
                   _.each(sorted_type_options,function(vl,ky){
 

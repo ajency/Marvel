@@ -36,10 +36,10 @@ function get_property_unit_types_options_data($post_type){
               }
       }
       else if($post_type =="commercial-property"){
-              $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
-              $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
+              /* $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+              $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true)); */
               $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
-              $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
+             /* $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
               $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
               if(is_array($property_types_meta)){
                 foreach ($property_types_meta as $property_types_key => $property_types_value) {
@@ -52,8 +52,15 @@ function get_property_unit_types_options_data($post_type){
                  $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
                  $property_unit_types[] =       $unit_type_value ;
                 }
-              }
-      }
+              } */
+
+               
+             /* $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true)); */
+                $property_unit_types  = $property_types_meta_serialized['property_types'] ;
+
+
+      } 
+ 
       return $property_unit_types;
 }
 
@@ -571,7 +578,9 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
               $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']." ".$unit_type_options_value['property_type_name']);
             }
             else{
-             $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']);
+             /* commented on 14sep commercial unit tyupe update  $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']); */
+
+            $unit_type_option_slug = format_filter_text($unit_type_options_value['property_type']);
             }
             if($unit_type_option_slug==$_REQUEST['type']){
               $pd_unit_type_option_id = $unit_type_options_value['ID'];
