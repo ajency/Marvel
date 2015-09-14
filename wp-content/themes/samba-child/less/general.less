@@ -368,34 +368,36 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     left: 0 !important;
     top: 0 !important;
-    // top: 50% !important;
+    top: 50% !important;
     margin-left: 0 !important;
     // margin-top: -40% !important;
-    // -webkit-transform: translateY(-50%);
-    // -moz-transform: translateY(-50%);
-    // -ms-transform: translateY(-50%);
-    // -o-transform: translateY(-50%);
-    // transform: translateY(-50%);
+    -webkit-transform: translateY(-50%) translateX(0);
+    -moz-transform: translateY(-50%) translateX(0);
+    -ms-transform: translateY(-50%) translateX(0);
+    -o-transform: translateY(-50%) translateX(0);
+    transform: translateY(-50%) translateX(0);
     &.heightadjust {
         height: 100% !important;
         width: auto !important;
-        // left: 50% !important;
-        // top: 0 !important;
-        // margin-top: 0 !important;
-        // margin-left: -50% !important;
-        // -webkit-transform: translateX(-50%);
-        // -moz-transform: translateX(-50%);
-        // -ms-transform: translateX(-50%);
-        // -o-transform: translateX(-50%);
-        // transform: translateX(-50%);
-    }
-    @media screen and (max-width: 769px) {
-        height: 100% !important;
-        width: auto !important;
         left: 50% !important;
-        margin-left: -50% !important;
         top: 0 !important;
         margin-top: 0 !important;
+        // margin-left: -50% !important;
+        -webkit-transform: translateX(-50%) translateY(0);
+        -moz-transform: translateX(-50%) translateY(0);
+        -ms-transform: translateX(-50%) translateY(0);
+        -o-transform: translateX(-50%) translateY(0);
+        transform: translateX(-50%) translateY(0);
+    }
+    @media screen and (max-width: 769px) {
+        // height: 100% !important;
+        // width: auto !important;
+        // height: auto !important;
+        // width: 100% !important;
+        // left: 50% !important;
+        // margin-left: -50% !important;
+        // top: 0 !important;
+        // margin-top: 0 !important;
     }
 }
 #full-screen-background-image {

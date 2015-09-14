@@ -433,7 +433,17 @@ $queried_object = get_queried_object();
 
 $post = get_post($queried_object->ID);
 
+$post_type = get_post_type( $post );
+
 $plant_id = get_post_meta($post->ID,'property-plant-id',true);
+
+if($post_type == 'residential-property'){
+    $unit_suffix = 'BHK';
+    $unit_name = 'Flat';
+}else{
+    $unit_suffix = '';
+    $unit_name = 'Unit';
+}
 
     $data = get_sap_data();
 
@@ -540,68 +550,71 @@ $html .= '<div class="tabb y wpb_wrapper wpb_tour_tabs_wrapper ui-tabs vc_clearf
 ***************Tabs***************
 **************/
 $html .= '<ul class="wpb_tabs_nav ui-tabs-nav vc_clearfix ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">';
+
+if($post_type == 'residential-property'){
 $html .= ' <li><a href="#tab-siteplan" class="standout">SITE PLAN</a></li>';
+}
 
 if(array_key_exists('R1',$tabs)){
     asort($tabs['R1']);
     foreach($tabs['R1'] as $key=>$value){
-        $html .= '<li><a href="#tab-R1'.str_replace(".","",$value).'">'.$value.' BHK</a></li>';
+        $html .= '<li><a href="#tab-R1'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'</a></li>';
     }
 }
 
 if(array_key_exists('R4',$tabs)){
     asort($tabs['R4']);
     foreach($tabs['R4'] as $key=>$value){
-        $html .= '<li><a href="#tab-R4'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('R4').'</a></li>';
+        $html .= '<li><a href="#tab-R4'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R4').'</a></li>';
     }
 }
 
 if(array_key_exists('R2',$tabs)){
     asort($tabs['R2']);
     foreach($tabs['R2'] as $key=>$value){
-        $html .= '<li><a href="#tab-R2'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('R2').'</a></li>';
+        $html .= '<li><a href="#tab-R2'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R2').'</a></li>';
     }
 }
 
 if(array_key_exists('R3',$tabs)){
     asort($tabs['R3']);
     foreach($tabs['R3'] as $key=>$value){
-        $html .= '<li><a href="#tab-R3'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('R3').'</a></li>';
+        $html .= '<li><a href="#tab-R3'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R3').'</a></li>';
     }
 }
 
 if(array_key_exists('R5',$tabs)){
     asort($tabs['R5']);
     foreach($tabs['R5'] as $key=>$value){
-        $html .= '<li><a href="#tab-R5'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('R5').'</a></li>';
+        $html .= '<li><a href="#tab-R5'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R5').'</a></li>';
     }
 }
 
 if(array_key_exists('O1',$tabs)){
     asort($tabs['O1']);
     foreach($tabs['O1'] as $key=>$value){
-        $html .= '<li><a href="#tab-O1'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('O1').'</a></li>';
+        $html .= '<li><a href="#tab-O1'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O1').'</a></li>';
     }
 }
 
 if(array_key_exists('O2',$tabs)){
     asort($tabs['O2']);
     foreach($tabs['O2'] as $key=>$value){
-        $html .= '<li><a href="#tab-O2'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('O2').'</a></li>';
+        $html .= '<li><a href="#tab-O2'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O2').'</a></li>';
     }
 }
 
 if(array_key_exists('O3',$tabs)){
     asort($tabs['O3']);
     foreach($tabs['O3'] as $key=>$value){
-        $html .= '<li><a href="#tab-O3'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('O3').'</a></li>';
+        $html .= '<li><a href="#tab-O3'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O3').'</a></li>';
     }
 }
 
 if(array_key_exists('Co',$tabs)){
     asort($tabs['Co']);
     foreach($tabs['Co'] as $key=>$value){
-        $html .= '<li><a href="#tab-Co'.str_replace(".","",$value).'">'.$value.' BHK '.get_flat_type('Co').'</a></li>';
+        $html .= '<li><a href="#tab-Co'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('Co').'</a></li>';
     }
 }
 
@@ -620,6 +633,8 @@ if (@getimagesize($plan_source[0])) {
 }else{
   $site_plan = get_stylesheet_directory_uri().'/img/image-not-found_smaller.jpg';
 }
+
+if($post_type == 'residential-property'){
 
 $html .= '<div id="tab-siteplan" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide vc_clearfix ui-widget-content ui-corner-bottom">
                                 <div class="wpb_text_column wpb_content_element ">
@@ -641,6 +656,7 @@ $html .= '<div id="tab-siteplan" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide v
                                     </div>
                                 </div>
                             </div>';
+}
 
 foreach($tabs as $tabkey=>$tabvalue){
     foreach($tabvalue as $key=>$value){
@@ -674,7 +690,7 @@ foreach($tabs as $tabkey=>$tabvalue){
         $html .= '<div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Typical floor plan of a '.$value.' BHK '.get_flat_type($tabkey).' &#8211; '.$area.'
+                                            Typical floor plan of a '.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type($tabkey).' &#8211; '.$area.'
                                             <a class="wpb_button_a download_prj" title="Download" href="'.$common_plan_pdf.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
@@ -706,7 +722,7 @@ foreach($tabs as $tabkey=>$tabvalue){
                         <span class="text">Hold</span>
                     </div>
                     <div class="pull-right">
-                        <h6>Click on the available flat to request a hold.</h6>
+                        <h6>Click on the available '.$unit_name.' to request a hold.</h6>
                     </div>
                     <div class="clearfix"></div>
                 </div>';
@@ -740,7 +756,7 @@ foreach($tabs as $tabkey=>$tabvalue){
                     $html .= '<div class="tabul_hold">
                                                     <table border="1">
                                                         <tr>
-                                                            <th colspan="2">'.$building_key.'-Flat No. (Sq.Ft.)</th>
+                                                            <th colspan="2">'.$building_key.'-'.$unit_name.' No. (Sq.Ft.)</th>
                                                         </tr>';
 
                                                         
