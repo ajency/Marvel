@@ -2055,6 +2055,7 @@ h6 {
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
+    margin-left: 0 !important;
   }
 }
 .cont_sp.vc_row-fluid [class*="vc_col-sm-"].left {
