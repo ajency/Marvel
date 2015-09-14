@@ -967,6 +967,7 @@ function checkIfInView(element){
         readmoreorless();
 
 
+        $wid = window.innerWidth ? window.innerWidth : $(window).width();
         //set the height of map
         if ($wid < 769)
             $('.indi_map_area iframe').height(350);
