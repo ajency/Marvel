@@ -167,7 +167,34 @@ console.log('vl');
 
                                 <%
 
-                                var f_max_area_arr =  _.pluck(f_prop.get('property_unit_type'),'max_area');
+                                var f_proprts = f_prop.get('property_unit_type');
+                                var first_min_area = [];
+                                var first_max_area = [];
+                                Object.keys(f_proprts).forEach(function(k, i) {
+                                var mmn = f_proprts[k]['min_area'];
+                                var mmx = f_proprts[k]['max_area'];
+                                first_min_area.push(mmn.replace(',', ''));     
+                                first_max_area.push(mmx.replace(',', '')); 
+                                });
+
+                                var s_proprts = s_prop.get('property_unit_type');
+                                var second_min_area = [];
+                                var second_max_area = [];
+                                Object.keys(s_proprts).forEach(function(k, i) {
+                                var smmn = s_proprts[k]['min_area'];
+                                var smmx = s_proprts[k]['max_area'];
+                                second_min_area.push(smmn.replace(',', ''));     
+                                second_max_area.push(smmx.replace(',', '')); 
+                                });
+
+
+                                var f_max_area = _.size(first_min_area)>0?_.max(first_min_area):'';
+                                var f_min_area = _.size(first_min_area)>0?_.min(first_min_area):'';
+
+                                var s_max_area = _.size(second_max_area)>0?_.max(second_max_area):'';
+                                var s_min_area = _.size(second_min_area)>0?_.min(second_min_area):'';
+
+                                /*var f_max_area_arr =  _.pluck(f_prop.get('property_unit_type'),'max_area');
                                 var f_min_area_arr =  _.pluck(f_prop.get('property_unit_type'),'min_area');
 
                                 var f_max_area = _.size(f_max_area_arr)>0?_.max(f_max_area_arr):'';
@@ -180,7 +207,7 @@ console.log('vl');
                                 var s_min_area = _.size(s_min_area_arr)>0?_.min(s_min_area_arr):'';
 
                                 console.log('-=-=-=-==--=-=-=-=---=-=-')    ;
-                                console.log(_.pluck(s_prop.get('property_unit_type'),'min_area'));
+                                console.log(_.pluck(s_prop.get('property_unit_type'),'min_area'));*/
 
                                /*  var min_sellable_area =' - ';
                                 var max_sellable_area =' - ';
