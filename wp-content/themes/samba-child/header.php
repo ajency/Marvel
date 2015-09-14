@@ -99,7 +99,7 @@ var SITE_URL = '<?php echo site_url(); ?>'
             echo prk_output_alt_logo($retina_device);
           ?>
         </div>
-        <a href="#" class="head_enq_ico popmake-give-details" id="">Enquiry</a>
+        <a href="#" class="head_enq_ico popmake-01-enquiry-footer-popup" id="">Enquiry</a>
         <div id="back_to_top-collapsed">
           <div class="navicon-arrow-up-2"></div>
         </div>
@@ -119,7 +119,7 @@ var SITE_URL = '<?php echo site_url(); ?>'
                 </a>
             </div>
             <div class="clearfix"></div>
-        <?php 
+        <?php
         if(is_post_type_archive('residential-property') || is_post_type_archive('commercial-property')){
 
         ?>
@@ -142,10 +142,10 @@ var SITE_URL = '<?php echo site_url(); ?>'
                </div>
             </nav>
         </div>
-      <?php 
+      <?php
 
 
-        } 
+        }
         else if( get_post_type(get_the_ID()) == 'residential-property' || get_post_type(get_the_ID()) == 'commercial-property'){  ?>
           <div class="opened_menu twelve menu-sing">
             <nav id="nav-main" class="nav-collapse collapse" role="navigation">

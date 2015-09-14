@@ -622,21 +622,25 @@ h6 {
   position: absolute;
   left: 0 !important;
   top: 0 !important;
+  top: 50% !important;
   margin-left: 0 !important;
+  -webkit-transform: translateY(-50%) translateX(0);
+  -moz-transform: translateY(-50%) translateX(0);
+  -ms-transform: translateY(-50%) translateX(0);
+  -o-transform: translateY(-50%) translateX(0);
+  transform: translateY(-50%) translateX(0);
 }
 .flexslider li img.heightadjust {
   height: 100% !important;
   width: auto !important;
-}
-@media screen and (max-width: 769px) {
-  .flexslider li img {
-    height: 100% !important;
-    width: auto !important;
-    left: 50% !important;
-    margin-left: -50% !important;
-    top: 0 !important;
-    margin-top: 0 !important;
-  }
+  left: 50% !important;
+  top: 0 !important;
+  margin-top: 0 !important;
+  -webkit-transform: translateX(-50%) translateY(0);
+  -moz-transform: translateX(-50%) translateY(0);
+  -ms-transform: translateX(-50%) translateY(0);
+  -o-transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 #full-screen-background-image {
   max-width: 200% !important;
