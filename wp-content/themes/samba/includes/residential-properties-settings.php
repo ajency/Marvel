@@ -56,7 +56,7 @@ class My_Example_List_Table extends WP_List_Table {
 
         						if($this->post_type == "residential-property"){
 									$actions = array(
-									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type_desc="'.$item['material_type_desc'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
+									            'edit'      => sprintf('<a href="javascript:void(0)" class="edit_property_unit_type"  type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'"  material_type_desc="'.$item['mkt_material_type_desc'].'" material_group_desc="'.$item['mkt_group_desc'].'"  bedrooms="'.$item['number_bedrooms'].'" property_type_id="'.$item['property_type_id'].'" >Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
 									            'delete'    => sprintf('<a href="javascript:void(0)" class="delete_property_unit_type" type_id ="'.$item['ID'].'"    type_name="'.$item['property_unit_type'].'" >Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
 									        );
 								}
@@ -79,7 +79,7 @@ class My_Example_List_Table extends WP_List_Table {
 
         case 'material_type_desc':
         //case 'action':
-            return $item['material_type_desc'];
+            return $item['mkt_material_type_desc'];
 
         case 'property_type':
 
@@ -114,8 +114,8 @@ function get_columns($pd_post_type){
 
 	if($pd_post_type == "residential-property"){
         $columns = array(
-        	'material_type_desc'    => __( 'Material Type Desc.', 'mylisttable' ),
-            'property_unit_type' => __( 'Property Unit Type', 'mylisttable' ),
+        	'material_type_desc'    => __( 'Unit Type', 'mylisttable' ),
+            'property_unit_type' => __( 'Label', 'mylisttable' ),
             'number_bedrooms'    => __( 'No Of Bedrooms', 'mylisttable' ),
             'property_type'    => __( 'Property Type', 'mylisttable' )
 
@@ -269,16 +269,18 @@ function get_sortable_columns() {
 							<input type="hidden" name="edit_id" id="edit_id"  value="" />
 							<div class="form-field form-required term-name-wrap">
 								<label for="tag-name">Unit Type</label>
-								<input name="new-property-unit-type" id="new-property-unit-type" type="text" value="" size="40" aria-required="true">
+								<input name="property-unit-type" id="property-unit-type" type="text" value="" size="40" aria-required="true">
 								<p><!-- The name is how it appears on your site. --></p>
 							</div>
 							<div class="form-field form-required term-name-wrap">
-								<label for="tag-name">Material Type</label>
-								<input name="material-type" id="material-type" type="text" value="" size="40" aria-required="true">
+								<label for="tag-name">Label</label>
+								<input name="unit-type-label" id="unit-type-label" type="text" value="" size="40" aria-required="true">
 								<p><!-- The name is how it appears on your site. --></p>
 							</div>';
 		if($_REQUEST['post_type']=="residential-property"){					
-						echo'<div class="form-field term-slug-wrap">
+						echo'
+						<input name="material-group-desc" id="material-group-desc" type="hidden" value="">
+						<div class="form-field term-slug-wrap">
 								<label for="tag-slug">Number Of Bedrooms</label>
 								<input name="new-property-bedrooms" id="new-property-bedrooms" class="allownumericwithdecimal"  type="text" value="" size="40" >
 								<p><!-- The “slug” is the URL-friendly version of the name.
@@ -295,7 +297,7 @@ function get_sortable_columns() {
 		if(isset($property_type_options['property_types'])){
 			if(is_array($property_type_options['property_types'])){
 				foreach($property_type_options['property_types'] as $prop_type){
-					echo '<option value="'. $prop_type['ID'].'">'. $prop_type['property_type'].'</option>';	
+					echo '<option value="'. $prop_type['ID'].'" data-group="'. $prop_type['mkt_group_desc'].'">'. $prop_type['property_type'].'</option>';	
 				}	
 			}		
 			
@@ -349,10 +351,14 @@ function save_property_unit_type(){
 	
 	$num_bedrooms 		= $_REQUEST['data']['num_bedrooms'];
 	$property_unit_type = $_REQUEST['data']['property_unit_type'];
-	$material_type_desc = $_REQUEST['data']['material_type_desc'];
+	$mkt_material_type_desc = $_REQUEST['data']['material_type_desc'];
+	$mkt_group_desc = $_REQUEST['data']['material_group_desc'];;
 	$property_edit_id 	= $_REQUEST['data']['edit_id'];
 	$new_prop_type 		= $_REQUEST['data']['prop_type_id'];
 	$post_type 			= $_REQUEST['data']['post_type'];
+
+	/*'mkt_group_desc'=>$group,
+	'mkt_material_type_desc'=>$key)*/
 
 	if($post_type =="residential-property"){
 		$meta_key = 'residential-property-unit-type';
@@ -367,7 +373,8 @@ function save_property_unit_type(){
 		$new_property_unit_type['number_bedrooms'] 		= $num_bedrooms;
 	}
 	$new_property_unit_type['property_unit_type'] 	= $property_unit_type;
-	$new_property_unit_type['material_type_desc'] 	= $material_type_desc;
+	$new_property_unit_type['mkt_material_type_desc'] 	= $mkt_material_type_desc;
+	$new_property_unit_type['mkt_group_desc'] 	= $mkt_group_desc;
 	$new_property_unit_type['property_type_id'] 	= $new_prop_type;
 
 	if($property_edit_id!=''){
