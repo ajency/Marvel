@@ -1309,29 +1309,42 @@ jQuery(document).ready(function() {
     }
 
     function pageFullyLoaded(e) {
-        displaypop = setTimeout(displayPopupPageLoad, 30000);
+        displaypop = setTimeout(displayPopupPageLoad, 3000);
     }
 
     function displayPopupPageLoad(){
+
+       var currentPosition = jQuery(window).scrollTop();
+       var height = (document.body.scrollTop + document.documentElement.scrollTop + 70)+"px";
 
         autoPopElement1.show();
         autoPopElement2.show();
 
         autoPopElement1.css({
             background: "#FFFFFF",
-            padding: "50px"
+            padding: "50px",
+            position:"absolute",
+            top: height
         });
 
         autoPopElement2.css({
             background: "#FFFFFF",
-            padding: "50px"
+            padding: "50px",
+            position:"absolute",
+            top: height
         });
 
         jQuery("#popmake-overlay").show();
         
-        jQuery("#popmake-overlay").css('background', convertHex('#000000',25));
-        
-        jQuery('html, body').animate({scrollTop: '0px'}, 800);
+        jQuery("#popmake-overlay").css({
+                background: convertHex('#000000',25),
+                position:"fixed",
+                overflowX: "hidden",
+                overflowY: "auto",
+            });
+
+                
+        //jQuery('html, body').animate({scrollTop: '0px'}, 800);
         
     }
 
