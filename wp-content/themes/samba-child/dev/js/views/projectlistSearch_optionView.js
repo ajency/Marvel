@@ -231,7 +231,12 @@
                  home_type2_html ='<option value="">Type : All</option>';
                  home_type2_html+='<option class="select-dash" disabled="disabled">------------------------------</option>';
                   if(_.size(searchOptions.type) > 0)
+                    if(this.post_type=="residential-property"){
                       var sorted_type_options  = _.sortBy(searchOptions.type, function(obj){ return obj.property_unit_type.toLowerCase() });
+                    }
+                    else{
+                      var sorted_type_options  = _.sortBy(searchOptions.type, function(obj){ return obj.property_type.toLowerCase() }); 
+                    }
 
                   _.each(sorted_type_options,function(vl,ky){
 
@@ -1066,9 +1071,12 @@ infowindow.open(map,marker);
                   //if( queryType!='' && !_.isNull(queryType)){
                     if(typeof queryType !== "undefined" ){
 
+                      console.log('+++++++++++++++++++vl_searchres---------------------')
+
                     _.each(search_collections,function(vl_searchres,ky_searchres){
 
-
+                      console.log('\n\n' )
+                      console.log(vl_searchres)
                        var exists_by_type = _.where(vl_searchres.get('property_unit_type'),{property_unit_type_display:prop_type})
                       if(exists_by_type.length>0){
                         sel_search_collections[cnt_sel_search_collection] = vl_searchres;
@@ -1076,6 +1084,8 @@ infowindow.open(map,marker);
                         cnt_sel_search_collection = cnt_sel_search_collection+1;
                       }
                     })
+
+                    console.log('')
                     search_collections = sel_search_collections;
                   }
 
@@ -1607,15 +1617,17 @@ console.log('99999999999999999999999999999propertyCollection');
 
               _.each(sorted_cities_options,function(citoptions_vl,citoptions_ky){
 
-                  if(citoptions_vl.locality_id!=''){
+                  //if(citoptions_vl.locality_id!='' && !_.isUndefined(citoptions_vl.locality_id) ){
 
-                    
-                    if(self.selectedCity == self.format_filter_text(citoptions_vl.city_name))
+                    if(citoptions_vl.city_name.trim()!=''){
+                      if(self.selectedCity == self.format_filter_text(citoptions_vl.city_name))
                       var city_dropdown_selected = " selected ";
                     else 
                       var city_dropdown_selected = " ";
-                    jQuery('#dd_city').append('<option '+ city_dropdown_selected +' value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')
-                  }
+                    jQuery('#dd_city').append('<option '+ city_dropdown_selected +' value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')  
+                    }
+                    
+                 // }
 
 
               })
@@ -1691,6 +1703,9 @@ console.log('99999999999999999999999999999propertyCollection');
               jQuery('#dd_type').empty()
               jQuery('#dd_type').append('<option value="">Type : All</option>'+
               '<option class="select-dash" disabled="disabled">------------------------------</option>')
+
+              var unit_type_dropdown_values = [];
+              var unit_type_dropdown_values_cnt = 0;
  
               _.each(type_drop_down_values,function(typeoptions_vl,typeoptions_ky){
  
@@ -1702,8 +1717,28 @@ console.log('99999999999999999999999999999propertyCollection');
                       var selected_type_dropdown = " selected ";
                     else
                       var selected_type_dropdown = ' ';
+
+
+                    console.log('typeoptions_vl : - &&&&&&&&&&&&&&&&&&&&&&&&')
+                    console.log(typeoptions_vl)
                   
-                    jQuery('#dd_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.property_unit_type_display+'">'+typeoptions_vl.property_unit_type_display+'</option>')
+                    if(this.post_type=='residential-property'){
+                      if(_.indexOf(unit_type_dropdown_values,typeoptions_vl.property_unit_type_display) == -1){
+                        jQuery('#dd_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.property_unit_type_display+'">'+typeoptions_vl.property_unit_type_display+'</option>')
+                        
+                          unit_type_dropdown_values[unit_type_dropdown_values_cnt] =  typeoptions_vl.property_unit_type_display;
+                            unit_type_dropdown_values_cnt++;
+                      }
+                    }
+                    else{
+
+                      if(_.indexOf(unit_type_dropdown_values,typeoptions_vl.type_name) == -1){
+                        jQuery('#dd_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.type_name+'">'+typeoptions_vl.type_name+'</option>')
+
+                          unit_type_dropdown_values[unit_type_dropdown_values_cnt] =  typeoptions_vl.type_name;
+                          unit_type_dropdown_values_cnt++;
+                      }
+                    }
 
 
                   }

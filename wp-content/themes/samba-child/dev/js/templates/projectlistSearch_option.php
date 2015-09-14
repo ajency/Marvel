@@ -130,15 +130,25 @@ console.log(selectedStatus);
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
 
+ 
            /* console.log('SORT POTIONS :---------------------')  ;
+ 
+            var commercial_unit_type_selected_dropdown_values = [];
+            var commercial_unit_type_dropdown_cnt = 0;
+ 
             console.log(_.size(data.type));
 
             var sorted_type_options = [];
-            if(_.size(data.type) > 0)
+            if( (_.size(data.type) > 0) && (post_type=='residential-property') )
                 var sorted_type_options  = _.sortBy(data.type, function(obj){ return obj.property_unit_type.toLowerCase() });
 
-            console.log('sorted_type_options:------------------------------------------------------');
-            console.log(sorted_type_options);
+ 
+            if( (_.size(data.type) > 0) && (post_type=='commercial-property') )
+                var sorted_type_options  = _.sortBy(data.type, function(obj){ return obj.property_type.toLowerCase() });
+
+console.log('sorted_type_options:------------------------------------------------------');
+console.log(sorted_type_options);
+ 
 
             _.each(sorted_type_options,function(vl,ky){
 
@@ -156,12 +166,26 @@ console.log(selectedStatus);
                 }
                 else{
 
-                    var current_unit_type_name = vl.property_unit_type.trim();
+                    console.log('**************************************##########################');
+                    console.log(vl);
+
+                    var display_unit_type = vl.property_type.charAt(0).toUpperCase() + vl.property_type.slice(1);
+
+                    var current_unit_type_name = vl.property_type.trim();
 
                     var current_unit_type_slug = current_unit_type_name.replace(/ /g , "-").toLowerCase()
+
+
+ 
+
+                    if(_.indexOf(commercial_unit_type_selected_dropdown_values,vl.property_type) == -1){
+                        commercial_unit_type_selected_dropdown_values[commercial_unit_type_dropdown_cnt] = vl.property_type ;
+                        commercial_unit_type_dropdown_cnt++;
+                     
                 %>
-                <option value="<%=vl.property_unit_type%>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%></option>
+                <option value="<%=vl.property_type%>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%></option>
                 <%    
+                    }
                 }
                 %>
 

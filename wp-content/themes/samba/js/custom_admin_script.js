@@ -63,15 +63,19 @@ jQuery('.edit_property_unit_type').live("click",function(evt){
     var self = this; 
     var edit_type_id = jQuery(this).attr('type_id');  
     var edit_type_name = jQuery(this).attr('type_name');
-    var edit_material_type = jQuery(this).attr('material_type'); 
+    var type_code = jQuery(this).attr('material_type_desc');
+    var material_group_desc = jQuery(this).attr('material_group_desc');  
     var edit_type_bedrooms = jQuery(this).attr('bedrooms'); 
     var edit_type_proptype_id = jQuery(this).attr('property_type_id');   
 
     jQuery('#edit_id').val(edit_type_id) 
     jQuery('#new-property-bedrooms').val(edit_type_bedrooms);
-    jQuery('#new-property-unit-type').val(edit_type_name);
-    jQuery('#material-type').val(edit_material_type);
+    jQuery('#property-unit-type').val(type_code);
+    jQuery('#property-unit-type').attr('disabled','disabled');
+    jQuery('#unit-type-label').val(edit_type_name);
+    jQuery('#material-group-desc').val(material_group_desc);
     jQuery('#new-prop-type').val(edit_type_proptype_id);
+    //jQuery('#new-prop-type').attr('disabled','disabled');
 
     jQuery('.save_property_unit_type').attr('id','update_property_unit_type').attr('name','update_property_unit_type') 
     jQuery('.add_edit_type_formtitle').find('.title').html('Edit Property Unit Type');
@@ -95,8 +99,9 @@ jQuery('.cancel_edit_property_unit_type').live("click",function(evt){
 function display_add_new_property_unit_type_form(){
      jQuery('#edit_id').val('') 
     jQuery('#new-property-bedrooms').val('');
-    jQuery('#new-property-unit-type').val('');
-    jQuery('#material-group').val('');
+    jQuery('#property-unit-type').val('');
+    jQuery('#unit-type-label').val('');
+    jQuery('#material-group-desc').val('');
 
     jQuery('.save_property_unit_type').attr('id','add_new_property_unit_type').attr('name','add_new_property_unit_type') 
     jQuery('.add_edit_type_formtitle').find('.title').html('Add New Property Unit Type');
@@ -114,14 +119,19 @@ function display_add_new_property_unit_type_form(){
 //jQuery('#update_property_unit_type').live("click",function(){
 jQuery('.save_property_unit_type').live("click",function(){
 
-        console.log('Updating custom field options ');
+        /*console.log('Updating custom field options ');
+
+        console.log(jQuery("#new-prop-type option:selected").attr("data-group"));*/
+
 
         var self = this;    
 
          var edit_id            = jQuery('#edit_id').val();  
          var num_bedrooms       = jQuery('#new-property-bedrooms').val();
-         var property_unit_type = jQuery('#new-property-unit-type').val();
-         var material_type      = jQuery('#material-type').val();
+         var property_unit_type = jQuery('#property-unit-type').val();
+         /*var material_group_desc = jQuery('#material-group-desc').val();*/
+         var material_group_desc = jQuery("#new-prop-type option:selected").attr("data-group")
+         var unit_type_label      = jQuery('#unit-type-label').val();
          var prop_type_id       = jQuery('#new-prop-type').val();
          var post_type          = jQuery('#current_post_type').val();
          var return_validation  = false;
@@ -135,8 +145,8 @@ jQuery('.save_property_unit_type').live("click",function(){
             var return_validation = true
 
          }
-         if(material_type==''){
-            alert('Please enter material type')
+         if(unit_type_label==''){
+            alert('Please enter unit type label')
             var return_validation = true
 
          }
@@ -160,13 +170,16 @@ jQuery('.save_property_unit_type').live("click",function(){
 
 
          var my_data = { 'num_bedrooms'  : num_bedrooms ,
-                         'property_unit_type' : property_unit_type,
-                         'material_type' : material_type,
+                         'property_unit_type' : unit_type_label,
+                         'material_type_desc' : property_unit_type,
+                         'material_group_desc' : material_group_desc,
                          'edit_id'       : edit_id,
                          'prop_type_id'  : prop_type_id,
                          'post_type'     : post_type   
                            
                        } 
+
+        
 
 
         jQuery.post(ajaxurl, {         
@@ -187,11 +200,13 @@ jQuery('.save_property_unit_type').live("click",function(){
                 }
                 else if(data.success==true){
 
+                    console.log(data);
+
 
                     if(edit_id==''){ /* Add New Property Unit Type*/
                         jQuery('#new-property-bedrooms').val('');
-                        jQuery('#new-property-unit-type').val('');
-                         jQuery('#material-type').val('');
+                        jQuery('#property-unit-type').val('');
+                        jQuery('#unit-type-label').val('');
                         var new_prop_type_name = jQuery("#new-prop-type option:selected").text();
                        
                         jQuery('#new-prop-type').val('');
@@ -204,16 +219,16 @@ jQuery('.save_property_unit_type').live("click",function(){
                         }
 
                         var property_unit_type_row = '<tr class="'+new_row_class+'">'
-                                                +'<td class="property_unit_type column-property_unit_type "><span class="spn_property_unit_type">'+property_unit_type+'</span>'
+                                                +'<td class="material_type column-material_type">'+property_unit_type+'</td>'
+                                                +'<td class="property_unit_type column-property_unit_type "><span class="spn_property_unit_type">'+unit_type_label+'</span>'
                                                 +'        <div class="row-actions">'
                                                 +'            <span class="edit">'
-                                                +'                <a href="javascript:void(0)" class="edit_property_unit_type" type_id="'+data.ID+'"   type_name="'+property_unit_type+'" material_type="'+material_type+'" bedrooms="'+num_bedrooms+'"  property_type_id="'+prop_type_id+'">Edit</a> | '
+                                                +'                <a href="javascript:void(0)" class="edit_property_unit_type" type_id="'+data.ID+'"   type_name="'+unit_type_label+'" material_type_desc="'+property_unit_type+'" material_group_desc="'+material_group_desc+'" bedrooms="'+num_bedrooms+'"  property_type_id="'+prop_type_id+'">Edit</a> | '
                                                 +'            </span>'
                                                 +'            <span class="delete">'
-                                                +'                <a href="javascript:void(0)" class="delete_property_unit_type" type_id="'+data.ID+'"   type_name="'+property_unit_type+'" >Delete</a>'
+                                                +'                <a href="javascript:void(0)" class="delete_property_unit_type" type_id="'+data.ID+'"   type_name="'+unit_type_label+'" >Delete</a>'
                                                 +'            </span>'
                                                 +'        </div>'
-                                                +'    </td><td class="material_type column-material_type">'+material_type
                                                 +'    </td>';
 
                          if(post_type=="residential-property"){
@@ -235,6 +250,15 @@ jQuery('.save_property_unit_type').live("click",function(){
                     }
                     else{  /* Update Property Unit Type*/
 
+
+
+                        jQuery('#edit_id').val('') 
+                        jQuery('#new-property-bedrooms').val('');
+                        jQuery('#property-unit-type').val('');
+                        jQuery('#unit-type-label').val('');
+                        jQuery('#material-group-desc').val('');
+
+
                         var edit_element =  jQuery(".edit_property_unit_type[type_id='"+data.ID+"']") 
                         var delete_element =  jQuery(".delete_property_unit_type[type_id='"+data.ID+"']") 
 
@@ -243,13 +267,20 @@ jQuery('.save_property_unit_type').live("click",function(){
                         
                          
 
-                        edit_element.attr('type_name',property_unit_type)                                    
+                        edit_element.attr('type_name',unit_type_label)                                    
                                     .attr('property_type_id',prop_type_id)
-                                    .attr('material_type',material_type)
-                                    .closest('tr').find('td:last').html(new_prop_type_name)
-                                    .closest('tr').find('td.material_type').html(material_type)
-                                    .closest('tr').find('.spn_property_unit_type').html(property_unit_type)
-                                    .closest('tr').find( "td:nth-last-child(2)" ).html(num_bedrooms);
+                                    .attr('material_type_desc',property_unit_type)
+                                    .attr('material_group_desc',material_group_desc)
+                                    .attr('bedrooms',num_bedrooms)
+                        .closest('tr').find('span.spn_property_unit_type').html(unit_type_label)
+                        .closest('tr').find('td.number_bedrooms').html(num_bedrooms)
+                        .closest('tr').find('td.property_type').html(new_prop_type_name);
+
+
+                                    /*.closest('tr').find('td:last').html(new_prop_type_name)
+                                    .closest('tr').find('td.property_unit_type').html(unit_type_label)
+                                    .closest('tr').find('.spn_property_unit_type').html(unit_type_label)
+                                    .closest('tr').find( "td.number_bedrooms" ).html(num_bedrooms);*/
 
                         if(post_type=="residential-property"){
                             edit_element.attr('bedrooms',num_bedrooms)
@@ -285,7 +316,7 @@ jQuery('.save_property_unit_type').live("click",function(){
 jQuery('.delete_property_type').live("click",function(evt){   
 
 
-    var delete_prop_name = jQuery(this).attr('type_name');
+    var delete_prop_name = jQuery(this).attr('type_label');
     var delete_response = confirm("Are you sure You want to delete  '"+delete_prop_name+"' property type?"); 
 
     if (delete_response !== true) {
@@ -338,20 +369,18 @@ jQuery('.edit_property_type').live("click",function(evt){
 
     var self = this; 
     var edit_type_id = jQuery(this).attr('type_id');  
-    var edit_type_name = jQuery(this).attr('type_name');
-    var edit_material_group = jQuery(this).attr('data-material');   
-    var edit_type_bedrooms = jQuery(this).attr('bedrooms');  
+    var edit_type_label = jQuery(this).attr('type_label');
+    var edit_type_code = jQuery(this).attr('data-code');   
+    
 
     jQuery('#edit_id').val(edit_type_id) 
-    jQuery('#new-property-bedrooms').val(edit_type_bedrooms);
-    jQuery('#new-property-type').val(edit_type_name);
-    jQuery('#material-group').val(edit_material_group);
+    jQuery('#property_type_label').val(edit_type_label);
+    jQuery('#property_type_code').val(edit_type_code);
+    jQuery('#property_type_code').attr('disabled','disabled');
 
     jQuery('.save_property_type').attr('id','update_property_type').attr('name','update_property_type') 
     jQuery('.add_edit_type_formtitle').find('.title').html('Edit Property Type');
-     jQuery('.cancel_edit_property_type').show(); 
- 
-
+    jQuery('.cancel_edit_property_type').show();
 })
 
 
@@ -368,9 +397,8 @@ jQuery('.cancel_edit_property_type').live("click",function(evt){
 
 function display_add_new_property_type_form(){
     jQuery('#edit_id').val('') 
-    jQuery('#new-property-bedrooms').val('');
-    jQuery('#new-property-type').val('');    
-    jQuery('#material-group').val('');
+    jQuery('#property_type_label').val('');    
+    jQuery('#property_type_code').val('');
 
 
     jQuery('.save_property_type').attr('id','add_new_property_type').attr('name','add_new_property_type') 
@@ -395,36 +423,29 @@ jQuery('.save_property_type').live("click",function(){
         jQuery(self).prop('disabled',true)
 
          var edit_id        = jQuery('#edit_id').val();  
-         var num_bedrooms   = jQuery('#new-property-bedrooms').val();
-         var property_type  = jQuery('#new-property-type').val();
-         var material_group = jQuery('#material-group').val();
+         var property_type_code  = jQuery('#property_type_code').val();
+         var property_type_label = jQuery('#property_type_label').val();
          var post_type      = jQuery(this).attr('post_type');
 
                
 
-         if(property_type==''){
-            alert('Please enter Property Type')
+         if(property_type_code==''){
+            alert('Please enter Property Type Code')
             return
 
          }
 
-         if(material_group==''){
-            alert('Please enter Material Group')
-            return
-
-         }
-
-
-         if(num_bedrooms==''){ 
-            alert('Please enter number of bedrooms')
+         if(property_type_label==''){
+            alert('Please enter Label')
             return
 
          }
 
 
-         var my_data = { 'num_bedrooms'  : num_bedrooms ,
-                         'property_type' : property_type,
-                         'material_group' : material_group,
+         
+         var type_data = {
+                         'property_type' : property_type_label,
+                         'mkt_group_desc' : property_type_code,
                          'edit_id'       : edit_id,
                          'post_type'      : post_type
                            
@@ -433,7 +454,7 @@ jQuery('.save_property_type').live("click",function(){
 
         jQuery.post(ajaxurl, {         
             action: "save_property_type",                  
-            data:my_data
+            data:type_data
         }, function(data) { 
             
             jQuery(self).parent().find('.spinner').css('display','none');
@@ -449,11 +470,12 @@ jQuery('.save_property_type').live("click",function(){
                 }
                 else if(data.success==true){
 
+                    console.log('Saved successfully, type');
+
 
                     if(edit_id==''){ /* Add New Property Type*/
-                        jQuery('#new-property-bedrooms').val('');
-                        jQuery('#new-property-type').val('');
-                        jQuery('#material-group').val('');
+                        jQuery('#property_type_label').val('');    
+                        jQuery('#property_type_code').val('');
 
                       
                         var last_row_class = jQuery('table.propertytypes').find('tr:last').hasClass('alternate')
@@ -464,16 +486,17 @@ jQuery('.save_property_type').live("click",function(){
                         }
 
                         var property_type_row = '<tr class="'+new_row_class+'">'
-                                                +'<td class="property_type column-property_type "><span class="spn_property_type">'+property_type+'</span>'
+                                                +'<td>'+property_type_code+'</td>'
+                                                +'<td class="property_type column-property_type "><span class="spn_property_type">'+property_type_label+'</span>'
                                                 +'        <div class="row-actions">'
                                                 +'            <span class="edit">'
-                                                +'                <a href="javascript:void(0)" class="edit_property_type" type_id="'+data.ID+'"   type_name="'+property_type+'" data-material="'+material_group+'" bedrooms="'+num_bedrooms+'" >Edit</a> | '
+                                                +'                <a href="javascript:void(0)" class="edit_property_type" type_id="'+data.ID+'"   type_label="'+property_type_label+'" data-code="'+property_type_code+'">Edit</a> | '
                                                 +'            </span>'
                                                 +'            <span class="delete">'
-                                                +'                <a href="javascript:void(0)" class="delete_property_type" type_id="'+data.ID+'"   type_name="'+property_type+'" >Delete</a>'
+                                                +'                <a href="javascript:void(0)" class="delete_property_type" type_id="'+data.ID+'"   type_label="'+property_type_label+'" >Delete</a>'
                                                 +'            </span>'
                                                 +'        </div>'
-                                                +'    </td><td>'+material_group+'</td>'                                               
+                                                +'    </td>'                                               
                                                 +'</tr>';
 
                         jQuery('table.propertytypes tbody').append(property_type_row);
@@ -485,15 +508,21 @@ jQuery('.save_property_type').live("click",function(){
                     }
                     else{  /* Update Property Type*/
 
+                        jQuery('#edit_id').val('') 
+                        jQuery('#property_type_label').val('');    
+                        jQuery('#property_type_code').val('');
+
                         var edit_element =  jQuery(".edit_property_type[type_id='"+data.ID+"']") 
                         var delete_element =  jQuery(".delete_property_type[type_id='"+data.ID+"']") 
 
-                        edit_element.attr('type_name',property_type)
-                                    .attr('bedrooms',num_bedrooms)
-                                    .attr('data-material',material_group)
-                                    .closest('tr').find('td:last').html(material_group)
-                                    .closest('tr').find('.spn_property_type').html(property_type);
-                        delete_element.attr('type_name',property_type)
+                        edit_element.attr('type_label',property_type_label)
+                                    .attr('data-code',property_type_code);
+                                    //.closest('tr').find('td:last').html(property_type_label);
+                                    //.closest('tr').find('.spn_property_type').html(property_type_label);
+
+                                    edit_element.closest('tr').find('.spn_property_type').html(property_type_label);
+
+                        delete_element.attr('type_label',property_type_label);
 
                         jQuery('.property_type_message').removeClass('error')
                                                         .removeClass('update-nag')
@@ -607,6 +636,32 @@ jQuery('.save_property_type').live("click",function(){
                jQuery('#unit_load_loader').hide();
             });
         });
+
+
+        jQuery(document).on('click', '#generate_types_commercial', function() {
+            
+            var property_id = jQuery(this).attr('data-postId');
+                        
+            var data = {
+                'action': 'generatePropertyUnitsCommercial',
+                'property_id': property_id
+            };
+
+            jQuery('#unit_load_loader').show();
+
+            jQuery.post(ajaxurl, data, function(response) {
+               var property_units = JSON.parse(response);
+               if(property_units.status == 'true'){
+                jQuery('#unit_type_list').empty();
+                jQuery('#unit_type_list').html(property_units.units);
+                jQuery('#generate_unit_types').html('Regenerate Types');
+               }else{
+                alert('No unit type found for this property!');
+               }
+               jQuery('#unit_load_loader').hide();
+            });
+        });
+
 
 
 
