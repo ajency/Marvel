@@ -227,7 +227,8 @@ function get_res_property_meta_values($property_id, $post_type){
     }
     else if($post_type=="commercial-property"){
 
-      $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'commercial-property-unit-type',true));
+     /* commented on 14sep2015   $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'commercial-property-unit-type',true)); */
+     $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'commercial-property-type',true));
       $property_office_spaces   = maybe_unserialize(get_post_meta($property_id, 'office-spaces',true));
       $property_retail_spaces   = maybe_unserialize(get_post_meta($property_id, 'retail-spaces',true));
 

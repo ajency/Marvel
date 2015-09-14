@@ -130,6 +130,9 @@ console.log(selectedStatus);
          <option class="select-dash" disabled="disabled">------------------------------</option>
             <%
 
+            var commercial_unit_type_selected_dropdown_values = [];
+            var commercial_unit_type_dropdown_cnt = 0;
+
             console.log('SORT POTIONS :---------------------')  ;
             console.log(_.size(data.type));
 
@@ -167,9 +170,18 @@ console.log(sorted_type_options);
                     var current_unit_type_name = vl.property_type.trim();
 
                     var current_unit_type_slug = current_unit_type_name.replace(/ /g , "-").toLowerCase()
+
+
+ 
+
+                    if(_.indexOf(commercial_unit_type_selected_dropdown_values,vl.property_type) == -1){
+                        commercial_unit_type_selected_dropdown_values[commercial_unit_type_dropdown_cnt] = vl.property_type ;
+                        commercial_unit_type_dropdown_cnt++;
+                     
                 %>
                 <option value="<%=vl.property_type%>" <% if(selectedType==current_unit_type_slug) { %> selected <% } %>><%=display_unit_type%></option>
                 <%    
+                    }
                 }
                 %>
 
