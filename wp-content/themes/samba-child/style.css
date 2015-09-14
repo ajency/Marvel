@@ -2068,3 +2068,23 @@ input[type=number],
 #popmake-overlay {
 	background-color: rgba(10, 10, 10, 0.65098) !important;
 }
+
+
+/*HIDING Goolgle's iframe*/
+iframe[name='google_conversion_frame'] {
+    height: 0 !important;
+    width: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    margin-top: -13px;
+    float: left;
+}
+/*HIDING Schema iframe*/
+div[itemscope] {
+	height: 0 !important;
+    width: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+	display: none;
+    float: left;
+}
