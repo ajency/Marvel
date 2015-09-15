@@ -221,9 +221,12 @@
                  jQuery('#home_city2').html(home_city2_html);
 
 
+                var show_hide_type  = '';
 
-
-
+                if(this.post_type.toLowerCase()=="commercial-property" &&  selectedStatus.toLowerCase() =="completed")
+                  jQuery('#home_type2').hide()
+                else
+                  jQuery('#home_type2').show()
 
                  var sorted_type_options = [];
                  var type_dropdown_selected = '';
