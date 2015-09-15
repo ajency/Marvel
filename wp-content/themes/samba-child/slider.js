@@ -880,7 +880,11 @@ function checkIfInView(element){
                     $($(this).attr('href')).find('.ava_tog').eq(0).trigger('click');
                 });
         }
-        $('#tab-siteplan').show();
+
+        var activeTabId = $(".floorplans_tab div.tabb div").eq(0).attr('id');
+
+        
+        $('#'+activeTabId).show();
         if ($('div').hasClass('floorplans_tab')) {
             tabbyfloorplans();
         }
@@ -1277,8 +1281,8 @@ jQuery(document).ready(function() {
         return result;
     }
 
-    //var autoPopElement1 = jQuery("#popmake-2358");
-    var autoPopElement1 = jQuery("#popmake-3272");
+    var autoPopElement1 = jQuery("#popmake-2358");
+    //var autoPopElement1 = jQuery("#popmake-3272");
     var autoPopElement2 = jQuery("#popmake-3293");
 
 

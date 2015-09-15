@@ -1019,6 +1019,64 @@ return $type;
 
 
 
+
+ function get_com_unit_type($code){
+  switch ($code) {
+    case "GF":
+        $type = 'Ground Floor';
+        break;
+    case "F1":
+        $type = '1st Floor';
+        break;
+    case "F2":
+        $type = '2nd Floor';
+        break;
+    case "F3":
+        $type = '3rd Floor';
+        break;
+    case "F4":
+        $type = '4th Floor';
+        break;
+    case "F5":
+        $type = '5th Floor';
+        break;
+    case "F6":
+        $type = '6th Floor';
+        break;
+    case "F7":
+        $type = '7th Floor';
+        break;
+    case "F8":
+        $type = '8th Floor';
+        break;
+    case "F9":
+        $type = '9th Floor';
+        break;
+    case "F10":
+        $type = '10th Floor';
+        break;
+    case "F11":
+        $type = '11th Floor';
+        break;
+    case "F12":
+        $type = '12th Floor';
+        break;
+    case "F13":
+        $type = '13th Floor';
+        break;
+    case "F14":
+        $type = '14th Floor';
+        break;
+    case "F15":
+        $type = '15th Floor';
+        break; 
+}
+return $type;
+ }
+
+
+
+
 function flatten($array, $index) {
      $return = array();
 

@@ -1256,6 +1256,9 @@ h6 {
 .top-dd-c.info_bar {
   margin-left: 0;
 }
+.totally-full-width .top-dd-c {
+  margin-left: 0;
+}
 .proj-showinmob {
   display: none;
   float: left;
