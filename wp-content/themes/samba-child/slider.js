@@ -1286,7 +1286,10 @@ jQuery(document).ready(function() {
     var autoPopElement2 = jQuery("#popmake-3293");
 
 
-    if (autoPopElement1.length || autoPopElement2.length) {
+    var cookieValue = jQuery.cookie("autoPopupLoad");
+    
+
+    if ((autoPopElement1.length || autoPopElement2.length) && !cookieValue) {
     window.addEventListener("load", pageFullyLoaded, false);
     }
 
@@ -1326,7 +1329,12 @@ jQuery(document).ready(function() {
             });
 
 
-        //jQuery('html, body').animate({scrollTop: '0px'}, 800);
+        var date = new Date();
+        var minutes = 30;
+        date.setTime(date.getTime() + (minutes * 60 * 1000));
+        jQuery.cookie("autoPopupLoad", "1", { expires: date });
+
+        var cookieValue = jQuery.cookie("autoPopupLoad");
 
     }
 
