@@ -124,7 +124,7 @@ console.log(selectedStatus);
              %>
         </select>
     </div>
-    <div class="top-dd fou">
+    <div class="top-dd fou"  <% if(selectedStatus.toLowerCase()=="completed" && post_type=="commercial-property") { %> style="display:none" <% } %>>
         <select id="dd_type" name="dd_type"  class='srchopt' >
          <option value="">Type : All</option>
          <option class="select-dash" disabled="disabled">------------------------------</option>

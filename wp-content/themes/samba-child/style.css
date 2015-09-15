@@ -124,8 +124,16 @@ color: rgb(255, 255, 255);
 	}
 	#height_helper {display: none !important;}
 	.samba_responsive .no-csstransforms3d #menu_section {
-		height: auto !important;
 		padding-top: 0;
+	}
+}
+
+.landscape.samba_responsive .no-csstransforms3d #menu_section {
+	/*height: none;*/
+}
+@media screen and (max-width: 769px) {
+	.portrait.samba_responsive #menu_section {
+		height: auto !important;
 	}
 }
 
@@ -197,6 +205,12 @@ color: rgb(255, 255, 255);
 	position: fixed;
 	bottom: 0;
     font-family: 'Cantarell';
+    z-index: 9999;
+}
+@media (max-width: 768px) {
+	.home .child-footer {
+		z-index: 99;
+	}
 }
 .child-footer .pirenko-social-widget {
 	width: 235px;
@@ -737,7 +751,7 @@ color: rgb(255, 255, 255);
         display: table;
     }
     .child-footer {
-        display: table;
+        /*display: table;*/
         min-height: 68px;
     }
     .child-footer .widget-4 {display: table-footer-group;}
@@ -798,9 +812,9 @@ color: rgb(255, 255, 255);
 		margin-bottom: 0;
 	}
 	#footer_in a {
-		font-size: 10px;
-		padding-left: 8px;
-		padding-right: 8px;
+		font-size: 9px;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 	.colored .social_img_wrp {
 		margin-right: 0;
@@ -822,6 +836,20 @@ color: rgb(255, 255, 255);
 	}
 	.home_search {
 		bottom: 175px;
+	}
+}
+
+/*landscape or portrait*/
+.landscape #after_widgets.hidein769 {display: none;}
+@media screen and (max-width: 768px) {
+	.portrait #after_widgets.hidein769 {display: block;}
+}
+.landscape .home_search {
+	bottom: 85px;
+}
+@media screen and (min-width: 680px) and (max-width: 768px) {
+	.landscape .home_search {
+		bottom: 115px;
 	}
 }
 
@@ -1989,3 +2017,74 @@ input[type=number],
     color: #666666;
 }
 
+
+
+.oveflohid {
+	overflow: hidden;
+}
+
+
+#st-container.nav-up {
+	display: none;
+}
+#st-container.nav-down {
+	display: block;
+}
+.landscape .sf-menu.sf-vertical {
+	padding-bottom: 54px;
+}
+@media (max-width: 767px) {
+	.mCSB_container.mCS_touch.mCS_no_scrollbar .footer {
+		display: none;
+	}
+}
+
+.home_search.adjustcenter.search_propperty_block {display: none;}
+
+
+
+/* AUTOPOPUP STYLING */
+/*this is the residential autopoup id*/
+#popmake-3293 {}
+/*this is the residential details autopoup id*/
+#popmake-3272 {}
+
+.popmake.responsive.size-small {
+	padding: 25px !important;
+}
+.popmake.responsive.size-small .popmake-content p {
+	color: #8C8C8C !important;
+}
+.popmake.responsive.size-small .popmake-title {
+	color: rgb(0, 0, 0) !important;
+    line-height: 36px !important;
+    font-size: 18px !important;
+    font-family: Cantarell !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    text-align: left !important;
+    text-shadow: rgba(2, 2, 2, 0.227451) 0px 0px 0px !important;
+}
+#popmake-overlay {
+	background-color: rgba(10, 10, 10, 0.65098) !important;
+}
+
+
+/*HIDING Goolgle's iframe*/
+iframe[name='google_conversion_frame'] {
+    height: 0 !important;
+    width: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    margin-top: -13px;
+    float: left;
+}
+/*HIDING Schema iframe*/
+div[itemscope] {
+	height: 0 !important;
+    width: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+	display: none;
+    float: left;
+}

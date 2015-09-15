@@ -63,42 +63,7 @@
 </div>
 <!--ends home search popup-->
 
-
-  <?php
-      global $prk_back_css;
-      echo $prk_back_css;
-    ?>
-    <div id="dump"></div>
-    <div id="prk_pint" data-media="" data-desc=""></div>
-    <div class="ultra_wrapper">
-    <div id="wrap" class="container columns extra_pad boxed_lay centered" role="document">
-      <div id="prk_responsive_menu">
-        <div id="nav-collapsed-icon" data-effect="st-effect-14">
-          <div class="prk_menu_block"></div>
-          <div class="prk_menu_block"></div>
-          <div class="prk_menu_block"></div>
-        </div>
-        <a href="<?php echo home_url('/'); ?>" class="fade_anchor">
-        <div id="responsive_logo_holder">
-          <?php
-            echo prk_output_small_logo($retina_device);
-          ?>
-        </div>
-        </a>
-        <div id="alt_logo_holder" data-effect="st-effect-14">
-          <?php
-            echo prk_output_alt_logo($retina_device);
-          ?>
-        </div>
-
-        <a href="#" class="head_enq_ico popmake-give-details" id="">Enquiry</a>
-
-        <div id="back_to_top-collapsed">
-          <div class="navicon-arrow-up-2"></div>
-        </div>
-      </div>
-      <div id="body_hider"></div>
-    <div id="st-container" class="st-container<?php if ($prk_samba_frontend_options['3d_menu']=="false"){echo ' no-csstransforms3d'; }?>">
+<div id="st-container" class="st-container<?php if ($prk_samba_frontend_options['3d_menu']=="false"){echo ' no-csstransforms3d'; }?>">
 
     <!-- content push wrapper -->
 
@@ -172,6 +137,43 @@
         </div><!-- /st-content -->
 </div>
 </div>
+
+
+  <?php
+      global $prk_back_css;
+      echo $prk_back_css;
+    ?>
+    <div id="dump"></div>
+    <div id="prk_pint" data-media="" data-desc=""></div>
+    <div class="ultra_wrapper">
+    <div id="wrap" class="container columns extra_pad boxed_lay centered" role="document">
+      <div id="prk_responsive_menu">
+        <div id="nav-collapsed-icon" data-effect="st-effect-14">
+          <div class="prk_menu_block"></div>
+          <div class="prk_menu_block"></div>
+          <div class="prk_menu_block"></div>
+        </div>
+        <a href="<?php echo home_url('/'); ?>" class="fade_anchor">
+        <div id="responsive_logo_holder">
+          <?php
+            echo prk_output_small_logo($retina_device);
+          ?>
+        </div>
+        </a>
+        <div id="alt_logo_holder" data-effect="st-effect-14">
+          <?php
+            echo prk_output_alt_logo($retina_device);
+          ?>
+        </div>
+
+        <a href="#" class="head_enq_ico popmake-01-enquiry-footer-popup" id="">Enquiry</a>
+
+        <div id="back_to_top-collapsed">
+          <div class="navicon-arrow-up-2"></div>
+        </div>
+      </div>
+      <div id="body_hider"></div>
+
 
 
   <div id="top_bar_wrapper" class="on_blog">

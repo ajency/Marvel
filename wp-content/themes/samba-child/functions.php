@@ -831,7 +831,7 @@ function marvel_scripts_styles(){
     $property['id'] = get_the_id();
     $property['title'] = get_the_title();
   }
-
+      wp_enqueue_script( 'fouc',  get_stylesheet_directory_uri() . '/fouc.js', array('jquery'), false, false);
      	wp_enqueue_script( 'geolocation_gmap','https://maps.googleapis.com/maps/api/js?sensor=false' );
       wp_enqueue_script('jquery_easing', get_stylesheet_directory_uri(). '/jquery.easing.1.3.js', array('jquery'), false, true);
 

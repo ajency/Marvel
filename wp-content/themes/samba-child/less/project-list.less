@@ -133,20 +133,27 @@
         left: 0;
         width: 100%;
         z-index: 5;
-        padding-left: 290px;
+        // padding-left: 290px;
+        margin-left: 240px;
 
         @media screen and (max-width: 991px) {
             padding-left: 15px;
             padding-right: 15px;
-            padding-left: 190px
+            // padding-left: 190px
+            margin-left: 175px;
         }
         @media screen and (max-width: 769px) {
             padding-left: 25px;
             padding-right: 25px;
+            margin-left: 0;
         }
         @media screen and (max-width: 767px) {
             padding-left: 15px;
             padding-right: 15px;
+            margin-left: 0;
+        }
+        &.info_bar {
+            margin-left: 0;
         }
     }
     .proj-showinmob {
@@ -841,6 +848,13 @@
     @media screen and (max-width: 480px) {
         left: 0 !important;
         right: 0 !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .indi_prj_page.columns.centered.prk_inner_block .do_3 .wpb_column {
         width: 100% !important;
     }
 }
