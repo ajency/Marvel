@@ -62,7 +62,7 @@ jQuery.ajax(ajax_var.url,{
 
 
 
-                           jQuery('.home_city').empty();
+                          /* jQuery('.home_city').empty();
 
                            jQuery('.home_city').append('<option value="" data-cityid="" >City : All</option>')
                            jQuery('.home_city').append('<option class="select-dash" disabled="disabled">----------------------------------</option>')
@@ -98,7 +98,7 @@ jQuery.ajax(ajax_var.url,{
                                 jQuery('.home_type').append('<option value="'+sorted_type_options[i].property_unit_type+' '+sorted_type_options[i].property_type_name+'">'+sorted_type_options[i].property_unit_type+' '+sorted_type_options[i].property_type_name+'</option>')
 
                               } 
-                            }
+                            }*/
 
                         },
                         error: function(){
