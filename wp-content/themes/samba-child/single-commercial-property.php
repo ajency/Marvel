@@ -143,6 +143,7 @@ $current_post_type          = get_post_type();
     </div>
     <div id="content">
         <div id="main" role="main" class="main_with_sections<?php echo $extra_class; ?>">
+        <input type="hidden" name="current_post_type" id="current_post_type" value="commercial-property" />
         <input type="hidden" name="post_id" id="post_id" value="<?php echo get_the_ID(); ?>" />
             <?php
                 if ($show_slider=="yes")
