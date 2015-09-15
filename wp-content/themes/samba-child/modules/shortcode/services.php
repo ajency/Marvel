@@ -558,7 +558,7 @@ $html .= ' <li><a href="#tab-siteplan" class="standout">SITE PLAN</a></li>';
 if(array_key_exists('R1',$tabs)){
     asort($tabs['R1']);
     foreach($tabs['R1'] as $key=>$value){
-        $html .= '<li><a href="#tab-R1'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'</a></li>';
+        $html .= '<li><a href="#tab-R1'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R1').'</a></li>';
     }
 }
 

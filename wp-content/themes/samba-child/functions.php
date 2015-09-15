@@ -1029,13 +1029,13 @@ function get_sap_data(){
  function get_flat_type($code){
   switch ($code) {
     case "R1":
-        $type = '';
+        $type = 'Apartment';
         break;
     case "R2":
-        $type = 'Duplex Flat';
+        $type = 'Duplex Apartment';
         break;
     case "R3":
-        $type = 'Garden Flat';
+        $type = 'Garden Apartment';
         break;
     case "R4":
         $type = 'Penthouse';
