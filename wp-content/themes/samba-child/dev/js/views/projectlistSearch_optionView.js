@@ -1756,8 +1756,30 @@ console.log(locality_drop_down_values)
 
               var unit_type_dropdown_values = [];
               var unit_type_dropdown_values_cnt = 0;
+
+              var sorted_type_options = [];
+
  
-              _.each(type_drop_down_values,function(typeoptions_vl,typeoptions_ky){
+              if( (_.size(type_drop_down_values) > 0) && (self.post_type=='residential-property') )
+                var sorted_type_options  = _.sortBy(type_drop_down_values, function(obj){ 
+                    
+ 
+                    if(!_.isUndefined( obj.property_unit_type_display)){
+                      return obj.property_unit_type_display.toLowerCase() }
+                    });
+
+ 
+            if( (_.size(type_drop_down_values) > 0) && (self.post_type=='commercial-property') )
+                var sorted_type_options  = _.sortBy(type_drop_down_values, function(obj){ 
+                 
+ 
+                  if(_.isUndefined( obj.type_name)){
+                    return obj.type_name.toLowerCase() }
+                  });
+
+
+ 
+              _.each(sorted_type_options,function(typeoptions_vl,typeoptions_ky){
  
                    if(typeoptions_vl.type!='' &&  !_.isUndefined(typeoptions_vl.type) ){
 
