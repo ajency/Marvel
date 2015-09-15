@@ -1594,7 +1594,7 @@ console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
 
                // 15sep2015  alert('populating localities')
                    var uniq_drop_down_localities = _.uniq(locality_drop_down_values,function(item){return JSON.stringify(item);})
-                   sorted_locality_options = _.sortBy(locality_drop_down_values, function(obj){ return obj.locality_name.toLowerCase() });
+                   sorted_locality_options = _.sortBy(uniq_drop_down_localities, function(obj){ return obj.locality_name.toLowerCase() });
 
 
                    jQuery('.home_location').empty()
