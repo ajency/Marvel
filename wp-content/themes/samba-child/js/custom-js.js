@@ -1554,6 +1554,9 @@ console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
                                 mergeByProperty(type_drop_down_values, property_vl.property_unit_type, 'type');
                             }
                         }
+                        else{
+                            mergeByProperty(type_drop_down_values, property_vl.property_unit_type, 'type');
+                        }
                          
                     }
 
@@ -1624,7 +1627,7 @@ console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
 
             if(args.loadtypes == true ){ 
 
-            // 15sep2015  alert('populating types ')  
+           
 
               jQuery('.home_type').empty()
               jQuery('.home_type').append('<option value="">Type : All</option>'+
@@ -1647,8 +1650,9 @@ console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
 
                     console.log('typeoptions_vl : - &&&&&&&&&&&&&&&&&&&&&&&&')
                     console.log(typeoptions_vl)
+                    
                   
-                    if(this.post_type=='residential-property'){
+                    if(_.isUndefined(this.post_type)  || this.post_type=='residential-property'){
                       if(_.indexOf(unit_type_dropdown_values,typeoptions_vl.property_unit_type_display) == -1){
                         jQuery('.home_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.property_unit_type_display+'">'+typeoptions_vl.property_unit_type_display+'</option>')
                         
