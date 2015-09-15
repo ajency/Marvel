@@ -1085,7 +1085,7 @@ jQuery('.popmake-careers-apply-now').live('click',function(evt){
 
 
 
-jQuery('#home_city2, #home_city').live('change',function(){
+/* commented on 15sep2015 jQuery('#home_city2, #home_city').live('change',function(){
 
 
 
@@ -1103,7 +1103,7 @@ jQuery('#home_city2, #home_city').live('change',function(){
 
 
  /* --  console.log('window.search_options.locality.localities........')
-  console.log(window.search_options.locality.localities) */
+  console.log(window.search_options.locality.localities) * /
 
   // commented on 4sep2015 url change var selected_city = jQuery(this).val();
 
@@ -1120,7 +1120,7 @@ jQuery('#home_city2, #home_city').live('change',function(){
             console.log('ky'+ky_cl)
 
             console.log(':::::::::'+jQuery('.home_city').val()+'--------'+vl_cl.city_id)
-            */
+            * /
 
             if(selected_city==vl_cl.city_id){
 
@@ -1138,6 +1138,8 @@ jQuery('#home_city2, #home_city').live('change',function(){
   }
 
 })
+
+*/
 
 
 
@@ -1417,12 +1419,60 @@ function populate_homepage_search_types(){
 }
 
 
- 
- 
+
+jQuery('.home_city').live('change',function(evt){
+
+    alert('home city change')
+
+    var args ={     'loadcities' : false, 
+                    'loadlocalities':true,
+                    'loadtypes'     :true    
+              }
+
+    var selected_args = {    'selected_city' : jQuery(evt.target).val(),
+                            'selected_locality' : '',
+                            'selected_type' : ''
+
+                        }          
+
+    var ongoing_residential_properties = _.where(window.all_properties,{property_status:'ongoing',post_type:'residential-property'} );
 
 
-function populate_homepage_search_drop_downs(propertyCollection){
+    populate_homepage_search_drop_downs(ongoing_residential_properties,args,selected_args)
+
+})
+
+ 
+ jQuery('.home_location').live('change',function(evt){
+
+    alert('home locality change')
+
+    var args ={     'loadcities' : false, 
+                    'loadlocalities':false,
+                    'loadtypes'     :true    
+              }
+
+    var selected_city_val =jQuery(evt.target).closest('.search_propperty_block').find('.home_city').val() 
+
+    var selected_args = {   'selected_city' : selected_city_val,
+                            'selected_locality' : jQuery(evt.target).val(),
+                            'selected_type' : ''
+
+                        }          
+
+    var ongoing_residential_properties = _.where(window.all_properties,{property_status:'ongoing',post_type:'residential-property'} );
+
+
+    populate_homepage_search_drop_downs(ongoing_residential_properties,args,selected_args)
+
+})
+
+
+function populate_homepage_search_drop_downs(propertyCollection,args,selected_args){
               
+
+console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
+              console.log(propertyCollection);
               var self = this ;
 
               var city_drop_downs_values = [];
@@ -1447,76 +1497,134 @@ function populate_homepage_search_drop_downs(propertyCollection){
               _.each(propertyCollection,function(property_vl,property_ky){
 
  
+
+                     
                     city_drop_downs_values[city_drop_downs_values_cnt] =  {'city_id':property_vl.property_city,
                                                                          'city_name':property_vl.property_city_name,
                                                                          };
-                    city_drop_downs_values_cnt++;
+                    city_drop_downs_values_cnt++; 
 
-
-
-                    locality_drop_down_values[locality_drop_downs_values_cnt] =  {'locality_id':property_vl.property_locaity,
-                                                                                  'locality_name':property_vl.property_locality_name,
-                                                                                 };
-                    locality_drop_downs_values_cnt++;                                                             
-
-
-                    mergeByProperty(type_drop_down_values, property_vl.property_unit_type, 'type');
-
-
-              })
-
-              var uniq_drop_down_cities = _.uniq(city_drop_downs_values,function(item){return JSON.stringify(item);})
-
-              sorted_cities_options   = _.sortBy(uniq_drop_down_cities, function(obj){ return obj.city_name.toLowerCase() });
-               
-
-              jQuery('.home_city').empty()
-              jQuery('.home_city').append('<option value="">City : All</option>'+
-              '<option class="select-dash" disabled="disabled">------------------------------</option>')
-
-              _.each(sorted_cities_options,function(citoptions_vl,citoptions_ky){
-
-                  if(citoptions_vl.locality_id!=''){
+                    console.log('*&*&*&*&*&*&*&*'+args.loadlocalities+ '   '+jQuery('.home_city').val()+ '   ' +property_vl.property_city_name )
+                    console.log(property_vl)               
                    
-                    jQuery('.home_city').append('<option  value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')
-                  }
+
+                    if(args.loadlocalities == true   ){ 
+
+                        if(selected_args.selected_city!=''){
+                             if(selected_args.selected_city == property_vl.property_city_name){
+                                locality_drop_down_values[locality_drop_downs_values_cnt] =  {'locality_id':property_vl.property_locaity,
+                                                                                          'locality_name':property_vl.property_locality_name,
+                                                                                         };
+                                locality_drop_downs_values_cnt++;
+                            }
+                        }
+                        else{
+
+                                locality_drop_down_values[locality_drop_downs_values_cnt] =  {'locality_id':property_vl.property_locaity,
+                                                                                          'locality_name':property_vl.property_locality_name,
+                                                                                         };
+                                locality_drop_downs_values_cnt++;
+
+                            
+                        }
+                    }
+                     
+
+                    if(args.loadtypes==true){
+
+                        if(selected_args.selected_locality!='' && selected_args.selected_city!='' ){       
+
+                            if((selected_args.selected_city == property_vl.property_city_name) && 
+                                (selected_args.selected_locality == property_vl.property_locality_name) ){
+                                    mergeByProperty(type_drop_down_values, property_vl.property_unit_type, 'type');    
+                                }
+
+                        }
+
+
+                        if(selected_args.selected_locality!='' ){       
+
+                            if(selected_args.selected_locality == property_vl.property_locality_name) {
+                                    mergeByProperty(type_drop_down_values, property_vl.property_unit_type, 'type');    
+                                }
+
+                        }
+                        else if(selected_args.selected_city!='' ){   
+                            if(selected_args.selected_city == property_vl.property_city_name){
+                                mergeByProperty(type_drop_down_values, property_vl.property_unit_type, 'type');
+                            }
+                        }
+                         
+                    }
 
 
               })
+
+              
+
+              if(args.loadcities == true ){ 
+
+                alert('populating cities ')
+                      var uniq_drop_down_cities = _.uniq(city_drop_downs_values,function(item){return JSON.stringify(item);})
+
+                      sorted_cities_options   = _.sortBy(uniq_drop_down_cities, function(obj){ return obj.city_name.toLowerCase() });
+                       
+
+                      jQuery('.home_city').empty()
+                      jQuery('.home_city').append('<option value="">City : All</option>'+
+                      '<option class="select-dash" disabled="disabled">------------------------------</option>')
+
+                      _.each(sorted_cities_options,function(citoptions_vl,citoptions_ky){
+
+                          if(citoptions_vl.locality_id!=''){
+                           
+                            jQuery('.home_city').append('<option  value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')
+                          }
+
+
+                      })
+
+            }
  
 
-               
-               var uniq_drop_down_localities = _.uniq(locality_drop_down_values,function(item){return JSON.stringify(item);})
-               sorted_locality_options = _.sortBy(locality_drop_down_values, function(obj){ return obj.locality_name.toLowerCase() });
+            if(args.loadlocalities == true ){   
+
+                alert('populating localities')
+                   var uniq_drop_down_localities = _.uniq(locality_drop_down_values,function(item){return JSON.stringify(item);})
+                   sorted_locality_options = _.sortBy(locality_drop_down_values, function(obj){ return obj.locality_name.toLowerCase() });
 
 
-               jQuery('.home_location').empty()
-               jQuery('.home_location').append('<option value="">Locality : All</option>'+
-              '<option class="select-dash" disabled="disabled">------------------------------</option>')
+                   jQuery('.home_location').empty()
+                   jQuery('.home_location').append('<option value="">Locality : All</option>'+
+                  '<option class="select-dash" disabled="disabled">------------------------------</option>')
 
-               console.log('-=-=-=-=- =-locoptions_vl=- =-=- =-=- =- =-= ')
+                   console.log('-=-=-=-=- =-locoptions_vl=- =-=- =-=- =- =-= ')
 
-              _.each(sorted_locality_options,function(locoptions_vl,locoptions_ky){
+                  _.each(sorted_locality_options,function(locoptions_vl,locoptions_ky){
 
-                  if(locoptions_vl.locality_id!=''){ 
+                      if(locoptions_vl.locality_id!=''){ 
 
-                    console.log(locoptions_vl)
+                        console.log(locoptions_vl)
 
-                    jQuery('.home_location').append('<option  value="'+locoptions_vl.locality_name+'">'+locoptions_vl.locality_name+'</option>')
-                  }
-
-
-              })
+                        jQuery('.home_location').append('<option  value="'+locoptions_vl.locality_name+'">'+locoptions_vl.locality_name+'</option>')
+                      }
 
 
+                  })
 
-
-
-
-
+            }
 
 
 
+
+
+
+
+
+
+            if(args.loadtypes == true ){ 
+
+            alert('populating types ')  
 
               jQuery('.home_type').empty()
               jQuery('.home_type').append('<option value="">Type : All</option>'+
@@ -1563,6 +1671,7 @@ function populate_homepage_search_drop_downs(propertyCollection){
 
 
               })
+            }   //end if(args.loadtypes == true ){   
 
 
 
@@ -1645,8 +1754,23 @@ function get_cities_properties(args){
                                 } 
                                 if(show_homepage_filters == true){
                                     var ongoing_residential_properties = _.where(window.all_properties,{property_status:'ongoing',post_type:'residential-property'} );
+
+
+                            console.log(window.all_properties)
+                                    console.log('ongoing_residential_properties :&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+
+                                    var args ={     'loadcities' : true, 
+                                                    'loadlocalities':true,
+                                                    'loadtypes'     :true    
+                                              }
+
+                                    var selected_args = {    'selected_city' : '',
+                                            'selected_locality' : '',
+                                            'selected_type' : ''
+
+                                        }     
   
-                                    populate_homepage_search_drop_downs(ongoing_residential_properties);
+                                    populate_homepage_search_drop_downs(ongoing_residential_properties,args,selected_args);
                                 }
                                 
                             }
