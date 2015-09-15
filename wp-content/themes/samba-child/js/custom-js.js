@@ -1743,7 +1743,7 @@ function get_cities_properties(args){
     var nearby_properties = (!_.isUndefined(args.nearby_properties)? args.nearby_properties : false );
     var show_cities_formidable_contact  = (!_.isUndefined(args.show_cities_formidable_contact)? args.show_cities_formidable_contact : false );
     var show_homepage_filters  = (!_.isUndefined(args.home_page_search)? args.home_page_search : false );
-
+var args2 = args ;
 
 
 
@@ -1763,7 +1763,7 @@ function get_cities_properties(args){
                                 window.all_properties =  response.data;
 
                                 if(nearby_properties==true){
-                                      show_nearby_properties(args.post_type);      
+                                      show_nearby_properties(args2.post_type);      
                                 } 
                                 if(show_cities_formidable_contact==true){
                                     populate_properties_cities_on_contact()    
@@ -1775,7 +1775,7 @@ function get_cities_properties(args){
                             console.log(window.all_properties)
                                     console.log('ongoing_residential_properties :&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
 
-                                    var args ={     'loadcities' : true, 
+                                    var args3 ={     'loadcities' : true, 
                                                     'loadlocalities':true,
                                                     'loadtypes'     :true    
                                               }
@@ -1786,7 +1786,7 @@ function get_cities_properties(args){
 
                                         }     
   
-                                    populate_homepage_search_drop_downs(ongoing_residential_properties,args,selected_args);
+                                    populate_homepage_search_drop_downs(ongoing_residential_properties,args3,selected_args);
                                 }
                                 
                             }
@@ -1798,7 +1798,7 @@ function get_cities_properties(args){
     else{
 
         if(nearby_properties==true){
-              show_nearby_properties(args.post_type);      
+              show_nearby_properties(args2.post_type);      
         }
         if(show_cities_formidable_contact==true){
             populate_properties_cities_on_contact()    
