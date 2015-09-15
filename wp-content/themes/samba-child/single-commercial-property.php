@@ -78,9 +78,7 @@ $current_post_type          = get_post_type();
 <input type="hidden" name="interval_id_auto_popup"  id="interval_id_auto_popup" value="" />
 <input type="hidden" name="current_post_type"  id="current_post_type" value="<?php echo $current_post_type ; ?>" />
     <div id="full_fi_c">
-        <div class="full_fi_title">
-            
-                <?php
+        <div class="full_fi_title"><?php
                 /*$project_locality = get_post_meta(get_the_ID(),'property-locality',true);
                 $project_city = get_post_meta(get_the_ID(),'property-city',true);
                 $project_type = maybe_unserialize(get_post_meta(get_the_ID(),'residential-property-unit-type',true));
@@ -127,9 +125,7 @@ $current_post_type          = get_post_type();
                   echo "Marvel Sample Apartment";
                 } */
 
-                ?>
-            
-        </div>
+                ?></div>
         <a href="#" class="go_d_see"></a>
     <?php
       //echo prk_output_featured_image(get_the_ID());
