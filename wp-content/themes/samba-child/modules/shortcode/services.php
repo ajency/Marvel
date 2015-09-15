@@ -593,28 +593,28 @@ if(array_key_exists('R5',$tabs)){
 if(array_key_exists('O1',$tabs)){
     asort($tabs['O1']);
     foreach($tabs['O1'] as $key=>$value){
-        $html .= '<li><a href="#tab-O1'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O1').'</a></li>';
+        $html .= '<li><a href="#tab-O1'.str_replace(".","",$value).'">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O1').'</a></li>';
     }
 }
 
 if(array_key_exists('O2',$tabs)){
     asort($tabs['O2']);
     foreach($tabs['O2'] as $key=>$value){
-        $html .= '<li><a href="#tab-O2'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O2').'</a></li>';
+        $html .= '<li><a href="#tab-O2'.str_replace(".","",$value).'">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O2').'</a></li>';
     }
 }
 
 if(array_key_exists('O3',$tabs)){
     asort($tabs['O3']);
     foreach($tabs['O3'] as $key=>$value){
-        $html .= '<li><a href="#tab-O3'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O3').'</a></li>';
+        $html .= '<li><a href="#tab-O3'.str_replace(".","",$value).'">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O3').'</a></li>';
     }
 }
 
 if(array_key_exists('Co',$tabs)){
     asort($tabs['Co']);
     foreach($tabs['Co'] as $key=>$value){
-        $html .= '<li><a href="#tab-Co'.str_replace(".","",$value).'">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('Co').'</a></li>';
+        $html .= '<li><a href="#tab-Co'.str_replace(".","",$value).'">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('Co').'</a></li>';
     }
 }
 
@@ -684,13 +684,19 @@ foreach($tabs as $tabkey=>$tabvalue){
            $area = $min_area.' sq. ft. to '.$max_area.' sq. ft.';  
         }
 
+        if($post_type == 'residential-property'){
+            $unit_val = $value;
+        }else{
+            $unit_val = get_com_unit_type($value);
+        }
+
         
         $html .= '<div id="tab-'.$tab_id.'" class="wpb_tab ui-tabs-panel wpb_ui-tabs-hide ui-widget-content vc_clearfix">';
 
         $html .= '<div class="wpb_text_column wpb_content_element ">
                                     <div class="wpb_wrapper">
                                         <p style="text-align: center;">
-                                            Typical floor plan of a '.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type($tabkey).' &#8211; '.$area.'
+                                            Typical floor plan of a '.$unit_val.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type($tabkey).' &#8211; '.$area.'
                                             <a class="wpb_button_a download_prj" title="Download" href="'.$common_plan_pdf.'" download>
                                                 <span class="wpb_button  wpb_wpb_button wpb_btn-small wpb_document_pdf sep">Download <i class="icon"> </i></span>
                                             </a>
