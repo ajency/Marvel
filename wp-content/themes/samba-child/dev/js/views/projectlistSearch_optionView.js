@@ -165,6 +165,8 @@
 
             load_search_filter_values_mobile : function(searchOptions,selected){
 
+             
+
                 var selectedCity     = !_.isUndefined(selected.selectedCity)? selected.selectedCity : '' ;
                 var selectedLocality = !_.isUndefined(selected.selectedLocality)? selected.selectedLocality : '' ;
                 var selectedType     = !_.isUndefined(selected.selectedType)? selected.selectedType : '' ;
@@ -194,7 +196,7 @@
                 }
 
 
-
+ return ;
 
 
                 var cities_options = _.isUndefined(searchOptions.cities.cities)?[]:searchOptions.cities.cities;
@@ -1657,8 +1659,8 @@ console.log(locality_drop_down_values)
 
 
 
-              jQuery('#dd_city').empty()
-              jQuery('#dd_city').append('<option value="">City : All</option>'+
+              jQuery('#dd_city, .home_city').empty()
+              jQuery('#dd_city, .home_city').append('<option value="">City : All</option>'+
               '<option class="select-dash" disabled="disabled">------------------------------</option>')
 
               _.each(sorted_cities_options,function(citoptions_vl,citoptions_ky){
@@ -1670,18 +1672,18 @@ console.log(locality_drop_down_values)
                       var city_dropdown_selected = " selected ";
                     else 
                       var city_dropdown_selected = " ";
-                    jQuery('#dd_city').append('<option '+ city_dropdown_selected +' value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')  
+                    jQuery('#dd_city, .home_city').append('<option '+ city_dropdown_selected +' value="'+citoptions_vl.city_name+'">'+citoptions_vl.city_name+'</option>')  
                     }
                     
                  // }
 
 
               })
-               jQuery('#dd_city').append('</select')
+               jQuery('#dd_city, .home_city').append('</select')
 
 
-              jQuery('#dd_locality').empty()
-              jQuery('#dd_locality').append('<option value="">Locality : All</option>'+
+              jQuery('#dd_locality, .home_location').empty()
+              jQuery('#dd_locality, .home_location').append('<option value="">Locality : All</option>'+
               '<option class="select-dash" disabled="disabled">------------------------------</option>')
  
               _.each(sorted_locality_options,function(locoptions_vl,locoptions_ky){
@@ -1696,7 +1698,7 @@ console.log(locality_drop_down_values)
                       var locality_dropdown_selected = " ";
 
 
-                    jQuery('#dd_locality').append('<option '+locality_dropdown_selected+'value="'+locoptions_vl.locality_name+'">'+locoptions_vl.locality_name+'</option>')
+                    jQuery('#dd_locality, .home_location').append('<option '+locality_dropdown_selected+'value="'+locoptions_vl.locality_name+'">'+locoptions_vl.locality_name+'</option>')
                   }
 
 
@@ -1748,8 +1750,8 @@ console.log(locality_drop_down_values)
                 %> */
 
 
-              jQuery('#dd_type').empty()
-              jQuery('#dd_type').append('<option value="">Type : All</option>'+
+              jQuery('#dd_type, .home_type').empty()
+              jQuery('#dd_type, .home_type').append('<option value="">Type : All</option>'+
               '<option class="select-dash" disabled="disabled">------------------------------</option>')
 
               var unit_type_dropdown_values = [];
@@ -1787,7 +1789,7 @@ console.log(locality_drop_down_values)
                   
                     if(self.post_type=='residential-property'){
                       if(_.indexOf(unit_type_dropdown_values,typeoptions_vl.property_unit_type_display) == -1){
-                        jQuery('#dd_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.property_unit_type_display+'">'+typeoptions_vl.property_unit_type_display+'</option>')                        
+                        jQuery('#dd_type, .home_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.property_unit_type_display+'">'+typeoptions_vl.property_unit_type_display+'</option>')                        
                         
                           unit_type_dropdown_values[unit_type_dropdown_values_cnt] =  typeoptions_vl.property_unit_type_display;
                             unit_type_dropdown_values_cnt++;
@@ -1797,7 +1799,7 @@ console.log(locality_drop_down_values)
 
                       if(jQuery('#dd_status').val().toLowerCase()!="completed"){
                         if(_.indexOf(unit_type_dropdown_values,typeoptions_vl.type_name) == -1){
-                          jQuery('#dd_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.type_name+'">'+typeoptions_vl.type_name+'</option>')
+                          jQuery('#dd_type, .home_type').append('<option '+selected_type_dropdown+' value="'+typeoptions_vl.type_name+'">'+typeoptions_vl.type_name+'</option>')
 
                           unit_type_dropdown_values[unit_type_dropdown_values_cnt] =  typeoptions_vl.type_name;
                           unit_type_dropdown_values_cnt++;
