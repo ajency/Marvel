@@ -858,6 +858,18 @@ $post = get_post($queried_object->ID);
 
 $plant_id = get_post_meta($post->ID,'property-plant-id',true);
 
+
+
+$post_type = get_post_type( $post );
+
+if($post_type == 'residential-property'){
+    $unit_suffix = 'BHK';
+}else{
+    $unit_suffix = '';
+}
+
+
+
 $data = get_sap_data();
     
 
@@ -895,7 +907,8 @@ if(array_key_exists('R1',$tabs)){
             }
         }
 
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize '.$btn_class.'">'.$value.' BHK</span></a>';
+        //$html .= '<a class="wpb_button_a" title="'.$value.'&nbsp;'.$unit_suffix.'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize '.$btn_class.'">'.$value.' BHK</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.'&nbsp;'.$unit_suffix.'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R1').'</span></a>';
     $index++;
     }
     
@@ -904,56 +917,56 @@ if(array_key_exists('R1',$tabs)){
 if(array_key_exists('R4',$tabs)){
     asort($tabs['R4']);
     foreach($tabs['R4'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R4').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R4&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R4').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R4').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R4&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R4').'</span></a>';
     }
 }
 
 if(array_key_exists('R2',$tabs)){
     asort($tabs['R2']);
     foreach($tabs['R2'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R2').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R2').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R2').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R2').'</span></a>';
     }
 }
 
 if(array_key_exists('R3',$tabs)){
     asort($tabs['R3']);
     foreach($tabs['R3'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R3').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R3').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R3').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R3').'</span></a>';
     }
 }
 
 if(array_key_exists('R5',$tabs)){
     asort($tabs['R5']);
     foreach($tabs['R5'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R5').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R5&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R5').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R5').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R5&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R5').'</span></a>';
     }
 }
 
 if(array_key_exists('O1',$tabs)){
     asort($tabs['O1']);
     foreach($tabs['O1'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O1').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O1').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O1').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O1').'</span></a>';
     }
 }
 
 if(array_key_exists('O2',$tabs)){
     asort($tabs['O2']);
     foreach($tabs['O2'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O2').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O2').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O2').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O2').'</span></a>';
     }
 }
 
 if(array_key_exists('O3',$tabs)){
     asort($tabs['O3']);
     foreach($tabs['O3'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O3').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O3').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O3').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O3').'</span></a>';
     }
 }
 
 if(array_key_exists('Co',$tabs)){
     asort($tabs['Co']);
     foreach($tabs['Co'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('Co').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=Co&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('Co').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('Co').'" href="'.get_site_url().'/?action=download_plan&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=Co&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('Co').'</span></a>';
     }
 }
 
@@ -987,6 +1000,15 @@ $queried_object = get_queried_object();
 $post = get_post($queried_object->ID);
 
 $plant_id = get_post_meta($post->ID,'property-plant-id',true);
+
+
+$post_type = get_post_type( $post );
+
+if($post_type == 'residential-property'){
+    $unit_suffix = 'BHK';
+}else{
+    $unit_suffix = '';
+}
 
 $data = get_sap_data();
 
@@ -1023,7 +1045,7 @@ if(array_key_exists('R1',$tabs)){
             }
         }
 
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize '.$btn_class.'">'.$value.' BHK</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R1').'</span></a>';
     $index++;
     }
 }
@@ -1031,56 +1053,56 @@ if(array_key_exists('R1',$tabs)){
 if(array_key_exists('R4',$tabs)){
     asort($tabs['R4']);
     foreach($tabs['R4'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R4').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R4&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R4').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R4').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R4&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R4').'</span></a>';
     }
 }
 
 if(array_key_exists('R2',$tabs)){
     asort($tabs['R2']);
     foreach($tabs['R2'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R2').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R2').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R2').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R2').'</span></a>';
     }
 }
 
 if(array_key_exists('R3',$tabs)){
     asort($tabs['R3']);
     foreach($tabs['R3'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R3').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R3').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R3').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R3').'</span></a>';
     }
 }
 
 if(array_key_exists('R5',$tabs)){
     asort($tabs['R5']);
     foreach($tabs['R5'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R5').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R5&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('R5').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('R5').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=R5&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('R5').'</span></a>';
     }
 }
 
 if(array_key_exists('O1',$tabs)){
     asort($tabs['O1']);
     foreach($tabs['O1'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O1').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O1').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O1').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O1&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O1').'</span></a>';
     }
 }
 
 if(array_key_exists('O2',$tabs)){
     asort($tabs['O2']);
     foreach($tabs['O2'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O2').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O2').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O2').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O2&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O2').'</span></a>';
     }
 }
 
 if(array_key_exists('O3',$tabs)){
     asort($tabs['O3']);
     foreach($tabs['O3'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O3').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('O3').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('O3').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=O3&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('O3').'</span></a>';
     }
 }
 
 if(array_key_exists('Co',$tabs)){
     asort($tabs['Co']);
     foreach($tabs['Co'] as $key=>$value){
-        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('Co').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=Co&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.$value.' BHK '.get_flat_type('Co').'</span></a>';
+        $html .= '<a class="wpb_button_a" title="'.$value.' BHK '.get_flat_type('Co').'" href="'.get_site_url().'/?action=download_availability&prop_id='.$post->ID.'&plant_id='.$plant_id.'&m_group=Co&m_type='.$value.'" target="_blank"><span class="wpb_button  wpb_btn-inverse wpb_regularsize">'.get_com_unit_type($value).'&nbsp;'.$unit_suffix.'&nbsp;'.get_flat_type('Co').'</span></a>';
     }
 }
 
