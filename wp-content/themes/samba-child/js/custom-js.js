@@ -1844,16 +1844,38 @@ jQuery('.popmake-give-details').live("click",function(evt){
 
     jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option value=""   >Type</option>');
 
-    _.each(types,function(options_typesvl,options_typesky){
+    var dropdown_display_type = [];
+    var dropdown_display_type_cnt = 0 ;
 
-        display_type = options_typesvl.property_unit_type;
+    _.each(types,function(options_typesvl,options_typesky){ 
 
         if(Current_property_type=="residential-property"){
+
+            display_type = options_typesvl.property_unit_type;
             display_type+=' '+options_typesvl.property_type_name ;    
+            if(_.indexOf(dropdown_display_type,display_type)!=1){
+                dropdown_display_type[dropdown_display_type_cnt] = display_type;
+                dropdown_display_type_cnt++;
+            }
+           
+        }
+        else if(Current_property_type=="commercial-property"){
+
+            if(_.indexOf(dropdown_display_type,options_typesvl.property_type)!=1){
+                dropdown_display_type[dropdown_display_type_cnt] = options_typesvl.property_type;
+                dropdown_display_type_cnt++;      
+            } 
+            
         }
         
 
-        jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option   value="'+display_type+'">'+display_type+'</option>');
+        
+
+    })
+
+    _.each(dropdown_display_type, function(dropdown_type_val,dropdown_type_key){
+
+        jQuery('.frm_givedetails').find('#field_givedetails_type').append('<option   value="'+dropdown_type_val+'">'+dropdown_type_val+'</option>');
 
     })
 
