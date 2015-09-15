@@ -36,10 +36,10 @@ function get_property_unit_types_options_data($post_type){
               }
       }
       else if($post_type =="commercial-property"){
-              $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
-              $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true));
+              /* $property_unit_type     = maybe_unserialize(get_option('commercial-property-unit-type',true));
+              $property_unit_types_meta_serialized       = maybe_unserialize(get_option('commercial-property-unit-typee',true)); */
               $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true));
-              $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
+             /* $property_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_types']);
               $property_unit_types_meta = maybe_unserialize($property_unit_types_meta_serialized['property_unit_types']);
               if(is_array($property_types_meta)){
                 foreach ($property_types_meta as $property_types_key => $property_types_value) {
@@ -52,8 +52,15 @@ function get_property_unit_types_options_data($post_type){
                  $unit_type_value['property_type_name'] = $property_types[$current_property_type_id];
                  $property_unit_types[] =       $unit_type_value ;
                 }
-              }
-      }
+              } */
+
+               
+             /* $property_types_meta_serialized            =   maybe_unserialize(get_option('commercial-property-type',true)); */
+                $property_unit_types  = $property_types_meta_serialized['property_types'] ;
+
+
+      } 
+ 
       return $property_unit_types;
 }
 
@@ -220,7 +227,8 @@ function get_res_property_meta_values($property_id, $post_type){
     }
     else if($post_type=="commercial-property"){
 
-      $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'commercial-property-unit-type',true));
+     /* commented on 14sep2015   $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'commercial-property-unit-type',true)); */
+     $property_unit_type       = maybe_unserialize(get_post_meta($property_id, 'commercial-property-type',true));
       $property_office_spaces   = maybe_unserialize(get_post_meta($property_id, 'office-spaces',true));
       $property_retail_spaces   = maybe_unserialize(get_post_meta($property_id, 'retail-spaces',true));
 
@@ -263,19 +271,59 @@ function get_res_property_meta_values($property_id, $post_type){
 
        if($post_type=="residential-property"){
           $property_unit_type_option =  maybe_unserialize(get_option('residential-property-unit-type'));
+          $property_unit_type_option_values = maybe_unserialize($property_unit_type_option['property_unit_types']);
        }
        else  if($post_type=="commercial-property"){
-          $property_unit_type_option =  maybe_unserialize(get_option('commercial-property-unit-type'));
+          $property_unit_type_option =  maybe_unserialize(get_option('commercial-property-type'));
+          $property_unit_type_option_values = maybe_unserialize($property_unit_type_option['property_types']);
        }
 
-       $property_unit_type_option_values = maybe_unserialize($property_unit_type_option['property_unit_types']);
+       
 
        //var_dump($property_unit_type_option_values);
 
 
 
-
        foreach ($property_unit_type as $key => $value) {
+
+              $main_property_type = array();
+
+              foreach ($property_unit_type_option_values as $key_typeoption => $value_typeoption) {
+                  if($value['type'] ==$value_typeoption['ID'] ){
+
+                    if($post_type=="residential-property"){
+
+                      $value['type_name'] = $value_typeoption['property_unit_type'] ;
+                      $value['no_bedrooms'] = $value_typeoption['number_bedrooms'] ;
+                      $main_property_type = get_main_property_type_by_unit_type_id($value_typeoption['property_type_id']);
+
+                      $value = array_merge($value,$main_property_type);
+                      $value['property_unit_type_display'] = $value['type_name']." ".$main_property_type['property_type_name'];
+                    }
+                    else if($post_type=="commercial-property"){
+
+                      $value['type_name'] = $value_typeoption['property_type'] ;                      
+                     /* $main_property_type = get_main_property_type_by_unit_type_id($value_typeoption['property_type_id']);*/
+
+                     // $value = array_merge($value,$main_property_type);
+                     // $value['property_unit_type_display'] = $value['type_name'];
+
+                    }                  
+                     
+
+                  }
+
+              }  
+              $property_unit_type_updated[] = $value;
+               
+
+       }
+
+ 
+
+
+
+       /* commented on 14sep2015 foreach ($property_unit_type as $key => $value) {
 
               $main_property_type = array();
 
@@ -295,14 +343,7 @@ function get_res_property_meta_values($property_id, $post_type){
                     }
                     else if($post_type=="commercial-property"){ 
                      $value['property_unit_type_display'] = $value['type_name']; 
-                    }
-
-                   /* echo "\n\n\n FETCHD TYPE ";
-                   var_dump($main_property_type);
-                   echo "\n\n\nMERGED ";
-
-                   var_dump($value); */
-
+                    } 
 
                   }
 
@@ -338,9 +379,9 @@ function get_res_property_meta_values($property_id, $post_type){
               }
               else{
                 $property_unit_type_other[] = $value;
-              }*/
+              }* /
 
-       }
+       } */
 
     }
 
@@ -571,7 +612,9 @@ function get_residential_properties_list($post_type,$propertylist_args=array()){
               $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']." ".$unit_type_options_value['property_type_name']);
             }
             else{
-             $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']);
+             /* commented on 14sep commercial unit tyupe update  $unit_type_option_slug = format_filter_text($unit_type_options_value['property_unit_type']); */
+
+            $unit_type_option_slug = format_filter_text($unit_type_options_value['property_type']);
             }
             if($unit_type_option_slug==$_REQUEST['type']){
               $pd_unit_type_option_id = $unit_type_options_value['ID'];
@@ -732,14 +775,16 @@ function get_residential_properties_list_ajx() {
     if(isset($_REQUEST['status']))
       $propertylist_args['status'] = $_REQUEST['status'] ;
 
-    if(isset($_REQUEST['city']))
+    /*if(isset($_REQUEST['city']))
       $propertylist_args['city'] = $_REQUEST['city'] ; 
 
     if(isset($_REQUEST['locality']))
       $propertylist_args['locality'] = $_REQUEST['locality'] ; 
 
     if(isset($_REQUEST['type']))
-      $propertylist_args['type'] = $_REQUEST['type'] ; 
+      $propertylist_args['type'] = $_REQUEST['type'] ; */
+
+      
 
  if(isset($_REQUEST['near']))
       $propertylist_args['near'] = $_REQUEST['near'] ; 
@@ -1012,6 +1057,64 @@ function get_sap_data(){
         break;
     default:
         $type = '';
+}
+return $type;
+ }
+
+
+
+
+
+ function get_com_unit_type($code){
+  switch ($code) {
+    case "GF":
+        $type = 'Ground Floor';
+        break;
+    case "F1":
+        $type = '1st Floor';
+        break;
+    case "F2":
+        $type = '2nd Floor';
+        break;
+    case "F3":
+        $type = '3rd Floor';
+        break;
+    case "F4":
+        $type = '4th Floor';
+        break;
+    case "F5":
+        $type = '5th Floor';
+        break;
+    case "F6":
+        $type = '6th Floor';
+        break;
+    case "F7":
+        $type = '7th Floor';
+        break;
+    case "F8":
+        $type = '8th Floor';
+        break;
+    case "F9":
+        $type = '9th Floor';
+        break;
+    case "F10":
+        $type = '10th Floor';
+        break;
+    case "F11":
+        $type = '11th Floor';
+        break;
+    case "F12":
+        $type = '12th Floor';
+        break;
+    case "F13":
+        $type = '13th Floor';
+        break;
+    case "F14":
+        $type = '14th Floor';
+        break;
+    case "F15":
+        $type = '15th Floor';
+        break; 
 }
 return $type;
  }
