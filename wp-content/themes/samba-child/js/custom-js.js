@@ -1422,7 +1422,7 @@ function populate_homepage_search_types(){
 
 jQuery('.home_city').live('change',function(evt){
 
-    alert('home city change')
+   // 15sep2015  alert('home city change')
 
     var args ={     'loadcities' : false, 
                     'loadlocalities':true,
@@ -1445,7 +1445,7 @@ jQuery('.home_city').live('change',function(evt){
  
  jQuery('.home_location').live('change',function(evt){
 
-    alert('home locality change')
+   // alert('home locality change')
 
     var args ={     'loadcities' : false, 
                     'loadlocalities':false,
@@ -1564,7 +1564,7 @@ console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
 
               if(args.loadcities == true ){ 
 
-                alert('populating cities ')
+               // 15sep2015  alert('populating cities ')
                       var uniq_drop_down_cities = _.uniq(city_drop_downs_values,function(item){return JSON.stringify(item);})
 
                       sorted_cities_options   = _.sortBy(uniq_drop_down_cities, function(obj){ return obj.city_name.toLowerCase() });
@@ -1589,7 +1589,7 @@ console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
 
             if(args.loadlocalities == true ){   
 
-                alert('populating localities')
+               // 15sep2015  alert('populating localities')
                    var uniq_drop_down_localities = _.uniq(locality_drop_down_values,function(item){return JSON.stringify(item);})
                    sorted_locality_options = _.sortBy(locality_drop_down_values, function(obj){ return obj.locality_name.toLowerCase() });
 
@@ -1624,7 +1624,7 @@ console.log('propertyCollection:---------------||||||||||||||||||||||||||||')
 
             if(args.loadtypes == true ){ 
 
-            alert('populating types ')  
+            // 15sep2015  alert('populating types ')  
 
               jQuery('.home_type').empty()
               jQuery('.home_type').append('<option value="">Type : All</option>'+
